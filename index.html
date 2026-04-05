@@ -1767,10 +1767,11 @@
     function startWidgetFlow() {
       widgetBotMsg('¡Hola! Soy <strong>Sofía</strong> 👋<br/>¿En qué te puedo ayudar hoy?', 300).then(function(){
         widgetShowChips([
-          { label: '💬 Probar demo de chat',    action: goToChatDemo },
-          { label: '📞 Probar demo de voz',     action: goToVozDemo },
-          { label: '📅 Agendar cita gratis',    action: goToCalendly },
-          { label: '❓ Tengo preguntas',         action: showFAQ }
+          { label: '💬 Probar demo de chat',      action: goToChatDemo },
+          { label: '📞 Probar demo de voz',       action: goToVozDemo },
+          { label: '📅 Agendar cita gratis',      action: goToCalendly },
+          { label: '❓ Tengo preguntas',           action: showFAQ },
+          { label: '📄 Términos y Condiciones',   action: showTerminos }
         ]);
       });
     }
@@ -1793,6 +1794,18 @@
       });
     }
 
+    function menuPrincipal() {
+      widgetBotMsg('¿En qué más te puedo ayudar?', 0).then(function(){
+        widgetShowChips([
+          { label: '💬 Demo chat',              action: goToChatDemo },
+          { label: '📞 Demo voz',               action: goToVozDemo },
+          { label: '📅 Agendar cita',           action: goToCalendly },
+          { label: '❓ Preguntas',               action: showFAQ },
+          { label: '📄 Términos y Condiciones', action: showTerminos }
+        ]);
+      });
+    }
+
     function showFAQ() {
       widgetBotMsg('Claro, ¿qué quieres saber? 👇', 0).then(function(){
         widgetShowChips([
@@ -1800,32 +1813,76 @@
           { label: '⏱️ ¿Cuánto tarda la config?', action: faqTiempo },
           { label: '📱 ¿Funciona en WhatsApp?',   action: faqCanales },
           { label: '📋 ¿Hay contrato largo?',     action: faqContrato },
-          { label: '← Volver',                    action: function(){ widgetBotMsg('¿En qué más te puedo ayudar?',0).then(function(){ widgetShowChips([{label:'💬 Demo chat',action:goToChatDemo},{label:'📞 Demo voz',action:goToVozDemo},{label:'📅 Agendar cita',action:goToCalendly},{label:'❓ Preguntas',action:showFAQ}]); }); } }
+          { label: '← Volver',                    action: menuPrincipal }
         ]);
+      });
+    }
+
+    function showTerminos() {
+      widgetBotMsg('Aquí tienes un resumen de nuestros <strong>Términos y Condiciones</strong> 📄 ¿Qué quieres consultar?', 0).then(function(){
+        widgetShowChips([
+          { label: '💰 Garantía y reembolsos',      action: tcGarantia },
+          { label: '⚠️ Limitación de responsabilidad', action: tcResponsabilidad },
+          { label: '🔒 Privacidad y datos',          action: tcPrivacidad },
+          { label: '❌ Cancelación del servicio',    action: tcCancelacion },
+          { label: '📑 Ver documento completo',      action: tcDocumento },
+          { label: '← Volver',                      action: menuPrincipal }
+        ]);
+      });
+    }
+
+    function tcGarantia() {
+      widgetBotMsg('💰 <strong>Garantía y Reembolsos</strong><br/><br/>✅ <strong>30 días de garantía</strong> desde la activación — si Sofía no funciona como se describe, te devolvemos el 100%.<br/><br/>⚠️ Pasados los 30 días, <strong>no hay reembolsos</strong> de meses ya pagados. Puedes cancelar cuando quieras y el servicio sigue activo hasta el final del período pagado.', 0).then(function(){
+        widgetShowChips([{label:'📑 Ver T&C completo', action:tcDocumento},{label:'← T&C',action:showTerminos}]);
+      });
+    }
+
+    function tcResponsabilidad() {
+      widgetBotMsg('⚠️ <strong>Limitación de Responsabilidad</strong><br/><br/>AJ Business Advisory <strong>no es responsable</strong> de:<br/>→ Fallos en WhatsApp, Instagram o Facebook<br/>→ Pérdidas de ingresos o clientes<br/>→ Fuerza mayor (cortes de internet, etc.)<br/><br/>La responsabilidad máxima siempre equivale al <strong>monto pagado en los últimos 30 días</strong>.', 0).then(function(){
+        widgetShowChips([{label:'📑 Ver T&C completo', action:tcDocumento},{label:'← T&C',action:showTerminos}]);
+      });
+    }
+
+    function tcPrivacidad() {
+      widgetBotMsg('🔒 <strong>Privacidad y Datos</strong><br/><br/>→ Cumplimos GDPR, CCPA y Ley 1581 de Colombia<br/>→ Tus datos <strong>nunca se venden</strong> a terceros<br/>→ Guardamos datos hasta <strong>12 meses post-cancelación</strong><br/>→ Puedes pedir borrado total enviando un correo a:<br/><strong>asisstant@ajbusinessadvisory.com</strong>', 0).then(function(){
+        widgetShowChips([{label:'📑 Ver T&C completo', action:tcDocumento},{label:'← T&C',action:showTerminos}]);
+      });
+    }
+
+    function tcCancelacion() {
+      widgetBotMsg('❌ <strong>Cancelación del Servicio</strong><br/><br/>✅ Cancelas cuando quieras, <strong>sin penalidad</strong><br/>✅ Sin contratos forzosos — mes a mes<br/>✅ El servicio sigue activo hasta el final del período pagado<br/><br/>⚠️ Si hay falta de pago, suspendemos después de <strong>15 días de mora</strong> con aviso previo.', 0).then(function(){
+        widgetShowChips([{label:'📅 Agendar cita gratis', action:goToCalendly},{label:'← T&C',action:showTerminos}]);
+      });
+    }
+
+    function tcDocumento() {
+      widgetBotMsg('Te abro el documento completo de Términos y Condiciones 📑', 0).then(function(){
+        setTimeout(function(){ window.open('./terminos.html', '_blank'); }, 600);
+        widgetShowChips([{label:'← Volver',action:showTerminos}]);
       });
     }
 
     function faqPrecio() {
       widgetBotMsg('Tenemos 3 planes 💰<br/><br/><strong>Esencial:</strong> $600k COP/mes — 500 min, 1 red social<br/><strong>Pro ⭐:</strong> $900k COP/mes — 1.500 min, 3 redes + CRM<br/><strong>Premium:</strong> $1.5M COP/mes — minutos ilimitados + IA predictiva<br/><br/>Todos incluyen 7 días gratis sin riesgo.', 0).then(function(){
-        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'← Preguntas',action:showFAQ}]);
       });
     }
 
     function faqTiempo() {
       widgetBotMsg('⚡ En <strong>máximo 5 días</strong> Sofía ya está atendiendo a tus clientes.<br/><br/>Día 1-2: entrenamos a Sofía con tu negocio<br/>Día 3-4: conectamos tus canales<br/>Día 5: ¡activa!', 0).then(function(){
-        widgetShowChips([{label:'📅 Empezar ahora',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+        widgetShowChips([{label:'📅 Empezar ahora',action:goToCalendly},{label:'← Preguntas',action:showFAQ}]);
       });
     }
 
     function faqCanales() {
       widgetBotMsg('¡Sí! Sofía responde en:<br/><br/>📱 <strong>WhatsApp</strong><br/>📸 <strong>Instagram DM</strong><br/>📘 <strong>Facebook Messenger</strong><br/>📞 <strong>Llamadas telefónicas</strong><br/><br/>Todo al mismo tiempo, 24/7 sin descanso.', 0).then(function(){
-        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'← Preguntas',action:showFAQ}]);
       });
     }
 
     function faqContrato() {
       widgetBotMsg('No hay contratos forzosos ✅<br/><br/>Pagas mes a mes y cancelas cuando quieras. Además tienes <strong>30 días de garantía</strong> — si no ves resultados, te devolvemos el dinero.', 0).then(function(){
-        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'← Preguntas',action:showFAQ}]);
       });
     }
 
