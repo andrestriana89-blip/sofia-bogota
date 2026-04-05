@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ajbusinessadvisory.com)",
+      "WebSearch",
+      "WebFetch(domain:cimaverso.com)",
+      "WebFetch(domain:teleone.com.co)"
+    ]
+  }
+}

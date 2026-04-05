@@ -1177,28 +1177,36 @@
        SCRIPTS
   ════════════════════════════════════════ -->
   <!-- Vapi Web SDK -->
-  <!-- Vapi Web SDK oficial -->
-  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.umd.js"></script>
-  <script>
-    // Inicializar Vapi Web SDK con public key
-    window.vapiInstance = new Vapi("b240f3dc-01c5-40da-a677-23aa550f03950");
-    window._vapiReady = true;
+  <script type="module">
+    import Vapi from 'https://esm.sh/@vapi-ai/web@2.5.2';
 
-    window.vapiInstance.on('call-start', function(){
+    const vapi = new Vapi('b240f3dc-01c5-40da-a677-23aa56f03950');
+    window.vapiInstance = vapi;
+    window._vapiReady   = true;
+    console.log('[Vapi] SDK loaded and instance ready');
+
+    vapi.on('call-start', () => {
       document.getElementById('call-status').textContent = 'Sofía está lista — habla ahora 🎙️';
     });
-    window.vapiInstance.on('speech-start', function(){
+    vapi.on('speech-start', () => {
       document.getElementById('call-status').textContent = 'Sofía está hablando...';
     });
-    window.vapiInstance.on('speech-end', function(){
-      document.getElementById('call-status').textContent = 'Escuchando... habla con normalidad';
+    vapi.on('speech-end', () => {
+      document.getElementById('call-status').textContent = 'Escuchando... habla con normalidad 🎤';
     });
-    window.vapiInstance.on('call-end', function(){ handleCallEnd(); });
-    window.vapiInstance.on('error', function(e){
+    vapi.on('call-end', () => {
+      if (typeof handleCallEnd === 'function') handleCallEnd();
+    });
+    vapi.on('error', (e) => {
       console.error('[Vapi error]', e);
-      document.getElementById('call-status').textContent = 'Error: ' + (e?.message || e?.error?.message || JSON.stringify(e));
-      handleCallEnd();
+      const msg = e?.error?.message || e?.message || JSON.stringify(e);
+      const el = document.getElementById('call-status');
+      if (el) el.textContent = '⚠️ Error: ' + msg;
+      if (typeof handleCallEnd === 'function') handleCallEnd();
     });
+  </script>
+
+  <script>
 
     // ── Vapi call logic ──
     var _callTimer=null, _secondsLeft=110;
@@ -1515,12 +1523,11 @@
       // 1) Pedir acceso al micrófono explícitamente antes de iniciar Vapi
       navigator.mediaDevices.getUserMedia({ audio: true })
         .then(function(stream){
-          // Micrófono concedido — liberar el stream (Vapi crea el suyo propio)
-          stream.getTracks().forEach(function(t){ t.stop(); });
+          // Micrófono concedido — Vapi toma el control del stream directamente
           document.getElementById('call-status').textContent = 'Conectando con Sofía...';
 
-          // 2) Iniciar Vapi — firstMessage lo maneja Vapi con {{variables}}
-          window.vapiInstance.start("a7a9b3e5-f193-48bf-9e98-dea6e7307d88", {
+          console.log('[Vapi] Iniciando llamada...');
+          window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
             assistantOverrides: {
               variableValues: {
                 clientName:   name,
