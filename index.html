@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJ Business Advisory — Asistente IA para tu negocio en Bogotá</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    :root {
+      --pink: #fc0f85;
+      --pink-dark: #d40d70;
+      --pink-light: #fff0f7;
+      --yellow: #ffd400;
+      --black: #0a0a0a;
+      --wa-green: #25D366;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    /* ── Niche Pill Buttons ── */
+    .niche-btn {
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 2px solid #e5e7eb;
+      background: white;
+    }
+    .niche-btn:hover { border-color: #fc0f85; background: #fff5fb; }
+    .niche-btn.active {
+      border-color: #fc0f85;
+      background: #fc0f85;
+      color: white;
+      box-shadow: 0 4px 14px rgba(252,15,133,.35);
+    }
+    .niche-btn.active .niche-icon { filter: brightness(10); }
+
+    /* ── Niche Content Panels ── */
+    .niche-panel { display: none; }
+    .niche-panel.active { display: block; }
+
+    /* ── WhatsApp Chat Mock ── */
+    .wa-bubble-in {
+      background: #fff;
+      border-radius: 0 12px 12px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    }
+    .wa-bubble-out {
+      background: #dcf8c6;
+      border-radius: 12px 0 12px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    }
+
+    /* ── Scroll-fade utility ── */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Ticker tape ── */
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .ticker-inner { animation: ticker 28s linear infinite; white-space: nowrap; display: flex; }
+
+    /* ── Floating WhatsApp CTA ── */
+    #wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 999;
+      background: #25D366; border-radius: 999px;
+      padding: 14px 20px;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      transition: transform 0.2s;
+    }
+    #wa-float:hover { transform: scale(1.07); }
+
+    /* ── Niche Radio Buttons ── */
+    .niche-radio-btn { user-select: none; }
+    input[type="radio"]:checked + .niche-radio-btn {
+      border-color: #fc0f85;
+      background: rgba(252,15,133,.15);
+      color: #ffd400;
+    }
+
+    /* ══════════════════════════════════
+       PARALLAX + SOFIA IMAGE STYLES
+    ══════════════════════════════════ */
+    #sofia-parallax {
+      will-change: transform;
+      transition: transform 0.08s linear;
+    }
+
+    /* Fade Sofia edges para que desaparezca cuando se cruce con texto */
+    #sofia-parallax img {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%);
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+    }
+
+    /* Floating animations */
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-9px); }
+    }
+    @keyframes floatDown {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(9px); }
+    }
+
+    /* Spec badge cards */
+    .spec-badge-card {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 10px 12px;
+      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+    .spec-badge-card:hover {
+      transform: scale(1.12) translateY(-4px) !important;
+      background: rgba(255,255,255,0.13);
+      border-color: rgba(252,15,133,0.5);
+      box-shadow: 0 8px 28px rgba(252,15,133,0.25);
+    }
+
+    /* Stat cards flotantes (rosado y gris) */
+    .stat-float-card {
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+      cursor: default;
+    }
+    .stat-float-card:hover {
+      transform: scale(1.12) translateY(-4px) !important;
+      box-shadow: 0 10px 32px rgba(252,15,133,0.4);
+      filter: brightness(1.15);
+    }
+
+    /* Badge En llamada ahora */
+    .badge-en-llamada {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+    .badge-en-llamada:hover {
+      transform: scale(1.08) translateY(-3px) !important;
+      box-shadow: 0 8px 28px rgba(252,15,133,0.35);
+    }
+
+    /* Sofia image hover */
+    .sofia-img-wrap {
+      transition: transform 0.35s ease, filter 0.35s ease;
+      cursor: default;
+    }
+    .sofia-img-wrap:hover {
+      transform: scale(1.06) translateY(-8px) !important;
+      filter: drop-shadow(0 0 55px rgba(252,15,133,0.75)) drop-shadow(0 30px 50px rgba(0,0,0,0.9));
+    }
+
+    /* Pink glow behind Sofia */
+    .sofia-glow {
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(252,15,133,0.35) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      filter: blur(50px);
+      animation: pulseGlow 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
+      50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.12); }
+    }
+
+    /* Sound wave bars */
+    .sound-wave { display: flex; align-items: center; gap: 3px; }
+    .sound-bar {
+      width: 3px;
+      background: #ffd400;
+      border-radius: 2px;
+      animation: waveAnim 1.2s ease-in-out infinite;
+    }
+    .sound-bar:nth-child(1) { height: 7px;  animation-delay: 0s; }
+    .sound-bar:nth-child(2) { height: 14px; animation-delay: .12s; }
+    .sound-bar:nth-child(3) { height: 22px; animation-delay: .24s; }
+    .sound-bar:nth-child(4) { height: 14px; animation-delay: .36s; }
+    .sound-bar:nth-child(5) { height: 7px;  animation-delay: .48s; }
+    @keyframes waveAnim {
+      0%, 100% { transform: scaleY(0.5); opacity: 0.7; }
+      50%       { transform: scaleY(1.3); opacity: 1; }
+    }
+
+    /* Call active animation */
+    @keyframes ringPulse {
+      0%   { transform: scale(1);   opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    .ring-pulse {
+      animation: ringPulse 1.8s ease-out infinite;
+    }
+    .ring-pulse-delay {
+      animation: ringPulse 1.8s ease-out infinite 0.6s;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <nav class="sticky top-0 z-50 bg-[#0a0a0a]/95 backdrop-blur border-b border-white/10 px-6 py-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center">
+        <img src="./logo-white.png" alt="AJ Business Assistant" class="h-9 w-auto object-contain" />
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+        <a href="#como-funciona" class="hover:text-[#fc0f85] transition-colors">Cómo funciona</a>
+        <a href="#para-quien" class="hover:text-[#fc0f85] transition-colors">Para quién</a>
+        <a href="#precios" class="hover:text-[#fc0f85] transition-colors">Precios</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#reservar" class="hidden md:flex items-center gap-1.5 border-2 border-[#fc0f85] text-[#fc0f85] px-4 py-2 rounded-full text-sm font-semibold hover:bg-[#fc0f85] hover:text-white transition-all">
+          💬 Chat con Sofía
+        </a>
+        <a href="#demo" class="bg-[#fc0f85] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#d40d70] transition-colors shadow-sm">
+          📞 Llamada demo →
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════
+       TICKER TAPE
+  ════════════════════════════════════════ -->
+  <div class="bg-[#fc0f85] text-white text-xs font-medium py-2 overflow-hidden">
+    <div class="ticker-inner gap-12">
+      <span class="mx-6">🇺🇸 Empresa fundada en California — tecnología de Bay Area para tu negocio en Bogotá</span>
+      <span class="mx-6">⚡ Asistente de voz IA activo 24/7</span>
+      <span class="mx-6">⭐ 4.9/5 calificación promedio de clientes</span>
+      <span class="mx-6">📞 Atiende llamadas y consultas en tiempo real — sin esperar</span>
+      <span class="mx-6">🗓️ Agenda citas automáticamente sin que hagas nada</span>
+      <span class="mx-6">🤝 Fideliza clientes y construye comunidad alrededor de tu marca</span>
+      <span class="mx-6">💰 Operativo en máximo 5 días — 7 días gratis sin riesgo</span>
+      <span class="mx-6">🇺🇸 Empresa fundada en California — tecnología de Bay Area para tu negocio en Bogotá</span>
+      <span class="mx-6">⚡ Asistente de voz IA activo 24/7</span>
+      <span class="mx-6">⭐ 4.9/5 calificación promedio de clientes</span>
+      <span class="mx-6">📞 Atiende llamadas y consultas en tiempo real — sin esperar</span>
+      <span class="mx-6">🗓️ Agenda citas automáticamente sin que hagas nada</span>
+      <span class="mx-6">🤝 Fideliza clientes y construye comunidad alrededor de tu marca</span>
+      <span class="mx-6">💰 Operativo en máximo 5 días — 7 días gratis sin riesgo</span>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       HERO — DARK + PARALLAX SOFÍA
+  ════════════════════════════════════════ -->
+  <section class="bg-[#0a0a0a] px-6 py-16 md:py-24">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Left copy -->
+      <div>
+        <div class="inline-flex items-center gap-2 bg-white/8 border border-white/15 text-gray-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+          <span class="w-2 h-2 bg-[#fc0f85] rounded-full animate-pulse"></span>
+          Disponible en Bogotá — Colombia · 🇺🇸 Empresa de California
+        </div>
+
+        <h1 class="text-4xl md:text-5xl font-black text-white leading-tight mb-5">
+          Deja de perder clientes<br/>
+          por no contestar<br/>
+          <span class="text-[#fc0f85]">el teléfono</span>
+        </h1>
+
+        <p class="text-lg text-gray-400 mb-4 leading-relaxed">
+          <strong class="text-white">Sofía</strong>, tu asistente de voz con IA, gestiona llamadas, califica clientes y agenda citas de forma inteligente, mejorando tu eficiencia operativa y captación de ingresos.
+        </p>
+
+        <div class="flex flex-col gap-2 mb-8">
+          <p class="flex items-center gap-2 text-gray-200 font-semibold">
+            <span class="w-5 h-5 bg-[#fc0f85] rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            Implementación en menos de 5 días.
+          </p>
+          <p class="flex items-center gap-2 text-gray-200 font-semibold">
+            <span class="w-5 h-5 bg-[#fc0f85] rounded-full flex items-center justify-center flex-shrink-0">
+              <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            </span>
+            Resultados medibles desde el inicio.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 mb-8">
+          <a href="#demo" class="bg-[#fc0f85] text-white px-7 py-4 rounded-full font-bold text-center hover:bg-[#d40d70] transition-all shadow-lg shadow-[#fc0f85]/25 hover:-translate-y-0.5">
+            📞 Llamada demo →
+          </a>
+          <a href="#reservar" class="border-2 border-[#ffd400] text-[#ffd400] px-7 py-4 rounded-full font-bold text-center hover:bg-[#ffd400] hover:text-[#0a0a0a] transition-all">
+            💬 Chat con Sofía
+          </a>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+          <span class="flex items-center gap-1.5 text-gray-400">✅ <span>Sin contrato forzoso</span></span>
+          <span class="flex items-center gap-1.5 text-gray-400">✅ <span>Cancela cuando quieras</span></span>
+          <span class="flex items-center gap-1.5 text-gray-400">✅ <span>30 días con garantía</span></span>
+        </div>
+      </div>
+
+      <!-- Right — Sofía 3D con specs flotantes en 3 columnas -->
+      <div id="sofia-parallax" class="flex flex-col items-center gap-3 w-full" style="margin-top: -20px;">
+      <div class="flex items-center gap-2 w-full">
+
+        <!-- Columna izquierda — specs -->
+        <div class="flex flex-col gap-3 flex-shrink-0 w-28">
+          <div class="spec-badge-card" style="animation: floatUp 3.4s ease-in-out infinite;">
+            <p class="text-[#ffd400] font-black text-xs leading-tight">📞 24/7</p>
+            <p class="text-white/60 text-xs leading-tight">Siempre activa</p>
+          </div>
+          <div class="spec-badge-card" style="animation: floatUp 4.0s ease-in-out infinite;">
+            <div class="sound-wave mb-1">
+              <div class="sound-bar"></div>
+              <div class="sound-bar"></div>
+              <div class="sound-bar"></div>
+              <div class="sound-bar"></div>
+              <div class="sound-bar"></div>
+            </div>
+            <p class="text-white/80 text-xs font-semibold">Voz natural</p>
+          </div>
+          <div class="spec-badge-card" style="animation: floatUp 3.1s ease-in-out infinite;">
+            <p class="text-[#ffd400] font-black text-xs leading-tight">💬 Multicanal</p>
+            <p class="text-white/60 text-xs leading-tight">WA · IG · Call</p>
+          </div>
+        </div>
+
+        <!-- Centro — Sofía imagen -->
+        <div class="relative flex-1 flex justify-center" style="min-height: 420px;">
+          <!-- Glow rosa pulsante -->
+          <div class="sofia-glow"></div>
+          <!-- Imagen principal -->
+          <img
+            src="./sofia.png.png"
+            alt="Sofía — Asistente IA"
+            class="sofia-img-wrap relative z-10 w-full object-contain"
+            style="max-height: 440px; filter: drop-shadow(0 0 35px rgba(252,15,133,0.5)) drop-shadow(0 30px 50px rgba(0,0,0,0.9));"
+          />
+        </div>
+
+        <!-- Columna derecha — specs -->
+        <div class="flex flex-col gap-3 flex-shrink-0 w-28">
+          <div class="spec-badge-card" style="animation: floatUp 3.7s ease-in-out infinite;">
+            <p class="text-[#ffd400] font-black text-xs leading-tight">🎯 Califica</p>
+            <p class="text-white/60 text-xs leading-tight">leads solos</p>
+          </div>
+          <div class="spec-badge-card" style="animation: floatUp 4.3s ease-in-out infinite;">
+            <p class="text-[#ffd400] font-black text-xs leading-tight">🗓️ Auto-agenda</p>
+            <p class="text-white/60 text-xs leading-tight">Sin intervención</p>
+          </div>
+          <div class="spec-badge-card" style="animation: floatUp 2.9s ease-in-out infinite;">
+            <p class="text-[#ffd400] font-black text-xs leading-tight">📊 Reportes</p>
+            <p class="text-white/60 text-xs leading-tight">Semanales auto</p>
+          </div>
+          <!-- Stat card -->
+          <div class="stat-float-card bg-white/5 border border-white/10 rounded-2xl p-3 text-center mt-1" style="animation: floatUp 4.5s ease-in-out infinite;">
+            <p class="font-black text-red-400 text-lg">67%</p>
+            <p class="text-gray-500 text-xs leading-tight">no vuelven si no atienden</p>
+          </div>
+        </div>
+
+      </div><!-- fin 3 columnas -->
+
+      <!-- Badge "En llamada" — visible siempre, fuera del contenedor de imagen -->
+      <div class="badge-en-llamada flex items-center justify-center gap-2 bg-[#0a0a0a] border border-[#fc0f85]/60 rounded-full px-5 py-2 shadow-lg" style="animation: floatUp 3.5s ease-in-out infinite;">
+        <span class="w-2.5 h-2.5 bg-red-500 rounded-full animate-pulse"></span>
+        <span class="text-sm font-bold text-white">En llamada ahora</span>
+      </div>
+
+    </div><!-- fin sofia-parallax -->
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       NICHE SELECTOR — "¿Para quién?"
+  ════════════════════════════════════════ -->
+  <section id="para-quien" class="px-6 py-20 bg-white">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-12 fade-in">
+        <p class="text-[#fc0f85] font-semibold text-sm uppercase tracking-widest mb-3">Personalizado para tu negocio</p>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-4">¿Qué tipo de negocio tienes?</h2>
+        <p class="text-gray-500 text-lg max-w-xl mx-auto">Selecciona tu industria y te mostramos exactamente cómo funciona para ti.</p>
+      </div>
+
+      <!-- Niche Pills -->
+      <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
+        <button onclick="selectNiche('spa')" class="niche-btn active flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-sm text-gray-700" data-niche="spa">
+          <span class="niche-icon text-lg">🧖</span> Spa & Estética
+        </button>
+        <button onclick="selectNiche('restaurant')" class="niche-btn flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-sm text-gray-700" data-niche="restaurant">
+          <span class="niche-icon text-lg">🍽️</span> Restaurante
+        </button>
+        <button onclick="selectNiche('clinic')" class="niche-btn flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-sm text-gray-700" data-niche="clinic">
+          <span class="niche-icon text-lg">💉</span> Clínica Estética
+        </button>
+        <button onclick="selectNiche('vet')" class="niche-btn flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-sm text-gray-700" data-niche="vet">
+          <span class="niche-icon text-lg">🐾</span> Veterinaria
+        </button>
+        <button onclick="selectNiche('dentist')" class="niche-btn flex items-center gap-2 px-5 py-3 rounded-full font-semibold text-sm text-gray-700" data-niche="dentist">
+          <span class="niche-icon text-lg">😁</span> Dentista
+        </button>
+      </div>
+
+      <!-- ── SPA ── -->
+      <div id="panel-spa" class="niche-panel active fade-in">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-block bg-pink-50 text-pink-700 font-bold text-xs px-3 py-1 rounded-full mb-4">🧖 Para Spas & Estéticas</div>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              "Estoy en pleno masaje y pierdo 3 citas porque<br/><span class="text-[#fc0f85]">no puedo responder el WhatsApp"</span>
+            </h3>
+            <p class="text-gray-600 mb-6">Tus manos están ocupadas. Tu mente también. Pero los clientes escriben en el momento en que quieren reservar — y si no les respondes YA, reservan en otro spa.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>El asistente responde preguntas sobre tratamientos y precios en segundos</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Agenda citas automáticamente según tu disponibilidad real</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Envía recordatorios automáticos para reducir no-shows</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Responde en Instagram, WhatsApp y Facebook al mismo tiempo</span></li>
+            </ul>
+            <div class="bg-[#fff5fb] rounded-xl p-4 text-sm text-[#d40d70] border border-[#fc0f85]/20">
+              <strong>Caso real:</strong> Spa en Chapinero pasó de 12 a 28 citas por semana en 45 días. Sin contratar recepcionista.
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded-3xl p-6">
+            <div class="bg-[#0a0a0a] rounded-t-2xl px-4 py-3 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-pink-200 flex items-center justify-center text-sm font-bold">💆</div>
+              <div>
+                <p class="text-white font-semibold text-sm">Spa Serenidad Bogotá</p>
+                <p class="text-[#fc0f85] text-xs">En línea</p>
+              </div>
+            </div>
+            <div class="bg-[#e5ddd5] rounded-b-2xl p-4 space-y-3">
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Hola! ¿Cuánto cuesta el masaje relajante?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">¡Hola! 😊 Nuestro masaje relajante está a <strong>$95.000 COP</strong> (60 min) y <strong>$130.000</strong> (90 min).</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Perfecto! ¿Tienen disponibilidad el sábado?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">Sí tenemos 🗓️ Este sábado hay espacios a las <strong>10am, 2pm y 4pm</strong>. ¿Cuál te viene mejor?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Las 2pm perfecto!</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">✅ Cita confirmada para el <strong>sábado a las 2pm</strong>. Te enviamos un recordatorio el día anterior. ¡Nos vemos!</div>
+              <p class="text-xs text-center text-gray-400 pt-1">⚡ Respondido en 2 segundos — mientras estabas en sesión</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── RESTAURANTE ── -->
+      <div id="panel-restaurant" class="niche-panel fade-in">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-block bg-red-50 text-red-700 font-bold text-xs px-3 py-1 rounded-full mb-4">🍽️ Para Restaurantes</div>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              "Los viernes nos llaman 50 veces.<br/><span class="text-[#fc0f85]">No podemos contestar todo y la cocina explota"</span>
+            </h3>
+            <p class="text-gray-600 mb-6">Hora pico = caos total. El mesero está volando, la cocina gritando, y el teléfono sonando. Cada llamada perdida es una mesa vacía el fin de semana.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Toma reservas por WhatsApp sin que nadie tenga que responder</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Responde preguntas del menú, horarios y ubicación</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Confirma reservas y reduce no-shows con recordatorios</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Responde en español con el tono y personalidad de tu restaurante</span></li>
+            </ul>
+            <div class="bg-[#fff5fb] rounded-xl p-4 text-sm text-[#d40d70] border border-[#fc0f85]/20">
+              <strong>Caso real:</strong> Restaurante en La Candelaria llenó sus mesas los viernes con semana de anticipación. Antes solo llenaba el 60%.
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded-3xl p-6">
+            <div class="bg-[#0a0a0a] rounded-t-2xl px-4 py-3 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-red-200 flex items-center justify-center text-sm">🍽️</div>
+              <div>
+                <p class="text-white font-semibold text-sm">Restaurante Fusión Bogotá</p>
+                <p class="text-[#fc0f85] text-xs">En línea</p>
+              </div>
+            </div>
+            <div class="bg-[#e5ddd5] rounded-b-2xl p-4 space-y-3">
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Buenas! ¿Tienen opciones vegetarianas?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">¡Hola! Sí, tenemos <strong>8 platos vegetarianos</strong> en el menú. 🥗 Los más pedidos son la risotto de hongos y la pasta primavera. ¿Te mando el menú completo?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Sí! Y quisiera reservar para el sábado 4 personas</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">¡Perfecto! 🗓️ Para 4 personas el sábado tengo disponibles <strong>7pm y 9pm</strong>. ¿Cuál prefieres?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">7pm</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">✅ Reserva confirmada: <strong>sábado 7pm, 4 personas</strong>. ¿Tienes alguna restricción alimentaria? ¡Los esperamos!</div>
+              <p class="text-xs text-center text-gray-400 pt-1">⚡ Tú estabas en la cocina — el asistente cerró la reserva</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CLÍNICA ── -->
+      <div id="panel-clinic" class="niche-panel fade-in">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-block bg-purple-50 text-purple-700 font-bold text-xs px-3 py-1 rounded-full mb-4">💉 Para Clínicas Estéticas</div>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              "Pacientes preguntan por tratamientos y<br/><span class="text-[#fc0f85]">no podemos responder mientras estamos en sesión"</span>
+            </h3>
+            <p class="text-gray-600 mb-6">Tus pacientes hacen preguntas delicadas sobre tratamientos estéticos. Necesitan respuestas rápidas, personalizadas y discretas — mientras tú estás con otro paciente.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Explica tratamientos, precios y tiempos de recuperación</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Agenda consultas de valoración sin llamadas</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Filtra y cualifica leads antes de que lleguen a ti</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Maneja información delicada con discreción total</span></li>
+            </ul>
+            <div class="bg-[#fff5fb] rounded-xl p-4 text-sm text-[#d40d70] border border-[#fc0f85]/20">
+              <strong>Caso real:</strong> Clínica en Usaquén triplicó consultas de valoración sin aumentar personal. Los pacientes llegaban ya informados y listos para decidir.
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded-3xl p-6">
+            <div class="bg-[#0a0a0a] rounded-t-2xl px-4 py-3 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-purple-200 flex items-center justify-center text-sm">💎</div>
+              <div>
+                <p class="text-white font-semibold text-sm">Clínica Estética Luminar</p>
+                <p class="text-[#fc0f85] text-xs">En línea</p>
+              </div>
+            </div>
+            <div class="bg-[#e5ddd5] rounded-b-2xl p-4 space-y-3">
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Hola, quisiera info sobre el relleno de labios</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">¡Hola! 💄 El relleno de labios con ácido hialurónico tiene un <strong>resultado natural y duración de 8-12 meses</strong>. El procedimiento tarda 30 min y sin tiempo de recuperación.</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">¿Y el precio?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">Desde <strong>$580.000 COP</strong> según la cantidad de producto. Te recomendamos una consulta de valoración gratuita para personalizar el tratamiento. ¿La agendamos?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Sí, ¿cuándo tienen disponible?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">✅ Esta semana hay espacio el <strong>miércoles 3pm y jueves 10am</strong>. ¿Cuál te queda bien?</div>
+              <p class="text-xs text-center text-gray-400 pt-1">⚡ Paciente cualificada — lista para la consulta</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── VETERINARIA ── -->
+      <div id="panel-vet" class="niche-panel fade-in">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-block bg-amber-50 text-amber-700 font-bold text-xs px-3 py-1 rounded-full mb-4">🐾 Para Veterinarias</div>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              "A las 11pm me escriben que su perro está enfermo.<br/><span class="text-[#fc0f85]">No puedo responder mientras duermo"</span>
+            </h3>
+            <p class="text-gray-600 mb-6">Los dueños de mascotas son emocionalmente intensos. Cuando su peludo está mal, necesitan respuesta YA. El que responde primero se gana su lealtad de por vida.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Responde emergencias leves y guía a los dueños en tiempo real</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Agenda citas de control, baño, vacunas y cirugías</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Envía recordatorios de vacunas y controles automáticamente</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Crea fidelidad emocional — los dueños te recuerdan cuando respondiste a las 11pm</span></li>
+            </ul>
+            <div class="bg-[#fff5fb] rounded-xl p-4 text-sm text-[#d40d70] border border-[#fc0f85]/20">
+              <strong>Caso real:</strong> Veterinaria en Suba aumentó clientes fidelizados en 40% solo por responder rápido en horas no laborales.
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded-3xl p-6">
+            <div class="bg-[#0a0a0a] rounded-t-2xl px-4 py-3 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-amber-200 flex items-center justify-center text-sm">🐶</div>
+              <div>
+                <p class="text-white font-semibold text-sm">Veterinaria PataFeliz</p>
+                <p class="text-[#fc0f85] text-xs">En línea · 11:38pm</p>
+              </div>
+            </div>
+            <div class="bg-[#e5ddd5] rounded-b-2xl p-4 space-y-3">
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Hola, son las 11pm y mi perro está vomitando mucho, qué hago?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">¡Hola! 🐾 Entiendo tu preocupación. ¿Vomitó cuántas veces? ¿Tiene fiebre? ¿Comió algo diferente hoy?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Unas 4 veces, no sé si tiene fiebre, se veía normal</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">Si no tiene otros síntomas de alarma, dale agua en pequeñas cantidades y en ayuno hasta mañana. Necesita revisión mañana a primera hora. ¿Te agendo para las 8am?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Sí por favor!</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">✅ Agendado para <strong>mañana 8am</strong>. Tranquila, lo van a atender bien. 🐶</div>
+              <p class="text-xs text-center text-gray-400 pt-1">⚡ Cliente fidelizada de por vida — a las 11pm</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── DENTISTA ── -->
+      <div id="panel-dentist" class="niche-panel fade-in">
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <div class="inline-block bg-blue-50 text-blue-700 font-bold text-xs px-3 py-1 rounded-full mb-4">😁 Para Dentistas</div>
+            <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-4">
+              "El paciente tiene un diente fracturado a las 7pm<br/><span class="text-[#fc0f85]">y busca quién le responda primero"</span>
+            </h3>
+            <p class="text-gray-600 mb-6">El dolor dental no espera horario de oficina. El paciente que escribe a las 7pm reservará con el primero que le responda. Y probablemente se quede con esa clínica para siempre.</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Atiende urgencias dentales fuera de horario con instrucciones básicas</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Agenda pacientes nuevos y de control sin llamadas</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Explica tratamientos y precios (blanqueamiento, ortodoncia, implantes)</span></li>
+              <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Envía recordatorios de citas para reducir ausencias</span></li>
+            </ul>
+            <div class="bg-[#fff5fb] rounded-xl p-4 text-sm text-[#d40d70] border border-[#fc0f85]/20">
+              <strong>Caso real:</strong> Odontología en Chicó capturó 15 pacientes nuevos en el primer mes solo por responder en horas no laborales.
+            </div>
+          </div>
+          <div class="bg-gray-100 rounded-3xl p-6">
+            <div class="bg-[#0a0a0a] rounded-t-2xl px-4 py-3 flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-blue-200 flex items-center justify-center text-sm">🦷</div>
+              <div>
+                <p class="text-white font-semibold text-sm">Odontología Sonrisa Bogotá</p>
+                <p class="text-[#fc0f85] text-xs">En línea · 7:15pm</p>
+              </div>
+            </div>
+            <div class="bg-[#e5ddd5] rounded-b-2xl p-4 space-y-3">
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Buenas noches, se me partió una muela. Qué hago?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">¡Buenas noches! 🦷 Lo siento. Si no tienes mucho dolor ni sangrado, toma un analgésico como ibuprofeno y evita el lado afectado. Mañana te atendemos.</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Hay que sacarla? Cuánto vale eso?</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">Depende del estado. Puede ser solo <strong>restauración desde $120.000</strong> o extracción desde <strong>$90.000</strong>. Primero te revisamos y te decimos. ¿Agendamos mañana a primera hora?</div>
+              <div class="wa-bubble-in px-4 py-2 max-w-xs text-sm text-gray-800">Sí, lo antes posible</div>
+              <div class="wa-bubble-out px-4 py-2 max-w-xs ml-auto text-sm text-gray-800">✅ <strong>Mañana 8am</strong> tienes cita. Te mandamos la dirección. ¡Mucho ánimo!</div>
+              <p class="text-xs text-center text-gray-400 pt-1">⚡ Paciente nuevo capturado a las 7pm — sin que nadie trabajara</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       HOW IT WORKS
+  ════════════════════════════════════════ -->
+  <section id="como-funciona" class="px-6 py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 fade-in">
+        <p class="text-[#fc0f85] font-semibold text-sm uppercase tracking-widest mb-3">Simple como 1-2-3</p>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900">¿Cómo funciona?</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 fade-in">
+          <div class="w-12 h-12 bg-[#fff0f7] rounded-xl flex items-center justify-center text-2xl mb-5">⚙️</div>
+          <div class="text-[#fc0f85] font-black text-sm mb-2">PASO 1 — DÍAS 1 Y 2</div>
+          <h3 class="text-lg font-black text-gray-900 mb-3">Entrenamos a Sofía con tu negocio</h3>
+          <p class="text-gray-600 text-sm">En una videollamada de 45 minutos le enseñamos todo: tus servicios, precios, horarios y el tono de tu marca. Ella aprende rápido.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 fade-in">
+          <div class="w-12 h-12 bg-[#fff0f7] rounded-xl flex items-center justify-center text-2xl mb-5">🔗</div>
+          <div class="text-[#fc0f85] font-black text-sm mb-2">PASO 2 — DÍAS 3 Y 4</div>
+          <h3 class="text-lg font-black text-gray-900 mb-3">Conectamos todos tus canales</h3>
+          <p class="text-gray-600 text-sm">Integramos llamadas, Instagram y Facebook. Sin instalaciones complicadas. Nuestro equipo te guía paso a paso hasta que todo funcione perfecto.</p>
+        </div>
+        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 fade-in">
+          <div class="w-12 h-12 bg-[#fff0f7] rounded-xl flex items-center justify-center text-2xl mb-5">🚀</div>
+          <div class="text-[#fc0f85] font-black text-sm mb-2">PASO 3 — DÍA 5 · LISTO</div>
+          <h3 class="text-lg font-black text-gray-900 mb-3">Sofía trabaja, tú te enfocas</h3>
+          <p class="text-gray-600 text-sm">En máximo 5 días tu negocio ya atiende, agenda y fideliza clientes solo. Recibes un reporte semanal y solo actúas cuando el cliente ya quiere comprar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PRICING
+  ════════════════════════════════════════ -->
+  <section id="precios" class="px-6 py-20 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 fade-in">
+        <p class="text-[#fc0f85] font-semibold text-sm uppercase tracking-widest mb-3">Invierte con confianza</p>
+        <h2 class="text-3xl md:text-4xl font-black text-gray-900">Un solo pago. Todo funcionando.</h2>
+        <p class="text-gray-500 mt-3 max-w-xl mx-auto">Sofía atiende, responde y publica por ti — mientras tú te enfocas en lo que de verdad mueve tu negocio.</p>
+      </div>
+
+      <!-- Tabla comparativa rápida -->
+      <div class="overflow-x-auto mb-10 fade-in">
+        <table class="w-full text-sm text-center border-collapse">
+          <thead>
+            <tr class="text-gray-400 text-xs uppercase tracking-wider">
+              <th class="text-left py-3 px-4 font-semibold w-1/3">¿Qué incluye?</th>
+              <th class="py-3 px-4 font-semibold">Esencial</th>
+              <th class="py-3 px-4 font-semibold text-[#fc0f85]">Pro ⭐</th>
+              <th class="py-3 px-4 font-semibold text-[#0a0a0a]">Premium 🚀</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <tr class="bg-gray-50/50">
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Llamadas 24/7</td>
+              <td class="py-3 px-4 text-green-500 font-bold">✓ 500 min</td>
+              <td class="py-3 px-4 text-[#fc0f85] font-bold">✓ 1.500 min</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓ 4.000 min</td>
+            </tr>
+            <tr>
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">WhatsApp automático</td>
+              <td class="py-3 px-4 text-green-500 font-bold">✓</td>
+              <td class="py-3 px-4 text-[#fc0f85] font-bold">✓</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Agenda y CRM</td>
+              <td class="py-3 px-4 text-green-500 font-bold text-xs">Agenda básica</td>
+              <td class="py-3 px-4 text-[#fc0f85] font-bold text-xs">+ Historial y notas</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold text-xs">+ VIPs, predicciones, valor</td>
+            </tr>
+            <tr>
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Redes sociales automáticas</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-[#fc0f85] font-bold">✓ 1 canal</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓ 3 canales</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Publicaciones semanales</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-[#fc0f85] font-bold">✓ 1–2/semana</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓ 3–4/semana</td>
+            </tr>
+            <tr>
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Cronograma predictivo</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓ Mensual</td>
+            </tr>
+            <tr class="bg-gray-50/50">
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Reportes</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-[#fc0f85] font-bold">✓ Mensual</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓ Semanal</td>
+            </tr>
+            <tr>
+              <td class="text-left py-3 px-4 font-semibold text-gray-700">Sesión estratégica</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-gray-300 font-bold">✗</td>
+              <td class="py-3 px-4 text-[#0a0a0a] font-bold">✓ Mensual</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Cards de planes -->
+      <div class="grid md:grid-cols-3 gap-6 items-start">
+
+        <!-- Plan Esencial -->
+        <div class="border-2 border-gray-200 rounded-3xl p-7 fade-in flex flex-col">
+          <div class="mb-5">
+            <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">✓ Empezar</p>
+            <p class="text-xl font-black text-gray-900 mb-1">Plan Esencial</p>
+            <div class="flex items-end gap-1 mb-1">
+              <span class="text-4xl font-black text-gray-900">$600k</span>
+              <span class="text-gray-400 text-sm mb-1.5">COP/mes</span>
+            </div>
+            <p class="text-gray-400 text-xs">≈ USD $150/mes · Setup $400k COP</p>
+          </div>
+          <p class="text-gray-500 text-sm mb-5 leading-relaxed">Para micro-negocios que quieren <strong class="text-gray-700">probar sin riesgo</strong> y tener atención automática desde el día 1.</p>
+          <div class="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3 py-2 mb-5">
+            <span class="text-gray-500">⏱️</span>
+            <p class="text-gray-700 text-xs font-semibold"><span class="text-gray-900 font-black text-sm">500 min</span>/mes · ~30 llamadas de 5 min</p>
+          </div>
+          <ul class="space-y-2.5 mb-7 text-sm flex-1">
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>Llamadas 24/7</strong> — responde antes que tu competencia</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>WhatsApp automático</strong> — respuestas al instante</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>Agenda básica</strong> — citas sin hacer nada</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Onboarding asistido en 3 días</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Soporte por correo (48h)</span></li>
+            <li class="flex gap-2.5 text-gray-300 items-start"><span>✗</span><span>Redes sociales automáticas</span></li>
+            <li class="flex gap-2.5 text-gray-300 items-start"><span>✗</span><span>Publicaciones y estrategia</span></li>
+          </ul>
+          <a href="#reservar" class="block text-center border-2 border-[#fc0f85] text-[#fc0f85] py-3 rounded-full font-bold hover:bg-[#fff5fb] transition-colors text-sm">
+            Empezar ahora →
+          </a>
+        </div>
+
+        <!-- Plan Pro -->
+        <div class="border-2 border-[#fc0f85] bg-[#fff5fb] rounded-3xl p-7 relative fade-in flex flex-col shadow-xl shadow-[#fc0f85]/10">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#fc0f85] text-white text-xs font-bold px-5 py-1.5 rounded-full whitespace-nowrap">
+            🔥 MÁS POPULAR
+          </div>
+          <div class="mb-5">
+            <p class="text-xs font-bold text-[#fc0f85] uppercase tracking-widest mb-3">⭐ Crecer</p>
+            <p class="text-xl font-black text-gray-900 mb-1">Plan Pro</p>
+            <div class="flex items-end gap-1 mb-1">
+              <span class="text-4xl font-black text-gray-900">$900k</span>
+              <span class="text-gray-400 text-sm mb-1.5">COP/mes</span>
+            </div>
+            <p class="text-gray-400 text-xs">≈ USD $225/mes · Setup $800k COP</p>
+          </div>
+          <p class="text-gray-600 text-sm mb-5 leading-relaxed">Para negocios que quieren <strong class="text-gray-800">crecer sin contratar</strong>. Sofía atiende, agenda y <em>publica por ti</em> cada semana.</p>
+          <div class="flex items-center gap-2 bg-[#fc0f85]/10 border border-[#fc0f85]/20 rounded-xl px-3 py-2 mb-5">
+            <span class="text-[#fc0f85]">⏱️</span>
+            <p class="text-[#d40d70] text-xs font-semibold"><span class="text-[#fc0f85] font-black text-sm">1.500 min</span>/mes · ~100 llamadas de 5 min</p>
+          </div>
+          <ul class="space-y-2.5 mb-7 text-sm flex-1">
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>Llamadas 24/7</strong> — 3× más capacidad</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>WhatsApp automático</strong></span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span>
+              <span>
+                <strong>Agenda inteligente + CRM básico</strong>
+                <span class="block text-xs text-gray-500 mt-0.5">Registro de clientes · historial de llamadas · notas · recordatorios automáticos</span>
+              </span>
+            </li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>Instagram O Facebook</strong> — responde DMs auto</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span>
+              <span>
+                <strong>Publicaciones automáticas semanales</strong>
+                <span class="block text-xs text-gray-500 mt-0.5">1–2 posts/semana · generados por IA según tu nicho · copys que venden</span>
+              </span>
+            </li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span><strong>Reporte mensual</strong> de ROI y pérdida evitada</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Soporte WhatsApp (24h)</span></li>
+          </ul>
+          <a href="#reservar" class="block text-center bg-[#fc0f85] text-white py-3 rounded-full font-bold hover:bg-[#d40d70] transition-colors shadow-lg shadow-[#fc0f85]/25 text-sm">
+            Quiero el Plan Pro →
+          </a>
+        </div>
+
+        <!-- Plan Premium -->
+        <div class="border-2 border-[#0a0a0a] bg-[#0a0a0a] rounded-3xl p-7 relative fade-in flex flex-col">
+          <div class="mb-5">
+            <p class="text-xs font-bold text-[#ffd400] uppercase tracking-widest mb-3">🚀 Dominar</p>
+            <p class="text-xl font-black text-white mb-1">Plan Premium</p>
+            <div class="flex items-end gap-1 mb-1">
+              <span class="text-4xl font-black text-white">$1.5M</span>
+              <span class="text-gray-400 text-sm mb-1.5">COP/mes</span>
+            </div>
+            <p class="text-gray-500 text-xs">≈ USD $375/mes · Setup $1.5M COP</p>
+          </div>
+          <p class="text-gray-400 text-sm mb-5 leading-relaxed">Para empresas que quieren <strong class="text-white">dominar su mercado</strong>. Sofía más estrategia de crecimiento real, todo en un solo plan.</p>
+          <div class="flex items-center gap-2 bg-[#ffd400]/10 border border-[#ffd400]/20 rounded-xl px-3 py-2 mb-5">
+            <span class="text-[#ffd400]">⏱️</span>
+            <p class="text-[#ffd400] text-xs font-semibold"><span class="text-[#ffd400] font-black text-sm">4.000 min</span>/mes · ~400 llamadas de 5 min</p>
+          </div>
+          <ul class="space-y-2.5 mb-7 text-sm flex-1">
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span><span class="text-gray-300"><strong class="text-white">Llamadas 24/7</strong> — capacidad enterprise</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span><span class="text-gray-300"><strong class="text-white">WhatsApp + 3 redes</strong> — Instagram, Facebook, TikTok</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span>
+              <span class="text-gray-300">
+                <strong class="text-white">Agenda + CRM inteligente</strong>
+                <span class="block text-xs text-gray-500 mt-0.5">Identifica VIPs · predice quiénes se van · valor por cliente · automatizaciones condicionales</span>
+              </span>
+            </li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span>
+              <span class="text-gray-300">
+                <strong class="text-white">Cronograma predictivo mensual</strong>
+                <span class="block text-xs text-gray-500 mt-0.5">Sofía analiza cuándo tus clientes están activos · publica en el horario exacto · 3–4 posts/semana</span>
+              </span>
+            </li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span><span class="text-gray-300"><strong class="text-white">A/B testing automático</strong> de publicaciones</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span><span class="text-gray-300"><strong class="text-white">Análisis de competencia</strong> semanal en Bogotá</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span><span class="text-gray-300"><strong class="text-white">Sesión estratégica mensual</strong> con AJ Advisory</span></li>
+            <li class="flex gap-2.5 items-start"><span class="text-[#ffd400] font-bold mt-0.5">✓</span><span class="text-gray-300">Soporte VIP prioritario 24/7</span></li>
+          </ul>
+          <a href="#reservar" class="block text-center bg-[#ffd400] text-[#0a0a0a] py-3 rounded-full font-bold hover:bg-yellow-300 transition-colors text-sm">
+            Quiero el Plan Premium →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Nota aclaratoria minutos -->
+      <div class="mt-6 text-center fade-in">
+        <p class="text-gray-400 text-xs">* Los minutos incluyen tiempo total de atención: llamadas + procesamiento de WhatsApp + mensajes en redes. 500 min ≈ 30 llamadas de ~5 min. Minutos adicionales disponibles a tarifa preferencial.</p>
+      </div>
+
+      <!-- Guarantee -->
+      <div class="mt-8 bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center fade-in">
+        <p class="text-2xl mb-2">🛡️</p>
+        <p class="font-bold text-gray-800 text-lg">Garantía de 30 días</p>
+        <p class="text-gray-600 text-sm mt-1">Si en 30 días no ves un incremento en tus reservas o consultas, te devolvemos el dinero. Sin preguntas, sin complicaciones.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       RESERVAR CITA + CHAT CON SOFÍA
+  ════════════════════════════════════════ -->
+  <section id="reservar" class="px-6 py-20 bg-[#fff5fb]">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <div class="fade-in">
+          <div class="inline-flex items-center gap-2 bg-[#fc0f85]/10 border border-[#fc0f85]/30 text-[#d40d70] text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+            <span class="w-2 h-2 bg-[#fc0f85] rounded-full animate-pulse"></span>
+            Atención personalizada — Bogotá
+          </div>
+          <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-5">
+            ¿Tienes dudas sobre<br/>cómo funciona<br/>
+            <span class="text-[#fc0f85]">para tu negocio?</span>
+          </h2>
+          <p class="text-gray-600 text-lg mb-6 leading-relaxed">Habla directamente con Sofía y entiende en tiempo real cómo transformaría la atención de tu negocio. Sin tecnicismos, sin presión.</p>
+          <ul class="space-y-3 mb-8 text-sm text-gray-700">
+            <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Sofía te explica el servicio según tu industria y en tu propio idioma</span></li>
+            <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Pregúntale lo que quieras: precios, tiempos, cómo funciona</span></li>
+            <li class="flex gap-3 items-start"><span class="text-[#fc0f85] font-bold mt-0.5">✓</span><span>Si prefieres hablar con nuestro equipo, reserva una cita directamente</span></li>
+          </ul>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#demo" class="flex items-center justify-center gap-2 bg-[#fc0f85] text-white px-6 py-3.5 rounded-full font-bold hover:bg-[#d40d70] transition-all shadow-md hover:-translate-y-0.5">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z"/></svg>
+              Hablar con Sofía ahora
+            </a>
+            <a href="mailto:valentina@ajbusinessadvisory.com?subject=Reservar cita — Bogotá" class="flex items-center justify-center gap-2 border-2 border-[#fc0f85] text-[#d40d70] px-6 py-3.5 rounded-full font-bold hover:bg-[#fc0f85] hover:text-white transition-all">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+              Reservar cita
+            </a>
+          </div>
+          <p class="text-gray-400 text-xs mt-4">
+            📧 <a href="mailto:valentina@ajbusinessadvisory.com" class="text-[#fc0f85] font-medium hover:underline">valentina@ajbusinessadvisory.com</a>
+            <span class="text-gray-400"> · Reservas, preguntas y sugerencias · Respondemos en menos de 2 horas</span>
+          </p>
+        </div>
+
+        <!-- Chat con Sofía -->
+        <div class="fade-in">
+          <div class="bg-white rounded-3xl shadow-xl border border-[#fc0f85]/15 overflow-hidden flex flex-col" style="height:480px">
+
+            <!-- Chat header con imagen de Sofía -->
+            <div class="bg-[#0a0a0a] px-5 py-4 flex items-center gap-3 flex-shrink-0">
+              <div class="w-11 h-11 rounded-full overflow-hidden bg-[#1a1a1a] border-2 border-[#fc0f85]/50 flex-shrink-0">
+                <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform: scale(1.4) translateY(10%);" />
+              </div>
+              <div>
+                <p class="text-white font-black">Sofía · Asistente IA</p>
+                <div class="flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-[#fc0f85] rounded-full animate-pulse"></span>
+                  <span class="text-gray-400 text-xs">En línea · Escríbeme aquí</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-5 space-y-3 bg-gray-50">
+              <div class="flex gap-2 items-end">
+                <div class="w-7 h-7 rounded-full overflow-hidden bg-[#1a1a1a] flex-shrink-0 border border-[#fc0f85]/30">
+                  <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform: scale(1.4) translateY(10%);" />
+                </div>
+                <div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 text-sm text-gray-700 shadow-sm max-w-[85%]">
+                  ¡Hola! 👋 Soy <strong>Sofía</strong>. En 4 preguntas rápidas te muestro exactamente cómo podría trabajar para tu negocio.<br/><br/>¿Qué tipo de negocio tienes?
+                </div>
+              </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div id="chat-typing" class="hidden px-5 pb-2 bg-gray-50">
+              <div class="flex gap-2 items-end">
+                <div class="w-7 h-7 rounded-full overflow-hidden bg-[#1a1a1a] flex-shrink-0 border border-[#fc0f85]/30">
+                  <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform: scale(1.4) translateY(10%);" />
+                </div>
+                <div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 shadow-sm inline-flex items-center gap-1.5">
+                  <span class="w-2 h-2 bg-[#fc0f85] rounded-full animate-bounce" style="animation-delay:0s"></span>
+                  <span class="w-2 h-2 bg-[#fc0f85] rounded-full animate-bounce" style="animation-delay:.15s"></span>
+                  <span class="w-2 h-2 bg-[#fc0f85] rounded-full animate-bounce" style="animation-delay:.3s"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Chips de respuestas sugeridas (dinámicas) -->
+            <div id="chat-suggestions" class="border-t border-gray-100 bg-gray-50 px-4 py-3 flex flex-wrap gap-2 flex-shrink-0"></div>
+
+            <!-- Input libre -->
+            <div id="chat-input-row" class="hidden border-t border-gray-100 bg-white px-4 py-3 flex gap-2 flex-shrink-0">
+              <input id="chat-input" type="text"
+                placeholder="Escribe el nombre de tu negocio..."
+                class="flex-1 border border-gray-200 rounded-full px-4 py-2 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
+                onkeydown="if(event.key==='Enter') sendChatMessage()" />
+              <button onclick="sendChatMessage()"
+                class="w-9 h-9 bg-[#fc0f85] hover:bg-[#d40d70] rounded-full flex items-center justify-center transition-colors flex-shrink-0">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"/>
+                </svg>
+              </button>
+            </div>
+
+          </div>
+          <p class="text-center text-gray-400 text-xs mt-3">💬 Chat en tiempo real con Sofía · ¿Prefieres voz? <a href="#demo" class="text-[#fc0f85] hover:underline font-medium">Prueba la llamada →</a></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       DEMO EN VIVO — VAPI
+  ════════════════════════════════════════ -->
+  <section id="demo" class="px-6 py-20 bg-[#0a0a0a]">
+    <div class="max-w-xl mx-auto fade-in">
+
+      <div class="text-center mb-10">
+        <p class="text-[#fc0f85] font-semibold text-sm uppercase tracking-widest mb-3">Demo en vivo — gratis</p>
+        <h2 class="text-3xl md:text-4xl font-black text-white mb-4">
+          Habla con Sofía y mira<br/><span class="text-[#ffd400]">cómo vendería por ti</span>
+        </h2>
+        <p class="text-gray-300 text-base leading-relaxed mb-3">
+          En menos de 2 minutos vas a ver exactamente cómo respondería llamadas, resolvería dudas y captaría clientes para tu negocio.
+        </p>
+        <p class="text-[#ffd400] font-bold text-sm">Pruébalo ahora. Es gratis.</p>
+      </div>
+
+      <!-- Pre-call form -->
+      <div id="demo-form" class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
+        <div class="space-y-4 mb-6">
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Tu nombre <span class="text-red-400">*</span></label>
+            <input id="input-name" type="text" placeholder="Ej: Carolina Rodríguez" required
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Nombre de tu negocio <span class="text-red-400">*</span></label>
+            <input id="input-business" type="text" placeholder="Ej: Spa Serenidad, Restaurante El Rincón..." required
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-3">Tipo de negocio <span class="text-red-400">*</span></label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="niche-radios">
+              <label class="niche-radio-label cursor-pointer">
+                <input type="radio" name="niche" value="Spa o centro de estética" class="hidden" onchange="syncNicheFromRadio(this)"/>
+                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
+                  <span>🧖</span><span>Spa / Estética</span>
+                </div>
+              </label>
+              <label class="niche-radio-label cursor-pointer">
+                <input type="radio" name="niche" value="Restaurante" class="hidden" onchange="syncNicheFromRadio(this)"/>
+                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
+                  <span>🍽️</span><span>Restaurante</span>
+                </div>
+              </label>
+              <label class="niche-radio-label cursor-pointer">
+                <input type="radio" name="niche" value="Clínica estética" class="hidden" onchange="syncNicheFromRadio(this)"/>
+                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
+                  <span>💉</span><span>Clínica Estética</span>
+                </div>
+              </label>
+              <label class="niche-radio-label cursor-pointer">
+                <input type="radio" name="niche" value="Veterinaria" class="hidden" onchange="syncNicheFromRadio(this)"/>
+                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
+                  <span>🐾</span><span>Veterinaria</span>
+                </div>
+              </label>
+              <label class="niche-radio-label cursor-pointer">
+                <input type="radio" name="niche" value="Consultorio dental" class="hidden" onchange="syncNicheFromRadio(this)"/>
+                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
+                  <span>😁</span><span>Dentista</span>
+                </div>
+              </label>
+            </div>
+            <input type="hidden" id="input-niche" value="" />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Correo electrónico <span class="text-red-400">*</span></label>
+            <input id="input-email" type="email" placeholder="Ej: carolina@mispa.com" required
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
+          </div>
+
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">
+              Página web o Instagram <span class="text-gray-500 font-normal">(opcional)</span>
+            </label>
+            <input id="input-url" type="text" placeholder="Ej: instagram.com/mi_spa o mispa.com"
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
+          </div>
+
+        </div>
+
+        <!-- ── Banner pre-llamada ── -->
+        <div class="bg-[#ffd400]/10 border border-[#ffd400]/30 rounded-2xl p-4 mb-4">
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">🎭</span>
+            <div>
+              <p class="text-[#ffd400] font-black text-sm mb-1">Modo demo — Sofía actuará como tu asistente real</p>
+              <p class="text-gray-400 text-xs leading-relaxed">Durante la llamada, <strong class="text-white">tú juegas el papel de un cliente</strong> que llama a tu negocio. Sofía responderá como si ya fuera tu recepcionista virtual. Al final verás exactamente cómo sonaría para tus clientes.</p>
+            </div>
+          </div>
+        </div>
+
+        <button id="btn-start-call" onclick="startVapiCall()"
+          class="w-full flex items-center justify-center gap-3 bg-[#fc0f85] hover:bg-[#d40d70] text-white font-black text-lg py-4 rounded-2xl transition-all hover:scale-[1.02] shadow-lg shadow-[#fc0f85]/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z"/>
+          </svg>
+          Iniciar llamada demo
+        </button>
+
+        <p class="text-center text-gray-500 text-xs mt-4">🔒 Conversación privada · Sin spam · Sin compromiso</p>
+      </div>
+
+      <!-- Active call UI -->
+      <div id="call-active" class="hidden bg-white/5 border border-[#fc0f85]/30 rounded-3xl p-8 text-center">
+
+        <!-- Avatar Sofía 3D con rings -->
+        <div class="relative w-32 h-32 mx-auto mb-6">
+          <div class="absolute inset-0 rounded-full bg-[#fc0f85]/20 ring-pulse"></div>
+          <div class="absolute inset-0 rounded-full bg-[#fc0f85]/10 ring-pulse-delay"></div>
+          <div class="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#fc0f85]/60 shadow-lg shadow-[#fc0f85]/30 bg-[#1a1a1a]">
+            <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform: scale(1.5) translateY(12%);" />
+          </div>
+          <!-- Online dot -->
+          <div class="absolute bottom-1 right-1 w-4 h-4 bg-[#fc0f85] rounded-full border-2 border-[#0a0a0a] animate-pulse"></div>
+        </div>
+
+        <p class="text-white font-black text-xl mb-1">Sofía está escuchando...</p>
+        <p class="text-gray-400 text-sm mb-4">Tú eres el cliente. Prueba a preguntar:</p>
+
+        <!-- Chips de sugerencias por nicho -->
+        <div id="call-tips" class="flex flex-wrap justify-center gap-2 mb-5 px-2"></div>
+
+        <!-- Timer -->
+        <div class="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-5">
+          <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
+          <span id="call-timer" class="text-white font-mono font-bold text-lg">1:50</span>
+          <span class="text-gray-400 text-sm">restante</span>
+        </div>
+
+        <!-- Sound wave -->
+        <div class="flex justify-center mb-4">
+          <div class="sound-wave">
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
+          </div>
+        </div>
+
+        <p id="call-status" class="text-[#fc0f85] text-sm font-semibold mb-6">Conectando con Sofía...</p>
+
+        <button onclick="endVapiCall()"
+          class="flex items-center justify-center gap-2 mx-auto bg-red-500/20 hover:bg-red-500/40 border border-red-500/40 text-red-400 px-8 py-3 rounded-full font-semibold transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+          Terminar llamada
+        </button>
+      </div>
+
+      <!-- Post-call UI -->
+      <div id="call-ended" class="hidden bg-white/5 border border-white/10 rounded-3xl p-8 text-center">
+        <p class="text-4xl mb-4">🎉</p>
+        <h3 class="text-white font-black text-2xl mb-3">¿Qué te pareció Sofía?</h3>
+        <p class="text-gray-400 mb-8">Así respondería a los clientes de tu negocio, 24/7, sin que hagas nada.</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="https://wa.me/15058998062?text=Hola!%20Hablé%20con%20Sofía%20en%20la%20demo%20y%20me%20interesa%20para%20mi%20negocio%20en%20Bogotá"
+             target="_blank"
+             class="flex items-center justify-center gap-2 bg-[#25D366] text-white px-6 py-3 rounded-full font-bold hover:bg-[#1ebe5d] transition-all">
+            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Quiero esto para mi negocio
+          </a>
+          <button onclick="resetDemo()"
+            class="border border-white/20 text-gray-300 px-6 py-3 rounded-full font-semibold hover:border-white hover:text-white transition-all">
+            Probar de nuevo
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-[#0a0a0a] border-t border-white/10 px-6 py-10 text-center text-gray-600 text-sm">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex items-center justify-center mb-4">
+        <img src="./logo-white.png" alt="AJ Business Assistant" class="h-10 w-auto object-contain opacity-90" />
+      </div>
+      <p class="mb-2">
+        Parte de <a href="https://ajbusinessadvisory.com" class="text-[#fc0f85] hover:underline">ajbusinessadvisory.com</a>
+        <span class="mx-2 text-gray-700">·</span>
+        <span>🇺🇸 Bay Area, California</span>
+        <span class="mx-2 text-gray-700">·</span>
+        <span>🇨🇴 Bogotá, Colombia</span>
+      </p>
+      <p class="text-gray-600 text-xs mb-2">Tecnología de Silicon Valley al servicio de los negocios colombianos</p>
+      <p>© 2025 AJ Business Advisory. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ════════════════════════════════════════
+       FLOATING WHATSAPP BUTTON
+  ════════════════════════════════════════ -->
+  <a id="wa-float"
+     href="https://wa.me/15058998062?text=Hola!%20Vi%20la%20landing%20y%20quiero%20saber%20m%C3%A1s%20del%20asistente%20IA"
+     target="_blank"
+     class="flex items-center gap-2 text-white text-sm font-bold">
+    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Hablar ahora
+  </a>
+
+  <!-- ════════════════════════════════════════
+       SCRIPTS
+  ════════════════════════════════════════ -->
+  <!-- Vapi Web SDK -->
+  <script>
+    (function(d,t){
+      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
+      g.defer=true; g.async=true;
+      s.parentNode.insertBefore(g,s);
+      g.onload=function(){
+        window._vapiReady=true;
+        const style=d.createElement('style');
+        style.textContent='[class*="vapi-btn"]{display:none!important}';
+        d.head.appendChild(style);
+        window.vapiInstance=window.vapiSDK.run({
+          apiKey:"b240f3dc-01c5-40da-a677-23aa550f03950",
+          assistant:"a7a9b3e5-f193-48bf-9e98-dea6e7307d88",
+          config:{ position:"bottom-right", offset:"80px", width:"50px", height:"50px",
+                   idle:{color:"#fc0f85"}, active:{color:"#ef4444"} }
+        });
+        window.vapiInstance.on('call-start', ()=>{
+          document.getElementById('call-status').textContent='Sofía está lista — habla ahora 🎙️';
+        });
+        window.vapiInstance.on('speech-start', ()=>{
+          document.getElementById('call-status').textContent='Sofía está hablando...';
+        });
+        window.vapiInstance.on('speech-end', ()=>{
+          document.getElementById('call-status').textContent='Escuchando... habla con normalidad';
+        });
+        window.vapiInstance.on('call-end', ()=>{ handleCallEnd(); });
+        window.vapiInstance.on('error', (e)=>{
+          console.error('[Vapi error]', e);
+          document.getElementById('call-status').textContent = 'Error: ' + (e?.message || e?.error?.message || JSON.stringify(e));
+          handleCallEnd();
+        });
+      };
+    })(document,"script");
+
+    // ── Vapi call logic ──
+    var _callTimer=null, _secondsLeft=110;
+
+    // ══════════════════════════════════════
+    // CHAT DEMO — FLUJO GUIADO (5 pasos)
+    // ══════════════════════════════════════
+    var _chatFlow = { step: 0, niche: '', nicheLabel: '', businessName: '', ticketAvg: 0, ticketLabel: '', callsMid: 0, callsLabel: '' };
+    var _chatSessionId = null;
+
+    // Respuestas por nicho
+    var _nicheResponses = {
+      spa:        'Perfecto 💅 Los spas pierden hasta el 40% de sus citas porque no pueden contestar mientras atienden. Sofía responde en 3 segundos — tú sigues con tu cliente.\n\n¿Cuál es el nombre de tu spa?',
+      restaurante:'Excelente 🍽️ Los restaurantes pierden mesas completas los fines de semana por no contestar. Sofía toma reservas 24/7 automáticamente.\n\n¿Cómo se llama tu restaurante?',
+      veterinaria:'Genial 🐾 Los dueños de mascotas escriben a las 11pm en pánico. Sofía calma al dueño y agenda la cita — tú descansas.\n\n¿Cómo se llama tu veterinaria?',
+      dentista:   'Perfecto 🦷 Los pacientes con dolor buscan quién responda primero. Sofía atiende a las 7pm y agenda antes que la competencia.\n\n¿Cómo se llama tu consultorio?',
+      otro:       'Sofía se adapta a cualquier negocio que reciba llamadas o mensajes 💼 La personalizamos 100% para tu industria.\n\n¿Cómo se llama tu negocio?'
+    };
+
+    // Ticket promedio → valor numérico para cálculo
+    var _ticketMap = {
+      'ticket-50':  { avg: 75000,  label: '$50k–$100k' },
+      'ticket-150': { avg: 200000, label: '$100k–$300k' },
+      'ticket-450': { avg: 450000, label: '$300k–$600k' },
+      'ticket-700': { avg: 700000, label: '+$600k' }
+    };
+
+    // Llamadas perdidas → midpoint para cálculo
+    var _callsMap = {
+      'menos10': { mid: 8,  label: 'menos de 10',  plan: 'Plan Esencial' },
+      '10-30':   { mid: 20, label: 'entre 10 y 30', plan: 'Plan Esencial' },
+      '30-50':   { mid: 40, label: 'entre 30 y 50', plan: 'Plan Pro' },
+      'mas50':   { mid: 65, label: 'más de 50',     plan: 'Plan Pro' }
+    };
+
+    function formatCOP(n) {
+      if (n >= 1000000) return '$' + (n/1000000).toFixed(1).replace(/\.0$/, '') + 'M COP';
+      return '$' + Math.round(n/1000) + 'k COP';
+    }
+
+    function initChatDemo() {
+      _chatFlow = { step: 0, niche: '', nicheLabel: '', businessName: '', ticketAvg: 0, ticketLabel: '', callsMid: 0, callsLabel: '' };
+      showChips([
+        { label: '🧖 Spa & Estética', val: 'spa' },
+        { label: '🍽️ Restaurante',    val: 'restaurante' },
+        { label: '🐾 Veterinaria',    val: 'veterinaria' },
+        { label: '😁 Dentista',       val: 'dentista' },
+        { label: '💼 Otro negocio',   val: 'otro' }
+      ]);
+    }
+
+    function showChips(chips) {
+      var c = document.getElementById('chat-suggestions');
+      c.innerHTML = chips.map(function(ch){
+        return '<button onclick="handleChip(\''+ch.val+'\',\''+ch.label+'\')" class="bg-white border border-gray-200 text-gray-700 text-xs px-3 py-2 rounded-full hover:border-[#fc0f85] hover:text-[#fc0f85] transition-all font-medium">'+ch.label+'</button>';
+      }).join('');
+      c.classList.remove('hidden');
+      document.getElementById('chat-input-row').classList.add('hidden');
+    }
+
+    function showFreeInput(placeholder) {
+      document.getElementById('chat-input').placeholder = placeholder || 'Escribe aquí...';
+      document.getElementById('chat-input-row').classList.remove('hidden');
+      document.getElementById('chat-suggestions').classList.add('hidden');
+      setTimeout(function(){ document.getElementById('chat-input').focus(); }, 100);
+    }
+
+    function hideInputs() {
+      document.getElementById('chat-suggestions').classList.add('hidden');
+      document.getElementById('chat-input-row').classList.add('hidden');
+    }
+
+    function handleChip(val, label) {
+      if (_chatFlow.step === 0) {
+        // Paso 1 — nicho
+        _chatFlow.niche = val;
+        _chatFlow.nicheLabel = label;
+        addChatBubble(label, 'user');
+        hideInputs();
+        sofiaSays(_nicheResponses[val], function() {
+          _chatFlow.step = 1;
+          showFreeInput('Escribe el nombre de tu negocio...');
+        });
+
+      } else if (_chatFlow.step === 2) {
+        // Paso 3 — ticket promedio
+        var t = _ticketMap[val];
+        _chatFlow.ticketAvg = t.avg;
+        _chatFlow.ticketLabel = t.label;
+        addChatBubble(t.label + ' por cliente', 'user');
+        hideInputs();
+        sofiaSays('Perfecto 📊 Con un ticket de **' + t.label + '** por cliente, cada llamada que no contestas es dinero que se va directamente a la competencia.\n\n¿Cuántas llamadas o mensajes sin responder estiman al mes?', function() {
+          _chatFlow.step = 3;
+          showChips([
+            { label: '📉 Menos de 10',   val: 'menos10' },
+            { label: '📊 Entre 10 y 30', val: '10-30' },
+            { label: '📈 Entre 30 y 50', val: '30-50' },
+            { label: '🔥 Más de 50',     val: 'mas50' }
+          ]);
+        });
+
+      } else if (_chatFlow.step === 3) {
+        // Paso 4 — llamadas perdidas → cálculo real
+        var c = _callsMap[val];
+        _chatFlow.callsMid = c.mid;
+        _chatFlow.callsLabel = c.label;
+        addChatBubble(c.label + ' llamadas/mes', 'user');
+        hideInputs();
+
+        var perdida = _chatFlow.ticketAvg * c.mid;
+        var perdidaStr = formatCOP(perdida);
+        var msg = '🔴 **Resultado:** Si tienes **' + c.label + '** llamadas perdidas al mes con un ticket de **' + _chatFlow.ticketLabel + '**...\n\n**Estás dejando ir ' + perdidaStr + ' cada mes.**\n\nSofía cuesta **$600k–$900k COP/mes**. Se paga sola en los primeros días. Te recomiendo el **' + c.plan + '** para **' + _chatFlow.businessName + '** 👇';
+        sofiaSays(msg, function() {
+          _chatFlow.step = 4;
+          showFinalCTA(perdidaStr, c.plan);
+        });
+      }
+    }
+
+    function sendChatMessage() {
+      var input = document.getElementById('chat-input');
+      var text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      if (_chatFlow.step === 1) {
+        // Paso 2 — nombre del negocio
+        _chatFlow.businessName = text;
+        addChatBubble(text, 'user');
+        hideInputs();
+        sofiaSays('¡Hola, **' + text + '**! 👋 Perfecto.\n\nPara calcular cuánto estás perdiendo cada mes necesito saber — ¿cuál es el ticket promedio que gasta un cliente por visita o servicio?', function() {
+          _chatFlow.step = 2;
+          showChips([
+            { label: '$50k – $100k',  val: 'ticket-50' },
+            { label: '$100k – $300k', val: 'ticket-150' },
+            { label: '$300k – $600k', val: 'ticket-450' },
+            { label: 'Más de $600k',  val: 'ticket-700' }
+          ]);
+        });
+
+      } else if (_chatFlow.step === 4) {
+        // Preguntas libres — usa Vapi Chat API
+        addChatBubble(text, 'user');
+        callVapiChat(text);
+      }
+    }
+
+    async function callVapiChat(text) {
+      document.getElementById('chat-typing').classList.remove('hidden');
+      scrollChat();
+      try {
+        var body = { assistantId: 'a7a9b3e5-f193-48bf-9e98-dea6e7307d88', input: { type: 'text', text: text } };
+        if (_chatSessionId) body.sessionId = _chatSessionId;
+        var res = await fetch('https://api.vapi.ai/chat', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer b240f3dc-01c5-40da-a677-23aa56f03950', 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        var data = await res.json();
+        _chatSessionId = data.sessionId || _chatSessionId;
+        var reply = (data.output && data.output.text) || data.message || 'Entendido, en un momento te respondo 😊';
+        document.getElementById('chat-typing').classList.add('hidden');
+        addChatBubble(reply, 'sofia');
+      } catch(e) {
+        document.getElementById('chat-typing').classList.add('hidden');
+        addChatBubble('Ups, hubo un problema de conexión. ¿Puedes intentar de nuevo? 😊', 'sofia');
+      }
+    }
+
+    function sofiaSays(text, callback) {
+      document.getElementById('chat-typing').classList.remove('hidden');
+      scrollChat();
+      setTimeout(function() {
+        document.getElementById('chat-typing').classList.add('hidden');
+        addChatBubble(text, 'sofia');
+        if (callback) setTimeout(callback, 350);
+      }, 1100);
+    }
+
+    function showFinalCTA(perdidaStr, plan) {
+      var biz = _chatFlow.businessName;
+      perdidaStr = perdidaStr || '';
+      plan = plan || 'Plan Esencial';
+      var esencialClass = plan === 'Plan Pro'
+        ? 'bg-white rounded-xl p-3 border border-gray-100 text-center'
+        : 'bg-[#fc0f85] rounded-xl p-3 text-center';
+      var proClass = plan === 'Plan Pro'
+        ? 'bg-[#fc0f85] rounded-xl p-3 text-center'
+        : 'bg-white rounded-xl p-3 border border-gray-100 text-center';
+      var esencialTextColor = plan === 'Plan Pro' ? 'text-[#fc0f85]' : 'text-white';
+      var esencialSubColor = plan === 'Plan Pro' ? 'text-gray-400' : 'text-white/80';
+      var esencialNumColor = plan === 'Plan Pro' ? 'text-gray-900' : 'text-white';
+      var proTextColor = plan === 'Plan Pro' ? 'text-white' : 'text-[#fc0f85]';
+      var proSubColor = plan === 'Plan Pro' ? 'text-white/80' : 'text-gray-400';
+      var proNumColor = plan === 'Plan Pro' ? 'text-white' : 'text-gray-900';
+      var lossHtml = perdidaStr
+        ? '<div class="bg-red-50 border border-red-200 rounded-xl p-3 mb-3 text-center">' +
+            '<p class="text-red-400 text-xs font-semibold uppercase tracking-wide mb-0.5">Pérdida estimada mensual</p>' +
+            '<p class="text-red-600 font-black text-2xl leading-none">' + perdidaStr + '</p>' +
+            '<p class="text-red-400 text-xs mt-1">Sofía lo recupera en los primeros días</p>' +
+          '</div>'
+        : '';
+      var card = document.createElement('div');
+      card.className = 'mx-1 my-2';
+      card.innerHTML =
+        '<div class="bg-gradient-to-br from-[#fc0f85]/8 to-[#ffd400]/8 border border-[#fc0f85]/20 rounded-2xl p-4">' +
+          lossHtml +
+          '<p class="text-gray-800 font-black text-sm mb-3">¿Qué hacemos ahora, <span class="text-[#fc0f85]">'+biz+'</span>? 🚀</p>' +
+          '<div class="grid grid-cols-2 gap-2 mb-3">' +
+            '<div class="'+esencialClass+'">' +
+              '<p class="'+esencialTextColor+' font-black text-xs mb-0.5">Plan Esencial</p>' +
+              '<p class="'+esencialNumColor+' font-black text-xl leading-none">$600k</p>' +
+              '<p class="'+esencialSubColor+' text-xs mt-0.5">COP/mes · 500 min · 1 red</p>' +
+            '</div>' +
+            '<div class="'+proClass+'">' +
+              '<p class="'+proTextColor+' font-black text-xs mb-0.5">Plan Pro ⭐</p>' +
+              '<p class="'+proNumColor+' font-black text-xl leading-none">$900k</p>' +
+              '<p class="'+proSubColor+' text-xs mt-0.5">COP/mes · 1.500 min · 3 redes</p>' +
+            '</div>' +
+          '</div>' +
+          '<div class="flex flex-col gap-2">' +
+            '<a href="mailto:valentina@ajbusinessadvisory.com?subject=Reservar%20cita%20%E2%80%94%20'+encodeURIComponent(biz)+'" ' +
+               'class="block text-center bg-[#fc0f85] text-white text-sm font-bold py-2.5 rounded-xl hover:bg-[#d40d70] transition-colors">' +
+              '📅 Reservar cita gratis' +
+            '</a>' +
+            '<button onclick="showFreeInput(\'¿Cuál es tu pregunta?\'); document.getElementById(\'chat-input-row\').classList.remove(\'hidden\');" ' +
+               'class="block w-full text-center border border-gray-200 text-gray-600 text-sm font-semibold py-2 rounded-xl hover:border-[#fc0f85] hover:text-[#fc0f85] transition-colors">' +
+              '💬 Tengo más preguntas' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+      document.getElementById('chat-messages').appendChild(card);
+      scrollChat();
+    }
+
+    function addChatBubble(text, who) {
+      // Convertir **negrita** y \n\n a HTML
+      var html = text
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n\n/g, '<br/><br/>');
+
+      var wrap = document.createElement('div');
+      if (who === 'user') {
+        wrap.className = 'flex gap-2 items-end justify-end';
+        wrap.innerHTML =
+          '<div class="bg-[#fc0f85] rounded-2xl rounded-tr-none px-4 py-3 text-sm text-white shadow-sm max-w-[85%]">'+html+'</div>' +
+          '<div class="w-7 h-7 rounded-full bg-gray-200 flex items-center justify-center text-sm flex-shrink-0">👤</div>';
+      } else {
+        wrap.className = 'flex gap-2 items-end';
+        wrap.innerHTML =
+          '<div class="w-7 h-7 rounded-full overflow-hidden bg-[#1a1a1a] flex-shrink-0 border border-[#fc0f85]/30">' +
+            '<img src="./sofia.png.png" alt="Sofía" style="width:100%;height:100%;object-fit:cover;object-position:top;transform:scale(1.4) translateY(10%);" />' +
+          '</div>' +
+          '<div class="bg-white rounded-2xl rounded-tl-none px-4 py-3 text-sm text-gray-700 shadow-sm max-w-[85%]">'+html+'</div>';
+      }
+      document.getElementById('chat-messages').appendChild(wrap);
+      scrollChat();
+    }
+
+    function scrollChat() {
+      var msgs = document.getElementById('chat-messages');
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function syncNicheFromRadio(radio){
+      document.getElementById('input-niche').value = radio.value;
+      const map={'Spa o centro de estética':'spa','Restaurante':'restaurant',
+                 'Clínica estética':'clinic','Veterinaria':'vet','Consultorio dental':'dentist'};
+      if(map[radio.value]) selectNiche(map[radio.value]);
+    }
+
+    // ── Chips de sugerencias por nicho (durante llamada) ──
+    var _nicheTips = {
+      'Spa o centro de estética': ['¿Qué tratamientos tienen?','¿Cuánto vale el masaje?','¿Tienen cita este sábado?','¿Cuánto dura el tratamiento?'],
+      'Restaurante':              ['¿Tienen mesa para 4 el viernes?','¿Cuál es el menú del día?','¿A qué horas abren?','¿Tienen opciones vegetarianas?'],
+      'Veterinaria':              ['Mi perro está vomitando','¿Tienen cita urgente hoy?','¿Cuánto vale la consulta?','¿Hacen vacunas sin cita?'],
+      'Consultorio dental':       ['Me duele una muela, ¿qué hago?','¿Cuánto vale el blanqueamiento?','¿Tienen cita mañana temprano?','¿Atienden urgencias?'],
+      'Clínica estética':         ['¿Hacen relleno de labios?','¿Cuánto cuesta el botox?','¿Cuándo tienen disponibilidad?','¿Cuánto dura el resultado?']
+    };
+
+    // ── firstMessage por nicho ──
+    var _firstMessages = {
+      'Spa o centro de estética': '¡Buenas tardes! Gracias por llamar, le habla Sofía la asistente virtual del spa. ¿En qué le puedo ayudar? ¿Desea agendar un servicio o tiene alguna pregunta sobre nuestros tratamientos?',
+      'Restaurante':              '¡Buenas tardes! Ha llamado al restaurante, le habla Sofía la asistente virtual. ¿Le gustaría hacer una reserva o tiene alguna pregunta sobre nuestro menú?',
+      'Veterinaria':              '¡Hola! Gracias por llamar a la clínica veterinaria, le habla Sofía la asistente virtual. ¿Cómo puedo ayudarle hoy?',
+      'Consultorio dental':       '¡Buenas tardes! Ha llamado al consultorio dental, le habla Sofía la asistente virtual. ¿Está llamando para agendar una cita o tiene alguna consulta?',
+      'Clínica estética':         '¡Buenas tardes! Gracias por comunicarse con la clínica estética, le habla Sofía la asistente virtual. ¿En qué le puedo ayudar hoy?'
+    };
+
+    function startVapiCall(){
+      if(!window._vapiReady){ alert('Cargando... intenta en un segundo.'); return; }
+      const name     = document.getElementById('input-name').value.trim();
+      const business = document.getElementById('input-business').value.trim();
+      const niche    = document.getElementById('input-niche').value;
+      const email    = document.getElementById('input-email').value.trim();
+      const url      = document.getElementById('input-url').value.trim();
+
+      if(!name){ alert('Por favor ingresa tu nombre.'); document.getElementById('input-name').focus(); return; }
+      if(!business){ alert('Por favor ingresa el nombre de tu negocio.'); document.getElementById('input-business').focus(); return; }
+      if(!niche){ alert('Por favor selecciona el tipo de negocio.'); return; }
+      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Por favor ingresa un correo electrónico válido.'); document.getElementById('input-email').focus(); return; }
+
+      // Pasar a UI de llamada activa primero
+      var tips = _nicheTips[niche] || ['¿Cuáles son sus servicios?','¿Cuánto cuestan?','¿Tienen disponibilidad hoy?'];
+      document.getElementById('call-tips').innerHTML = tips.map(function(t){
+        return '<span class="bg-white/10 border border-white/20 text-white/80 text-xs px-3 py-1.5 rounded-full">💬 '+t+'</span>';
+      }).join('');
+
+      document.getElementById('demo-form').classList.add('hidden');
+      document.getElementById('call-active').classList.remove('hidden');
+      document.getElementById('call-ended').classList.add('hidden');
+      document.getElementById('call-status').textContent = '🎙️ Solicitando acceso al micrófono...';
+
+      // 1) Pedir acceso al micrófono explícitamente antes de iniciar Vapi
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream){
+          // Micrófono concedido — liberar el stream (Vapi crea el suyo propio)
+          stream.getTracks().forEach(function(t){ t.stop(); });
+          document.getElementById('call-status').textContent = 'Conectando con Sofía...';
+
+          // 2) Iniciar Vapi — firstMessage lo maneja Vapi con {{variables}}
+          window.vapiInstance.start("a7a9b3e5-f193-48bf-9e98-dea6e7307d88", {
+            assistantOverrides: {
+              variableValues: {
+                clientName:   name,
+                businessName: business,
+                businessType: niche,
+                clientEmail:  email,
+                websiteUrl:   url || 'no proporcionada'
+              }
+            }
+          });
+
+          _secondsLeft = 110;
+          updateTimerDisplay();
+          _callTimer = setInterval(function(){
+            _secondsLeft--;
+            updateTimerDisplay();
+            if(_secondsLeft <= 0){ endVapiCall(); }
+          }, 1000);
+        })
+        .catch(function(err){
+          console.error('[Mic error]', err);
+          // Micrófono denegado o no disponible
+          document.getElementById('demo-form').classList.remove('hidden');
+          document.getElementById('call-active').classList.add('hidden');
+          if(err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError'){
+            alert('Para hacer la llamada demo necesitas permitir el acceso al micrófono en tu navegador.\n\n1. Haz clic en el ícono 🔒 en la barra de direcciones\n2. Selecciona "Permitir" en Micrófono\n3. Recarga la página e intenta de nuevo.');
+          } else {
+            alert('No se pudo acceder al micrófono: ' + err.message);
+          }
+        });
+    }
+
+    function updateTimerDisplay(){
+      var m = Math.floor(_secondsLeft/60);
+      var s = _secondsLeft % 60;
+      document.getElementById('call-timer').textContent = m + ':' + (s<10?'0':'') + s;
+    }
+
+    function endVapiCall(){
+      if(_callTimer){ clearInterval(_callTimer); _callTimer=null; }
+      if(window.vapiInstance){ window.vapiInstance.stop(); }
+      handleCallEnd();
+    }
+
+    function handleCallEnd(){
+      if(_callTimer){ clearInterval(_callTimer); _callTimer=null; }
+      document.getElementById('call-active').classList.add('hidden');
+      document.getElementById('call-ended').classList.remove('hidden');
+    }
+
+    function resetDemo(){
+      document.getElementById('call-ended').classList.add('hidden');
+      document.getElementById('demo-form').classList.remove('hidden');
+      _secondsLeft=110;
+      updateTimerDisplay();
+    }
+
+    // ── Niche selector ──
+    function selectNiche(niche){
+      document.querySelectorAll('.niche-btn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.niche-panel').forEach(p=>p.classList.remove('active'));
+      document.querySelector('[data-niche="'+niche+'"]').classList.add('active');
+      document.getElementById('panel-'+niche).classList.add('active');
+      const map={spa:'Spa o centro de estética',restaurant:'Restaurante',
+                 clinic:'Clínica estética',vet:'Veterinaria',dentist:'Consultorio dental'};
+      const sel=document.getElementById('input-niche');
+      if(sel && map[niche]) sel.value=map[niche];
+    }
+
+    // ── Inicializar chat demo al cargar ──
+    window.addEventListener('DOMContentLoaded', function(){ initChatDemo(); });
+
+    // ── Scroll fade-in ──
+    const observer=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    },{threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+    // ── Parallax Sofía on scroll ──
+    const sofiaEl = document.getElementById('sofia-parallax');
+    let ticking = false;
+    window.addEventListener('scroll', function(){
+      if(!ticking){
+        window.requestAnimationFrame(function(){
+          const scrolled = window.scrollY;
+          // Move Sofia up at 25% of scroll speed (parallax)
+          sofiaEl.style.transform = 'translateY(' + (scrolled * 0.18) + 'px)';
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+  </script>
+
+  <!-- ════════════════════════════════════════
+       COOKIE CONSENT BANNER
+  ════════════════════════════════════════ -->
+  <div id="cookie-banner" style="display:none;"
+    class="fixed bottom-0 left-0 right-0 z-[9999] px-4 py-4 md:px-8">
+    <div class="max-w-5xl mx-auto bg-[#0a0a0a] border border-white/10 rounded-2xl shadow-2xl p-5 md:p-6">
+      <div class="flex flex-col md:flex-row md:items-center gap-4">
+
+        <!-- Texto -->
+        <div class="flex-1">
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="text-lg">🍪</span>
+            <p class="text-white font-bold text-sm">Usamos cookies para mejorar tu experiencia</p>
+          </div>
+          <p class="text-gray-400 text-xs leading-relaxed">
+            Utilizamos cookies propias y de terceros para analizar el tráfico, personalizar contenido y mejorar la funcionalidad del sitio.
+            Al hacer clic en <strong class="text-white">"Aceptar todo"</strong> consientes su uso. Puedes gestionar tus preferencias en
+            <button onclick="showCookieDetails()" class="text-[#fc0f85] underline hover:no-underline">Configurar cookies</button>.
+            Más información en nuestra
+            <button onclick="showCookieDetails()" class="text-[#fc0f85] underline hover:no-underline">Política de privacidad</button>.
+          </p>
+        </div>
+
+        <!-- Botones -->
+        <div class="flex flex-col sm:flex-row gap-2 flex-shrink-0">
+          <button onclick="rejectCookies()"
+            class="px-5 py-2.5 rounded-full border border-white/20 text-gray-400 text-sm font-semibold hover:border-white/40 hover:text-white transition-colors">
+            Solo esenciales
+          </button>
+          <button onclick="showCookieDetails()"
+            class="px-5 py-2.5 rounded-full border border-[#ffd400]/40 text-[#ffd400] text-sm font-semibold hover:border-[#ffd400] transition-colors">
+            Configurar
+          </button>
+          <button onclick="acceptAllCookies()"
+            class="px-5 py-2.5 rounded-full bg-[#fc0f85] text-white text-sm font-bold hover:bg-[#d40d70] transition-colors shadow-lg shadow-[#fc0f85]/20">
+            Aceptar todo ✓
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal detalle de cookies -->
+  <div id="cookie-modal" style="display:none;"
+    class="fixed inset-0 z-[99999] flex items-end md:items-center justify-center px-4 py-6">
+    <!-- Overlay -->
+    <div onclick="closeCookieModal()" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+    <!-- Modal -->
+    <div class="relative w-full max-w-lg bg-[#0a0a0a] border border-white/10 rounded-3xl shadow-2xl p-6 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between mb-5">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🍪</span>
+          <h3 class="text-white font-black text-lg">Configuración de cookies</h3>
+        </div>
+        <button onclick="closeCookieModal()" class="text-gray-500 hover:text-white transition-colors text-xl font-bold">✕</button>
+      </div>
+
+      <p class="text-gray-400 text-sm mb-5 leading-relaxed">
+        Las cookies nos ayudan a ofrecerte una mejor experiencia. Puedes elegir qué tipos aceptas.
+        Las cookies esenciales siempre están activas ya que el sitio no funciona sin ellas.
+      </p>
+
+      <!-- Tipo 1: Esenciales -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-4 mb-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-[#ffd400]">🔒</span>
+            <p class="text-white font-bold text-sm">Cookies esenciales</p>
+          </div>
+          <span class="bg-[#ffd400]/20 text-[#ffd400] text-xs font-bold px-3 py-1 rounded-full">Siempre activas</span>
+        </div>
+        <p class="text-gray-500 text-xs leading-relaxed">Necesarias para el funcionamiento básico del sitio: sesión, seguridad y preferencias de idioma. No se pueden desactivar.</p>
+      </div>
+
+      <!-- Tipo 2: Analíticas -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-4 mb-3">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-[#fc0f85]">📊</span>
+            <p class="text-white font-bold text-sm">Cookies analíticas</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="cookie-analytics" class="sr-only peer" checked>
+            <div class="w-10 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#fc0f85]"></div>
+          </label>
+        </div>
+        <p class="text-gray-500 text-xs leading-relaxed">Nos ayudan a entender cómo los visitantes interactúan con el sitio. Toda la información es anónima (Google Analytics, Hotjar).</p>
+      </div>
+
+      <!-- Tipo 3: Marketing -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-4 mb-5">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-[#fc0f85]">🎯</span>
+            <p class="text-white font-bold text-sm">Cookies de marketing</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="cookie-marketing" class="sr-only peer">
+            <div class="w-10 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-5 peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#fc0f85]"></div>
+          </label>
+        </div>
+        <p class="text-gray-500 text-xs leading-relaxed">Permiten mostrarte anuncios relevantes en otras plataformas. Se usan con Meta Pixel y Google Ads para medir el rendimiento de campañas.</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-2">
+        <button onclick="saveCustomCookies()"
+          class="flex-1 py-3 rounded-full border border-white/20 text-gray-400 text-sm font-semibold hover:border-white/40 hover:text-white transition-colors">
+          Guardar preferencias
+        </button>
+        <button onclick="acceptAllCookies()"
+          class="flex-1 py-3 rounded-full bg-[#fc0f85] text-white text-sm font-bold hover:bg-[#d40d70] transition-colors">
+          Aceptar todo ✓
+        </button>
+      </div>
+
+      <p class="text-gray-600 text-xs text-center mt-4">
+        AJ Business Advisory · Bogotá ·
+        <button onclick="closeCookieModal()" class="text-[#fc0f85] hover:underline">Cerrar</button>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // ── Cookie Consent Logic ──
+    (function(){
+      var consent = localStorage.getItem('aj_cookie_consent');
+      if(!consent){
+        setTimeout(function(){
+          document.getElementById('cookie-banner').style.display = 'block';
+        }, 1200);
+      }
+    })();
+
+    function acceptAllCookies(){
+      localStorage.setItem('aj_cookie_consent', JSON.stringify({ essential:true, analytics:true, marketing:true, ts: Date.now() }));
+      hideCookieBanner();
+      closeCookieModal();
+    }
+
+    function rejectCookies(){
+      localStorage.setItem('aj_cookie_consent', JSON.stringify({ essential:true, analytics:false, marketing:false, ts: Date.now() }));
+      hideCookieBanner();
+    }
+
+    function saveCustomCookies(){
+      var analytics = document.getElementById('cookie-analytics').checked;
+      var marketing = document.getElementById('cookie-marketing').checked;
+      localStorage.setItem('aj_cookie_consent', JSON.stringify({ essential:true, analytics:analytics, marketing:marketing, ts: Date.now() }));
+      hideCookieBanner();
+      closeCookieModal();
+    }
+
+    function hideCookieBanner(){
+      var b = document.getElementById('cookie-banner');
+      b.style.transition = 'transform 0.4s ease, opacity 0.4s ease';
+      b.style.transform = 'translateY(120%)';
+      b.style.opacity = '0';
+      setTimeout(function(){ b.style.display = 'none'; }, 400);
+    }
+
+    function showCookieDetails(){
+      document.getElementById('cookie-modal').style.display = 'flex';
+    }
+
+    function closeCookieModal(){
+      document.getElementById('cookie-modal').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
