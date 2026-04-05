@@ -6,6 +6,7 @@
   <title>Calculadora Económica — Sofía · AJ Business Advisory</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://apis.google.com/js/api.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     * { font-family: 'Inter', sans-serif; }
@@ -633,6 +634,7 @@
       <button class="ptab" id="tab-metas" onclick="switchTab('metas')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">🎯 Metas</button>
       <button class="ptab" id="tab-gastos" onclick="switchTab('gastos')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">💸 Gastos</button>
       <button class="ptab" id="tab-historial" onclick="switchTab('historial')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">📈 Historial</button>
+      <button class="ptab" id="tab-calendarios" onclick="switchTab('calendarios')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">📅 Calendarios</button>
     </div>
 
     <!-- Export/Import -->
@@ -790,6 +792,38 @@
       </div>
     </div>
 
+    <!-- ── TAB: CALENDARIOS ── -->
+    <div id="content-calendarios" style="display:none">
+      <div id="gcal-connection" style="margin-bottom:16px">
+        <button id="btn-connect-google" onclick="authenticateGoogle()" style="width:100%;background:linear-gradient(135deg,#4285f4,#1f6feb);border:none;border-radius:10px;color:white;padding:12px;font-weight:700;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .2s">
+          🔐 Conectar con Google Calendar
+        </button>
+        <p id="gcal-status" style="font-size:11px;color:#6b7280;margin-top:8px;text-align:center">Estado: Desconectado</p>
+      </div>
+
+      <div id="calendarios-view" style="display:none">
+        <div style="margin-bottom:14px">
+          <p style="font-size:11px;color:#6b7280;margin-bottom:8px">🇨🇴 Calendario Bogotá (Valentina)</p>
+          <iframe id="cal-bog" style="border:1px solid rgba(255,255,255,0.1);border-radius:10px;width:100%;height:300px;background:rgba(255,255,255,0.02)"></iframe>
+        </div>
+
+        <div style="margin-bottom:14px">
+          <p style="font-size:11px;color:#6b7280;margin-bottom:8px">🇺🇸 Calendario Bay Area (Andrés)</p>
+          <iframe id="cal-bay" style="border:1px solid rgba(255,255,255,0.1);border-radius:10px;width:100%;height:300px;background:rgba(255,255,255,0.02)"></iframe>
+        </div>
+
+        <div>
+          <p style="font-size:11px;color:#6b7280;margin-bottom:8px">📅 Calendario Compartido</p>
+          <iframe id="cal-shared" style="border:1px solid rgba(255,255,255,0.1);border-radius:10px;width:100%;height:300px;background:rgba(255,255,255,0.02)"></iframe>
+        </div>
+
+        <div style="margin-top:16px;padding:12px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;font-size:12px;color:#9ca3af">
+          <p style="margin:0">✅ Google Calendar conectado</p>
+          <p style="margin:4px 0 0 0;font-size:11px">Los eventos se sincronizarán automáticamente cada 5 minutos</p>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /panel body -->
 </div><!-- /panel-drawer -->
 
@@ -926,12 +960,13 @@ function closePanel() {
 
 function switchTab(tab) {
   ACTIVE_TAB = tab;
-  ['tareas','metas','gastos','historial'].forEach(function(t) {
+  ['tareas','metas','gastos','historial','calendarios'].forEach(function(t) {
     document.getElementById('content-'+t).style.display = t===tab ? 'block' : 'none';
     var btn = document.getElementById('tab-'+t);
     if(btn){ btn.classList.toggle('active-tab', t===tab); btn.style.color = t===tab ? 'white' : '#6b7280'; }
   });
   if(tab === 'historial') renderHistorial();
+  else if(tab === 'calendarios') renderCalendarios();
   else renderAll();
 }
 
@@ -947,9 +982,14 @@ function addTask() {
   var text = input.value.trim();
   if(!text) return;
   var data = getData(ACTIVE_MKT);
-  data.tareas.push({ id: Date.now(), text: text, status: 'pendiente', priority: document.getElementById('task-priority').value, created: new Date().toISOString().split('T')[0] });
+  var taskId = Date.now();
+  data.tareas.push({ id: taskId, text: text, status: 'pendiente', priority: document.getElementById('task-priority').value, created: new Date().toISOString().split('T')[0] });
   saveData(ACTIVE_MKT, data);
   input.value = '';
+  // Sync to Google Calendar if authenticated
+  if(GCAL_STATE.isAuthenticated) {
+    syncTaskToGCal(ACTIVE_MKT, taskId);
+  }
   renderTasks();
 }
 
@@ -958,13 +998,22 @@ function toggleTask(id) {
   var t = data.tareas.find(function(x){return x.id===id;});
   if(t) t.status = t.status==='pendiente' ? 'completada' : 'pendiente';
   saveData(ACTIVE_MKT, data);
+  // Sync status change to Google Calendar if authenticated
+  if(GCAL_STATE.isAuthenticated) {
+    updateTaskInGCal(ACTIVE_MKT, id);
+  }
   renderTasks();
 }
 
 function deleteTask(id) {
   var data = getData(ACTIVE_MKT);
+  var task = data.tareas.find(function(x){return x.id===id;});
   data.tareas = data.tareas.filter(function(x){return x.id!==id;});
   saveData(ACTIVE_MKT, data);
+  // Sync deletion to Google Calendar if authenticated
+  if(GCAL_STATE.isAuthenticated && task) {
+    deleteTaskFromGCal(ACTIVE_MKT, id);
+  }
   renderTasks();
 }
 
@@ -1522,8 +1571,287 @@ function recalcAll() {
   setEl('ins_bay_cacRec',      u_cacRec + (u_cacRec !== '∞' ? ' mes(es)' : ''));
 }
 
+// ══════════════════════════════════════════════
+// GOOGLE CALENDAR INTEGRATION
+// ══════════════════════════════════════════════
+
+var GCAL_STATE = {
+  isAuthenticated: false,
+  accessToken: null,
+  emailVale: 'valentina@ajbusinessadvisory.com',
+  emailAndres: 'andres@ajbusinessadvisory.com',
+  calendarIds: {
+    bog: null,
+    bay: null,
+    shared: null
+  }
+};
+
+var GCAL_CONFIG = {
+  CLIENT_ID: 'REPLACE_WITH_YOUR_CLIENT_ID',  // User must replace this
+  SCOPES: ['https://www.googleapis.com/auth/calendar'],
+  DISCOVERY_DOCS: ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest']
+};
+
+function initGoogleCalendar() {
+  gapi.load('client:auth2', function() {
+    gapi.client.init({
+      clientId: GCAL_CONFIG.CLIENT_ID,
+      scope: GCAL_CONFIG.SCOPES.join(' '),
+      discoveryDocs: GCAL_CONFIG.DISCOVERY_DOCS
+    }).then(function() {
+      var authInstance = gapi.auth2.getAuthInstance();
+      if(authInstance.isSignedIn.get()) {
+        GCAL_STATE.isAuthenticated = true;
+        GCAL_STATE.accessToken = authInstance.currentUser.get().getAuthResponse().id_token;
+        loadCalendarIds();
+        displayGCalStatus();
+      }
+    }, function(error) {
+      console.error('Error initializing Google API:', error);
+    });
+  });
+}
+
+function authenticateGoogle() {
+  var authInstance = gapi.auth2.getAuthInstance();
+  if(!authInstance) {
+    alert('Error: Google API not initialized. Please refresh the page.');
+    return;
+  }
+  authInstance.signIn().then(function() {
+    GCAL_STATE.isAuthenticated = true;
+    GCAL_STATE.accessToken = authInstance.currentUser.get().getAuthResponse().id_token;
+    loadCalendarIds();
+    displayGCalStatus();
+  }).catch(function(error) {
+    console.error('Error during authentication:', error);
+  });
+}
+
+function displayGCalStatus() {
+  var statusEl = document.getElementById('gcal-status');
+  var btnEl = document.getElementById('btn-connect-google');
+  var viewEl = document.getElementById('calendarios-view');
+
+  if(GCAL_STATE.isAuthenticated) {
+    statusEl.textContent = '✅ Conectado a Google Calendar';
+    statusEl.style.color = '#00c48c';
+    btnEl.style.display = 'none';
+    viewEl.style.display = 'block';
+    setupCalendarIframes();
+  } else {
+    statusEl.textContent = '❌ Estado: Desconectado';
+    statusEl.style.color = '#ff4757';
+    btnEl.style.display = 'flex';
+    viewEl.style.display = 'none';
+  }
+}
+
+function loadCalendarIds() {
+  // For now, use primary calendar (user's main calendar)
+  // In a real implementation, you'd fetch calendar list from API
+  GCAL_STATE.calendarIds.bog = GCAL_STATE.emailVale;
+  GCAL_STATE.calendarIds.bay = GCAL_STATE.emailAndres;
+  GCAL_STATE.calendarIds.shared = 'sofia-calendarios@ajbusinessadvisory.com';  // Placeholder
+}
+
+function setupCalendarIframes() {
+  // Setup iframes with Google Calendar embed URLs
+  // Note: These are basic embeds; full sync requires API calls
+
+  var iframeConfig = {
+    bog: {
+      email: GCAL_STATE.emailVale,
+      color: '#fc0f85',
+      el: 'cal-bog'
+    },
+    bay: {
+      email: GCAL_STATE.emailAndres,
+      color: '#3b82f6',
+      el: 'cal-bay'
+    },
+    shared: {
+      email: 'sofia-calendarios@ajbusinessadvisory.com',
+      color: '#6b7280',
+      el: 'cal-shared'
+    }
+  };
+
+  Object.keys(iframeConfig).forEach(function(key) {
+    var config = iframeConfig[key];
+    var iframe = document.getElementById(config.el);
+    if(iframe) {
+      // Use basic calendar embed (view-only)
+      iframe.src = 'https://calendar.google.com/calendar/embed?src=' + encodeURIComponent(config.email) + '&ctz=America%2FBogota';
+    }
+  });
+}
+
+function syncTaskToGCal(mkt, taskId) {
+  if(!GCAL_STATE.isAuthenticated) return;
+
+  var data = getData(mkt);
+  var task = data.tareas.find(function(t){return t.id === taskId;});
+  if(!task) return;
+
+  var calendarId = GCAL_STATE.calendarIds[mkt] || (mkt === 'bog' ? GCAL_STATE.emailVale : GCAL_STATE.emailAndres);
+  var mktLabel = mkt === 'bog' ? 'Bogotá' : 'Bay Area';
+
+  var event = {
+    summary: '[Sofía] Tarea: ' + task.text,
+    description: 'Prioridad: ' + task.priority + '\nMercado: ' + mktLabel + '\nEstado: ' + task.status + '\nID Local: ' + task.id,
+    start: {
+      date: new Date().toISOString().split('T')[0]
+    },
+    end: {
+      date: new Date(Date.now() + 86400000).toISOString().split('T')[0]
+    },
+    colorId: mkt === 'bog' ? '1' : '4',  // Pink for Bog, Blue for Bay
+    extendedProperties: {
+      private: {
+        localId: String(task.id),
+        mercado: mkt,
+        status: task.status,
+        priority: task.priority
+      }
+    }
+  };
+
+  gapi.client.calendar.events.insert({
+    calendarId: calendarId,
+    resource: event
+  }).then(function(response) {
+    // Store the Google Calendar event ID for future reference
+    task.gCalEventId = response.result.id;
+    saveData(mkt, data);
+    console.log('Task synced to Google Calendar:', response.result.id);
+  }).catch(function(error) {
+    console.error('Error syncing task to Google Calendar:', error);
+  });
+}
+
+function updateTaskInGCal(mkt, taskId) {
+  if(!GCAL_STATE.isAuthenticated) return;
+
+  var data = getData(mkt);
+  var task = data.tareas.find(function(t){return t.id === taskId;});
+  if(!task || !task.gCalEventId) return;
+
+  var calendarId = GCAL_STATE.calendarIds[mkt] || (mkt === 'bog' ? GCAL_STATE.emailVale : GCAL_STATE.emailAndres);
+
+  gapi.client.calendar.events.get({
+    calendarId: calendarId,
+    eventId: task.gCalEventId
+  }).then(function(response) {
+    var event = response.result;
+    event.description = 'Prioridad: ' + task.priority + '\nMercado: ' + (mkt === 'bog' ? 'Bogotá' : 'Bay Area') + '\nEstado: ' + task.status + '\nID Local: ' + task.id;
+
+    return gapi.client.calendar.events.update({
+      calendarId: calendarId,
+      eventId: task.gCalEventId,
+      resource: event
+    });
+  }).then(function() {
+    console.log('Task updated in Google Calendar');
+  }).catch(function(error) {
+    console.error('Error updating task in Google Calendar:', error);
+  });
+}
+
+function deleteTaskFromGCal(mkt, taskId) {
+  if(!GCAL_STATE.isAuthenticated) return;
+
+  var data = getData(mkt);
+  var task = data.tareas.find(function(t){return t.id === taskId;});
+  if(!task || !task.gCalEventId) return;
+
+  var calendarId = GCAL_STATE.calendarIds[mkt] || (mkt === 'bog' ? GCAL_STATE.emailVale : GCAL_STATE.emailAndres);
+
+  gapi.client.calendar.events.delete({
+    calendarId: calendarId,
+    eventId: task.gCalEventId
+  }).then(function() {
+    console.log('Task deleted from Google Calendar');
+  }).catch(function(error) {
+    console.error('Error deleting task from Google Calendar:', error);
+  });
+}
+
+function syncFromGCal() {
+  if(!GCAL_STATE.isAuthenticated) return;
+
+  // Sync from Bogotá calendar
+  syncCalendarEvents('bog', GCAL_STATE.emailVale);
+  // Sync from Bay Area calendar
+  syncCalendarEvents('bay', GCAL_STATE.emailAndres);
+}
+
+function syncCalendarEvents(mkt, calendarId) {
+  gapi.client.calendar.events.list({
+    calendarId: calendarId,
+    timeMin: new Date(Date.now() - 30*24*60*60*1000).toISOString(),  // Last 30 days
+    singleEvents: true,
+    orderBy: 'startTime',
+    q: '[Sofía]'
+  }).then(function(response) {
+    var events = response.result.events || [];
+    var data = getData(mkt);
+
+    events.forEach(function(event) {
+      if(!event.extendedProperties || !event.extendedProperties.private) return;
+
+      var localId = event.extendedProperties.private.localId;
+      var existingTask = data.tareas.find(function(t){return String(t.id) === localId;});
+
+      if(!existingTask) {
+        // Create new task from calendar event
+        data.tareas.push({
+          id: parseInt(localId),
+          text: event.summary.replace('[Sofía] Tarea: ', ''),
+          status: event.extendedProperties.private.status || 'pendiente',
+          priority: event.extendedProperties.private.priority || 'media',
+          created: event.created.split('T')[0],
+          gCalEventId: event.id
+        });
+      } else {
+        // Update existing task
+        existingTask.gCalEventId = event.id;
+        existingTask.status = event.extendedProperties.private.status || existingTask.status;
+      }
+    });
+
+    saveData(mkt, data);
+    renderTasks();
+  }).catch(function(error) {
+    console.error('Error syncing from Google Calendar:', error);
+  });
+}
+
+function renderCalendarios() {
+  if(GCAL_STATE.isAuthenticated) {
+    displayGCalStatus();
+  } else {
+    displayGCalStatus();
+  }
+}
+
+// Setup polling for calendar sync every 5 minutes
+setInterval(function() {
+  if(GCAL_STATE.isAuthenticated) {
+    syncFromGCal();
+  }
+}, 300000);
+
 // Init
 recalcAll();
+
+// Initialize Google Calendar when page loads
+if(document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGoogleCalendar);
+} else {
+  initGoogleCalendar();
+}
 </script>
 </body>
 </html>
