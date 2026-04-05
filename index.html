@@ -1041,204 +1041,105 @@
       <!-- Pre-call form -->
       <div id="demo-form" class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
 
-        <!-- ── Modo Toggle ── -->
-        <div class="flex gap-2 bg-white/5 border border-white/10 rounded-2xl p-1.5 mb-6">
-          <button id="mode-web" onclick="setCallMode('web')"
-            class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all bg-[#fc0f85] text-white shadow-lg shadow-[#fc0f85]/30">
-            🎙️ Demo por web
-          </button>
-          <button id="mode-outbound" onclick="setCallMode('outbound')"
-            class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all text-gray-400 hover:text-white">
-            📲 Sofía te llama
-          </button>
-        </div>
-
         <div class="space-y-4 mb-6">
 
-          <div>
-            <label class="block text-gray-300 text-sm font-semibold mb-2">Tu nombre <span class="text-red-400">*</span></label>
-            <input id="input-name" type="text" placeholder="Ej: Carolina Rodríguez" required
-              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
-          </div>
-
-          <div>
-            <label class="block text-gray-300 text-sm font-semibold mb-2">Nombre de tu negocio <span class="text-red-400">*</span></label>
-            <input id="input-business" type="text" placeholder="Ej: Spa Serenidad, Restaurante El Rincón..." required
-              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
-          </div>
-
-          <div>
-            <label class="block text-gray-300 text-sm font-semibold mb-3">Tipo de negocio <span class="text-red-400">*</span></label>
-            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2" id="niche-radios">
-              <label class="niche-radio-label cursor-pointer">
-                <input type="radio" name="niche" value="Spa o centro de estética" class="hidden" onchange="syncNicheFromRadio(this)"/>
-                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
-                  <span>🧖</span><span>Spa / Estética</span>
-                </div>
-              </label>
-              <label class="niche-radio-label cursor-pointer">
-                <input type="radio" name="niche" value="Restaurante" class="hidden" onchange="syncNicheFromRadio(this)"/>
-                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
-                  <span>🍽️</span><span>Restaurante</span>
-                </div>
-              </label>
-              <label class="niche-radio-label cursor-pointer">
-                <input type="radio" name="niche" value="Clínica estética" class="hidden" onchange="syncNicheFromRadio(this)"/>
-                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
-                  <span>💉</span><span>Clínica Estética</span>
-                </div>
-              </label>
-              <label class="niche-radio-label cursor-pointer">
-                <input type="radio" name="niche" value="Veterinaria" class="hidden" onchange="syncNicheFromRadio(this)"/>
-                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
-                  <span>🐾</span><span>Veterinaria</span>
-                </div>
-              </label>
-              <label class="niche-radio-label cursor-pointer">
-                <input type="radio" name="niche" value="Consultorio dental" class="hidden" onchange="syncNicheFromRadio(this)"/>
-                <div class="niche-radio-btn flex items-center gap-2 border border-white/20 rounded-xl px-3 py-2.5 text-sm text-gray-300 hover:border-[#fc0f85] transition-all">
-                  <span>😁</span><span>Dentista</span>
-                </div>
-              </label>
-            </div>
-            <input type="hidden" id="input-niche" value="" />
-          </div>
-
-          <div>
-            <label class="block text-gray-300 text-sm font-semibold mb-2">Correo electrónico <span class="text-red-400">*</span></label>
-            <input id="input-email" type="email" placeholder="Ej: carolina@mispa.com" required
-              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
-          </div>
-
+          <!-- ── Número de contacto (único campo requerido) ── -->
           <div>
             <label class="block text-gray-300 text-sm font-semibold mb-2">
-              Página web o Instagram <span class="text-gray-500 font-normal">(opcional)</span>
+              Número de contacto <span class="text-red-400">*</span>
             </label>
-            <input id="input-url" type="text" placeholder="Ej: instagram.com/mi_spa o mispa.com"
-              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors" />
-          </div>
-
-          <!-- ── Campo teléfono (solo modo outbound) ── -->
-          <div id="phone-field" class="hidden">
-            <label class="block text-gray-300 text-sm font-semibold mb-2">
-              Tu celular colombiano <span class="text-red-400">*</span>
-            </label>
-            <div class="flex gap-2 items-center">
-              <div class="flex items-center gap-2 bg-white/10 border border-white/20 rounded-xl px-3 py-3 text-sm text-gray-300 whitespace-nowrap">
+            <div class="flex gap-0 items-stretch">
+              <div class="flex items-center gap-2 bg-white/5 border border-white/20 border-r-0 rounded-l-xl px-4 text-sm text-gray-400 whitespace-nowrap select-none">
                 🇨🇴 <span class="font-bold text-white">+57</span>
               </div>
-              <input id="input-phone" type="tel" placeholder="300 123 4567" maxlength="10"
-                class="flex-1 bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors tracking-wider"
-                oninput="formatPhoneInput(this)" />
+              <input id="input-phone" type="tel" placeholder="300 123 4567" maxlength="13"
+                class="flex-1 bg-white/10 border border-white/20 border-l-0 text-white placeholder-gray-500 rounded-r-xl px-4 py-3.5 text-base focus:outline-none focus:border-[#fc0f85] transition-colors tracking-widest font-semibold"
+                oninput="formatPhoneInput(this)"
+                onkeydown="if(event.key==='Enter') startOutboundCall()" />
             </div>
-            <p class="text-gray-500 text-xs mt-1.5">📱 Recibirás la llamada en segundos — ten el teléfono a la mano</p>
+            <p class="text-gray-500 text-xs mt-2">📱 Sofía te llamará en los próximos segundos — ten el celular a la mano</p>
           </div>
+
+          <!-- Campos ocultos para compatibilidad -->
+          <input type="hidden" id="input-name" value="Cliente Demo" />
+          <input type="hidden" id="input-business" value="tu negocio" />
+          <input type="hidden" id="input-niche" value="" />
+          <input type="hidden" id="input-email" value="" />
+          <input type="hidden" id="input-url" value="" />
 
         </div>
 
         <!-- ── Banner pre-llamada ── -->
-        <div class="bg-[#ffd400]/10 border border-[#ffd400]/30 rounded-2xl p-4 mb-4">
+        <div class="bg-[#fc0f85]/10 border border-[#fc0f85]/25 rounded-2xl p-4 mb-4">
           <div class="flex items-start gap-3">
-            <span class="text-2xl">🎭</span>
+            <span class="text-2xl">📲</span>
             <div>
-              <p class="text-[#ffd400] font-black text-sm mb-1">Modo demo — Sofía actuará como tu asistente real</p>
-              <p class="text-gray-400 text-xs leading-relaxed">Durante la llamada, <strong class="text-white">tú juegas el papel de un cliente</strong> que llama a tu negocio. Sofía responderá como si ya fuera tu recepcionista virtual. Al final verás exactamente cómo sonaría para tus clientes.</p>
+              <p class="text-[#fc0f85] font-black text-sm mb-1">Sofía te llama en segundos — gratis</p>
+              <p class="text-gray-400 text-xs leading-relaxed">Cuando contestes, <strong class="text-white">actúa como si fueras un cliente</strong> de tu negocio. Sofía responderá exactamente como lo haría con tus clientes reales, 24/7.</p>
             </div>
           </div>
         </div>
 
-        <button id="btn-start-call" onclick="handleDemoStart()"
+        <button id="btn-start-call" onclick="startOutboundCall()"
           class="w-full flex items-center justify-center gap-3 bg-[#fc0f85] hover:bg-[#d40d70] text-white font-black text-lg py-4 rounded-2xl transition-all hover:scale-[1.02] shadow-lg shadow-[#fc0f85]/30">
-          <svg id="btn-icon-phone" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z"/>
           </svg>
-          <span id="btn-start-label">Iniciar llamada demo</span>
+          📲 Que Sofía me llame
         </button>
 
         <p class="text-center text-gray-500 text-xs mt-4">🔒 Conversación privada · Sin spam · Sin compromiso</p>
       </div>
 
-      <!-- Active call UI -->
-      <div id="call-active" class="hidden bg-white/5 border border-[#fc0f85]/30 rounded-3xl p-8 text-center">
-
-        <!-- Avatar Sofía 3D con rings -->
-        <div class="relative w-32 h-32 mx-auto mb-6">
-          <div class="absolute inset-0 rounded-full bg-[#fc0f85]/20 ring-pulse"></div>
-          <div class="absolute inset-0 rounded-full bg-[#fc0f85]/10 ring-pulse-delay"></div>
-          <div class="relative w-32 h-32 rounded-full overflow-hidden border-2 border-[#fc0f85]/60 shadow-lg shadow-[#fc0f85]/30 bg-[#1a1a1a]">
-            <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform: scale(1.5) translateY(12%);" />
-          </div>
-          <!-- Online dot -->
-          <div class="absolute bottom-1 right-1 w-4 h-4 bg-[#fc0f85] rounded-full border-2 border-[#0a0a0a] animate-pulse"></div>
-        </div>
-
-        <p class="text-white font-black text-xl mb-1">Sofía está escuchando...</p>
-        <p class="text-gray-400 text-sm mb-4">Tú eres el cliente. Prueba a preguntar:</p>
-
-        <!-- Chips de sugerencias por nicho -->
-        <div id="call-tips" class="flex flex-wrap justify-center gap-2 mb-5 px-2"></div>
-
-        <!-- Timer -->
-        <div class="inline-flex items-center gap-2 bg-white/10 rounded-full px-5 py-2 mb-5">
-          <span class="w-2 h-2 bg-red-400 rounded-full animate-pulse"></span>
-          <span id="call-timer" class="text-white font-mono font-bold text-lg">1:50</span>
-          <span class="text-gray-400 text-sm">restante</span>
-        </div>
-
-        <!-- Sound wave -->
-        <div class="flex justify-center mb-4">
-          <div class="sound-wave">
-            <div class="sound-bar"></div>
-            <div class="sound-bar"></div>
-            <div class="sound-bar"></div>
-            <div class="sound-bar"></div>
-            <div class="sound-bar"></div>
-            <div class="sound-bar"></div>
-            <div class="sound-bar"></div>
-          </div>
-        </div>
-
-        <p id="call-status" class="text-[#fc0f85] text-sm font-semibold mb-6">Conectando con Sofía...</p>
-
-        <button onclick="endVapiCall()"
-          class="flex items-center justify-center gap-2 mx-auto bg-red-500/20 hover:bg-red-500/40 border border-red-500/40 text-red-400 px-8 py-3 rounded-full font-semibold transition-all">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-          Terminar llamada
-        </button>
-      </div>
-
       <!-- Waiting for outbound call UI -->
       <div id="call-waiting" class="hidden bg-white/5 border border-[#fc0f85]/30 rounded-3xl p-8 text-center">
-        <div class="relative w-24 h-24 mx-auto mb-6">
+
+        <!-- Avatar con pulso -->
+        <div class="relative w-28 h-28 mx-auto mb-5">
           <div class="absolute inset-0 rounded-full bg-[#fc0f85]/20 ring-pulse"></div>
           <div class="absolute inset-0 rounded-full bg-[#fc0f85]/10 ring-pulse-delay"></div>
-          <div class="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#fc0f85]/60 shadow-lg shadow-[#fc0f85]/30 bg-[#1a1a1a]">
+          <div class="relative w-28 h-28 rounded-full overflow-hidden border-2 border-[#fc0f85]/60 shadow-lg shadow-[#fc0f85]/30 bg-[#1a1a1a]">
             <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform: scale(1.5) translateY(12%);" />
           </div>
+          <div class="absolute bottom-1 right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-[#0a0a0a] animate-pulse"></div>
         </div>
-        <p class="text-white font-black text-xl mb-2">📲 Sofía está marcando tu número...</p>
-        <p id="waiting-number" class="text-[#fc0f85] font-bold text-base mb-1"></p>
-        <p class="text-gray-400 text-sm mb-6">Recibirás la llamada en los próximos segundos</p>
 
-        <div class="flex justify-center mb-5">
+        <p class="text-white font-black text-xl mb-1">📲 Sofía está marcando...</p>
+        <p id="waiting-number" class="text-[#fc0f85] font-bold text-lg mb-1 tracking-wider"></p>
+        <p class="text-gray-500 text-sm mb-6">Recibirás la llamada en segundos</p>
+
+        <!-- Sound wave -->
+        <div class="flex justify-center mb-6">
           <div class="sound-wave">
             <div class="sound-bar"></div>
             <div class="sound-bar"></div>
             <div class="sound-bar"></div>
             <div class="sound-bar"></div>
             <div class="sound-bar"></div>
+            <div class="sound-bar"></div>
           </div>
         </div>
 
-        <div class="bg-[#ffd400]/10 border border-[#ffd400]/30 rounded-xl p-3 mb-5 text-left">
-          <p class="text-[#ffd400] font-bold text-sm mb-1">💡 Qué decirle a Sofía:</p>
-          <p id="waiting-tips" class="text-gray-300 text-xs leading-relaxed">Cuando contestes, prueba a preguntar por horarios, precios o hacer una reserva.</p>
+        <!-- Tip animado -->
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4 mb-5">
+          <p class="text-gray-500 text-xs mb-3 uppercase tracking-widest font-semibold">Cuando contestes, prueba a decir:</p>
+          <div class="flex items-center justify-center gap-3 min-h-[52px]">
+            <span id="waiting-tip-emoji" class="text-3xl" style="transition: opacity 0.3s ease">📅</span>
+            <p id="waiting-tip-text" class="text-white font-bold text-base leading-snug text-left" style="transition: opacity 0.3s ease">¿Tienen disponibilidad esta semana?</p>
+          </div>
+        </div>
+
+        <!-- Tags decorativos -->
+        <div class="flex flex-wrap justify-center gap-2 mb-6">
+          <span class="bg-white/5 border border-white/10 text-gray-500 text-xs px-3 py-1.5 rounded-full">Horarios</span>
+          <span class="bg-white/5 border border-white/10 text-gray-500 text-xs px-3 py-1.5 rounded-full">Precios</span>
+          <span class="bg-white/5 border border-white/10 text-gray-500 text-xs px-3 py-1.5 rounded-full">Reservas</span>
+          <span class="bg-white/5 border border-white/10 text-gray-500 text-xs px-3 py-1.5 rounded-full">Servicios</span>
+          <span class="bg-white/5 border border-white/10 text-gray-500 text-xs px-3 py-1.5 rounded-full">Ubicación</span>
         </div>
 
         <button onclick="cancelOutboundCall()"
-          class="flex items-center justify-center gap-2 mx-auto bg-red-500/20 hover:bg-red-500/40 border border-red-500/40 text-red-400 px-8 py-3 rounded-full font-semibold transition-all text-sm">
+          class="text-gray-600 hover:text-gray-400 text-sm transition-all">
           ✕ Cancelar
         </button>
       </div>
@@ -1699,58 +1600,31 @@
     }
 
     async function startOutboundCall() {
-      var name     = document.getElementById('input-name').value.trim();
-      var business = document.getElementById('input-business').value.trim();
-      var niche    = document.getElementById('input-niche').value;
-      var email    = document.getElementById('input-email').value.trim();
       var phoneRaw = document.getElementById('input-phone').value;
-
-      if(!name)    { alert('Por favor ingresa tu nombre.'); document.getElementById('input-name').focus(); return; }
-      if(!business){ alert('Por favor ingresa el nombre de tu negocio.'); document.getElementById('input-business').focus(); return; }
-      if(!niche)   { alert('Por favor selecciona el tipo de negocio.'); return; }
-      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Por favor ingresa un correo válido.'); document.getElementById('input-email').focus(); return; }
-
       var phone = formatColombianNumber(phoneRaw);
-      if(!phone) { alert('Por favor ingresa tu número de celular colombiano (10 dígitos).\nEj: 300 123 4567'); document.getElementById('input-phone').focus(); return; }
 
-      if(!VAPI_PHONE_NUMBER_ID) {
-        alert('⚠️ Se necesita configurar el Phone Number ID de Vapi para activar esta función.\n\nPor ahora usa el modo "Demo por web" — funciona igual de bien 🎙️');
-        setCallMode('web');
+      if(!phone) {
+        document.getElementById('input-phone').focus();
+        document.getElementById('input-phone').style.borderColor = '#ff4757';
+        setTimeout(function(){ document.getElementById('input-phone').style.borderColor = ''; }, 2000);
         return;
       }
 
-      // Mostrar UI de espera
-      var nicheShort = niche.split(' ')[0];
-      var tipsByNiche = {
-        'Spa':          'Pregunta por un masaje o tratamiento facial para esta semana.',
-        'Restaurante':  'Pregunta si hay mesa para 4 personas el viernes por la noche.',
-        'Veterinaria':  'Di que tu perro tiene tos hace 2 días y quieres consulta.',
-        'Consultorio':  'Pregunta por una limpieza dental o si atienden urgencias.',
-        'Clínica':      'Pregunta por un procedimiento estético o precios de botox.'
-      };
-      var tipMatch = Object.keys(tipsByNiche).find(function(k){ return niche.includes(k); });
-      document.getElementById('waiting-number').textContent = '📱 +57 ' + phoneRaw.replace(/\D/g,'').slice(0,3) + ' ' + phoneRaw.replace(/\D/g,'').slice(3,6) + ' ' + phoneRaw.replace(/\D/g,'').slice(6,10);
-      document.getElementById('waiting-tips').textContent = tipMatch ? tipsByNiche[tipMatch] : 'Cuando contestes, pregunta por precios, horarios o agenda una cita.';
+      // Mostrar número formateado en pantalla de espera
+      var digits = phoneRaw.replace(/\D/g,'').slice(0,10);
+      var formatted = '+57 ' + digits.slice(0,3) + ' ' + digits.slice(3,6) + ' ' + digits.slice(6,10);
+      document.getElementById('waiting-number').textContent = formatted;
 
+      // Mostrar UI de espera e iniciar animación de tips
       document.getElementById('demo-form').classList.add('hidden');
       document.getElementById('call-waiting').classList.remove('hidden');
+      startWaitingTipsAnimation();
 
       try {
         var body = {
           assistantId: VAPI_ASSISTANT_ID,
-          customer: {
-            number: phone,
-            name:   name
-          },
-          phoneNumberId: VAPI_PHONE_NUMBER_ID,
-          assistantOverrides: {
-            variableValues: {
-              clientName:   name,
-              businessName: business,
-              businessType: niche,
-              clientEmail:  email
-            }
-          }
+          customer: { number: phone, name: 'Cliente Demo' },
+          phoneNumberId: VAPI_PHONE_NUMBER_ID
         };
 
         var resp = await fetch('https://api.vapi.ai/call/phone', {
@@ -1767,7 +1641,6 @@
         if(resp.ok && data.id) {
           _outboundCallId = data.id;
           console.log('[Vapi] Outbound call initiated:', data.id);
-          // Poll for call end
           pollOutboundCallStatus(data.id);
         } else {
           throw new Error(data.message || data.error || 'Error desconocido');
@@ -1775,10 +1648,52 @@
 
       } catch(err) {
         console.error('[Outbound call error]', err);
+        stopWaitingTipsAnimation();
         document.getElementById('call-waiting').classList.add('hidden');
         document.getElementById('demo-form').classList.remove('hidden');
-        alert('No se pudo iniciar la llamada: ' + err.message + '\n\nIntenta con el modo "Demo por web" 🎙️');
+        alert('No se pudo iniciar la llamada: ' + err.message);
       }
+    }
+
+    // ── Animación de tips en pantalla de espera ──
+    var _tipsInterval = null;
+    var _tipsIndex = 0;
+    var _waitingTips = [
+      { emoji: '📅', text: '¿Tienen disponibilidad esta semana?' },
+      { emoji: '💰', text: '¿Cuánto cuesta el servicio?' },
+      { emoji: '⏰', text: '¿Cuáles son los horarios de atención?' },
+      { emoji: '📍', text: '¿Dónde están ubicados?' },
+      { emoji: '🔄', text: '¿Cómo puedo cancelar o cambiar una cita?' },
+      { emoji: '✨', text: '¿Qué servicios ofrecen?' },
+      { emoji: '🎁', text: '¿Tienen promociones esta semana?' },
+      { emoji: '👥', text: '¿Puedo agendar para varias personas?' }
+    ];
+
+    function startWaitingTipsAnimation() {
+      _tipsIndex = 0;
+      showNextTip();
+      _tipsInterval = setInterval(showNextTip, 2800);
+    }
+
+    function stopWaitingTipsAnimation() {
+      if(_tipsInterval) { clearInterval(_tipsInterval); _tipsInterval = null; }
+    }
+
+    function showNextTip() {
+      var tip = _waitingTips[_tipsIndex % _waitingTips.length];
+      var el = document.getElementById('waiting-tip-text');
+      var emEl = document.getElementById('waiting-tip-emoji');
+      if(!el) return;
+      // Fade out → change → fade in
+      el.style.opacity = '0';
+      if(emEl) emEl.style.opacity = '0';
+      setTimeout(function() {
+        el.textContent = tip.text;
+        if(emEl) emEl.textContent = tip.emoji;
+        el.style.opacity = '1';
+        if(emEl) emEl.style.opacity = '1';
+      }, 300);
+      _tipsIndex++;
     }
 
     async function pollOutboundCallStatus(callId) {
@@ -1816,6 +1731,7 @@
     }
 
     function cancelOutboundCall() {
+      stopWaitingTipsAnimation();
       if(_outboundCallId) {
         fetch('https://api.vapi.ai/call/' + _outboundCallId, {
           method: 'DELETE',
@@ -1919,13 +1835,11 @@
     }
 
     function resetDemo(){
+      stopWaitingTipsAnimation();
       document.getElementById('call-ended').classList.add('hidden');
       document.getElementById('call-waiting').classList.add('hidden');
       document.getElementById('demo-form').classList.remove('hidden');
-      _secondsLeft=110;
-      updateTimerDisplay();
-      // Reset to web mode
-      setCallMode('web');
+      document.getElementById('input-phone').value = '';
     }
 
     // ── Niche selector ──
