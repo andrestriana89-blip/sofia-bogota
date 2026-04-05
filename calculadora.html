@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Económica — Sofía · AJ Business Advisory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    :root {
+      --pink: #fc0f85; --pink-dark: #d40d70;
+      --yellow: #ffd400; --green: #00c48c;
+      --blue: #3b82f6; --red: #ff4757;
+      --bg: #0a0a0a; --card: #141414;
+    }
+    body { background: var(--bg); color: white; }
+
+    /* ── Inputs ── */
+    .ci {
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px; color: white;
+      padding: 9px 13px; width: 100%;
+      font-size: 14px; font-weight: 600;
+      transition: border-color 0.2s; outline: none;
+    }
+    .ci:focus { border-color: #fc0f85; }
+
+    /* ── Cards ── */
+    .card { background: var(--card); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 18px; }
+    .card-bog { border-color: rgba(252,15,133,0.25); }
+    .card-bay { border-color: rgba(59,130,246,0.3); }
+
+    /* ── Plan cards ── */
+    .plan-c { background: var(--card); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 16px; overflow:hidden; }
+    .plan-c.sel { border-color: #fc0f85; box-shadow: 0 0 30px rgba(252,15,133,0.12); }
+    .plan-c.sel-bay { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59,130,246,0.12); }
+    .plan-c.gold { border-color: #ffd400; box-shadow: 0 0 30px rgba(255,212,0,0.1); }
+
+    .ph-gray  { background: rgba(255,255,255,0.06); }
+    .ph-pink  { background: linear-gradient(135deg,#fc0f85,#d40d70); }
+    .ph-gold  { background: linear-gradient(135deg,#ffd400,#e6b800); color:#000; }
+    .ph-blue  { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+    .ph-indigo{ background: linear-gradient(135deg,#6366f1,#4f46e5); }
+    .ph-violet{ background: linear-gradient(135deg,#8b5cf6,#7c3aed); }
+
+    /* ── Rows ── */
+    .mr { display:flex; justify-content:space-between; align-items:center; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); font-size:13px; }
+    .mr:last-child { border-bottom:none; }
+    .ml { color:#9ca3af; }
+    .mv { font-weight:700; }
+
+    /* ── Colors ── */
+    .cg { color:#00c48c; } .cr { color:#ff4757; }
+    .cy { color:#ffd400; } .cp { color:#fc0f85; }
+    .cb { color:#3b82f6; } .cw { color:white; }
+
+    /* ── KPI ── */
+    .kpi { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:16px; text-align:center; }
+    .kn { font-size:22px; font-weight:900; }
+    .kl { font-size:10px; color:#6b7280; text-transform:uppercase; letter-spacing:.05em; margin-top:3px; }
+
+    /* ── Section ── */
+    .st { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:#6b7280; margin-bottom:12px; }
+
+    /* ── Toggle ── */
+    .toggle-pill { display:flex; background:rgba(255,255,255,0.06); border-radius:99px; padding:3px; width:fit-content; }
+    .toggle-btn { padding:6px 20px; border-radius:99px; font-size:13px; font-weight:700; cursor:pointer; transition:all .2s; color:#6b7280; }
+    .toggle-btn.active { background:#fc0f85; color:white; box-shadow:0 2px 12px rgba(252,15,133,.4); }
+    .toggle-btn.active-bay { background:#3b82f6; color:white; box-shadow:0 2px 12px rgba(59,130,246,.4); }
+
+    /* ── Range ── */
+    input[type=range] { -webkit-appearance:none; width:100%; height:5px; border-radius:3px; background:rgba(255,255,255,0.1); outline:none; }
+    input[type=range]::-webkit-slider-thumb { -webkit-appearance:none; width:16px; height:16px; border-radius:50%; background:#fc0f85; cursor:pointer; }
+
+    /* ── Margin bar ── */
+    .mbar { height:6px; border-radius:3px; background:rgba(255,255,255,0.08); margin-top:6px; overflow:hidden; }
+    .mfill { height:100%; border-radius:3px; transition:width .4s ease; }
+
+    /* ── Section dividers ── */
+    .mkt-header { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+    .mkt-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 16px; border-radius:99px; font-size:12px; font-weight:800; letter-spacing:.05em; }
+    .mkt-bog { background:rgba(252,15,133,0.15); color:#fc0f85; border:1px solid rgba(252,15,133,0.3); }
+    .mkt-bay { background:rgba(59,130,246,0.15); color:#3b82f6; border:1px solid rgba(59,130,246,0.3); }
+
+    /* ── Badge ── */
+    .badge { display:inline-block; padding:2px 10px; border-radius:99px; font-size:10px; font-weight:700; }
+
+    /* ── Table ── */
+    .rtable { width:100%; border-collapse:collapse; font-size:13px; }
+    .rtable th { text-align:left; padding:8px 12px; color:#6b7280; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.08); font-size:10px; text-transform:uppercase; }
+    .rtable td { padding:11px 12px; border-bottom:1px solid rgba(255,255,255,0.05); font-weight:600; }
+    .rtable tr:hover td { background:rgba(255,255,255,0.02); }
+
+    /* Divider */
+    .div-line { height:1px; background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent); margin:8px 0; }
+
+    ::-webkit-scrollbar { width:5px; } ::-webkit-scrollbar-thumb { background:rgba(255,255,255,0.12); border-radius:3px; }
+
+    @media(max-width:768px){ .plans-grid{ grid-template-columns:1fr!important; } }
+  </style>
+</head>
+<body class="min-h-screen">
+
+<!-- ══ HEADER ══ -->
+<header class="border-b border-white/8 px-5 py-4 flex items-center justify-between sticky top-0 z-50 backdrop-blur-xl" style="background:rgba(10,10,10,0.96)">
+  <div class="flex items-center gap-3">
+    <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background:linear-gradient(135deg,#fc0f85,#d40d70)">
+      <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 11h.01M12 11h.01M15 11h.01M4 19h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+    </div>
+    <div>
+      <p class="font-black text-sm">Calculadora Económica</p>
+      <p class="text-xs text-gray-500">Sofía · AJ Business Advisory · Bogotá + Bay Area</p>
+    </div>
+  </div>
+  <!-- Currency Toggle -->
+  <div class="flex items-center gap-3">
+    <span class="text-xs text-gray-500 hidden md:block">Mostrar en:</span>
+    <div class="toggle-pill">
+      <button class="toggle-btn active" id="btn-cop" onclick="setCurrency('COP')">🇨🇴 COP</button>
+      <button class="toggle-btn" id="btn-usd" onclick="setCurrency('USD')">🇺🇸 USD</button>
+    </div>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-8 space-y-10">
+
+<!-- ══ CONFIGURACIÓN GLOBAL ══ -->
+<section>
+  <p class="st">⚙️ Configuración Global</p>
+  <div class="card p-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">TRM (COP / USD)</label>
+        <input type="number" id="trm" class="ci" value="4100" min="3000" max="6000" step="50" oninput="recalcAll()" />
+        <p class="text-xs text-gray-600 mt-1">Tasa de cambio</p>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Vapi (USD/min)</label>
+        <input type="number" id="vapiRate" class="ci" value="0.12" min="0.05" max="0.50" step="0.01" oninput="recalcAll()" />
+        <p class="text-xs text-gray-600 mt-1">GPT-4o Cluster</p>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Demo: duración (min)</label>
+        <input type="number" id="demoDur" class="ci" value="2" min="1" max="6" step="0.5" oninput="recalcAll()" />
+        <p class="text-xs text-gray-600 mt-1">Promedio llamada demo</p>
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Demos / mes (total)</label>
+        <input type="number" id="demosMonth" class="ci" value="30" min="1" max="300" step="5" oninput="recalcAll()" />
+        <p class="text-xs text-gray-600 mt-1">Web demos realizados</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SOFIA · BOGOTÁ
+══════════════════════════════════════════════════ -->
+<section>
+  <div class="mkt-header">
+    <button class="mkt-badge mkt-bog" onclick="openPanel('bog')" style="cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(252,15,133,0.25)'" onmouseout="this.style.background='rgba(252,15,133,0.15)'">
+      🇨🇴 SOFÍA · BOGOTÁ <span style="margin-left:6px;opacity:.7;font-size:10px">▼ Tareas / Metas / Gastos</span>
+    </button>
+    <div class="h-px flex-1" style="background:linear-gradient(90deg,rgba(252,15,133,0.3),transparent)"></div>
+  </div>
+
+  <!-- Config Bogotá -->
+  <div class="card card-bog p-5 mb-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Tu tarifa soporte (COP/hr)</label>
+        <input type="number" id="b_hourly" class="ci" value="50000" min="20000" max="200000" step="5000" oninput="recalcAll()" />
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Herramientas (USD/cliente)</label>
+        <input type="number" id="b_tools" class="ci" value="8" min="0" max="50" step="1" oninput="recalcAll()" />
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Conversión demo→cliente (%)</label>
+        <input type="number" id="b_conv" class="ci" value="15" min="1" max="80" step="1" oninput="recalcAll()" />
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Tu tiempo por demo (min)</label>
+        <input type="number" id="b_demoTime" class="ci" value="15" min="5" max="60" step="5" oninput="recalcAll()" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo KPIs Bogotá -->
+  <div class="card card-bog p-4 mb-5">
+    <p class="st mb-3">🎙️ Costo por Demo · Bogotá</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi"><p class="kn cp" id="b_costDemoVapi">$0</p><p class="kl">Costo Vapi / demo</p></div>
+      <div class="kpi"><p class="kn cw" id="b_costDemoTotal">$0</p><p class="kl">Costo total / demo</p></div>
+      <div class="kpi"><p class="kn cy" id="b_cac">$0</p><p class="kl">CAC vía demos</p></div>
+      <div class="kpi"><p class="kn cg" id="b_clientsFromDemos">0</p><p class="kl">Clientes est./mes</p></div>
+    </div>
+  </div>
+
+  <!-- Planes Bogotá -->
+  <div class="grid md:grid-cols-3 gap-4 plans-grid mb-5">
+
+    <!-- Esencial Bog -->
+    <div class="plan-c">
+      <div class="ph-gray p-4 text-center">
+        <p class="text-xs text-gray-400 font-bold uppercase tracking-widest mb-1">Esencial</p>
+        <div class="flex items-center justify-center gap-2">
+          <p class="text-2xl font-black" id="b_e_priceDisplay">$600k COP</p>
+        </div>
+        <p class="text-xs text-gray-500 mt-1">Setup: $400k COP</p>
+        <div class="flex items-center gap-2 justify-center mt-2">
+          <label class="text-xs text-gray-500">Precio:</label>
+          <input type="number" id="b_e_price" class="ci text-center" style="width:120px;padding:4px 8px;font-size:12px" value="600000" step="50000" oninput="recalcAll()" />
+          <span class="text-xs text-gray-500">COP</span>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div>
+            <label class="text-xs text-gray-500">Min usados/mes</label>
+            <input type="number" id="b_e_min" class="ci mt-1" value="300" step="25" oninput="recalcAll()" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-500">Hrs soporte/mes</label>
+            <input type="number" id="b_e_hrs" class="ci mt-1" value="2" step="0.5" oninput="recalcAll()" />
+          </div>
+        </div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="ml">🎙️ Vapi</span><span class="mv cr" id="b_e_vapi">$0</span></div>
+        <div class="mr"><span class="ml">⏱️ Tu tiempo</span><span class="mv cr" id="b_e_time">$0</span></div>
+        <div class="mr"><span class="ml">🔧 Herramientas</span><span class="mv cr" id="b_e_tools">$0</span></div>
+        <div class="mr"><span class="ml">📢 CAC/mes</span><span class="mv cr" id="b_e_cac">$0</span></div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="font-bold text-sm">Ingreso</span><span class="mv cg" id="b_e_rev">$600k</span></div>
+        <div class="mr"><span class="font-bold text-sm">Margen</span><span class="mv" id="b_e_margin">$0</span></div>
+        <div class="mr" style="border:none"><span class="ml">Margen %</span><span class="font-black text-base" id="b_e_pct">0%</span></div>
+        <div class="mbar"><div class="mfill cg" id="b_e_bar" style="width:0%;background:#00c48c"></div></div>
+      </div>
+    </div>
+
+    <!-- Pro Bog -->
+    <div class="plan-c sel">
+      <div class="ph-pink p-4 text-center text-white">
+        <span class="badge mb-1" style="background:rgba(255,255,255,0.2)">⭐ RECOMENDADO</span>
+        <p class="text-xs font-bold uppercase tracking-widest mb-1">Pro</p>
+        <p class="text-2xl font-black" id="b_p_priceDisplay">$900k COP</p>
+        <p class="text-xs opacity-70 mt-1">Setup: $800k COP</p>
+        <div class="flex items-center gap-2 justify-center mt-2">
+          <label class="text-xs opacity-70">Precio:</label>
+          <input type="number" id="b_p_price" class="ci text-center" style="width:120px;padding:4px 8px;font-size:12px;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)" value="900000" step="50000" oninput="recalcAll()" />
+          <span class="text-xs opacity-70">COP</span>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div>
+            <label class="text-xs text-gray-500">Min usados/mes</label>
+            <input type="number" id="b_p_min" class="ci mt-1" value="900" step="50" oninput="recalcAll()" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-500">Hrs soporte/mes</label>
+            <input type="number" id="b_p_hrs" class="ci mt-1" value="4" step="0.5" oninput="recalcAll()" />
+          </div>
+        </div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="ml">🎙️ Vapi</span><span class="mv cr" id="b_p_vapi">$0</span></div>
+        <div class="mr"><span class="ml">⏱️ Tu tiempo</span><span class="mv cr" id="b_p_time">$0</span></div>
+        <div class="mr"><span class="ml">🔧 Herramientas</span><span class="mv cr" id="b_p_tools">$0</span></div>
+        <div class="mr"><span class="ml">📢 CAC/mes</span><span class="mv cr" id="b_p_cac">$0</span></div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="font-bold text-sm">Ingreso</span><span class="mv cg" id="b_p_rev">$900k</span></div>
+        <div class="mr"><span class="font-bold text-sm">Margen</span><span class="mv" id="b_p_margin">$0</span></div>
+        <div class="mr" style="border:none"><span class="ml">Margen %</span><span class="font-black text-base" id="b_p_pct">0%</span></div>
+        <div class="mbar"><div class="mfill" id="b_p_bar" style="width:0%;background:#fc0f85"></div></div>
+      </div>
+    </div>
+
+    <!-- Premium Bog -->
+    <div class="plan-c gold">
+      <div class="ph-gold p-4 text-center">
+        <span class="badge mb-1" style="background:rgba(0,0,0,0.15);color:#000">🚀 ESCALAR</span>
+        <p class="text-xs font-bold uppercase tracking-widest mb-1 text-black">Premium</p>
+        <p class="text-2xl font-black text-black" id="b_pr_priceDisplay">$1.5M COP</p>
+        <p class="text-xs text-black/60 mt-1">Setup: $1.5M COP</p>
+        <div class="flex items-center gap-2 justify-center mt-2">
+          <label class="text-xs text-black/60">Precio:</label>
+          <input type="number" id="b_pr_price" class="ci text-center" style="width:120px;padding:4px 8px;font-size:12px;background:rgba(0,0,0,0.1);border-color:rgba(0,0,0,0.2);color:#000" value="1500000" step="50000" oninput="recalcAll()" />
+          <span class="text-xs text-black/60">COP</span>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div>
+            <label class="text-xs text-gray-500">Min usados/mes</label>
+            <input type="number" id="b_pr_min" class="ci mt-1" value="2400" step="100" oninput="recalcAll()" />
+          </div>
+          <div>
+            <label class="text-xs text-gray-500">Hrs soporte/mes</label>
+            <input type="number" id="b_pr_hrs" class="ci mt-1" value="8" step="1" oninput="recalcAll()" />
+          </div>
+        </div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="ml">🎙️ Vapi</span><span class="mv cr" id="b_pr_vapi">$0</span></div>
+        <div class="mr"><span class="ml">⏱️ Tu tiempo</span><span class="mv cr" id="b_pr_time">$0</span></div>
+        <div class="mr"><span class="ml">🔧 Herramientas</span><span class="mv cr" id="b_pr_tools">$0</span></div>
+        <div class="mr"><span class="ml">📢 CAC/mes</span><span class="mv cr" id="b_pr_cac">$0</span></div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="font-bold text-sm">Ingreso</span><span class="mv cg" id="b_pr_rev">$1.5M</span></div>
+        <div class="mr"><span class="font-bold text-sm">Margen</span><span class="mv" id="b_pr_margin">$0</span></div>
+        <div class="mr" style="border:none"><span class="ml">Margen %</span><span class="font-black text-base" id="b_pr_pct">0%</span></div>
+        <div class="mbar"><div class="mfill" id="b_pr_bar" style="width:0%;background:#ffd400"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proyección Bogotá -->
+  <div class="card card-bog p-5">
+    <p class="st mb-4">📈 Proyección Bogotá</p>
+    <div class="grid grid-cols-3 gap-4 mb-5">
+      <div><label class="text-xs text-gray-400 font-semibold">Clientes Esencial</label><input type="number" id="b_qE" class="ci mt-1.5" value="3" min="0" max="50" oninput="recalcAll()" /></div>
+      <div><label class="text-xs text-gray-400 font-semibold">Clientes Pro</label><input type="number" id="b_qP" class="ci mt-1.5" value="5" min="0" max="50" oninput="recalcAll()" /></div>
+      <div><label class="text-xs text-gray-400 font-semibold">Clientes Premium</label><input type="number" id="b_qPr" class="ci mt-1.5" value="2" min="0" max="50" oninput="recalcAll()" /></div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi"><p class="kn cg" id="b_proj_rev">$0</p><p class="kl">Ingresos/mes</p></div>
+      <div class="kpi"><p class="kn cr" id="b_proj_cost">$0</p><p class="kl">Costos/mes</p></div>
+      <div class="kpi"><p class="kn cp" id="b_proj_margin">$0</p><p class="kl">Margen/mes</p></div>
+      <div class="kpi"><p class="kn cy" id="b_proj_pct">0%</p><p class="kl">Margen %</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     SOFIA · BAY AREA
+══════════════════════════════════════════════════ -->
+<section>
+  <div class="mkt-header">
+    <button class="mkt-badge mkt-bay" onclick="openPanel('bay')" style="cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(59,130,246,0.25)'" onmouseout="this.style.background='rgba(59,130,246,0.15)'">
+      🇺🇸 SOFÍA · BAY AREA <span style="margin-left:6px;opacity:.7;font-size:10px">▼ Tareas / Metas / Gastos</span>
+    </button>
+    <div class="h-px flex-1" style="background:linear-gradient(90deg,rgba(59,130,246,0.3),transparent)"></div>
+  </div>
+
+  <!-- Config Bay Area -->
+  <div class="card card-bay p-5 mb-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Tu tarifa soporte (USD/hr)</label>
+        <input type="number" id="u_hourly" class="ci" value="75" min="20" max="300" step="5" oninput="recalcAll()" />
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Herramientas (USD/cliente)</label>
+        <input type="number" id="u_tools" class="ci" value="15" min="0" max="100" step="1" oninput="recalcAll()" />
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Conversión demo→cliente (%)</label>
+        <input type="number" id="u_conv" class="ci" value="20" min="1" max="80" step="1" oninput="recalcAll()" />
+      </div>
+      <div>
+        <label class="block text-xs text-gray-400 mb-1.5 font-semibold">Tu tiempo por demo (min)</label>
+        <input type="number" id="u_demoTime" class="ci" value="20" min="5" max="90" step="5" oninput="recalcAll()" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Demo KPIs Bay Area -->
+  <div class="card card-bay p-4 mb-5">
+    <p class="st mb-3">🎙️ Costo por Demo · Bay Area</p>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi"><p class="kn cb" id="u_costDemoVapi">$0</p><p class="kl">Costo Vapi / demo</p></div>
+      <div class="kpi"><p class="kn cw" id="u_costDemoTotal">$0</p><p class="kl">Costo total / demo</p></div>
+      <div class="kpi"><p class="kn cy" id="u_cac">$0</p><p class="kl">CAC vía demos</p></div>
+      <div class="kpi"><p class="kn cg" id="u_clientsFromDemos">0</p><p class="kl">Clientes est./mes</p></div>
+    </div>
+  </div>
+
+  <!-- Planes Bay Area -->
+  <div class="grid md:grid-cols-3 gap-4 plans-grid mb-5">
+
+    <!-- Starter USA -->
+    <div class="plan-c">
+      <div class="ph-blue p-4 text-center text-white">
+        <p class="text-xs font-bold uppercase tracking-widest mb-1">Starter</p>
+        <p class="text-2xl font-black" id="u_e_priceDisplay">$199 USD</p>
+        <p class="text-xs opacity-70 mt-1">Setup: $299 USD</p>
+        <div class="flex items-center gap-2 justify-center mt-2">
+          <label class="text-xs opacity-70">Precio:</label>
+          <input type="number" id="u_e_price" class="ci text-center" style="width:100px;padding:4px 8px;font-size:12px;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)" value="199" step="10" oninput="recalcAll()" />
+          <span class="text-xs opacity-70">USD</span>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div><label class="text-xs text-gray-500">Min usados/mes</label><input type="number" id="u_e_min" class="ci mt-1" value="300" step="25" oninput="recalcAll()" /></div>
+          <div><label class="text-xs text-gray-500">Hrs soporte/mes</label><input type="number" id="u_e_hrs" class="ci mt-1" value="1.5" step="0.5" oninput="recalcAll()" /></div>
+        </div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="ml">🎙️ Vapi</span><span class="mv cr" id="u_e_vapi">$0</span></div>
+        <div class="mr"><span class="ml">⏱️ Tu tiempo</span><span class="mv cr" id="u_e_time">$0</span></div>
+        <div class="mr"><span class="ml">🔧 Herramientas</span><span class="mv cr" id="u_e_tools">$0</span></div>
+        <div class="mr"><span class="ml">📢 CAC/mes</span><span class="mv cr" id="u_e_cac">$0</span></div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="font-bold text-sm">Ingreso</span><span class="mv cg" id="u_e_rev">$199</span></div>
+        <div class="mr"><span class="font-bold text-sm">Margen</span><span class="mv" id="u_e_margin">$0</span></div>
+        <div class="mr" style="border:none"><span class="ml">Margen %</span><span class="font-black text-base" id="u_e_pct">0%</span></div>
+        <div class="mbar"><div class="mfill" id="u_e_bar" style="width:0%;background:#3b82f6"></div></div>
+      </div>
+    </div>
+
+    <!-- Pro USA -->
+    <div class="plan-c sel-bay">
+      <div class="ph-indigo p-4 text-center text-white">
+        <span class="badge mb-1" style="background:rgba(255,255,255,0.2)">⭐ RECOMMENDED</span>
+        <p class="text-xs font-bold uppercase tracking-widest mb-1">Pro</p>
+        <p class="text-2xl font-black" id="u_p_priceDisplay">$349 USD</p>
+        <p class="text-xs opacity-70 mt-1">Setup: $499 USD</p>
+        <div class="flex items-center gap-2 justify-center mt-2">
+          <label class="text-xs opacity-70">Precio:</label>
+          <input type="number" id="u_p_price" class="ci text-center" style="width:100px;padding:4px 8px;font-size:12px;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)" value="349" step="10" oninput="recalcAll()" />
+          <span class="text-xs opacity-70">USD</span>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div><label class="text-xs text-gray-500">Min usados/mes</label><input type="number" id="u_p_min" class="ci mt-1" value="900" step="50" oninput="recalcAll()" /></div>
+          <div><label class="text-xs text-gray-500">Hrs soporte/mes</label><input type="number" id="u_p_hrs" class="ci mt-1" value="3" step="0.5" oninput="recalcAll()" /></div>
+        </div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="ml">🎙️ Vapi</span><span class="mv cr" id="u_p_vapi">$0</span></div>
+        <div class="mr"><span class="ml">⏱️ Tu tiempo</span><span class="mv cr" id="u_p_time">$0</span></div>
+        <div class="mr"><span class="ml">🔧 Herramientas</span><span class="mv cr" id="u_p_tools">$0</span></div>
+        <div class="mr"><span class="ml">📢 CAC/mes</span><span class="mv cr" id="u_p_cac">$0</span></div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="font-bold text-sm">Ingreso</span><span class="mv cg" id="u_p_rev">$349</span></div>
+        <div class="mr"><span class="font-bold text-sm">Margen</span><span class="mv" id="u_p_margin">$0</span></div>
+        <div class="mr" style="border:none"><span class="ml">Margen %</span><span class="font-black text-base" id="u_p_pct">0%</span></div>
+        <div class="mbar"><div class="mfill" id="u_p_bar" style="width:0%;background:#6366f1"></div></div>
+      </div>
+    </div>
+
+    <!-- Premium USA -->
+    <div class="plan-c" style="border-color:rgba(139,92,246,0.4);box-shadow:0 0 30px rgba(139,92,246,0.1)">
+      <div class="ph-violet p-4 text-center text-white">
+        <span class="badge mb-1" style="background:rgba(255,255,255,0.2)">🚀 SCALE</span>
+        <p class="text-xs font-bold uppercase tracking-widest mb-1">Premium</p>
+        <p class="text-2xl font-black" id="u_pr_priceDisplay">$699 USD</p>
+        <p class="text-xs opacity-70 mt-1">Setup: $999 USD</p>
+        <div class="flex items-center gap-2 justify-center mt-2">
+          <label class="text-xs opacity-70">Precio:</label>
+          <input type="number" id="u_pr_price" class="ci text-center" style="width:100px;padding:4px 8px;font-size:12px;background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)" value="699" step="25" oninput="recalcAll()" />
+          <span class="text-xs opacity-70">USD</span>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="grid grid-cols-2 gap-2 mb-3">
+          <div><label class="text-xs text-gray-500">Min usados/mes</label><input type="number" id="u_pr_min" class="ci mt-1" value="2400" step="100" oninput="recalcAll()" /></div>
+          <div><label class="text-xs text-gray-500">Hrs soporte/mes</label><input type="number" id="u_pr_hrs" class="ci mt-1" value="6" step="1" oninput="recalcAll()" /></div>
+        </div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="ml">🎙️ Vapi</span><span class="mv cr" id="u_pr_vapi">$0</span></div>
+        <div class="mr"><span class="ml">⏱️ Tu tiempo</span><span class="mv cr" id="u_pr_time">$0</span></div>
+        <div class="mr"><span class="ml">🔧 Herramientas</span><span class="mv cr" id="u_pr_tools">$0</span></div>
+        <div class="mr"><span class="ml">📢 CAC/mes</span><span class="mv cr" id="u_pr_cac">$0</span></div>
+        <div class="div-line"></div>
+        <div class="mr"><span class="font-bold text-sm">Ingreso</span><span class="mv cg" id="u_pr_rev">$699</span></div>
+        <div class="mr"><span class="font-bold text-sm">Margen</span><span class="mv" id="u_pr_margin">$0</span></div>
+        <div class="mr" style="border:none"><span class="ml">Margen %</span><span class="font-black text-base" id="u_pr_pct">0%</span></div>
+        <div class="mbar"><div class="mfill" id="u_pr_bar" style="width:0%;background:#8b5cf6"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Proyección Bay Area -->
+  <div class="card card-bay p-5">
+    <p class="st mb-4">📈 Proyección Bay Area</p>
+    <div class="grid grid-cols-3 gap-4 mb-5">
+      <div><label class="text-xs text-gray-400 font-semibold">Clientes Starter</label><input type="number" id="u_qE" class="ci mt-1.5" value="2" min="0" max="50" oninput="recalcAll()" /></div>
+      <div><label class="text-xs text-gray-400 font-semibold">Clientes Pro</label><input type="number" id="u_qP" class="ci mt-1.5" value="3" min="0" max="50" oninput="recalcAll()" /></div>
+      <div><label class="text-xs text-gray-400 font-semibold">Clientes Premium</label><input type="number" id="u_qPr" class="ci mt-1.5" value="1" min="0" max="50" oninput="recalcAll()" /></div>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi"><p class="kn cg" id="u_proj_rev">$0</p><p class="kl">Ingresos/mes</p></div>
+      <div class="kpi"><p class="kn cr" id="u_proj_cost">$0</p><p class="kl">Costos/mes</p></div>
+      <div class="kpi"><p class="kn cb" id="u_proj_margin">$0</p><p class="kl">Margen/mes</p></div>
+      <div class="kpi"><p class="kn cy" id="u_proj_pct">0%</p><p class="kl">Margen %</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     COMPARATIVO GLOBAL
+══════════════════════════════════════════════════ -->
+<section>
+  <p class="st">🌎 Comparativo Global — Bogotá vs Bay Area</p>
+  <div class="card p-5">
+    <div class="overflow-x-auto mb-6">
+      <table class="rtable">
+        <thead>
+          <tr>
+            <th>Mercado</th>
+            <th>Clientes</th>
+            <th>Ingresos/mes</th>
+            <th>Costos/mes</th>
+            <th>Margen/mes</th>
+            <th>Margen %</th>
+            <th>En USD</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="mkt-badge mkt-bog" style="font-size:10px">🇨🇴 Bogotá</span></td>
+            <td id="cmp_bogClients">0</td>
+            <td class="cg" id="cmp_bogRev">$0</td>
+            <td class="cr" id="cmp_bogCost">$0</td>
+            <td id="cmp_bogMargin">$0</td>
+            <td id="cmp_bogPct">0%</td>
+            <td class="text-gray-400" id="cmp_bogUSD">$0</td>
+          </tr>
+          <tr>
+            <td><span class="mkt-badge mkt-bay" style="font-size:10px">🇺🇸 Bay Area</span></td>
+            <td id="cmp_bayClients">0</td>
+            <td class="cg" id="cmp_bayRev">$0</td>
+            <td class="cr" id="cmp_bayCost">$0</td>
+            <td id="cmp_bayMargin">$0</td>
+            <td id="cmp_bayPct">0%</td>
+            <td class="text-gray-400" id="cmp_bayUSD">$0</td>
+          </tr>
+          <tr style="background:rgba(255,255,255,0.03)">
+            <td><span class="font-black text-sm">TOTAL GLOBAL</span></td>
+            <td class="font-black" id="cmp_totalClients">0</td>
+            <td class="font-black cg" id="cmp_totalRev">$0</td>
+            <td class="font-black cr" id="cmp_totalCost">$0</td>
+            <td class="font-black" id="cmp_totalMargin">$0</td>
+            <td class="font-black cy" id="cmp_totalPct">0%</td>
+            <td class="text-gray-300 font-black" id="cmp_totalUSD">$0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Global KPIs -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi" style="border-color:rgba(252,15,133,0.2)">
+        <p class="kn cp" id="gl_mrr">$0</p>
+        <p class="kl">MRR Global</p>
+      </div>
+      <div class="kpi" style="border-color:rgba(0,196,140,0.2)">
+        <p class="kn cg" id="gl_margin">$0</p>
+        <p class="kl">Margen Global/mes</p>
+      </div>
+      <div class="kpi" style="border-color:rgba(255,212,0,0.2)">
+        <p class="kn cy" id="gl_usd">$0 USD</p>
+        <p class="kl">MRR en USD</p>
+      </div>
+      <div class="kpi" style="border-color:rgba(59,130,246,0.2)">
+        <p class="kn cb" id="gl_pct">0%</p>
+        <p class="kl">Margen % global</p>
+      </div>
+    </div>
+
+    <!-- Market Insights -->
+    <div class="grid md:grid-cols-2 gap-4 mt-5">
+      <div class="card p-4" style="border-color:rgba(252,15,133,0.2)">
+        <p class="text-xs font-bold mb-3" style="color:#fc0f85">🇨🇴 Bogotá · Insights</p>
+        <div class="mr"><span class="ml">Costo por demo (Vapi)</span><span class="mv cp" id="ins_bog_demoCost">$0</span></div>
+        <div class="mr"><span class="ml">Demos para 1 cliente</span><span class="mv" id="ins_bog_demosNeeded">0</span></div>
+        <div class="mr"><span class="ml">CAC total</span><span class="mv cy" id="ins_bog_cac">$0</span></div>
+        <div class="mr"><span class="ml">Mejor margen</span><span class="mv cg" id="ins_bog_bestPlan">—</span></div>
+        <div class="mr" style="border:none"><span class="ml">Recuperar CAC en</span><span class="mv" id="ins_bog_cacRec">—</span></div>
+      </div>
+      <div class="card p-4" style="border-color:rgba(59,130,246,0.2)">
+        <p class="text-xs font-bold mb-3" style="color:#3b82f6">🇺🇸 Bay Area · Insights</p>
+        <div class="mr"><span class="ml">Costo por demo (Vapi)</span><span class="mv cb" id="ins_bay_demoCost">$0</span></div>
+        <div class="mr"><span class="ml">Demos para 1 cliente</span><span class="mv" id="ins_bay_demosNeeded">0</span></div>
+        <div class="mr"><span class="ml">CAC total</span><span class="mv cy" id="ins_bay_cac">$0</span></div>
+        <div class="mr"><span class="ml">Mejor margen</span><span class="mv cg" id="ins_bay_bestPlan">—</span></div>
+        <div class="mr" style="border:none"><span class="ml">Recuperar CAC en</span><span class="mv" id="ins_bay_cacRec">—</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="text-center text-xs text-gray-700 pb-8 pt-2">
+  Calculadora interna · AJ Business Advisory · Sofía 2026 · Valores estimados para planificación estratégica
+</footer>
+
+<!-- ══════════════════════════════════════════════════
+     PANEL MODAL: TAREAS / METAS / GASTOS
+══════════════════════════════════════════════════ -->
+
+<!-- ── Floating Panel Buttons ── -->
+<div style="position:fixed;bottom:24px;left:24px;z-index:90;display:flex;flex-direction:column;gap:10px">
+  <button onclick="openPanel('bog')" title="Abrir Bogotá" style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:linear-gradient(135deg,#fc0f85,#d40d70);border:none;border-radius:99px;color:white;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(252,15,133,0.4);transition:all .2s;white-space:nowrap" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    🇨🇴 Bogotá <span id="fab-bog-badge" style="background:rgba(255,255,255,0.25);padding:1px 8px;border-radius:99px;font-size:10px"></span>
+  </button>
+  <button onclick="openPanel('bay')" title="Abrir Bay Area" style="display:flex;align-items:center;gap:8px;padding:10px 16px;background:linear-gradient(135deg,#3b82f6,#2563eb);border:none;border-radius:99px;color:white;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(59,130,246,0.4);transition:all .2s;white-space:nowrap" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    🇺🇸 Bay Area <span id="fab-bay-badge" style="background:rgba(255,255,255,0.25);padding:1px 8px;border-radius:99px;font-size:10px"></span>
+  </button>
+</div>
+
+<!-- Overlay -->
+<div id="panel-overlay" onclick="closePanel()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;backdrop-filter:blur(4px)"></div>
+
+<!-- Panel Drawer -->
+<div id="panel-drawer" style="display:none;position:fixed;top:0;right:0;width:min(480px,100vw);height:100vh;z-index:101;background:#111;border-left:1.5px solid rgba(255,255,255,0.1);overflow-y:auto;transform:translateX(100%);transition:transform .3s cubic-bezier(.4,0,.2,1)">
+
+  <!-- Panel Header -->
+  <div id="panel-header" style="padding:20px 20px 0">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+      <div>
+        <p id="panel-title" style="font-size:16px;font-weight:900"></p>
+        <p id="panel-subtitle" style="font-size:11px;color:#6b7280;margin-top:2px"></p>
+      </div>
+      <button onclick="closePanel()" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.08);border:none;color:white;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center">✕</button>
+    </div>
+
+    <!-- Month Navigator -->
+    <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.05);border-radius:10px;padding:8px 12px;margin-bottom:10px">
+      <button onclick="changeMonth(-1)" style="background:none;border:none;color:#9ca3af;cursor:pointer;font-size:18px;padding:0 6px;transition:color .2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9ca3af'">‹</button>
+      <div style="text-align:center">
+        <p id="month-display" style="font-size:14px;font-weight:800;color:white"></p>
+        <p id="month-sub" style="font-size:10px;color:#6b7280;margin-top:1px"></p>
+      </div>
+      <button onclick="changeMonth(1)" id="btn-next-month" style="background:none;border:none;color:#9ca3af;cursor:pointer;font-size:18px;padding:0 6px;transition:color .2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9ca3af'">›</button>
+    </div>
+
+    <!-- Tab bar -->
+    <div style="display:flex;gap:3px;background:rgba(255,255,255,0.05);border-radius:10px;padding:4px">
+      <button class="ptab active-tab" id="tab-tareas" onclick="switchTab('tareas')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">📋 Tareas</button>
+      <button class="ptab" id="tab-metas" onclick="switchTab('metas')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">🎯 Metas</button>
+      <button class="ptab" id="tab-gastos" onclick="switchTab('gastos')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">💸 Gastos</button>
+      <button class="ptab" id="tab-historial" onclick="switchTab('historial')" style="flex:1;padding:7px 4px;border-radius:7px;border:none;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s">📈 Historial</button>
+    </div>
+
+    <!-- Export/Import -->
+    <div style="display:flex;gap:8px;margin-top:10px">
+      <button onclick="exportData()" style="flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#9ca3af;padding:7px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9ca3af'">⬇️ Exportar JSON</button>
+      <label style="flex:1;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:8px;color:#9ca3af;padding:7px;font-size:11px;font-weight:700;cursor:pointer;text-align:center;transition:all .2s" onmouseover="this.style.color='white'" onmouseout="this.style.color='#9ca3af'">⬆️ Importar JSON<input type="file" accept=".json" onchange="importData(event)" style="display:none" /></label>
+    </div>
+  </div>
+
+  <div style="padding:16px 20px">
+
+    <!-- ── TAB: TAREAS ── -->
+    <div id="content-tareas">
+      <!-- Add task -->
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <input id="task-input" type="text" placeholder="Nueva tarea..." style="flex:1;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;color:white;padding:9px 12px;font-size:13px;outline:none;font-family:inherit" onkeydown="if(event.key==='Enter')addTask()" />
+        <select id="task-priority" style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:10px;color:white;padding:9px 10px;font-size:12px;outline:none;font-family:inherit">
+          <option value="alta">🔴 Alta</option>
+          <option value="media" selected>🟡 Media</option>
+          <option value="baja">🟢 Baja</option>
+        </select>
+        <button onclick="addTask()" style="background:#fc0f85;border:none;border-radius:10px;color:white;padding:9px 14px;font-weight:700;cursor:pointer;font-size:18px">+</button>
+      </div>
+
+      <!-- Filter buttons -->
+      <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+        <button onclick="filterTasks('all')" id="tf-all" style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:11px;font-weight:600;cursor:pointer">Todas</button>
+        <button onclick="filterTasks('pendiente')" id="tf-pend" style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#9ca3af;font-size:11px;font-weight:600;cursor:pointer">Pendientes</button>
+        <button onclick="filterTasks('completada')" id="tf-done" style="padding:3px 12px;border-radius:99px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#9ca3af;font-size:11px;font-weight:600;cursor:pointer">Completadas</button>
+      </div>
+
+      <!-- Tasks list -->
+      <div id="task-list"></div>
+      <p id="task-empty" style="text-align:center;color:#4b5563;font-size:13px;padding:30px 0">Sin tareas aún — agrega la primera 👆</p>
+    </div>
+
+    <!-- ── TAB: METAS ── -->
+    <div id="content-metas" style="display:none">
+      <!-- Add meta -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:14px">
+        <p style="font-size:11px;color:#6b7280;font-weight:600;margin-bottom:10px">➕ Nueva Meta</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <input id="meta-name" type="text" placeholder="Ej: Conseguir 10 clientes Pro" style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:8px 11px;font-size:13px;outline:none;font-family:inherit" />
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Tipo</label>
+              <select id="meta-type" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:12px;outline:none;font-family:inherit">
+                <option value="clientes">👥 Clientes</option>
+                <option value="ingresos">💰 Ingresos</option>
+                <option value="demos">🎙️ Demos</option>
+                <option value="margen">📊 Margen %</option>
+                <option value="otro">⭐ Otro</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Objetivo</label>
+              <input id="meta-target" type="number" placeholder="10" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:13px;outline:none;font-family:inherit;box-sizing:border-box" />
+            </div>
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Actual</label>
+              <input id="meta-current" type="number" placeholder="0" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:13px;outline:none;font-family:inherit;box-sizing:border-box" />
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Fecha límite</label>
+              <input id="meta-date" type="date" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:12px;outline:none;font-family:inherit;box-sizing:border-box" />
+            </div>
+            <div style="display:flex;align-items:flex-end">
+              <button onclick="addMeta()" style="width:100%;background:#fc0f85;border:none;border-radius:8px;color:white;padding:8px;font-weight:700;cursor:pointer;font-size:13px">Agregar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="meta-list"></div>
+      <p id="meta-empty" style="text-align:center;color:#4b5563;font-size:13px;padding:30px 0">Sin metas aún — define la primera 🎯</p>
+    </div>
+
+    <!-- ── TAB: GASTOS ── -->
+    <div id="content-gastos" style="display:none">
+      <!-- Summary -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        <div class="kpi"><p class="kn cr" id="gastos-total">$0</p><p class="kl">Total gastos</p></div>
+        <div class="kpi"><p class="kn cg" id="gastos-mes">$0</p><p class="kl">Este mes</p></div>
+      </div>
+
+      <!-- Add expense -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:14px">
+        <p style="font-size:11px;color:#6b7280;font-weight:600;margin-bottom:10px">➕ Registrar Gasto</p>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <input id="gasto-desc" type="text" placeholder="Ej: Vapi recarga créditos" style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:8px 11px;font-size:13px;outline:none;font-family:inherit" />
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Monto</label>
+              <input id="gasto-monto" type="number" placeholder="0" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:13px;outline:none;font-family:inherit;box-sizing:border-box" />
+            </div>
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Moneda</label>
+              <select id="gasto-cur" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:12px;outline:none;font-family:inherit">
+                <option value="COP">COP</option>
+                <option value="USD">USD</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size:10px;color:#6b7280;display:block;margin-bottom:3px">Categoría</label>
+              <select id="gasto-cat" style="width:100%;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:12px;outline:none;font-family:inherit">
+                <option>🎙️ Vapi</option>
+                <option>🔧 Herramientas</option>
+                <option>📢 Marketing</option>
+                <option>⏱️ Tiempo</option>
+                <option>🏢 Operativo</option>
+                <option>🎓 Formación</option>
+                <option>🌐 Hosting</option>
+                <option>📦 Otro</option>
+              </select>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+            <input id="gasto-fecha" type="date" style="background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.12);border-radius:8px;color:white;padding:7px 8px;font-size:12px;outline:none;font-family:inherit" />
+            <button onclick="addGasto()" style="background:#fc0f85;border:none;border-radius:8px;color:white;padding:8px;font-weight:700;cursor:pointer;font-size:13px">Registrar</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="gasto-list"></div>
+      <p id="gasto-empty" style="text-align:center;color:#4b5563;font-size:13px;padding:30px 0">Sin gastos registrados 💸</p>
+    </div>
+
+    <!-- ── TAB: HISTORIAL ── -->
+    <div id="content-historial" style="display:none">
+      <p style="font-size:11px;color:#6b7280;margin-bottom:14px">Últimos 6 meses · <span id="hist-mkt-label"></span></p>
+
+      <!-- Chart: Ingresos vs Gastos -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:14px">
+        <p style="font-size:12px;font-weight:700;color:#9ca3af;margin-bottom:10px">💰 Gastos Mensuales (COP equiv.)</p>
+        <canvas id="chart-gastos" height="180"></canvas>
+      </div>
+
+      <!-- Chart: Tareas por mes -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:14px">
+        <p style="font-size:12px;font-weight:700;color:#9ca3af;margin-bottom:10px">📋 Tareas completadas vs pendientes</p>
+        <canvas id="chart-tareas" height="160"></canvas>
+      </div>
+
+      <!-- Chart: Categorías de gasto -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin-bottom:14px">
+        <p style="font-size:12px;font-weight:700;color:#9ca3af;margin-bottom:10px">🍩 Gastos por categoría (total acumulado)</p>
+        <div style="display:flex;justify-content:center"><canvas id="chart-cats" width="240" height="240"></canvas></div>
+      </div>
+
+      <!-- Chart: Progreso de metas -->
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px">
+        <p style="font-size:12px;font-weight:700;color:#9ca3af;margin-bottom:10px">🎯 Progreso de Metas actuales</p>
+        <canvas id="chart-metas" height="160"></canvas>
+      </div>
+    </div>
+
+  </div><!-- /panel body -->
+</div><!-- /panel-drawer -->
+
+<style>
+/* Panel tabs */
+.ptab { background:transparent; color:#6b7280; }
+.ptab.active-tab { background:rgba(255,255,255,0.1); color:white; }
+/* Task item */
+.task-item { display:flex; align-items:flex-start; gap:10px; padding:10px 12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:10px; margin-bottom:8px; }
+.task-item.done { opacity:.5; }
+.task-item.done .task-text { text-decoration:line-through; }
+.task-cb { width:18px; height:18px; min-width:18px; border-radius:5px; border:2px solid rgba(255,255,255,0.2); cursor:pointer; appearance:none; background:transparent; margin-top:1px; }
+.task-cb:checked { background:#00c48c; border-color:#00c48c; }
+.task-cb:checked::after { content:'✓'; color:white; font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center; height:100%; }
+.task-text { flex:1; font-size:13px; font-weight:500; line-height:1.4; }
+.task-del { background:none; border:none; color:#4b5563; cursor:pointer; font-size:16px; padding:0; transition:color .2s; }
+.task-del:hover { color:#ff4757; }
+.prio-alta  { width:6px; min-width:6px; height:100%; border-radius:3px; background:#ff4757; align-self:stretch; }
+.prio-media { width:6px; min-width:6px; height:100%; border-radius:3px; background:#ffd400; align-self:stretch; }
+.prio-baja  { width:6px; min-width:6px; height:100%; border-radius:3px; background:#00c48c; align-self:stretch; }
+/* Meta item */
+.meta-item { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:10px; padding:12px; margin-bottom:10px; }
+/* Gasto item */
+.gasto-item { display:flex; align-items:center; justify-content:space-between; padding:10px 12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:10px; margin-bottom:8px; font-size:13px; }
+</style>
+
+<script>
+// ══════════════════════════════════════════════
+// PANEL MANAGER
+// ══════════════════════════════════════════════
+var ACTIVE_MKT = 'bog';
+var ACTIVE_TAB = 'tareas';
+var TASK_FILTER = 'all';
+
+// Month navigation: 0 = current month, -1 = previous, etc.
+var MONTH_OFFSET = 0;
+
+var MKT_CONFIG = {
+  bog: { title: '🇨🇴 Sofía · Bogotá', subtitle: 'Mercado Colombia · COP', color: '#fc0f85', key: 'sofia_bog' },
+  bay: { title: '🇺🇸 Sofía · Bay Area', subtitle: 'Mercado USA · USD', color: '#3b82f6', key: 'sofia_bay' }
+};
+
+var MONTH_NAMES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+
+function getMonthKey(offset) {
+  var d = new Date();
+  d.setMonth(d.getMonth() + offset);
+  return d.getFullYear() + '_' + String(d.getMonth()+1).padStart(2,'0');
+}
+
+function getStorageKey(mkt, offset) {
+  return MKT_CONFIG[mkt].key + '_' + getMonthKey(offset !== undefined ? offset : MONTH_OFFSET);
+}
+
+function getData(mkt) {
+  var raw = localStorage.getItem(getStorageKey(mkt));
+  if(raw) try { return JSON.parse(raw); } catch(e){}
+  return { tareas: [], metas: [], gastos: [] };
+}
+function saveData(mkt, data) {
+  localStorage.setItem(getStorageKey(mkt), JSON.stringify(data));
+}
+
+function changeMonth(delta) {
+  var newOffset = MONTH_OFFSET + delta;
+  if(newOffset > 0) return; // no future months
+  MONTH_OFFSET = newOffset;
+  updateMonthDisplay();
+  renderAll();
+  if(ACTIVE_TAB === 'historial') renderHistorial();
+}
+
+function updateMonthDisplay() {
+  var d = new Date();
+  d.setMonth(d.getMonth() + MONTH_OFFSET);
+  var label = MONTH_NAMES[d.getMonth()] + ' ' + d.getFullYear();
+  var sub = MONTH_OFFSET === 0 ? '📅 Mes actual' : MONTH_OFFSET === -1 ? '← Mes anterior' : MONTH_OFFSET + ' meses atrás';
+  document.getElementById('month-display').textContent = label;
+  document.getElementById('month-sub').textContent = sub;
+  // Disable next btn if current month
+  document.getElementById('btn-next-month').style.opacity = MONTH_OFFSET >= 0 ? '0.2' : '1';
+  document.getElementById('btn-next-month').style.pointerEvents = MONTH_OFFSET >= 0 ? 'none' : 'auto';
+}
+
+function updateFabBadges() {
+  ['bog','bay'].forEach(function(mkt) {
+    var d = getData(mkt); // gets current month data but MONTH_OFFSET is 0 here on page load
+    // Get current month for badge
+    var raw = localStorage.getItem(MKT_CONFIG[mkt].key + '_' + getMonthKey(0));
+    var cur = raw ? (function(){ try{return JSON.parse(raw);}catch(e){return{tareas:[],metas:[],gastos:[]};} })() : {tareas:[],metas:[],gastos:[]};
+    var pending = cur.tareas.filter(function(t){return t.status==='pendiente';}).length;
+    var el = document.getElementById('fab-'+mkt+'-badge');
+    if(el) el.textContent = pending > 0 ? pending + ' pendientes' : '';
+  });
+}
+
+function openPanel(mkt) {
+  ACTIVE_MKT = mkt;
+  ACTIVE_TAB = 'tareas';
+  TASK_FILTER = 'all';
+  MONTH_OFFSET = 0;
+  var cfg = MKT_CONFIG[mkt];
+
+  document.getElementById('panel-title').textContent = cfg.title;
+  document.getElementById('panel-subtitle').textContent = cfg.subtitle;
+  document.getElementById('panel-header').style.borderBottom = '1px solid ' + cfg.color + '40';
+  document.getElementById('hist-mkt-label').textContent = cfg.title;
+
+  document.querySelectorAll('.ptab').forEach(function(b) {
+    b.style.color = '#6b7280'; b.style.background = 'transparent'; b.classList.remove('active-tab');
+  });
+  document.getElementById('tab-tareas').classList.add('active-tab');
+
+  updateMonthDisplay();
+
+  document.getElementById('panel-overlay').style.display = 'block';
+  var drawer = document.getElementById('panel-drawer');
+  drawer.style.display = 'block';
+  setTimeout(function() { drawer.style.transform = 'translateX(0)'; }, 10);
+
+  switchTab('tareas');
+  renderAll();
+}
+
+function closePanel() {
+  var drawer = document.getElementById('panel-drawer');
+  drawer.style.transform = 'translateX(100%)';
+  setTimeout(function() {
+    drawer.style.display = 'none';
+    document.getElementById('panel-overlay').style.display = 'none';
+  }, 300);
+  updateFabBadges();
+}
+
+function switchTab(tab) {
+  ACTIVE_TAB = tab;
+  ['tareas','metas','gastos','historial'].forEach(function(t) {
+    document.getElementById('content-'+t).style.display = t===tab ? 'block' : 'none';
+    var btn = document.getElementById('tab-'+t);
+    if(btn){ btn.classList.toggle('active-tab', t===tab); btn.style.color = t===tab ? 'white' : '#6b7280'; }
+  });
+  if(tab === 'historial') renderHistorial();
+  else renderAll();
+}
+
+function renderAll() {
+  renderTasks();
+  renderMetas();
+  renderGastos();
+}
+
+// ══ TAREAS ══
+function addTask() {
+  var input = document.getElementById('task-input');
+  var text = input.value.trim();
+  if(!text) return;
+  var data = getData(ACTIVE_MKT);
+  data.tareas.push({ id: Date.now(), text: text, status: 'pendiente', priority: document.getElementById('task-priority').value, created: new Date().toISOString().split('T')[0] });
+  saveData(ACTIVE_MKT, data);
+  input.value = '';
+  renderTasks();
+}
+
+function toggleTask(id) {
+  var data = getData(ACTIVE_MKT);
+  var t = data.tareas.find(function(x){return x.id===id;});
+  if(t) t.status = t.status==='pendiente' ? 'completada' : 'pendiente';
+  saveData(ACTIVE_MKT, data);
+  renderTasks();
+}
+
+function deleteTask(id) {
+  var data = getData(ACTIVE_MKT);
+  data.tareas = data.tareas.filter(function(x){return x.id!==id;});
+  saveData(ACTIVE_MKT, data);
+  renderTasks();
+}
+
+function filterTasks(f) {
+  TASK_FILTER = f;
+  ['all','pend','done'].forEach(function(x) {
+    var el = document.getElementById('tf-'+x);
+    el.style.background = 'transparent'; el.style.color = '#9ca3af';
+    el.style.borderColor = 'rgba(255,255,255,0.1)';
+  });
+  var map = {all:'all',pendiente:'pend',completada:'done'};
+  var active = document.getElementById('tf-'+(map[f]||f));
+  if(active) { active.style.background = 'rgba(255,255,255,0.1)'; active.style.color = 'white'; active.style.borderColor = 'rgba(255,255,255,0.25)'; }
+  renderTasks();
+}
+
+function renderTasks() {
+  var data = getData(ACTIVE_MKT);
+  var list = document.getElementById('task-list');
+  var empty = document.getElementById('task-empty');
+  var tasks = data.tareas;
+  if(TASK_FILTER !== 'all') tasks = tasks.filter(function(t){return t.status===TASK_FILTER;});
+  // Sort: pendiente first, then by priority alta>media>baja
+  var pOrder = {alta:0,media:1,baja:2};
+  tasks = tasks.slice().sort(function(a,b){ if(a.status!==b.status) return a.status==='pendiente'?-1:1; return (pOrder[a.priority]||1)-(pOrder[b.priority]||1); });
+  list.innerHTML = '';
+  if(tasks.length===0){ empty.style.display='block'; return; }
+  empty.style.display='none';
+  tasks.forEach(function(t) {
+    var div = document.createElement('div');
+    div.className = 'task-item' + (t.status==='completada' ? ' done' : '');
+    div.innerHTML = '<div class="prio-'+t.priority+'"></div>' +
+      '<input type="checkbox" class="task-cb" '+(t.status==='completada'?'checked':'')+' onchange="toggleTask('+t.id+')" />' +
+      '<span class="task-text">'+escHtml(t.text)+'<br><span style="font-size:10px;color:#4b5563">'+t.created+'</span></span>' +
+      '<button class="task-del" onclick="deleteTask('+t.id+')">🗑</button>';
+    list.appendChild(div);
+  });
+}
+
+// ══ METAS ══
+function addMeta() {
+  var name = document.getElementById('meta-name').value.trim();
+  var target = parseFloat(document.getElementById('meta-target').value) || 0;
+  var current = parseFloat(document.getElementById('meta-current').value) || 0;
+  if(!name || !target) { alert('Completa el nombre y el objetivo.'); return; }
+  var data = getData(ACTIVE_MKT);
+  data.metas.push({ id: Date.now(), name: name, type: document.getElementById('meta-type').value, target: target, current: current, date: document.getElementById('meta-date').value });
+  saveData(ACTIVE_MKT, data);
+  document.getElementById('meta-name').value = '';
+  document.getElementById('meta-target').value = '';
+  document.getElementById('meta-current').value = '';
+  renderMetas();
+}
+
+function updateMetaCurrent(id, val) {
+  var data = getData(ACTIVE_MKT);
+  var m = data.metas.find(function(x){return x.id===id;});
+  if(m) m.current = parseFloat(val)||0;
+  saveData(ACTIVE_MKT, data);
+  renderMetas();
+}
+
+function deleteMeta(id) {
+  var data = getData(ACTIVE_MKT);
+  data.metas = data.metas.filter(function(x){return x.id!==id;});
+  saveData(ACTIVE_MKT, data);
+  renderMetas();
+}
+
+function renderMetas() {
+  var data = getData(ACTIVE_MKT);
+  var list = document.getElementById('meta-list');
+  var empty = document.getElementById('meta-empty');
+  if(!data.metas.length){ list.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  var typeEmoji = {clientes:'👥',ingresos:'💰',demos:'🎙️',margen:'📊',otro:'⭐'};
+  list.innerHTML = data.metas.map(function(m) {
+    var pct = m.target > 0 ? Math.min(100, Math.round(m.current/m.target*100)) : 0;
+    var color = pct>=100?'#00c48c':pct>=50?'#ffd400':'#fc0f85';
+    var dateStr = m.date ? ' · 📅 ' + m.date : '';
+    return '<div class="meta-item">' +
+      '<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">' +
+        '<div><span style="font-size:14px">'+(typeEmoji[m.type]||'⭐')+'</span> <span style="font-weight:700;font-size:14px">'+escHtml(m.name)+'</span>' +
+        '<p style="font-size:10px;color:#6b7280;margin-top:2px">'+m.type+dateStr+'</p></div>' +
+        '<button onclick="deleteMeta('+m.id+')" style="background:none;border:none;color:#4b5563;cursor:pointer;font-size:14px">🗑</button>' +
+      '</div>' +
+      '<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">' +
+        '<div style="flex:1;height:8px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden"><div style="height:100%;border-radius:4px;background:'+color+';width:'+pct+'%;transition:width .4s"></div></div>' +
+        '<span style="font-size:12px;font-weight:800;color:'+color+'">'+pct+'%</span>' +
+      '</div>' +
+      '<div style="display:flex;justify-content:space-between;align-items:center">' +
+        '<span style="font-size:12px;color:#9ca3af">'+m.current+' / '+m.target+'</span>' +
+        '<div style="display:flex;align-items:center;gap:6px">' +
+          '<span style="font-size:11px;color:#6b7280">Actualizar:</span>' +
+          '<input type="number" value="'+m.current+'" style="width:70px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:6px;color:white;padding:4px 7px;font-size:12px;outline:none;font-family:inherit" onchange="updateMetaCurrent('+m.id+',this.value)" />' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+// ══ GASTOS ══
+function addGasto() {
+  var desc = document.getElementById('gasto-desc').value.trim();
+  var monto = parseFloat(document.getElementById('gasto-monto').value)||0;
+  if(!desc || !monto) { alert('Completa descripción y monto.'); return; }
+  var data = getData(ACTIVE_MKT);
+  var fecha = document.getElementById('gasto-fecha').value || new Date().toISOString().split('T')[0];
+  data.gastos.push({ id: Date.now(), desc: desc, monto: monto, cur: document.getElementById('gasto-cur').value, cat: document.getElementById('gasto-cat').value, fecha: fecha });
+  saveData(ACTIVE_MKT, data);
+  document.getElementById('gasto-desc').value=''; document.getElementById('gasto-monto').value='';
+  renderGastos();
+}
+
+function deleteGasto(id) {
+  var data = getData(ACTIVE_MKT);
+  data.gastos = data.gastos.filter(function(x){return x.id!==id;});
+  saveData(ACTIVE_MKT, data);
+  renderGastos();
+}
+
+function renderGastos() {
+  var data = getData(ACTIVE_MKT);
+  var list = document.getElementById('gasto-list');
+  var empty = document.getElementById('gasto-empty');
+  var trm = parseFloat(document.getElementById('trm').value)||4100;
+
+  if(!data.gastos.length){ list.innerHTML=''; empty.style.display='block'; updateGastosSummary(0,0); return; }
+  empty.style.display='none';
+
+  // Sort by date desc
+  var sorted = data.gastos.slice().sort(function(a,b){return b.fecha.localeCompare(a.fecha);});
+
+  // Summary
+  var thisMonth = new Date().toISOString().slice(0,7);
+  var totalCOP = 0, mesCOP = 0;
+  data.gastos.forEach(function(g){
+    var cop = g.cur==='COP' ? g.monto : g.monto * trm;
+    totalCOP += cop;
+    if(g.fecha && g.fecha.startsWith(thisMonth)) mesCOP += cop;
+  });
+  updateGastosSummary(totalCOP, mesCOP);
+
+  list.innerHTML = sorted.map(function(g){
+    var display = g.cur==='COP' ? '$'+Math.round(g.monto).toLocaleString('es-CO')+' COP' : '$'+g.monto.toFixed(0)+' USD';
+    return '<div class="gasto-item">' +
+      '<div><p style="font-weight:600;font-size:13px">'+escHtml(g.cat)+' '+escHtml(g.desc)+'</p>' +
+        '<p style="font-size:10px;color:#6b7280;margin-top:1px">'+g.fecha+'</p></div>' +
+      '<div style="display:flex;align-items:center;gap:10px">' +
+        '<span style="font-weight:800;color:#ff4757">'+display+'</span>' +
+        '<button onclick="deleteGasto('+g.id+')" style="background:none;border:none;color:#4b5563;cursor:pointer;font-size:14px">🗑</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function updateGastosSummary(totalCOP, mesCOP) {
+  var trm = parseFloat(document.getElementById('trm').value)||4100;
+  var display = CURRENCY==='COP';
+  document.getElementById('gastos-total').textContent = display ? '$'+Math.round(totalCOP).toLocaleString('es-CO')+' COP' : '$'+(totalCOP/trm).toFixed(0)+' USD';
+  document.getElementById('gastos-mes').textContent  = display ? '$'+Math.round(mesCOP).toLocaleString('es-CO')+' COP' : '$'+(mesCOP/trm).toFixed(0)+' USD';
+}
+
+// ══ HISTORIAL + CHARTS ══
+var _charts = {};
+
+function destroyChart(id) {
+  if(_charts[id]) { try{ _charts[id].destroy(); } catch(e){} _charts[id]=null; }
+}
+
+function renderHistorial() {
+  var trm = parseFloat(document.getElementById('trm').value)||4100;
+  var months = [], labels = [], gastosData = [], tareasComp = [], tareasPend = [];
+
+  for(var i=-5; i<=0; i++) {
+    var key = getStorageKey(ACTIVE_MKT, i);
+    var raw = localStorage.getItem(key);
+    var d = raw ? (function(r){ try{return JSON.parse(r);}catch(e){return{tareas:[],metas:[],gastos:[]};} })(raw) : {tareas:[],metas:[],gastos:[]};
+    var dObj = new Date(); dObj.setMonth(dObj.getMonth()+i);
+    labels.push(MONTH_NAMES[dObj.getMonth()].slice(0,3)+' '+dObj.getFullYear().toString().slice(2));
+    var gTotal = d.gastos.reduce(function(s,g){ return s + (g.cur==='COP'?g.monto:g.monto*trm); }, 0);
+    gastosData.push(Math.round(gTotal/1000)); // en miles COP
+    tareasComp.push(d.tareas.filter(function(t){return t.status==='completada';}).length);
+    tareasPend.push(d.tareas.filter(function(t){return t.status==='pendiente';}).length);
+    months.push(d);
+  }
+
+  var cfg = MKT_CONFIG[ACTIVE_MKT];
+
+  // Chart 1: Gastos
+  destroyChart('gastos');
+  var ctx1 = document.getElementById('chart-gastos').getContext('2d');
+  _charts['gastos'] = new Chart(ctx1, {
+    type:'bar',
+    data:{ labels:labels, datasets:[{ label:'Gastos (miles COP)', data:gastosData, backgroundColor: cfg.color+'99', borderColor:cfg.color, borderWidth:1.5, borderRadius:6 }] },
+    options:{ plugins:{legend:{labels:{color:'#9ca3af',font:{size:11}}}}, scales:{ x:{ticks:{color:'#6b7280'},grid:{color:'rgba(255,255,255,0.05)'}}, y:{ticks:{color:'#6b7280'},grid:{color:'rgba(255,255,255,0.05)'}} }, responsive:true }
+  });
+
+  // Chart 2: Tareas
+  destroyChart('tareas');
+  var ctx2 = document.getElementById('chart-tareas').getContext('2d');
+  _charts['tareas'] = new Chart(ctx2, {
+    type:'bar',
+    data:{ labels:labels, datasets:[ { label:'Completadas', data:tareasComp, backgroundColor:'#00c48c99', borderColor:'#00c48c', borderWidth:1.5, borderRadius:6 }, { label:'Pendientes', data:tareasPend, backgroundColor:'#ffd40099', borderColor:'#ffd400', borderWidth:1.5, borderRadius:6 } ] },
+    options:{ plugins:{legend:{labels:{color:'#9ca3af',font:{size:11}}}}, scales:{ x:{ticks:{color:'#6b7280'},grid:{color:'rgba(255,255,255,0.05)'}}, y:{ticks:{color:'#6b7280'},grid:{color:'rgba(255,255,255,0.05)'}}, stacked:false }, responsive:true }
+  });
+
+  // Chart 3: Categorías (acumulado total)
+  var catMap = {};
+  months.forEach(function(d){ d.gastos.forEach(function(g){ var cop=g.cur==='COP'?g.monto:g.monto*trm; catMap[g.cat]=(catMap[g.cat]||0)+cop; }); });
+  var catLabels = Object.keys(catMap), catVals = catLabels.map(function(k){return Math.round(catMap[k]/1000);});
+  destroyChart('cats');
+  if(catLabels.length > 0) {
+    var ctx3 = document.getElementById('chart-cats').getContext('2d');
+    var palette = ['#fc0f85','#3b82f6','#ffd400','#00c48c','#8b5cf6','#ff4757','#f97316','#06b6d4'];
+    _charts['cats'] = new Chart(ctx3, {
+      type:'doughnut',
+      data:{ labels:catLabels, datasets:[{ data:catVals, backgroundColor:palette.slice(0,catLabels.length), borderWidth:0 }] },
+      options:{ plugins:{legend:{position:'right',labels:{color:'#9ca3af',font:{size:10},boxWidth:12}}}, responsive:false, cutout:'65%' }
+    });
+  } else {
+    document.getElementById('chart-cats').getContext('2d').clearRect(0,0,240,240);
+  }
+
+  // Chart 4: Metas (current month)
+  var curData = getData(ACTIVE_MKT);
+  var metaLabels = curData.metas.map(function(m){return m.name.slice(0,18)+'…';});
+  var metaPcts = curData.metas.map(function(m){return m.target>0?Math.min(100,Math.round(m.current/m.target*100)):0;});
+  destroyChart('metas');
+  if(metaLabels.length > 0) {
+    var ctx4 = document.getElementById('chart-metas').getContext('2d');
+    _charts['metas'] = new Chart(ctx4, {
+      type:'bar',
+      data:{ labels:metaLabels, datasets:[{ label:'% completado', data:metaPcts, backgroundColor:metaPcts.map(function(p){return p>=100?'#00c48c99':p>=50?'#ffd40099':cfg.color+'99';}), borderColor:metaPcts.map(function(p){return p>=100?'#00c48c':p>=50?'#ffd400':cfg.color;}), borderWidth:1.5, borderRadius:6 }] },
+      options:{ indexAxis:'y', plugins:{legend:{display:false}}, scales:{ x:{min:0,max:100,ticks:{color:'#6b7280',callback:function(v){return v+'%'}},grid:{color:'rgba(255,255,255,0.05)'}}, y:{ticks:{color:'#9ca3af',font:{size:11}},grid:{color:'rgba(255,255,255,0.05)'}} }, responsive:true }
+    });
+  }
+}
+
+// ══ EXPORT / IMPORT ══
+function exportData() {
+  var allData = {};
+  ['bog','bay'].forEach(function(mkt){
+    allData[mkt] = {};
+    for(var i=-11; i<=0; i++) {
+      var monthKey = getMonthKey(i);
+      var key = MKT_CONFIG[mkt].key + '_' + monthKey;
+      var raw = localStorage.getItem(key);
+      if(raw) try{ allData[mkt][monthKey] = JSON.parse(raw); } catch(e){}
+    }
+  });
+  var json = JSON.stringify(allData, null, 2);
+  var blob = new Blob([json], {type:'application/json'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'sofia-data-' + new Date().toISOString().split('T')[0] + '.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importData(event) {
+  var file = event.target.files[0];
+  if(!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var data = JSON.parse(e.target.result);
+      var count = 0;
+      ['bog','bay'].forEach(function(mkt){
+        if(data[mkt]) {
+          Object.keys(data[mkt]).forEach(function(monthKey){
+            var key = MKT_CONFIG[mkt].key + '_' + monthKey;
+            localStorage.setItem(key, JSON.stringify(data[mkt][monthKey]));
+            count++;
+          });
+        }
+      });
+      alert('✅ Importación exitosa: ' + count + ' registros mensuales cargados.');
+      updateFabBadges();
+      renderAll();
+    } catch(err) {
+      alert('❌ Error importando: archivo inválido.');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = ''; // reset input
+}
+
+function escHtml(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// Set today as default date for expense + init badges
+document.addEventListener('DOMContentLoaded', function(){
+  document.getElementById('gasto-fecha').value = new Date().toISOString().split('T')[0];
+  updateFabBadges();
+  updateMonthDisplay();
+});
+</script>
+
+</main>
+
+<script>
+// ── State ──
+var CURRENCY = 'COP';
+
+function setCurrency(c) {
+  CURRENCY = c;
+  document.getElementById('btn-cop').className = 'toggle-btn' + (c==='COP' ? ' active' : '');
+  document.getElementById('btn-usd').className = 'toggle-btn' + (c==='USD' ? ' active-bay' : '');
+  recalcAll();
+}
+
+// ── Helpers ──
+function gv(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function fmtCOP(cop) {
+  if(CURRENCY === 'USD') {
+    var usd = cop / gv('trm');
+    if(Math.abs(usd) >= 1000) return '$' + (usd/1000).toFixed(1) + 'k USD';
+    return '$' + usd.toFixed(0) + ' USD';
+  }
+  if(Math.abs(cop) >= 1e6) return '$' + (cop/1e6).toFixed(2) + 'M';
+  if(Math.abs(cop) >= 1000) return '$' + Math.round(cop).toLocaleString('es-CO');
+  return '$' + Math.round(cop);
+}
+
+function fmtUSD(usd) {
+  if(CURRENCY === 'COP') {
+    var cop = usd * gv('trm');
+    if(Math.abs(cop) >= 1e6) return '$' + (cop/1e6).toFixed(2) + 'M COP';
+    return '$' + Math.round(cop).toLocaleString('es-CO') + ' COP';
+  }
+  if(Math.abs(usd) >= 1000) return '$' + (usd/1000).toFixed(1) + 'k USD';
+  if(Math.abs(usd) < 1)    return '$' + usd.toFixed(2) + ' USD';
+  if(Math.abs(usd) < 10)   return '$' + usd.toFixed(1) + ' USD';
+  return '$' + usd.toFixed(0) + ' USD';
+}
+
+function fmtAuto(val, isCOP) { return isCOP ? fmtCOP(val) : fmtUSD(val); }
+
+function toUSD(val, isCOP) { return isCOP ? val / gv('trm') : val; }
+function toCOP(val, isCOP) { return isCOP ? val : val * gv('trm'); }
+
+function pct(n) { return Math.round(n) + '%'; }
+
+function setEl(id, val, cls) {
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = val;
+  if(cls) el.className = cls;
+}
+
+function setMarginEl(id, margin, isCOP) {
+  var el = document.getElementById(id);
+  if(!el) return;
+  el.textContent = fmtAuto(margin, isCOP);
+  el.className = 'mv ' + (margin >= 0 ? 'cg' : 'cr');
+}
+
+// ── Core calc ──
+function calcPlan(revenueNative, minutesUsed, supportHrs, hourlyNative, toolsUSD, cacPerMonthNative, vapiRate, trm, isCOP) {
+  var vapiCostUSD = minutesUsed * vapiRate;
+  var vapiNative  = isCOP ? vapiCostUSD * trm : vapiCostUSD;
+  var timeNative  = supportHrs * hourlyNative;
+  var toolsNative = isCOP ? toolsUSD * trm : toolsUSD;
+  var totalCost   = vapiNative + timeNative + toolsNative + cacPerMonthNative;
+  var margin      = revenueNative - totalCost;
+  var marginPct   = revenueNative > 0 ? (margin / revenueNative) * 100 : 0;
+  return { vapiNative, timeNative, toolsNative, cacNative: cacPerMonthNative, totalCost, margin, marginPct };
+}
+
+function recalcAll() {
+  var trm       = gv('trm');
+  var vapiRate  = gv('vapiRate');
+  var demoDur   = gv('demoDur');
+  var demos     = gv('demosMonth');
+
+  // ══════════════════════════ BOGOTÁ ══════════════════════════
+  var b_hourly   = gv('b_hourly');    // COP/hr
+  var b_tools    = gv('b_tools');     // USD/client
+  var b_conv     = gv('b_conv') / 100;
+  var b_demoTime = gv('b_demoTime');  // min
+
+  var b_vapiPerDemo  = demoDur * vapiRate * trm;
+  var b_timePerDemo  = (b_demoTime / 60) * b_hourly;
+  var b_totalPerDemo = b_vapiPerDemo + b_timePerDemo;
+  var b_demosFor1    = b_conv > 0 ? Math.ceil(1 / b_conv) : 99;
+  var b_cac          = b_demosFor1 * b_totalPerDemo;
+  var b_cacPerMonth  = b_cac / 12;
+  var b_clients      = Math.round(demos * b_conv);
+
+  setEl('b_costDemoVapi',    fmtCOP(b_vapiPerDemo));
+  setEl('b_costDemoTotal',   fmtCOP(b_totalPerDemo));
+  setEl('b_cac',             fmtCOP(b_cac));
+  setEl('b_clientsFromDemos', b_clients);
+
+  // Planes Bogotá
+  var b_plans = [
+    { prefix:'b_e', revenue: gv('b_e_price'), min: gv('b_e_min'), hrs: gv('b_e_hrs') },
+    { prefix:'b_p', revenue: gv('b_p_price'), min: gv('b_p_min'), hrs: gv('b_p_hrs') },
+    { prefix:'b_pr', revenue: gv('b_pr_price'), min: gv('b_pr_min'), hrs: gv('b_pr_hrs') }
+  ];
+  var b_results = [];
+  b_plans.forEach(function(pl) {
+    var d = calcPlan(pl.revenue, pl.min, pl.hrs, b_hourly, b_tools, b_cacPerMonth, vapiRate, trm, true);
+    b_results.push({ revenue: pl.revenue, ...d });
+    setEl(pl.prefix+'_vapi',  fmtCOP(d.vapiNative));
+    setEl(pl.prefix+'_time',  fmtCOP(d.timeNative));
+    setEl(pl.prefix+'_tools', fmtCOP(d.toolsNative));
+    setEl(pl.prefix+'_cac',   fmtCOP(d.cacNative));
+    setEl(pl.prefix+'_rev',   fmtCOP(pl.revenue));
+    setMarginEl(pl.prefix+'_margin', d.margin, true);
+    setEl(pl.prefix+'_pct', pct(d.marginPct), d.marginPct >= 0 ? 'font-black text-base cg' : 'font-black text-base cr');
+    document.getElementById(pl.prefix+'_bar').style.width = Math.max(0, Math.min(100, d.marginPct)) + '%';
+  });
+
+  // Proyección Bogotá
+  var b_qE = gv('b_qE'), b_qP = gv('b_qP'), b_qPr = gv('b_qPr');
+  var b_revTotal  = b_results[0].revenue * b_qE + b_results[1].revenue * b_qP + b_results[2].revenue * b_qPr;
+  var b_costTotal = b_results[0].totalCost * b_qE + b_results[1].totalCost * b_qP + b_results[2].totalCost * b_qPr;
+  var b_margTotal = b_revTotal - b_costTotal;
+  var b_pctTotal  = b_revTotal > 0 ? b_margTotal / b_revTotal * 100 : 0;
+  setEl('b_proj_rev',    fmtCOP(b_revTotal));
+  setEl('b_proj_cost',   fmtCOP(b_costTotal));
+  var bpm = document.getElementById('b_proj_margin');
+  bpm.textContent = fmtCOP(b_margTotal); bpm.className = 'kn ' + (b_margTotal>=0?'cp':'cr');
+  setEl('b_proj_pct', pct(b_pctTotal));
+
+  // ══════════════════════════ BAY AREA ══════════════════════════
+  var u_hourly   = gv('u_hourly');    // USD/hr
+  var u_tools    = gv('u_tools');     // USD/client
+  var u_conv     = gv('u_conv') / 100;
+  var u_demoTime = gv('u_demoTime');
+
+  var u_vapiPerDemo  = demoDur * vapiRate;                   // USD
+  var u_timePerDemo  = (u_demoTime / 60) * u_hourly;         // USD
+  var u_totalPerDemo = u_vapiPerDemo + u_timePerDemo;
+  var u_demosFor1    = u_conv > 0 ? Math.ceil(1 / u_conv) : 99;
+  var u_cac          = u_demosFor1 * u_totalPerDemo;          // USD
+  var u_cacPerMonth  = u_cac / 12;
+  var u_clients      = Math.round(demos * u_conv);
+
+  setEl('u_costDemoVapi',    fmtUSD(u_vapiPerDemo));
+  setEl('u_costDemoTotal',   fmtUSD(u_totalPerDemo));
+  setEl('u_cac',             fmtUSD(u_cac));
+  setEl('u_clientsFromDemos', u_clients);
+
+  // Planes Bay Area
+  var u_plans = [
+    { prefix:'u_e', revenue: gv('u_e_price'), min: gv('u_e_min'), hrs: gv('u_e_hrs') },
+    { prefix:'u_p', revenue: gv('u_p_price'), min: gv('u_p_min'), hrs: gv('u_p_hrs') },
+    { prefix:'u_pr', revenue: gv('u_pr_price'), min: gv('u_pr_min'), hrs: gv('u_pr_hrs') }
+  ];
+  var u_results = [];
+  u_plans.forEach(function(pl) {
+    var d = calcPlan(pl.revenue, pl.min, pl.hrs, u_hourly, u_tools, u_cacPerMonth, vapiRate, trm, false);
+    u_results.push({ revenue: pl.revenue, ...d });
+    setEl(pl.prefix+'_vapi',  fmtUSD(d.vapiNative));
+    setEl(pl.prefix+'_time',  fmtUSD(d.timeNative));
+    setEl(pl.prefix+'_tools', fmtUSD(d.toolsNative));
+    setEl(pl.prefix+'_cac',   fmtUSD(d.cacNative));
+    setEl(pl.prefix+'_rev',   fmtUSD(pl.revenue));
+    setMarginEl(pl.prefix+'_margin', d.margin, false);
+    setEl(pl.prefix+'_pct', pct(d.marginPct), d.marginPct >= 0 ? 'font-black text-base cg' : 'font-black text-base cr');
+    document.getElementById(pl.prefix+'_bar').style.width = Math.max(0, Math.min(100, d.marginPct)) + '%';
+  });
+
+  // Proyección Bay Area
+  var u_qE = gv('u_qE'), u_qP = gv('u_qP'), u_qPr = gv('u_qPr');
+  var u_revTotal  = u_results[0].revenue * u_qE + u_results[1].revenue * u_qP + u_results[2].revenue * u_qPr;
+  var u_costTotal = u_results[0].totalCost * u_qE + u_results[1].totalCost * u_qP + u_results[2].totalCost * u_qPr;
+  var u_margTotal = u_revTotal - u_costTotal;
+  var u_pctTotal  = u_revTotal > 0 ? u_margTotal / u_revTotal * 100 : 0;
+  setEl('u_proj_rev',    fmtUSD(u_revTotal));
+  setEl('u_proj_cost',   fmtUSD(u_costTotal));
+  var upm = document.getElementById('u_proj_margin');
+  upm.textContent = fmtUSD(u_margTotal); upm.className = 'kn ' + (u_margTotal>=0?'cb':'cr');
+  setEl('u_proj_pct', pct(u_pctTotal));
+
+  // ══════════════════════════ COMPARATIVO GLOBAL ══════════════════════════
+  var bog_clients = b_qE + b_qP + b_qPr;
+  var bay_clients = u_qE + u_qP + u_qPr;
+  var total_clients = bog_clients + bay_clients;
+
+  // Convertir todo a USD para comparar
+  var bog_revUSD  = b_revTotal / trm;
+  var bog_costUSD = b_costTotal / trm;
+  var bog_margUSD = b_margTotal / trm;
+  var bog_pct     = b_revTotal > 0 ? b_margTotal/b_revTotal*100 : 0;
+
+  var total_revUSD  = bog_revUSD + u_revTotal;
+  var total_costUSD = bog_costUSD + u_costTotal;
+  var total_margUSD = bog_margUSD + u_margTotal;
+  var total_pct     = total_revUSD > 0 ? total_margUSD/total_revUSD*100 : 0;
+
+  // Table
+  setEl('cmp_bogClients', bog_clients);
+  setEl('cmp_bogRev',  CURRENCY==='COP' ? fmtCOP(b_revTotal)  : fmtUSD(bog_revUSD));
+  setEl('cmp_bogCost', CURRENCY==='COP' ? fmtCOP(b_costTotal) : fmtUSD(bog_costUSD));
+  var bmEl = document.getElementById('cmp_bogMargin');
+  bmEl.textContent = CURRENCY==='COP' ? fmtCOP(b_margTotal) : fmtUSD(bog_margUSD);
+  bmEl.className   = b_margTotal>=0 ? 'cg font-bold' : 'cr font-bold';
+  setEl('cmp_bogPct', pct(bog_pct));
+  setEl('cmp_bogUSD', fmtUSD(bog_revUSD));
+
+  setEl('cmp_bayClients', bay_clients);
+  setEl('cmp_bayRev',  fmtUSD(u_revTotal));
+  setEl('cmp_bayCost', fmtUSD(u_costTotal));
+  var umEl = document.getElementById('cmp_bayMargin');
+  umEl.textContent = fmtUSD(u_margTotal);
+  umEl.className   = u_margTotal>=0 ? 'cg font-bold' : 'cr font-bold';
+  setEl('cmp_bayPct', pct(u_pctTotal));
+  setEl('cmp_bayUSD', fmtUSD(u_revTotal));
+
+  setEl('cmp_totalClients', total_clients);
+  setEl('cmp_totalRev',  fmtUSD(total_revUSD));
+  setEl('cmp_totalCost', fmtUSD(total_costUSD));
+  var tmEl = document.getElementById('cmp_totalMargin');
+  tmEl.textContent = fmtUSD(total_margUSD);
+  tmEl.className   = total_margUSD>=0 ? 'font-black cg' : 'font-black cr';
+  setEl('cmp_totalPct',  pct(total_pct));
+  setEl('cmp_totalUSD',  fmtUSD(total_revUSD));
+
+  // KPIs globales
+  var mrrDisplay = CURRENCY==='COP' ? fmtCOP(b_revTotal) + ' + ' + fmtUSD(u_revTotal) : fmtUSD(total_revUSD);
+  setEl('gl_mrr',    fmtUSD(total_revUSD));
+  setEl('gl_margin', fmtUSD(total_margUSD));
+  setEl('gl_usd',    '$' + total_revUSD.toFixed(0) + ' USD');
+  setEl('gl_pct',    pct(total_pct));
+
+  // ── Insights Bogotá ──
+  var b_planNames  = ['Esencial','Pro','Premium'];
+  var b_bestIdx    = b_results.reduce((bi,r,i,arr) => r.marginPct > arr[bi].marginPct ? i : bi, 0);
+  var b_bestMargin = b_results[b_bestIdx].margin;
+  var b_bestPct    = b_results[b_bestIdx].marginPct;
+  var b_cacRec     = b_bestMargin > 0 ? Math.ceil(b_cac / b_bestMargin) : '∞';
+
+  setEl('ins_bog_demoCost',    fmtCOP(b_vapiPerDemo));
+  setEl('ins_bog_demosNeeded', b_demosFor1 + ' demos');
+  setEl('ins_bog_cac',         fmtCOP(b_cac));
+  setEl('ins_bog_bestPlan',    b_planNames[b_bestIdx] + ' · ' + pct(b_bestPct));
+  setEl('ins_bog_cacRec',      b_cacRec + (b_cacRec !== '∞' ? ' mes(es)' : ''));
+
+  // ── Insights Bay Area ──
+  var u_planNames  = ['Starter','Pro','Premium'];
+  var u_bestIdx    = u_results.reduce((bi,r,i,arr) => r.marginPct > arr[bi].marginPct ? i : bi, 0);
+  var u_bestMargin = u_results[u_bestIdx].margin;
+  var u_bestPct    = u_results[u_bestIdx].marginPct;
+  var u_cacRec     = u_bestMargin > 0 ? Math.ceil(u_cac / u_bestMargin) : '∞';
+
+  setEl('ins_bay_demoCost',    fmtUSD(u_vapiPerDemo));
+  setEl('ins_bay_demosNeeded', u_demosFor1 + ' demos');
+  setEl('ins_bay_cac',         fmtUSD(u_cac));
+  setEl('ins_bay_bestPlan',    u_planNames[u_bestIdx] + ' · ' + pct(u_bestPct));
+  setEl('ins_bay_cacRec',      u_cacRec + (u_cacRec !== '∞' ? ' mes(es)' : ''));
+}
+
+// Init
+recalcAll();
+</script>
+</body>
+</html>
