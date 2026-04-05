@@ -1043,7 +1043,23 @@
 
         <div class="space-y-4 mb-6">
 
-          <!-- ── Número de contacto (único campo requerido) ── -->
+          <!-- ── Nombre ── -->
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Tu nombre <span class="text-red-400">*</span></label>
+            <input id="input-name" type="text" placeholder="Ej: Carolina Rodríguez"
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
+              onkeydown="if(event.key==='Enter') document.getElementById('input-email').focus()" />
+          </div>
+
+          <!-- ── Correo ── -->
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Correo electrónico <span class="text-red-400">*</span></label>
+            <input id="input-email" type="email" placeholder="Ej: carolina@mispa.com"
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
+              onkeydown="if(event.key==='Enter') document.getElementById('input-phone').focus()" />
+          </div>
+
+          <!-- ── Número de contacto ── -->
           <div>
             <label class="block text-gray-300 text-sm font-semibold mb-2">
               Número de contacto <span class="text-red-400">*</span>
@@ -1061,10 +1077,8 @@
           </div>
 
           <!-- Campos ocultos para compatibilidad -->
-          <input type="hidden" id="input-name" value="Cliente Demo" />
           <input type="hidden" id="input-business" value="tu negocio" />
           <input type="hidden" id="input-niche" value="" />
-          <input type="hidden" id="input-email" value="" />
           <input type="hidden" id="input-url" value="" />
 
         </div>
@@ -1616,18 +1630,29 @@
       return '+57' + digits;
     }
 
+    function highlightError(id) {
+      var el = document.getElementById(id);
+      el.style.borderColor = '#ff4757';
+      el.focus();
+      setTimeout(function(){ el.style.borderColor = ''; }, 2500);
+    }
+
     async function startOutboundCall() {
+      var name     = document.getElementById('input-name').value.trim();
+      var email    = document.getElementById('input-email').value.trim();
       var phoneRaw = document.getElementById('input-phone').value;
-      var phone = formatColombianNumber(phoneRaw);
+      var phone    = formatColombianNumber(phoneRaw);
 
-      if(!phone) {
-        document.getElementById('input-phone').focus();
-        document.getElementById('input-phone').style.borderColor = '#ff4757';
-        setTimeout(function(){ document.getElementById('input-phone').style.borderColor = ''; }, 2000);
-        return;
-      }
+      if(!name)  { highlightError('input-name'); return; }
+      if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { highlightError('input-email'); return; }
+      if(!phone) { highlightError('input-phone'); return; }
 
-      // Mostrar número formateado en pantalla de espera
+      // Guardar datos para personalizar WhatsApp post-call
+      window._leadName  = name;
+      window._leadEmail = email;
+      window._leadPhone = '+57 ' + phoneRaw.replace(/\D/g,'').slice(0,10).replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+
+      // Mostrar número en pantalla de espera
       var digits = phoneRaw.replace(/\D/g,'').slice(0,10);
       var formatted = '+57 ' + digits.slice(0,3) + ' ' + digits.slice(3,6) + ' ' + digits.slice(6,10);
       document.getElementById('waiting-number').textContent = formatted;
@@ -1640,7 +1665,7 @@
       try {
         var body = {
           assistantId: VAPI_ASSISTANT_ID,
-          customer: { number: phone, name: 'Cliente Demo' },
+          customer: { number: phone, name: name },
           phoneNumberId: VAPI_PHONE_NUMBER_ID
         };
 
@@ -1753,16 +1778,26 @@
       var subtitle  = document.getElementById('ended-subtitle');
       var retryBtn  = document.getElementById('btn-retry');
 
+      // Personalizar links de WhatsApp con datos del lead
+      var nombre = window._leadName || 'Cliente';
+      var waBase = 'https://wa.me/15058998062?text=';
+      var waMsg1 = encodeURIComponent('Hola! Soy ' + nombre + ', probé el demo de Sofía y me interesa para mi negocio en Bogotá 🚀');
+      var waMsg2 = encodeURIComponent('Hola! Soy ' + nombre + ', quiero reservar mi cita gratuita para ver cómo Sofía puede atender a mis clientes 🗓️');
+
+      document.querySelectorAll('#call-ended a[href*="wa.me"]').forEach(function(a, i) {
+        a.href = waBase + (i === 0 ? waMsg1 : waMsg2);
+      });
+
       if(_demoCount >= 2) {
-        // Segunda demo — mostrar mensaje de conversión, ocultar "Probar de nuevo"
-        emoji.textContent   = '⭐';
-        title.textContent   = '¿Lista para el siguiente paso?';
-        subtitle.textContent = 'Ya viste lo que Sofía puede hacer. Ahora imagina esto con tus clientes reales — 24/7, sin contratar nadie.';
+        // Segunda demo — mensaje de conversión, sin retry
+        emoji.textContent    = '⭐';
+        title.textContent    = '¿' + nombre.split(' ')[0] + ', lista para el siguiente paso?';
+        subtitle.textContent = 'Ya viste lo que Sofía puede hacer. Imagina esto con tus clientes reales — 24/7, sin contratar a nadie.';
         retryBtn.classList.add('hidden');
       } else {
         // Primera demo
-        emoji.textContent   = '🎉';
-        title.textContent   = '¿Qué te pareció Sofía?';
+        emoji.textContent    = '🎉';
+        title.textContent    = '¿Qué te pareció Sofía?';
         subtitle.textContent = 'Así respondería a los clientes de tu negocio — 24/7, sin que hagas nada.';
         retryBtn.classList.remove('hidden');
       }
