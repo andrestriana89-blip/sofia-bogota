@@ -1177,40 +1177,28 @@
        SCRIPTS
   ════════════════════════════════════════ -->
   <!-- Vapi Web SDK -->
+  <!-- Vapi Web SDK oficial -->
+  <script src="https://cdn.jsdelivr.net/npm/@vapi-ai/web@latest/dist/vapi.umd.js"></script>
   <script>
-    (function(d,t){
-      var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-      g.src="https://cdn.jsdelivr.net/gh/VapiAI/html-script-tag@latest/dist/assets/index.js";
-      g.defer=true; g.async=true;
-      s.parentNode.insertBefore(g,s);
-      g.onload=function(){
-        window._vapiReady=true;
-        const style=d.createElement('style');
-        style.textContent='[class*="vapi-btn"]{display:none!important}';
-        d.head.appendChild(style);
-        window.vapiInstance=window.vapiSDK.run({
-          apiKey:"b240f3dc-01c5-40da-a677-23aa550f03950",
-          assistant:"a7a9b3e5-f193-48bf-9e98-dea6e7307d88",
-          config:{ position:"bottom-right", offset:"80px", width:"50px", height:"50px",
-                   idle:{color:"#fc0f85"}, active:{color:"#ef4444"} }
-        });
-        window.vapiInstance.on('call-start', ()=>{
-          document.getElementById('call-status').textContent='Sofía está lista — habla ahora 🎙️';
-        });
-        window.vapiInstance.on('speech-start', ()=>{
-          document.getElementById('call-status').textContent='Sofía está hablando...';
-        });
-        window.vapiInstance.on('speech-end', ()=>{
-          document.getElementById('call-status').textContent='Escuchando... habla con normalidad';
-        });
-        window.vapiInstance.on('call-end', ()=>{ handleCallEnd(); });
-        window.vapiInstance.on('error', (e)=>{
-          console.error('[Vapi error]', e);
-          document.getElementById('call-status').textContent = 'Error: ' + (e?.message || e?.error?.message || JSON.stringify(e));
-          handleCallEnd();
-        });
-      };
-    })(document,"script");
+    // Inicializar Vapi Web SDK con public key
+    window.vapiInstance = new Vapi("b240f3dc-01c5-40da-a677-23aa550f03950");
+    window._vapiReady = true;
+
+    window.vapiInstance.on('call-start', function(){
+      document.getElementById('call-status').textContent = 'Sofía está lista — habla ahora 🎙️';
+    });
+    window.vapiInstance.on('speech-start', function(){
+      document.getElementById('call-status').textContent = 'Sofía está hablando...';
+    });
+    window.vapiInstance.on('speech-end', function(){
+      document.getElementById('call-status').textContent = 'Escuchando... habla con normalidad';
+    });
+    window.vapiInstance.on('call-end', function(){ handleCallEnd(); });
+    window.vapiInstance.on('error', function(e){
+      console.error('[Vapi error]', e);
+      document.getElementById('call-status').textContent = 'Error: ' + (e?.message || e?.error?.message || JSON.stringify(e));
+      handleCallEnd();
+    });
 
     // ── Vapi call logic ──
     var _callTimer=null, _secondsLeft=110;
