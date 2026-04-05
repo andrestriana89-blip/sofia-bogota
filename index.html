@@ -63,15 +63,78 @@
     }
     .ticker-inner { animation: ticker 28s linear infinite; white-space: nowrap; display: flex; }
 
-    /* ── Floating WhatsApp CTA ── */
-    #wa-float {
+    /* ── Floating Chat Widget ── */
+    #sofia-chat-btn {
       position: fixed; bottom: 24px; right: 24px; z-index: 999;
-      background: #25D366; border-radius: 999px;
-      padding: 14px 20px;
-      box-shadow: 0 6px 24px rgba(37,211,102,.45);
-      transition: transform 0.2s;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, #fc0f85, #d40d70);
+      box-shadow: 0 6px 24px rgba(252,15,133,.45);
+      cursor: pointer; border: none;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    #wa-float:hover { transform: scale(1.07); }
+    #sofia-chat-btn:hover { transform: scale(1.08); box-shadow: 0 8px 32px rgba(252,15,133,.6); }
+    #sofia-chat-btn .notif-dot {
+      position: absolute; top: 2px; right: 2px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #ffd400; border: 2px solid white;
+      animation: pulse-dot 2s infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    /* ── Chat Panel ── */
+    #sofia-chat-panel {
+      position: fixed; bottom: 96px; right: 24px; z-index: 998;
+      width: 340px; max-height: 520px;
+      background: white; border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+      display: flex; flex-direction: column;
+      transform: scale(0.9) translateY(20px);
+      opacity: 0; pointer-events: none;
+      transition: all 0.25s cubic-bezier(.34,1.56,.64,1);
+      overflow: hidden;
+    }
+    #sofia-chat-panel.open {
+      transform: scale(1) translateY(0);
+      opacity: 1; pointer-events: all;
+    }
+    .chat-panel-header {
+      background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+      padding: 14px 16px; display: flex; align-items: center; gap-10px;
+      gap: 10px;
+    }
+    .chat-panel-messages {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 10px;
+      background: #f9f9fb;
+    }
+    .chat-panel-messages::-webkit-scrollbar { width: 4px; }
+    .chat-panel-messages::-webkit-scrollbar-thumb { background: #e0e0e0; border-radius: 4px; }
+    .bot-msg {
+      background: white; border: 1px solid #f0f0f0;
+      border-radius: 4px 16px 16px 16px;
+      padding: 10px 14px; font-size: 13px; color: #222;
+      max-width: 90%; line-height: 1.5;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    }
+    .user-msg {
+      background: #fc0f85; color: white;
+      border-radius: 16px 4px 16px 16px;
+      padding: 10px 14px; font-size: 13px;
+      max-width: 85%; align-self: flex-end;
+      line-height: 1.5;
+    }
+    .chat-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .chat-chip {
+      background: white; border: 1.5px solid #e5e7eb;
+      color: #374151; font-size: 12px; font-weight: 600;
+      padding: 7px 12px; border-radius: 999px; cursor: pointer;
+      transition: all 0.15s; line-height: 1;
+    }
+    .chat-chip:hover { border-color: #fc0f85; color: #fc0f85; background: #fff5fb; }
 
     /* ── Niche Radio Buttons ── */
     .niche-radio-btn { user-select: none; }
@@ -234,7 +297,7 @@
   <!-- ════════════════════════════════════════
        TICKER TAPE
   ════════════════════════════════════════ -->
-  <div class="bg-[#fc0f85] text-white text-xs font-medium py-2 overflow-hidden">
+  <div class="bg-[#fc0f85] text-white text-xs font-medium py-2 overflow-hidden sticky top-0 z-50">
     <div class="ticker-inner gap-12">
       <span class="mx-6">⚡ Asistente de voz IA activo 24/7</span>
       <span class="mx-6">⭐ 4.9/5 calificación promedio de clientes</span>
@@ -1161,15 +1224,36 @@
   </footer>
 
   <!-- ════════════════════════════════════════
-       FLOATING WHATSAPP BUTTON
+       FLOATING CHAT WIDGET — SOFÍA
   ════════════════════════════════════════ -->
-  <a id="wa-float"
-     href="https://wa.me/15058998062?text=Hola!%20Vi%20la%20landing%20y%20quiero%20saber%20m%C3%A1s%20del%20asistente%20IA"
-     target="_blank"
-     class="flex items-center gap-2 text-white text-sm font-bold">
-    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-    Hablar ahora
-  </a>
+
+  <!-- Chat Panel -->
+  <div id="sofia-chat-panel">
+    <!-- Header -->
+    <div class="chat-panel-header">
+      <div class="w-9 h-9 rounded-full overflow-hidden border-2 border-[#fc0f85]/50 flex-shrink-0">
+        <img src="./sofia.png.png" alt="Sofía" style="width:100%;height:100%;object-fit:cover;object-position:top;transform:scale(1.4) translateY(10%);" />
+      </div>
+      <div class="flex-1 ml-2">
+        <p class="text-white font-bold text-sm leading-none">Sofía</p>
+        <p class="text-[#fc0f85] text-xs mt-0.5">● En línea ahora</p>
+      </div>
+      <button onclick="closeSofiaChat()" class="text-gray-400 hover:text-white transition-colors text-lg font-bold leading-none">✕</button>
+    </div>
+
+    <!-- Messages -->
+    <div id="sofia-widget-messages" class="chat-panel-messages">
+      <!-- Messages injected by JS -->
+    </div>
+  </div>
+
+  <!-- Toggle Button -->
+  <button id="sofia-chat-btn" onclick="toggleSofiaChat()" aria-label="Chatear con Sofía">
+    <span class="notif-dot" id="sofia-notif"></span>
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+  </button>
 
   <!-- ════════════════════════════════════════
        SCRIPTS
@@ -1597,6 +1681,151 @@
 
     // ── Inicializar chat demo al cargar ──
     window.addEventListener('DOMContentLoaded', function(){ initChatDemo(); });
+
+    // ══════════════════════════════════════
+    // SOFIA CHAT WIDGET
+    // ══════════════════════════════════════
+    var _widgetOpen = false;
+    var _widgetStarted = false;
+    var CALENDLY_URL = 'https://calendly.com/ajbusinessadvisory/sofia-demo';
+
+    function toggleSofiaChat() {
+      _widgetOpen ? closeSofiaChat() : openSofiaChat();
+    }
+
+    function openSofiaChat() {
+      _widgetOpen = true;
+      document.getElementById('sofia-chat-panel').classList.add('open');
+      document.getElementById('sofia-notif').style.display = 'none';
+      if (!_widgetStarted) { _widgetStarted = true; startWidgetFlow(); }
+    }
+
+    function closeSofiaChat() {
+      _widgetOpen = false;
+      document.getElementById('sofia-chat-panel').classList.remove('open');
+    }
+
+    function widgetBotMsg(text, delay) {
+      return new Promise(function(resolve){
+        setTimeout(function(){
+          var msgs = document.getElementById('sofia-widget-messages');
+          // Typing indicator
+          var typing = document.createElement('div');
+          typing.className = 'bot-msg';
+          typing.innerHTML = '<span style="display:inline-flex;gap:3px;align-items:center"><span style="width:6px;height:6px;border-radius:50%;background:#fc0f85;animation:pulse-dot 1s infinite"></span><span style="width:6px;height:6px;border-radius:50%;background:#fc0f85;animation:pulse-dot 1s .2s infinite"></span><span style="width:6px;height:6px;border-radius:50%;background:#fc0f85;animation:pulse-dot 1s .4s infinite"></span></span>';
+          msgs.appendChild(typing);
+          msgs.scrollTop = msgs.scrollHeight;
+          setTimeout(function(){
+            typing.remove();
+            var div = document.createElement('div');
+            div.className = 'bot-msg';
+            div.innerHTML = text;
+            msgs.appendChild(div);
+            msgs.scrollTop = msgs.scrollHeight;
+            resolve();
+          }, 800);
+        }, delay || 0);
+      });
+    }
+
+    function widgetUserMsg(text) {
+      var msgs = document.getElementById('sofia-widget-messages');
+      var div = document.createElement('div');
+      div.className = 'user-msg';
+      div.textContent = text;
+      msgs.appendChild(div);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function widgetShowChips(chips) {
+      var msgs = document.getElementById('sofia-widget-messages');
+      var wrap = document.createElement('div');
+      wrap.className = 'chat-chips';
+      wrap.id = 'widget-chips';
+      chips.forEach(function(c){
+        var btn = document.createElement('button');
+        btn.className = 'chat-chip';
+        btn.textContent = c.label;
+        btn.onclick = function(){
+          wrap.remove();
+          widgetUserMsg(c.label);
+          c.action();
+        };
+        wrap.appendChild(btn);
+      });
+      msgs.appendChild(wrap);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function startWidgetFlow() {
+      widgetBotMsg('¡Hola! Soy <strong>Sofía</strong> 👋<br/>¿En qué te puedo ayudar hoy?', 300).then(function(){
+        widgetShowChips([
+          { label: '💬 Probar demo de chat',    action: goToChatDemo },
+          { label: '📞 Probar demo de voz',     action: goToVozDemo },
+          { label: '📅 Agendar cita gratis',    action: goToCalendly },
+          { label: '❓ Tengo preguntas',         action: showFAQ }
+        ]);
+      });
+    }
+
+    function goToChatDemo() {
+      closeSofiaChat();
+      document.getElementById('demo-chat') && document.getElementById('demo-chat').scrollIntoView({behavior:'smooth'});
+      widgetBotMsg('¡Perfecto! Te llevo al demo de chat 💬', 0);
+    }
+
+    function goToVozDemo() {
+      closeSofiaChat();
+      var el = document.getElementById('demo-voz') || document.querySelector('[id*="voz"]') || document.querySelector('[id*="call"]');
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }
+
+    function goToCalendly() {
+      widgetBotMsg('¡Genial! Te abro el calendario para agendar tu cita 📅', 0).then(function(){
+        setTimeout(function(){ window.open(CALENDLY_URL, '_blank'); }, 800);
+      });
+    }
+
+    function showFAQ() {
+      widgetBotMsg('Claro, ¿qué quieres saber? 👇', 0).then(function(){
+        widgetShowChips([
+          { label: '💰 ¿Cuánto cuesta?',          action: faqPrecio },
+          { label: '⏱️ ¿Cuánto tarda la config?', action: faqTiempo },
+          { label: '📱 ¿Funciona en WhatsApp?',   action: faqCanales },
+          { label: '📋 ¿Hay contrato largo?',     action: faqContrato },
+          { label: '← Volver',                    action: function(){ widgetBotMsg('¿En qué más te puedo ayudar?',0).then(function(){ widgetShowChips([{label:'💬 Demo chat',action:goToChatDemo},{label:'📞 Demo voz',action:goToVozDemo},{label:'📅 Agendar cita',action:goToCalendly},{label:'❓ Preguntas',action:showFAQ}]); }); } }
+        ]);
+      });
+    }
+
+    function faqPrecio() {
+      widgetBotMsg('Tenemos 3 planes 💰<br/><br/><strong>Esencial:</strong> $600k COP/mes — 500 min, 1 red social<br/><strong>Pro ⭐:</strong> $900k COP/mes — 1.500 min, 3 redes + CRM<br/><strong>Premium:</strong> $1.5M COP/mes — minutos ilimitados + IA predictiva<br/><br/>Todos incluyen 7 días gratis sin riesgo.', 0).then(function(){
+        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+      });
+    }
+
+    function faqTiempo() {
+      widgetBotMsg('⚡ En <strong>máximo 5 días</strong> Sofía ya está atendiendo a tus clientes.<br/><br/>Día 1-2: entrenamos a Sofía con tu negocio<br/>Día 3-4: conectamos tus canales<br/>Día 5: ¡activa!', 0).then(function(){
+        widgetShowChips([{label:'📅 Empezar ahora',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+      });
+    }
+
+    function faqCanales() {
+      widgetBotMsg('¡Sí! Sofía responde en:<br/><br/>📱 <strong>WhatsApp</strong><br/>📸 <strong>Instagram DM</strong><br/>📘 <strong>Facebook Messenger</strong><br/>📞 <strong>Llamadas telefónicas</strong><br/><br/>Todo al mismo tiempo, 24/7 sin descanso.', 0).then(function(){
+        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+      });
+    }
+
+    function faqContrato() {
+      widgetBotMsg('No hay contratos forzosos ✅<br/><br/>Pagas mes a mes y cancelas cuando quieras. Además tienes <strong>30 días de garantía</strong> — si no ves resultados, te devolvemos el dinero.', 0).then(function(){
+        widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'❓ Más preguntas',action:showFAQ}]);
+      });
+    }
+
+    // Mostrar dot de notificación después de 8 segundos
+    setTimeout(function(){
+      if(!_widgetOpen) document.getElementById('sofia-notif').style.display = 'block';
+    }, 8000);
 
     // ── Scroll fade-in ──
     const observer=new IntersectionObserver((entries)=>{
