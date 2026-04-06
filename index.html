@@ -1401,6 +1401,15 @@
 
     vapi.on('call-start', () => {
       document.getElementById('call-status').textContent = 'Sofía está lista — habla ahora 🎙️';
+      // Iniciar timer solo cuando la llamada realmente conecta
+      _secondsLeft = 110;
+      if (typeof updateTimerDisplay === 'function') updateTimerDisplay();
+      if (_callTimer) clearInterval(_callTimer);
+      _callTimer = setInterval(function(){
+        _secondsLeft--;
+        if (typeof updateTimerDisplay === 'function') updateTimerDisplay();
+        if(_secondsLeft <= 0){ if(typeof endVapiCall==='function') endVapiCall(); }
+      }, 1000);
     });
     vapi.on('speech-start', () => {
       document.getElementById('call-status').textContent = 'Sofía está hablando...';
@@ -2035,14 +2044,7 @@
           window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
             variableValues: overrideVars
           });
-
-          _secondsLeft = 110;
-          updateTimerDisplay();
-          _callTimer = setInterval(function(){
-            _secondsLeft--;
-            updateTimerDisplay();
-            if(_secondsLeft <= 0){ endVapiCall(); }
-          }, 1000);
+          // Timer se inicia en el evento 'call-start', no aquí
         })
         .catch(function(err){
           console.error('[Mic error]', err);
