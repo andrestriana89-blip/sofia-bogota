@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AJ Business Advisory — Asistente IA para tu negocio en Bogotá</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Wompi Widget -->
+  <script src="https://checkout.wompi.co/widget.js" data-render="false"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     * { font-family: 'Inter', sans-serif; }
@@ -1184,33 +1186,79 @@
       <div id="call-ended" class="hidden bg-white/5 border border-white/10 rounded-3xl p-8 text-center">
 
         <!-- Emoji + título dinámico según nro. de demos -->
-        <p id="ended-emoji" class="text-5xl mb-4">🎉</p>
-        <h3 id="ended-title" class="text-white font-black text-2xl mb-2">¿Qué te pareció Sofía?</h3>
-        <p id="ended-subtitle" class="text-gray-400 text-sm mb-6 leading-relaxed">Así respondería a los clientes de tu negocio — 24/7, sin que hagas nada.</p>
+        <p id="ended-emoji" class="text-5xl mb-3">🎉</p>
+        <h3 id="ended-title" class="text-white font-black text-2xl mb-1">¿Qué te pareció Sofía?</h3>
+        <p id="ended-subtitle" class="text-gray-400 text-sm mb-5 leading-relaxed">Así respondería a los clientes de tu negocio — 24/7, sin que hagas nada.</p>
 
-        <!-- CTAs principales -->
-        <div class="flex flex-col gap-3 mb-4">
+        <!-- ── WOMPI PAYMENT BOX ── -->
+        <div id="wompi-payment-box" class="bg-gradient-to-br from-[#fc0f85]/15 to-[#1a0010] border border-[#fc0f85]/35 rounded-2xl p-5 mb-5 text-left">
 
-          <!-- WhatsApp -->
+          <!-- Header box -->
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-white font-black text-base leading-tight">Activa Sofía hoy mismo</div>
+              <div class="text-gray-400 text-xs mt-0.5">Sin contrato · Cancela cuando quieras</div>
+            </div>
+            <div class="text-right">
+              <div class="text-[#fc0f85] font-black text-2xl leading-none">$600.000</div>
+              <div class="text-gray-500 text-xs">COP / mes</div>
+            </div>
+          </div>
+
+          <!-- Incluye -->
+          <div class="grid grid-cols-2 gap-1.5 mb-4 text-xs text-gray-300">
+            <div class="flex items-center gap-1.5"><span class="text-green-400 font-bold">✓</span> Atención 24/7</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-400 font-bold">✓</span> Sin límite de llamadas</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-400 font-bold">✓</span> Configuración incluida</div>
+            <div class="flex items-center gap-1.5"><span class="text-green-400 font-bold">✓</span> Soporte por WhatsApp</div>
+          </div>
+
+          <!-- Métodos de pago -->
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-gray-500 text-xs">Paga con:</span>
+            <span class="bg-[#8B5CF6]/20 border border-[#8B5CF6]/40 text-purple-300 text-xs font-bold px-2.5 py-1 rounded-lg">🟣 Nequi</span>
+            <span class="bg-blue-500/15 border border-blue-500/30 text-blue-300 text-xs font-bold px-2.5 py-1 rounded-lg">🏦 PSE</span>
+            <span class="bg-white/8 border border-white/20 text-gray-300 text-xs font-bold px-2.5 py-1 rounded-lg">💳 Tarjeta</span>
+          </div>
+
+          <!-- CTA Pago -->
+          <button onclick="openWompiPayment()"
+            class="w-full bg-[#fc0f85] hover:bg-[#d40d70] active:scale-95 text-white font-black py-3.5 rounded-xl text-base transition-all shadow-lg shadow-[#fc0f85]/30 flex items-center justify-center gap-2">
+            <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+            Suscribirme ahora →
+          </button>
+        </div>
+
+        <!-- Divisor -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="flex-1 h-px bg-white/10"></div>
+          <span class="text-gray-600 text-xs whitespace-nowrap">o habla con nosotros primero</span>
+          <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+
+        <!-- CTAs WhatsApp (secundarios) -->
+        <div class="flex flex-col gap-2 mb-4">
+
+          <!-- WhatsApp principal -->
           <a href="https://wa.me/15058998062?text=Hola!%20Probé%20el%20demo%20de%20Sofía%20y%20me%20interesa%20para%20mi%20negocio%20en%20Bogotá%20🚀"
              target="_blank"
-             class="flex items-center justify-center gap-2.5 bg-[#25D366] hover:bg-[#1ebe5d] text-white px-6 py-3.5 rounded-2xl font-bold text-base transition-all shadow-lg shadow-[#25D366]/20">
-            <svg class="w-5 h-5 fill-white shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-            💬 Quiero esto para mi negocio
+             class="flex items-center justify-center gap-2 bg-[#25D366]/15 border border-[#25D366]/35 hover:bg-[#25D366]/25 text-[#25D366] px-4 py-3 rounded-xl font-bold text-sm transition-all">
+            <svg class="w-4 h-4 fill-[#25D366] shrink-0" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            💬 Tengo preguntas → WhatsApp
           </a>
 
-          <!-- Reservar cita gratuita -->
+          <!-- Reservar cita -->
           <a id="btn-reservar" href="https://wa.me/15058998062?text=Hola!%20Quiero%20reservar%20mi%20cita%20gratuita%20para%20ver%20cómo%20Sofía%20puede%20atender%20a%20mis%20clientes%20🗓️"
              target="_blank"
-             class="flex items-center justify-center gap-2.5 bg-[#fc0f85] hover:bg-[#d40d70] text-white px-6 py-3.5 rounded-2xl font-bold text-base transition-all shadow-lg shadow-[#fc0f85]/20">
-            📅 Reservar cita gratuita
+             class="flex items-center justify-center gap-2 bg-white/5 border border-white/15 hover:bg-white/10 text-gray-300 px-4 py-2.5 rounded-xl font-semibold text-sm transition-all">
+            📅 Agendar cita gratuita
           </a>
         </div>
 
-        <!-- Probar de nuevo (solo en 1er demo) -->
+        <!-- Probar de nuevo -->
         <button id="btn-retry" onclick="resetDemo()"
-          class="text-gray-500 hover:text-gray-300 text-sm transition-all py-2 px-4">
-          🔄 Probar de nuevo <span class="text-gray-600">(te queda un intento)</span>
+          class="text-gray-600 hover:text-gray-400 text-xs transition-all py-1">
+          🔄 Probar de nuevo <span class="text-gray-700">(te queda un intento)</span>
         </button>
 
       </div>
@@ -1466,7 +1514,7 @@
         if (_chatSessionId) body.sessionId = _chatSessionId;
         var res = await fetch('https://api.vapi.ai/chat', {
           method: 'POST',
-          headers: { 'Authorization': 'Bearer b240f3dc-01c5-40da-a677-23aa56f03950', 'Content-Type': 'application/json' },
+          headers: { 'Authorization': 'Bearer ' + VAPI_PRIVATE_KEY, 'Content-Type': 'application/json' },
           body: JSON.stringify(body)
         });
         var data = await res.json();
@@ -1598,10 +1646,17 @@
     var _outboundCallId = null;
     var _demoCount = 0;  // Contador de demos realizados (máx. 2)
 
-    var VAPI_PUBLIC_KEY = 'b240f3dc-01c5-40da-a677-23aa56f03950';
+    var VAPI_PUBLIC_KEY  = 'b240f3dc-01c5-40da-a677-23aa56f03950';  // SDK browser
+    var VAPI_PRIVATE_KEY = 'df91a017-7af0-4241-803a-f17d22b058e6'; // API calls
     var VAPI_ASSISTANT_ID = 'a7a9b3e5-f193-48bf-9e98-dea6e7307d88';
-    // ⚠️ Configura este ID desde tu Vapi Dashboard → Phone Numbers
-    var VAPI_PHONE_NUMBER_ID = 'fa257cfb-c786-4d72-8106-fad9b3b8e4dd';  // +1 (669) 310 5168 — Sofia AutoConnect Demo
+    // ⚠️ Número saliente: ir a app.vapi.ai → Phone Numbers → comprar número Colombia (+57)
+    // → copiar el ID aquí abajo
+    var VAPI_PHONE_NUMBER_ID = 'fa257cfb-c786-4d72-8106-fad9b3b8e4dd';  // 🇺🇸 +1 (669) 310 5168 — cambiar por número 🇨🇴 +57 cuando esté listo
+
+    // ── Wompi ──
+    // ⚠️ Reemplaza con tu Public Key de Wompi → wompi.co → Desarrolladores → Llaves
+    var WOMPI_PUBLIC_KEY = 'pub_prod_REEMPLAZAR_CON_TU_KEY';  // Ej: pub_prod_abc123xyz
+    var WOMPI_AMOUNT_COP = 60000000;  // $600.000 COP en centavos
 
     function setCallMode(mode) {
       _demoMode = mode;
@@ -1705,7 +1760,7 @@
         var resp = await fetch('https://api.vapi.ai/call/phone', {
           method: 'POST',
           headers: {
-            'Authorization': 'Bearer ' + VAPI_PUBLIC_KEY,
+            'Authorization': 'Bearer ' + VAPI_PRIVATE_KEY,
             'Content-Type':  'application/json'
           },
           body: JSON.stringify(body)
@@ -1786,7 +1841,7 @@
 
         try {
           var resp = await fetch('https://api.vapi.ai/call/' + callId, {
-            headers: { 'Authorization': 'Bearer ' + VAPI_PUBLIC_KEY }
+            headers: { 'Authorization': 'Bearer ' + VAPI_PRIVATE_KEY }
           });
           var data = await resp.json();
 
@@ -1843,7 +1898,7 @@
       if(_outboundCallId) {
         fetch('https://api.vapi.ai/call/' + _outboundCallId, {
           method: 'DELETE',
-          headers: { 'Authorization': 'Bearer ' + VAPI_PUBLIC_KEY }
+          headers: { 'Authorization': 'Bearer ' + VAPI_PRIVATE_KEY }
         }).catch(function(){});
         _outboundCallId = null;
       }
@@ -1941,6 +1996,89 @@
       document.getElementById('call-active').classList.add('hidden');
       document.getElementById('call-ended').classList.remove('hidden');
     }
+
+    // ══════════════════════════════════════
+    // WOMPI — Pago post-demo
+    // ══════════════════════════════════════
+    function openWompiPayment() {
+      // Construir referencia única con nombre del lead
+      var nombre = (window._leadName || 'cliente').replace(/\s+/g, '-').toUpperCase().slice(0, 20);
+      var ref = 'SOFIA-' + nombre + '-' + Date.now();
+
+      // Obtener teléfono del campo o del lead guardado
+      var phoneRaw = (document.getElementById('input-phone')?.value || '').replace(/\D/g, '').slice(0, 10);
+      var phoneE164 = phoneRaw.length === 10 ? '+57' + phoneRaw : '';
+
+      try {
+        var checkout = new WidgetCheckout({
+          currency:       'COP',
+          amountInCents:  WOMPI_AMOUNT_COP,
+          reference:      ref,
+          publicKey:      WOMPI_PUBLIC_KEY,
+          redirectUrl:    window.location.href.split('?')[0] + '?pago=exitoso&ref=' + ref,
+          customerData: {
+            email:       window._leadEmail   || '',
+            fullName:    window._leadName    || '',
+            phoneNumber: phoneE164,
+            legalIdType: 'CC',
+            legalId:     ''
+          }
+        });
+
+        checkout.open(function(result) {
+          var tx = result.transaction;
+          if (tx && tx.status === 'APPROVED') {
+            showPaymentSuccess(tx);
+          }
+        });
+      } catch(err) {
+        console.error('[Wompi error]', err);
+        // Fallback: abrir checkout en nueva pestaña si el widget falla
+        var params = [
+          'public-key=' + encodeURIComponent(WOMPI_PUBLIC_KEY),
+          'currency=COP',
+          'amount-in-cents=' + WOMPI_AMOUNT_COP,
+          'reference=' + encodeURIComponent(ref),
+          'customer-data:email=' + encodeURIComponent(window._leadEmail || ''),
+          'customer-data:full-name=' + encodeURIComponent(window._leadName || '')
+        ].join('&');
+        window.open('https://checkout.wompi.co/p/?' + params, '_blank');
+      }
+    }
+
+    function showPaymentSuccess(tx) {
+      var box = document.getElementById('wompi-payment-box');
+      if (!box) return;
+      box.innerHTML = [
+        '<div class="text-center py-6">',
+          '<div class="text-5xl mb-3">🎉</div>',
+          '<div class="text-white font-black text-xl mb-2">¡Pago exitoso!</div>',
+          '<div class="text-gray-400 text-sm mb-4 leading-relaxed">',
+            'Te contactamos en máximo 2 horas<br/>para configurar tu Sofía.',
+          '</div>',
+          '<div class="bg-[#fc0f85]/15 border border-[#fc0f85]/30 rounded-xl px-4 py-2.5 inline-block">',
+            '<span class="text-[#fc0f85] font-bold text-xs">Ref: #' + (tx && tx.id ? tx.id : 'APROBADO') + '</span>',
+          '</div>',
+        '</div>'
+      ].join('');
+    }
+
+    // Revisar si llegó de vuelta de Wompi con pago exitoso
+    (function checkWompiReturn() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('pago') === 'exitoso') {
+        // Mostrar pantalla post-pago directamente
+        setTimeout(function() {
+          var ended = document.getElementById('call-ended');
+          var form  = document.getElementById('demo-form');
+          if (ended && form) {
+            form.classList.add('hidden');
+            ended.classList.remove('hidden');
+            showPaymentSuccess({ id: params.get('ref') });
+          }
+        }, 500);
+      }
+    })();
 
     function resetDemo(){
       // Solo permitir si aún no llegó al límite de 2 demos
