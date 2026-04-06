@@ -1422,10 +1422,16 @@
     });
     vapi.on('error', (e) => {
       console.error('[Vapi error]', e);
-      const msg = e?.error?.message || e?.message || JSON.stringify(e);
-      const el = document.getElementById('call-status');
-      if (el) el.textContent = '⚠️ Error: ' + msg;
-      if (typeof handleCallEnd === 'function') handleCallEnd();
+      const msg = e?.error?.message || e?.message || '';
+      const isMicError = msg.toLowerCase().includes('permission') || msg.toLowerCase().includes('microphone') || msg.toLowerCase().includes('audio') || e?.error?.name === 'NotAllowedError';
+      if (isMicError) {
+        if (typeof handleCallEnd === 'function') handleCallEnd();
+        alert('Para hacer la llamada demo necesitas permitir el acceso al micrófono.\n\n1. Haz clic en el ícono 🔒 en la barra de direcciones\n2. Selecciona "Permitir" en Micrófono\n3. Recarga la página e intenta de nuevo.');
+      } else {
+        const el = document.getElementById('call-status');
+        if (el) el.textContent = '⚠️ Error: ' + msg;
+        if (typeof handleCallEnd === 'function') handleCallEnd();
+      }
     });
   </script>
 
@@ -2024,39 +2030,23 @@
       document.getElementById('demo-form').classList.add('hidden');
       document.getElementById('call-active').classList.remove('hidden');
       document.getElementById('call-ended').classList.add('hidden');
-      document.getElementById('call-status').textContent = '🎙️ Solicitando acceso al micrófono...';
+      document.getElementById('call-status').textContent = 'Conectando con Sofía...';
 
-      // 1) Pedir acceso al micrófono explícitamente antes de iniciar Vapi
-      navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(function(stream){
-          // Micrófono concedido — Vapi toma el control del stream directamente
-          document.getElementById('call-status').textContent = 'Conectando con Sofía...';
+      console.log('[Vapi] Iniciando llamada...');
+      var overrideVars = {
+        clientName:   name,
+        businessName: business,
+        clientEmail:  email,
+        websiteUrl:   url || 'no proporcionada'
+      };
+      if(niche) overrideVars.businessType = niche;
 
-          console.log('[Vapi] Iniciando llamada...');
-          var overrideVars = {
-            clientName:   name,
-            businessName: business,
-            clientEmail:  email,
-            websiteUrl:   url || 'no proporcionada'
-          };
-          if(niche) overrideVars.businessType = niche;
-
-          window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
-            variableValues: overrideVars
-          });
-          // Timer se inicia en el evento 'call-start', no aquí
-        })
-        .catch(function(err){
-          console.error('[Mic error]', err);
-          // Micrófono denegado o no disponible
-          document.getElementById('demo-form').classList.remove('hidden');
-          document.getElementById('call-active').classList.add('hidden');
-          if(err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError'){
-            alert('Para hacer la llamada demo necesitas permitir el acceso al micrófono en tu navegador.\n\n1. Haz clic en el ícono 🔒 en la barra de direcciones\n2. Selecciona "Permitir" en Micrófono\n3. Recarga la página e intenta de nuevo.');
-          } else {
-            alert('No se pudo acceder al micrófono: ' + err.message);
-          }
-        });
+      // Vapi maneja el micrófono internamente — no llamar getUserMedia antes
+      // (causa conflicto de stream que bloquea el audio del usuario)
+      window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
+        variableValues: overrideVars
+      });
+      // Timer se inicia en el evento 'call-start', no aquí
     }
 
     function updateTimerDisplay(){
