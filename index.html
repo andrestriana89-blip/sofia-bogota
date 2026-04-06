@@ -1195,6 +1195,24 @@
         </button>
       </div>
 
+      <!-- Web call active UI -->
+      <div id="call-active" class="hidden bg-white/5 border border-white/10 rounded-3xl p-8 text-center">
+        <div class="relative w-24 h-24 mx-auto mb-5">
+          <div class="absolute inset-0 rounded-full bg-[#fc0f85]/20 animate-ping"></div>
+          <div class="relative w-24 h-24 rounded-full overflow-hidden border-2 border-[#fc0f85]/60 bg-[#1a1a1a]">
+            <img src="./sofia.png.png" alt="Sofía" class="w-full h-full object-cover object-top" style="transform:scale(1.5) translateY(12%);" />
+          </div>
+        </div>
+        <p class="text-white font-black text-xl mb-1">Sofía está en línea 🎙️</p>
+        <p id="call-status" class="text-[#fc0f85] text-sm font-semibold mb-4">Conectando...</p>
+        <div id="call-timer" class="text-gray-400 text-xs mb-4">1:50</div>
+        <div id="call-tips" class="flex flex-wrap justify-center gap-2 mb-6"></div>
+        <button onclick="endVapiCall()"
+          class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-2.5 rounded-xl text-sm transition-all">
+          ✕ Terminar llamada
+        </button>
+      </div>
+
       <!-- Post-call UI -->
       <div id="call-ended" class="hidden bg-white/5 border border-white/10 rounded-3xl p-8 text-center">
 
