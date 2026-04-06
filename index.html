@@ -1081,6 +1081,37 @@
               onkeydown="if(event.key==='Enter') document.getElementById('input-url').focus()" />
           </div>
 
+          <!-- ── Tipo de negocio ── -->
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Tipo de negocio <span class="text-red-400">*</span></label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" onclick="selectNicheForm('Spa o centro de estética')" data-niche="Spa o centro de estética"
+                class="niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center">
+                💆 Spa / Estética
+              </button>
+              <button type="button" onclick="selectNicheForm('Restaurante')" data-niche="Restaurante"
+                class="niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center">
+                🍽️ Restaurante
+              </button>
+              <button type="button" onclick="selectNicheForm('Clínica estética')" data-niche="Clínica estética"
+                class="niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center">
+                💉 Clínica
+              </button>
+              <button type="button" onclick="selectNicheForm('Veterinaria')" data-niche="Veterinaria"
+                class="niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center">
+                🐾 Veterinaria
+              </button>
+              <button type="button" onclick="selectNicheForm('Consultorio dental')" data-niche="Consultorio dental"
+                class="niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center">
+                🦷 Dental
+              </button>
+              <button type="button" onclick="selectNicheForm('Otro')" data-niche="Otro"
+                class="niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center">
+                🏢 Otro
+              </button>
+            </div>
+          </div>
+
           <!-- ── URL / Instagram (opcional) ── -->
           <div>
             <label class="block text-gray-300 text-sm font-semibold mb-2">
@@ -1689,6 +1720,22 @@
     var WOMPI_PUBLIC_KEY = 'pub_prod_REEMPLAZAR_CON_TU_KEY';  // Ej: pub_prod_abc123xyz
     var WOMPI_AMOUNT_COP = 60000000;  // $600.000 COP en centavos
 
+    function selectNicheForm(niche) {
+      // Actualizar input hidden
+      document.getElementById('input-niche').value = niche;
+      // Resaltar botón seleccionado
+      document.querySelectorAll('.niche-form-btn').forEach(function(btn) {
+        if(btn.dataset.niche === niche) {
+          btn.className = 'niche-form-btn bg-[#fc0f85] border border-[#fc0f85] text-white text-xs font-bold px-2 py-2.5 rounded-xl transition-all text-center shadow-lg shadow-[#fc0f85]/30';
+        } else {
+          btn.className = 'niche-form-btn bg-white/5 border border-white/15 hover:border-[#fc0f85] text-gray-300 hover:text-white text-xs font-semibold px-2 py-2.5 rounded-xl transition-all text-center';
+        }
+      });
+      // Sync con el selector de nicho global si existe
+      const map = {'Spa o centro de estética':'spa','Restaurante':'restaurant','Clínica estética':'clinic','Veterinaria':'vet','Consultorio dental':'dentist','Otro':'spa'};
+      if(map[niche]) selectNiche(map[niche]);
+    }
+
     function setCallMode(mode) {
       _demoMode = mode;
       var modeWeb      = document.getElementById('mode-web');
@@ -1956,6 +2003,7 @@
 
       if(!name){ alert('Por favor ingresa tu nombre.'); document.getElementById('input-name').focus(); return; }
       if(!business){ alert('Por favor ingresa el nombre de tu negocio.'); document.getElementById('input-business').focus(); return; }
+      if(!niche){ alert('Por favor selecciona el tipo de negocio.'); return; }
       if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ alert('Por favor ingresa un correo electrónico válido.'); document.getElementById('input-email').focus(); return; }
 
       // Pasar a UI de llamada activa primero
