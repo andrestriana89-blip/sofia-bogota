@@ -1976,15 +1976,17 @@
           document.getElementById('call-status').textContent = 'Conectando con Sofía...';
 
           console.log('[Vapi] Iniciando llamada...');
+          var overrideVars = {
+            clientName:   name,
+            businessName: business,
+            clientEmail:  email,
+            websiteUrl:   url || 'no proporcionada'
+          };
+          if(niche) overrideVars.businessType = niche;
+
           window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
             assistantOverrides: {
-              variableValues: {
-                clientName:   name,
-                businessName: business,
-                businessType: niche,
-                clientEmail:  email,
-                websiteUrl:   url || 'no proporcionada'
-              }
+              variableValues: overrideVars
             }
           });
 
@@ -2047,11 +2049,9 @@
           publicKey:      WOMPI_PUBLIC_KEY,
           redirectUrl:    window.location.href.split('?')[0] + '?pago=exitoso&ref=' + ref,
           customerData: {
-            email:       window._leadEmail   || '',
-            fullName:    window._leadName    || '',
-            phoneNumber: phoneE164,
-            legalIdType: 'CC',
-            legalId:     ''
+            email:       window._leadEmail || '',
+            fullName:    window._leadName  || '',
+            phoneNumber: phoneE164
           }
         });
 
