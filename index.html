@@ -1056,6 +1056,24 @@
             <label class="block text-gray-300 text-sm font-semibold mb-2">Correo electrónico <span class="text-red-400">*</span></label>
             <input id="input-email" type="email" placeholder="Ej: carolina@mispa.com"
               class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
+              onkeydown="if(event.key==='Enter') document.getElementById('input-business').focus()" />
+          </div>
+
+          <!-- ── Nombre del negocio ── -->
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">Nombre de tu negocio <span class="text-red-400">*</span></label>
+            <input id="input-business" type="text" placeholder="Ej: Spa Serenidad, Clínica Dental Sonrisa..."
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
+              onkeydown="if(event.key==='Enter') document.getElementById('input-url').focus()" />
+          </div>
+
+          <!-- ── URL / Instagram (opcional) ── -->
+          <div>
+            <label class="block text-gray-300 text-sm font-semibold mb-2">
+              Página web o Instagram <span class="text-gray-600 font-normal text-xs">(opcional — Sofía la mencionará)</span>
+            </label>
+            <input id="input-url" type="text" placeholder="Ej: mispa.com o instagram.com/spa_serenidad"
+              class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
               onkeydown="if(event.key==='Enter') document.getElementById('input-phone').focus()" />
           </div>
 
@@ -1076,10 +1094,8 @@
             <p class="text-gray-500 text-xs mt-2">📱 Sofía te llamará en los próximos segundos — ten el celular a la mano</p>
           </div>
 
-          <!-- Campos ocultos para compatibilidad -->
-          <input type="hidden" id="input-business" value="tu negocio" />
+          <!-- Campo oculto para niche -->
           <input type="hidden" id="input-niche" value="" />
-          <input type="hidden" id="input-url" value="" />
 
         </div>
 
@@ -1646,17 +1662,21 @@
     async function startOutboundCall() {
       var name     = document.getElementById('input-name').value.trim();
       var email    = document.getElementById('input-email').value.trim();
+      var business = document.getElementById('input-business').value.trim();
+      var url      = document.getElementById('input-url').value.trim();
       var phoneRaw = document.getElementById('input-phone').value;
       var phone    = formatColombianNumber(phoneRaw);
 
-      if(!name)  { highlightError('input-name'); return; }
+      if(!name)     { highlightError('input-name'); return; }
       if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { highlightError('input-email'); return; }
-      if(!phone) { highlightError('input-phone'); return; }
+      if(!business) { highlightError('input-business'); return; }
+      if(!phone)    { highlightError('input-phone'); return; }
 
       // Guardar datos para personalizar WhatsApp post-call
-      window._leadName  = name;
-      window._leadEmail = email;
-      window._leadPhone = '+57 ' + phoneRaw.replace(/\D/g,'').slice(0,10).replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
+      window._leadName     = name;
+      window._leadEmail    = email;
+      window._leadBusiness = business;
+      window._leadPhone    = '+57 ' + phoneRaw.replace(/\D/g,'').slice(0,10).replace(/(\d{3})(\d{3})(\d{4})/, '$1 $2 $3');
 
       // Mostrar número en pantalla de espera
       var digits = phoneRaw.replace(/\D/g,'').slice(0,10);
@@ -1672,7 +1692,14 @@
         var body = {
           assistantId: VAPI_ASSISTANT_ID,
           customer: { number: phone, name: name },
-          phoneNumberId: VAPI_PHONE_NUMBER_ID
+          phoneNumberId: VAPI_PHONE_NUMBER_ID,
+          assistantOverrides: {
+            variableValues: {
+              clientName:   name,
+              businessName: business,
+              websiteUrl:   url || 'no proporcionada'
+            }
+          }
         };
 
         var resp = await fetch('https://api.vapi.ai/call/phone', {
