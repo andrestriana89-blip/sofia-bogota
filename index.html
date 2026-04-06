@@ -1994,7 +1994,7 @@
     };
 
     function startVapiCall(){
-      if(!window._vapiReady){ alert('Cargando... intenta en un segundo.'); return; }
+      if(!window._vapiReady || !window.vapiInstance){ alert('Cargando Sofía... intenta en un segundo.'); return; }
       const name     = document.getElementById('input-name').value.trim();
       const business = document.getElementById('input-business').value.trim();
       const niche    = document.getElementById('input-niche').value;
@@ -2073,8 +2073,10 @@
 
     function handleCallEnd(){
       if(_callTimer){ clearInterval(_callTimer); _callTimer=null; }
-      document.getElementById('call-active').classList.add('hidden');
-      document.getElementById('call-ended').classList.remove('hidden');
+      var active = document.getElementById('call-active');
+      var ended = document.getElementById('call-ended');
+      if(active) active.classList.add('hidden');
+      if(ended) ended.classList.remove('hidden');
     }
 
     // ══════════════════════════════════════
