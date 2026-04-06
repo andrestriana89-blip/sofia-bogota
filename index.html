@@ -2030,9 +2030,8 @@
       document.getElementById('demo-form').classList.add('hidden');
       document.getElementById('call-active').classList.remove('hidden');
       document.getElementById('call-ended').classList.add('hidden');
-      document.getElementById('call-status').textContent = 'Conectando con Sofía...';
+      document.getElementById('call-status').textContent = '🎙️ Solicitando acceso al micrófono...';
 
-      console.log('[Vapi] Iniciando llamada...');
       var overrideVars = {
         clientName:   name,
         businessName: business,
@@ -2041,12 +2040,24 @@
       };
       if(niche) overrideVars.businessType = niche;
 
-      // Vapi maneja el micrófono internamente — no llamar getUserMedia antes
-      // (causa conflicto de stream que bloquea el audio del usuario)
-      window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
-        variableValues: overrideVars
-      });
-      // Timer se inicia en el evento 'call-start', no aquí
+      // Pedir permiso del micrófono, liberar el stream inmediatamente,
+      // y luego Vapi lo toma sin conflicto
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(function(stream) {
+          stream.getTracks().forEach(function(t){ t.stop(); }); // liberar stream
+          document.getElementById('call-status').textContent = 'Conectando con Sofía...';
+          console.log('[Vapi] Iniciando llamada...');
+          window.vapiInstance.start('a7a9b3e5-f193-48bf-9e98-dea6e7307d88', {
+            variableValues: overrideVars
+          });
+          // Timer se inicia en el evento 'call-start', no aquí
+        })
+        .catch(function(err) {
+          console.error('[Mic error]', err);
+          document.getElementById('demo-form').classList.remove('hidden');
+          document.getElementById('call-active').classList.add('hidden');
+          alert('Para hacer la llamada demo necesitas permitir el acceso al micrófono.\n\n1. Haz clic en el ícono 🔒 en la barra de direcciones\n2. Selecciona "Permitir" en Micrófono\n3. Recarga la página e intenta de nuevo.');
+        });
     }
 
     function updateTimerDisplay(){
