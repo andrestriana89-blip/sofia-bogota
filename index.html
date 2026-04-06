@@ -1043,6 +1043,18 @@
       <!-- Pre-call form -->
       <div id="demo-form" class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
 
+        <!-- ── Selector de modo ── -->
+        <div class="flex bg-white/5 rounded-2xl p-1 mb-6 gap-1">
+          <button id="mode-web" onclick="setCallMode('web')"
+            class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all bg-[#fc0f85] text-white shadow-lg shadow-[#fc0f85]/30">
+            🎙️ Llamada por navegador
+          </button>
+          <button id="mode-outbound" onclick="setCallMode('outbound')"
+            class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all text-gray-400 hover:text-white">
+            📲 Sofía te llama
+          </button>
+        </div>
+
         <div class="space-y-4 mb-6">
 
           <!-- ── Nombre ── -->
@@ -1080,7 +1092,7 @@
           </div>
 
           <!-- ── Número de contacto ── -->
-          <div>
+          <div id="phone-field" class="hidden">
             <label class="block text-gray-300 text-sm font-semibold mb-2">
               Número de contacto <span class="text-red-400">*</span>
             </label>
@@ -1095,6 +1107,7 @@
             </div>
             <p class="text-gray-500 text-xs mt-2">📱 Sofía te llamará en los próximos segundos — ten el celular a la mano</p>
           </div>
+          </div><!-- cierre phone-field -->
 
           <!-- Campo oculto para niche -->
           <input type="hidden" id="input-niche" value="" />
@@ -1112,12 +1125,12 @@
           </div>
         </div>
 
-        <button id="btn-start-call" onclick="startOutboundCall()"
+        <button id="btn-start-call" onclick="handleDemoStart()"
           class="w-full flex items-center justify-center gap-3 bg-[#fc0f85] hover:bg-[#d40d70] text-white font-black text-lg py-4 rounded-2xl transition-all hover:scale-[1.02] shadow-lg shadow-[#fc0f85]/30">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 6.75z"/>
           </svg>
-          📲 Que Sofía me llame
+          <span id="btn-start-label">🎙️ Iniciar llamada demo</span>
         </button>
 
         <p class="text-center text-gray-500 text-xs mt-4">🔒 Conversación privada · Sin spam · Sin compromiso</p>
@@ -1642,7 +1655,7 @@
     // ══════════════════════════════════════
     // MODO DEMO: OUTBOUND (Sofía te llama)
     // ══════════════════════════════════════
-    var _demoMode = 'outbound';
+    var _demoMode = 'web';
     var _outboundCallId = null;
     var _demoCount = 0;  // Contador de demos realizados (máx. 2)
 
