@@ -1043,18 +1043,6 @@
       <!-- Pre-call form -->
       <div id="demo-form" class="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur">
 
-        <!-- ── Selector de modo ── -->
-        <div class="flex bg-white/5 rounded-2xl p-1 mb-6 gap-1">
-          <button id="mode-web" onclick="setCallMode('web')"
-            class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all bg-[#fc0f85] text-white shadow-lg shadow-[#fc0f85]/30">
-            🎙️ Llamada por navegador
-          </button>
-          <button id="mode-outbound" onclick="setCallMode('outbound')"
-            class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-bold text-sm transition-all text-gray-400 hover:text-white">
-            📲 Sofía te llama
-          </button>
-        </div>
-
         <div class="space-y-4 mb-6">
 
           <!-- ── Nombre ── -->
@@ -1119,26 +1107,10 @@
             </label>
             <input id="input-url" type="text" placeholder="Ej: mispa.com o instagram.com/spa_serenidad"
               class="w-full bg-white/10 border border-white/20 text-white placeholder-gray-500 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#fc0f85] transition-colors"
-              onkeydown="if(event.key==='Enter') document.getElementById('input-phone').focus()" />
+              onkeydown="if(event.key==='Enter') document.getElementById('btn-start-call').click()" />
           </div>
 
-          <!-- ── Número de contacto ── -->
-          <div id="phone-field" class="hidden">
-            <label class="block text-gray-300 text-sm font-semibold mb-2">
-              Número de contacto <span class="text-red-400">*</span>
-            </label>
-            <div class="flex gap-0 items-stretch">
-              <div class="flex items-center gap-2 bg-white/5 border border-white/20 border-r-0 rounded-l-xl px-4 text-sm text-gray-400 whitespace-nowrap select-none">
-                🇨🇴 <span class="font-bold text-white">+57</span>
-              </div>
-              <input id="input-phone" type="tel" placeholder="300 123 4567" maxlength="13"
-                class="flex-1 bg-white/10 border border-white/20 border-l-0 text-white placeholder-gray-500 rounded-r-xl px-4 py-3.5 text-base focus:outline-none focus:border-[#fc0f85] transition-colors tracking-widest font-semibold"
-                oninput="formatPhoneInput(this)"
-                onkeydown="if(event.key==='Enter') startOutboundCall()" />
-            </div>
-            <p class="text-gray-500 text-xs mt-2">📱 Sofía te llamará en los próximos segundos — ten el celular a la mano</p>
           </div>
-          </div><!-- cierre phone-field -->
 
           <!-- Campo oculto para niche -->
           <input type="hidden" id="input-niche" value="" />
@@ -1148,10 +1120,10 @@
         <!-- ── Banner pre-llamada ── -->
         <div class="bg-[#fc0f85]/10 border border-[#fc0f85]/25 rounded-2xl p-4 mb-4">
           <div class="flex items-start gap-3">
-            <span class="text-2xl">📲</span>
+            <span class="text-2xl">🎙️</span>
             <div>
-              <p class="text-[#fc0f85] font-black text-sm mb-1">Sofía te llama en segundos — gratis</p>
-              <p class="text-gray-400 text-xs leading-relaxed">Cuando contestes, <strong class="text-white">actúa como si fueras un cliente</strong> de tu negocio. Sofía responderá exactamente como lo haría con tus clientes reales, 24/7.</p>
+              <p class="text-[#fc0f85] font-black text-sm mb-1">Habla con Sofía en tiempo real — gratis</p>
+              <p class="text-gray-400 text-xs leading-relaxed">Cuando inicie la llamada, <strong class="text-white">actúa como si fueras un cliente</strong> de tu negocio. Sofía responderá exactamente como lo haría con tus clientes reales, 24/7.</p>
             </div>
           </div>
         </div>
@@ -1773,11 +1745,7 @@
     }
 
     function handleDemoStart() {
-      if(_demoMode === 'outbound') {
-        startOutboundCall();
-      } else {
-        startVapiCall();
-      }
+      startVapiCall();
     }
 
     function formatPhoneInput(el) {
