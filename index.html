@@ -172,29 +172,102 @@
       50%       { transform: translateY(9px); }
     }
 
-    /* Spec badge cards */
+    /* ── Spec badge cards — glassmorphism premium ── */
     .spec-badge-card {
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 14px;
-      padding: 12px 14px;
-      transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(252,15,133,0.06) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 18px;
+      padding: 14px 16px;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
       cursor: default;
     }
-    @media (min-width: 768px) {
-      .spec-badge-card {
-        padding: 14px 16px;
-        border-radius: 16px;
-      }
-      .spec-badge-card p { font-size: 0.8rem; }
+    /* Línea de brillo superior */
+    .spec-badge-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(252,15,133,0.7), transparent);
+      border-radius: 50%;
     }
+    /* Resplandor interno animado */
+    .spec-badge-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(252,15,133,0.12) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .spec-badge-card:hover::after { opacity: 1; }
     .spec-badge-card:hover {
-      transform: scale(1.12) translateY(-4px) !important;
-      background: rgba(255,255,255,0.13);
-      border-color: rgba(252,15,133,0.5);
-      box-shadow: 0 8px 28px rgba(252,15,133,0.25);
+      transform: scale(1.08) translateY(-5px) !important;
+      border-color: rgba(252,15,133,0.55);
+      box-shadow: 0 12px 36px rgba(252,15,133,0.3), 0 0 0 1px rgba(252,15,133,0.15);
+    }
+    /* Icono del badge con animación propia */
+    .badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(252,15,133,0.25), rgba(255,212,0,0.15));
+      border: 1px solid rgba(252,15,133,0.3);
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); filter: brightness(1); }
+      50% { transform: scale(1.18); filter: brightness(1.3); }
+    }
+    @keyframes iconBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    @keyframes iconSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes iconShake {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-12deg); }
+      75% { transform: rotate(12deg); }
+    }
+    @keyframes shimmerBadge {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .icon-pulse { animation: iconPulse 2.5s ease-in-out infinite; }
+    .icon-bounce { animation: iconBounce 1.8s ease-in-out infinite; }
+    .icon-shake { animation: iconShake 2s ease-in-out infinite; }
+    .icon-spin { animation: iconSpin 4s linear infinite; }
+    /* Texto del badge */
+    .badge-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      background: linear-gradient(90deg, #ffd400, #fc0f85);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+    .badge-sub {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.3;
+    }
+    @media (min-width: 768px) {
+      .spec-badge-card { padding: 16px 18px; border-radius: 20px; }
+      .badge-title { font-size: 0.8rem; }
+      .badge-sub { font-size: 0.72rem; }
+      .badge-icon { width: 36px; height: 36px; font-size: 18px; }
     }
 
     /* Stat cards flotantes (rosado y gris) */
@@ -388,39 +461,53 @@
           src="./SOFIAIMG_WEB.png"
           alt="Sofía — Asistente IA"
           class="sofia-img-wrap relative z-10 object-contain"
-          style="width: 100%; max-width: 560px; height: auto; min-height: 480px; filter: drop-shadow(0 0 60px rgba(252,15,133,0.45));"
+          style="width: 100%; max-width: 532px; height: auto; min-height: 456px; filter: drop-shadow(0 0 60px rgba(252,15,133,0.45));"
         />
 
         <!-- Badges izquierda — posición absoluta -->
-        <div class="absolute left-0 top-0 h-full flex flex-col justify-around py-6 gap-3 z-20" style="width: 130px;">
+        <div class="absolute left-0 top-0 h-full flex flex-col justify-around py-8 gap-3 z-20" style="width: 138px;">
+
           <div class="spec-badge-card" style="animation: floatUp 3.4s ease-in-out infinite;">
-            <p class="text-[#ffd400] font-black text-xs leading-tight">📞 24/7</p>
-            <p class="text-white/60 text-xs leading-tight">Nunca pierde una llamada</p>
+            <div class="badge-icon"><span class="icon-pulse">📞</span></div>
+            <p class="badge-title">24/7 Activa</p>
+            <p class="badge-sub">Nunca pierde una llamada</p>
           </div>
+
           <div class="spec-badge-card" style="animation: floatUp 4.0s ease-in-out infinite;">
-            <p class="text-[#ffd400] font-black text-xs leading-tight">🌎 Bilingüe</p>
-            <p class="text-white/60 text-xs leading-tight">Español · English</p>
+            <div class="badge-icon"><span class="icon-bounce">🌎</span></div>
+            <p class="badge-title">Bilingüe</p>
+            <p class="badge-sub">Español · English</p>
           </div>
+
           <div class="spec-badge-card" style="animation: floatUp 3.1s ease-in-out infinite;">
-            <p class="text-[#ffd400] font-black text-xs leading-tight">💬 Multicanal</p>
-            <p class="text-white/60 text-xs leading-tight">WA · IG · Llamadas</p>
+            <div class="badge-icon"><span class="icon-bounce">💬</span></div>
+            <p class="badge-title">Multicanal</p>
+            <p class="badge-sub">WA · IG · Llamadas</p>
           </div>
+
         </div>
 
         <!-- Badges derecha — posición absoluta -->
-        <div class="absolute right-0 top-0 h-full flex flex-col justify-around py-6 gap-3 z-20" style="width: 130px;">
+        <div class="absolute right-0 top-0 h-full flex flex-col justify-around py-8 gap-3 z-20" style="width: 138px;">
+
           <div class="spec-badge-card" style="animation: floatUp 3.7s ease-in-out infinite;">
-            <p class="text-[#ffd400] font-black text-xs leading-tight">🎯 Califica leads</p>
-            <p class="text-white/60 text-xs leading-tight">Solo los más listos</p>
+            <div class="badge-icon"><span class="icon-pulse">🎯</span></div>
+            <p class="badge-title">Califica Leads</p>
+            <p class="badge-sub">Solo los más listos</p>
           </div>
+
           <div class="spec-badge-card" style="animation: floatUp 4.3s ease-in-out infinite;">
-            <p class="text-[#ffd400] font-black text-xs leading-tight">🗓️ Auto-agenda</p>
-            <p class="text-white/60 text-xs leading-tight">Citas sin intervención</p>
+            <div class="badge-icon"><span class="icon-bounce">🗓️</span></div>
+            <p class="badge-title">Auto-Agenda</p>
+            <p class="badge-sub">Citas sin intervención</p>
           </div>
+
           <div class="spec-badge-card" style="animation: floatUp 2.9s ease-in-out infinite;">
-            <p class="text-[#ffd400] font-black text-xs leading-tight">🔄 Recupera · Fideliza</p>
-            <p class="text-white/60 text-xs leading-tight">Seguimiento automático</p>
+            <div class="badge-icon"><span class="icon-spin">🔄</span></div>
+            <p class="badge-title">Recupera · Fideliza</p>
+            <p class="badge-sub">Seguimiento automático</p>
           </div>
+
         </div>
 
       </div><!-- fin hero imagen -->
