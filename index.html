@@ -295,6 +295,8 @@
     .sofia-img-wrap {
       transition: transform 0.35s ease, filter 0.35s ease;
       cursor: default;
+      -webkit-mask-image: radial-gradient(ellipse 76% 80% at 50% 46%, black 44%, rgba(0,0,0,0.6) 62%, transparent 76%);
+      mask-image: radial-gradient(ellipse 76% 80% at 50% 46%, black 44%, rgba(0,0,0,0.6) 62%, transparent 76%);
     }
     .sofia-img-wrap:hover {
       transform: scale(1.06) translateY(-8px) !important;
@@ -317,6 +319,116 @@
     @keyframes pulseGlow {
       0%, 100% { opacity: 0.6; transform: translate(-50%,-50%) scale(1); }
       50%       { opacity: 1;   transform: translate(-50%,-50%) scale(1.12); }
+    }
+
+    /* ── Canal Cards ─────────────────────────────── */
+    .canal-card {
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 22px 16px 20px;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: default;
+    }
+    .canal-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    .canal-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: 0 0 22px 22px;
+      opacity: 0.8;
+    }
+    .canal-card::after {
+      content: '';
+      position: absolute;
+      top: -40px; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 80px;
+      border-radius: 50%;
+      filter: blur(28px);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .canal-card:hover::after { opacity: 0.35; }
+    .canal-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      margin: 0 auto 14px;
+      border: 1px solid transparent;
+      transition: transform 0.3s ease;
+    }
+    .canal-card:hover .canal-icon-wrap { transform: scale(1.12) rotate(-4deg); }
+    .canal-name {
+      font-weight: 900;
+      font-size: 0.92rem;
+      color: #fff;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+    .canal-price {
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 2px;
+    }
+    .canal-period {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 12px;
+    }
+    .canal-features {
+      list-style: none;
+      padding: 0; margin: 0 0 14px;
+      text-align: left;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+    .canal-features li::before { content: '✓ '; color: inherit; font-weight: 700; }
+    .canal-btn {
+      display: block;
+      width: 100%;
+      padding: 8px 0;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 800;
+      border: 1.5px solid transparent;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    /* Content service teaser card */
+    .content-teaser-card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,212,0,0.06) 0%, rgba(252,15,133,0.08) 100%);
+      border: 1px solid rgba(255,212,0,0.2);
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .content-teaser-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%; right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,212,0,0.6), transparent);
+    }
+    @keyframes shimmerSlide {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #ffd400 0%, #fc0f85 40%, #ffd400 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSlide 3s linear infinite;
     }
 
     /* Sound wave bars */
@@ -992,6 +1104,191 @@
         <p class="font-bold text-gray-800 text-lg">Garantía de 30 días</p>
         <p class="text-gray-600 text-sm mt-1">Si en 30 días no ves un incremento en tus reservas o consultas, te devolvemos el dinero. Sin preguntas, sin complicaciones.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════
+       PLANES POR CANAL INDIVIDUAL
+  ════════════════════════════════════════ -->
+  <section id="canales" class="px-6 py-24 relative overflow-hidden" style="background: linear-gradient(180deg, #0d0d0d 0%, #110812 60%, #0d0d0d 100%);">
+
+    <!-- BG glow top -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-1 opacity-40" style="background: linear-gradient(90deg, transparent, #fc0f85, transparent);"></div>
+
+    <div class="max-w-6xl mx-auto relative z-10">
+
+      <!-- Header -->
+      <div class="text-center mb-16 fade-in">
+        <p class="inline-flex items-center gap-2 text-[#ffd400] font-bold text-xs uppercase tracking-[0.2em] mb-4 bg-[#ffd400]/10 border border-[#ffd400]/20 px-4 py-1.5 rounded-full">
+          <span>⚡</span> Sin compromisos · Sin contratos largos
+        </p>
+        <h2 class="text-4xl md:text-5xl font-black text-white leading-tight mb-5">
+          No necesitas el paquete completo<br>
+          <span class="shimmer-text">para empezar a ganar clientes</span>
+        </h2>
+        <p class="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          Activa <strong class="text-white">solo el canal donde hoy estás perdiendo clientes</strong>. Paga solo por lo que usas. Escala cuando estés listo.
+        </p>
+      </div>
+
+      <!-- 5 Canal Cards -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-6 fade-in">
+
+        <!-- Llamadas IA -->
+        <div class="canal-card" style="border-color: rgba(252,15,133,0.25);"
+          onmouseover="this.style.boxShadow='0 20px 48px rgba(252,15,133,0.2)'; this.style.borderColor='rgba(252,15,133,0.55)'"
+          onmouseout="this.style.boxShadow='none'; this.style.borderColor='rgba(252,15,133,0.25)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#fc0f85,transparent);border-radius:0 0 22px 22px;"></div>
+          <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#fc0f85;filter:blur(30px);opacity:0.12;pointer-events:none;"></div>
+          <div class="canal-icon-wrap" style="background:rgba(252,15,133,0.12);border-color:rgba(252,15,133,0.3);">📞</div>
+          <p class="canal-name">Llamadas IA</p>
+          <p class="canal-price" style="background:linear-gradient(90deg,#fc0f85,#ff6eb0);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$490k</p>
+          <p class="canal-period">COP / mes</p>
+          <ul class="canal-features">
+            <li>Responde 24/7 en voz real</li>
+            <li>Agenda citas automático</li>
+            <li>FAQ por voz personalizada</li>
+            <li>Hasta 600 min/mes</li>
+          </ul>
+          <a href="#reservar" class="canal-btn" style="border-color:rgba(252,15,133,0.5);color:#fc0f85;" onmouseover="this.style.background='rgba(252,15,133,0.12)'" onmouseout="this.style.background='transparent'">Activar →</a>
+        </div>
+
+        <!-- WhatsApp IA -->
+        <div class="canal-card" style="border-color:rgba(37,211,102,0.2);"
+          onmouseover="this.style.boxShadow='0 20px 48px rgba(37,211,102,0.15)'; this.style.borderColor='rgba(37,211,102,0.5)'"
+          onmouseout="this.style.boxShadow='none'; this.style.borderColor='rgba(37,211,102,0.2)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#25d366,transparent);border-radius:0 0 22px 22px;"></div>
+          <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#25d366;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+          <div class="canal-icon-wrap" style="background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.3);">💬</div>
+          <p class="canal-name">WhatsApp IA</p>
+          <p class="canal-price" style="background:linear-gradient(90deg,#25d366,#7affc2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$390k</p>
+          <p class="canal-period">COP / mes</p>
+          <ul class="canal-features">
+            <li>Respuesta instantánea</li>
+            <li>Califica leads automático</li>
+            <li>Confirmaciones y recordatorios</li>
+            <li>Flujos personalizados</li>
+          </ul>
+          <a href="#reservar" class="canal-btn" style="border-color:rgba(37,211,102,0.4);color:#25d366;" onmouseover="this.style.background='rgba(37,211,102,0.08)'" onmouseout="this.style.background='transparent'">Activar →</a>
+        </div>
+
+        <!-- Instagram IA -->
+        <div class="canal-card" style="border-color:rgba(228,64,95,0.2);"
+          onmouseover="this.style.boxShadow='0 20px 48px rgba(228,64,95,0.15)'; this.style.borderColor='rgba(228,64,95,0.5)'"
+          onmouseout="this.style.boxShadow='none'; this.style.borderColor='rgba(228,64,95,0.2)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e4405f,#f77737,transparent);border-radius:0 0 22px 22px;"></div>
+          <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#e4405f;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+          <div class="canal-icon-wrap" style="background:linear-gradient(135deg,rgba(228,64,95,0.12),rgba(247,119,55,0.08));border-color:rgba(228,64,95,0.3);">📸</div>
+          <p class="canal-name">Instagram IA</p>
+          <p class="canal-price" style="background:linear-gradient(90deg,#e4405f,#f77737);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$350k</p>
+          <p class="canal-period">COP / mes</p>
+          <ul class="canal-features">
+            <li>Responde DMs al instante</li>
+            <li>Reply a comentarios</li>
+            <li>Convierte seguidores en clientes</li>
+            <li>Mensajes de bienvenida</li>
+          </ul>
+          <a href="#reservar" class="canal-btn" style="border-color:rgba(228,64,95,0.4);color:#e4405f;" onmouseover="this.style.background='rgba(228,64,95,0.08)'" onmouseout="this.style.background='transparent'">Activar →</a>
+        </div>
+
+        <!-- Facebook IA -->
+        <div class="canal-card" style="border-color:rgba(24,119,242,0.2);"
+          onmouseover="this.style.boxShadow='0 20px 48px rgba(24,119,242,0.15)'; this.style.borderColor='rgba(24,119,242,0.5)'"
+          onmouseout="this.style.boxShadow='none'; this.style.borderColor='rgba(24,119,242,0.2)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#1877f2,transparent);border-radius:0 0 22px 22px;"></div>
+          <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#1877f2;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+          <div class="canal-icon-wrap" style="background:rgba(24,119,242,0.1);border-color:rgba(24,119,242,0.3);">👥</div>
+          <p class="canal-name">Facebook IA</p>
+          <p class="canal-price" style="background:linear-gradient(90deg,#1877f2,#66b0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$290k</p>
+          <p class="canal-period">COP / mes</p>
+          <ul class="canal-features">
+            <li>Messenger automatizado</li>
+            <li>Responde comentarios</li>
+            <li>Leads desde anuncios</li>
+            <li>Seguimiento automático</li>
+          </ul>
+          <a href="#reservar" class="canal-btn" style="border-color:rgba(24,119,242,0.4);color:#1877f2;" onmouseover="this.style.background='rgba(24,119,242,0.08)'" onmouseout="this.style.background='transparent'">Activar →</a>
+        </div>
+
+        <!-- TikTok IA -->
+        <div class="canal-card" style="border-color:rgba(105,201,208,0.2);"
+          onmouseover="this.style.boxShadow='0 20px 48px rgba(105,201,208,0.15)'; this.style.borderColor='rgba(105,201,208,0.5)'"
+          onmouseout="this.style.boxShadow='none'; this.style.borderColor='rgba(105,201,208,0.2)'">
+          <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#69c9d0,#ee1d52,transparent);border-radius:0 0 22px 22px;"></div>
+          <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#ee1d52;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+          <div class="canal-icon-wrap" style="background:linear-gradient(135deg,rgba(105,201,208,0.1),rgba(238,29,82,0.08));border-color:rgba(105,201,208,0.3);">🎵</div>
+          <p class="canal-name">TikTok IA</p>
+          <p class="canal-price" style="background:linear-gradient(90deg,#69c9d0,#ee1d52);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$350k</p>
+          <p class="canal-period">COP / mes</p>
+          <ul class="canal-features">
+            <li>Responde comentarios IA</li>
+            <li>DMs automáticos</li>
+            <li>Convierte viral → cliente</li>
+            <li>Respuestas de marca</li>
+          </ul>
+          <a href="#reservar" class="canal-btn" style="border-color:rgba(105,201,208,0.4);color:#69c9d0;" onmouseover="this.style.background='rgba(105,201,208,0.08)'" onmouseout="this.style.background='transparent'">Activar →</a>
+        </div>
+
+      </div>
+
+      <!-- Upsell hint -->
+      <p class="text-center text-gray-500 text-sm mb-12 fade-in">
+        💡 <strong class="text-gray-300">¿Necesitas 2+ canales?</strong> Combínalos con un Plan Esencial y ahorra hasta el 45%.
+        <a href="#precios" class="text-[#fc0f85] font-bold ml-1 hover:underline">Ver paquetes →</a>
+      </p>
+
+      <!-- Content Service Teaser -->
+      <div class="content-teaser-card p-8 md:p-10 fade-in">
+        <div class="flex flex-col md:flex-row items-center md:items-start gap-8">
+
+          <!-- Left text -->
+          <div class="flex-1 text-center md:text-left">
+            <p class="inline-flex items-center gap-2 text-[#ffd400] font-bold text-xs uppercase tracking-widest mb-4 bg-[#ffd400]/10 border border-[#ffd400]/20 px-3 py-1 rounded-full">
+              ✨ Nuevo servicio
+            </p>
+            <h3 class="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
+              Tu negocio publicando solo.<br>
+              <span class="shimmer-text">Contenido que vende en piloto automático.</span>
+            </h3>
+            <p class="text-gray-400 leading-relaxed mb-6 max-w-lg">
+              Planificamos tu contenido mensual con IA, creamos las publicaciones y las programamos para que se publiquen solas — en Instagram, TikTok, Facebook y más.
+              <strong class="text-white">Sin que muevas un dedo.</strong>
+            </p>
+
+            <!-- Feature pills -->
+            <div class="flex flex-wrap gap-2 justify-center md:justify-start mb-7">
+              <span class="text-xs font-semibold text-[#ffd400] bg-[#ffd400]/10 border border-[#ffd400]/20 px-3 py-1 rounded-full">📅 Calendario mensual IA</span>
+              <span class="text-xs font-semibold text-[#fc0f85] bg-[#fc0f85]/10 border border-[#fc0f85]/20 px-3 py-1 rounded-full">✍️ Copy generado automático</span>
+              <span class="text-xs font-semibold text-white/70 bg-white/5 border border-white/10 px-3 py-1 rounded-full">🚀 Publicación automática</span>
+              <span class="text-xs font-semibold text-white/70 bg-white/5 border border-white/10 px-3 py-1 rounded-full">📊 Análisis de rendimiento</span>
+              <span class="text-xs font-semibold text-white/70 bg-white/5 border border-white/10 px-3 py-1 rounded-full">🎨 Diseño con tu identidad</span>
+            </div>
+
+            <a href="#reservar" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#ffd400] to-[#fc0f85] text-white font-black px-8 py-4 rounded-full text-sm hover:opacity-90 transition-opacity shadow-lg shadow-[#fc0f85]/25">
+              Pregunta por este servicio →
+            </a>
+          </div>
+
+          <!-- Right visual -->
+          <div class="shrink-0 flex flex-col items-center gap-3">
+            <div class="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl" style="background:linear-gradient(135deg,rgba(255,212,0,0.15),rgba(252,15,133,0.15));border:1px solid rgba(255,212,0,0.25);">
+              🤖
+            </div>
+            <div class="flex flex-col gap-2 text-xs text-center">
+              <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5">
+                <p class="text-[#ffd400] font-black text-lg">3–5</p>
+                <p class="text-gray-400">posts / semana</p>
+              </div>
+              <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-2.5">
+                <p class="text-[#fc0f85] font-black text-lg">100%</p>
+                <p class="text-gray-400">automatizado</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
