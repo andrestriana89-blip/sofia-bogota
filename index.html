@@ -1684,7 +1684,7 @@
 
       <!-- Upsell hint -->
       <p class="text-center text-gray-500 text-sm fade-in">
-        💡 <strong class="text-gray-300">¿Necesitas 2+ canales?</strong> Combínalos con un Plan Esencial y ahorra hasta el 45%.
+        💡 <strong class="text-gray-300">¿Necesitas 2+ canales?</strong> Combínalos en un Plan Órbita y ahorra combinándolos.
         <a href="#precios" class="text-[#fc0f85] font-bold ml-1 hover:underline">Ver paquetes →</a>
       </p>
 
@@ -1828,8 +1828,8 @@
 
     // Llamadas perdidas → midpoint para cálculo
     var _callsMap = {
-      'menos10': { mid: 8,  label: 'menos de 10',  plan: 'Plan Esencial' },
-      '10-30':   { mid: 20, label: 'entre 10 y 30', plan: 'Plan Esencial' },
+      'menos10': { mid: 8,  label: 'menos de 10',  plan: 'Plan Órbita' },
+      '10-30':   { mid: 20, label: 'entre 10 y 30', plan: 'Plan Órbita' },
       '30-50':   { mid: 40, label: 'entre 30 y 50', plan: 'Plan Pro' },
       'mas50':   { mid: 65, label: 'más de 50',     plan: 'Plan Pro' }
     };
@@ -1910,7 +1910,7 @@
 
         var perdida = _chatFlow.ticketAvg * c.mid;
         var perdidaStr = formatCOP(perdida);
-        var msg = '🔴 **Resultado:** Si tienes **' + c.label + '** llamadas perdidas al mes con un ticket de **' + _chatFlow.ticketLabel + '**...\n\n**Estás dejando ir ' + perdidaStr + ' cada mes.**\n\nSofía cuesta **$600k–$900k COP/mes**. Se paga sola en los primeros días. Te recomiendo el **' + c.plan + '** para **' + _chatFlow.businessName + '** 👇';
+        var msg = '🔴 **Resultado:** Si tienes **' + c.label + '** llamadas perdidas al mes con un ticket de **' + _chatFlow.ticketLabel + '**...\n\n**Estás dejando ir ' + perdidaStr + ' cada mes.**\n\nSofía cuesta desde **$1.2M COP/mes**. Se paga sola en los primeros días. Te recomiendo el **' + c.plan + '** para **' + _chatFlow.businessName + '** 👇';
         sofiaSays(msg, function() {
           _chatFlow.step = 4;
           showFinalCTA(perdidaStr, c.plan);
@@ -1981,7 +1981,7 @@
     function showFinalCTA(perdidaStr, plan) {
       var biz = _chatFlow.businessName;
       perdidaStr = perdidaStr || '';
-      plan = plan || 'Plan Esencial';
+      plan = plan || 'Plan Órbita';
       var esencialClass = plan === 'Plan Pro'
         ? 'bg-white rounded-xl p-3 border border-gray-100 text-center'
         : 'bg-[#fc0f85] rounded-xl p-3 text-center';
@@ -2009,14 +2009,14 @@
           '<p class="text-gray-800 font-black text-sm mb-3">¿Qué hacemos ahora, <span class="text-[#fc0f85]">'+biz+'</span>? 🚀</p>' +
           '<div class="grid grid-cols-2 gap-2 mb-3">' +
             '<div class="'+esencialClass+'">' +
-              '<p class="'+esencialTextColor+' font-black text-xs mb-0.5">Plan Esencial</p>' +
-              '<p class="'+esencialNumColor+' font-black text-xl leading-none">$600k</p>' +
+              '<p class="'+esencialTextColor+' font-black text-xs mb-0.5">🛸 Plan Órbita</p>' +
+              '<p class="'+esencialNumColor+' font-black text-xl leading-none">$1.2M</p>' +
               '<p class="'+esencialSubColor+' text-xs mt-0.5">COP/mes · 500 min · 1 red</p>' +
             '</div>' +
             '<div class="'+proClass+'">' +
-              '<p class="'+proTextColor+' font-black text-xs mb-0.5">Plan Pro ⭐</p>' +
-              '<p class="'+proNumColor+' font-black text-xl leading-none">$900k</p>' +
-              '<p class="'+proSubColor+' text-xs mt-0.5">COP/mes · 1.500 min · 3 redes</p>' +
+              '<p class="'+proTextColor+' font-black text-xs mb-0.5">🪐 Plan Apogeo ⭐</p>' +
+              '<p class="'+proNumColor+' font-black text-xl leading-none">$1.8M</p>' +
+              '<p class="'+proSubColor+' text-xs mt-0.5">COP/mes · 800 min · 2 redes</p>' +
             '</div>' +
           '</div>' +
           '<div class="flex flex-col gap-2">' +
@@ -2771,7 +2771,7 @@
     }
 
     function faqPrecio() {
-      widgetBotMsg('Tenemos 3 planes 💰<br/><br/><strong>Esencial:</strong> $600k COP/mes — 500 min, 1 red social<br/><strong>Pro ⭐:</strong> $900k COP/mes — 1.500 min, 3 redes + CRM<br/><strong>Premium:</strong> $1.5M COP/mes — minutos ilimitados + IA predictiva<br/><br/>Todos incluyen 7 días gratis sin riesgo.', 0).then(function(){
+      widgetBotMsg('Tenemos 3 planes 💰<br/><br/><strong>🛸 Órbita:</strong> $1.2M COP/mes — 500 min, 1 red social<br/><strong>🪐 Apogeo ⭐:</strong> $1.8M COP/mes — 800 min, 2 redes + CRM<br/><strong>🌌 Legado:</strong> $2.9M COP/mes — 2.000 min + todas las redes + IA predictiva', 0).then(function(){
         widgetShowChips([{label:'📅 Agendar cita gratis',action:goToCalendly},{label:'← Preguntas',action:showFAQ}]);
       });
     }
