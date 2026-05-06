@@ -1,0 +1,4777 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dentalia · Dra. Natalia Barrantes — Odontología Integral Bogotá</title>
+  <meta name="description" content="Dentalia Bogotá — Especialistas en diseño de sonrisa. Carillas de cerámica y resina, blanqueamiento, ortodoncia, implantes y más. Solicita tu cita hoy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:        #C09A55;
+      --gold-deep:   #9B7A30;
+      --gold-hover:  #B08A45;
+      --gold-pale:   #F8F2E8;
+      --gold-border: #E6D4B0;
+      --cream:       #FDFAF5;
+      --dark:        #1C1710;
+      --text:        #2A2018;
+      --text-muted:  #7A6A58;
+      --white:       #FFFFFF;
+      --whatsapp:    #25D366;
+      --shadow-sm:   0 4px 24px rgba(0,0,0,0.06);
+      --shadow-md:   0 12px 40px rgba(0,0,0,0.10);
+      --shadow-lg:   0 24px 64px rgba(0,0,0,0.14);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+    /* Reset global de enlaces — evita azules por defecto */
+    a { color: inherit; text-decoration: none; }
+    a:visited { color: inherit; }
+    button { font-family: inherit; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes blobMorph {
+      0%   { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+      50%  { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+      100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    }
+    @keyframes shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    @keyframes logoWrite {
+      from { stroke-dashoffset: 1200; }
+      to   { stroke-dashoffset: 0; }
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(192,154,85,0.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(192,154,85,0); }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes lightSweep {
+      0%   { background-position: -200% center; opacity: 0.4; }
+      50%  { opacity: 1; }
+      100% { background-position: 200% center; opacity: 0.4; }
+    }
+    @keyframes shimmerSonrisa {
+      0%, 100% {
+        background-position: -150% center;
+      }
+      60%, 100% {
+        background-position: 250% center;
+      }
+    }
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 0 rgba(192,154,85,0)); }
+      50%       { filter: drop-shadow(0 0 24px rgba(192,154,85,0.5)); }
+    }
+    @keyframes orbit {
+      from { transform: rotate(0deg) translateX(0) rotate(0deg); }
+      to   { transform: rotate(360deg) translateX(0) rotate(-360deg); }
+    }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0.5); }
+      50%       { opacity: 1; transform: scale(1); }
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      33%       { transform: translate(8px, -10px); }
+      66%       { transform: translate(-6px, -4px); }
+    }
+
+    /* ─── GLASS / CRYSTAL HOVER ─── */
+    .glass-hover {
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-hover::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.10) 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      mix-blend-mode: overlay;
+    }
+    .glass-hover:hover::after { opacity: 1; }
+    .glass-hover::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -100%;
+      width: 60%;
+      height: 200%;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.45) 50%, transparent 70%);
+      transition: left 0.8s ease;
+      z-index: 2;
+      pointer-events: none;
+      transform: skewX(-25deg);
+    }
+    .glass-hover:hover::before {
+      left: 130%;
+    }
+
+    /* ─── NAV (crystal / glass premium) ─── */
+    nav {
+      position: sticky;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background:
+        linear-gradient(135deg, rgba(253,250,245,0.55) 0%, rgba(248,242,232,0.45) 50%, rgba(253,250,245,0.55) 100%);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      transition: padding 0.45s ease, background 0.5s ease, box-shadow 0.5s ease, border-color 0.4s ease;
+      border-bottom: 1px solid rgba(192,154,85,0.14);
+      overflow: hidden;
+    }
+    nav::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(242,216,142,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 50%, rgba(192,154,85,0.14) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(192,154,85,0.45) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    nav.scrolled {
+      padding: 11px 0;
+      background:
+        linear-gradient(135deg, rgba(253,250,245,0.78) 0%, rgba(248,238,218,0.68) 35%, rgba(252,246,232,0.78) 65%, rgba(248,242,232,0.78) 100%);
+      box-shadow:
+        0 8px 30px rgba(155,122,48,0.10),
+        0 1px 0 rgba(255,255,255,0.50) inset;
+    }
+    nav.scrolled::before { opacity: 1; }
+    nav.scrolled::after  { opacity: 1; }
+    .nav-inner { position: relative; z-index: 1; }
+
+    /* ─── NAV ADAPTATIVO · MODO OSCURO (cuando hay sección oscura debajo) ─── */
+    nav.nav-dark {
+      background:
+        linear-gradient(135deg, rgba(20,15,8,0.82) 0%, rgba(28,23,16,0.92) 50%, rgba(20,15,8,0.82) 100%);
+      border-bottom-color: rgba(192,154,85,0.18);
+      box-shadow:
+        0 8px 30px rgba(0,0,0,0.30),
+        0 1px 0 rgba(192,154,85,0.10) inset;
+    }
+    nav.nav-dark::before {
+      background:
+        radial-gradient(ellipse at 15% 50%, rgba(242,216,142,0.10) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 50%, rgba(192,154,85,0.08) 0%, transparent 55%);
+      opacity: 1;
+    }
+    nav.nav-dark::after { opacity: 0.6; }
+    nav.nav-dark .nav-logo-name {
+      background: linear-gradient(90deg, #FFFFFF 0%, #F2D88E 50%, #FFFFFF 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav.nav-dark .nav-logo-sub { color: rgba(242,216,142,0.78); }
+    nav.nav-dark .brand-pill-inline {
+      background: rgba(192,154,85,0.18);
+      color: var(--gold);
+      border-color: rgba(192,154,85,0.40);
+    }
+    nav.nav-dark .nav-links a { color: rgba(255,255,255,0.62); }
+    nav.nav-dark .nav-links a:hover { color: var(--gold); }
+    nav.nav-dark .nav-hamburger span { background: rgba(255,255,255,0.85); }
+    nav.nav-dark .nav-logo-img {
+      filter:
+        brightness(0) saturate(100%)
+        invert(78%) sepia(38%) saturate(440%)
+        hue-rotate(2deg) brightness(95%) contrast(90%)
+        drop-shadow(0 2px 10px rgba(192,154,85,0.45));
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .nav-logo-svg, .nav-logo-img {
+      height: 56px;
+      width: auto;
+      filter: drop-shadow(0 2px 10px rgba(28,23,16,0.20));
+      transition: transform 0.4s ease, filter 0.4s ease;
+      display: block;
+    }
+    .nav-logo:hover .nav-logo-svg,
+    .nav-logo:hover .nav-logo-img {
+      transform: scale(1.06) rotate(-2deg);
+      filter: drop-shadow(0 6px 16px rgba(192,154,85,0.30));
+    }
+    nav.scrolled .nav-logo-svg,
+    nav.scrolled .nav-logo-img { height: 48px; }
+    .nav-brand-current {
+      background: linear-gradient(90deg, var(--text), var(--gold-deep), var(--text));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSonrisa 8s ease-in-out infinite;
+    }
+    .nav-logo-sub {
+      display: flex !important;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .brand-pill {
+      background: rgba(192,154,85,0.12);
+      color: var(--gold-deep);
+      padding: 1px 7px;
+      border-radius: 100px;
+      font-size: 7px !important;
+      font-weight: 700;
+      letter-spacing: 1.5px !important;
+      border: 1px solid rgba(192,154,85,0.25);
+    }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.15; }
+    .nav-logo-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      background: linear-gradient(90deg, var(--text) 0%, #4A3820 50%, var(--text) 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSonrisa 10s ease-in-out infinite;
+    }
+    .nav-logo-sub {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .brand-pill-inline {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: rgba(192,154,85,0.10);
+      color: var(--gold-deep);
+      border: 1px solid rgba(192,154,85,0.25);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 13px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(192,154,85,0.30);
+    }
+    .nav-cta:hover {
+      background: var(--gold-deep);
+      transform: scale(1.03);
+      box-shadow: 0 6px 24px rgba(192,154,85,0.40);
+    }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: calc(100vh - 100px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0 110px;
+      background:
+        radial-gradient(ellipse at 80% 20%, rgba(242,216,142,0.22) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 90%, rgba(192,154,85,0.10) 0%, transparent 55%),
+        linear-gradient(180deg, var(--cream) 0%, #FBF5E8 100%);
+    }
+    .hero-inner { gap: 80px; }
+    .hero-blob {
+      position: absolute;
+      top: -80px;
+      right: -120px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(ellipse at 40% 40%, rgba(192,154,85,0.18) 0%, rgba(192,154,85,0.06) 55%, transparent 80%);
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      animation: blobMorph 14s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-blob-2 {
+      position: absolute;
+      bottom: -120px;
+      left: -80px;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(ellipse at 60% 60%, rgba(192,154,85,0.10) 0%, transparent 70%);
+      border-radius: 40% 60% 70% 30% / 50% 40% 60% 50%;
+      animation: blobMorph 18s ease-in-out infinite reverse;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 64px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      background: rgba(192,154,85,0.10);
+      border: 1px solid rgba(192,154,85,0.25);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+    .hero-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 5.2vw, 76px);
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1.02;
+      color: var(--text);
+      margin-bottom: 26px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.35s forwards;
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 38px; line-height: 1.05; letter-spacing: -1.2px; }
+    }
+    .hero h1 em {
+      font-style: normal;
+      position: relative;
+      background: linear-gradient(90deg, #9B7A30 0%, #C09A55 25%, #F2D88E 45%, #FFFFFF 50%, #F2D88E 55%, #C09A55 75%, #9B7A30 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSonrisa 4s ease-in-out 1.2s infinite, glow 3s ease-in-out 1.2s infinite;
+      filter: drop-shadow(0 4px 14px rgba(192,154,85,0.20));
+    }
+    .hero h1 em::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      border-radius: 2px;
+      animation: lightSweep 4s ease-in-out 1.5s infinite;
+      background-size: 200% 100%;
+    }
+    .hero h1 em::before {
+      content: '✦';
+      position: absolute;
+      top: -10px;
+      right: -28px;
+      font-size: 22px;
+      color: var(--gold);
+      animation: sparkle 2.5s ease-in-out 2s infinite;
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 440px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.65s forwards;
+    }
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: var(--whatsapp);
+      color: var(--white);
+      padding: 15px 28px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.28);
+    }
+    .btn-whatsapp:hover {
+      background: #1da954;
+      transform: scale(1.03);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.40);
+    }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      color: var(--gold-deep);
+      padding: 15px 26px;
+      border-radius: 100px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid var(--gold-border);
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      background: rgba(192,154,85,0.07);
+      transform: scale(1.02);
+    }
+
+    /* ─── HERO IMAGE ─── */
+    .hero-image-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      animation: scaleIn 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+    }
+    .hero-image-frame {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+    }
+    .hero-image-halo {
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(circle at 50% 50%, rgba(192,154,85,0.30) 0%, rgba(192,154,85,0.10) 40%, transparent 70%);
+      filter: blur(40px);
+      animation: drift 8s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .hero-image-deco {
+      position: absolute;
+      top: 18px;
+      right: -18px;
+      width: 100%;
+      height: 100%;
+      border: 1.5px solid var(--gold-border);
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      z-index: 0;
+      animation: blobMorph 16s ease-in-out infinite;
+    }
+    .hero-image-deco-2 {
+      position: absolute;
+      top: -22px;
+      left: -22px;
+      width: 80%;
+      height: 80%;
+      border: 1px dashed rgba(192,154,85,0.35);
+      border-radius: 60% 40% 50% 50% / 40% 50% 50% 60%;
+      z-index: 0;
+      animation: blobMorph 20s ease-in-out 2s infinite reverse;
+    }
+    .hero-image, .hero-image-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      max-height: 600px;
+      object-fit: cover;
+      border-radius: 50% 50% 48% 52% / 60% 58% 42% 40%;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 30px 80px rgba(155,122,48,0.25), 0 0 0 1px rgba(192,154,85,0.18) inset;
+      display: block;
+      transition: border-radius 0.8s ease, transform 0.6s ease;
+    }
+    .hero-image-frame:hover .hero-image,
+    .hero-image-frame:hover .hero-image-placeholder {
+      border-radius: 48% 52% 60% 40% / 50% 60% 40% 50%;
+      transform: scale(1.02);
+    }
+    .hero-image-placeholder {
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,0.45) 0%, transparent 35%),
+        linear-gradient(135deg, #F2DCB0 0%, #D4BC96 50%, #B89968 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .hero-image-placeholder svg { width: 72px; height: 72px; opacity: 0.4; color: #6B4F0E; }
+    .hero-image-placeholder span { font-size: 11px; color: #6B4F0E; opacity: 0.6; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
+    .hero-image-sparkle {
+      position: absolute;
+      width: 24px; height: 24px;
+      pointer-events: none;
+      z-index: 3;
+      color: var(--gold);
+      filter: drop-shadow(0 0 8px rgba(192,154,85,0.6));
+    }
+    .hero-image-sparkle.s1 { top: 12%; right: -8px; animation: sparkle 3s ease-in-out 0.5s infinite; }
+    .hero-image-sparkle.s2 { bottom: 18%; left: -12px; animation: sparkle 3s ease-in-out 1.5s infinite; font-size: 18px; }
+    .hero-image-sparkle.s3 { top: 50%; right: -20px; animation: sparkle 4s ease-in-out 2.5s infinite; font-size: 14px; }
+    .hero-image-seal {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: var(--white);
+      box-shadow: 0 12px 36px rgba(28,23,16,0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+      animation: float 4s ease-in-out 1s infinite;
+      border: 1px solid rgba(192,154,85,0.20);
+    }
+    .hero-image-seal-inner {
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      color: var(--white);
+      text-align: center;
+    }
+    .hero-image-seal-num { font-size: 22px; font-weight: 900; letter-spacing: -1px; line-height: 1; }
+    .hero-image-seal-label { font-size: 8px; font-weight: 700; letter-spacing: 1.5px; margin-top: 3px; text-transform: uppercase; }
+    .hero-badge {
+      position: absolute;
+      bottom: 28px;
+      left: -20px;
+      background: var(--white);
+      border-radius: 100px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: var(--shadow-md);
+      z-index: 2;
+      white-space: nowrap;
+      animation: float 3s ease-in-out 1.2s infinite;
+    }
+    .hero-badge-star { color: #F59E0B; font-size: 15px; letter-spacing: 2px; }
+    .hero-badge-text { font-size: 13px; font-weight: 700; color: var(--text); }
+    .hero-badge-sub  { font-size: 11px; color: var(--text-muted); }
+    .hero-badge2 {
+      position: absolute;
+      top: 40px;
+      right: -20px;
+      background: var(--gold);
+      border-radius: 16px;
+      padding: 12px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 8px 24px rgba(192,154,85,0.40);
+      z-index: 2;
+      animation: float 3.5s ease-in-out 0.8s infinite;
+    }
+    .hero-badge2-num { font-size: 22px; font-weight: 900; color: var(--white); line-height: 1; }
+    .hero-badge2-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-top: 2px; }
+
+    /* ─── STATS BAR ─── */
+    .stats-bar {
+      background: var(--dark);
+      padding: 40px 0;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+    }
+    .stat-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 50%;
+      transform: translateY(-50%);
+      height: 36px; width: 1px;
+      background: rgba(192,154,85,0.25);
+    }
+    .stat-value {
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      margin-top: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── SECTION SHARED ─── */
+    .section { padding: 100px 0; }
+    .section-alt { background: var(--gold-pale); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .section-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .section-h2 {
+      font-size: clamp(34px, 4vw, 52px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      line-height: 1.08;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 540px;
+    }
+    .section-head { margin-bottom: 60px; }
+    .section-head.centered { text-align: center; }
+    .section-head.centered .section-sub { margin: 0 auto; }
+
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+    .services-grid .service-card.hidden { display: none; }
+    .services-grid.expanded .service-card.hidden { display: block; animation: fadeUp 0.5s ease both; }
+    .services-grid.expanded .service-card.hidden:nth-child(7) { animation-delay: 0.05s; }
+    .services-grid.expanded .service-card.hidden:nth-child(8) { animation-delay: 0.10s; }
+    .services-grid.expanded .service-card.hidden:nth-child(9) { animation-delay: 0.15s; }
+    .services-grid.expanded .service-card.hidden:nth-child(10) { animation-delay: 0.20s; }
+    .services-grid.expanded .service-card.hidden:nth-child(11) { animation-delay: 0.25s; }
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .services-grid .service-card.hide-mobile { display: none; }
+      .services-grid.expanded .service-card.hide-mobile { display: block; }
+    }
+    .services-toggle-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      margin-top: 36px;
+    }
+    .services-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--white);
+      border: 2px solid var(--gold-border);
+      color: var(--gold-deep);
+      padding: 13px 26px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.25s, border-color 0.25s, transform 0.2s, color 0.25s;
+    }
+    .services-toggle:hover {
+      background: var(--gold-pale);
+      border-color: var(--gold);
+      transform: scale(1.02);
+    }
+    .services-toggle .arrow { transition: transform 0.4s ease; display: inline-block; }
+    .services-toggle.open .arrow { transform: rotate(180deg); }
+    .services-toggle .label-show { display: inline; }
+    .services-toggle .label-hide { display: none; }
+    .services-toggle.open .label-show { display: none; }
+    .services-toggle.open .label-hide { display: inline; }
+
+    /* CTA bar después de servicios */
+    .services-cta-bar {
+      margin-top: 28px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, var(--gold-pale), rgba(255,255,255,0.5));
+      border: 1px solid var(--gold-border);
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .services-cta-bar-text {
+      flex: 1;
+      min-width: 240px;
+    }
+    .services-cta-bar-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+    .services-cta-bar-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.5;
+    }
+    .services-cta-bar-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 768px) {
+      .services-cta-bar { padding: 24px; gap: 18px; }
+      .services-cta-bar-buttons { width: 100%; }
+      .services-cta-bar-buttons > * { flex: 1; justify-content: center; }
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gold-border);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-top-color 0.3s;
+      border-top: 3px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 120px; height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,154,85,0.08), transparent);
+      transition: transform 0.5s ease;
+    }
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 60px rgba(155,122,48,0.18);
+      border-top-color: var(--gold);
+      background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,242,232,0.6));
+      backdrop-filter: blur(12px);
+    }
+    .service-card:hover::before { transform: scale(2); }
+    .service-icon {
+      width: 52px; height: 52px;
+      background: rgba(192,154,85,0.10);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .service-icon svg { width: 24px; height: 24px; color: var(--gold-deep); }
+    .service-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── FEATURED SERVICE BANNER ─── */
+    .featured-service {
+      background: linear-gradient(135deg, var(--dark) 0%, #2C2214 100%);
+      border-radius: 24px;
+      padding: 52px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .featured-service::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(192,154,85,0.15), transparent 70%);
+      border-radius: 50%;
+    }
+    .featured-service-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .featured-service h3 {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .featured-service p {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .featured-service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--white);
+      padding: 13px 26px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(192,154,85,0.35);
+    }
+    .featured-service-cta:hover { background: var(--gold-deep); transform: scale(1.03); }
+    .featured-service-visual {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .featured-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .featured-step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(192,154,85,0.20);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+    .featured-step-num {
+      width: 28px; height: 28px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .featured-step-text {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.80);
+    }
+
+    /* ─── PACKAGES ─── */
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .package-card {
+      background: var(--white);
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: var(--shadow-sm);
+      border: 1.5px solid var(--gold-border);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      position: relative;
+    }
+    .package-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(155,122,48,0.20);
+      background: linear-gradient(155deg, rgba(255,255,255,0.95), rgba(248,242,232,0.7));
+      backdrop-filter: blur(14px);
+      border-color: var(--gold);
+    }
+    .package-card.featured {
+      border-color: var(--gold);
+      box-shadow: 0 8px 40px rgba(192,154,85,0.16);
+    }
+    .package-card.featured:hover { box-shadow: 0 20px 60px rgba(192,154,85,0.24); }
+    .popular-badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 22px 22px 0 0;
+      white-space: nowrap;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(192,154,85,0.30);
+      z-index: 5;
+      overflow: hidden;
+    }
+    .popular-badge::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -50%;
+      width: 50%; height: 100%;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.30) 50%, transparent 70%);
+      animation: badgeShine 3.5s ease-in-out infinite;
+    }
+    @keyframes badgeShine {
+      0%, 60% { left: -60%; }
+      80%, 100% { left: 110%; }
+    }
+    .package-card.featured { padding-top: 64px; }
+    .package-material {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .package-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 18px;
+      line-height: 1.25;
+    }
+    .package-price {
+      font-size: 34px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -1.5px;
+      margin-bottom: 4px;
+      line-height: 1;
+    }
+    .package-currency {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+    }
+    .package-divider {
+      height: 1px;
+      background: var(--gold-border);
+      margin: 16px 0;
+    }
+    .package-features { list-style: none; margin-bottom: 26px; }
+    .package-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      padding: 5px 0;
+      line-height: 1.45;
+    }
+    .package-features li::before {
+      content: '';
+      display: block;
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      background: rgba(192,154,85,0.12);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath fill='%23C09A55' d='M7 12.5L3.5 9l1-1L7 10.5l6.5-6.5 1 1z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 1px;
+    }
+    .btn-consultar {
+      display: block;
+      text-align: center;
+      background: transparent;
+      color: var(--gold-deep);
+      padding: 12px 20px;
+      border-radius: 100px;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 2px solid var(--gold-border);
+      transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .btn-consultar:hover {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+      transform: scale(1.02);
+    }
+    .package-card.featured .btn-consultar {
+      background: var(--gold);
+      color: var(--white);
+      border-color: var(--gold);
+    }
+    .package-card.featured .btn-consultar:hover { background: var(--gold-deep); border-color: var(--gold-deep); }
+    .packages-row-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .packages-row-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold-border);
+    }
+    /* ─── PACKAGES TABS ─── */
+    .packages-tabs {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--white);
+      border: 1px solid var(--gold-border);
+      border-radius: 100px;
+      padding: 5px;
+      box-shadow: var(--shadow-sm);
+    }
+    .packages-tabs-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 32px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 16px;
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+    .packages-tabs-wrap::-webkit-scrollbar { display: none; }
+    @media (max-width: 768px) {
+      .packages-tabs-wrap { justify-content: flex-start; }
+      .pkg-tab { padding: 10px 18px; font-size: 12px; }
+    }
+    .pkg-tab {
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      transition: color 0.2s, background 0.3s;
+      white-space: nowrap;
+    }
+    .pkg-tab:hover { color: var(--gold-deep); }
+    .pkg-tab.active {
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(192,154,85,0.30);
+    }
+    .pkg-tab-row { display: none; }
+    .pkg-tab-row.active { display: block; animation: fadeUp 0.5s ease forwards; }
+    .pkg-tab-row.active .packages-grid > * { animation: fadeUp 0.6s ease both; }
+    .pkg-tab-row.active .packages-grid > *:nth-child(1) { animation-delay: 0.05s; }
+    .pkg-tab-row.active .packages-grid > *:nth-child(2) { animation-delay: 0.15s; }
+    .pkg-tab-row.active .packages-grid > *:nth-child(3) { animation-delay: 0.25s; }
+
+    /* ─── EQUIPO DE DOCTORES ─── */
+    .team-section {
+      margin-top: 80px;
+    }
+    .team-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    .team-header-left { flex: 1; }
+    .team-header h3 {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .team-header p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      max-width: 460px;
+      line-height: 1.6;
+    }
+    .team-controls {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .team-arrow {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-border);
+      background: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.2s;
+    }
+    .team-arrow:hover { background: var(--gold); border-color: var(--gold); transform: scale(1.05); }
+    .team-arrow:hover svg { color: var(--white); }
+    .team-arrow svg { width: 18px; height: 18px; color: var(--gold-deep); transition: color 0.2s; }
+    .team-arrow:disabled { opacity: 0.4; cursor: not-allowed; }
+    .team-track-wrap {
+      overflow: hidden;
+      position: relative;
+      margin: 0 -8px;
+      padding: 8px;
+    }
+    .team-track {
+      display: flex;
+      gap: 22px;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      will-change: transform;
+    }
+    .doctor-card {
+      flex: 0 0 calc((100% - 44px) / 3);
+      background: var(--white);
+      border: 1px solid var(--gold-border);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+      position: relative;
+    }
+    .doctor-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 60px rgba(155,122,48,0.22);
+      background: linear-gradient(155deg, rgba(255,255,255,0.95), rgba(248,242,232,0.7));
+      backdrop-filter: blur(14px);
+      border-color: var(--gold);
+    }
+    .doctor-card.featured {
+      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(192,154,85,0.18);
+    }
+    .doctor-photo {
+      position: relative;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      background: linear-gradient(135deg, #F2DCB0, #C4A882);
+    }
+    .doctor-photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .doctor-photo-placeholder svg { width: 56px; height: 56px; color: rgba(107,79,14,0.4); }
+    .doctor-photo-placeholder span { font-size: 10px; color: rgba(107,79,14,0.5); letter-spacing: 1.5px; font-weight: 700; }
+    .doctor-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .doctor-photo-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 5px 12px;
+      border-radius: 100px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+    }
+    .doctor-photo-badge.featured-badge {
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: var(--white);
+    }
+    .doctor-info { padding: 22px 24px 24px; }
+    .doctor-name {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.4px;
+      margin-bottom: 4px;
+    }
+    .doctor-role {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gold-deep);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .doctor-bio {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+    .doctor-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--whatsapp);
+      color: var(--white);
+      padding: 10px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, gap 0.2s;
+      box-shadow: 0 4px 14px rgba(37,211,102,0.25);
+    }
+    .doctor-cta:hover { background: #1a9f4a; transform: scale(1.04); gap: 12px; }
+    .doctor-cta svg { width: 14px; height: 14px; fill: currentColor; }
+    .doctor-cta.gold { background: var(--gold); box-shadow: 0 4px 14px rgba(192,154,85,0.30); }
+    .doctor-cta.gold:hover { background: var(--gold-deep); }
+    @media (max-width: 1024px) { .doctor-card { flex: 0 0 calc((100% - 22px) / 2); } }
+    @media (max-width: 640px)  { .doctor-card { flex: 0 0 100%; } }
+
+    /* ─── WHY ─── */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 80px;
+    }
+    .why-image-wrap { position: relative; }
+    .why-image {
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+      border-radius: 28px;
+      box-shadow: var(--shadow-lg);
+      display: block;
+    }
+    .why-image-placeholder {
+      width: 100%;
+      height: 540px;
+      background: linear-gradient(135deg, #EDE0C8, #D4BC96);
+      border-radius: 28px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .why-cert {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--gold-border);
+      text-align: center;
+      min-width: 130px;
+    }
+    .why-cert-icon { font-size: 28px; margin-bottom: 4px; }
+    .why-cert-text { font-size: 12px; font-weight: 700; color: var(--text); }
+    .why-cert-sub { font-size: 10px; color: var(--text-muted); }
+    .why-pillars { display: flex; flex-direction: column; gap: 28px; }
+    .why-pillar { display: flex; gap: 18px; align-items: flex-start; }
+    .why-pillar-icon {
+      width: 46px; height: 46px;
+      background: rgba(192,154,85,0.10);
+      border-radius: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .why-pillar-icon svg { width: 22px; height: 22px; color: var(--gold); }
+    .why-pillar-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .why-pillar-text {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── GALLERY / RESULTADOS ─── */
+    .gallery-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(155,122,48,0.20);
+      margin-bottom: 24px;
+      position: relative;
+      background: var(--dark);
+    }
+    .gallery-hero-side {
+      position: relative;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      background: linear-gradient(135deg, #2A2018 0%, #1C1710 100%);
+    }
+    .gallery-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+    .gallery-hero-side:hover .gallery-hero-img { transform: scale(1.05); }
+    .gallery-hero-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      background: linear-gradient(135deg, #6B5C42 0%, #3F3525 100%);
+    }
+    .gallery-hero-placeholder svg { width: 56px; height: 56px; opacity: 0.4; color: var(--gold); }
+    .gallery-hero-placeholder span { font-size: 11px; color: var(--gold); opacity: 0.7; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
+    .gallery-hero-label {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 100px;
+      backdrop-filter: blur(10px);
+      z-index: 2;
+    }
+    .gallery-hero-label.antes {
+      background: rgba(28,23,16,0.65);
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.20);
+    }
+    .gallery-hero-label.despues {
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(192,154,85,0.4);
+    }
+    .gallery-hero-divider {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px; height: 80px;
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.40);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--gold-deep);
+      letter-spacing: 1px;
+    }
+    .gallery-hero-divider::before {
+      content: '✦';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 22px;
+      color: var(--gold);
+    }
+    .gallery-hero-caption {
+      grid-column: 1 / -1;
+      background: var(--dark);
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .gallery-hero-caption-text {
+      flex: 1;
+      min-width: 240px;
+    }
+    .gallery-hero-caption-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 4px;
+      letter-spacing: -0.3px;
+    }
+    .gallery-hero-caption-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+    }
+    .gallery-hero-caption-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(192,154,85,0.15);
+      border: 1px solid rgba(192,154,85,0.35);
+      color: var(--gold);
+      padding: 9px 18px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s, gap 0.2s;
+    }
+    .gallery-hero-caption-cta:hover { background: var(--gold); color: var(--white); border-color: var(--gold); gap: 10px; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .gallery-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      aspect-ratio: 1/1;
+    }
+    .gallery-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 20px 50px rgba(155,122,48,0.20); }
+    .gallery-img {
+      width: 100%;
+      height: 100%;
+      min-height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .gallery-card:hover .gallery-img { transform: scale(1.05); }
+    .gallery-placeholder {
+      width: 100%;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #EDE0C8 0%, #D4BC96 50%, #C9B080 100%);
+    }
+    .gallery-card:first-child .gallery-placeholder { min-height: 460px; }
+    .gallery-placeholder-icon { font-size: 36px; opacity: 0.5; }
+    .gallery-placeholder-text {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(139,105,20,0.6);
+    }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(28,23,16,0.85) 0%, rgba(28,23,16,0.20) 50%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+    }
+    .gallery-card:hover .gallery-overlay { opacity: 1; }
+    .gallery-label {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .gallery-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.70);
+    }
+    .gallery-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+    .gallery-bottom-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .gallery-row-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .gallery-row-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .gallery-row-placeholder {
+      height: 160px;
+      background: linear-gradient(135deg, #EDE0C8, #D4BC96);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-row-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+    .gallery-row-info {
+      background: var(--white);
+      padding: 14px 18px;
+      border: 1px solid var(--gold-border);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+    }
+    .gallery-row-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .gallery-row-sub  { font-size: 11.5px; color: var(--text-muted); }
+    .gallery-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 28px;
+      border: 1px solid var(--gold-border);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .testimonial-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(155,122,48,0.18);
+      background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(248,242,232,0.6));
+      backdrop-filter: blur(12px);
+      border-color: var(--gold);
+    }
+    .testimonial-stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 14px; }
+    .testimonial-text {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .testimonial-name { font-size: 13px; font-weight: 700; color: var(--text); }
+    .testimonial-role { font-size: 11px; color: var(--text-muted); }
+
+    /* ─── SOFIA CTA ─── */
+    .sofia-cta {
+      background: var(--dark);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .sofia-cta::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(192,154,85,0.10) 0%, transparent 65%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .sofia-cta-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 32px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .sofia-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .sofia-tag::before, .sofia-tag::after {
+      content: '—';
+      color: rgba(192,154,85,0.4);
+    }
+    .sofia-cta h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      color: var(--white);
+      margin-bottom: 16px;
+      line-height: 1.1;
+    }
+    .sofia-cta h2 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .sofia-cta p {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.60);
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+    .btn-whatsapp-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--whatsapp);
+      color: var(--white);
+      padding: 17px 36px;
+      border-radius: 100px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .btn-whatsapp-large:hover {
+      background: #1da954;
+      transform: scale(1.03);
+      box-shadow: 0 8px 40px rgba(37,211,102,0.45);
+      animation: none;
+    }
+    .sofia-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── LOCATION ─── */
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .location-info-item {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .location-info-icon {
+      width: 40px; height: 40px;
+      background: rgba(192,154,85,0.10);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .location-info-icon svg { width: 18px; height: 18px; color: var(--gold); }
+    .location-info-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+    .location-info-value {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .location-info-value a { color: var(--gold-deep); text-decoration: none; }
+    .location-info-value a:hover { text-decoration: underline; }
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 6px; }
+    .hours-table td {
+      font-size: 13px;
+      padding: 5px 0;
+      color: var(--text-muted);
+      vertical-align: top;
+    }
+    .hours-table td:first-child {
+      font-weight: 700;
+      color: var(--text);
+      width: 160px;
+    }
+    .map-embed {
+      width: 100%;
+      height: 420px;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--gold-border);
+    }
+    .map-embed iframe { width: 100%; height: 100%; border: none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #100E09;
+      padding: 60px 0 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(192,154,85,0.12);
+    }
+    .footer-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .footer-logo-name {
+      font-family: 'Lato', sans-serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.5px;
+    }
+    .footer-logo-name em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .footer-tagline {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.40);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .footer-col-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      text-decoration: none;
+    }
+    .footer-social a:hover { background: var(--gold); }
+    .footer-social svg { width: 18px; height: 18px; fill: rgba(255,255,255,0.65); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy { font-size: 11.5px; color: rgba(255,255,255,0.25); }
+
+    /* ─── CINEMATIC SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px) scale(0.97);
+      filter: blur(6px);
+      transition:
+        opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+        filter 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform, filter;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+    .reveal-d1 { transition-delay: 0.12s; }
+    .reveal-d2 { transition-delay: 0.24s; }
+    .reveal-d3 { transition-delay: 0.36s; }
+    .reveal-d4 { transition-delay: 0.48s; }
+    .reveal-d5 { transition-delay: 0.60s; }
+
+    /* ─── SCROLL PROGRESS BAR ─── */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 2px;
+      width: 0%;
+      background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, #F2D88E 50%, var(--gold) 70%, transparent 100%);
+      z-index: 999;
+      transition: width 0.1s linear;
+      box-shadow: 0 0 12px rgba(192,154,85,0.65);
+      pointer-events: none;
+    }
+
+    /* ─── SCROLL COMPANION ORB ─── */
+    .scroll-orb-wrap {
+      position: fixed;
+      top: 0; right: 18px;
+      bottom: 0;
+      width: 4px;
+      pointer-events: none;
+      z-index: 50;
+    }
+    .scroll-orb-track {
+      position: absolute;
+      inset: 80px 0 80px 0;
+      width: 1px;
+      left: 1.5px;
+      background: linear-gradient(180deg, transparent 0%, rgba(192,154,85,0.18) 15%, rgba(192,154,85,0.18) 85%, transparent 100%);
+    }
+    .scroll-orb {
+      position: absolute;
+      top: 80px;
+      left: -7px;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #FFFFFF, #F2D88E 30%, var(--gold) 60%, var(--gold-deep) 100%);
+      box-shadow:
+        0 0 12px rgba(192,154,85,0.65),
+        0 0 24px rgba(192,154,85,0.35),
+        0 0 0 1px rgba(255,255,255,0.30) inset;
+      will-change: transform;
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .scroll-orb::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(192,154,85,0.30), transparent 65%);
+      pointer-events: none;
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .scroll-orb-trail {
+      position: absolute;
+      top: 80px;
+      left: 0;
+      width: 4px;
+      height: 60px;
+      background: linear-gradient(to bottom, transparent, rgba(192,154,85,0.45), transparent);
+      filter: blur(2px);
+      will-change: transform, height;
+      pointer-events: none;
+    }
+    @media (max-width: 768px) {
+      .scroll-orb-wrap { display: none; }
+    }
+
+    /* ─── PARALLAX HELPERS ─── */
+    .parallax-slow,
+    .parallax-medium {
+      will-change: transform;
+    }
+
+    /* ─── CURSOR TRAIL CANVAS ─── */
+    #cursorTrail {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 49;
+      mix-blend-mode: screen;
+    }
+    @media (max-width: 1024px), (pointer: coarse) {
+      #cursorTrail { display: none; }
+    }
+
+    /* ─── CINEMATIC ZOOM IMAGES ─── */
+    .zoom-on-scroll {
+      overflow: hidden;
+      position: relative;
+    }
+    .zoom-on-scroll img,
+    .zoom-on-scroll .gallery-placeholder,
+    .zoom-on-scroll .gallery-hero-placeholder {
+      transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: scale(1.08);
+    }
+    .zoom-on-scroll.visible img,
+    .zoom-on-scroll.visible .gallery-placeholder,
+    .zoom-on-scroll.visible .gallery-hero-placeholder {
+      transform: scale(1);
+    }
+
+    /* ─── TEXT WORD-BY-WORD REVEAL ─── */
+    .text-reveal .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(28px);
+      filter: blur(4px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .text-reveal.visible .word {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    /* ─── EMERGENCY BAR ─── */
+    .emergency-bar {
+      background: var(--dark);
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(192,154,85,0.15);
+    }
+    .emergency-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .emergency-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .emergency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.30);
+      color: #FCA5A5;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .emergency-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #EF4444;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .emergency-bar-text {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.55);
+    }
+    .emergency-bar-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--whatsapp);
+      color: var(--white) !important;
+      padding: 5px 12px 5px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 10px rgba(37,211,102,0.30);
+      margin-left: 4px;
+      white-space: nowrap;
+    }
+    .emergency-bar-cta:hover {
+      background: #1da954;
+      transform: scale(1.04);
+      box-shadow: 0 4px 16px rgba(37,211,102,0.45);
+    }
+    .emergency-bar-cta-icon {
+      width: 18px; height: 18px;
+      background: rgba(255,255,255,0.20);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .emergency-bar-cta-icon svg { width: 11px; height: 11px; fill: var(--white); }
+    .emergency-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .emergency-bar-right span {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.3px;
+    }
+    .sofia-live-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .sofia-live-dot::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #4ADE80;
+      border-radius: 50%;
+      box-shadow: 0 0 6px rgba(74,222,128,0.8);
+    }
+    @media (max-width: 768px) {
+      .emergency-bar-right { display: none; }
+      .emergency-bar-left { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    /* ─── TRUST STRIP ─── */
+    .trust-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--gold-border);
+    }
+    .trust-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 20px;
+      border-right: 1px solid var(--gold-border);
+    }
+    .trust-item:last-child { border-right: none; }
+    .trust-icon {
+      width: 44px; height: 44px;
+      background: rgba(192,154,85,0.10);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .trust-icon svg { width: 22px; height: 22px; color: var(--gold-deep); }
+    .trust-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+      line-height: 1.3;
+    }
+    .trust-desc {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    @media (max-width: 1024px) {
+      .trust-strip-inner { grid-template-columns: repeat(2, 1fr); }
+      .trust-item:nth-child(2) { border-right: none; }
+      .trust-item:nth-child(3) { border-top: 1px solid var(--gold-border); }
+      .trust-item:nth-child(4) { border-top: 1px solid var(--gold-border); border-right: none; }
+    }
+    @media (max-width: 640px) {
+      .trust-strip-inner { grid-template-columns: 1fr; }
+      .trust-item { border-right: none; border-top: 1px solid var(--gold-border); padding: 16px 20px; }
+      .trust-item:first-child { border-top: none; }
+    }
+
+    /* ─── DISPONIBILIDAD · AGENDAMIENTO PREMIUM ─── */
+    .disponibilidad {
+      background: linear-gradient(180deg, var(--dark) 0%, #1A140C 100%);
+      padding: 56px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .disponibilidad::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 200px;
+      background: radial-gradient(ellipse at center, rgba(192,154,85,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .disponibilidad-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .disponibilidad-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .disponibilidad-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .disponibilidad-tag::before, .disponibilidad-tag::after {
+      content: '';
+      width: 20px; height: 1px;
+      background: rgba(192,154,85,0.35);
+    }
+    .disponibilidad h2 {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .disponibilidad h2 em { font-style: normal; color: var(--gold); }
+    .disponibilidad-sub {
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.50);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.65;
+    }
+    .disponibilidad-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .dispo-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(192,154,85,0.15);
+      border-radius: 16px;
+      padding: 18px 22px;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .dispo-card:hover {
+      background: rgba(192,154,85,0.06);
+      border-color: rgba(192,154,85,0.30);
+      transform: translateY(-2px);
+    }
+    .dispo-card-icon {
+      width: 44px; height: 44px;
+      background: rgba(192,154,85,0.12);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .dispo-card-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; }
+    .dispo-card-content {
+      flex: 1;
+      min-width: 0;
+    }
+    .dispo-card-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 3px;
+      line-height: 1.25;
+    }
+    .dispo-card-text {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+    .dispo-card-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--gold);
+      color: var(--white) !important;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.2s, gap 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(192,154,85,0.28);
+    }
+    .dispo-card-cta:hover {
+      background: var(--gold-deep);
+      transform: scale(1.04);
+      box-shadow: 0 6px 20px rgba(192,154,85,0.40);
+      gap: 9px;
+    }
+    @media (max-width: 768px) {
+      .disponibilidad { padding: 48px 0; }
+      .dispo-card { flex-wrap: wrap; padding: 16px 18px; gap: 14px; }
+      .dispo-card-content { flex: 1 1 calc(100% - 62px); }
+      .dispo-card-cta { width: 100%; justify-content: center; padding: 11px 16px; }
+    }
+
+    /* ─── PROCESS ─── */
+    .process {
+      background: var(--gold-pale);
+      padding: 100px 0;
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .process-step {
+      display: flex;
+      gap: 24px;
+      position: relative;
+      padding-bottom: 36px;
+    }
+    .process-step:last-child { padding-bottom: 0; }
+    .process-step-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .process-step-num {
+      width: 42px; height: 42px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(192,154,85,0.30);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step-line {
+      width: 2px;
+      flex: 1;
+      background: linear-gradient(to bottom, var(--gold-border), transparent);
+      margin-top: 8px;
+    }
+    .process-step:last-child .process-step-line { display: none; }
+    .process-step-content { padding-top: 8px; }
+    .process-step-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .process-step-text {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .process-promise {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px;
+      border: 1px solid var(--gold-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .process-promise-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-deep);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .process-promise h3 {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .process-promise p {
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .process-promise-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .process-promise-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text);
+    }
+    .process-promise-features li::before {
+      content: '';
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      background: rgba(192,154,85,0.12);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath fill='%23C09A55' d='M8 13.5L4.5 10l1-1L8 11.5l6.5-6.5 1 1z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    .process-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 1024px) { .process-grid { grid-template-columns: 1fr; gap: 48px; } }
+    @media (max-width: 768px) { .process { padding: 64px 0; } }
+
+    /* ─── CHAT WIDGET ─── */
+    .chat-launcher {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 12px;
+    }
+    .chat-bubble {
+      background: var(--white);
+      border: 1px solid var(--gold-border);
+      border-radius: 20px;
+      padding: 8px;
+      box-shadow: 0 12px 48px rgba(0,0,0,0.14);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 220px;
+      opacity: 0;
+      transform: translateY(16px) scale(0.94);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .chat-bubble.open {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      pointer-events: all;
+    }
+    .chat-bubble-header {
+      padding: 10px 12px 8px;
+      border-bottom: 1px solid var(--gold-border);
+      margin-bottom: 2px;
+    }
+    .chat-bubble-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .chat-option {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: background 0.2s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+    }
+    .chat-option:hover { background: var(--gold-pale); }
+    .chat-option-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .chat-option-icon svg { width: 18px; height: 18px; }
+    .chat-option-icon.sofia { background: rgba(192,154,85,0.12); }
+    .chat-option-icon.sofia svg { color: var(--gold-deep); }
+    .chat-option-icon.wa    { background: rgba(37,211,102,0.12); }
+    .chat-option-icon.wa svg { color: #1a9f4a; fill: #1a9f4a; }
+    .chat-option-icon.cita  { background: rgba(59,130,246,0.10); }
+    .chat-option-icon.cita svg { color: #3B82F6; }
+    .chat-option-text { font-size: 13.5px; font-weight: 700; color: var(--text); }
+    .chat-option-sub  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+    .chat-trigger {
+      width: 60px; height: 60px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(192,154,85,0.50);
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      animation: pulse 3.5s ease-in-out infinite;
+      position: relative;
+    }
+    .chat-trigger:hover {
+      transform: scale(1.08);
+      box-shadow: 0 10px 36px rgba(192,154,85,0.60);
+      animation: none;
+    }
+    .chat-trigger svg { width: 26px; height: 26px; fill: var(--white); transition: transform 0.3s; }
+    .chat-trigger.active { background: var(--dark); animation: none; }
+    .chat-trigger.active svg.icon-chat { display: none; }
+    .chat-trigger .icon-close { display: none; }
+    .chat-trigger.active .icon-close { display: block; }
+    .chat-trigger.active .icon-chat { display: none; }
+    .chat-trigger .icon-close { fill: none; stroke: var(--white); stroke-width: 2.5; stroke-linecap: round; }
+    .chat-notif {
+      position: absolute;
+      top: -2px; right: -2px;
+      width: 18px; height: 18px;
+      background: #EF4444;
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      font-size: 9px;
+      font-weight: 900;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (max-width: 768px) {
+      .chat-launcher { bottom: 20px; right: 20px; }
+      .chat-trigger { width: 54px; height: 54px; }
+      .chat-bubble { min-width: 200px; }
+    }
+
+    /* ─── WHATSAPP FLOAT ─── (hidden — replaced by chat widget) */
+    .wa-float { display: none; }
+
+    /* ─── BRAND WATERMARKS ─── */
+    .nb-watermark {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      animation: fadeIn 1.4s ease 1.2s forwards;
+    }
+    .nb-watermark.hero-bg {
+      bottom: -80px;
+      right: -100px;
+      width: 360px;
+      opacity: 0.05;
+    }
+    .nb-watermark.hero-corner {
+      top: -34px;
+      right: -34px;
+      width: 130px;
+      opacity: 0.85;
+      filter: drop-shadow(0 8px 24px rgba(28,23,16,0.18));
+      z-index: 4;
+      transform: rotate(-8deg);
+      animation: fadeIn 1.4s ease 1.2s forwards, float 5s ease-in-out 2s infinite;
+    }
+    .dentalia-watermark {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.08;
+      filter: grayscale(20%);
+    }
+    .dentalia-floating {
+      position: absolute;
+      width: 72px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.10));
+      animation: float 4s ease-in-out infinite;
+    }
+    .dentalia-floating.tr { top: 24px; right: 32px; animation-delay: 0.5s; }
+    .dentalia-floating.bl { bottom: 32px; left: 32px; animation-delay: 1.5s; }
+
+    /* ─── STORY BUTTON (Apple-style glass FAB con scroll-driven shine) ─── */
+    .story-fab {
+      --shine: 0;
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 250;
+      background:
+        linear-gradient(135deg,
+          rgba(192,154,85, calc(0.92 + var(--shine) * 0.05)) 0%,
+          rgba(155,122,48, calc(0.95 - var(--shine) * 0.10)) 100%);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255, calc(0.18 + var(--shine) * 0.20));
+      padding: 13px 20px 13px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      letter-spacing: 0.3px;
+      cursor: pointer;
+      backdrop-filter: blur(16px) saturate(180%);
+      -webkit-backdrop-filter: blur(16px) saturate(180%);
+      box-shadow:
+        0 8px 28px rgba(155,122,48, calc(0.35 + var(--shine) * 0.25)),
+        0 0 calc(0px + var(--shine) * 40px) rgba(242,216,142, calc(var(--shine) * 0.55)),
+        inset 0 1px 0 rgba(255,255,255, calc(0.18 + var(--shine) * 0.30)),
+        inset 0 -1px 0 rgba(0,0,0, 0.10);
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      transition: transform 0.25s ease, padding 0.3s ease, background 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+      animation: fadeUp 0.7s ease 2s both, pulse 4s ease-in-out 4s infinite;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .story-fab::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 100px;
+      background: linear-gradient(120deg,
+        transparent 25%,
+        rgba(255,255,255, calc(0.18 + var(--shine) * 0.42)) 50%,
+        transparent 75%);
+      background-size: 220% 100%;
+      background-position: calc(75% - var(--shine) * 100%) center;
+      pointer-events: none;
+      transition: background-position 0.8s cubic-bezier(0.22,1,0.36,1), background 0.5s ease;
+      mix-blend-mode: overlay;
+      z-index: 1;
+    }
+    .story-fab::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      border-radius: 100px 100px 200px 200px / 100px 100px 100px 100px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255, calc(0.20 + var(--shine) * 0.20)) 0%,
+        rgba(255,255,255, 0) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .story-fab:hover {
+      transform: scale(1.06) translateY(-2px);
+      padding: 13px 24px 13px 16px;
+      box-shadow:
+        0 14px 40px rgba(155,122,48, 0.55),
+        0 0 60px rgba(242,216,142, 0.50),
+        inset 0 1px 0 rgba(255,255,255, 0.45),
+        inset 0 -1px 0 rgba(0,0,0, 0.10);
+      animation: fadeUp 0.7s ease 2s both;
+    }
+    .story-fab > * { position: relative; z-index: 2; }
+    .story-fab-icon {
+      width: 26px; height: 26px;
+      background: rgba(255,255,255, calc(0.22 + var(--shine) * 0.10));
+      border: 1px solid rgba(255,255,255, calc(0.25 + var(--shine) * 0.20));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.30);
+    }
+    .story-fab-text { line-height: 1.2; text-align: left; }
+    .story-fab-text small {
+      display: block;
+      font-size: 9.5px;
+      opacity: 0.85;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 1px;
+    }
+    .story-fab-text .fab-line {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+    .story-fab-text .fab-line b {
+      font-weight: 900;
+    }
+    @media (max-width: 768px) {
+      .story-fab { bottom: 90px; left: 16px; padding: 11px 18px 11px 12px; }
+      .story-fab-text .fab-line { font-size: 11px; }
+      .story-fab-text small { font-size: 8.5px; }
+      .story-fab-icon { width: 24px; height: 24px; font-size: 12px; }
+    }
+
+    /* ─── STORY MODAL ─── */
+    .story-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(28,23,16,0.65);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 400;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .story-overlay.open { opacity: 1; pointer-events: all; }
+    .story-modal {
+      background: var(--cream);
+      border-radius: 32px;
+      max-width: 760px;
+      width: 100%;
+      max-height: 92vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.94) translateY(20px);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.40);
+    }
+    .story-overlay.open .story-modal { transform: scale(1) translateY(0); }
+    .story-modal-header {
+      background: linear-gradient(135deg, var(--dark) 0%, #2A2018 100%);
+      padding: 40px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .story-modal-header::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(192,154,85,0.25), transparent 65%);
+      border-radius: 50%;
+    }
+    .story-modal-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(192,154,85,0.15);
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(192,154,85,0.35);
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .story-modal-title {
+      font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .story-modal-title em { font-style: normal; color: var(--gold); }
+    .story-modal-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+      max-width: 540px;
+    }
+    .story-modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 50%;
+      color: var(--white);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+      z-index: 5;
+    }
+    .story-modal-close:hover { background: rgba(255,255,255,0.18); transform: rotate(90deg); }
+    .story-modal-close svg { width: 16px; height: 16px; }
+    .story-transition {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      background: var(--white);
+      margin: -50px 32px 0;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.10);
+      border: 1px solid var(--gold-border);
+      position: relative;
+      z-index: 2;
+    }
+    .story-brand {
+      text-align: center;
+    }
+    .story-brand-logo-wrap {
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+    .story-brand-logo-wrap img { max-height: 100%; max-width: 100%; }
+    .story-brand-logo-fallback {
+      font-family: 'Lato', sans-serif;
+      font-weight: 900;
+      font-size: 26px;
+      letter-spacing: -1px;
+    }
+    .story-brand.old .story-brand-logo-fallback { color: #6B3F8E; }
+    .story-brand.new .story-brand-logo-fallback { color: var(--gold-deep); font-family: 'Great Vibes', cursive; font-size: 32px; }
+    .story-brand-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .story-brand.old .story-brand-label { color: #9061B5; }
+    .story-brand.new .story-brand-label { color: var(--gold); }
+    .story-brand-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .story-arrow {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(192,154,85,0.40);
+      animation: pulse 3s ease-in-out infinite;
+    }
+    .story-arrow svg { width: 22px; height: 22px; color: var(--white); }
+    .story-modal-body {
+      padding: 36px 40px 40px;
+    }
+    .story-section { margin-bottom: 28px; }
+    .story-section:last-child { margin-bottom: 0; }
+    .story-section h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .story-section h4::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--gold);
+    }
+    .story-section p {
+      font-size: 14.5px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .story-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px 24px;
+      margin-top: 8px;
+    }
+    .story-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--text);
+      line-height: 1.55;
+    }
+    .story-list li::before {
+      content: '';
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      background: rgba(192,154,85,0.12);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath fill='%23C09A55' d='M7 12.5L3.5 9l1-1L7 10.5l6.5-6.5 1 1z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 1px;
+    }
+    .story-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+      padding-top: 28px;
+      border-top: 1px solid var(--gold-border);
+    }
+    @media (max-width: 640px) {
+      .story-modal-header { padding: 32px 24px 70px; }
+      .story-transition { grid-template-columns: 1fr; gap: 18px; margin: -50px 16px 0; padding: 24px; }
+      .story-arrow { transform: rotate(90deg); width: 42px; height: 42px; }
+      .story-modal-body { padding: 28px 24px 32px; }
+      .story-list { grid-template-columns: 1fr; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-image-wrap { order: -1; }
+      .hero-image, .hero-image-placeholder { max-width: 100%; height: 400px; }
+      .hero-badge { left: 20px; bottom: 20px; }
+      .hero-badge2 { right: 20px; top: 20px; }
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+      .why-image, .why-image-placeholder { height: 380px; }
+      .location-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .featured-service { grid-template-columns: 1fr; gap: 32px; padding: 36px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--cream);
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        z-index: 99;
+      }
+      .nav-links.open a { font-size: 22px; font-weight: 700; }
+      .nav-hamburger { display: flex; z-index: 100; }
+      .nav-cta { font-size: 12px !important; padding: 9px 18px; }
+      .hero { padding: 100px 0 60px; }
+      .hero h1 { font-size: 44px; letter-spacing: -1.5px; }
+      .hero-image, .hero-image-placeholder { height: 300px; border-radius: 22px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .stat-item:not(:last-child)::after { display: none; }
+      .stat-item:nth-child(1), .stat-item:nth-child(2) {
+        border-bottom: 1px solid rgba(192,154,85,0.15);
+        padding-bottom: 24px;
+      }
+      .services-grid { grid-template-columns: 1fr; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-card:first-child { grid-row: span 1; }
+      .gallery-bottom-row { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .section { padding: 64px 0; }
+      .container { padding: 0 20px; }
+      .nav-inner { padding: 0 20px; }
+      .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── CHAT WIDGET ─── -->
+  <div class="chat-launcher" id="chatLauncher">
+    <div class="chat-bubble" id="chatBubble">
+      <div class="chat-bubble-header">
+        <div class="chat-bubble-title">¿Cómo podemos ayudarte?</div>
+      </div>
+      <a href="#" onclick="openSofia(event)" class="chat-option">
+        <div class="chat-option-icon sofia">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="chat-option-text">Chat con Sofia AI</div>
+          <div class="chat-option-sub">Respuesta inmediata · 24/7</div>
+        </div>
+      </a>
+      <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="chat-option">
+        <div class="chat-option-icon wa">
+          <svg viewBox="0 0 24 24" fill="#1a9f4a"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+        </div>
+        <div>
+          <div class="chat-option-text">Hablar por WhatsApp</div>
+          <div class="chat-option-sub">Reserva ya · Consulta por dolor</div>
+        </div>
+      </a>
+      <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20cita%20de%20valoración" target="_blank" rel="noopener" class="chat-option">
+        <div class="chat-option-icon cita">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="chat-option-text">Agendar una cita</div>
+          <div class="chat-option-sub">Valoración inicial $15.000 COP</div>
+        </div>
+      </a>
+    </div>
+    <button class="chat-trigger" id="chatTrigger" onclick="toggleChat()" aria-label="Abrir chat">
+      <svg class="icon-chat" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      <div class="chat-notif">1</div>
+    </button>
+  </div>
+
+  <!-- ─── CURSOR TRAIL CANVAS ─── -->
+  <canvas id="cursorTrail" aria-hidden="true"></canvas>
+
+  <!-- ─── SCROLL PROGRESS BAR ─── -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ─── SCROLL COMPANION ORB ─── -->
+  <div class="scroll-orb-wrap" aria-hidden="true">
+    <div class="scroll-orb-track"></div>
+    <div class="scroll-orb-trail" id="scrollOrbTrail"></div>
+    <div class="scroll-orb" id="scrollOrb"></div>
+  </div>
+
+  <!-- ─── STORY FAB (botón flotante de transición de marca) ─── -->
+  <button class="story-fab" id="storyFab" onclick="openStory()" aria-label="Conoce la historia">
+    <span class="story-fab-icon">?</span>
+    <span class="story-fab-text">
+      <small>¿Sabías que...?</small>
+      <span class="fab-line"><b>Dentalia</b> ahora es <b>Dra. Natalia Barrantes</b></span>
+    </span>
+  </button>
+
+  <!-- ─── STORY MODAL ─── -->
+  <div class="story-overlay" id="storyOverlay" onclick="if(event.target===this) closeStory()">
+    <div class="story-modal">
+      <button class="story-modal-close" onclick="closeStory()" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="story-modal-header">
+        <span class="story-modal-tag">Nuestra historia</span>
+        <h2 class="story-modal-title">De Dentalia a<br/><em>Dra. Natalia Barrantes</em></h2>
+        <p class="story-modal-sub">Una nueva era para la misma clínica que conoces. Mismo consultorio, mismo equipo, misma calidad — con una identidad renovada que refleja quiénes somos hoy.</p>
+      </div>
+
+      <!-- Tarjeta de transición visual -->
+      <div class="story-transition">
+        <div class="story-brand old">
+          <div class="story-brand-logo-wrap">
+            <img src="fotos/logo-dentalia.png" alt="Logo Dentalia" onerror="this.outerHTML='<div class=&quot;story-brand-logo-fallback&quot;>Dentalia</div>'" />
+          </div>
+          <div class="story-brand-label">Antes</div>
+          <div class="story-brand-name">Dentalia</div>
+        </div>
+        <div class="story-arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </div>
+        <div class="story-brand new">
+          <div class="story-brand-logo-wrap">
+            <img src="fotos/logo-nb.png" alt="Logo Dra. Natalia Barrantes" onerror="this.outerHTML='<div class=&quot;story-brand-logo-fallback&quot;>Natalia Barrantes</div>'" />
+          </div>
+          <div class="story-brand-label">Ahora</div>
+          <div class="story-brand-name">Dra. Natalia Barrantes</div>
+        </div>
+      </div>
+
+      <div class="story-modal-body">
+        <div class="story-section">
+          <h4>Por qué cambiamos</h4>
+          <p>Dentalia nació hace varios años con la misión de ofrecer odontología de calidad en Bogotá. Hoy evolucionamos hacia una marca personal que refleja con autenticidad lo que nos hace únicos: el toque humano y especializado de la <strong>Dra. Natalia Barrantes</strong> y su equipo.</p>
+        </div>
+
+        <div class="story-section">
+          <h4>Lo que cambia</h4>
+          <ul class="story-list">
+            <li>Nueva identidad visual con paleta ocre y dorado, transmitiendo calidez y elegancia.</li>
+            <li>Enfoque más cercano: ya no somos solo una clínica, somos un equipo con nombre propio.</li>
+            <li><strong>Sofia AI</strong> es nuestra nueva imagen, nuestra nueva experiencia digital — una decisión corporativa para demostrar la calidad única del servicio humano, ofrecida por los mejores equipos.</li>
+            <li>Énfasis en diseño de sonrisa y especialidades estéticas de alto valor.</li>
+          </ul>
+        </div>
+
+        <div class="story-section">
+          <h4>Lo que se mantiene</h4>
+          <ul class="story-list">
+            <li>El mismo consultorio en la Cra. 112g #86a-05.</li>
+            <li>El mismo equipo de profesionales que ya conoces.</li>
+            <li>Los precios y planes con la misma calidad.</li>
+            <li>El compromiso intacto con tu sonrisa y tu salud bucal.</li>
+          </ul>
+        </div>
+
+        <div class="story-cta-row">
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20que%20evaluen%20mi%20caso" target="_blank" rel="noopener" class="btn-whatsapp glass-hover">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
+            Evaluar mi caso
+          </a>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20cita%20de%20valoración" target="_blank" rel="noopener" class="nav-cta glass-hover" style="display: inline-flex; align-items: center; gap: 8px; padding: 15px 26px; font-size: 15px !important;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/>
+            </svg>
+            Reservar cita
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── EMERGENCY BAR ─── -->
+  <div class="emergency-bar">
+    <div class="emergency-bar-inner">
+      <div class="emergency-bar-left">
+        <span class="emergency-badge">Citas urgentes</span>
+        <span class="emergency-bar-text">¿Dolor agudo? Sofia prioriza tu cita de emergencia ahora.</span>
+        <a href="https://wa.me/573118490623?text=Tengo%20un%20dolor%20dental%20urgente%2C%20necesito%20que%20Sofia%20me%20priorice%20una%20cita" target="_blank" rel="noopener" class="emergency-bar-cta glass-hover">
+          <span class="emergency-bar-cta-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          </span>
+          Escribir a Sofia
+        </a>
+      </div>
+      <div class="emergency-bar-right">
+        <span class="sofia-live-dot">Sofia AI activa ahora</span>
+        <span>·</span>
+        <span>Respuesta en segundos</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── NAV ─── -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <!-- Logo NB · PNG real (con fallback al SVG si no existe el archivo) -->
+        <img class="nav-logo-img" src="fotos/logo-nb.png" alt="Dra. Natalia Barrantes" onerror="this.style.display='none'; document.getElementById('navLogoFallback').style.display='block';" />
+        <svg id="navLogoFallback" class="nav-logo-svg" viewBox="0 0 140 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none;" aria-label="Dra. Natalia Barrantes">
+          <path d="M18 64 C18 60 17 28 22 18 C25 12 32 12 34 18 C36 26 32 38 30 48 C28 56 28 64 32 66" stroke="#1C1710" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M22 18 C28 14 36 18 42 28 C48 38 54 46 60 50" stroke="#1C1710" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M62 50 C58 42 60 22 70 14 C76 10 80 16 78 24 C76 34 70 44 66 52 C64 58 66 62 72 60 C80 58 86 50 88 44" stroke="#1C1710" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M88 44 C96 48 104 52 116 50 C124 49 130 47 134 44 C136 42 136 40 134 39" stroke="#1C1710" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <path d="M132 40 C134 38 136 39 135 41" stroke="#1C1710" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">Dra. Natalia Barrantes</span>
+          <span class="nav-logo-sub">Odontología Integral · <span class="brand-pill-inline">Antes Dentalia</span></span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#servicios" onclick="closeMenu()">Servicios</a></li>
+        <li><a href="#paquetes" onclick="closeMenu()">Paquetes</a></li>
+        <li><a href="#nosotros" onclick="closeMenu()">Nosotros</a></li>
+        <li><a href="#resultados" onclick="closeMenu()">Resultados</a></li>
+        <li><a href="#contacto" onclick="closeMenu()">Contacto</a></li>
+      </ul>
+      <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="nav-cta">Agendar cita</a>
+      <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-blob"></div>
+    <div class="hero-blob-2"></div>
+    <!-- Watermark NB grande de fondo (sutil, decorativo) -->
+    <img class="nb-watermark hero-bg" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
+    <div class="hero-inner">
+      <div class="hero-content">
+        <span class="hero-label">Clínica dental experta · Bogotá</span>
+        <h1>Diseñamos<br/>la <em>sonrisa</em><br/>que cambia<br/>tu vida.</h1>
+        <p class="hero-sub">Clínica dental especializada en diseño de sonrisa en Bogotá. Equipo experto liderado por la <strong style="color:var(--text); font-weight:700;">Dra. Natalia Barrantes</strong> — tecnología premium, atención cercana y resultados que transforman.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="btn-whatsapp glass-hover">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+            Hablar con Sofia
+          </a>
+          <a href="#paquetes" class="btn-ghost glass-hover">Ver paquetes →</a>
+        </div>
+      </div>
+
+      <div class="hero-image-wrap">
+        <div class="hero-image-frame">
+          <div class="hero-image-halo"></div>
+          <div class="hero-image-deco"></div>
+          <div class="hero-image-deco-2"></div>
+          <img class="hero-image" src="fotos/natalia-hero.png" alt="Dra. Natalia Barrantes" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="hero-image-placeholder" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <span>fotos/natalia-hero.png</span>
+          </div>
+          <!-- Watermark NB en esquina superior del retrato -->
+          <img class="nb-watermark hero-corner" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
+          <div class="hero-image-sparkle s1">✦</div>
+          <div class="hero-image-sparkle s2">✧</div>
+          <div class="hero-image-sparkle s3">✦</div>
+          <div class="hero-image-seal">
+            <div class="hero-image-seal-inner">
+              <div class="hero-image-seal-num">6+</div>
+              <div class="hero-image-seal-label">Años</div>
+            </div>
+          </div>
+          <div class="hero-badge">
+            <span class="hero-badge-star">★★★★★</span>
+            <div>
+              <div class="hero-badge-text">5.0 en Google</div>
+              <div class="hero-badge-sub">Reseña verificada</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST STRIP ─── -->
+  <div class="trust-strip">
+    <div class="trust-strip-inner">
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <div>
+          <div class="trust-title">Agenda en cualquier momento</div>
+          <div class="trust-desc">Sofia AI gestiona tu cita 24/7</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11 19.79 19.79 0 01.46 2.29 2 2 0 012.46.11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="trust-title">Urgencias · Cita prioritaria</div>
+          <div class="trust-desc">Sofia gestiona tu turno de emergencia</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </div>
+        <div>
+          <div class="trust-title">Proceso 100% transparente</div>
+          <div class="trust-desc">Precios claros · Sin sorpresas</div>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <div>
+          <div class="trust-title">5.0★ en Google</div>
+          <div class="trust-desc">Reseña verificada · Bogotá</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── STATS BAR ─── -->
+  <div class="stats-bar" style="position:relative; overflow:hidden;">
+    <img class="dentalia-floating tr" src="fotos/logo-dentalia.png" alt="" style="opacity:0.18; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.30));" onerror="this.style.display='none'" />
+    <div class="stats-inner">
+      <div class="stat-item reveal">
+        <div class="stat-value">5.0★</div>
+        <div class="stat-label">Calificación Google</div>
+      </div>
+      <div class="stat-item reveal reveal-d1">
+        <div class="stat-value">6</div>
+        <div class="stat-label">Paquetes de sonrisa</div>
+      </div>
+      <div class="stat-item reveal reveal-d2">
+        <div class="stat-value">24/7</div>
+        <div class="stat-label">Sofia te atiende</div>
+      </div>
+      <div class="stat-item reveal reveal-d3">
+        <div class="stat-value">6+</div>
+        <div class="stat-label">Años de experiencia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── DISPONIBILIDAD 24/7 ─── -->
+  <section class="disponibilidad">
+    <div class="disponibilidad-inner">
+      <div class="disponibilidad-header reveal">
+        <div class="disponibilidad-tag">Agenda</div>
+        <h2>Tu primera consulta,<br/>a un mensaje de <em>distancia</em>.</h2>
+        <p class="disponibilidad-sub">Atención cercana y procesos simples — elige la forma que mejor se adapte a ti.</p>
+      </div>
+      <div class="disponibilidad-cards">
+        <div class="dispo-card reveal reveal-d1">
+          <div class="dispo-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+            </svg>
+          </div>
+          <div class="dispo-card-content">
+            <div class="dispo-card-title">Conversa con Sofia AI</div>
+            <div class="dispo-card-text">Te ayuda a encontrar la mejor opción para tu sonrisa · Disponible 24/7.</div>
+          </div>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener" class="dispo-card-cta glass-hover">Conversar</a>
+        </div>
+        <div class="dispo-card reveal reveal-d2">
+          <div class="dispo-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11 19.79 19.79 0 01.46 2.29 2 2 0 012.46.11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div class="dispo-card-content">
+            <div class="dispo-card-title">Cita prioritaria</div>
+            <div class="dispo-card-text">¿Dolor agudo o fractura? Sofia gestiona tu turno urgente.</div>
+          </div>
+          <a href="https://wa.me/573118490623?text=Tengo%20un%20dolor%20dental%20urgente%2C%20necesito%20que%20Sofia%20me%20priorice%20una%20cita" target="_blank" rel="noopener" class="dispo-card-cta glass-hover">Pedir turno</a>
+        </div>
+        <div class="dispo-card reveal reveal-d3">
+          <div class="dispo-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+          </div>
+          <div class="dispo-card-content">
+            <div class="dispo-card-title">Agenda tu valoración</div>
+            <div class="dispo-card-text">Lun–Vie 8am–6pm · Sáb 9am–2pm · Valoración $15.000 COP.</div>
+          </div>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20cita%20de%20valoración" target="_blank" rel="noopener" class="dispo-card-cta glass-hover">Agendar cita</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SERVICES ─── -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Servicios</span>
+        <h2 class="section-h2">Una clínica completa<br/>para tu <em style="font-style:normal; color:var(--gold);">sonrisa</em>.</h2>
+        <p class="section-sub">Desde una limpieza hasta el diseño de tu sonrisa ideal — un equipo de especialistas que te acompaña en cada paso de tu salud bucal.</p>
+      </div>
+
+      <!-- DISEÑO DE SONRISA destacado -->
+      <div class="featured-service reveal">
+        <div>
+          <span class="featured-service-tag">✦ Nuestro servicio principal</span>
+          <h3>Diseño de Sonrisa<br/>Premium</h3>
+          <p>Carillas de cerámica y resina de alta estética para una transformación completa, natural y duradera. Resultados visibles desde la primera sesión. El tratamiento con mayor impacto en tu vida — y el que menos tiempo toma.</p>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="featured-service-cta glass-hover">
+            Consultar mi caso →
+          </a>
+        </div>
+        <div class="featured-steps">
+          <div class="featured-step">
+            <div class="featured-step-num">1</div>
+            <div class="featured-step-text">Valoración inicial ($15.000) y diagnóstico digital</div>
+          </div>
+          <div class="featured-step">
+            <div class="featured-step-num">2</div>
+            <div class="featured-step-text">Diseño de sonrisa personalizado con preview</div>
+          </div>
+          <div class="featured-step">
+            <div class="featured-step-num">3</div>
+            <div class="featured-step-text">Fabricación con materiales de primera</div>
+          </div>
+          <div class="featured-step">
+            <div class="featured-step-num">4</div>
+            <div class="featured-step-text">Cementación y seguimiento post-tratamiento</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="services-grid" id="servicesGrid">
+        <div class="service-card glass-hover reveal reveal-d1">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
+              <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
+            </svg>
+          </div>
+          <div class="service-name">Blanqueamiento</div>
+          <div class="service-desc">Aclaramiento profesional para una sonrisa más brillante y radiante</div>
+        </div>
+        <div class="service-card glass-hover reveal reveal-d2">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2 L14 8 L20 8 L15.5 12 L17 18 L12 14.5 L7 18 L8.5 12 L4 8 L10 8 Z"/>
+            </svg>
+          </div>
+          <div class="service-name">Limpieza Dental</div>
+          <div class="service-desc">Profilaxis profesional · detartraje · pulido y aplicación de flúor</div>
+        </div>
+        <div class="service-card glass-hover reveal reveal-d3">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2 L4 14 H12 L11 22 L20 10 H12 L13 2 Z"/>
+            </svg>
+          </div>
+          <div class="service-name">Urgencias · Dolor</div>
+          <div class="service-desc">Atención prioritaria para dolor agudo, fracturas y emergencias</div>
+        </div>
+        <div class="service-card glass-hover reveal reveal-d1 hide-mobile">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h12l2 7H4L6 3z"/><path d="M4 10v4a8 8 0 0016 0v-4"/>
+            </svg>
+          </div>
+          <div class="service-name">Ortodoncia</div>
+          <div class="service-desc">Brackets y alineadores para una mordida perfecta y funcional</div>
+        </div>
+        <div class="service-card glass-hover reveal reveal-d2 hide-mobile">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/>
+            </svg>
+          </div>
+          <div class="service-name">Endodoncia</div>
+          <div class="service-desc">Tratamiento de conductos para salvar tus dientes naturales</div>
+        </div>
+        <div class="service-card glass-hover reveal reveal-d3 hide-mobile">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="7" y="8" width="10" height="8" rx="2"/><path d="M9 8V6a3 3 0 016 0v2"/>
+              <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="service-name">Implantes</div>
+          <div class="service-desc">Solución permanente y natural para dientes perdidos</div>
+        </div>
+        <div class="service-card glass-hover hidden">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <div class="service-name">Odontopediatría</div>
+          <div class="service-desc">Atención especializada y cálida para niños de todas las edades</div>
+        </div>
+        <div class="service-card glass-hover hidden">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="service-name">Periodoncia</div>
+          <div class="service-desc">Tratamiento y prevención de enfermedades de las encías</div>
+        </div>
+        <div class="service-card glass-hover hidden">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
+          <div class="service-name">Restauraciones</div>
+          <div class="service-desc">Calzas en resina · reconstrucciones estéticas · obturaciones</div>
+        </div>
+        <div class="service-card glass-hover hidden">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 11 H15 M12 8 V14 M5 22 H19 V12 H17 V8 H7 V12 H5 Z"/>
+            </svg>
+          </div>
+          <div class="service-name">Cirugía Oral</div>
+          <div class="service-desc">Extracciones, cordales, frenillos y procedimientos quirúrgicos</div>
+        </div>
+        <div class="service-card glass-hover hidden">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 12 L9 6 L15 12 L21 6 M3 18 L9 12 L15 18 L21 12"/>
+            </svg>
+          </div>
+          <div class="service-name">Rehabilitación Oral</div>
+          <div class="service-desc">Coronas, puentes y prótesis para recuperar tu mordida</div>
+        </div>
+      </div>
+
+      <div class="services-toggle-wrap reveal">
+        <button class="services-toggle glass-hover" id="servicesToggle" onclick="toggleServices()">
+          <span class="label-show">Ver todos los servicios</span>
+          <span class="label-hide">Ver menos servicios</span>
+          <span class="arrow">↓</span>
+        </button>
+      </div>
+
+      <!-- CTA bar después de servicios -->
+      <div class="services-cta-bar reveal">
+        <div class="services-cta-bar-text">
+          <div class="services-cta-bar-title">¿No estás seguro qué necesitas?</div>
+          <div class="services-cta-bar-sub">Conversemos. Sofia te ayuda a entender tu caso y agenda tu valoración inicial.</div>
+        </div>
+        <div class="services-cta-bar-buttons">
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20caso" target="_blank" rel="noopener" class="btn-whatsapp glass-hover" style="padding: 12px 22px; font-size: 13px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+            Consultar mi caso
+          </a>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20cita%20de%20valoración" target="_blank" rel="noopener" class="nav-cta glass-hover" style="padding: 13px 22px; font-size: 13px !important; display: inline-flex; align-items: center; gap: 8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><circle cx="12" cy="15" r="1.4" fill="currentColor"/>
+            </svg>
+            Reservar cita
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PROCESO ─── -->
+  <section class="process" id="proceso">
+    <div class="container">
+      <div class="process-grid">
+        <div class="reveal">
+          <span class="section-tag">Transparencia total</span>
+          <h2 class="section-h2" style="margin-bottom:48px;">Así funciona<br/>tu proceso</h2>
+          <div class="process-steps">
+            <div class="process-step">
+              <div class="process-step-left">
+                <div class="process-step-num">1</div>
+                <div class="process-step-line"></div>
+              </div>
+              <div class="process-step-content">
+                <div class="process-step-title">Valoración inicial · $15.000</div>
+                <div class="process-step-text">Una inversión simbólica que incluye revisión completa y el diseño de tu plan de acción personalizado para tu nueva sonrisa.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-left">
+                <div class="process-step-num">2</div>
+                <div class="process-step-line"></div>
+              </div>
+              <div class="process-step-content">
+                <div class="process-step-title">Diagnóstico y diseño digital</div>
+                <div class="process-step-text">Fotografías clínicas, análisis digital y diseño de tu nueva sonrisa. Ves el resultado antes de empezar.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-left">
+                <div class="process-step-num">3</div>
+                <div class="process-step-line"></div>
+              </div>
+              <div class="process-step-content">
+                <div class="process-step-title">Plan y presupuesto en tu mano</div>
+                <div class="process-step-text">Al finalizar tu cita recibes un documento con tu plan completo: tratamientos recomendados, tiempos, precios exactos y opciones de financiación. Te lo llevas para revisarlo con calma.</div>
+              </div>
+            </div>
+            <div class="process-step">
+              <div class="process-step-left">
+                <div class="process-step-num">4</div>
+                <div class="process-step-line"></div>
+              </div>
+              <div class="process-step-content">
+                <div class="process-step-title">Tratamiento con seguimiento</div>
+                <div class="process-step-text">Cada sesión con la Dra. Barrantes. Sofia hace seguimiento post-tratamiento para asegurar tu satisfacción.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-d2">
+          <div class="process-promise">
+            <div class="process-promise-title">Nuestra promesa</div>
+            <h3>Una sonrisa que<br/>cambia tu vida</h3>
+            <p>La Dra. Natalia Barrantes te acompaña en cada paso. No eres un número — eres un caso único con metas únicas.</p>
+            <ul class="process-promise-features">
+              <li>Valoración inicial $15.000 COP (valor simbólico)</li>
+              <li>Precios fijos y transparentes</li>
+              <li>Financiación a cuotas disponible</li>
+              <li>Materiales de primera calidad</li>
+              <li>Seguimiento post-tratamiento incluido</li>
+              <li>Sofia AI disponible 24/7</li>
+            </ul>
+            <div class="process-cta">
+              <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20mi%20valoración%20inicial" target="_blank" rel="noopener" class="btn-whatsapp glass-hover">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+                Solicitar valoración
+              </a>
+              <a href="#paquetes" class="btn-ghost glass-hover">Ver paquetes →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── PACKAGES ─── -->
+  <section class="section section-alt" id="paquetes">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="section-tag">Paquetes</span>
+        <h2 class="section-h2">Encuentra tu paquete ideal</h2>
+        <p class="section-sub">Todos incluyen limpieza. Valoración inicial $15.000 COP. Financiación disponible a cuotas.</p>
+      </div>
+
+      <div class="packages-tabs-wrap reveal">
+        <div class="packages-tabs" role="tablist">
+          <button class="pkg-tab active" data-tab="ceramica" onclick="switchPkgTab('ceramica')">Cerámica · Premium</button>
+          <button class="pkg-tab" data-tab="resina" onclick="switchPkgTab('resina')">Resina · Alta estética</button>
+          <button class="pkg-tab" data-tab="ortodoncia" onclick="switchPkgTab('ortodoncia')">Ortodoncia</button>
+          <button class="pkg-tab" data-tab="implantes" onclick="switchPkgTab('implantes')">Implantes y Cirugía</button>
+          <button class="pkg-tab" data-tab="iniciales" onclick="switchPkgTab('iniciales')">Iniciales · Limpieza</button>
+        </div>
+      </div>
+
+      <div class="pkg-tab-row active" data-row="ceramica">
+      <div class="packages-row-label reveal">Disilicato de Litio · Mayor durabilidad y estética</div>
+      <div class="packages-grid">
+        <div class="package-card glass-hover reveal reveal-d1">
+          <div class="package-material">Cerámica · Entrada Premium</div>
+          <div class="package-name">Cerámica + Blanqueamiento</div>
+          <div class="package-price">$5.900.000</div>
+          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Limpieza dental profesional</li>
+            <li>Aclaramiento dental</li>
+            <li>8 carillas superiores disilicato de litio</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20el%20paquete%20Cerámica%20+%20Blanqueamiento" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover featured reveal reveal-d2">
+          <div class="popular-badge">Más Popular</div>
+          <div class="package-material">Cerámica</div>
+          <div class="package-name">Cerámica Superior</div>
+          <div class="package-price">$7.600.000</div>
+          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Limpieza dental profesional</li>
+            <li>8 superiores disilicato de litio</li>
+            <li>8 inferiores resina de alta estética</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Cerámica%20Superior" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover featured reveal reveal-d3">
+          <div class="popular-badge" style="background: linear-gradient(135deg, #1C1710 0%, #3A2D1A 50%, #1C1710 100%);">★ Transformación Completa</div>
+          <div class="package-material">Cerámica · Máximo Resultado</div>
+          <div class="package-name">Cerámica Full</div>
+          <div class="package-price">$12.000.000</div>
+          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Limpieza dental profesional</li>
+            <li>8 superiores disilicato de litio</li>
+            <li>8 inferiores disilicato de litio</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Cerámica%20Full" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+      </div>
+
+      </div><!-- /pkg-tab-row ceramica -->
+
+      <div class="pkg-tab-row" data-row="resina">
+      <div class="packages-row-label reveal">Resina de Alta Estética · Inversión accesible</div>
+      <div class="packages-grid">
+        <div class="package-card glass-hover reveal reveal-d1">
+          <div class="package-material">Resina</div>
+          <div class="package-name">Micro Diseño</div>
+          <div class="package-price">$1.300.000</div>
+          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Limpieza dental profesional</li>
+            <li>Aclaramiento dental</li>
+            <li>6 bordes superiores en resina</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Micro%20Diseño" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover reveal reveal-d2">
+          <div class="package-material">Resina</div>
+          <div class="package-name">Resina + Blanqueamiento</div>
+          <div class="package-price">$2.000.000</div>
+          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Limpieza dental profesional</li>
+            <li>Aclaramiento dental</li>
+            <li>8 superiores en resina de alta estética</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Resina%20+%20Blanqueamiento" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover reveal reveal-d3">
+          <div class="package-material">Resina</div>
+          <div class="package-name">Resina Full</div>
+          <div class="package-price">$3.200.000</div>
+          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Limpieza dental profesional</li>
+            <li>8 superiores en resina de alta estética</li>
+            <li>8 inferiores en resina de alta estética</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Resina%20Full" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+      </div>
+      </div><!-- /pkg-tab-row resina -->
+
+      <div class="pkg-tab-row" data-row="ortodoncia">
+      <div class="packages-row-label reveal">Ortodoncia · Mordida sana, sonrisa alineada</div>
+      <div class="packages-grid">
+        <div class="package-card glass-hover reveal reveal-d1">
+          <div class="package-material">Brackets metálicos</div>
+          <div class="package-name">Ortodoncia Tradicional</div>
+          <div class="package-price">$2.800.000</div>
+          <div class="package-currency">COP · 12–24 meses · cuotas</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Diagnóstico y radiografías incluidas</li>
+            <li>Brackets metálicos + arcos</li>
+            <li>Controles mensuales durante el tratamiento</li>
+            <li>Retenedores al finalizar</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Ortodoncia%20Tradicional" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card featured glass-hover reveal reveal-d2">
+          <div class="popular-badge">Más Solicitado</div>
+          <div class="package-material">Brackets cerámica</div>
+          <div class="package-name">Ortodoncia Estética</div>
+          <div class="package-price">$4.200.000</div>
+          <div class="package-currency">COP · 12–24 meses · cuotas</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Diagnóstico y radiografías incluidas</li>
+            <li>Brackets de cerámica (casi invisibles)</li>
+            <li>Controles mensuales durante el tratamiento</li>
+            <li>Retenedores al finalizar</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Ortodoncia%20Estética" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover reveal reveal-d3">
+          <div class="package-material">Alineadores invisibles</div>
+          <div class="package-name">Alineadores Clear</div>
+          <div class="package-price">$7.500.000</div>
+          <div class="package-currency">COP · 6–18 meses · cuotas</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Escaneo digital y plan virtual</li>
+            <li>Juegos de alineadores transparentes</li>
+            <li>Retira para comer y cepillarte</li>
+            <li>Retenedores al finalizar</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Alineadores%20Clear" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+      </div>
+      </div><!-- /pkg-tab-row ortodoncia -->
+
+      <div class="pkg-tab-row" data-row="implantes">
+      <div class="packages-row-label reveal">Implantes · Cirugía · Limpieza · Recupera tu salud bucal</div>
+      <div class="packages-grid">
+        <div class="package-card glass-hover reveal reveal-d1">
+          <div class="package-material">Limpieza profesional</div>
+          <div class="package-name">Profilaxis + Detartraje</div>
+          <div class="package-price">$180.000</div>
+          <div class="package-currency">COP · sesión única</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Eliminación de placa y sarro</li>
+            <li>Pulido y aplicación de flúor</li>
+            <li>Revisión clínica completa</li>
+            <li>Recomendaciones personalizadas</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20limpieza%20dental" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover reveal reveal-d2">
+          <div class="package-material">Cirugía oral</div>
+          <div class="package-name">Extracción de Cordales</div>
+          <div class="package-price">$800.000</div>
+          <div class="package-currency">COP · por pieza · cuotas</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Valoración con radiografía panorámica</li>
+            <li>Cirugía con anestesia local</li>
+            <li>Medicamentos post-operatorios</li>
+            <li>Controles de seguimiento incluidos</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20extracción%20de%20cordales" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card featured glass-hover reveal reveal-d3">
+          <div class="popular-badge">Solución Definitiva</div>
+          <div class="package-material">Implante + Corona</div>
+          <div class="package-name">Implante Premium</div>
+          <div class="package-price">$4.500.000</div>
+          <div class="package-currency">COP · por pieza · cuotas</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Implante de titanio de primera calidad</li>
+            <li>Corona de porcelana sobre implante</li>
+            <li>Cirugía + colocación + ajuste</li>
+            <li>Garantía y controles incluidos</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Implante%20Premium" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+      </div>
+      </div><!-- /pkg-tab-row implantes -->
+
+      <div class="pkg-tab-row" data-row="iniciales">
+      <div class="packages-row-label reveal">Empieza tu camino · Servicios iniciales y de mantenimiento</div>
+      <div class="packages-grid">
+        <div class="package-card glass-hover reveal reveal-d1">
+          <div class="package-material">Primera consulta</div>
+          <div class="package-name">Valoración Inicial</div>
+          <div class="package-price">$15.000</div>
+          <div class="package-currency">COP · valor simbólico · sesión única</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Revisión clínica completa</li>
+            <li>Diagnóstico personalizado</li>
+            <li>Plan de tratamiento por escrito</li>
+            <li>Asesoría sobre opciones y financiación</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20mi%20valoración%20inicial" target="_blank" rel="noopener" class="btn-consultar glass-hover">Reservar →</a>
+        </div>
+        <div class="package-card featured glass-hover reveal reveal-d2">
+          <div class="popular-badge">Recomendado</div>
+          <div class="package-material">Limpieza profesional</div>
+          <div class="package-name">Profilaxis + Detartraje</div>
+          <div class="package-price">$180.000</div>
+          <div class="package-currency">COP · sesión única</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Eliminación de placa y sarro</li>
+            <li>Pulido dental profesional</li>
+            <li>Aplicación tópica de flúor</li>
+            <li>Recomendaciones de higiene</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20limpieza%20dental" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+        <div class="package-card glass-hover reveal reveal-d3">
+          <div class="package-material">Pack inicial completo</div>
+          <div class="package-name">Valoración + Limpieza</div>
+          <div class="package-price">$190.000</div>
+          <div class="package-currency">COP · ahorra $5.000 · sesión única</div>
+          <div class="package-divider"></div>
+          <ul class="package-features">
+            <li>Valoración inicial completa</li>
+            <li>Limpieza profesional + flúor</li>
+            <li>Diagnóstico clínico detallado</li>
+            <li>Plan de tratamiento personalizado</li>
+          </ul>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20el%20Pack%20Inicial" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+        </div>
+      </div>
+      </div><!-- /pkg-tab-row iniciales -->
+    </div>
+  </section>
+
+  <!-- ─── WHY DRA. BARRANTES ─── -->
+  <section class="section" id="nosotros">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-image-wrap reveal">
+          <!--
+            FOTO DE LA DRA. BARRANTES / CONSULTORIO
+            Reemplaza con imagen del Drive:
+            https://drive.google.com/drive/folders/19aepJ0iZlLCmpo3fbD1J6hJL5kenEcVf
+          -->
+          <div class="why-image-placeholder">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C09A55" stroke-width="1.2" stroke-linecap="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+          </div>
+          <div class="why-cert">
+            <div class="why-cert-icon">🏆</div>
+            <div class="why-cert-text">Esp. en Diseño</div>
+            <div class="why-cert-sub">de Sonrisa</div>
+          </div>
+        </div>
+        <div class="reveal reveal-d2">
+          <span class="section-tag">Por qué elegir a la Dra. Barrantes</span>
+          <h2 class="section-h2" style="margin-bottom:40px;">Más que una clínica —<br/>un equipo para ti</h2>
+          <div class="why-pillars">
+            <div class="why-pillar">
+              <div class="why-pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              </div>
+              <div>
+                <div class="why-pillar-title">Tecnología de vanguardia</div>
+                <div class="why-pillar-text">Disilicato de litio, escáner digital y materiales de la más alta calidad para resultados naturales y duraderos.</div>
+              </div>
+            </div>
+            <div class="why-pillar">
+              <div class="why-pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <div>
+                <div class="why-pillar-title">Calificación 5.0 en Google</div>
+                <div class="why-pillar-text">Cada paciente cuenta. Construimos cada testimonio con resultados reales y atención cercana.</div>
+              </div>
+            </div>
+            <div class="why-pillar">
+              <div class="why-pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="why-pillar-title">Atención personalizada</div>
+                <div class="why-pillar-text">Cada plan se diseña a la medida de tu sonrisa, tu presupuesto y tus metas estéticas.</div>
+              </div>
+            </div>
+            <div class="why-pillar">
+              <div class="why-pillar-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                  <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="why-pillar-title">Sofia responde 24/7</div>
+                <div class="why-pillar-text">Nuestra asistente AI contesta preguntas, agenda citas y resuelve dudas en segundos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── EQUIPO DE DOCTORES (movido después de Resultados via JS) ─── -->
+      <div class="team-section reveal" id="teamSection" style="position:relative;">
+        <img class="dentalia-floating bl" src="fotos/logo-dentalia.png" alt="" style="bottom:auto; left:auto; top:-20px; right:-10px; width:88px; opacity:0.22;" onerror="this.style.display='none'" />
+        <div class="team-header">
+          <div class="team-header-left">
+            <span class="section-tag">Nuestro equipo</span>
+            <h3>Doctores Dentalia</h3>
+            <p>Profesionales especializados que trabajan juntos para ofrecerte la mejor atención. Cada uno experto en su área.</p>
+          </div>
+          <div class="team-controls">
+            <button class="team-arrow" id="teamPrev" aria-label="Anterior" onclick="teamScroll(-1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <button class="team-arrow" id="teamNext" aria-label="Siguiente" onclick="teamScroll(1)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="team-track-wrap">
+          <div class="team-track" id="teamTrack">
+            <div class="doctor-card featured glass-hover">
+              <div class="doctor-photo">
+                <div class="doctor-photo-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  <span>Foto Dra. Natalia</span>
+                </div>
+                <span class="doctor-photo-badge featured-badge">Fundadora</span>
+              </div>
+              <div class="doctor-info">
+                <div class="doctor-name">Dra. Natalia Barrantes</div>
+                <div class="doctor-role">Diseño de Sonrisa · Estética</div>
+                <div class="doctor-bio">Especialista en diseño de sonrisa y odontología estética. Lidera Dentalia con un enfoque cercano y resultados naturales.</div>
+                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20la%20Dra.%20Natalia%20Barrantes%20para%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="doctor-cta gold glass-hover">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  Reservar con Sofia
+                </a>
+              </div>
+            </div>
+            <div class="doctor-card glass-hover">
+              <div class="doctor-photo">
+                <div class="doctor-photo-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  <span>Foto Dr. A · próximamente</span>
+                </div>
+                <span class="doctor-photo-badge">Especialista</span>
+              </div>
+              <div class="doctor-info">
+                <div class="doctor-name">Dr. A · [Nombre]</div>
+                <div class="doctor-role">Ortodoncia</div>
+                <div class="doctor-bio">Experto en alineadores invisibles y brackets estéticos. [Bio pendiente — completar info].</div>
+                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20el%20Dr.%20A%20para%20ortodoncia" target="_blank" rel="noopener" class="doctor-cta glass-hover">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  Reservar con Sofia
+                </a>
+              </div>
+            </div>
+            <div class="doctor-card glass-hover">
+              <div class="doctor-photo">
+                <div class="doctor-photo-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  <span>Foto Dra. B · próximamente</span>
+                </div>
+                <span class="doctor-photo-badge">Especialista</span>
+              </div>
+              <div class="doctor-info">
+                <div class="doctor-name">Dra. B · [Nombre]</div>
+                <div class="doctor-role">Endodoncia · Periodoncia</div>
+                <div class="doctor-bio">Especialista en tratamientos de conductos y salud de las encías. [Bio pendiente — completar info].</div>
+                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20la%20Dra.%20B%20para%20endodoncia%20o%20periodoncia" target="_blank" rel="noopener" class="doctor-cta glass-hover">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  Reservar con Sofia
+                </a>
+              </div>
+            </div>
+            <div class="doctor-card glass-hover">
+              <div class="doctor-photo">
+                <div class="doctor-photo-placeholder">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  <span>Foto Dr. C · próximamente</span>
+                </div>
+                <span class="doctor-photo-badge">Especialista</span>
+              </div>
+              <div class="doctor-info">
+                <div class="doctor-name">Dr. C · [Nombre]</div>
+                <div class="doctor-role">Implantología · Odontopediatría</div>
+                <div class="doctor-bio">Experto en implantes dentales y atención infantil. [Bio pendiente — completar info].</div>
+                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20el%20Dr.%20C%20para%20implantes%20u%20odontopediatría" target="_blank" rel="noopener" class="doctor-cta glass-hover">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+                  Reservar con Sofia
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── RESULTADOS / GALLERY ─── -->
+  <section class="section section-alt" id="resultados">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="section-tag">Resultados</span>
+        <h2 class="section-h2">Transformaciones reales</h2>
+        <p class="section-sub">Cada sonrisa es un caso único. Estos son algunos de nuestros resultados más destacados.</p>
+      </div>
+
+      <!--
+        GALERÍA · CASOS REALES
+        ───────────────────────
+        Para usar las fotos: ponlas en la carpeta /fotos/ del proyecto
+        y cambia los src de <img class="gallery-hero-img"> y <img class="gallery-img">
+        Estructura sugerida:
+          /fotos/caso-antes.jpg     — foto antes (hombre con dientes apiñados)
+          /fotos/caso-despues.jpg   — foto después (sonrisa transformada)
+          /fotos/sonrisa-1.jpg      — sonrisa femenina frontal
+          /fotos/sonrisa-2.jpg      — sonrisa femenina lateral / sonrisa
+          /fotos/sonrisa-3.jpg      — sonrisa femenina con resultado natural
+      -->
+
+      <!-- CASO PROTAGONISTA · ANTES / DESPUÉS -->
+      <div class="gallery-hero reveal zoom-on-scroll">
+        <div class="gallery-hero-side">
+          <span class="gallery-hero-label antes">Antes</span>
+          <img class="gallery-hero-img" src="fotos/foto_antes_hombres.png" alt="Antes del tratamiento de diseño de sonrisa" />
+        </div>
+        <div class="gallery-hero-side">
+          <span class="gallery-hero-label despues">Después</span>
+          <img class="gallery-hero-img" src="fotos/foto_despues_hombre.png" alt="Después del tratamiento — sonrisa transformada" />
+        </div>
+        <div class="gallery-hero-divider"></div>
+        <div class="gallery-hero-caption">
+          <div class="gallery-hero-caption-text">
+            <div class="gallery-hero-caption-title">Caso real · Diseño de Sonrisa Premium</div>
+            <div class="gallery-hero-caption-sub">Transformación completa con carillas de disilicato de litio · Resultado natural y duradero</div>
+          </div>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="gallery-hero-caption-cta glass-hover">
+            Ver mi caso →
+          </a>
+        </div>
+      </div>
+
+      <!-- 3 SONRISAS DESTACADAS -->
+      <div class="gallery-grid reveal">
+        <div class="gallery-card glass-hover zoom-on-scroll">
+          <img class="gallery-img" src="fotos/foto-mujer-frontal.png" alt="Sonrisa caso 1" />
+          <span class="gallery-tag">Resultado</span>
+          <div class="gallery-overlay">
+            <div class="gallery-label">Cerámica Superior</div>
+            <div class="gallery-sub">8 carillas · Resultado natural</div>
+          </div>
+        </div>
+        <div class="gallery-card glass-hover zoom-on-scroll">
+          <img class="gallery-img" src="fotos/foto-mujer-diseño.png" alt="Sonrisa caso 2" />
+          <span class="gallery-tag">Resultado</span>
+          <div class="gallery-overlay">
+            <div class="gallery-label">Diseño Estético</div>
+            <div class="gallery-sub">Forma y color natural</div>
+          </div>
+        </div>
+        <div class="gallery-card glass-hover zoom-on-scroll">
+          <img class="gallery-img" src="fotos/diseño-mujer-frontal.png" alt="Sonrisa caso 3" />
+          <span class="gallery-tag">Resultado</span>
+          <div class="gallery-overlay">
+            <div class="gallery-label">Sonrisa Plena</div>
+            <div class="gallery-sub">Cerámica + simetría</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="gallery-note reveal" style="margin-top: 28px;">
+        Casos reales · Confidencialidad garantizada ·
+        <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; font-weight:700;">Ver portafolio completo en WhatsApp →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ─── TESTIMONIALS ─── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="section-tag">Testimonios</span>
+        <h2 class="section-h2">Lo que dicen nuestros pacientes</h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card glass-hover reveal reveal-d1">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Quedé completamente enamorada de mi sonrisa. La Dra. Natalia es increíblemente profesional y los resultados superaron mis expectativas."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <div class="testimonial-name">Marcela R.</div>
+              <div class="testimonial-role">Cerámica Superior · Bogotá</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-hover reveal reveal-d2">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"El proceso fue muy claro desde el principio. Me explicaron cada paso, los precios son justos y el resultado es espectacular."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">C</div>
+            <div>
+              <div class="testimonial-name">Carlos V.</div>
+              <div class="testimonial-role">Resina Full · Bogotá</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card glass-hover reveal reveal-d3">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Sofia la asistente me respondió de noche cuando tenía dudas. Agendar fue muy fácil y la atención en clínica fue excelente."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">A</div>
+            <div>
+              <div class="testimonial-name">Andrea P.</div>
+              <div class="testimonial-role">Blanqueamiento · Bogotá</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOFIA CTA ─── -->
+  <section class="sofia-cta">
+    <div class="sofia-cta-inner reveal">
+      <div class="sofia-tag">Asistente AI · Disponible ahora</div>
+      <h2>¿Tienes preguntas?<br/><em>Sofia</em> te responde ya.</h2>
+      <p>Nuestra asistente inteligente responde en segundos, a cualquier hora. Precios, disponibilidad, paquetes — sin esperas, sin formularios.</p>
+      <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="btn-whatsapp-large glass-hover">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+        Escribir a Sofia
+      </a>
+      <p class="sofia-note">Disponible 24 horas · 7 días a la semana · Respuesta inmediata</p>
+    </div>
+  </section>
+
+  <!-- ─── LOCATION ─── -->
+  <section class="section" id="contacto">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-tag">Ubicación y Horarios</span>
+        <h2 class="section-h2">Visítanos en Bogotá</h2>
+      </div>
+      <div class="location-grid">
+        <div>
+          <div class="location-info-item reveal">
+            <div class="location-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="location-info-label">Dirección</div>
+              <div class="location-info-value">Cra. 112g #86a-05<br/>Bogotá, Colombia</div>
+            </div>
+          </div>
+          <div class="location-info-item reveal reveal-d1">
+            <div class="location-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11 19.79 19.79 0 01.46 2.29 2 2 0 012.46.11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="location-info-label">WhatsApp / Teléfono</div>
+              <div class="location-info-value">
+                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener">+57 311 849 0623</a>
+              </div>
+            </div>
+          </div>
+          <div class="location-info-item reveal reveal-d2">
+            <div class="location-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="location-info-label">Instagram</div>
+              <div class="location-info-value">
+                <a href="https://instagram.com/nataliabarrantesodontologia" target="_blank" rel="noopener">@nataliabarrantesodontologia</a>
+              </div>
+            </div>
+          </div>
+          <div class="location-info-item reveal reveal-d3">
+            <div class="location-info-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="location-info-label">Horarios de atención</div>
+              <div class="location-info-value">
+                <table class="hours-table">
+                  <tr><td>Lunes – Viernes</td><td>8:00 am – 6:00 pm</td></tr>
+                  <tr><td>Sábados</td><td>9:00 am – 2:00 pm</td></tr>
+                  <tr><td>Domingos</td><td>Cerrado</td></tr>
+                  <tr><td>Sofia AI</td><td>24 horas / 7 días</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="map-embed reveal reveal-d2">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.4!2d-74.1490!3d4.7200!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9b8d5a2e6c8f%3A0x1a2b3c4d5e6f7a8b!2sCra.%20112g%20%2386a-05%2C%20Bogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sco!4v1714000000000!5m2!1ses!2sco"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ubicación Dra. Natalia Barrantes Bogotá"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <div class="footer-logo-wrap">
+            <img src="fotos/logo-nb.png" alt="Dra. Natalia Barrantes" style="height:54px; width:auto; filter:invert(85%) sepia(20%) saturate(700%) hue-rotate(0deg) brightness(95%);" onerror="this.style.display='none'" />
+            <div class="footer-logo-name">Dra. Natalia Barrantes</div>
+          </div>
+          <div class="footer-tagline">
+            <div style="display:inline-flex; align-items:center; gap:8px; margin-bottom:10px;">
+              <span style="font-size:9px; font-weight:700; letter-spacing:1.5px; padding:3px 9px; border-radius:100px; background:rgba(192,154,85,0.12); color:var(--gold); border:1px solid rgba(192,154,85,0.25);">Antes</span>
+              <!-- Logo Dentalia · SVG (diente + texto) -->
+              <svg width="84" height="20" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Círculo / diente -->
+                <circle cx="22" cy="24" r="20" fill="rgba(255,255,255,0.10)" stroke="rgba(255,255,255,0.30)" stroke-width="1.5"/>
+                <path d="M14 14 C14 10 18 8 22 8 C26 8 30 10 30 14 C30 18 28 24 26 30 C25 33 24 36 22 36 C20 36 19 33 18 30 C16 24 14 18 14 14 Z" fill="rgba(255,255,255,0.55)"/>
+                <!-- Texto DENTALIA -->
+                <text x="52" y="30" font-family="Lato, sans-serif" font-size="22" font-weight="900" letter-spacing="1" fill="rgba(255,255,255,0.55)">DENTALIA</text>
+              </svg>
+            </div>
+            <div>Odontología Integral · Tu nueva sonrisa empieza aquí.</div>
+          </div>
+          <div class="footer-social">
+            <a href="https://instagram.com/nataliabarrantesodontologia" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Servicios</div>
+          <ul class="footer-links">
+            <li><a href="#servicios">Diseño de Sonrisa</a></li>
+            <li><a href="#servicios">Blanqueamiento Dental</a></li>
+            <li><a href="#servicios">Limpieza · Profilaxis</a></li>
+            <li><a href="#servicios">Urgencias · Dolor agudo</a></li>
+            <li><a href="#servicios">Restauraciones · Calzas</a></li>
+            <li><a href="#servicios">Ortodoncia</a></li>
+            <li><a href="#servicios">Alineadores Invisibles</a></li>
+            <li><a href="#servicios">Endodoncia</a></li>
+            <li><a href="#servicios">Periodoncia</a></li>
+            <li><a href="#servicios">Implantes Dentales</a></li>
+            <li><a href="#servicios">Cirugía Oral · Cordales</a></li>
+            <li><a href="#servicios">Rehabilitación Oral</a></li>
+            <li><a href="#servicios">Odontopediatría</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Paquetes</div>
+          <ul class="footer-links">
+            <li><a href="#paquetes">Cerámica + Blanqueamiento</a></li>
+            <li><a href="#paquetes">Cerámica Superior</a></li>
+            <li><a href="#paquetes">Cerámica Full</a></li>
+            <li><a href="#paquetes">Micro Diseño</a></li>
+            <li><a href="#paquetes">Resina + Blanqueamiento</a></li>
+            <li><a href="#paquetes">Resina Full</a></li>
+            <li><a href="#paquetes">Ortodoncia Tradicional</a></li>
+            <li><a href="#paquetes">Ortodoncia Estética</a></li>
+            <li><a href="#paquetes">Alineadores Clear</a></li>
+            <li><a href="#paquetes">Limpieza Profesional</a></li>
+            <li><a href="#paquetes">Extracción de Cordales</a></li>
+            <li><a href="#paquetes">Implante Premium</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-copy">© 2026 Dentalia · Dra. Natalia Barrantes · Bogotá, Colombia</div>
+        <div class="footer-copy">Cra. 112g #86a-05 · +57 311 849 0623</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ─── CINEMATIC SCROLL ENGINE ───
+    const navbar = document.getElementById('navbar');
+    const progressBar = document.getElementById('scrollProgress');
+    const orb = document.getElementById('scrollOrb');
+    const orbTrail = document.getElementById('scrollOrbTrail');
+    const heroBlobs = document.querySelectorAll('.hero-blob, .hero-blob-2');
+    const nbWatermark = document.querySelector('.nb-watermark.hero-bg');
+    const heroImageWrap = document.querySelector('.hero-image-wrap');
+
+    let lastScroll = 0;
+    let scrollVel = 0;
+    let ticking = false;
+
+    function onScroll() {
+      const sy = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = Math.min(sy / max, 1);
+      scrollVel = sy - lastScroll;
+      lastScroll = sy;
+
+      // Nav state
+      navbar.classList.toggle('scrolled', sy > 40);
+
+      // Progress bar
+      if (progressBar) progressBar.style.width = (pct * 100) + '%';
+
+      // FAB · Apple-style glass shine que crece con el scroll
+      const fab = document.getElementById('storyFab');
+      if (fab) {
+        const shine = Math.min(pct * 1.4, 1);
+        fab.style.setProperty('--shine', shine);
+      }
+
+      // Companion orb — viaja por la barra lateral según el scroll
+      if (orb) {
+        const trackTop = 80;
+        const trackBottom = window.innerHeight - 80;
+        const orbY = pct * (trackBottom - trackTop);
+        orb.style.transform = `translateY(${orbY}px) rotate(${sy * 0.4}deg)`;
+        if (orbTrail) {
+          const trailH = Math.min(120, 40 + Math.abs(scrollVel) * 8);
+          orbTrail.style.transform = `translateY(${orbY - trailH + 8}px)`;
+          orbTrail.style.height = trailH + 'px';
+          orbTrail.style.opacity = Math.min(0.9, 0.2 + Math.abs(scrollVel) * 0.05);
+        }
+      }
+
+      // Parallax hero — los blobs y watermark se mueven a distintas velocidades
+      heroBlobs.forEach((el, i) => {
+        const speed = 0.18 + i * 0.10;
+        el.style.transform = `translate3d(0, ${sy * speed}px, 0)`;
+      });
+      if (nbWatermark) nbWatermark.style.transform = `translate3d(0, ${sy * 0.25}px, 0)`;
+      if (heroImageWrap && sy < window.innerHeight) {
+        heroImageWrap.style.transform = `translate3d(0, ${sy * -0.06}px, 0)`;
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(onScroll);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // ─── MOBILE MENU ───
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    let menuOpen = false;
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      navLinks.classList.toggle('open', menuOpen);
+      hamburger.setAttribute('aria-expanded', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+    function closeMenu() {
+      menuOpen = false;
+      navLinks.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // ─── SCROLL REVEAL ───
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ─── SMOOTH SCROLL ───
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ─── PARALLAX BLOB ON MOUSE ───
+    const blob = document.querySelector('.hero-blob');
+    document.addEventListener('mousemove', (e) => {
+      if (!blob) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      blob.style.transform = `translate(${x}px, ${y}px)`;
+    }, { passive: true });
+
+    // ─── CHAT WIDGET ───
+    const chatBubble = document.getElementById('chatBubble');
+    const chatTrigger = document.getElementById('chatTrigger');
+    let chatOpen = false;
+    function toggleChat() {
+      chatOpen = !chatOpen;
+      chatBubble.classList.toggle('open', chatOpen);
+      chatTrigger.classList.toggle('active', chatOpen);
+      if (chatOpen) {
+        chatTrigger.querySelector('.chat-notif').style.display = 'none';
+      }
+    }
+    function openSofia(e) {
+      e.preventDefault();
+      window.open('https://wa.me/573118490623?text=Hola%20Sofia%2C%20tengo%20una%20pregunta%20sobre%20diseño%20de%20sonrisa', '_blank', 'noopener');
+      toggleChat();
+    }
+    document.addEventListener('click', (e) => {
+      if (chatOpen && !e.target.closest('#chatLauncher')) {
+        chatOpen = false;
+        chatBubble.classList.remove('open');
+        chatTrigger.classList.remove('active');
+      }
+    });
+
+    // ─── REORDENAR: team-section DESPUÉS de resultados/gallery ───
+    (function moveTeamAfterGallery() {
+      const team = document.getElementById('teamSection');
+      const resultados = document.getElementById('resultados');
+      if (!team || !resultados) return;
+      // Crear sección wrapper standalone para el equipo
+      const wrapper = document.createElement('section');
+      wrapper.className = 'section';
+      wrapper.id = 'equipo';
+      wrapper.style.position = 'relative';
+      const container = document.createElement('div');
+      container.className = 'container';
+      container.appendChild(team);
+      team.style.marginTop = '0';
+      wrapper.appendChild(container);
+      resultados.parentNode.insertBefore(wrapper, resultados.nextSibling);
+    })();
+
+    // ─── SERVICES TOGGLE ───
+    function toggleServices() {
+      const grid = document.getElementById('servicesGrid');
+      const btn = document.getElementById('servicesToggle');
+      grid.classList.toggle('expanded');
+      btn.classList.toggle('open');
+    }
+
+    // ─── PACKAGES TABS ───
+    function switchPkgTab(name) {
+      document.querySelectorAll('.pkg-tab').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+      document.querySelectorAll('.pkg-tab-row').forEach(r => r.classList.toggle('active', r.dataset.row === name));
+    }
+
+    // ─── TEAM CAROUSEL ───
+    const teamTrack = document.getElementById('teamTrack');
+    let teamIndex = 0;
+    function teamScroll(dir) {
+      const cards = teamTrack.querySelectorAll('.doctor-card');
+      if (!cards.length) return;
+      const cardWidth = cards[0].offsetWidth + 22;
+      const visible = Math.floor(teamTrack.parentElement.offsetWidth / cardWidth) || 1;
+      const max = Math.max(0, cards.length - visible);
+      teamIndex = Math.min(max, Math.max(0, teamIndex + dir));
+      teamTrack.style.transform = `translateX(-${teamIndex * cardWidth}px)`;
+      document.getElementById('teamPrev').disabled = teamIndex === 0;
+      document.getElementById('teamNext').disabled = teamIndex === max;
+    }
+    if (teamTrack) {
+      teamScroll(0);
+      window.addEventListener('resize', () => teamScroll(0), { passive: true });
+    }
+
+    // ─── STORY MODAL ───
+    function openStory() {
+      document.getElementById('storyOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeStory() {
+      document.getElementById('storyOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('storyOverlay').classList.contains('open')) closeStory();
+    });
+
+    // ─── ADAPTIVE NAV · cambia color según la sección debajo ───
+    const darkSelectors = ['.stats-bar', '.disponibilidad', '.sofia-cta', 'footer', '.emergency-bar'];
+    const darkSections = darkSelectors.flatMap(s => Array.from(document.querySelectorAll(s)));
+    function updateNavTheme() {
+      const navH = navbar.offsetHeight;
+      const probeY = navH + 4;
+      let isDark = false;
+      for (const sec of darkSections) {
+        const r = sec.getBoundingClientRect();
+        if (r.top <= probeY && r.bottom >= probeY) { isDark = true; break; }
+      }
+      navbar.classList.toggle('nav-dark', isDark);
+    }
+    window.addEventListener('scroll', updateNavTheme, { passive: true });
+    window.addEventListener('resize', updateNavTheme, { passive: true });
+    updateNavTheme();
+
+    // ─── CURSOR TRAIL · luz que sigue el recorrido reciente ───
+    (function cursorTrail() {
+      const canvas = document.getElementById('cursorTrail');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let dpr = Math.min(window.devicePixelRatio || 1, 2);
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = window.innerWidth * dpr;
+        canvas.height = window.innerHeight * dpr;
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+        ctx.scale(dpr, dpr);
+      }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      const trail = [];
+      const TRAIL_MS = 2000;
+      const MAX_POINTS = 90;
+
+      window.addEventListener('mousemove', (e) => {
+        trail.push({ x: e.clientX, y: e.clientY, t: performance.now() });
+        if (trail.length > MAX_POINTS) trail.shift();
+      }, { passive: true });
+
+      function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const now = performance.now();
+        // Eliminar puntos viejos
+        while (trail.length && now - trail[0].t > TRAIL_MS) trail.shift();
+        if (trail.length < 2) { requestAnimationFrame(draw); return; }
+
+        // Detectar dirección reciente (últimos 600ms)
+        let dir = 0;
+        const recent = trail.filter(p => now - p.t < 600);
+        if (recent.length > 1) {
+          dir = recent[recent.length - 1].y - recent[0].y; // positivo = bajando
+        }
+        const isDown = dir > 4;
+        const isUp = dir < -4;
+
+        // Dibujar la estela como segmentos con gradiente de opacidad
+        for (let i = 0; i < trail.length - 1; i++) {
+          const p1 = trail[i];
+          const p2 = trail[i + 1];
+          const age = (now - p1.t) / TRAIL_MS;
+          if (age > 1) continue;
+          const alpha = (1 - age) * 0.85;
+          // Glow exterior (suave)
+          ctx.strokeStyle = `rgba(242, 216, 142, ${alpha * 0.32})`;
+          ctx.lineWidth = 16 * (1 - age * 0.6);
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+          // Línea central (más nítida)
+          ctx.strokeStyle = (isDown
+            ? `rgba(255, 255, 255, ${alpha})`
+            : isUp
+            ? `rgba(242, 216, 142, ${alpha})`
+            : `rgba(192, 154, 85, ${alpha * 0.85})`);
+          ctx.lineWidth = 2.5 * (1 - age * 0.5);
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+
+        // Punto luminoso en la posición más reciente
+        const last = trail[trail.length - 1];
+        if (last && now - last.t < 200) {
+          const grad = ctx.createRadialGradient(last.x, last.y, 0, last.x, last.y, 22);
+          grad.addColorStop(0, 'rgba(255, 245, 215, 0.85)');
+          grad.addColorStop(0.4, 'rgba(242, 216, 142, 0.35)');
+          grad.addColorStop(1, 'rgba(192, 154, 85, 0)');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.arc(last.x, last.y, 22, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  </script>
+</body>
+</html>
