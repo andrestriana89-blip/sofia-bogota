@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<!-- 🔒 Documento de uso interno AJ Business Advisory — Prohibida la reproducción -->
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet"/>
+<meta name="googlebot" content="noindex, nofollow"/>
+<title>Sistema de Contenido — Dra. Natalia Barrantes · Mayo 2026</title>
+<script>
+// ==============================
+// PUERTA DE ACCESO — Link Maestro
+// ==============================
+(function(){
+  const PIN = 'AJN2026';
+  const KEY = 'aj_parrilla_auth';
+  const stored = sessionStorage.getItem(KEY);
+  if (stored === PIN) return; // ya autenticado en esta sesión
+  document.documentElement.style.display = 'none'; // ocultar contenido
+  const input = prompt('🔒 Documento privado AJ Business Advisory\n\nIngresa el código de acceso:');
+  if ((input || '').trim().toUpperCase() === PIN) {
+    sessionStorage.setItem(KEY, PIN);
+    document.documentElement.style.display = '';
+  } else {
+    document.write('<div style="font-family:sans-serif;text-align:center;padding:60px;color:#666"><h2>Acceso restringido</h2><p>Este documento es de uso interno. Solicita el código a tu coordinador de proyecto.</p></div>');
+  }
+})();
+</script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700;900&display=swap');
+:root{
+  /* AJ Business Advisory — Amarillo + Rosa */
+  --ocre:#F5C200;--ocre-deep:#C9A000;--ocre-pale:#FFFBE6;--ocre-light:#FFF3B3;
+  --pink:#E91E8C;--pink-light:#FFE8F4;--pink-deep:#C0176E;
+  --cream:#FAFAFA;--white:#fff;--dark:#111827;--text:#1F2937;--muted:#6B7280;
+  --border:rgba(0,0,0,.09);--border-dark:rgba(0,0,0,.06);
+  --green:#22c55e;--green-bg:rgba(34,197,94,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);font-size:13px;line-height:1.6}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);border-bottom:2px solid var(--ocre);height:50px;display:flex;align-items:stretch;padding:0 24px}
+.nav-brand{display:flex;align-items:center;gap:8px;padding-right:18px;border-right:1px solid var(--border);margin-right:14px;flex-shrink:0}
+.brand-s{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--dark)}
+.brand-x{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.nav-tabs{display:flex;gap:0;overflow-x:auto}
+.ntab{display:flex;align-items:center;padding:0 14px;font-size:11px;font-weight:600;color:var(--muted);border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;text-decoration:none;white-space:nowrap}
+.ntab:hover{color:var(--dark)}.ntab.a{color:var(--pink-deep);border-bottom-color:var(--pink)}
+.nav-r{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+.btn-sm{padding:5px 13px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:none}
+.btn-dark{background:var(--dark);color:var(--ocre)}
+/* HERO */
+.hero{margin-top:50px;background:linear-gradient(135deg,#fffbe6 0%,#fff 45%,#ffe8f4 100%);border-bottom:3px solid var(--ocre);padding:40px 32px 30px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'AJ';position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-family:'Cormorant Garamond',serif;font-size:160px;font-weight:900;color:rgba(245,194,0,.06);line-height:1;pointer-events:none;user-select:none}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(233,30,140,.04),transparent);pointer-events:none}
+.hero-ey{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:10px;font-weight:800}
+.hero-name{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;color:var(--dark);letter-spacing:.5px;line-height:1.15}
+.hero-name em{color:var(--pink)}
+.hero-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.hero-chips{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.chip{padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;border:1px solid rgba(0,0,0,.1);color:var(--muted);background:var(--white)}
+.chip.g{border-color:rgba(245,194,0,.5);color:var(--ocre-deep);background:rgba(245,194,0,.1)}
+/* WRAP */
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+.sec{padding:40px 0 24px;scroll-margin-top:58px}
+.sec-ky{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:4px}
+.sec-ti{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark)}
+hr.d{border:none;border-top:1px solid var(--border);margin:24px 0}
+/* BRAND MINI */
+.brand-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.bc{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:16px}
+.bc-t{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.sw-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+.sw{width:28px;height:28px;border-radius:7px;flex-shrink:0}
+.sw-n{font-size:11px;font-weight:600;color:var(--dark)}
+.sw-h{font-size:9px;color:var(--muted);font-family:monospace}
+.no-use{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.nb{padding:2px 8px;border-radius:5px;font-size:9px;font-weight:700;background:rgba(239,68,68,.07);color:#b91c1c;border:1px solid rgba(239,68,68,.18);text-decoration:line-through}
+.font-s{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:var(--dark)}
+.font-c{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--dark);font-weight:600;margin-top:4px}
+.font-m{font-size:10px;color:var(--muted);margin-top:3px}
+.logo-preview{background:var(--dark);border-radius:8px;padding:14px;text-align:center;margin-bottom:10px}
+.logo-n{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--ocre)}
+.logo-s{font-size:7px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:3px}
+/* TIMELINE OPERACION */
+.timeline-op{display:flex;gap:0;margin-bottom:20px;overflow:hidden;border-radius:12px;border:1px solid var(--border)}
+.tl-blk{flex:1;padding:14px 16px;border-right:1px solid var(--border);text-align:center}
+.tl-blk:last-child{border-right:none}
+.tl-blk.active{background:var(--dark)}
+.tl-blk.launch{background:var(--ocre)}
+.tl-date{font-size:18px;font-weight:900;color:var(--dark);line-height:1}
+.tl-blk.active .tl-date{color:var(--ocre)}
+.tl-blk.launch .tl-date{color:var(--dark)}
+.tl-label{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+.tl-blk.active .tl-label{color:rgba(255,255,255,.5)}
+.tl-blk.launch .tl-label{color:rgba(28,23,16,.6)}
+.tl-desc{font-size:10.5px;color:var(--muted);margin-top:3px}
+.tl-blk.active .tl-desc{color:rgba(255,255,255,.7)}
+.tl-blk.launch .tl-desc{color:var(--dark);font-weight:600}
+/* WEEKLY GRID */
+.week-grid{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px}
+.wg-head{background:var(--dark);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+.wg-title{font-size:13px;font-weight:700;color:var(--white)}
+.wg-badge{font-size:9px;font-weight:800;background:rgba(192,154,85,.2);color:var(--ocre);border:1px solid rgba(192,154,85,.3);padding:3px 10px;border-radius:8px}
+.day-row{display:grid;grid-template-columns:80px 1fr 1fr 80px;align-items:stretch;border-bottom:1px solid var(--border-dark)}
+.day-row:last-child{border-bottom:none}
+.dr-day{padding:12px 14px;background:var(--ocre-pale);display:flex;flex-direction:column;justify-content:center}
+.dr-dn{font-size:11px;font-weight:800;color:var(--dark);text-transform:uppercase;letter-spacing:.5px}
+.dr-dt{font-size:9px;color:var(--muted);margin-top:2px}
+.dr-post{padding:10px 14px;border-right:1px solid var(--border-dark)}
+.dr-post:last-of-type{border-right:none}
+.dr-type{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:3px}
+.dr-title{font-size:11.5px;font-weight:600;color:var(--dark);line-height:1.35}
+.dr-time{font-size:9px;color:var(--muted);margin-top:3px}
+.dr-kw{display:inline-block;margin-top:4px;font-size:8px;font-weight:800;background:var(--dark);color:var(--ocre);padding:2px 7px;border-radius:4px;font-family:monospace;letter-spacing:.5px}
+.dr-empty{padding:10px 14px;color:var(--muted);font-size:10px;display:flex;align-items:center;opacity:.4}
+.dr-time-col{padding:10px 14px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--dark);border-left:1px solid var(--border-dark)}
+/* INFO BOX */
+.info{background:rgba(192,154,85,.07);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-bottom:14px}
+.info p,.info li{font-size:12px;color:var(--muted);line-height:1.7}
+.info ul{padding-left:16px}
+.info strong{color:var(--dark)}
+/* ======================
+   CHECKLIST SEMANAL
+   ====================== */
+.cl-container{background:var(--white);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.cl-header{background:var(--dark);padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cl-header-left{}
+.cl-title{font-size:14px;font-weight:700;color:var(--white)}
+.cl-subtitle{font-size:10px;color:rgba(255,255,255,.45);margin-top:2px}
+.cl-header-right{display:flex;gap:8px;flex-shrink:0}
+.cl-btn{padding:5px 12px;border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;border:none;font-family:'Montserrat',sans-serif;transition:all .15s}
+.cl-btn-reset{background:rgba(255,255,255,.08);color:rgba(255,255,255,.6)}
+.cl-btn-reset:hover{background:rgba(255,255,255,.15)}
+.cl-btn-add{background:var(--ocre);color:var(--dark)}
+.cl-btn-add:hover{background:var(--ocre-deep);color:var(--white)}
+/* Progress bar */
+.cl-progress{padding:12px 22px;background:rgba(192,154,85,.04);border-bottom:1px solid var(--border)}
+.cl-prog-row{display:flex;align-items:center;gap:10px}
+.cl-prog-bar{flex:1;height:6px;background:var(--ocre-pale);border-radius:3px;overflow:hidden}
+.cl-prog-fill{height:100%;background:linear-gradient(90deg,var(--ocre),var(--ocre-deep));border-radius:3px;transition:width .4s}
+.cl-prog-pct{font-size:10px;font-weight:800;color:var(--ocre-deep);min-width:30px;text-align:right}
+.cl-prog-label{font-size:10px;color:var(--muted)}
+/* Week selector */
+.cl-week-selector{padding:10px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:var(--ocre-pale)}
+.cl-week-label{font-size:10px;font-weight:700;color:var(--dark)}
+.cl-week-btn{padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--muted);font-family:'Montserrat',sans-serif;transition:all .15s}
+.cl-week-btn.sel{background:var(--dark);color:var(--ocre);border-color:var(--dark)}
+.cl-week-btn:hover:not(.sel){border-color:var(--ocre);color:var(--ocre-deep)}
+/* Checklist sections */
+.cl-section{border-bottom:1px solid var(--border)}
+.cl-section:last-child{border-bottom:none}
+.cl-sec-head{padding:10px 22px;background:rgba(192,154,85,.04);cursor:pointer;display:flex;align-items:center;justify-content:space-between;user-select:none}
+.cl-sec-head:hover{background:rgba(192,154,85,.08)}
+.cl-sec-title{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--dark)}
+.cl-sec-meta{display:flex;align-items:center;gap:8px}
+.cl-sec-count{font-size:9px;color:var(--muted)}
+.cl-sec-arrow{font-size:10px;color:var(--muted);transition:transform .2s}
+.cl-sec-arrow.open{transform:rotate(90deg)}
+.cl-items{padding:6px 0;display:none}
+.cl-items.open{display:block}
+/* Checklist item */
+.cl-item{display:flex;align-items:flex-start;gap:12px;padding:9px 22px;transition:background .1s;position:relative}
+.cl-item:hover{background:rgba(192,154,85,.04)}
+.cl-item.done{opacity:.55}
+.cl-item.done .cl-item-text{text-decoration:line-through;color:var(--muted)}
+.cl-check{width:18px;height:18px;border-radius:5px;border:2px solid var(--border);background:var(--white);cursor:pointer;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.cl-check.checked{background:var(--ocre);border-color:var(--ocre-deep)}
+.cl-check.checked::after{content:'✓';color:var(--dark);font-size:10px;font-weight:900}
+.cl-item-content{flex:1;min-width:0}
+.cl-item-text{font-size:12px;font-weight:500;color:var(--text);line-height:1.4}
+.cl-item-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.cl-item-tag{display:inline-block;font-size:8px;font-weight:800;padding:1px 6px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.tag-prep{background:rgba(192,154,85,.15);color:var(--ocre-deep)}
+.tag-pub{background:rgba(28,23,16,.08);color:var(--dark)}
+.tag-rev{background:rgba(34,197,94,.1);color:#15803d}
+.tag-rep{background:rgba(59,130,246,.1);color:#1d4ed8}
+.cl-item-del{opacity:0;position:absolute;right:22px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--muted);font-size:12px;padding:2px 6px;border-radius:4px;transition:all .15s}
+.cl-item:hover .cl-item-del{opacity:1}
+.cl-item-del:hover{background:rgba(239,68,68,.1);color:#b91c1c}
+/* Add task form */
+.cl-add-form{padding:12px 22px;border-top:1px solid var(--border);background:var(--ocre-pale);display:none}
+.cl-add-form.open{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cl-add-input{flex:1;min-width:200px;border:1px solid var(--border);border-radius:8px;padding:8px 12px;font-size:12px;font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);outline:none}
+.cl-add-input:focus{border-color:var(--ocre)}
+.cl-add-select{border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:11px;font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);outline:none;cursor:pointer}
+.cl-add-sub{padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:none;background:var(--dark);color:var(--ocre);font-family:'Montserrat',sans-serif}
+.cl-add-cancel{padding:7px 14px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--white);color:var(--muted);font-family:'Montserrat',sans-serif}
+/* CONTENT BANK */
+.post-card{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.pc-head{background:var(--dark);padding:14px 20px;display:flex;align-items:center;gap:12px}
+.pc-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:400;color:rgba(192,154,85,.2);line-height:1;flex-shrink:0}
+.pc-meta{}
+.pc-ky{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ocre);opacity:.7}
+.pc-ti{font-size:14px;font-weight:700;color:var(--white);margin-top:2px;line-height:1.3}
+.pc-tags{display:flex;gap:5px;margin-top:5px;flex-wrap:wrap}
+.pct{font-size:9px;font-weight:700;padding:2px 8px;border-radius:8px}
+.pct.k{background:rgba(192,154,85,.15);color:var(--ocre);border:1px solid rgba(192,154,85,.2)}
+.pct.d{background:rgba(28,23,16,.08);color:var(--dark);border:1px solid rgba(28,23,16,.1)}
+.pc-body{padding:18px 20px}
+/* SLIDES */
+.slides{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;margin-bottom:14px;scrollbar-width:thin}
+.sl{flex-shrink:0;width:120px;border-radius:9px;padding:10px;border:1px solid var(--border)}
+.sl.light{background:var(--ocre-pale)}
+.sl.dark{background:var(--dark)}
+.sl-n{font-size:8px;font-weight:800;color:var(--ocre-deep);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.sl.dark .sl-n{color:rgba(192,154,85,.5)}
+.sl-t{font-size:11px;font-weight:700;color:var(--dark);line-height:1.3;margin-bottom:3px}
+.sl.dark .sl-t{color:var(--white)}
+.sl-b{font-size:10px;color:var(--muted);line-height:1.35}
+.sl.dark .sl-b{color:var(--ocre);font-weight:600}
+/* CAPTION */
+.cap{background:rgba(28,23,16,.03);border:1px solid var(--border-dark);border-radius:9px;padding:12px 14px;margin-bottom:10px}
+.cap-l{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.cap-t{font-size:12px;color:var(--text);white-space:pre-line;line-height:1.65}
+.hashtags{font-size:11px;color:var(--ocre-deep);font-weight:600;line-height:1.8;margin-bottom:12px}
+/* AESTHETIC GUIDE */
+.ae-guide{background:var(--ocre-pale);border:1px solid var(--border);border-radius:9px;padding:12px 14px;margin-top:4px}
+.ae-title{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:8px}
+.ae-row{display:flex;gap:8px;flex-wrap:wrap}
+.ae-item{font-size:11px;color:var(--text);background:var(--white);border:1px solid var(--border);border-radius:6px;padding:4px 10px}
+.ae-item span{color:var(--ocre-deep);font-weight:700}
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.box{background:var(--ocre-pale);border:1px solid var(--border);border-radius:9px;padding:12px}
+.box-t{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:7px}
+.box-l{padding-left:14px;font-size:11.5px;line-height:1.9;color:var(--text)}
+.box-l li::marker{color:var(--ocre)}
+/* MANYCHAT */
+.mc-table{width:100%;border-collapse:collapse;font-size:12px}
+.mc-table th{background:var(--dark);color:var(--ocre);padding:10px 14px;text-align:left;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.mc-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.mc-table tr:nth-child(even) td{background:var(--ocre-pale)}
+.mc-table tr:last-child td{border-bottom:none}
+.kw{display:inline-block;background:var(--dark);color:var(--ocre);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:800;font-family:monospace;letter-spacing:.8px}
+/* REMINDER */
+.rem{background:rgba(192,154,85,.1);border:1px solid var(--ocre);border-radius:10px;padding:14px 18px;margin-top:16px}
+.rem-t{font-size:11px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px}
+.rem p{font-size:12px;color:var(--text);line-height:1.6}
+/* FOOTER */
+.footer{text-align:center;padding:28px;font-size:10px;color:var(--muted);border-top:1px solid var(--border);margin-top:28px}
+.footer em{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--dark)}
+/* RESP */
+@media(max-width:640px){.brand-row,.two{grid-template-columns:1fr}.day-row{grid-template-columns:70px 1fr 1fr 60px}.hero-name{font-size:24px}.timeline-op{flex-direction:column}}
+@media print{.nav{display:none}.hero{margin-top:0}}
+#marca,#ritmo,#checklist,#banco,#valentina,#citas,#natalia{scroll-margin-top:58px}
+/* PROTECCIÓN */
+body{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+input,textarea,select,.cl-check,.cl-week-btn,.cl-btn,.cl-add-input,.cl-add-select,.cl-add-sub,.cl-add-cancel,.ntab{user-select:auto!important;-webkit-user-select:auto!important}
+/* MODAL CITAS */
+.modal-overlay{position:fixed;inset:0;background:rgba(28,23,16,.6);z-index:900;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--cream);border-radius:16px;padding:32px;max-width:480px;width:100%;box-shadow:0 20px 60px rgba(28,23,16,.3);position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted);padding:4px 8px;border-radius:6px}
+.modal-close:hover{background:var(--border);color:var(--dark)}
+.modal-title{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.modal-sub{font-size:11px;color:var(--muted);margin-bottom:20px;letter-spacing:.5px}
+.form-group{margin-bottom:14px}
+.form-label{font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--dark);margin-bottom:5px;display:block}
+.form-input,.form-select,.form-textarea{width:100%;border:1.5px solid var(--border);border-radius:9px;padding:10px 13px;font-size:12.5px;font-family:'Montserrat',sans-serif;background:var(--white);color:var(--dark);outline:none;transition:border-color .15s;user-select:auto!important;-webkit-user-select:auto!important}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:var(--ocre)}
+.form-textarea{resize:vertical;min-height:70px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.modal-send{width:100%;padding:12px;border-radius:10px;background:var(--dark);color:var(--ocre);font-size:13px;font-weight:800;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;margin-top:6px;transition:background .15s}
+.modal-send:hover{background:#2d2318}
+.modal-cancel{width:100%;padding:10px;border-radius:10px;background:none;color:var(--muted);font-size:12px;font-weight:600;border:1.5px solid var(--border);cursor:pointer;font-family:'Montserrat',sans-serif;margin-top:6px}
+/* BTN CITA FLOTANTE */
+.fab-cita{position:fixed;bottom:24px;right:24px;z-index:200;background:var(--pink);color:var(--white);border:none;border-radius:50px;padding:12px 20px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;box-shadow:0 4px 20px rgba(233,30,140,.3);transition:all .2s;display:flex;align-items:center;gap:8px}
+.fab-cita:hover{background:var(--pink-deep);transform:translateY(-2px)}
+/* CONTENT TYPE BANNERS */
+.ctype-banner{border-radius:12px;padding:16px 20px;margin:28px 0 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.ctype-banner.ct-carousel{background:linear-gradient(135deg,#1a2236,var(--dark));border-left:4px solid var(--ocre)}
+.ctype-banner.ct-post{background:linear-gradient(135deg,#1e1030,#120a1e);border-left:4px solid var(--pink)}
+.ctype-banner.ct-stories{background:linear-gradient(135deg,#0d1f12,#0a1a0a);border-left:4px solid #22c55e}
+.ctype-banner.ct-reels{background:linear-gradient(135deg,#1f0d0d,#1a0808);border-left:4px solid #ef4444}
+.ctype-icon{font-size:30px;flex-shrink:0}
+.ctype-info{flex:1}
+.ctype-label{font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:2px}
+.ctype-title{font-size:15px;font-weight:800;color:#fff;margin-bottom:2px}
+.ctype-desc{font-size:10.5px;color:rgba(255,255,255,.5);line-height:1.4}
+.ctype-badge{padding:6px 14px;border-radius:8px;font-size:10px;font-weight:800;flex-shrink:0}
+.ctype-badge.ct-carousel{background:rgba(245,194,0,.15);color:var(--ocre);border:1px solid rgba(245,194,0,.25)}
+.ctype-badge.ct-post{background:rgba(233,30,140,.15);color:var(--pink);border:1px solid rgba(233,30,140,.25)}
+.ctype-badge.ct-stories{background:rgba(34,197,94,.12);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.ctype-badge.ct-reels{background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.2)}
+/* BRAND QUICK REF */
+.brand-qr{background:var(--white);border:1.5px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.brand-qr-head{background:var(--dark);padding:12px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.brand-qr-head-title{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--ocre)}
+.brand-qr-head-sub{font-size:10px;color:rgba(255,255,255,.4)}
+.brand-qr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.brand-qr-box{padding:12px 14px;border-right:1px solid var(--border);border-top:1px solid var(--border)}
+.brand-qr-box:last-child{border-right:none}
+.brand-qr-bt{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.do-dont{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.do-tag{font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(34,197,94,.1);color:#15803d;border:1px solid rgba(34,197,94,.2)}
+.dont-tag{font-size:9px;font-weight:700;padding:2px 8px;border-radius:4px;background:rgba(239,68,68,.08);color:#b91c1c;border:1px solid rgba(239,68,68,.15);text-decoration:line-through}
+/* STORY CARDS */
+.story-week-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.story-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.story-day{font-size:8px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.story-type-label{font-size:9px;font-weight:800;color:var(--green);margin-bottom:3px}
+.story-title-s{font-size:11.5px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:4px}
+.story-note-s{font-size:10px;color:var(--muted);line-height:1.4}
+/* REEL / SINGLE POST CARDS */
+.reel-card{background:var(--white);border:1px solid var(--border);border-left:3px solid #ef4444;border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.reel-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:rgba(239,68,68,.25);line-height:1;flex-shrink:0}
+.reel-type-l{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:#ef4444;margin-bottom:3px}
+.reel-title{font-size:12.5px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:4px}
+.reel-note{font-size:11px;color:var(--muted);line-height:1.5}
+.spost-card{background:var(--white);border:1px solid var(--border);border-left:3px solid var(--pink);border-radius:10px;padding:14px 16px;margin-bottom:10px;display:flex;gap:14px;align-items:flex-start}
+.spost-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:400;color:rgba(233,30,140,.2);line-height:1;flex-shrink:0}
+.spost-type-l{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--pink-deep);margin-bottom:3px}
+.spost-title{font-size:12.5px;font-weight:700;color:var(--dark);line-height:1.35;margin-bottom:4px}
+.spost-note{font-size:11px;color:var(--muted);line-height:1.5}
+@media(max-width:640px){.brand-qr-grid{grid-template-columns:1fr 1fr}.story-week-grid{grid-template-columns:1fr 1fr}}
+/* SECCIÓN NATALIA — Vista cliente */
+.nt-header{background:var(--dark);border-radius:14px;padding:24px 28px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.nt-header-left .nt-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);font-weight:800;margin-bottom:4px}
+.nt-header-left .nt-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--white)}
+.nt-header-right{display:flex;gap:8px;flex-wrap:wrap}
+.nt-stat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:10px 16px;text-align:center}
+.nt-stat-n{font-size:22px;font-weight:900;color:var(--ocre)}
+.nt-stat-l{font-size:9px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.nt-week-card{background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.nt-week-head{padding:14px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.nt-week-head.w1{background:#fffbe6;border-bottom-color:rgba(245,194,0,.2)}
+.nt-week-head.w2{background:#fff0f7;border-bottom-color:rgba(233,30,140,.15)}
+.nt-week-head.w3{background:#f0f9ff;border-bottom-color:rgba(14,165,233,.15)}
+.nt-week-head.w4{background:#f0fdf4;border-bottom-color:rgba(34,197,94,.15)}
+.nt-wk-title{font-size:13px;font-weight:800;color:var(--dark)}
+.nt-wk-dates{font-size:10px;color:var(--muted);font-weight:600}
+.nt-wk-badge{font-size:9px;font-weight:800;padding:3px 10px;border-radius:8px}
+.nt-wk-badge.w1{background:rgba(245,194,0,.15);color:var(--ocre-deep)}
+.nt-wk-badge.w2{background:rgba(233,30,140,.12);color:var(--pink-deep)}
+.nt-wk-badge.w3{background:rgba(14,165,233,.12);color:#0369a1}
+.nt-wk-badge.w4{background:rgba(34,197,94,.12);color:#15803d}
+.nt-posts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0}
+.nt-post{padding:16px 20px;border-bottom:1px solid var(--border);border-right:1px solid var(--border)}
+.nt-post:nth-child(even){border-right:none}
+.nt-post:nth-last-child(-n+2){border-bottom:none}
+.nt-post-day{font-size:9px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.nt-post-type{font-size:8px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:4px}
+.nt-post-title{font-size:12.5px;font-weight:700;color:var(--dark);line-height:1.4;margin-bottom:5px}
+.nt-post-hook{font-size:10.5px;color:var(--muted);line-height:1.5;font-style:italic;margin-bottom:6px}
+.nt-post-footer{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.nt-kw{font-size:8px;font-weight:800;font-family:monospace;background:var(--dark);color:var(--ocre);padding:2px 7px;border-radius:4px;letter-spacing:.5px}
+.nt-slides{font-size:9px;color:var(--muted)}
+.nt-preview-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.nt-preview-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center}
+.nt-preview-num{font-size:16px;font-weight:900;color:var(--ocre-deep);margin-bottom:4px}
+.nt-preview-title{font-size:10px;font-weight:600;color:var(--dark);line-height:1.4}
+.nt-preview-day{font-size:9px;color:var(--muted);margin-top:3px}
+.nt-note{background:rgba(233,30,140,.05);border:1px solid rgba(233,30,140,.2);border-radius:10px;padding:14px 18px;margin-top:12px;font-size:11.5px;color:var(--text);line-height:1.7}
+.nt-note strong{color:var(--pink-deep)}
+/* BANNER NOTIFICACIÓN DE ENTREGA */
+.notif-banner{background:linear-gradient(135deg,var(--dark) 0%,#1a2236 100%);border-radius:14px;padding:22px 24px;margin-bottom:16px;border:1.5px solid rgba(245,194,0,.18)}
+.notif-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.notif-banner-title{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);margin-bottom:3px}
+.notif-banner-desc{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.5;max-width:380px}
+.notif-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.notif-select{border:1.5px solid rgba(245,194,0,.25);border-radius:8px;padding:9px 13px;font-size:12px;font-family:'Montserrat',sans-serif;background:rgba(255,255,255,.07);color:#fff;outline:none;cursor:pointer;font-weight:600;transition:border-color .15s}
+.notif-select:focus{border-color:var(--ocre)}
+.notif-select option{background:#111827;color:#fff}
+.notif-btn{padding:11px 22px;border-radius:9px;background:var(--ocre);color:var(--dark);font-size:12px;font-weight:800;border:none;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s;white-space:nowrap}
+.notif-btn:hover{background:var(--ocre-deep);transform:translateY(-1px)}
+.notif-log{border-top:1px solid rgba(255,255,255,.07);padding-top:12px;margin-top:4px}
+.notif-log-title{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:7px}
+.notif-log-item{display:flex;align-items:center;gap:8px;font-size:10.5px;color:rgba(255,255,255,.45);margin-bottom:4px}
+.notif-log-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 0 2px rgba(34,197,94,.2)}
+/* HISTORIAL CITAS */
+.cita-item{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:8px}
+.cita-item-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.cita-item-date{font-size:12px;font-weight:700;color:var(--dark)}
+.cita-item-type{font-size:9px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:2px 8px;border-radius:6px;background:rgba(192,154,85,.15);color:var(--ocre-deep)}
+.cita-item-note{font-size:11px;color:var(--muted)}
+.cita-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;padding:2px 6px;border-radius:4px}
+.cita-del:hover{background:rgba(239,68,68,.1);color:#b91c1c}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-brand">
+    <div>
+      <div class="brand-s">AJ Business Advisory</div>
+      <div class="brand-x">Instagram Growth · @dentaliaodontologia</div>
+    </div>
+  </div>
+  <div class="nav-tabs">
+    <a class="ntab a" href="#marca">🎨 Marca</a>
+    <a class="ntab" href="#ritmo">📅 Ritmo</a>
+    <a class="ntab" href="#checklist">✅ Paula</a>
+    <a class="ntab" href="#banco">📱 Contenido</a>
+    <a class="ntab" href="#valentina">👑 Valentina</a>
+    <a class="ntab" href="#citas">📆 Citas</a>
+    <a class="ntab" href="#natalia" style="color:var(--pink-deep);font-weight:800">📊 Para Natalia</a>
+  </div>
+  <div class="nav-r">
+    <button class="btn-sm btn-dark" onclick="window.print()">⬇️ PDF</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-ey">AJ Business Advisory · Sistema Instagram Growth · Mayo 2026</div>
+  <h1 class="hero-name">Dra. Natalia Barrantes<br/><em>@dentaliaodontologia</em></h1>
+  <div class="hero-tag">Parrilla de contenido · Plan de publicaciones · Roles y automatización</div>
+  <div class="hero-chips">
+    <span class="chip g">📱 4 posts / semana · 16 carruseles / mes</span>
+    <span class="chip g">✍️ Paula · Productora — solo Drive</span>
+    <span class="chip g">👑 Valentina · Automatización · Publicación · Comunidad</span>
+    <span class="chip">🚀 Lanzamiento: Lunes 18 Mayo 2026</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- MARCA -->
+<section class="sec" id="marca">
+  <div class="sec-ky">Manual de identidad · Extraído del PDF 2024</div>
+  <div class="sec-ti">Guía de Marca</div>
+  <div style="height:16px"></div>
+  <div class="brand-row">
+    <div class="bc">
+      <div class="bc-t">🎨 Paleta — solo estos colores</div>
+      <div class="sw-row"><div class="sw" style="background:#C09A55"></div><div><div class="sw-n">Ocre principal</div><div class="sw-h">#C09A55</div></div></div>
+      <div class="sw-row"><div class="sw" style="background:#E8D5B0"></div><div><div class="sw-n">Ocre pastel</div><div class="sw-h">#E8D5B0</div></div></div>
+      <div class="sw-row"><div class="sw" style="background:#F2E8D8;border:1px solid #ddd"></div><div><div class="sw-n">Crema fondo</div><div class="sw-h">#F2E8D8</div></div></div>
+      <div class="sw-row"><div class="sw" style="background:#FFFFFF;border:1px solid #ddd"></div><div><div class="sw-n">Blanco puro</div><div class="sw-h">#FFFFFF</div></div></div>
+      <div class="sw-row"><div class="sw" style="background:#1C1710"></div><div><div class="sw-n">Oscuro marca</div><div class="sw-h">#1C1710</div></div></div>
+      <div style="margin-top:8px;font-size:9px;font-weight:700;color:var(--muted)">🚫 NUNCA usar:</div>
+      <div class="no-use"><span class="nb">Morado</span><span class="nb">Azul frío</span><span class="nb">Rojo</span><span class="nb">Verde neón</span></div>
+    </div>
+    <div class="bc">
+      <div class="bc-t">✍️ Tipografía</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Nombre / Títulos elegantes</div>
+        <div class="font-s">Dra. Natalia Barrantes</div>
+        <div class="font-m">Cormorant Garamond · Italic<br/>Canva → buscar "Cormorant" · CapCut → "Classic"</div>
+      </div>
+      <div style="height:1px;background:var(--border);margin:8px 0"></div>
+      <div>
+        <div style="font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Cuerpo / Subtítulos</div>
+        <div class="font-c">Odontología Integral</div>
+        <div class="font-m">Montserrat · 400–600<br/>Canva → "Montserrat" · CapCut → "Minima"</div>
+      </div>
+    </div>
+    <div class="bc">
+      <div class="bc-t">🔆 Logo</div>
+      <div class="logo-preview">
+        <div class="logo-n">Dra. Natalia Barrantes</div>
+        <div class="logo-s">ODONTOLOGÍA INTEGRAL</div>
+      </div>
+      <div style="font-size:11px;color:var(--muted);line-height:1.8">
+        • Fondo oscuro → logo dorado<br/>
+        • Fondo claro → logo oscuro<br/>
+        • Reels: esquina inferior izq.<br/>
+        • Carruseles: portada siempre con logo<br/>
+        • No distorsionar nunca
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="d"/>
+
+<!-- RITMO -->
+<section class="sec" id="ritmo">
+  <div class="sec-ky">Calendario operativo · Semana vencida</div>
+  <div class="sec-ti">Ritmo de Operación y Publicación</div>
+  <div style="height:16px"></div>
+
+  <!-- TIMELINE -->
+  <div class="timeline-op">
+    <div class="tl-blk active">
+      <div class="tl-date">10</div>
+      <div class="tl-label">Dom Mayo</div>
+      <div class="tl-desc">Paula inicia operación · Recibe accesos, briefing y parrilla</div>
+    </div>
+    <div class="tl-blk" style="background:var(--ocre-pale)">
+      <div class="tl-date" style="color:var(--dark)">10–17</div>
+      <div class="tl-label">Preparación</div>
+      <div class="tl-desc" style="color:var(--muted)">Paula produce toda la semana 1 con tranquilidad</div>
+    </div>
+    <div class="tl-blk" style="background:var(--ocre-pale)">
+      <div class="tl-date" style="color:var(--dark)">17</div>
+      <div class="tl-label">Dom Mayo</div>
+      <div class="tl-desc" style="color:var(--muted)">Paula entrega semana 1 → Valentina revisa lunes 18</div>
+    </div>
+    <div class="tl-blk launch">
+      <div class="tl-date">18</div>
+      <div class="tl-label">🚀 LANZAMIENTO</div>
+      <div class="tl-desc">Primeras publicaciones en vivo · @dentaliaodontologia</div>
+    </div>
+    <div class="tl-blk">
+      <div class="tl-date" style="color:var(--dark)">18+</div>
+      <div class="tl-label">Ciclo continuo</div>
+      <div class="tl-desc" style="color:var(--muted)">Paula produce semana X + 1 mientras publica semana X</div>
+    </div>
+  </div>
+
+  <div class="info">
+    <p><strong>Semana vencida:</strong> Paula siempre trabaja con 1 semana de anticipación. Cuando se publica la semana 1, ella ya está produciendo la semana 2. Esto garantiza tiempo de revisión, ajustes y calidad sin apuro.</p>
+  </div>
+
+  <!-- WEEKLY SCHEDULE -->
+  <div class="week-grid">
+    <div class="wg-head">
+      <div class="wg-title">Plantilla semanal — 4 posts por semana</div>
+      <div class="wg-badge">Hora Colombia · COT</div>
+    </div>
+
+    <div class="day-row">
+      <div class="dr-day"><div class="dr-dn">Lun</div><div class="dr-dt">Arranque</div></div>
+      <div class="dr-post" style="grid-column:span 2">
+        <div class="dr-type">Stories · preparación</div>
+        <div class="dr-title">Story educativa 8am + story encuesta 7pm</div>
+        <div class="dr-time">Programar desde Meta Business Suite</div>
+      </div>
+      <div class="dr-time-col" style="color:var(--muted);font-weight:400;font-size:9px">Stories<br/>solo</div>
+    </div>
+
+    <div class="day-row">
+      <div class="dr-day"><div class="dr-dn">Mar</div><div class="dr-dt" style="color:var(--ocre-deep);font-weight:700">📱 Pico</div></div>
+      <div class="dr-post">
+        <div class="dr-type">Post 1</div>
+        <div class="dr-title">Carrusel educativo o único post</div>
+        <div class="dr-time">12:00 PM</div>
+        <span class="dr-kw">SONRISA · VISITA</span>
+      </div>
+      <div class="dr-post">
+        <div class="dr-type">Story</div>
+        <div class="dr-title">Compartir el carrusel + CTA</div>
+        <div class="dr-time">7:00 PM</div>
+      </div>
+      <div class="dr-time-col">12 PM</div>
+    </div>
+
+    <div class="day-row">
+      <div class="dr-day"><div class="dr-dn">Mié</div><div class="dr-dt">Mid</div></div>
+      <div class="dr-post">
+        <div class="dr-type">Post 2</div>
+        <div class="dr-title">Carrusel viral o emocional</div>
+        <div class="dr-time">7:00 PM</div>
+        <span class="dr-kw">MIEDO · PRECIO</span>
+      </div>
+      <div class="dr-post">
+        <div class="dr-type">Story</div>
+        <div class="dr-title">Q&A real de DMs o mito/realidad</div>
+        <div class="dr-time">8:00 AM</div>
+      </div>
+      <div class="dr-time-col">7 PM</div>
+    </div>
+
+    <div class="day-row">
+      <div class="dr-day"><div class="dr-dn">Jue</div><div class="dr-dt" style="color:var(--ocre-deep);font-weight:700">📱 Pico</div></div>
+      <div class="dr-post">
+        <div class="dr-type">Post 3</div>
+        <div class="dr-title">Carrusel tips o comparativa</div>
+        <div class="dr-time">12:00 PM</div>
+        <span class="dr-kw">PRECIO · CITA</span>
+      </div>
+      <div class="dr-post">
+        <div class="dr-type">Story</div>
+        <div class="dr-title">Compartir + sticker CTA agenda</div>
+        <div class="dr-time">7:30 PM</div>
+      </div>
+      <div class="dr-time-col">12 PM</div>
+    </div>
+
+    <div class="day-row">
+      <div class="dr-day"><div class="dr-dn">Vie</div><div class="dr-dt" style="color:var(--ocre-deep);font-weight:700">🔥 Prime</div></div>
+      <div class="dr-post">
+        <div class="dr-type">Post 4 — Mayor alcance</div>
+        <div class="dr-title">Carrusel conversión o Reel (cuando haya rodaje)</div>
+        <div class="dr-time">7:00 PM</div>
+        <span class="dr-kw">CITA · SONRISA</span>
+      </div>
+      <div class="dr-post">
+        <div class="dr-type">Story</div>
+        <div class="dr-title">Compartir post + urgencia cupos</div>
+        <div class="dr-time">8:00 PM</div>
+      </div>
+      <div class="dr-time-col">7 PM</div>
+    </div>
+
+    <div class="day-row" style="background:rgba(34,197,94,.03)">
+      <div class="dr-day"><div class="dr-dn">Sáb</div><div class="dr-dt">Alcance</div></div>
+      <div class="dr-post" style="grid-column:span 2">
+        <div class="dr-type">Stories · social proof + antes/después</div>
+        <div class="dr-title">10am + 12pm · Ampliar alcance del Reel/Post del viernes</div>
+      </div>
+      <div class="dr-time-col" style="color:var(--muted);font-weight:400;font-size:9px">Stories<br/>solo</div>
+    </div>
+
+    <div class="day-row" style="background:rgba(192,154,85,.04)">
+      <div class="dr-day"><div class="dr-dn">Dom</div><div class="dr-dt" style="color:var(--ocre-deep);font-weight:800">📦 ENTREGA</div></div>
+      <div class="dr-post" style="grid-column:span 2">
+        <div class="dr-type">Paula entrega contenido semana siguiente</div>
+        <div class="dr-title">Sube al Drive + completa checklist + notifica a Valentina</div>
+        <div class="dr-time">Antes de las 6:00 PM</div>
+      </div>
+      <div class="dr-time-col" style="background:rgba(192,154,85,.1);color:var(--ocre-deep)">6 PM<br/>límite</div>
+    </div>
+  </div>
+</section>
+
+<hr class="d"/>
+
+<!-- CHECKLIST INTERACTIVO -->
+<section class="sec" id="checklist">
+  <div class="sec-ky">Productora de contenido · Solo produce y entrega al Drive · No programa ni publica</div>
+  <div class="sec-ti">Checklist Semanal — Paula</div>
+  <div style="height:16px"></div>
+
+  <div style="background:rgba(192,154,85,.08);border:1.5px solid var(--ocre);border-radius:12px;padding:14px 18px;margin-bottom:16px">
+    <div style="font-size:11px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px">📌 Rol de Paula — Productora de contenido</div>
+    <p style="font-size:12px;color:var(--text);line-height:1.7"><strong>Paula diseña, redacta y organiza</strong> todo el contenido semanal y lo sube al Drive antes del domingo a las 6pm. <strong>No programa ni publica</strong> — eso lo hace Valentina desde su acceso a Meta Business Suite. Paula tampoco gestiona DMs ni automatizaciones; su entrega es el Drive organizado + checklist completo.</p>
+  </div>
+
+  <div class="info">
+    <p><strong>Cómo funciona:</strong> Marca cada tarea al completarla. Todo se guarda automáticamente en tu navegador (aunque cierres la pestaña). Al hacer clic en "Nueva semana", los checks se reinician pero tus tareas personalizadas quedan guardadas para siempre — así la plantilla crece con cada semana que trabajas. Puedes agregar tareas nuevas con el botón "＋ Agregar tarea".</p>
+  </div>
+
+  <!-- ==============================
+       BANNER: NOTIFICAR ENTREGA
+       ============================== -->
+  <div class="notif-banner">
+    <div class="notif-top">
+      <div>
+        <div class="notif-banner-title">📢 Notificar entrega semanal</div>
+        <div class="notif-banner-desc">Selecciona la semana y el mes que entregaste. Al hacer clic, se crea un evento en el calendario de Valentina para la revisión del lunes siguiente a las 9am.</div>
+      </div>
+      <div class="notif-controls">
+        <select class="notif-select" id="notif-semana">
+          <option value="1">Semana 1</option>
+          <option value="2">Semana 2</option>
+          <option value="3">Semana 3</option>
+          <option value="4">Semana 4</option>
+        </select>
+        <select class="notif-select" id="notif-mes">
+          <option value="Mayo">Mayo</option>
+          <option value="Junio">Junio</option>
+          <option value="Julio">Julio</option>
+          <option value="Agosto">Agosto</option>
+          <option value="Septiembre">Septiembre</option>
+          <option value="Octubre">Octubre</option>
+          <option value="Noviembre">Noviembre</option>
+          <option value="Diciembre">Diciembre</option>
+        </select>
+        <button class="notif-btn" onclick="notificarEntrega()">📅 Notificar entrega →</button>
+      </div>
+    </div>
+    <div class="notif-log">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
+        <div class="notif-log-title" style="margin-bottom:0">📋 Historial de notificaciones enviadas</div>
+        <button onclick="limpiarNotifLog()" style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.35);font-size:9px;font-weight:700;padding:3px 10px;border-radius:5px;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.5px" title="Limpiar historial">🗑 Limpiar</button>
+      </div>
+      <div id="notif-log-list"><span style="font-size:10.5px;color:rgba(255,255,255,.25)">Aún no has notificado ninguna entrega.</span></div>
+    </div>
+  </div>
+
+  <div class="cl-container" id="cl-main">
+    <!-- HEADER -->
+    <div class="cl-header">
+      <div class="cl-header-left">
+        <div class="cl-title" id="cl-week-title">Semana 1 · Mayo 10–17 (Preparación)</div>
+        <div class="cl-subtitle">Tareas guardadas automáticamente en tu navegador</div>
+      </div>
+      <div class="cl-header-right">
+        <button class="cl-btn cl-btn-add" onclick="toggleAddForm()">＋ Agregar tarea</button>
+        <button class="cl-btn cl-btn-reset" onclick="resetWeek()">↺ Nueva semana</button>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="cl-progress">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="cl-prog-label" id="cl-prog-label">Progreso de la semana</span>
+        <span class="cl-prog-pct" id="cl-prog-pct">0%</span>
+      </div>
+      <div class="cl-prog-row">
+        <div class="cl-prog-bar"><div class="cl-prog-fill" id="cl-prog-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <!-- WEEK SELECTOR -->
+    <div class="cl-week-selector">
+      <span class="cl-week-label">Ver semana:</span>
+      <button class="cl-week-btn sel" onclick="switchWeek(1,this)">Semana 1<br/><span style="font-size:8px;font-weight:400">10–17 Mayo</span></button>
+      <button class="cl-week-btn" onclick="switchWeek(2,this)">Semana 2<br/><span style="font-size:8px;font-weight:400">18–24 Mayo</span></button>
+      <button class="cl-week-btn" onclick="switchWeek(3,this)">Semana 3<br/><span style="font-size:8px;font-weight:400">25–31 Mayo</span></button>
+      <button class="cl-week-btn" onclick="switchWeek(4,this)">Semana 4<br/><span style="font-size:8px;font-weight:400">1–7 Junio</span></button>
+    </div>
+
+    <!-- SECTIONS -->
+    <div id="cl-sections-container"></div>
+
+    <!-- ADD FORM -->
+    <div class="cl-add-form" id="cl-add-form">
+      <input class="cl-add-input" id="cl-add-input" type="text" placeholder="Escribe la nueva tarea..." maxlength="120"/>
+      <select class="cl-add-select" id="cl-add-cat">
+        <option value="📋 Preparación de contenido">📋 Preparación</option>
+        <option value="🎨 Diseño y edición en Canva">🎨 Diseño</option>
+        <option value="✍️ Captions y hashtags">✍️ Captions</option>
+        <option value="📤 Entrega al Drive — antes del domingo 6pm">📤 Entrega</option>
+        <option value="📊 Notas para Valentina (incluir en mensaje de entrega)">📊 Notas</option>
+      </select>
+      <button class="cl-add-sub" onclick="addCustomTask()">Guardar</button>
+      <button class="cl-add-cancel" onclick="toggleAddForm()">Cancelar</button>
+    </div>
+  </div>
+</section>
+
+<hr class="d"/>
+
+<!-- BANCO DE CONTENIDO -->
+<section class="sec" id="banco">
+  <div class="sec-ky">Dra. Natalia Barrantes · @dentaliaodontologia · Antes: Dentalia</div>
+  <div class="sec-ti">Banco de Contenido</div>
+  <div style="height:16px"></div>
+
+  <!-- MANUAL DE MARCA RÁPIDO -->
+  <div class="brand-qr">
+    <div class="brand-qr-head">
+      <div class="brand-qr-head-title">🎨 Manual de Marca — Dra. Natalia Barrantes</div>
+      <div class="brand-qr-head-sub">Antes: Dentalia · Ahora: marca personal Dra. NB · Mantener siempre esta identidad</div>
+    </div>
+    <div class="brand-qr-grid">
+      <div class="brand-qr-box">
+        <div class="brand-qr-bt">✅ Colores aprobados</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:18px;height:18px;border-radius:4px;background:#C09A55;flex-shrink:0"></div><span style="font-size:10px;font-family:monospace;color:var(--dark)">#C09A55 · Ocre principal</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:18px;height:18px;border-radius:4px;background:#E8D5B0;border:1px solid #ddd;flex-shrink:0"></div><span style="font-size:10px;font-family:monospace;color:var(--dark)">#E8D5B0 · Ocre pastel</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:18px;height:18px;border-radius:4px;background:#F2E8D8;border:1px solid #ddd;flex-shrink:0"></div><span style="font-size:10px;font-family:monospace;color:var(--dark)">#F2E8D8 · Crema fondo</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:18px;height:18px;border-radius:4px;background:#FFFFFF;border:1px solid #ddd;flex-shrink:0"></div><span style="font-size:10px;font-family:monospace;color:var(--dark)">#FFFFFF · Blanco</span></div>
+          <div style="display:flex;align-items:center;gap:6px"><div style="width:18px;height:18px;border-radius:4px;background:#1C1710;flex-shrink:0"></div><span style="font-size:10px;font-family:monospace;color:var(--dark)">#1C1710 · Oscuro</span></div>
+        </div>
+      </div>
+      <div class="brand-qr-box">
+        <div class="brand-qr-bt">🚫 Nunca usar</div>
+        <div class="do-dont" style="flex-direction:column;gap:5px">
+          <span class="dont-tag">Morado / Púrpura</span>
+          <span class="dont-tag">Azul frío</span>
+          <span class="dont-tag">Rojo</span>
+          <span class="dont-tag">Verde neón</span>
+          <span class="dont-tag">Gris neutro genérico</span>
+        </div>
+        <div style="margin-top:10px;font-size:10px;color:#b91c1c;font-weight:700;line-height:1.5">⚠️ Si el color no es ocre, crema, blanco o negro — no va en ninguna pieza.</div>
+      </div>
+      <div class="brand-qr-box">
+        <div class="brand-qr-bt">✍️ Tipografía</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--dark);margin-bottom:5px">Dra. Natalia</div>
+        <div style="font-size:9px;color:var(--muted);margin-bottom:10px">Cormorant Garamond Italic<br/>→ Canva: buscar "Cormorant"<br/>→ Títulos y nombres elegantes</div>
+        <div style="font-size:11px;letter-spacing:1px;font-weight:700;color:var(--dark);margin-bottom:3px">ODONTOLOGÍA</div>
+        <div style="font-size:9px;color:var(--muted)">Montserrat 400–600<br/>→ Cuerpo, subtítulos, datos</div>
+      </div>
+      <div class="brand-qr-box">
+        <div class="brand-qr-bt">🔆 Logo y marca</div>
+        <div style="background:var(--dark);border-radius:7px;padding:10px;text-align:center;margin-bottom:8px">
+          <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:#C09A55">Dra. Natalia Barrantes</div>
+          <div style="font-size:6px;letter-spacing:2.5px;color:rgba(255,255,255,.35);text-transform:uppercase;margin-top:2px">ODONTOLOGÍA INTEGRAL</div>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">
+          • Logo en <strong>portada</strong> siempre<br/>
+          • Fondo oscuro → logo dorado<br/>
+          • Fondo claro → logo oscuro<br/>
+          • Reels: esquina inferior izq.<br/>
+          • Pill "Antes Dentalia" si aplica
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BANNER: CARRUSELES -->
+  <div class="ctype-banner ct-carousel">
+    <div class="ctype-icon">🎠</div>
+    <div class="ctype-info">
+      <div class="ctype-label">Formato principal de contenido</div>
+      <div class="ctype-title">Carruseles — Feed de Instagram</div>
+      <div class="ctype-desc">4 carruseles por semana · 16 al mes · Mínimo 5 slides · Máximo 7 slides · Portada oscura + slides crema + CTA oscuro</div>
+    </div>
+    <div class="ctype-badge ct-carousel">4 / semana · 16 / mes</div>
+  </div>
+
+  <!-- GUÍA DE FORMATO COMPLETA -->
+  <div style="background:var(--dark);border-radius:14px;padding:24px;margin-bottom:20px">
+    <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ocre);opacity:.7;margin-bottom:8px">📐 Guía de formato — Lee esto antes de diseñar</div>
+    <div style="font-size:14px;font-weight:700;color:var(--white);margin-bottom:16px;font-family:'Cormorant Garamond',serif;font-style:italic">Todo lo que necesitas saber para producir cada pieza correctamente</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+
+      <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:16px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-bottom:10px">📏 Estructura del carrusel (OBLIGATORIA)</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.8);line-height:2">
+          <span style="color:var(--ocre);font-weight:700">Slide 1 — Portada:</span> Hook visual impactante + título + logo Dentalia esquina inf. der.<br/>
+          <span style="color:var(--ocre-light);font-weight:700">Slides 2–6 — Contenido:</span> 1 idea por slide. Conciso. Sin paredes de texto.<br/>
+          <span style="color:var(--ocre);font-weight:700">Último slide — CTA:</span> Fondo oscuro + keyword ManyChat en grande + llamado a la acción<br/>
+          <br/>
+          <span style="color:rgba(255,255,255,.4);font-size:10px">Mínimo 5 slides · Máximo 7 slides (contando portada y CTA)</span>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:16px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-bottom:10px">🎨 Canva — configuración exacta</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.8);line-height:2">
+          Formato: <span style="color:var(--ocre-light)">1080×1080 px</span> (feed) o <span style="color:var(--ocre-light)">1080×1350 px</span> (carrusel 4:5)<br/>
+          Fondo base slides: <code style="background:rgba(255,255,255,.1);padding:1px 6px;border-radius:4px">#F2E8D8</code> (crema)<br/>
+          Portada / CTA: <code style="background:rgba(255,255,255,.1);padding:1px 6px;border-radius:4px">#1C1710</code> (oscuro)<br/>
+          Títulos: Cormorant Garamond · Italic · color <code style="background:rgba(255,255,255,.1);padding:1px 6px;border-radius:4px">#C09A55</code><br/>
+          Cuerpo: Montserrat · 400 o 500 · color <code style="background:rgba(255,255,255,.1);padding:1px 6px;border-radius:4px">#1C1710</code><br/>
+          Logo: esquina inf. derecha · versión dorada sobre oscuro
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:16px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-bottom:10px">✍️ Caption — estructura siempre igual</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.8);line-height:2">
+          <span style="color:var(--ocre-light);font-weight:700">Línea 1 (hook):</span> La frase que frena el scroll. Máx 10 palabras.<br/>
+          <span style="color:var(--ocre-light);font-weight:700">Cuerpo:</span> Ampliar el tema en 2–4 líneas. Sin emojis excesivos.<br/>
+          <span style="color:var(--ocre-light);font-weight:700">CTA final:</span> "Comenta [KEYWORD] y…" — SIEMPRE presente<br/>
+          <span style="color:var(--ocre-light);font-weight:700">Hashtags:</span> Máx 10 · al final · separados por espacio<br/>
+          <br/>
+          <span style="color:rgba(255,255,255,.4);font-size:10px">Sin keyword en caption = ManyChat no dispara el DM automático</span>
+        </div>
+      </div>
+
+      <div style="background:rgba(255,255,255,.05);border-radius:10px;padding:16px">
+        <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-bottom:10px">📂 Cómo organizar el Drive</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.8);line-height:2;font-family:monospace">
+          📁 Semana X/<br/>
+          &nbsp;&nbsp;📂 MAR_Post1/<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;portada_01.png<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;slide_02.png<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;slide_03.png<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;cta_07.png<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;caption.txt<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;hashtags.txt<br/>
+          &nbsp;&nbsp;📂 MIE_Post2/ · 📂 JUE_Post3/ · 📂 VIE_Post4/<br/>
+          &nbsp;&nbsp;📂 Stories/ (opcional)
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:16px;background:rgba(192,154,85,.12);border:1px solid rgba(192,154,85,.25);border-radius:10px;padding:14px 16px">
+      <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre);margin-bottom:6px">⚠️ Reglas que nunca se rompen</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11.5px;color:rgba(255,255,255,.75);line-height:1.8">
+        <div>🚫 Nunca usar morado, azul frío ni rojo</div>
+        <div>🚫 Nunca publicar directamente — todo va al Drive</div>
+        <div>🚫 Nunca más de 7 slides por carrusel</div>
+        <div>🚫 Nunca enviar archivos por WhatsApp (solo Drive)</div>
+        <div>✅ Siempre logo en la portada de cada carrusel</div>
+        <div>✅ Siempre keyword ManyChat visible en el último slide</div>
+        <div>✅ Siempre entregar domingo antes de las 6pm</div>
+        <div>✅ Siempre enviar nota de entrega a Valentina</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORDS MANYCHAT REFERENCIA RÁPIDA -->
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center">
+    <div style="font-size:10px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-right:4px">Keywords activas:</div>
+    <span class="dr-kw">SONRISA</span>
+    <span class="dr-kw">MIEDO</span>
+    <span class="dr-kw">PRECIO</span>
+    <span class="dr-kw">CITA</span>
+    <span class="dr-kw">VISITA</span>
+    <div style="font-size:10px;color:var(--muted);margin-left:4px">→ Cada post usa 1 keyword. El último slide la muestra en grande. El caption la repite al final.</div>
+  </div>
+
+  <!-- SEMANA 1 -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)">📅 SEMANA 1 — Publicaciones 20–23 Mayo</div>
+
+  <!-- POST 1 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">1</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Martes 20 Mayo · 12pm · Alto share y guardado</div>
+        <div class="pc-ti">7 cosas que nadie te dice antes de blanquearte los dientes</div>
+        <div class="pc-tags"><span class="pct k">SONRISA</span><span class="pct d">9 slides · carrusel</span><span class="pct d">Sin filmar</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">Antes de blanquearte los dientes, lee esto 🦷</div><div class="sl-b">Fondo oscuro · título blanco · "Guarda esto" · logo portada</div></div>
+        <div class="sl light"><div class="sl-n">1/5</div><div class="sl-t">No todos responden igual</div><div class="sl-b">Depende de tu esmalte y la causa del manchado</div></div>
+        <div class="sl light"><div class="sl-n">2/5</div><div class="sl-t">Kits de farmacia erosionan el esmalte</div><div class="sl-b">Concentraciones no reguladas = daño silencioso e irreversible</div></div>
+        <div class="sl light"><div class="sl-n">3/5</div><div class="sl-t">48h sin café, vino ni tabaco</div><div class="sl-b">Después del tratamiento el esmalte está abierto y absorbe todo</div></div>
+        <div class="sl light"><div class="sl-n">4/5</div><div class="sl-t">El profesional dura 3× más — y no daña</div><div class="sl-b">Una sola sesión en consultorio. Encías sanas primero.</div></div>
+        <div class="sl light"><div class="sl-n">5/5</div><div class="sl-t">Sensibilidad 24–48h = normal. Más = consulta.</div><div class="sl-b">El esmalte necesita tiempo. Si supera las 48h algo no está bien.</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">¿Eres candidato/a?</div><div class="sl-b">Comenta SONRISA y te explicamos</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption listo para copiar</div><div class="cap-t">Antes de comprar ese kit de blanqueamiento, lee esto. 🦷 Guarda para cuando lo necesites.
+
+Comenta SONRISA y te decimos si eres candidato/a para un blanqueamiento profesional.</div></div>
+      <div class="hashtags">#blanqueamientodental #dentaliaodontologia #odontologiabogota #sonrisaperfecta #saludbucal #dranataliabarrantes #blanqueamiento #cuidatuboca #odontologiaintegral #tipsdentalcolombia</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética en Canva</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>fondo #1C1710 · texto blanco</span></div>
+          <div class="ae-item">Slides 2–6: <span>fondo #F2E8D8 (crema)</span></div>
+          <div class="ae-item">Título slide: <span>Cormorant · dorado #C09A55</span></div>
+          <div class="ae-item">Cuerpo slide: <span>Montserrat 400 · #1C1710</span></div>
+          <div class="ae-item">Acento: <span>línea horizontal dorada</span></div>
+          <div class="ae-item">Logo: <span>esquina inf. derecha · versión dorada</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(192,154,85,.06);border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin-top:10px">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:8px">📋 Paso a paso para producir este carrusel</div>
+        <div style="font-size:11.5px;color:var(--text);line-height:2">
+          1. Abre Canva → Crea diseño → <strong>1080×1080 px</strong> (o usa plantilla Dentalia existente)<br/>
+          2. <strong>Portada (slide 1):</strong> Fondo oscuro (#1C1710) · Escribe el título en Cormorant Italic dorado · Agrega logo esquina inf. der. · Frase secundaria en Montserrat pequeño blanco<br/>
+          3. <strong>Slides 2–6:</strong> Duplica la página · Cambia fondo a crema (#F2E8D8) · Número de slide en Cormorant grande dorado (ej: "01") · Título en negrita oscuro · Subtexto en Montserrat 400 más pequeño<br/>
+          4. <strong>Slide CTA (último):</strong> Vuelve a fondo oscuro · Keyword ManyChat en grande: "<strong>SONRISA</strong>" · CTA en Montserrat blanco · Logo siempre presente<br/>
+          5. Exporta → Descarga como <strong>PNG</strong> · Activa "exportar cada página como archivo individual"<br/>
+          6. Renombra: portada_01.png · slide_02.png · … · cta_07.png<br/>
+          7. Escribe el caption en un .txt · Escribe los hashtags en otro .txt separado<br/>
+          8. Sube al Drive: <strong>Semana 1 / MAR_Post1 /</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 2 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">2</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Miércoles 21 Mayo · 7pm · Emocional · alto comentarios</div>
+        <div class="pc-ti">Si evitas el dentista por miedo, esto es para ti</div>
+        <div class="pc-tags"><span class="pct k">MIEDO</span><span class="pct d">8 slides · carrusel</span><span class="pct d">Sin filmar</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">Si evitas el dentista por miedo, esto es para ti 💛</div><div class="sl-b">Fondo oscuro · título blanco · punto dorado · tono cálido</div></div>
+        <div class="sl light"><div class="sl-n">1/5</div><div class="sl-t">El 30% de adultos evita el dentista por miedo</div><div class="sl-b">Y el mayor miedo no es el dolor — es el juicio</div></div>
+        <div class="sl light"><div class="sl-n">2/5</div><div class="sl-t">La ironía: el dolor viene de no ir</div><div class="sl-b">Evitar la cita crea exactamente el problema que temes</div></div>
+        <div class="sl light"><div class="sl-n">3/5</div><div class="sl-t">Lo que hacemos diferente</div><div class="sl-b">Te contamos cada paso antes de hacerlo. Sin sorpresas. Nada sin tu aprobación.</div></div>
+        <div class="sl light"><div class="sl-n">4/5</div><div class="sl-t">Primero hablamos. Luego decidimos.</div><div class="sl-b">Una valoración no duele. Solo te da información para decidir.</div></div>
+        <div class="sl light"><div class="sl-n">5/5</div><div class="sl-t">Tu primera cita: solo conversación + revisión visual</div><div class="sl-b">Sin instrumentos intimidantes. Sin compromisos. Solo información.</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">Comenta MIEDO 💛</div><div class="sl-b">Te contamos cómo manejamos tu primera cita</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption</div><div class="cap-t">Si llevas años evitando el dentista por miedo — este es para ti. 💛
+
+No eres el único. El 30% de adultos tiene ansiedad dental real.
+
+Comenta MIEDO y te contamos cómo manejamos la primera cita.</div></div>
+      <div class="hashtags">#miedoaldentista #ansiedaddental #dentaliaodontologia #odontologiabogota #primeracita #dranataliabarrantes #sinmiedo #odontologiaintegral #saludbucal #dentistabogota</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — tono oscuro emocional (warmth, no frialdad)</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>fondo #1C1710 · título blanco</span></div>
+          <div class="ae-item">Emoji 💛: <span>elemento cálido · solo este post</span></div>
+          <div class="ae-item">Slides 2–6: <span>fondo crema #F2E8D8</span></div>
+          <div class="ae-item">Slide CTA: <span>fondo oscuro siempre</span></div>
+          <div class="ae-item">Keyword: <span>MIEDO en grande y visible</span></div>
+          <div class="ae-item">Tono: <span>cálido · nunca clínico ni aterrador</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(192,154,85,.06);border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin-top:10px">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:8px">📋 Paso a paso — Miércoles 7pm · Carpeta: MIE_Post2</div>
+        <div style="font-size:11.5px;color:var(--text);line-height:2">
+          1. Duplica la plantilla del Post 1 y ajusta colores → este post es más emocional: <strong>portada oscura, slides internas en crema, tono cálido</strong><br/>
+          2. La portada tiene el emoji 💛 como elemento visual central — grande, antes del texto<br/>
+          3. Cada slide interior tiene 1 sola idea por página — no más de 2 líneas de texto principal<br/>
+          4. El último slide lleva la keyword <strong>MIEDO</strong> en grande + CTA suave ("te contamos", "te acompañamos")<br/>
+          5. Caption: comienza con dolor real del lector. Usa "si tú eres de los que…" o "el 30% de adultos…"<br/>
+          6. Exporta PNG · Renombra · Sube a Drive: <strong>Semana 1 / MIE_Post2 /</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 3 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">3</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Jueves 22 Mayo · 12pm · Alto share controversial</div>
+        <div class="pc-ti">La comparativa que tu dentista barato no quiere que veas</div>
+        <div class="pc-tags"><span class="pct k">PRECIO</span><span class="pct d">8 slides · carrusel</span><span class="pct d">Sin filmar</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">Lo que nadie te dice sobre el dentista "barato" 👀</div><div class="sl-b">Fondo oscuro · emoji grande · "No es sobre dinero. Es sobre información."</div></div>
+        <div class="sl light"><div class="sl-n">1/5</div><div class="sl-t">No es malo porque es barato</div><div class="sl-b">Hay resultados imposibles con presupuesto de $30K por cita — y eso está bien saberlo</div></div>
+        <div class="sl light"><div class="sl-n">2/5</div><div class="sl-t">Materiales: genérico vs. certificado</div><div class="sl-b">Resina barata: 2 años. Buena: 8–10 años. La diferencia se paga después.</div></div>
+        <div class="sl light"><div class="sl-n">3/5</div><div class="sl-t">Diagnóstico visual vs. completo</div><div class="sl-b">Sin Rx + exploración hay cosas que el ojo nunca ve — hasta que duelen</div></div>
+        <div class="sl light"><div class="sl-n">4/5</div><div class="sl-t">El costo real en el tiempo</div><div class="sl-b">Resina barata × 3 cambios = más cara que hacerla bien desde el principio</div></div>
+        <div class="sl light"><div class="sl-n">5/5</div><div class="sl-t">No te decimos que gastes más</div><div class="sl-b">Te decimos que decidas con información real. Eso es todo.</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">Comenta PRECIO</div><div class="sl-b">Te explicamos qué incluye cualquier procedimiento · sin compromiso</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption</div><div class="cap-t">No te decimos que gastes más. Te decimos que decidas con información real. 🦷
+
+Comenta PRECIO y te explicamos qué incluye cualquier procedimiento. Sin compromiso.</div></div>
+      <div class="hashtags">#odontologiabogota #dentaliaodontologia #presupuestodental #calidadvsprecio #dranataliabarrantes #saludbucal #odontologiaintegral #dentistabogota #invertirensalud #cuidatuboca</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — comparativa visual, controversial pero educativa</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>emoji 👀 grande · intriga</span></div>
+          <div class="ae-item">Slides comparativas: <span>tabla 2 col. cuando aplique</span></div>
+          <div class="ae-item">Col. "barato": <span>fondo gris suave · ❌</span></div>
+          <div class="ae-item">Col. "bueno": <span>fondo dorado suave · ✅</span></div>
+          <div class="ae-item">Tono: <span>informativo, nunca agresivo</span></div>
+          <div class="ae-item">Keyword: <span>PRECIO en CTA</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(192,154,85,.06);border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin-top:10px">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:8px">📋 Paso a paso — Jueves 12pm · Carpeta: JUE_Post3</div>
+        <div style="font-size:11.5px;color:var(--text);line-height:2">
+          1. Este post es "controversial educativo" — la portada debe generar intriga con el emoji 👀 y una pregunta o afirmación que frene el scroll<br/>
+          2. En los slides comparativos, usa una tabla visual de 2 columnas si Canva lo permite, o alterna slides con ❌ y ✅<br/>
+          3. <strong>Importante:</strong> el tono NO es agresivo con los dentistas baratos — es informativo. La última slide confirma: "no te decimos que gastes más"<br/>
+          4. Caption directo: comienza con la afirmación controversial · 1 dato concreto · CTA con keyword <strong>PRECIO</strong><br/>
+          5. Exporta PNG · Renombra · Sube a Drive: <strong>Semana 1 / JUE_Post3 /</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 4 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">4</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Viernes 23 Mayo · 7pm · Máximo guardado</div>
+        <div class="pc-ti">8 preguntas que deberías hacerle a tu dentista antes de cualquier procedimiento</div>
+        <div class="pc-tags"><span class="pct k">PRECIO</span><span class="pct d">10 slides · carrusel</span><span class="pct d">Sin filmar</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">5 preguntas que debes hacerle a tu dentista antes de empezar 🧠</div><div class="sl-b">Fondo oscuro · emoji grande · "Guárdalo. Te lo agradecerás."</div></div>
+        <div class="sl light"><div class="sl-n">P1</div><div class="sl-t">"¿Cuántos casos así has hecho?"</div><div class="sl-b">La experiencia específica importa más que los años de carrera</div></div>
+        <div class="sl light"><div class="sl-n">P2</div><div class="sl-t">"¿Tienes fotos reales de antes/después?"</div><div class="sl-b">Evidencia de casos similares al tuyo — no stock photos</div></div>
+        <div class="sl light"><div class="sl-n">P3</div><div class="sl-t">"¿Qué pasa si no me lo hago ahora?"</div><div class="sl-b">Distingue urgencia real de urgencia de ventas</div></div>
+        <div class="sl light"><div class="sl-n">P4</div><div class="sl-t">"¿Qué materiales y de qué marca?"</div><div class="sl-b">La diferencia entre marcas es enorme. Un buen dentista te lo dice sin problema.</div></div>
+        <div class="sl light"><div class="sl-n">P5</div><div class="sl-t">"¿Puedo ver el plan de tratamiento por escrito?"</div><div class="sl-b">Transparencia antes de empezar = confianza durante el proceso</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">Nosotros respondemos todo. Comenta PRECIO</div><div class="sl-b">Antes de cualquier procedimiento · sin compromiso</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption</div><div class="cap-t">Guarda esto antes de ir a cualquier procedimiento dental. 🧠
+
+Estas 8 preguntas te ahorran tiempo, dinero y decepciones. Nosotros respondemos todo antes de empezar.
+
+Comenta PRECIO.</div></div>
+      <div class="hashtags">#odontologiabogota #dentaliaodontologia #tipsdentalcolombia #dranataliabarrantes #saludbucal #transparenciadental #odontologiaintegral #dentistabogota #consejodental #cuidatuboca</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — lista numerada premium</div>
+        <div class="ae-row">
+          <div class="ae-item">Números: <span>Cormorant grande · dorado</span></div>
+          <div class="ae-item">Pregunta: <span>entre comillas · negrita oscuro</span></div>
+          <div class="ae-item">Respuesta: <span>Montserrat 400 · muted</span></div>
+          <div class="ae-item">Fondo: <span>crema · sin ruido visual</span></div>
+          <div class="ae-item">Portada: <span>emoji 🧠 grande · fondo oscuro</span></div>
+          <div class="ae-item">Keyword: <span>PRECIO en CTA</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(192,154,85,.06);border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin-top:10px">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--ocre-deep);margin-bottom:8px">📋 Paso a paso — Viernes 7pm · Carpeta: VIE_Post4</div>
+        <div style="font-size:11.5px;color:var(--text);line-height:2">
+          1. Este es el post más importante de la semana (viernes 7pm = pico de alcance). La portada debe tener el mejor gancho visual<br/>
+          2. Layout: número en Cormorant dorado muy grande en la esquina sup. izq. · Pregunta en negrita · Respuesta en texto más pequeño debajo<br/>
+          3. <strong>El fondo debe ser muy limpio</strong> — crema puro, sin texturas ni sombras que distraigan. Solo tipografía y el acento dorado<br/>
+          4. Caption: empieza con "Guarda esto antes de ir a cualquier procedimiento" · Lista breve · CTA con keyword <strong>PRECIO</strong><br/>
+          5. Exporta PNG · Renombra en orden · Sube a Drive: <strong>Semana 1 / VIE_Post4 /</strong><br/>
+          6. Después de subir el Post 4, envía el mensaje de entrega a Valentina por WhatsApp
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 2 -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:28px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)">📅 SEMANA 2 — Publicaciones 27–30 Mayo</div>
+
+  <!-- POST 5 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">5</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Martes 27 Mayo · 12pm · Urgencia real · alto comentarios</div>
+        <div class="pc-ti">Por qué te sangran las encías — y qué hacer HOY</div>
+        <div class="pc-tags"><span class="pct k">VISITA</span><span class="pct d">8 slides · carrusel</span><span class="pct d">Sin filmar</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">Si te sangran las encías al cepillarte, esto es urgente 🩸</div><div class="sl-b">Fondo oscuro · texto blanco · sutil acento ocre · no alarmista</div></div>
+        <div class="sl light"><div class="sl-n">1/5</div><div class="sl-t">El sangrado NO es normal. Nunca.</div><div class="sl-b">Ni siquiera "un poquito". Es una señal directa de tu cuerpo.</div></div>
+        <div class="sl light"><div class="sl-n">2/5</div><div class="sl-t">Placa bacteriana → inflamación → sangrado</div><div class="sl-b">Se llama gingivitis. Y se puede revertir si se trata a tiempo.</div></div>
+        <div class="sl light"><div class="sl-n">3/5</div><div class="sl-t">Sin tratamiento evoluciona a periodontitis</div><div class="sl-b">Esa ya no tiene reversa — y en casos avanzados lleva a pérdida de dientes</div></div>
+        <div class="sl light"><div class="sl-n">4/5</div><div class="sl-t">Sin dolor no significa sin problema</div><div class="sl-b">La periodontitis avanza silenciosamente en muchos casos. Meses, no años.</div></div>
+        <div class="sl light"><div class="sl-n">5/5</div><div class="sl-t">Lo que puedes hacer hoy</div><div class="sl-b">Limpieza + valoración periodontal = saber exactamente dónde estás · sin dolor</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">Comenta VISITA</div><div class="sl-b">Te explicamos el examen periodontal paso a paso</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption listo para copiar</div><div class="cap-t">Si te sangran las encías cuando te cepillas — no es normal. Nunca lo fue. 🩸
+
+La gingivitis sin tratar se convierte en periodontitis. Y esa ya no tiene reversa.
+
+Comenta VISITA y te explicamos cómo es el examen periodontal. Sin instrumentos intimidantes, sin dolor — solo información.</div></div>
+      <div class="hashtags">#saludbucal #encias #gingivitis #dentaliaodontologia #odontologiabogota #dranataliabarrantes #periodontitis #cuidatuboca #limpiezadental #dentistabogota</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — alerta visual sin ser alarmista</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>fondo oscuro · alerta sutil</span></div>
+          <div class="ae-item">Slide 4: <span>tipografía grande · impacto</span></div>
+          <div class="ae-item">Acento: <span>línea ocre · no rojo intenso</span></div>
+          <div class="ae-item">Tono: <span>urgente pero cálido</span></div>
+          <div class="ae-item">Emoji: <span>🩸 solo en portada</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 6 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">6</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Miércoles 28 Mayo · 7pm · Viral · requiere 3 cameos de 5 seg c/u</div>
+        <div class="pc-ti">La Dra. reacciona: 3 mitos dentales del internet que la gente sigue creyendo</div>
+        <div class="pc-tags"><span class="pct k">MIEDO</span><span class="pct d">Reel o carrusel</span><span class="pct d">Dra. en cámara · 5 seg × 3</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="info" style="margin-bottom:12px"><p><strong>📹 Rodaje mínimo:</strong> Dra. Natalia graba 3 clips de 5 segundos cada uno. Expresión natural de "esto no es así" o "¡falso!". Sin guion completo — solo reacción real. Paula monta el resto.</p></div>
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">La Dra. reacciona a los mitos dentales del internet 😬</div><div class="sl-b">Foto Dra. con expresión divertida · "¿Cuántos te creías tú?"</div></div>
+        <div class="sl light"><div class="sl-n">Mito 1</div><div class="sl-t">"El bicarbonato blanquea igual que el dentista" ❌</div><div class="sl-b">Erosiona el esmalte irreversiblemente. · [Clip Dra. 5 seg: "Eso daña"]</div></div>
+        <div class="sl light"><div class="sl-n">Mito 2</div><div class="sl-t">"Si no duele, no hay problema" ❌</div><div class="sl-b">Las caries y la periodontitis no duelen hasta que es tarde. · [Clip Dra. 5 seg]</div></div>
+        <div class="sl light"><div class="sl-n">Mito 3</div><div class="sl-t">"Los niños no necesitan dentista hasta los definitivos" ❌</div><div class="sl-b">Los dientes de leche guían a los permanentes. Desde el primero. · [Clip Dra.]</div></div>
+        <div class="sl light"><div class="sl-n">La realidad</div><div class="sl-t">3 creencias que le cuestan caro a tu boca</div><div class="sl-b">La información correcta protege más que cualquier tratamiento</div></div>
+        <div class="sl light"><div class="sl-n">¿Y tú?</div><div class="sl-t">¿Cuál de los 3 te creías?</div><div class="sl-b">No te juzgamos — todos llegamos con mitos de algún lado</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">Comenta MIEDO</div><div class="sl-b">Resolvemos tus dudas dentales sin juicio</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption</div><div class="cap-t">La Dra. Natalia reacciona a lo que el internet le dice a la gente sobre sus dientes. 😬
+
+3 mitos que siguen circulando y que pueden costarle caro a tu sonrisa.
+
+¿Cuál te creías? Comenta MIEDO y hablamos.</div></div>
+      <div class="hashtags">#mitosdentales #dentaliaodontologia #dranataliabarrantes #odontologiabogota #reactiona #factodental #saludbucal #bicarbonato #cuidatuboca #odontologiaintegral</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — formato reacción / educational entertainment</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>foto Dra. real · texto overlay</span></div>
+          <div class="ae-item">Mito: <span>fondo oscuro · "MITO" en ocre</span></div>
+          <div class="ae-item">Realidad: <span>fondo crema · check ✅</span></div>
+          <div class="ae-item">Clips: <span>recortar a cuadrado o 4:5</span></div>
+          <div class="ae-item">CapCut: <span>zoom suave · corte rápido al clip</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 7 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">7</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Jueves 29 Mayo · 12pm · Educativo premium · alto guardado</div>
+        <div class="pc-ti">El proceso real del diseño de sonrisa — paso a paso, sin filtros</div>
+        <div class="pc-tags"><span class="pct k">SONRISA</span><span class="pct d">9 slides · carrusel</span><span class="pct d">Sin filmar</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">El proceso real del diseño de sonrisa — paso a paso ✨</div><div class="sl-b">Fondo oscuro · elegante · "Guarda esto antes de preguntar"</div></div>
+        <div class="sl light"><div class="sl-n">Paso 1</div><div class="sl-t">Valoración inicial — sin tocar nada</div><div class="sl-b">Revisión visual + fotos + análisis facial. Solo información. Cero compromiso.</div></div>
+        <div class="sl light"><div class="sl-n">Paso 2</div><div class="sl-t">Diagnóstico y plan personalizado</div><div class="sl-b">Rx + mordida + proporciones. Tu caso es único — el plan también.</div></div>
+        <div class="sl light"><div class="sl-n">Paso 3</div><div class="sl-t">Diseño digital: ves el resultado ANTES de empezar</div><div class="sl-b">Apruebas la sonrisa digitalmente. Si no te convence, ajustamos.</div></div>
+        <div class="sl light"><div class="sl-n">Paso 4</div><div class="sl-t">Prueba temporal — la usas, la sientes</div><div class="sl-b">Mínimamente invasivo. Cero cemento permanente hasta que digas sí.</div></div>
+        <div class="sl light"><div class="sl-n">Paso 5</div><div class="sl-t">Cementado definitivo · 2–4 citas en 2–4 semanas</div><div class="sl-b">Solo cuando aprobaste todo. Resultado dura 10–15 años con cuidado.</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">Comenta SONRISA ✨</div><div class="sl-b">Te decimos si eres candidato/a · valoración sin costo</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption</div><div class="cap-t">Mucha gente cree que el diseño de sonrisa es un proceso de meses o muy invasivo. ✨
+
+En realidad son 2 a 4 citas — y en cada una tú apruebas antes de que hagamos algo definitivo.
+
+Guarda esto y comenta SONRISA si quieres saber si eres candidato/a.</div></div>
+      <div class="hashtags">#diseñodesonrisa #carillasdentalestbogota #dentaliaodontologia #dranataliabarrantes #odontologiaestetica #sonrisaperfecta #odontologiabogota #carillas #esteticadental #transformacionsonrisa</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — premium · proceso narrativo</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>fondo oscuro · dorado elegante</span></div>
+          <div class="ae-item">Pasos: <span>número Cormorant grande · dorado</span></div>
+          <div class="ae-item">Layout: <span>número izq. · texto der. · línea separadora</span></div>
+          <div class="ae-item">Último slide: <span>fondo crema · "antes de cementar…"</span></div>
+          <div class="ae-item">CTA: <span>fondo oscuro · acento dorado fuerte</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POST 8 -->
+  <div class="post-card">
+    <div class="pc-head">
+      <div class="pc-num">8</div>
+      <div class="pc-meta">
+        <div class="pc-ky">Viernes 30 Mayo · 7pm · Demo Sofia AI · alto conversión</div>
+        <div class="pc-ti">Agendé mi cita a las 11pm. Sin llamar. Sin esperar. Así.</div>
+        <div class="pc-tags"><span class="pct k">CITA</span><span class="pct d">Screen recording WhatsApp</span><span class="pct d">Sin filmar — pantalla</span></div>
+      </div>
+    </div>
+    <div class="pc-body">
+      <div class="info" style="margin-bottom:12px"><p><strong>📹 Sin cámara:</strong> Paula graba la pantalla del teléfono — una conversación real de WhatsApp con Sofia AI respondiendo. Se puede hacer con una cuenta de prueba. Texto en pantalla explica lo que pasa. CapCut: recortar a 9:16 · subtítulos · música suave.</p></div>
+      <div class="slides">
+        <div class="sl dark"><div class="sl-n">Portada</div><div class="sl-t">Son las 11pm. Quiero agendar una cita dental. ¿Qué hago?</div><div class="sl-b">Texto en pantalla · sin imágenes genéricas · solo texto impactante</div></div>
+        <div class="sl light"><div class="sl-n">1</div><div class="sl-t">Abro WhatsApp. Le escribo a Dentalia.</div><div class="sl-b">Screen grab: mensaje enviado → respuesta en segundos</div></div>
+        <div class="sl light"><div class="sl-n">2</div><div class="sl-t">Sofia AI responde al instante</div><div class="sl-b">"Hola, soy Sofia. ¿Para qué servicio deseas agendar?" — 11:07pm</div></div>
+        <div class="sl light"><div class="sl-n">3</div><div class="sl-t">Le digo qué necesito. Me da opciones reales.</div><div class="sl-b">Menú de servicios · sin bots genéricos · respuesta inteligente</div></div>
+        <div class="sl light"><div class="sl-n">4</div><div class="sl-t">Elijo mi horario. Confirmo en 2 minutos.</div><div class="sl-b">No esperé al otro día. No llamé. Nadie se despertó por mí.</div></div>
+        <div class="sl light"><div class="sl-n">5</div><div class="sl-t">Cita confirmada · 11:09pm</div><div class="sl-b">Recibo confirmación + recordatorio automático el día anterior</div></div>
+        <div class="sl dark"><div class="sl-n">CTA</div><div class="sl-t">¿Lo quieres probar?</div><div class="sl-b">Comenta CITA y te enviamos el link directo</div></div>
+      </div>
+      <div class="cap"><div class="cap-l">📸 Caption</div><div class="cap-t">Son las 11pm y quiero agendar una cita dental. Ningún consultorio atiende a esa hora.
+
+Excepto este. 👇
+
+Comenta CITA y te mandamos el link. Puedes agendar ahora mismo — a la hora que sea.</div></div>
+      <div class="hashtags">#sofiaai #agendamentodental #dentaliaodontologia #dranataliabarrantes #inteligenciaartificial #atencion24horas #odontologiabogota #whatsappdental #automatizacion #dentistabogota</div>
+      <div class="ae-guide">
+        <div class="ae-title">🎨 Estética — demo real · minimalista · solo texto + pantalla</div>
+        <div class="ae-row">
+          <div class="ae-item">Portada: <span>fondo oscuro · hora "11:00 PM"</span></div>
+          <div class="ae-item">Slides: <span>screenshot WhatsApp recortado</span></div>
+          <div class="ae-item">Texto overlay: <span>Montserrat blanco sobre fondo oscuro</span></div>
+          <div class="ae-item">CapCut: <span>zoom suave a la pantalla</span></div>
+          <div class="ae-item">Música: <span>lo-fi tranquilo · noche → resolución</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 3 PREVIEW -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:28px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)">📅 SEMANA 3 — Publicaciones 3–6 Junio (preview)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 9 · Mar 3 Jun · 12pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">¿Cuánto cuesta realmente no ir al dentista? El cálculo que nadie te hace</div>
+      <div style="font-size:10.5px;color:var(--muted)">8 slides · Keyword: PRECIO · Matemática del abandono dental</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 10 · Mié 4 Jun · 7pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">Lo que sí pasa en una valoración inicial (sin adornos)</div>
+      <div style="font-size:10.5px;color:var(--muted)">7 slides · Keyword: VISITA · Desmitificar la primera cita · alto guardado</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 11 · Jue 5 Jun · 12pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">Ortodoncia a los 30, 40 o 50 — ¿es tarde? La verdad completa</div>
+      <div style="font-size:10.5px;color:var(--muted)">8 slides · Keyword: SONRISA · Contrarian · rompe la creencia de edad límite</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 12 · Vie 6 Jun · 7pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">Así quedó la sonrisa de [Nombre] — proceso real, sin filtros</div>
+      <div style="font-size:10.5px;color:var(--muted)">Antes/después real · Keyword: SONRISA · Requiere caso de paciente con permiso</div>
+    </div>
+  </div>
+
+  <!-- SEMANA 4 PREVIEW -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)">📅 SEMANA 4 — Publicaciones 10–13 Junio (preview)</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 13 · Mar 10 Jun · 12pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">5 señales de que necesitas ir al dentista esta semana (no el mes que viene)</div>
+      <div style="font-size:10.5px;color:var(--muted)">7 slides · Keyword: CITA · Urgencia sin pánico · alto share</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 14 · Mié 11 Jun · 7pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">El cepillo eléctrico vs. el manual — ¿cuál gana? (la respuesta te sorprende)</div>
+      <div style="font-size:10.5px;color:var(--muted)">6 slides · Sin keyword · post educativo viral · alto compartido</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 15 · Jue 12 Jun · 12pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">Detrás de escenas: así se prepara una sesión de diseño de sonrisa</div>
+      <div style="font-size:10.5px;color:var(--muted)">Requiere rodaje en clínica · Keyword: SONRISA · Humaniza la marca</div>
+    </div>
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:10px;padding:14px">
+      <div style="font-size:9px;font-weight:800;color:var(--ocre-deep);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px">Post 16 · Vie 13 Jun · 7pm</div>
+      <div style="font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:4px">Un mes con Sofia AI: cuántas citas se agendaron solas (con datos reales)</div>
+      <div style="font-size:10.5px;color:var(--muted)">Screen metrics · Keyword: CITA · Prueba social del sistema · alto conversión</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECCIÓN: POSTS — IMAGEN ÚNICA
+       ============================================================ -->
+  <div class="ctype-banner ct-post">
+    <div class="ctype-icon">📸</div>
+    <div class="ctype-info">
+      <div class="ctype-label">Imagen única · No carrusel</div>
+      <div class="ctype-title">Posts — Imagen Única</div>
+      <div class="ctype-desc">Para frases, datos impactantes, fechas especiales o anuncios. 1080×1080px. Fondo crema o negro con texto dorado. Sin slides adicionales.</div>
+    </div>
+    <div class="ctype-badge ct-post">Según ocasión</div>
+  </div>
+
+  <div class="info" style="margin-bottom:14px">
+    <p><strong>¿Cuándo usar imagen única?</strong> Cuando el mensaje es directo y poderoso en una sola pantalla: una frase de la Dra. Natalia, un dato que impacta, un anuncio especial, un agradecimiento, o una imagen de consultorio bien tomada. No requieren múltiples slides para funcionar.</p>
+  </div>
+
+  <div class="spost-card">
+    <div class="spost-num">A</div>
+    <div>
+      <div class="spost-type-l">Frase de la Dra. Natalia</div>
+      <div class="spost-title">"Primero escuchamos. Después planificamos. Siempre con transparencia."</div>
+      <div class="spost-note">Fondo oscuro #1C1710 · Texto en Cormorant Garamond Italic crema · Logo dorado esquina inf. · Se puede usar cualquier frase real de la doctora. <strong>Pide una quote auténtica en la visita presencial.</strong></div>
+    </div>
+  </div>
+
+  <div class="spost-card">
+    <div class="spost-num">B</div>
+    <div>
+      <div class="spost-type-l">Dato impactante de salud dental</div>
+      <div class="spost-title">"El 65% de las personas evita el dentista por miedo. El miedo se reduce cuando sabes qué esperar."</div>
+      <div class="spost-note">Fondo crema #F2E8D8 · Número grande en ocre #C09A55 · Fuente Montserrat bold · Cita la fuente si tienes (OMS, estudio colombiano). <strong>Alta probabilidad de guardado y share.</strong></div>
+    </div>
+  </div>
+
+  <div class="spost-card">
+    <div class="spost-num">C</div>
+    <div>
+      <div class="spost-type-l">Fecha especial / Anuncio</div>
+      <div class="spost-title">Post especial: Día del Odontólogo, cumpleaños Dra. Natalia, cierre de mes, logro del consultorio</div>
+      <div class="spost-note">Fecha a confirmar. Diseño más festivo pero manteniendo paleta ocre. Nunca usar colores fuera de la paleta aunque sea festivo. <strong>Pedir fecha con anticipación a Andrés o Valentina.</strong></div>
+    </div>
+  </div>
+
+  <div class="spost-card">
+    <div class="spost-num">D</div>
+    <div>
+      <div class="spost-type-l">Foto real del consultorio</div>
+      <div class="spost-title">Imagen de la Dra. en consulta, detalle de equipos, manos del equipo, o vista del consultorio</div>
+      <div class="spost-note">Solo fotos tomadas en la visita mensual. Caption corto: 1 frase + keyword + máx 5 hashtags. <strong>La foto debe transmitir calidez, no frialdad clínica.</strong></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECCIÓN: HISTORIAS
+       ============================================================ -->
+  <div class="ctype-banner ct-stories">
+    <div class="ctype-icon">📱</div>
+    <div class="ctype-info">
+      <div class="ctype-label">Stories · 1080×1920 · 15 seg</div>
+      <div class="ctype-title">Historias — Instagram Stories</div>
+      <div class="ctype-desc">Diarias de soporte al contenido. Amplifican el alcance de cada post. Encuestas, Q&A, compartir, CTAs directos. No todas las semanas son obligatorias — pero sí recomendadas.</div>
+    </div>
+    <div class="ctype-badge ct-stories">Diarias · opcional</div>
+  </div>
+
+  <div class="info" style="margin-bottom:14px">
+    <p><strong>Regla de oro de las historias:</strong> La historia refuerza el post del día. El día que se publica un carrusel, la historia de la tarde comparte ese carrusel + sticker de CTA. Los días sin post, la historia mantiene la cuenta activa y humana con encuestas o frases rápidas.</p>
+  </div>
+
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">📅 SEMANA TIPO — Plantilla de historias</div>
+  <div class="story-week-grid">
+    <div class="story-card">
+      <div class="story-day">Lunes · 8am</div>
+      <div class="story-type-label">📣 Arranque de semana</div>
+      <div class="story-title-s">Story educativa rápida: tip dental breve o dato "¿Sabías que...?" en texto plano</div>
+      <div class="story-note-s">Fondo ocre o crema · Texto Montserrat · Sin diseño complejo · Va directo.</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Martes · 7pm (post publicado)</div>
+      <div class="story-type-label">🔁 Compartir post</div>
+      <div class="story-title-s">Compartir el carrusel del día + sticker "Desliza y guarda" o "Responde abajo"</div>
+      <div class="story-note-s">Fondo neutro o translúcido · Emoji de flecha apuntando al carrusel · CTA verbal.</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Miércoles · 8am</div>
+      <div class="story-type-label">🗳️ Encuesta / Q&A</div>
+      <div class="story-title-s">¿Tienes miedo al dentista? Sí / No · o: ¿Cuándo fue tu última visita? Hace menos de 6 meses / Más de 1 año</div>
+      <div class="story-note-s">Sticker de encuesta nativo de IG · Fondo oscuro · Resuelve en story del día siguiente.</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Jueves · 7:30pm (post publicado)</div>
+      <div class="story-type-label">🔁 Compartir post</div>
+      <div class="story-title-s">Compartir el carrusel del jueves + sticker de pregunta: "¿Cuál fue el slide que más te sorprendió?"</div>
+      <div class="story-note-s">Permite medir qué slide resuena más · Datos valiosos para el siguiente mes.</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Viernes · 6pm</div>
+      <div class="story-type-label">📲 CTA directo</div>
+      <div class="story-title-s">"¿Listo para agendar tu valoración sin costo?" + sticker enlace WhatsApp + Keyword CITA visible</div>
+      <div class="story-note-s">Momento de mayor intención de compra del fin de semana · Directo, sin rodeos.</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Sábado · 10am (si hay rodaje)</div>
+      <div class="story-type-label">🎬 Detrás de escenas</div>
+      <div class="story-title-s">Clip de 10–15 seg del consultorio, el equipo preparando una sesión, o la Dra. Natalia en acción</div>
+      <div class="story-note-s">Solo si hubo visita esa semana. Humaniza la marca. Sin edición compleja — solo recortar y subir.</div>
+    </div>
+  </div>
+
+  <div style="background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2);border-radius:10px;padding:13px 16px;margin-bottom:6px">
+    <div style="font-size:10px;font-weight:800;color:#15803d;margin-bottom:5px">💡 Tipos de historias de alto engagement</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;color:var(--text);line-height:1.7">
+      <div>🗳️ Encuesta (Sí/No) — siempre funciona</div>
+      <div>❓ Pregunta abierta — "¿Qué te da miedo del dentista?"</div>
+      <div>🔢 Cuenta regresiva — "Cupos limitados esta semana"</div>
+      <div>🔁 Reshare de post con fondo translúcido</div>
+      <div>📸 Foto del equipo / selfie natural de la Dra.</div>
+      <div>🌟 Testimonio de paciente (texto anónimo autorizado)</div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECCIÓN: REELS
+       ============================================================ -->
+  <div class="ctype-banner ct-reels">
+    <div class="ctype-icon">🎬</div>
+    <div class="ctype-info">
+      <div class="ctype-label">Video vertical · 1080×1920 · 30fps</div>
+      <div class="ctype-title">Reels — Video de Instagram</div>
+      <div class="ctype-desc">Solo cuando hay rodaje en la visita presencial mensual. El Reel reemplaza uno de los 4 posts de esa semana — no es pieza adicional. Edición en CapCut. Máximo 30–60 segundos.</div>
+    </div>
+    <div class="ctype-badge ct-reels">1 visita / mes · cuando hay clips</div>
+  </div>
+
+  <div class="info" style="margin-bottom:14px">
+    <p><strong>¿Cuándo se produce un Reel?</strong> Únicamente cuando Paula va a la visita mensual al consultorio y graba clips de video. Se necesitan mínimo 3–5 clips de 5–10 segundos cada uno. <strong>Confirmar con Valentina cuál post de la semana reemplaza el Reel.</strong> La edición en CapCut debe entregarse en Drive dentro de las 48h siguientes a la visita.</p>
+  </div>
+
+  <div class="reel-card">
+    <div class="reel-num">R1</div>
+    <div>
+      <div class="reel-type-l">🎬 Detrás de escenas · Humanización</div>
+      <div class="reel-title">"Un día normal en la clínica de la Dra. Natalia" — recorrido de 30 segundos</div>
+      <div class="reel-note">Clips: recepción → sala → Dra. preparándose → sonrisa de la Dra. → texto final "Agenda tu cita". Música: lo-fi tranquilo (sin letra). Subtítulos automáticos CapCut en español. <strong>No requiere pacientes — solo el equipo y el espacio.</strong></div>
+    </div>
+  </div>
+
+  <div class="reel-card">
+    <div class="reel-num">R2</div>
+    <div>
+      <div class="reel-type-l">✨ Antes / Después · Resultado real</div>
+      <div class="reel-title">Transformación de sonrisa: proceso en corte rápido de 20–30 segundos</div>
+      <div class="reel-note">Requiere permiso firmado del paciente. Clips: foto antes → proceso en consultorio → resultado. Música trending (instrumental). Overlay de texto: "¿Quieres tu antes/después? Comenta SONRISA". <strong>Si no hay caso disponible, no se hace — nunca inventar.</strong></div>
+    </div>
+  </div>
+
+  <div class="reel-card">
+    <div class="reel-num">R3</div>
+    <div>
+      <div class="reel-type-l">👩‍⚕️ Presentación del equipo · Confianza</div>
+      <div class="reel-title">"Conoce a la Dra. Natalia" — 15 segundos directos a cámara</div>
+      <div class="reel-note">La Dra. dice: nombre, especialidad, cuántos años de experiencia, 1 frase sobre su filosofía. Formato selfie o cámara fija sobre trípode. Fondo: consultorio limpio. <strong>Texto overlay: "Agenda tu valoración sin costo". Keyword: CITA al final.</strong></div>
+    </div>
+  </div>
+
+  <div class="reel-card">
+    <div class="reel-num">R4</div>
+    <div>
+      <div class="reel-type-l">💡 Tutorial rápido · Educativo viral</div>
+      <div class="reel-title">"La técnica correcta de cepillado en 30 segundos" — demostración real</div>
+      <div class="reel-note">La Dra. o un asistente muestra la técnica correcta con maqueta dental. Clips cortos de manos + texto overlay con pasos. Alta probabilidad de guardado. <strong>No requiere pacientes. Se puede grabar en cualquier visita.</strong></div>
+    </div>
+  </div>
+
+  <div style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:13px 16px">
+    <div style="font-size:10px;font-weight:800;color:#b91c1c;margin-bottom:5px">📋 Guía CapCut — Reels (paso a paso para Paula)</div>
+    <div style="font-size:11.5px;color:var(--text);line-height:2">
+      1. Abrir CapCut → <strong>Nuevo proyecto</strong> → importar clips<br/>
+      2. Recortar cada clip a máx. 8 segundos → total 30–60 seg<br/>
+      3. <strong>Texto → Subtítulos automáticos → Español → Aplicar</strong> · Fuente: Montserrat · Color: blanco con borde negro<br/>
+      4. <strong>Audio → Sonidos → buscar</strong> lo-fi / ambient / cinematic (sin letra)<br/>
+      5. <strong>Texto overlay</strong> en slide final: frase CTA + Keyword en grande<br/>
+      6. Exportar: <strong>1080p · 30fps · sin marca de agua de CapCut</strong> (desactivar en configuración)<br/>
+      7. Subir al Drive en carpeta: <strong>Semana X / VIE_ReelX / reel_semanaX.mp4</strong>
+    </div>
+  </div>
+
+</section>
+
+<hr class="d"/>
+
+<!-- VALENTINA — INSTAGRAM GROWTH LEADER -->
+<section class="sec" id="valentina">
+  <div class="sec-ky">Líder Instagram Growth · Revisión · Programación · Automatizaciones · Métricas</div>
+  <div class="sec-ti">Valentina — Instagram Growth</div>
+  <div style="height:16px"></div>
+
+  <!-- TARJETA ROL -->
+  <div style="background:var(--dark);border-radius:14px;padding:22px 24px;margin-bottom:20px;display:flex;align-items:flex-start;gap:20px">
+    <div style="width:52px;height:52px;border-radius:50%;border:2px solid var(--ocre);background:rgba(192,154,85,.1);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">👑</div>
+    <div>
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--white);font-weight:600;margin-bottom:4px">Valentina · Líder Instagram Growth</div>
+      <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ocre);opacity:.7;margin-bottom:10px">Dra. Natalia Barrantes · @dentaliaodontologia</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.8">
+        ✦ Recibe el contenido de Paula (Drive) cada domingo antes de las 6pm<br/>
+        ✦ Revisa y aprueba con la Dra. Natalia — máx. 1 ronda de ajuste<br/>
+        ✦ Programa los 4 posts en Meta Business Suite según parrilla<br/>
+        ✦ Activa y monitorea las automatizaciones de ManyChat<br/>
+        ✦ Gestiona la comunidad: comentarios, DMs, stories de respuesta<br/>
+        ✦ Envía reporte semanal de métricas a AJ Business Advisory
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST VALENTINA -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">✅ Checklist Valentina — interactivo por semana</div>
+
+  <div class="cl-container" id="vl-main">
+    <div class="cl-header">
+      <div class="cl-header-left">
+        <div class="cl-title" id="vl-week-title">Semana 1 · Mayo 10–17</div>
+        <div class="cl-subtitle">Líder Instagram Growth · Dra. Natalia Barrantes</div>
+      </div>
+      <div class="cl-header-right">
+        <button class="cl-btn cl-btn-add" onclick="vlToggleAddForm()">＋ Agregar tarea</button>
+        <button class="cl-btn cl-btn-reset" onclick="vlResetWeek()">↺ Nueva semana</button>
+      </div>
+    </div>
+
+    <div class="cl-progress">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <span class="cl-prog-label" id="vl-prog-label">Progreso de la semana</span>
+        <span class="cl-prog-pct" id="vl-prog-pct">0%</span>
+      </div>
+      <div class="cl-prog-row">
+        <div class="cl-prog-bar"><div class="cl-prog-fill" id="vl-prog-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div class="cl-week-selector">
+      <span class="cl-week-label">Ver semana:</span>
+      <button class="cl-week-btn sel" onclick="vlSwitchWeek(1,this)">Semana 1<br/><span style="font-size:8px;font-weight:400">10–17 Mayo</span></button>
+      <button class="cl-week-btn" onclick="vlSwitchWeek(2,this)">Semana 2<br/><span style="font-size:8px;font-weight:400">18–24 Mayo</span></button>
+      <button class="cl-week-btn" onclick="vlSwitchWeek(3,this)">Semana 3<br/><span style="font-size:8px;font-weight:400">25–31 Mayo</span></button>
+      <button class="cl-week-btn" onclick="vlSwitchWeek(4,this)">Semana 4<br/><span style="font-size:8px;font-weight:400">1–7 Junio</span></button>
+    </div>
+
+    <div id="vl-sections-container"></div>
+
+    <div class="cl-add-form" id="vl-add-form">
+      <input class="cl-add-input" id="vl-add-input" type="text" placeholder="Nueva tarea para Valentina..." maxlength="120"/>
+      <select class="cl-add-select" id="vl-add-cat">
+        <option value="📥 Recepción y revisión">📥 Revisión</option>
+        <option value="✅ Aprobación con Natalia">✅ Aprobación</option>
+        <option value="📅 Programación en Meta">📅 Programación</option>
+        <option value="🤖 Automatizaciones">🤖 Automatizaciones</option>
+        <option value="💬 Comunidad y DMs">💬 Comunidad</option>
+        <option value="📊 Métricas y reporte">📊 Métricas</option>
+      </select>
+      <button class="cl-add-sub" onclick="vlAddCustomTask()">Guardar</button>
+      <button class="cl-add-cancel" onclick="vlToggleAddForm()">Cancelar</button>
+    </div>
+  </div>
+
+  <hr class="d"/>
+
+  <!-- TABLA MANYCHAT -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">🤖 ManyChat — Keywords activas</div>
+
+  <table class="mc-table">
+    <thead><tr><th>Keyword</th><th>DM automático que reciben</th><th>CTA</th></tr></thead>
+    <tbody>
+      <tr><td><span class="kw">SONRISA</span></td><td>"¡Hola! El blanqueamiento lo hacemos personalizado. Para saber qué opción es para ti necesitamos una valoración breve. ¿Agendamos? 😊"</td><td>Link WhatsApp</td></tr>
+      <tr><td><span class="kw">MIEDO</span></td><td>"¡Hola! Entendemos el miedo — de verdad. La primera cita es solo una conversación y revisión visual. Sin instrumentos, sin dolor. Solo información. ¿Te cuento más? 💛"</td><td>Link WhatsApp</td></tr>
+      <tr><td><span class="kw">PRECIO</span></td><td>"¡Hola! El costo depende de tu caso — no cotizamos sin saber qué necesitas (eso es bueno). ¿Agendamos valoración sin costo para darte un presupuesto real?"</td><td>Link WhatsApp</td></tr>
+      <tr><td><span class="kw">CITA</span></td><td>"¡Hola! 😊 Aquí el link directo a nuestro WhatsApp — confirmamos tu cita al instante, a la hora que sea. Respuesta inmediata 24/7 👇"</td><td>Link WhatsApp</td></tr>
+      <tr><td><span class="kw">VISITA</span></td><td>"¡Hola! Para la revisión de encías hacemos examen periodontal completo. Sin dolor, sin sorpresas. ¿Cuándo puedes esta semana?"</td><td>Link WhatsApp</td></tr>
+    </tbody>
+  </table>
+
+  <div class="rem" style="margin-top:16px">
+    <div class="rem-t">⚙️ Rutas de automatización — Valentina configura y mantiene</div>
+    <p>
+      <strong>ManyChat → GHL → Sofia AI:</strong> Keyword en comentario → DM automático → lead en GHL → seguimiento Sofia AI en 24h.<br/>
+      <strong>Meta Business Suite:</strong> Valentina sube contenido desde Drive y programa según parrilla: Mar/Jue 12pm · Mié/Vie 7pm.<br/>
+      <strong>Bio IG + Facebook:</strong> Link-in-bio → <code style="background:rgba(192,154,85,.15);padding:1px 6px;border-radius:4px;font-family:monospace">FREELANCE/PAULA/linkinbio-natalia.html</code> — reemplazar <code style="background:rgba(192,154,85,.15);padding:1px 6px;border-radius:4px;font-family:monospace">57XXXXXXXXXX</code> con número real.<br/>
+      <strong>📂 Drive entrega Paula:</strong> <a href="https://drive.google.com/drive/folders/0AHj-zuQWE_fTUk9PVA" style="color:var(--ocre-deep);font-weight:700" target="_blank">drive.google.com/drive/folders/0AHj-zuQWE_fTUk9PVA</a>
+    </p>
+  </div>
+</section>
+
+<hr class="d"/>
+
+<!-- SECCIÓN CITAS CON VALENTINA -->
+<section class="sec" id="citas">
+  <div class="sec-ky">Agendar reunión · Historial de citas · Valentina · Líder Instagram Growth</div>
+  <div class="sec-ti">Citas con Valentina</div>
+  <div style="height:16px"></div>
+
+  <div style="background:var(--dark);border-radius:14px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;gap:16px">
+    <div style="font-size:28px;flex-shrink:0">👑</div>
+    <div style="flex:1">
+      <div style="font-size:13px;font-weight:700;color:var(--white);margin-bottom:2px">Valentina · Líder Instagram Growth</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.55)">Revisión de contenido · Coordinación semanal · Retroalimentación · Métricas</div>
+    </div>
+    <button class="cl-btn cl-btn-add" onclick="openCitaModal()" style="flex-shrink:0">📆 Agendar cita</button>
+  </div>
+
+  <div class="info" style="margin-bottom:16px">
+    <p><strong>¿Para qué pedir una cita?</strong> Si tienes una duda urgente, quieres revisar el enfoque de un post antes de diseñarlo, necesitas feedback del mes, o simplemente quieres sincronizar con Valentina. El botón genera un mensaje de WhatsApp listo para enviar — también queda registrado aquí.</p>
+  </div>
+
+  <!-- HISTORIAL -->
+  <div style="font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px">📋 Historial de citas programadas</div>
+  <div id="citas-list">
+    <div style="text-align:center;padding:28px;color:var(--muted);font-size:12px;border:1px dashed var(--border);border-radius:10px">Aún no hay citas programadas. Usa el botón para agendar la primera.</div>
+  </div>
+</section>
+
+<hr class="d"/>
+
+<!-- PARA NATALIA — CALENDARIO LIMPIO PARA CLIENTE -->
+<section class="sec" id="natalia">
+  <div class="sec-ky">Vista cliente · Solo mostrar — no entregar hasta visita presencial</div>
+  <div class="sec-ti">Calendario de Contenido — Mayo &amp; Junio 2026</div>
+  <div style="height:16px"></div>
+
+  <!-- Header estadísticas -->
+  <div class="nt-header">
+    <div class="nt-header-left">
+      <div class="nt-label">AJ Business Advisory · Instagram Growth</div>
+      <div class="nt-title">Plan de publicaciones — Dra. Natalia Barrantes</div>
+    </div>
+    <div class="nt-header-right">
+      <div class="nt-stat"><div class="nt-stat-n">16</div><div class="nt-stat-l">Carruseles</div></div>
+      <div class="nt-stat"><div class="nt-stat-n">4</div><div class="nt-stat-l">Posts / semana</div></div>
+      <div class="nt-stat"><div class="nt-stat-n">~120</div><div class="nt-stat-l">Piezas gráficas</div></div>
+      <div class="nt-stat"><div class="nt-stat-n" style="font-size:15px">18 Mayo</div><div class="nt-stat-l">1ra publicación</div></div>
+    </div>
+  </div>
+
+  <!-- SEMANA 1 -->
+  <div class="nt-week-card">
+    <div class="nt-week-head w1">
+      <div>
+        <div class="nt-wk-title">📅 Semana 1 — Lanzamiento</div>
+        <div class="nt-wk-dates">Martes 19 – Viernes 22 de Mayo · 2026</div>
+      </div>
+      <div class="nt-wk-badge w1">Posts 1 – 4</div>
+    </div>
+    <div class="nt-posts-grid">
+      <div class="nt-post">
+        <div class="nt-post-day">Martes 19 Mayo · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel educativo · 7 slides</div>
+        <div class="nt-post-title">Tu sonrisa en 3 pasos: lo que cambia cuando te cuidas de verdad</div>
+        <div class="nt-post-hook">"La mayoría espera a que duela. No esperes."</div>
+        <div class="nt-post-footer"><span class="nt-kw">SONRISA</span><span class="nt-slides">7 slides · Canva plantilla</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Miércoles 20 Mayo · 7:00 PM</div>
+        <div class="nt-post-type">Carrusel desmitificador · 6 slides</div>
+        <div class="nt-post-title">Lo que nadie te dice sobre los brackets (y ya era hora de decirlo)</div>
+        <div class="nt-post-hook">"¿Miedo a la ortodoncia? Esto es lo que realmente te espera."</div>
+        <div class="nt-post-footer"><span class="nt-kw">MIEDO</span><span class="nt-slides">6 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Jueves 21 Mayo · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel de precios transparentes · 7 slides</div>
+        <div class="nt-post-title">¿Cuánto cuesta realmente un diseño de sonrisa en Bogotá?</div>
+        <div class="nt-post-hook">"Nadie te lo había dicho así de claro. Hoy sí."</div>
+        <div class="nt-post-footer"><span class="nt-kw">PRECIO</span><span class="nt-slides">7 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Viernes 22 Mayo · 7:00 PM</div>
+        <div class="nt-post-type">Antes / después real · 5 slides</div>
+        <div class="nt-post-title">Antes y después real: así cambió su sonrisa en pocas semanas</div>
+        <div class="nt-post-hook">"No filtros. No edición exagerada. Resultado real."</div>
+        <div class="nt-post-footer"><span class="nt-kw">SONRISA</span><span class="nt-slides">5 slides · Requiere caso real</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 2 -->
+  <div class="nt-week-card">
+    <div class="nt-week-head w2">
+      <div>
+        <div class="nt-wk-title">📅 Semana 2 — Profundidad</div>
+        <div class="nt-wk-dates">Martes 26 – Viernes 29 de Mayo · 2026</div>
+      </div>
+      <div class="nt-wk-badge w2">Posts 5 – 8</div>
+    </div>
+    <div class="nt-posts-grid">
+      <div class="nt-post">
+        <div class="nt-post-day">Martes 26 Mayo · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel errores cotidianos · 7 slides</div>
+        <div class="nt-post-title">Los 5 errores que le dañan la sonrisa sin que te des cuenta</div>
+        <div class="nt-post-hook">"El #3 lo hace el 80% de las personas todos los días."</div>
+        <div class="nt-post-footer"><span class="nt-kw">SONRISA</span><span class="nt-slides">7 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Miércoles 27 Mayo · 7:00 PM</div>
+        <div class="nt-post-type">Carrusel emocional · 6 slides</div>
+        <div class="nt-post-title">¿Miedo al dentista? Esto es exactamente lo que pasa en nuestra consulta</div>
+        <div class="nt-post-hook">"La primera cita no duele. Esta es la prueba."</div>
+        <div class="nt-post-footer"><span class="nt-kw">MIEDO</span><span class="nt-slides">6 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Jueves 28 Mayo · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel proceso real · 6 slides</div>
+        <div class="nt-post-title">La valoración inicial: qué incluye, cuánto dura y por qué importa tanto</div>
+        <div class="nt-post-hook">"30 minutos. Sin dolor. Sin compromiso. Con diagnóstico completo."</div>
+        <div class="nt-post-footer"><span class="nt-kw">CITA</span><span class="nt-slides">6 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Viernes 29 Mayo · 7:00 PM</div>
+        <div class="nt-post-type">Carrusel verdad / mito · 7 slides</div>
+        <div class="nt-post-title">Blanqueamiento: la verdad sobre lo que funciona (y lo que no sirve)</div>
+        <div class="nt-post-hook">"Si te lo prometieron en el supermercado, lee esto primero."</div>
+        <div class="nt-post-footer"><span class="nt-kw">PRECIO</span><span class="nt-slides">7 slides</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 3 -->
+  <div class="nt-week-card">
+    <div class="nt-week-head w3">
+      <div>
+        <div class="nt-wk-title">📅 Semana 3 — Profundización clínica</div>
+        <div class="nt-wk-dates">Martes 3 – Viernes 6 de Junio · 2026</div>
+      </div>
+      <div class="nt-wk-badge w3">Posts 9 – 12</div>
+    </div>
+    <div class="nt-posts-grid">
+      <div class="nt-post">
+        <div class="nt-post-day">Martes 3 Junio · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel alerta de salud · 7 slides</div>
+        <div class="nt-post-title">Encías sangrando: señal de alarma que no debes ignorar</div>
+        <div class="nt-post-hook">"No es normal que sangren. Tu cuerpo te está avisando."</div>
+        <div class="nt-post-footer"><span class="nt-kw">PRECIO</span><span class="nt-slides">7 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Miércoles 4 Junio · 7:00 PM</div>
+        <div class="nt-post-type">Carrusel sin adornos · 7 slides</div>
+        <div class="nt-post-title">Lo que sí pasa en una valoración inicial (sin adornos, sin susto)</div>
+        <div class="nt-post-hook">"Muchos imaginan lo peor. La realidad es así de tranquila."</div>
+        <div class="nt-post-footer"><span class="nt-kw">VISITA</span><span class="nt-slides">7 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Jueves 5 Junio · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel contrarian · 6 slides</div>
+        <div class="nt-post-title">Ortodoncia a los 30, 40 o 50 — ¿es tarde? La verdad completa</div>
+        <div class="nt-post-hook">"Spoiler: no existe la edad límite para una sonrisa bonita."</div>
+        <div class="nt-post-footer"><span class="nt-kw">SONRISA</span><span class="nt-slides">6 slides</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Viernes 6 Junio · 7:00 PM</div>
+        <div class="nt-post-type">Antes / después real · 5 slides</div>
+        <div class="nt-post-title">Así quedó la sonrisa de [Nombre] — proceso real, sin filtros</div>
+        <div class="nt-post-hook">"Esto es lo que pasa cuando confías en el proceso."</div>
+        <div class="nt-post-footer"><span class="nt-kw">SONRISA</span><span class="nt-slides">5 slides · Requiere caso paciente</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SEMANA 4 -->
+  <div class="nt-week-card">
+    <div class="nt-week-head w4">
+      <div>
+        <div class="nt-wk-title">📅 Semana 4 — Conversión y cierre</div>
+        <div class="nt-wk-dates">Martes 10 – Viernes 13 de Junio · 2026</div>
+      </div>
+      <div class="nt-wk-badge w4">Posts 13 – 16</div>
+    </div>
+    <div class="nt-posts-grid">
+      <div class="nt-post">
+        <div class="nt-post-day">Martes 10 Junio · 12:00 PM</div>
+        <div class="nt-post-type">Carrusel urgencia sin presión · 7 slides</div>
+        <div class="nt-post-title">5 señales de que necesitas ir al dentista esta semana (no el mes que viene)</div>
+        <div class="nt-post-hook">"Puede ser pequeño hoy. Mañana es una endodoncia."</div>
+        <div class="nt-post-footer"><span class="nt-kw">CITA</span><span class="nt-slides">7 slides · Alto share</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Miércoles 11 Junio · 7:00 PM</div>
+        <div class="nt-post-type">Carrusel viral educativo · 6 slides</div>
+        <div class="nt-post-title">El cepillo eléctrico vs. el manual — ¿cuál gana? (la respuesta te sorprende)</div>
+        <div class="nt-post-hook">"El más caro no siempre es el mejor para tu boca."</div>
+        <div class="nt-post-footer"><span class="nt-slides">6 slides · Sin keyword · alto compartido</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Jueves 12 Junio · 12:00 PM</div>
+        <div class="nt-post-type">Detrás de escenas · 6 slides</div>
+        <div class="nt-post-title">Detrás de escenas: así se prepara una sesión de diseño de sonrisa</div>
+        <div class="nt-post-hook">"Lo que ves en el resultado empezó aquí."</div>
+        <div class="nt-post-footer"><span class="nt-kw">SONRISA</span><span class="nt-slides">6 slides · Requiere rodaje en clínica</span></div>
+      </div>
+      <div class="nt-post">
+        <div class="nt-post-day">Viernes 13 Junio · 7:00 PM</div>
+        <div class="nt-post-type">Resultado del mes · prueba social · 5 slides</div>
+        <div class="nt-post-title">Un mes con Sofia AI: cuántas citas se agendaron solas (con datos reales)</div>
+        <div class="nt-post-hook">"El sistema trabajó mientras la clínica atendía. Así quedaron las métricas."</div>
+        <div class="nt-post-footer"><span class="nt-kw">CITA</span><span class="nt-slides">5 slides · Datos reales mes 1</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nota para presentación -->
+  <div class="nt-note">
+    <strong>📌 Nota para la visita presencial:</strong> Este calendario puede ajustarse si Natalia tiene casos de pacientes reales disponibles para los posts de antes/después (Posts 4 y 12). Los temas de semanas 3 y 4 están en preview — se confirman con Valentina antes de que Paula comience a producir esa semana. <strong>Todos los posts incluyen llamada a la acción con respuesta automática 24/7 por WhatsApp.</strong>
+  </div>
+</section>
+
+</div>
+
+<!-- MODAL AGENDAR CITA -->
+<div class="modal-overlay" id="cita-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeCitaModal()">✕</button>
+    <div class="modal-title">Agendar cita con Valentina</div>
+    <div class="modal-sub">INSTAGRAM GROWTH · DRA. NATALIA BARRANTES</div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Fecha</label>
+        <input class="form-input" type="date" id="cita-fecha"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Hora</label>
+        <input class="form-input" type="time" id="cita-hora" value="10:00"/>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Tipo de reunión</label>
+      <select class="form-select" id="cita-tipo">
+        <option value="Revisión semanal de contenido">📋 Revisión semanal de contenido</option>
+        <option value="Feedback del mes — métricas y ajustes">📊 Feedback del mes — métricas y ajustes</option>
+        <option value="Consulta urgente de diseño o tema">⚡ Consulta urgente de diseño o tema</option>
+        <option value="Planeación del siguiente mes">🗓️ Planeación del siguiente mes</option>
+        <option value="Retroalimentación de post específico">🎯 Retroalimentación de post específico</option>
+        <option value="Otro">💬 Otro / General</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Modalidad</label>
+      <select class="form-select" id="cita-modalidad">
+        <option value="Videollamada (Google Meet / WhatsApp)">📹 Videollamada (Google Meet / WhatsApp)</option>
+        <option value="Llamada de WhatsApp">📞 Llamada de WhatsApp</option>
+        <option value="Presencial — consultorio Dra. Natalia">📍 Presencial — consultorio Dra. Natalia</option>
+        <option value="Chat de WhatsApp (sin llamada)">💬 Solo chat de WhatsApp</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Motivo o contexto (opcional)</label>
+      <textarea class="form-textarea" id="cita-nota" placeholder="Ej: Quiero revisar el Post 3 de la semana 2 antes de diseñarlo, tengo duda sobre el tono del carrusel de encías..."></textarea>
+    </div>
+
+    <button class="modal-send" onclick="enviarCita()">📲 Generar mensaje de WhatsApp para Valentina</button>
+    <button class="modal-cancel" onclick="closeCitaModal()">Cancelar</button>
+  </div>
+</div>
+
+<!-- BOTÓN FLOTANTE -->
+<button class="fab-cita no-print" onclick="openCitaModal()">📆 Cita con Valentina</button>
+
+<div class="footer">
+  <em>Dra. Natalia Barrantes · Odontología Integral</em><br/>
+  Instagram Growth · AJ Business Advisory · Mayo 2026<br/>
+  <span style="font-size:9px">✍️ Paula — Productora de contenido &nbsp;·&nbsp; 👑 Valentina — Líder Instagram Growth &nbsp;·&nbsp; 🤖 Sofia AI</span>
+</div>
+
+<!-- CHECKLIST JS -->
+<script>
+// ========================
+// BASE TASKS (no se borran)
+// ========================
+const BASE_TASKS = {
+  "📋 Preparación de contenido": [
+    { id:"p1", text:"Revisar briefing de la semana (temas, keywords asignados)", sub:"AJ Business Advisory envía brief por WhatsApp antes del lunes" },
+    { id:"p2", text:"Confirmar las keywords ManyChat de cada post con Valentina", sub:"SONRISA · MIEDO · PRECIO · CITA · VISITA — ella activa las automáticas" },
+    { id:"p3", text:"Recopilar referencias visuales en Pinterest o IG (paleta Dentalia)", sub:"Ocre #C09A55 · crema #F2E8D8 · oscuro #1C1710 · sin morado" },
+    { id:"p4", text:"Confirmar que el Drive está organizado para subir esta semana", sub:"drive.google.com/drive/folders/0AHj-zuQWE_fTUk9PVA" },
+  ],
+  "🎨 Diseño y edición en Canva": [
+    { id:"d1", text:"Diseñar Post 1 en Canva — mínimo 5 slides, máximo 7", sub:"Mar 12pm · Cormorant + Montserrat · fondo crema · acento dorado · logo portada" },
+    { id:"d2", text:"Diseñar Post 2 en Canva — mínimo 5 slides, máximo 7", sub:"Mié 7pm · Portada con hook visual de impacto" },
+    { id:"d3", text:"Diseñar Post 3 en Canva — mínimo 5 slides, máximo 7", sub:"Jue 12pm · Último slide siempre con keyword ManyChat visible" },
+    { id:"d4", text:"Diseñar Post 4 en Canva — mínimo 5 slides, máximo 7", sub:"Vie 7pm · El post de mayor alcance · portada más trabajada" },
+    { id:"d5", text:"Exportar todos los carruseles como PNG individuales", sub:"1080×1080 px feed / 1080×1350 px carrusel 4:5 · orden numerado" },
+    { id:"d6", text:"Verificar logo en portada de cada carrusel", sub:"Esquina inf. derecha · dorado sobre fondo oscuro · oscuro sobre fondo claro" },
+    { id:"d7", text:"Diseñar stories opcionales (Lun · Mié · Sáb) — 9:16 · 1080×1920 px", sub:"Story = compartir el carrusel + sticker de pregunta o CTA" },
+  ],
+  "✍️ Captions y hashtags": [
+    { id:"c1", text:"Escribir caption Post 1 — hook en primera línea + CTA keyword al final", sub:"Máx 10 hashtags · keyword visible: SONRISA / MIEDO / PRECIO / CITA / VISITA" },
+    { id:"c2", text:"Escribir caption Post 2", sub:"Primera línea = gancho antes del 'ver más' · caption ≤ 150 palabras" },
+    { id:"c3", text:"Escribir caption Post 3", sub:"CTA al final: 'Comenta [KEYWORD] y…' — sin keyword, ManyChat no dispara" },
+    { id:"c4", text:"Escribir caption Post 4", sub:"Viernes = mayor urgencia en el CTA · tono más directo" },
+    { id:"c5", text:"Revisión final: los 4 captions tienen keyword ManyChat en el texto", sub:"Sin keyword en caption = el DM automático no se activa" },
+  ],
+  "📤 Entrega al Drive — antes del domingo 6pm": [
+    { id:"e1", text:"Subir Post 1 al Drive → Semana X / MAR_Post1 /", sub:"Slides PNG numerados + caption.txt + hashtags.txt" },
+    { id:"e2", text:"Subir Post 2 al Drive → Semana X / MIE_Post2 /", sub:"Mismo formato · verificar que los archivos abren bien" },
+    { id:"e3", text:"Subir Post 3 al Drive → Semana X / JUE_Post3 /", sub:"Mismo formato" },
+    { id:"e4", text:"Subir Post 4 al Drive → Semana X / VIE_Post4 /", sub:"Mismo formato · el más importante — revisar dos veces" },
+    { id:"e5", text:"Subir stories al Drive → Semana X / Stories /", sub:"Un archivo por día · nombrar LUN_story.png · MIE_story.png · etc." },
+    { id:"e6", text:"Enviar mensaje a Valentina: 'Entregué la semana X — Drive listo'", sub:"Domingo antes de las 6pm · Valentina revisa lunes y programa" },
+  ],
+  "📊 Notas para Valentina (incluir en mensaje de entrega)": [
+    { id:"n1", text:"Indicar si algún post necesita ajuste o tiene duda de diseño", sub:"Valentina decide si aprueba, ajusta o consulta con Natalia" },
+    { id:"n2", text:"Anotar si el Post 6 (o equivalente con Dra.) fue grabado o no", sub:"Si no hubo rodaje, informar para que Valentina proponga alternativa" },
+    { id:"n3", text:"Dejar nota del post que más le gustó o que creo que funcionará mejor", sub:"Esto alimenta el criterio de la semana siguiente" },
+    { id:"n4", text:"Agregar sugerencia de tema para la semana siguiente (si tienes idea)", sub:"Valentina y AJ deciden el brief pero las ideas de campo son bienvenidas" },
+  ]
+};
+
+let currentWeek = 1;
+let customTasks = JSON.parse(localStorage.getItem('cl_custom') || '{}');
+let weekTitles = {
+  1: "Semana 1 · Mayo 10–17 (Preparación)",
+  2: "Semana 2 · Mayo 18–24 (Publicaciones: Mar–Vie)",
+  3: "Semana 3 · Mayo 25–31 (Publicaciones: Mar–Vie)",
+  4: "Semana 4 · Junio 1–7 (Publicaciones: Mar–Vie)"
+};
+
+function getKey(week, id) { return `cl_w${week}_${id}`; }
+function isChecked(week, id) { return localStorage.getItem(getKey(week,id)) === '1'; }
+function setChecked(week, id, val) {
+  localStorage.setItem(getKey(week,id), val ? '1' : '0');
+  updateProgress();
+}
+
+function renderChecklist() {
+  document.getElementById('cl-week-title').textContent = weekTitles[currentWeek];
+  const container = document.getElementById('cl-sections-container');
+  container.innerHTML = '';
+
+  // Merge base + custom tasks
+  const allSections = {};
+  Object.keys(BASE_TASKS).forEach(k => { allSections[k] = [...BASE_TASKS[k]]; });
+  const wCustom = customTasks[currentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+
+  Object.keys(allSections).forEach(section => {
+    const tasks = allSections[section];
+    const secId = `sec_${section.replace(/[^a-z]/gi,'_')}`;
+    const doneCount = tasks.filter(t => isChecked(currentWeek, t.id)).length;
+
+    const div = document.createElement('div');
+    div.className = 'cl-section';
+    div.innerHTML = `
+      <div class="cl-sec-head" onclick="toggleSection('${secId}')">
+        <div class="cl-sec-title">${section}</div>
+        <div class="cl-sec-meta">
+          <span class="cl-sec-count">${doneCount}/${tasks.length}</span>
+          <span class="cl-sec-arrow" id="arr_${secId}">▶</span>
+        </div>
+      </div>
+      <div class="cl-items" id="${secId}">
+        ${tasks.map(t => `
+          <div class="cl-item ${isChecked(currentWeek,t.id)?'done':''}" id="item_${t.id}">
+            <div class="cl-check ${isChecked(currentWeek,t.id)?'checked':''}" onclick="toggleCheck('${t.id}','${section}')"></div>
+            <div class="cl-item-content">
+              <div class="cl-item-text">${t.text}</div>
+              ${t.sub ? `<div class="cl-item-sub">${t.sub}</div>` : ''}
+            </div>
+            ${t.custom ? `<button class="cl-item-del" onclick="deleteTask('${t.id}','${currentWeek}','${section}')" title="Eliminar">✕</button>` : ''}
+          </div>
+        `).join('')}
+      </div>`;
+    container.appendChild(div);
+  });
+  updateProgress();
+}
+
+function toggleSection(id) {
+  const el = document.getElementById(id);
+  const arr = document.getElementById('arr_' + id);
+  el.classList.toggle('open');
+  if(arr) arr.classList.toggle('open');
+}
+
+function toggleCheck(id, section) {
+  const val = !isChecked(currentWeek, id);
+  setChecked(currentWeek, id, val);
+  const item = document.getElementById('item_' + id);
+  const check = item.querySelector('.cl-check');
+  item.classList.toggle('done', val);
+  check.classList.toggle('checked', val);
+  // Update section count
+  renderSectionCount(section);
+}
+
+function renderSectionCount(section) {
+  const allSections = {};
+  Object.keys(BASE_TASKS).forEach(k => { allSections[k] = [...BASE_TASKS[k]]; });
+  const wCustom = customTasks[currentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+  if (!allSections[section]) return;
+  const tasks = allSections[section];
+  const done = tasks.filter(t => isChecked(currentWeek,t.id)).length;
+  // find and update count
+  updateProgress();
+}
+
+function updateProgress() {
+  const allSections = {};
+  Object.keys(BASE_TASKS).forEach(k => { allSections[k] = [...BASE_TASKS[k]]; });
+  const wCustom = customTasks[currentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+
+  let total = 0, done = 0;
+  Object.values(allSections).flat().forEach(t => {
+    total++;
+    if (isChecked(currentWeek, t.id)) done++;
+  });
+
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  document.getElementById('cl-prog-fill').style.width = pct + '%';
+  document.getElementById('cl-prog-pct').textContent = pct + '%';
+  document.getElementById('cl-prog-label').textContent = `${done} de ${total} tareas completadas`;
+}
+
+function switchWeek(w, btn) {
+  currentWeek = w;
+  document.querySelectorAll('.cl-week-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  renderChecklist();
+}
+
+function resetWeek() {
+  if (!confirm(`¿Reiniciar todos los checks de la semana ${currentWeek}? Tus tareas personalizadas se mantienen.`)) return;
+  // Clear all checks for current week
+  const allSections = {};
+  Object.keys(BASE_TASKS).forEach(k => { allSections[k] = [...BASE_TASKS[k]]; });
+  const wCustom = customTasks[currentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+  Object.values(allSections).flat().forEach(t => localStorage.removeItem(getKey(currentWeek, t.id)));
+  renderChecklist();
+}
+
+function toggleAddForm() {
+  const f = document.getElementById('cl-add-form');
+  f.classList.toggle('open');
+  if(f.classList.contains('open')) document.getElementById('cl-add-input').focus();
+}
+
+function addCustomTask() {
+  const input = document.getElementById('cl-add-input');
+  const cat = document.getElementById('cl-add-select').value;
+  const text = input.value.trim();
+  if (!text) return;
+
+  const id = 'custom_' + Date.now();
+  if (!customTasks[currentWeek]) customTasks[currentWeek] = {};
+  if (!customTasks[currentWeek][cat]) customTasks[currentWeek][cat] = [];
+  customTasks[currentWeek][cat].push({ id, text, custom: true });
+  localStorage.setItem('cl_custom', JSON.stringify(customTasks));
+
+  input.value = '';
+  toggleAddForm();
+  renderChecklist();
+}
+
+function deleteTask(id, week, cat) {
+  if (!customTasks[week] || !customTasks[week][cat]) return;
+  customTasks[week][cat] = customTasks[week][cat].filter(t => t.id !== id);
+  localStorage.setItem('cl_custom', JSON.stringify(customTasks));
+  renderChecklist();
+}
+
+// Open first section by default on load
+window.addEventListener('DOMContentLoaded', () => {
+  renderChecklist();
+  setTimeout(() => {
+    const firstSec = document.querySelector('.cl-sec-head');
+    if (firstSec) firstSec.click();
+  }, 100);
+  // Init Valentina
+  vlRenderChecklist();
+  setTimeout(() => {
+    const firstVl = document.querySelector('#vl-sections-container .cl-sec-head');
+    if (firstVl) firstVl.click();
+  }, 150);
+});
+</script>
+
+<!-- VALENTINA CHECKLIST JS -->
+<script>
+// ========================
+// VALENTINA — BASE TASKS
+// ========================
+const VL_BASE_TASKS = {
+  "📥 Recepción y revisión": [
+    { id:"vr1", text:"Recibir notificación de Paula: 'Drive listo semana X'", sub:"Domingo antes de las 6pm · si no llega, hacer seguimiento" },
+    { id:"vr2", text:"Revisar los 4 posts en el Drive (slides + caption + hashtags)", sub:"Verificar paleta, logo, keyword en caption, calidad visual" },
+    { id:"vr3", text:"Revisar stories entregadas por Paula", sub:"Formato 9:16 · coherencia con posts del mismo día" },
+    { id:"vr4", text:"Dejar comentarios de ajuste en el Drive o por WhatsApp (máx 1 ronda)", sub:"Lunes AM · solo si hay correcciones reales · Paula ajusta y reentrega mismo día" },
+  ],
+  "✅ Aprobación con Natalia": [
+    { id:"va1", text:"Enviar preview de los 4 posts a la Dra. Natalia para aprobación", sub:"Lunes · puede ser captura o link al Drive · máx 24h de respuesta" },
+    { id:"va2", text:"Incorporar ajuste de Natalia si lo hay (máx 1 cambio por post)", sub:"Martes AM a más tardar · si el cambio es mayor, escalar a AJ" },
+    { id:"va3", text:"Confirmar aprobación final antes de programar", sub:"Una vez aprobado, no hay cambios · programar con confianza" },
+  ],
+  "📅 Programación en Meta Business Suite": [
+    { id:"vp1", text:"Programar Post 1 — Martes 12pm (Mar)", sub:"Carrusel: subir slides en orden · copiar caption + hashtags · confirmar preview" },
+    { id:"vp2", text:"Programar Post 2 — Miércoles 7pm (Mié)", sub:"Verificar que el caption tiene keyword ManyChat antes de confirmar" },
+    { id:"vp3", text:"Programar Post 3 — Jueves 12pm (Jue)", sub:"Mismo flujo · revisar vista previa del carrusel completo" },
+    { id:"vp4", text:"Programar Post 4 — Viernes 7pm (Vie)", sub:"El más importante de la semana · verificar dos veces antes de confirmar" },
+    { id:"vp5", text:"Programar stories según días asignados (Lun · Mié · Sáb)", sub:"Verificar horarios · Lun 8am, Mié 8am, Sáb 10am" },
+  ],
+  "🤖 Automatizaciones ManyChat": [
+    { id:"vm1", text:"Verificar que las 5 keywords están activas en ManyChat", sub:"SONRISA · MIEDO · PRECIO · CITA · VISITA → probar con cuenta secundaria" },
+    { id:"vm2", text:"Confirmar que el número de WhatsApp en los DMs es el real", sub:"Reemplazar 57XXXXXXXXXX si aún está con placeholder" },
+    { id:"vm3", text:"Revisar que el flujo ManyChat → GHL → Sofia AI esté conectado", sub:"Lead debe llegar a GHL y Sofia hacer seguimiento en 24h" },
+    { id:"vm4", text:"Verificar que el link-in-bio de IG y Facebook está activo", sub:"linkinbio-natalia.html · debe abrir correctamente desde móvil" },
+  ],
+  "💬 Comunidad y DMs": [
+    { id:"vc1", text:"Responder comentarios de posts publicados esta semana", sub:"Prioridad: comentarios con keywords · nunca ignorar preguntas reales" },
+    { id:"vc2", text:"Verificar que ManyChat envió DM a todos los que comentaron keyword", sub:"Revisar panel ManyChat · reportar si alguno falló · reenviar manual si aplica" },
+    { id:"vc3", text:"Gestionar DMs directos que llegaron por WhatsApp (Sofia AI)", sub:"Revisar conversaciones sin resolver · escalar a Natalia si es caso clínico" },
+    { id:"vc4", text:"Guardar capturas de comentarios positivos para futuras stories", sub:"Drive: Testimonios / Mayo 2026 / carpeta de la semana" },
+  ],
+  "📊 Métricas y reporte semanal": [
+    { id:"vme1", text:"Revisar métricas de los 4 posts al cierre de la semana (domingo)", sub:"Alcance · impresiones · guardados · comentarios · DMs recibidos por keyword" },
+    { id:"vme2", text:"Identificar el post de mayor performance y anotar por qué", sub:"Esto guía el brief de la semana siguiente" },
+    { id:"vme3", text:"Enviar reporte semanal a AJ Business Advisory", sub:"Formato: qué funcionó · qué ajustar · propuesta semana siguiente · métricas clave" },
+    { id:"vme4", text:"Actualizar el brief de Paula para la próxima semana", sub:"Incluir: tema asignado · keywords · observaciones de la Dra. · ajustes de estilo" },
+  ]
+};
+
+let vlCurrentWeek = 1;
+let vlCustomTasks = JSON.parse(localStorage.getItem('vl_custom') || '{}');
+const vlWeekTitles = {
+  1: "Semana 1 · Mayo 10–17",
+  2: "Semana 2 · Mayo 18–24",
+  3: "Semana 3 · Mayo 25–31",
+  4: "Semana 4 · Junio 1–7"
+};
+
+function vlGetKey(week, id) { return `vl_w${week}_${id}`; }
+function vlIsChecked(week, id) { return localStorage.getItem(vlGetKey(week,id)) === '1'; }
+function vlSetChecked(week, id, val) {
+  localStorage.setItem(vlGetKey(week,id), val ? '1' : '0');
+  vlUpdateProgress();
+}
+
+function vlRenderChecklist() {
+  document.getElementById('vl-week-title').textContent = vlWeekTitles[vlCurrentWeek];
+  const container = document.getElementById('vl-sections-container');
+  container.innerHTML = '';
+
+  const allSections = {};
+  Object.keys(VL_BASE_TASKS).forEach(k => { allSections[k] = [...VL_BASE_TASKS[k]]; });
+  const wCustom = vlCustomTasks[vlCurrentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+
+  Object.keys(allSections).forEach(section => {
+    const tasks = allSections[section];
+    const secId = `vl_sec_${section.replace(/[^a-z]/gi,'_')}`;
+    const doneCount = tasks.filter(t => vlIsChecked(vlCurrentWeek, t.id)).length;
+
+    const div = document.createElement('div');
+    div.className = 'cl-section';
+    div.innerHTML = `
+      <div class="cl-sec-head" onclick="vlToggleSection('${secId}')">
+        <div class="cl-sec-title">${section}</div>
+        <div class="cl-sec-meta">
+          <span class="cl-sec-count">${doneCount}/${tasks.length}</span>
+          <span class="cl-sec-arrow" id="arr_${secId}">▶</span>
+        </div>
+      </div>
+      <div class="cl-items" id="${secId}">
+        ${tasks.map(t => `
+          <div class="cl-item ${vlIsChecked(vlCurrentWeek,t.id)?'done':''}" id="vl_item_${t.id}">
+            <div class="cl-check ${vlIsChecked(vlCurrentWeek,t.id)?'checked':''}" onclick="vlToggleCheck('${t.id}','${section}')"></div>
+            <div class="cl-item-content">
+              <div class="cl-item-text">${t.text}</div>
+              ${t.sub ? `<div class="cl-item-sub">${t.sub}</div>` : ''}
+            </div>
+            ${t.custom ? `<button class="cl-item-del" onclick="vlDeleteTask('${t.id}','${vlCurrentWeek}','${section}')" title="Eliminar">✕</button>` : ''}
+          </div>
+        `).join('')}
+      </div>`;
+    container.appendChild(div);
+  });
+  vlUpdateProgress();
+}
+
+function vlToggleSection(id) {
+  const el = document.getElementById(id);
+  const arr = document.getElementById('arr_' + id);
+  el.classList.toggle('open');
+  if(arr) arr.classList.toggle('open');
+}
+
+function vlToggleCheck(id, section) {
+  const val = !vlIsChecked(vlCurrentWeek, id);
+  vlSetChecked(vlCurrentWeek, id, val);
+  const item = document.getElementById('vl_item_' + id);
+  const check = item.querySelector('.cl-check');
+  item.classList.toggle('done', val);
+  check.classList.toggle('checked', val);
+  vlUpdateProgress();
+}
+
+function vlUpdateProgress() {
+  const allSections = {};
+  Object.keys(VL_BASE_TASKS).forEach(k => { allSections[k] = [...VL_BASE_TASKS[k]]; });
+  const wCustom = vlCustomTasks[vlCurrentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+  let total = 0, done = 0;
+  Object.values(allSections).flat().forEach(t => {
+    total++;
+    if (vlIsChecked(vlCurrentWeek, t.id)) done++;
+  });
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  document.getElementById('vl-prog-fill').style.width = pct + '%';
+  document.getElementById('vl-prog-pct').textContent = pct + '%';
+  document.getElementById('vl-prog-label').textContent = `${done} de ${total} tareas completadas`;
+}
+
+function vlSwitchWeek(w, btn) {
+  vlCurrentWeek = w;
+  document.querySelectorAll('#vl-main .cl-week-btn').forEach(b => b.classList.remove('sel'));
+  btn.classList.add('sel');
+  vlRenderChecklist();
+}
+
+function vlResetWeek() {
+  if (!confirm(`¿Reiniciar checks de Valentina — semana ${vlCurrentWeek}? Las tareas personalizadas se mantienen.`)) return;
+  const allSections = {};
+  Object.keys(VL_BASE_TASKS).forEach(k => { allSections[k] = [...VL_BASE_TASKS[k]]; });
+  const wCustom = vlCustomTasks[vlCurrentWeek] || {};
+  Object.keys(wCustom).forEach(cat => {
+    if (!allSections[cat]) allSections[cat] = [];
+    wCustom[cat].forEach(t => allSections[cat].push(t));
+  });
+  Object.values(allSections).flat().forEach(t => localStorage.removeItem(vlGetKey(vlCurrentWeek, t.id)));
+  vlRenderChecklist();
+}
+
+function vlToggleAddForm() {
+  const f = document.getElementById('vl-add-form');
+  f.classList.toggle('open');
+  if(f.classList.contains('open')) document.getElementById('vl-add-input').focus();
+}
+
+function vlAddCustomTask() {
+  const input = document.getElementById('vl-add-input');
+  const cat = document.getElementById('vl-add-cat').value;
+  const text = input.value.trim();
+  if (!text) return;
+  const id = 'vl_custom_' + Date.now();
+  if (!vlCustomTasks[vlCurrentWeek]) vlCustomTasks[vlCurrentWeek] = {};
+  if (!vlCustomTasks[vlCurrentWeek][cat]) vlCustomTasks[vlCurrentWeek][cat] = [];
+  vlCustomTasks[vlCurrentWeek][cat].push({ id, text, custom: true });
+  localStorage.setItem('vl_custom', JSON.stringify(vlCustomTasks));
+  input.value = '';
+  vlToggleAddForm();
+  vlRenderChecklist();
+}
+
+function vlDeleteTask(id, week, cat) {
+  if (!vlCustomTasks[week] || !vlCustomTasks[week][cat]) return;
+  vlCustomTasks[week][cat] = vlCustomTasks[week][cat].filter(t => t.id !== id);
+  localStorage.setItem('vl_custom', JSON.stringify(vlCustomTasks));
+  vlRenderChecklist();
+}
+</script>
+
+<!-- CITAS JS + PROTECCIÓN -->
+<script>
+// ========================
+// PROTECCIÓN DE CÓDIGO
+// ========================
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  // Bloquear F12, Ctrl+U, Ctrl+S, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+  if (e.key === 'F12') { e.preventDefault(); return; }
+  if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key.toUpperCase())) { e.preventDefault(); return; }
+  if (e.ctrlKey && ['U','S'].includes(e.key.toUpperCase()) && !e.shiftKey) { e.preventDefault(); return; }
+  // Permitir Ctrl+A y Ctrl+C SOLO dentro de inputs y textareas
+  if (e.ctrlKey && ['A','C'].includes(e.key.toUpperCase())) {
+    const tag = document.activeElement.tagName;
+    if (!['INPUT','TEXTAREA'].includes(tag)) { e.preventDefault(); }
+  }
+});
+// Limpiar consola de mensajes sensibles
+setInterval(() => { try { console.clear(); } catch(e){} }, 3000);
+
+// ========================
+// CITAS CON VALENTINA
+// ========================
+let citas = JSON.parse(localStorage.getItem('citas_valentina') || '[]');
+
+function openCitaModal() {
+  // Set default date to next Monday
+  const today = new Date();
+  const day = today.getDay();
+  const daysToMon = day === 0 ? 1 : (8 - day) % 7 || 7;
+  const nextMon = new Date(today);
+  nextMon.setDate(today.getDate() + daysToMon);
+  document.getElementById('cita-fecha').value = nextMon.toISOString().split('T')[0];
+  document.getElementById('cita-modal').classList.add('open');
+}
+
+function closeCitaModal() {
+  document.getElementById('cita-modal').classList.remove('open');
+}
+
+function enviarCita() {
+  const fecha = document.getElementById('cita-fecha').value;
+  const hora = document.getElementById('cita-hora').value;
+  const tipo = document.getElementById('cita-tipo').value;
+  const modalidad = document.getElementById('cita-modalidad').value;
+  const nota = document.getElementById('cita-nota').value.trim();
+
+  if (!fecha || !hora) { alert('Por favor selecciona fecha y hora.'); return; }
+
+  // Format date for display
+  const d = new Date(fecha + 'T12:00:00');
+  const fechaStr = d.toLocaleDateString('es-CO', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  const horaStr = hora;
+
+  // Save to localStorage
+  const id = 'cita_' + Date.now();
+  const cita = { id, fecha, hora, tipo, modalidad, nota, fechaStr, creado: new Date().toLocaleString('es-CO') };
+  citas.unshift(cita);
+  localStorage.setItem('citas_valentina', JSON.stringify(citas));
+
+  // Generate WhatsApp message
+  const msg = `Hola Valentina 👋 Quiero agendar una cita:\n\n📅 *${fechaStr}* a las *${horaStr}*\n📋 Tipo: ${tipo}\n📡 Modalidad: ${modalidad}${nota ? '\n💬 Contexto: ' + nota : ''}\n\n¿Puedes confirmar? ¡Gracias!`;
+  const waURL = `https://wa.me/?text=${encodeURIComponent(msg)}`;
+
+  renderCitas();
+  closeCitaModal();
+
+  // Open WhatsApp
+  setTimeout(() => { window.open(waURL, '_blank'); }, 300);
+}
+
+function deleteCita(id) {
+  if (!confirm('¿Eliminar esta cita del historial?')) return;
+  citas = citas.filter(c => c.id !== id);
+  localStorage.setItem('citas_valentina', JSON.stringify(citas));
+  renderCitas();
+}
+
+function renderCitas() {
+  const container = document.getElementById('citas-list');
+  if (!citas.length) {
+    container.innerHTML = '<div style="text-align:center;padding:28px;color:var(--muted);font-size:12px;border:1px dashed var(--border);border-radius:10px">Aún no hay citas programadas. Usa el botón para agendar la primera.</div>';
+    return;
+  }
+  container.innerHTML = citas.map(c => `
+    <div class="cita-item">
+      <div class="cita-item-head">
+        <div class="cita-item-date">📅 ${c.fechaStr || c.fecha} · ${c.hora}</div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="cita-item-type">${c.tipo.split('—')[0].trim()}</span>
+          <button class="cita-del" onclick="deleteCita('${c.id}')" title="Eliminar">✕</button>
+        </div>
+      </div>
+      <div class="cita-item-note">📡 ${c.modalidad}${c.nota ? ' · ' + c.nota : ''}</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:4px">Agendado el ${c.creado}</div>
+    </div>
+  `).join('');
+}
+
+// Init on load
+document.addEventListener('DOMContentLoaded', () => {
+  // Set min date on cita form
+  const input = document.getElementById('cita-fecha');
+  if(input) input.min = new Date().toISOString().split('T')[0];
+  renderCitas();
+});
+
+// Close modal clicking overlay
+document.getElementById('cita-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeCitaModal();
+});
+
+// ==============================
+// NOTIFICACIÓN DE ENTREGA → Google Calendar valentina@ajbusinessadvisory.com
+// ==============================
+let notifLog = JSON.parse(localStorage.getItem('notif_log') || '[]');
+
+function notificarEntrega() {
+  const semana = document.getElementById('notif-semana').value;
+  const mes    = document.getElementById('notif-mes').value;
+
+  // Calcular el lunes siguiente
+  const today = new Date();
+  const dow = today.getDay(); // 0=Dom, 1=Lun, ..., 6=Sab
+  const daysToMon = dow === 0 ? 1 : dow === 1 ? 7 : (8 - dow);
+  const monday = new Date(today);
+  monday.setDate(today.getDate() + daysToMon);
+
+  const yy = monday.getFullYear();
+  const mm = String(monday.getMonth() + 1).padStart(2, '0');
+  const dd = String(monday.getDate()).padStart(2, '0');
+
+  const startDT = `${yy}${mm}${dd}T090000`;
+  const endDT   = `${yy}${mm}${dd}T093000`;
+
+  const title   = `📋 Revisar contenido Paula — Semana ${semana} · ${mes} 2026`;
+  const details = `Paula notificó la entrega del contenido de la Semana ${semana} de ${mes}.\n\n✅ Revisar archivos en Drive\n✅ Dar retroalimentación antes del mediodía\n✅ Confirmar ajustes con Paula si aplica\n\n📂 Drive: https://drive.google.com/drive/folders/0AHj-zuQWE_fTUk9PVA`;
+
+  const calURL = `https://calendar.google.com/calendar/render?action=TEMPLATE`
+    + `&text=${encodeURIComponent(title)}`
+    + `&dates=${startDT}/${endDT}`
+    + `&details=${encodeURIComponent(details)}`
+    + `&add=valentina%40ajbusinessadvisory.com`
+    + `&sf=true`;
+
+  window.open(calURL, '_blank');
+
+  // Guardar en historial
+  const entry = { semana, mes, fecha: new Date().toLocaleString('es-CO'), id: Date.now() };
+  notifLog.unshift(entry);
+  if (notifLog.length > 8) notifLog = notifLog.slice(0, 8);
+  localStorage.setItem('notif_log', JSON.stringify(notifLog));
+  renderNotifLog();
+}
+
+function renderNotifLog() {
+  const el = document.getElementById('notif-log-list');
+  if (!el) return;
+  if (!notifLog.length) {
+    el.innerHTML = '<span style="font-size:10.5px;color:rgba(255,255,255,.25)">Aún no has notificado ninguna entrega.</span>';
+    return;
+  }
+  el.innerHTML = notifLog.map(n => `
+    <div class="notif-log-item">
+      <div class="notif-log-dot"></div>
+      <span>Semana ${n.semana} · ${n.mes} — enviado el ${n.fecha}</span>
+    </div>
+  `).join('');
+}
+
+function limpiarNotifLog() {
+  if (!confirm('¿Limpiar el historial de notificaciones? Esto no afecta las entregas ya enviadas.')) return;
+  notifLog = [];
+  localStorage.removeItem('notif_log');
+  renderNotifLog();
+}
+
+// Inicializar log al cargar
+document.addEventListener('DOMContentLoaded', () => {
+  renderNotifLog();
+});
+</script>
+
+</body>
+</html>
