@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Oficial del Representante — Cristian Becerra · AJ Business Advisory</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #141414;
+    --border: #1e1e1e;
+    --pink: #b5005e;
+    --pink-light: #e0006e;
+    --yellow: #ffd400;
+    --text: #f0f0f0;
+    --muted: #888;
+    --green: #00c06b;
+    --red: #e03030;
+    --orange: #f07000;
+    --blue: #0088ff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .topbar .brand {
+    font-weight: 700;
+    color: var(--pink);
+    font-size: 15px;
+    letter-spacing: -.3px;
+  }
+  .topbar .sep { color: #333; }
+  .topbar .doc-type {
+    background: var(--pink);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: auto;
+  }
+
+  /* ── HERO MISSION BANNER ── */
+  .hero-mission {
+    background: linear-gradient(135deg, #0f0010 0%, #1a0020 50%, #0a0a0a 100%);
+    border-bottom: 2px solid var(--pink);
+    padding: 60px 20px 52px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-mission::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(181,0,94,.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-mission .official-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(181,0,94,.12);
+    border: 1px solid rgba(181,0,94,.4);
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--pink-light);
+    margin-bottom: 24px;
+  }
+  .hero-mission .official-badge .dot {
+    width: 6px; height: 6px;
+    background: var(--pink);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  .hero-mission h1 {
+    font-size: clamp(26px, 6vw, 46px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -.5px;
+    margin-bottom: 10px;
+  }
+  .hero-mission h1 .accent { color: var(--pink); }
+  .hero-mission .mission-line {
+    font-size: clamp(16px, 4vw, 22px);
+    font-weight: 700;
+    color: var(--yellow);
+    margin: 18px 0 12px;
+    letter-spacing: -.2px;
+  }
+  .hero-mission .subtitle {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 500px;
+    margin: 0 auto 28px;
+  }
+  .hero-mission .name-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .hero-mission .name-badge .dot-g {
+    width: 8px; height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .3; }
+  }
+
+  /* ── MISSION BOX ── */
+  .mission-box {
+    background: linear-gradient(135deg, #1a0010, #0f0a00);
+    border: 2px solid var(--pink);
+    border-radius: 16px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .mission-box .icon { font-size: 36px; margin-bottom: 14px; display: block; }
+  .mission-box h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--pink);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .mission-box p {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: var(--text);
+  }
+  .mission-box p span { color: var(--pink); }
+  .mission-box .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 10px;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  /* ── WHY SOFIA BANNER ── */
+  .sofia-banner {
+    background: linear-gradient(135deg, #001020 0%, #000d1a 100%);
+    border: 1px solid #003060;
+    border-radius: 16px;
+    padding: 32px 24px;
+    margin-bottom: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .sofia-banner::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(0,136,255,.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sofia-banner .sf-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue);
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .sofia-banner h2 {
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .sofia-banner h2 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+  .sofia-banner .sf-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .sofia-banner .sf-points li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #ccd;
+  }
+  .sofia-banner .sf-points li .sf-icon {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    background: rgba(0,136,255,.15);
+    border: 1px solid rgba(0,136,255,.3);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+  .sofia-banner .sf-points li strong { color: #fff; }
+
+  /* ── COLOMBIA BADGE ── */
+  .colombia-badge {
+    background: linear-gradient(135deg, #0a1a00, #0f2000);
+    border: 2px solid var(--green);
+    border-radius: 14px;
+    padding: 22px 24px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .colombia-badge .cb-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--green);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .colombia-badge p {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .colombia-badge .cb-sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 8px;
+    font-weight: 400;
+  }
+
+  /* ── VS TABLE ── */
+  .vs-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .vs-table thead tr {
+    background: #111;
+  }
+  .vs-table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  .vs-table th.sofia-col { color: var(--pink-light); }
+  .vs-table td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #111;
+    vertical-align: top;
+    color: #bbb;
+  }
+  .vs-table tr:last-child td { border-bottom: none; }
+  .vs-table td:first-child { color: var(--muted); font-size: 12px; }
+  .vs-table td.bad { color: #666; }
+  .vs-table td.good { color: var(--green); font-weight: 600; }
+  .vs-table tr.winner td { background: rgba(181,0,94,.05); }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* ── SECTION ── */
+  .section { margin-top: 44px; }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .section-label .num {
+    width: 28px; height: 28px;
+    background: var(--pink);
+    color: #fff;
+    font-weight: 800;
+    font-size: 13px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-label h2 {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -.3px;
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin-bottom: 14px;
+  }
+  .card.highlight {
+    border-color: var(--pink);
+    background: linear-gradient(135deg, #1a0010, #0f0f0f);
+  }
+  .card.highlight-yellow {
+    border-color: var(--yellow);
+    background: linear-gradient(135deg, #1a1000, #0f0f0f);
+  }
+  .card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .card h3 .tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .tag-pink { background: rgba(181,0,94,.2); color: var(--pink-light); }
+  .tag-green { background: rgba(0,192,107,.15); color: var(--green); }
+  .tag-yellow { background: rgba(255,212,0,.15); color: var(--yellow); }
+  .tag-gray { background: #222; color: var(--muted); }
+
+  .card p { font-size: 14px; color: #ccc; margin-bottom: 8px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* ── PRICE ROW ── */
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .price-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .price-row .label { color: #aaa; }
+  .price-row .value { font-weight: 700; color: var(--text); }
+  .price-row .value.pink { color: var(--pink-light); }
+  .price-row .value.yellow { color: var(--yellow); }
+  .price-row .value.green { color: var(--green); }
+
+  /* ── BENEFIT ROW ── */
+  .benefit-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #111;
+    font-size: 14px;
+  }
+  .benefit-row:last-child { border-bottom: none; }
+  .benefit-row .icon { flex-shrink: 0; color: var(--green); font-size: 16px; margin-top: 1px; }
+  .benefit-row strong { color: var(--text); display: block; margin-bottom: 2px; }
+  .benefit-row span { color: #aaa; font-size: 13px; }
+
+  /* ── CHECK LIST ── */
+  .checklist {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .checklist li {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14px;
+    color: #ccc;
+  }
+  .checklist li .icon { flex-shrink: 0; margin-top: 1px; font-style: normal; }
+  .checklist li .icon.ok { color: var(--green); }
+  .checklist li .icon.no { color: var(--red); }
+  .checklist li .icon.warn { color: var(--orange); }
+  .checklist li strong { color: var(--text); }
+
+  /* ── STEP ROW ── */
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+  .step { display: flex; gap: 16px; align-items: flex-start; }
+  .step-num {
+    width: 32px; height: 32px;
+    border: 2px solid var(--pink);
+    color: var(--pink);
+    font-weight: 800;
+    font-size: 14px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-body { flex: 1; }
+  .step-body strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .step-body p { font-size: 13px; color: #aaa; }
+
+  /* ── PITCH BOX ── */
+  .pitch-box {
+    background: #111;
+    border-left: 3px solid var(--pink);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 18px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #ddd;
+    font-style: italic;
+    margin-bottom: 14px;
+  }
+  .pitch-box .label-mini {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--pink);
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* ── COMMISSION HERO ── */
+  .commission-hero {
+    background: linear-gradient(135deg, #1a0010, #0a0a0a);
+    border: 1px solid var(--pink);
+    border-radius: 14px;
+    padding: 28px 24px;
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .commission-hero .big { font-size: 40px; font-weight: 900; color: var(--pink); letter-spacing: -1px; }
+  .commission-hero .small { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .commission-hero .plus { font-size: 24px; color: #333; margin: 10px 0; }
+  .commission-hero .big2 { font-size: 30px; font-weight: 900; color: var(--yellow); letter-spacing: -1px; }
+  .commission-hero .small2 { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* ── EXAMPLE BOX ── */
+  .example-box {
+    background: #0d0d0d;
+    border: 1px solid #1e1e1e;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .example-box .title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .example-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    padding: 6px 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .example-row:last-child { border-bottom: none; font-weight: 800; color: var(--green); }
+  .example-row span:first-child { color: #aaa; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 44px 0 0;
+  }
+
+  /* ── CONTACT CARD ── */
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .contact-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 14px;
+  }
+  .contact-item .ci-label { color: var(--muted); min-width: 80px; font-size: 12px; }
+  .contact-item .ci-value { font-weight: 600; color: var(--text); }
+  .contact-item a { color: var(--pink); text-decoration: none; }
+
+  /* ── WARNING BOX ── */
+  .warn-box {
+    background: rgba(240,112,0,.08);
+    border: 1px solid rgba(240,112,0,.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #e0a060;
+    margin-bottom: 14px;
+  }
+  .warn-box strong { color: var(--orange); }
+
+  /* ── TABLE ── */
+  .mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .mini-table th {
+    text-align: left;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+  }
+  .mini-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid #111;
+    vertical-align: top;
+  }
+  .mini-table tr:last-child td { border-bottom: none; }
+
+  /* ── SECTION DIVIDER LABEL ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 44px 0 24px;
+  }
+  .section-divider .sd-line { flex: 1; height: 1px; background: var(--border); }
+  .section-divider .sd-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 60px;
+    border-top: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #444;
+  }
+  .footer span { color: var(--pink); }
+
+  @media (max-width: 480px) {
+    .hero-mission { padding: 40px 16px 36px; }
+    .container { padding: 0 14px 60px; }
+  }
+  /* ── AUTH GATE ── */
+  #_authGate {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #12000a 100%);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  #_authGate.hidden { display: none; }
+  .ag-box {
+    background: #141414;
+    border: 1px solid #2a0018;
+    border-radius: 20px;
+    padding: 40px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+  .ag-logo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #b5005e;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  .ag-icon { font-size: 40px; margin-bottom: 16px; display: block; }
+  .ag-box h2 {
+    font-size: 20px;
+    font-weight: 800;
+    color: #f0f0f0;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .ag-box p {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  .ag-btn {
+    display: block;
+    width: 100%;
+    background: #b5005e;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: background .2s;
+    margin-bottom: 12px;
+  }
+  .ag-btn:hover { background: #d6006e; }
+  .ag-disclaimer {
+    font-size: 11px;
+    color: #333;
+    line-height: 1.5;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  /* ── DEVTOOLS SHIELD ── */
+  #_shield {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,10,10,.97);
+    z-index: 99998;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #_shield.show { display: flex; }
+  #_shield p { color: #b5005e; font-size: 16px; font-weight: 700; font-family: monospace; }
+  #_shield small { color: #444; font-size: 12px; font-family: monospace; }
+</style>
+
+<script>
+(function(){
+  var _KEY = 'aj_auth_rep_2026';
+
+  /* ── Comprobación de autorización ── */
+  function _isAuth(){ return localStorage.getItem(_KEY) === '1'; }
+
+  function _initPage(){
+    /* 1. Deshabilitar clic derecho */
+    document.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+    /* 2. Deshabilitar atajos de inspección */
+    document.addEventListener('keydown', function(e){
+      var k = e.key || '';
+      if(k === 'F12'){ e.preventDefault(); return false; }
+      if(e.ctrlKey || e.metaKey){
+        if(['u','U','s','S','p','P'].indexOf(k) > -1){ e.preventDefault(); return false; }
+        if(e.shiftKey && ['i','I','j','J','c','C'].indexOf(k) > -1){ e.preventDefault(); return false; }
+      }
+    });
+
+    /* 3. Deshabilitar drag y selección */
+    document.addEventListener('dragstart', function(e){ e.preventDefault(); });
+    document.addEventListener('selectstart', function(e){
+      if(e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') e.preventDefault();
+    });
+
+    /* 4. Detectar DevTools — método console timing (no agresivo por tamaño de ventana) */
+    var _devOpen = false;
+    var _shield = document.getElementById('_shield');
+    function _toggleShield(open){
+      if(!_shield) return;
+      if(open && !_devOpen){ _devOpen = true; _shield.classList.add('show'); }
+      else if(!open && _devOpen){ _devOpen = false; _shield.classList.remove('show'); }
+    }
+    (function _trap(){
+      var _d = /./; var _on = false;
+      _d.toString = function(){ _on = true; return '●'; };
+      setInterval(function(){
+        _on = false;
+        console.log('%c ', _d);
+        if(console.clear) console.clear();
+        _toggleShield(_on);
+      }, 1800);
+    })();
+  }
+
+  /* ── Mostrar gate o iniciar directo ── */
+  window.addEventListener('DOMContentLoaded', function(){
+    var gate = document.getElementById('_authGate');
+    var btn  = document.getElementById('_authBtn');
+
+    if(_isAuth()){
+      if(gate) gate.classList.add('hidden');
+      _initPage();
+    } else {
+      /* Gate visible — el usuario debe aceptar */
+      if(btn){
+        btn.addEventListener('click', function(){
+          localStorage.setItem(_KEY, '1');
+          gate.classList.add('hidden');
+          _initPage();
+        });
+      }
+    }
+  });
+})();
+</script>
+</head>
+<body>
+
+<!-- AUTH GATE — solo se muestra la primera vez -->
+<div id="_authGate">
+  <div class="ag-box">
+    <div class="ag-logo">AJ Business Advisory</div>
+    <span class="ag-icon">🔐</span>
+    <h2>Documento confidencial</h2>
+    <p>Este material es exclusivo para representantes autorizados de AJ Business Advisory. Al continuar confirmas que eres parte del equipo.</p>
+    <button class="ag-btn" id="_authBtn">Soy representante autorizado — Continuar</button>
+    <div class="ag-disclaimer">Este acceso queda registrado · Uso interno únicamente · 2026</div>
+  </div>
+</div>
+
+<!-- DEVTOOLS SHIELD -->
+<div id="_shield">
+  <p>⚠ Inspector deshabilitado</p>
+  <small>Documento confidencial · AJ Business Advisory LLC</small>
+</div>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span class="brand">AJ Business Advisory</span>
+  <span class="sep">·</span>
+  <span>Documento oficial</span>
+  <span class="doc-type">Guía del Representante</span>
+</div>
+
+<!-- HERO -->
+<div class="hero-mission">
+  <div class="official-badge">
+    <span class="dot"></span>
+    Guía Oficial · Representantes Colombia 2026
+  </div>
+  <h1>Convertimos negocios<br>en <span class="accent">marcas sólidas.</span></h1>
+  <div class="mission-line">Cristian, tu trabajo es uno solo: que el cliente escuche a Sofia. Sofia cierra el negocio.</div>
+  <p class="subtitle">Este documento es tu manual de campo. Léelo una vez y ya tienes todo lo que necesitas para representar a AJ Business Advisory con autoridad.</p>
+  <div class="name-badge">
+    <span class="dot-g"></span>
+    Cristian Becerra · Representante Oficial Colombia
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- ── MISIÓN DEL REPRESENTANTE ── -->
+  <div class="section">
+    <div class="mission-box">
+      <span class="icon">🎯</span>
+      <h3>Tu única misión</h3>
+      <p>Conseguir que el prospecto <span>hable con Sofia.</span><br>Eso es literalmente todo.</p>
+      <div class="sub">No tienes que explicar cómo funciona. No tienes que demostrar nada técnico. No tienes que cerrar tú. Tu trabajo termina cuando el cliente escanea el QR y Sofia entra al juego. A partir de ahí, ella se encarga de presentar, resolver objeciones y cerrar el negocio.</div>
+    </div>
+
+    <div class="card highlight">
+      <h3>¿Qué es AJ Business Advisory?</h3>
+      <p>Una empresa colombo-americana fundada por Andres Triana — colombiano establecido en California, USA — especializada en transformar negocios locales en <strong>marcas sólidas y consolidadas</strong> usando inteligencia artificial.</p>
+      <p><strong>No vendemos software. Construimos marcas:</strong> negocios que responden rápido, que sus clientes recuerdan, que aparecen primero en Google y que nunca pierden una oportunidad por falta de atención.</p>
+      <p>El resultado no es solo más clientes — es un negocio que opera como una marca profesional, 24 horas, sin depender de que alguien esté disponible.</p>
+    </div>
+
+    <div class="pitch-box">
+      <span class="label-mini">Cómo explicarle a alguien qué haces en 15 segundos</span>
+      "Trabajo con una empresa que se encarga de que ningún cliente de tu negocio se pierda — ni por WhatsApp, ni por llamada, ni por redes sociales. Tu marca le da seguimiento a cada persona de forma automática, en todos los canales. El resultado: más clientes que regresan, más citas agendadas, y un negocio que se percibe como una marca seria. Todo sin que tú tengas que hacer nada extra."
+    </div>
+  </div>
+
+  <!-- ── ¿POR QUÉ SOFIA? BANNER ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num" style="background:var(--blue)">★</div>
+      <h2>¿Por qué Sofia es importante?</h2>
+    </div>
+
+    <div class="sofia-banner">
+      <div class="sf-title">La razón de todo</div>
+      <h2>Sofia no es un chatbot.<br>Sofia es la cara de tu marca:<br><em>presente, profesional, disponible siempre.</em></h2>
+      <ul class="sf-points" style="margin-top:20px;">
+        <li>
+          <span class="sf-icon">🏷️</span>
+          <span><strong>Construye percepción de marca desde el primer contacto.</strong> El cliente no siente que está hablando con un bot — siente que el negocio lo atiende de verdad, rápido y profesional. Eso es lo que hace una marca sólida.</span>
+        </li>
+        <li>
+          <span class="sf-icon">📞</span>
+          <span><strong>Contesta en segundos, no en horas.</strong> El 80% de los negocios pierden clientes porque no contestan rápido. Sofia contesta en menos de un minuto, 24/7, incluso fines de semana y festivos. Las marcas sólidas nunca hacen esperar.</span>
+        </li>
+        <li>
+          <span class="sf-icon">🧠</span>
+          <span><strong>Tiene contexto de cada cliente.</strong> Recuerda quién es, cuándo fue la última vez que visitó, qué servicio tomó, y le habla por nombre. No es un mensaje genérico — es la experiencia de una marca que te conoce.</span>
+        </li>
+        <li>
+          <span class="sf-icon">💰</span>
+          <span><strong>Cierra el negocio por ti.</strong> Sofia no solo agenda — presenta el servicio, maneja las dudas del cliente y convierte prospectos en clientes que firman. Tú traes el contacto, ella hace el cierre.</span>
+        </li>
+        <li>
+          <span class="sf-icon">🔄</span>
+          <span><strong>Sistema completo, marca completa.</strong> Agendamiento, seguimiento, reactivación, reputación en Google — todo integrado. No son piezas sueltas: es la infraestructura de una marca que opera profesionalmente.</span>
+        </li>
+        <li>
+          <span class="sf-icon">🇨🇴</span>
+          <span><strong>Habla como colombiana, entiende el mercado local.</strong> Configurada para el contexto colombiano: lenguaje natural, horarios, industrias y objeciones del mercado local. Tu marca suena como de aquí.</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="colombia-badge">
+      <div class="cb-title">El primer servicio de marca integrada en Colombia</div>
+      <p>No existe otro servicio que convierta negocios colombianos en marcas sólidas de esta forma. No competimos — creamos la categoría.</p>
+      <div class="cb-sub">Los clientes que entren ahora no solo van a crecer — van a ser los referentes de su industria en su zona. Llegar primero siempre tiene ventaja.</div>
+    </div>
+  </div>
+
+  <!-- ── SOFIA VS OTRAS IAs ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">1</div>
+      <h2>Sofia vs. otras opciones del mercado</h2>
+    </div>
+
+    <p style="font-size:14px;color:#aaa;margin-bottom:18px;">Si un cliente te pregunta "¿por qué no uso ChatGPT o un bot barato?", esta es la respuesta. Un bot genérico atiende — nosotros construimos marca.</p>
+
+    <div class="card" style="padding:0;overflow:hidden;">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>¿Qué logra?</th>
+            <th>Bots genéricos / ChatGPT</th>
+            <th class="sofia-col">Sofia — AJ Business Advisory</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Construye percepción de marca</td>
+            <td class="bad">No — es un bot, se nota</td>
+            <td class="good">✓ Experiencia profesional real</td>
+          </tr>
+          <tr class="winner">
+            <td>Responde WhatsApp 24/7</td>
+            <td class="bad">Solo si configuras todo solo</td>
+            <td class="good">✓ Incluido y funcionando</td>
+          </tr>
+          <tr>
+            <td>Agenda citas automáticamente</td>
+            <td class="bad">No — necesita conectores externos</td>
+            <td class="good">✓ Totalmente integrado</td>
+          </tr>
+          <tr class="winner">
+            <td>Reactiva clientes dormidos</td>
+            <td class="bad">No existe esa función</td>
+            <td class="good">✓ Campaña activa y medible</td>
+          </tr>
+          <tr>
+            <td>Posiciona el negocio en Google</td>
+            <td class="bad">No</td>
+            <td class="good">✓ Reseñas automáticas, reputación real</td>
+          </tr>
+          <tr class="winner">
+            <td>Habla en español colombiano natural</td>
+            <td class="bad">Tono genérico, no localizado</td>
+            <td class="good">✓ Configurada para Colombia</td>
+          </tr>
+          <tr>
+            <td>Instalación y soporte incluido</td>
+            <td class="bad">Tú lo configuras, tú lo mantienes</td>
+            <td class="good">✓ Andres lo instala y acompaña</td>
+          </tr>
+          <tr class="winner">
+            <td>Sistema todo-en-uno para la marca</td>
+            <td class="bad">Múltiples apps, sin coherencia de marca</td>
+            <td class="good">✓ Un solo sistema, todo integrado</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card highlight">
+      <h3>La pregunta que cierra la comparación</h3>
+      <p>"¿Quiere un bot que conteste mensajes, o quiere que su negocio se vea y funcione como una marca sólida?" La diferencia no es el precio — es lo que el cliente siente cuando interactúa con el negocio. <strong>Con Sofia, el negocio se percibe profesional desde el primer mensaje.</strong></p>
+    </div>
+  </div>
+
+  <!-- ── BENEFICIOS PARA EL CLIENTE ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">2</div>
+      <h2>Lo que gana el cliente — en concreto</h2>
+    </div>
+
+    <p style="font-size:14px;color:#aaa;margin-bottom:18px;">Su negocio no solo va a funcionar mejor — va a <strong>verse y sentirse como una marca sólida</strong>. Estos son los beneficios que van a notar desde el primer mes.</p>
+
+    <div class="card">
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Su negocio pasa de "otro consultorio" a una marca que se recuerda</strong>
+          <span>La primera impresión que un cliente tiene del negocio es la velocidad y calidad con que lo atienden. Con Sofia, esa primera impresión es siempre profesional — desde el primer mensaje.</span>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Dejan de perder clientes por no contestar</strong>
+          <span>El 78% de los clientes que no reciben respuesta en 5 minutos buscan otra opción. Sofia contesta en segundos, 24/7. Ese cliente que se iba — ahora se queda. Y vuelve.</span>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Recuperan clientes que llevan meses sin volver</strong>
+          <span>Tienen una base de datos llena de clientes que alguna vez confiaron en ellos. Sofia los contacta, los recuerda y los invita a volver — con el nombre del negocio, como una marca que cuida a sus clientes.</span>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Reducen cancelaciones y llenan la agenda</strong>
+          <span>Sofia manda recordatorios automáticos el día antes y horas antes de cada cita. Los no-shows se reducen drásticamente. Una agenda llena es la imagen de una marca en demanda.</span>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Se posicionan como líderes en Google</strong>
+          <span>Más reseñas reales = más clientes nuevos que llegan solos. Sofia pide la reseña exactamente cuando el cliente está satisfecho. Una marca con buena reputación digital atrae sola.</span>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Su marca opera 24 horas aunque ellos no estén</strong>
+          <span>Fines de semana, festivos, en la noche — Sofia está. Las marcas sólidas no tienen horario de atención. No pierden una sola oportunidad.</span>
+        </div>
+      </div>
+      <div class="benefit-row">
+        <span class="icon">✓</span>
+        <div>
+          <strong>Inversión que se paga sola desde el primer mes</strong>
+          <span>Si recuperan 3 citas al mes que antes perdían y cada cita vale $80.000 COP — ya cubrieron la mensualidad. El resto es crecimiento de marca puro.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card highlight-yellow">
+      <h3 style="color:var(--yellow)">¿Por qué tiene que ser esto y no otra cosa?</h3>
+      <p>Porque en Colombia no hay otro servicio que convierta negocios en marcas sólidas de esta forma — instalado, funcionando y con soporte real. No es una app que el cliente configura solo. No es un chatbot genérico. Es un sistema diseñado para su industria que hace que su negocio se vea y funcione como una marca de primer nivel.</p>
+      <p style="margin-top:10px;"><strong>El cliente no está comprando tecnología. Está comprando la consolidación de su marca — y la certeza de que nunca más va a perder un cliente por no contestar a tiempo.</strong></p>
+    </div>
+  </div>
+
+  <!-- ── LOS PLANES ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">3</div>
+      <h2>Los planes que representas</h2>
+    </div>
+
+    <p style="font-size:14px;color:#aaa;margin-bottom:18px;">Son 4 sistemas. No tienes que venderlos todos a la vez. Empieza con el primero — es el más fácil de explicar y el que más impacto produce desde el día uno.</p>
+
+    <!-- Plan 1 -->
+    <div class="card">
+      <h3>Plan 1 — Sistema de Recuperación de Citas <span class="tag tag-pink">⭐ Empieza aquí</span></h3>
+      <p><strong>Para:</strong> clínicas dentales, médicos, centros estéticos, spas médicos.</p>
+      <p><strong>Problema que resuelve:</strong> el negocio pierde citas porque no contesta a tiempo, olvida recordar al paciente o no da seguimiento después de un no-show.</p>
+      <p><strong>Lo que Sofia hace en este plan:</strong> contesta WhatsApp 24/7, agenda citas automáticamente, manda recordatorios el día antes y horas antes de cada cita, y recoge datos del paciente. El negocio nunca vuelve a perder una cita por no contestar.</p>
+      <div style="margin-top:14px;">
+        <div class="price-row">
+          <span class="label">Cobro inicial (activación)</span>
+          <span class="value pink">$1.800.000 COP</span>
+        </div>
+        <div class="price-row">
+          <span class="label">Mensualidad</span>
+          <span class="value">$950.000 COP/mes</span>
+        </div>
+        <div class="price-row">
+          <span class="label">El sistema se paga si recupera</span>
+          <span class="value green">≥ 12 citas al mes (a $80K c/u)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan 2 -->
+    <div class="card">
+      <h3>Plan 2 — Sistema de Reactivación de Pacientes Dormidos <span class="tag tag-yellow">Alta demanda</span></h3>
+      <p><strong>Para:</strong> dentistas, médicos, centros estéticos — cualquiera con pacientes que no han vuelto en +3 meses.</p>
+      <p><strong>Problema que resuelve:</strong> la base de datos está llena de pacientes que ya confiaron en el negocio una vez, pero nunca regresaron. Ese dinero está dormido.</p>
+      <p><strong>Lo que Sofia hace en este plan:</strong> identifica todos los pacientes inactivos y les manda mensajes personalizados por WhatsApp invitándolos a volver. Son mensajes con su nombre, referenciando su última visita — no spam.</p>
+      <div style="margin-top:14px;">
+        <div class="price-row">
+          <span class="label">Cobro inicial (activación)</span>
+          <span class="value pink">$900.000 COP</span>
+        </div>
+        <div class="price-row">
+          <span class="label">Mensualidad</span>
+          <span class="value">$390.000 COP/mes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan 3 -->
+    <div class="card">
+      <h3>Plan 3 — Sistema de Reputación Google <span class="tag tag-green">Para cualquier negocio</span></h3>
+      <p><strong>Para:</strong> cualquier negocio con presencia física que quiera atraer más clientes desde Google.</p>
+      <p><strong>Problema que resuelve:</strong> el negocio no aparece bien en Google porque tiene pocas reseñas, aunque sus clientes salen satisfechos. Nadie les pide la reseña en el momento correcto.</p>
+      <p><strong>Lo que Sofia hace en este plan:</strong> cuando un cliente sale satisfecho, el sistema le pide la reseña exactamente en ese momento — cuando está con la experiencia fresca. Más reseñas reales = más visibilidad = más clientes nuevos que llegan solos.</p>
+      <div style="margin-top:14px;">
+        <div class="price-row">
+          <span class="label">Cobro inicial (activación)</span>
+          <span class="value pink">$500.000 COP</span>
+        </div>
+        <div class="price-row">
+          <span class="label">Mensualidad</span>
+          <span class="value">$250.000 COP/mes</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Plan 4 -->
+    <div class="card">
+      <h3>Plan 4 — Sistema de Presencia Digital <span class="tag tag-gray">Complementario</span></h3>
+      <p><strong>Para:</strong> negocios que no tienen página web o la tienen abandonada.</p>
+      <p><strong>Problema que resuelve:</strong> un negocio sin presencia digital no existe para el 60% de sus posibles clientes. Los clientes buscan en Google antes de ir.</p>
+      <p><strong>Lo que incluye:</strong> página web profesional + presencia en Google Maps + automatizaciones básicas de contacto. La base digital para que los demás sistemas funcionen mejor.</p>
+      <div style="margin-top:14px;">
+        <div class="price-row">
+          <span class="label">Cobro inicial (activación)</span>
+          <span class="value pink">$1.200.000 COP</span>
+        </div>
+        <div class="price-row">
+          <span class="label">Mensualidad</span>
+          <span class="value">$750.000 COP/mes</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>Regla de oro:</strong> Nunca empieces explicando el sistema. Empieza por el dolor de plata. "¿Cuántas citas pierde por semana porque no le contestaron a tiempo?" Si el número es 2 o más — ya tienes la venta. El sistema se paga solo.
+    </div>
+  </div>
+
+  <!-- ── A QUIÉN VENDERLE ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">4</div>
+      <h2>¿A quién le vendes?</h2>
+    </div>
+
+    <div class="card highlight">
+      <h3>La regla simple: si tiene ventas, es prospecto</h3>
+      <p>No importa si el cliente llega por WhatsApp, por teléfono, por redes sociales o entra por la puerta. <strong>Cualquier negocio que tenga clientes y maneje ventas puede ser nuestro cliente.</strong> Presencial, mixto o digital — si pierde oportunidades por no dar seguimiento, nosotros resolvemos eso.</p>
+    </div>
+
+    <div class="card">
+      <h3>Empresas prospectos destacados <span class="tag tag-pink">Alta prioridad</span></h3>
+      <ul class="checklist">
+        <li><span class="icon ok">✓</span><span><strong>Clínicas dentales y consultorios odontológicos</strong> — los mejores. Pierden citas todo el tiempo y tienen presupuesto. Ya tenemos un cliente activo en Bogotá con resultados reales.</span></li>
+        <li><span class="icon ok">✓</span><span><strong>Centros de cirugía y medicina estética</strong> — ticket muy alto. Cada paciente perdido vale millones.</span></li>
+        <li><span class="icon ok">✓</span><span><strong>Med Spas y centros de estética avanzada</strong> — alto volumen de citas, muchos mensajes sin contestar.</span></li>
+        <li><span class="icon ok">✓</span><span><strong>Concesionarios y agencias de vehículos</strong> — clientes que preguntan y nunca reciben seguimiento. Cada lead vale mucho.</span></li>
+        <li><span class="icon ok">✓</span><span><strong>Inmobiliarias y constructoras</strong> — prospectos que se enfrían porque nadie los llama a tiempo. Ideal para reactivación y seguimiento.</span></li>
+        <li><span class="icon ok">✓</span><span><strong>Corredores de seguros independientes</strong> — pierden leads constantemente por falta de seguimiento multicanal.</span></li>
+        <li><span class="icon ok">✓</span><span><strong>Escuelas, institutos y academias privadas</strong> — admisiones que no se cierran, padres que preguntan y no reciben respuesta.</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Otros negocios con ventas presenciales o mixtas <span class="tag tag-yellow">También aplican</span></h3>
+      <ul class="checklist">
+        <li><span class="icon ok">✓</span><span>Ópticas independientes — clientes que no regresan a revisar la vista</span></li>
+        <li><span class="icon ok">✓</span><span>Fisioterapeutas y centros de rehabilitación</span></li>
+        <li><span class="icon ok">✓</span><span>Gimnasios independientes (no franquicias)</span></li>
+        <li><span class="icon ok">✓</span><span>Clínicas veterinarias</span></li>
+        <li><span class="icon ok">✓</span><span>Salones de belleza y barberías premium</span></li>
+        <li><span class="icon ok">✓</span><span>Restaurantes y catering con reservas o pedidos recurrentes</span></li>
+        <li><span class="icon ok">✓</span><span>Tiendas y showrooms con clientes frecuentes</span></li>
+        <li><span class="icon ok">✓</span><span>Agencias de viajes y turismo</span></li>
+      </ul>
+    </div>
+
+    <div class="warn-box">
+      <strong>Si tienes duda de si un negocio aplica:</strong> pregúntate si ese negocio pierde dinero cuando no contesta a tiempo, cuando un cliente no regresa, o cuando no da seguimiento. Si la respuesta es sí — es nuestro cliente. Escríbele a Andres y validamos juntos.
+    </div>
+  </div>
+
+  <!-- ── CÓMO CALIFICAR ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">5</div>
+      <h2>¿Cómo saber si un negocio sirve?</h2>
+    </div>
+
+    <div class="card">
+      <h3>Señales de que SÍ sirve <span class="tag tag-green">Buena señal</span></h3>
+      <ul class="checklist">
+        <li><span class="icon ok">✓</span><span>Tiene local físico y atiende clientes presencialmente</span></li>
+        <li><span class="icon ok">✓</span><span>Tiene WhatsApp de negocio (o usa su celular personal para el negocio)</span></li>
+        <li><span class="icon ok">✓</span><span>Le llegan mínimo 20-30 mensajes de WhatsApp al día de clientes</span></li>
+        <li><span class="icon ok">✓</span><span>Se le cancela o pierde al menos 2-3 citas por semana</span></li>
+        <li><span class="icon ok">✓</span><span>Tiene empleados (no es un freelancer solo)</span></li>
+        <li><span class="icon ok">✓</span><span>Lleva más de 1 año abierto</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Señales de que NO sirve <span class="tag tag-gray">Pasa al siguiente</span></h3>
+      <ul class="checklist">
+        <li><span class="icon no">✗</span><span>Solo vende por internet, no atiende gente en persona</span></li>
+        <li><span class="icon no">✗</span><span>Es una persona sola trabajando desde casa</span></li>
+        <li><span class="icon no">✗</span><span>No tiene WhatsApp ni teléfono de contacto para clientes</span></li>
+        <li><span class="icon no">✗</span><span>Acaba de abrir hace menos de 3 meses</span></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Señales de alerta — pregunta más antes de avanzar <span class="tag tag-yellow">Con cuidado</span></h3>
+      <ul class="checklist">
+        <li><span class="icon warn">!</span><span>Dice que "ya tiene un sistema" — pregunta cuánto paga y qué resuelve. Muchas veces tienen algo básico que no funciona bien.</span></li>
+        <li><span class="icon warn">!</span><span>Dice que "no tiene plata" — pregunta cuánto está perdiendo por mes. Si es más que lo que cobras, el problema es de perspectiva, no de plata.</span></li>
+        <li><span class="icon warn">!</span><span>Es una franquicia — puede que las decisiones no las tome él. Solo sigue si es el dueño directo.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ── CÓMO PRESENTAR ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">6</div>
+      <h2>Cómo llevar al cliente a escuchar a Sofia</h2>
+    </div>
+
+    <p style="font-size:14px;color:#aaa;margin-bottom:18px;">No necesitas saber de tecnología. Necesitas hacer las preguntas correctas y conectar el dolor con la solución. El cierre lo hace Sofia.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Abre con el dolor, no con el producto</strong>
+          <p>Pregunta: <em>"¿Cuántas citas pierde por semana porque el paciente no confirmó o no llegó?"</em> o <em>"¿Cuántos mensajes de WhatsApp quedan sin contestar cuando están atendiendo?"</em></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Ponle número al dolor</strong>
+          <p>Si pierde 3 citas por semana y cada cita vale $80.000 COP, está perdiendo $960.000 al mes. Díselo. El sistema cuesta $950.000 al mes. Ahí mismo se cubre solo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Muestra el resultado, no el sistema</strong>
+          <p>Di: <em>"Tenemos una clínica en Bogotá que ya tiene esto funcionando — ellos recuperaron más de lo que pagan en el primer mes. El sistema llama al cliente gratis desde cualquier celular colombiano."</em></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Cierra con urgencia real</strong>
+          <p>Di: <em>"Trabajamos con máximo 2-3 clientes por zona para no saturar el mismo mercado. Si quieres, esta semana te presentamos la propuesta formal."</em></p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <strong>Dale la tarjeta — deja que Sofia haga su trabajo</strong>
+          <p>Di: <em>"Escanea este código, pones tus datos y Sofia te llama en minutos — gratis, desde cualquier teléfono colombiano."</em> Eso es todo. Tu trabajo terminó. Sofia entra al juego.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="pitch-box">
+        <span class="label-mini">Script de apertura — puerta fría o WhatsApp</span>
+        "Hola [nombre], mucho gusto, mi nombre es Cristian. Trabajo con una empresa que convierte negocios como el suyo en marcas sólidas y consolidadas — que atienden clientes 24 horas, no pierden citas y aparecen primero en Google. ¿Tiene 10 minutos esta semana para contarle cómo le ha funcionado a otras clínicas en Bogotá?"
+      </div>
+
+      <div class="pitch-box">
+        <span class="label-mini">Cuando pregunten cuánto cuesta</span>
+        "Depende de qué tan rápido quiere que su marca empiece a trabajar sola. Hay negocios que arrancan desde $390.000 al mes. Antes de darle un precio, prefiero entender dónde está perdiendo oportunidades — así le digo exactamente qué le conviene. ¿Le parece si lo miramos juntos?"
+      </div>
+    </div>
+  </div>
+
+  <!-- ── EL PROCESO DESPUÉS DEL SÍ ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">7</div>
+      <h2>¿Qué pasa cuando el cliente dice sí?</h2>
+    </div>
+
+    <div class="card">
+      <p>Tu trabajo termina cuando el prospecto escanea el QR y llena el formulario. A partir de ahí, el proceso es automático:</p>
+      <ul class="checklist" style="margin-top:12px;">
+        <li><span class="icon ok">✓</span><span><strong>Sofia los llama automáticamente</strong> en minutos — desde USA a su teléfono colombiano. El cliente no gasta nada.</span></li>
+        <li><span class="icon ok">✓</span><span>Sofia presenta el servicio, resuelve las dudas y cierra la venta</span></li>
+        <li><span class="icon ok">✓</span><span>Si el cliente firma, Andres instala y activa el sistema</span></li>
+        <li><span class="icon ok">✓</span><span>Tú cobras tu comisión el mismo día que el cliente paga el setup</span></li>
+        <li><span class="icon ok">✓</span><span>A partir del segundo mes, recibes $50.000 COP cada mes mientras ese cliente pague</span></li>
+      </ul>
+    </div>
+
+    <div class="warn-box">
+      <strong>Importante:</strong> No hagas promesas de tiempos de instalación, características ni descuentos por tu cuenta. Si el cliente pregunta algo que no sabes, di: <em>"Eso lo maneja directamente Andres — le pregunto y le doy la respuesta hoy mismo."</em>
+    </div>
+  </div>
+
+  <!-- ── TU COMISIÓN ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">8</div>
+      <h2>Tu comisión</h2>
+    </div>
+
+    <div class="commission-hero">
+      <div class="big">$100 USD</div>
+      <div class="small">por cada cliente que firma contrato (pago único al momento de firma)</div>
+      <div class="plus">+</div>
+      <div class="big2">$50.000 COP</div>
+      <div class="small2">al mes por cada cliente activo (de por vida, mientras el cliente pague)</div>
+    </div>
+
+    <div class="example-box">
+      <div class="title">Ejemplo real — 5 clientes en 2 meses</div>
+      <div class="example-row">
+        <span>5 firmas × $100 USD</span>
+        <span>$500 USD (~$2.000.000 COP)</span>
+      </div>
+      <div class="example-row">
+        <span>5 clientes activos × $50K/mes</span>
+        <span>$250.000 COP/mes</span>
+      </div>
+      <div class="example-row">
+        <span>Después de 12 meses (si siguen activos)</span>
+        <span style="color:var(--green)">$500 USD + $3.000.000 COP acumulado</span>
+      </div>
+      <div class="example-row">
+        <span><strong>Total año 1</strong></span>
+        <span>≈ $5.000.000+ COP</span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:14px;">
+      <p>Pago de comisión de firma: <strong>el mismo día que el cliente paga el setup.</strong> Mensualidades: <strong>primeros 5 días del mes siguiente.</strong></p>
+      <p>Forma de pago: <strong>Nequi, Daviplata o cuenta bancaria colombiana.</strong></p>
+    </div>
+  </div>
+
+  <!-- ── CÓMO TRABAJAMOS ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">9</div>
+      <h2>Cómo trabajamos juntos</h2>
+    </div>
+
+    <div class="card">
+      <table class="mini-table">
+        <thead>
+          <tr>
+            <th>Situación</th>
+            <th>Qué hacer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tienes un prospecto interesado</td>
+            <td><strong>Dale la tarjeta con el QR.</strong> Sofia queda registrada con tu código y ellos quedan en tu pipeline automáticamente</td>
+          </tr>
+          <tr>
+            <td>Alguien quiere una demo en el momento</td>
+            <td>Dile: "Escanea el QR, pones tu número y Sofia te llama en minutos — gratis"</td>
+          </tr>
+          <tr>
+            <td>Alguien pregunta algo técnico o de precios</td>
+            <td>Di "lo consulto" y escríbele a Andres — él responde rápido</td>
+          </tr>
+          <tr>
+            <td>Reporte semanal</td>
+            <td>Cada lunes: cuántos QR escaneados (Andres te informa el número exacto desde el sistema)</td>
+          </tr>
+          <tr>
+            <td>Dudas sobre precios, condiciones o contratos</td>
+            <td>Siempre consulta a Andres antes de decirle algo al cliente. No improvises.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ── CONTACTOS ── -->
+  <div class="section">
+    <div class="section-label">
+      <div class="num">10</div>
+      <h2>Contactos clave</h2>
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-item">
+        <span class="ci-label">Andres</span>
+        <span class="ci-value">+1 (669) 666-2773 (WhatsApp USA)</span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Email</span>
+        <span class="ci-value"><a href="mailto:andres@ajbusinessadvisory.com">andres@ajbusinessadvisory.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Valentina</span>
+        <span class="ci-value"><a href="mailto:valentina@ajbusinessadvisory.com">valentina@ajbusinessadvisory.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Web</span>
+        <span class="ci-value"><a href="https://ajbusinessadvisory.com" target="_blank">ajbusinessadvisory.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label">Demo Sofia</span>
+        <span class="ci-value">+1 (669) 310-5168 — llámale, ella contesta</span>
+      </div>
+      <div class="contact-item">
+        <span class="ci-label" style="color:var(--pink);font-weight:700;">Demo Colombia</span>
+        <span class="ci-value" style="color:var(--pink-light);font-weight:700;">Sofia Colombia — contacto directo con tu equipo de soporte</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  Documento confidencial · <span>AJ Business Advisory LLC</span> · Guía Oficial para Representantes Colombia · 2026
+</div>
+
+</body>
+</html>
