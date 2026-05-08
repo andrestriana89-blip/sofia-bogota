@@ -36,8 +36,8 @@
         radial-gradient(ellipse 65% 45% at 50% 50%, rgba(160,0,180,0.03) 0%, transparent 65%);
     }
     html.light-mode nav{background:rgba(244,241,251,.93);border-bottom-color:rgba(181,0,94,.14)}
-    html.light-mode .ticker{background:rgba(181,0,94,.04);border-color:rgba(181,0,94,.08)}
-    html.light-mode .ticker-item{color:#7a6a99}
+    html.light-mode .ticker{background:transparent}
+    html.light-mode .ticker-item{color:#9080b0}
     html.light-mode .trust-bar{background:rgba(181,0,94,.03);border-color:rgba(181,0,94,.08)}
     html.light-mode .trust-item{color:#5e4d80}
     html.light-mode .section-dark{background:rgba(181,0,94,.04)}
@@ -145,10 +145,18 @@
     #stickyBar a{color:#fff;font-weight:700;padding:4px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.4);text-decoration:none;transition:background .2s}
     #stickyBar a:hover{background:rgba(255,255,255,.15)}
 
-    /* TICKER */
-    .ticker{background:rgba(181,0,94,.05);border-bottom:1px solid rgba(181,0,94,.12);overflow:hidden;padding:9px 0}
+    /* BRAND STRIP */
+    .brand-strip{background:rgba(181,0,94,.04);border-bottom:1px solid rgba(181,0,94,.10)}
+    .brand-name-row{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 28px 6px;border-bottom:1px solid rgba(181,0,94,.06)}
+    .brand-name-logo{height:26px;width:auto;filter:brightness(1.08);opacity:.92;object-fit:contain}
+    .brand-name-text{font-size:11px;font-weight:800;color:var(--text);letter-spacing:1.8px;text-transform:uppercase}
+    html.light-mode .brand-strip{background:rgba(181,0,94,.03);border-bottom-color:rgba(181,0,94,.08)}
+    html.light-mode .brand-name-row{border-bottom-color:rgba(181,0,94,.05)}
+    html.light-mode .brand-name-logo{filter:invert(1) brightness(0.12) saturate(0)}
+    /* TICKER — now lives inside brand-strip */
+    .ticker{overflow:hidden;padding:7px 0}
     .ticker-track{display:flex;animation:ticker 38s linear infinite;width:max-content}
-    .ticker-item{font-size:12px;color:#888;padding:0 28px;border-right:1px solid rgba(181,0,94,.12);white-space:nowrap}
+    .ticker-item{font-size:11px;color:#777;padding:0 28px;border-right:1px solid rgba(181,0,94,.10);white-space:nowrap}
     @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
     /* HERO */
@@ -715,7 +723,7 @@
   <div class="snav-dot"        data-section="demo-sofia"    onclick="document.getElementById('demo-sofia').scrollIntoView({behavior:'smooth'})"    title="Demo Sofia"></div>
   <div class="snav-dot"        data-section="por-que-sofia" onclick="document.getElementById('por-que-sofia').scrollIntoView({behavior:'smooth'})"  title="¿Por qué Sofia?"></div>
   <div class="snav-dot"        data-section="metodologia"   onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})"   title="Diagnóstico"></div>
-  <div class="snav-dot"        data-section="problema"      onclick="document.getElementById('problema').scrollIntoView({behavior:'smooth'})"      title="Fallos"></div>
+  <div class="snav-dot"        data-section="problema"      onclick="document.getElementById('problema').scrollIntoView({behavior:'smooth'})"      title="¿Por qué Sofia?"></div>
   <div class="snav-dot"        data-section="calculadora"   onclick="document.getElementById('calculadora').scrollIntoView({behavior:'smooth'})"   title="Calculadora"></div>
   <div class="snav-dot"        data-section="industrias"    onclick="document.getElementById('industrias').scrollIntoView({behavior:'smooth'})"    title="Industrias"></div>
   <div class="snav-dot"        data-section="como-funciona" onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})" title="Cómo funciona"></div>
@@ -787,9 +795,15 @@
   </select>
 </div>
 
-<!-- TICKER -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker-track" id="tickerTrack"></div>
+<!-- BRAND STRIP: empresa siempre visible + ticker secundario -->
+<div class="brand-strip">
+  <div class="brand-name-row">
+    <img src="ULTIMO_LOGO_SIN_LUZ.png" class="brand-name-logo" alt="AJ Business Advisory"/>
+    <span class="brand-name-text">AJ Business Advisory</span>
+  </div>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -926,8 +940,8 @@
 <!-- ¿POR QUÉ SOFIA? -->
 <section class="section" id="por-que-sofia" style="background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(181,0,94,.06) 0%,transparent 70%)">
   <div class="section-inner">
-    <h2 class="section-title fade-up">Sofia no es un chatbot.<br><span class="grad-text">Es tu equipo de ventas 24/7.</span></h2>
-    <p class="section-sub fade-up">Entrenada en tu negocio. Conectada a todos tus canales. Diseñada para que ningún cliente se pierda — y para que tu marca crezca con cada conversación.</p>
+    <h2 class="section-title fade-up">Sofia impulsa tu marca.<br><span class="grad-text">La IA que trabaja como tú.</span></h2>
+    <p class="section-sub fade-up">Entrenada en tu negocio. Conectada a todos tus canales. Diseñada para que tu marca crezca con cada conversación — sin que pierdas un solo cliente.</p>
 
     <!-- 6 Beneficios -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:52px">
@@ -1064,29 +1078,32 @@
   </div>
 </section>
 
-<!-- PROBLEM SECTION -->
-<section class="section section-dark" id="problema">
+<!-- ¿POR QUÉ SOFIA MARCA LA DIFERENCIA? -->
+<section class="section section-dark" id="problema" style="background:radial-gradient(ellipse 90% 70% at 50% 50%,rgba(181,0,94,.08) 0%,transparent 70%)">
   <div class="section-inner">
-    <h2 class="section-title fade-up" id="prob-title">Los fallos que encontramos en el <span class="grad-text">90% de los negocios</span></h2>
-    <p class="section-sub fade-up" id="prob-sub">Ningún dueño los ve hasta que los medimos. Y cuando los medimos, el número duele.</p>
+    <div style="text-align:center;margin-bottom:16px">
+      <span style="display:inline-block;padding:4px 18px;border-radius:20px;background:rgba(181,0,94,.12);border:1px solid rgba(181,0,94,.3);font-size:10px;font-weight:800;color:var(--pink);letter-spacing:2px;text-transform:uppercase">🇨🇴 PRIMERA EN COLOMBIA</span>
+    </div>
+    <h2 class="section-title fade-up" id="prob-title">¿Por qué Sofia <span class="grad-text">marca la diferencia</span> en tu negocio?</h2>
+    <p class="section-sub fade-up" id="prob-sub">No somos un chatbot más. Somos la primera empresa en Colombia en integrar IA + marca + automatización en un sistema completo — diseñado para impulsar tu negocio.</p>
     <div class="problem-grid">
-      <div class="problem-card fade-up card-shine">
-        <span class="prob-icon">📞</span>
-        <div class="prob-num" id="prob1-num">$500K</div>
-        <h3 id="prob1-h3">Una llamada perdida de un cliente nuevo</h3>
-        <p id="prob1-p">Un cliente nuevo representa entre $80.000 y $500.000 COP en ingresos. Si no contestas, llama a la competencia — y no regresa.</p>
+      <div class="problem-card fade-up card-shine" style="border-color:rgba(181,0,94,.35)">
+        <span class="prob-icon">🏆</span>
+        <div class="prob-num" style="font-size:24px">1eros</div>
+        <h3 id="prob1-h3">Primeros en Colombia</h3>
+        <p id="prob1-p">Somos la primera empresa en Colombia en integrar IA conversacional, automatización de ventas y construcción de marca en un solo sistema. No imitamos — innovamos.</p>
       </div>
-      <div class="problem-card fade-up card-shine">
-        <span class="prob-icon">⏱️</span>
-        <div class="prob-num">80%</div>
-        <h3 id="prob2-h3">Un lead sin respuesta en 5 minutos</h3>
-        <p id="prob2-p">El 80% de los leads sin respuesta en los primeros 5 minutos se van con la competencia. Cada formulario ignorado es dinero evaporado.</p>
+      <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.3)">
+        <span class="prob-icon">🔗</span>
+        <div class="prob-num" style="font-size:24px">Todo</div>
+        <h3 id="prob2-h3">Sistema integrado completo</h3>
+        <p id="prob2-p">WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado en un sistema. Sofia trabaja en todos tus canales mientras tú construyes tu negocio.</p>
       </div>
-      <div class="problem-card fade-up card-shine">
-        <span class="prob-icon">🗓️</span>
-        <div class="prob-num" id="prob3-num">$600K</div>
-        <h3 id="prob3-h3">Una cita sin confirmar = no-show</h3>
-        <p id="prob3-p">Cada cita sin confirmar tiene un 40% de probabilidad de no-show. Eso es entre $150K y $600K COP de ingreso evaporado.</p>
+      <div class="problem-card fade-up card-shine" style="border-color:rgba(37,211,102,.25)">
+        <span class="prob-icon">📈</span>
+        <div class="prob-num" style="font-size:24px">30 días</div>
+        <h3 id="prob3-h3">Resultados en 30 días</h3>
+        <p id="prob3-p">La mayoría de nuestros clientes recupera el costo del sistema en los primeros 30 días. Medimos, reportamos y ajustamos cada mes con Andres, el Fundador.</p>
       </div>
     </div>
   </div>
@@ -1503,14 +1520,14 @@ const T = {
     'met-h2':'Corregimos y automatizamos','met-p2':'Diseñamos el sistema a la medida de tus fallas específicas — no copiamos plantillas. Sofia responde, califica y convierte leads 24/7 mientras tu equipo se enfoca en cerrar negocios.',
     'met-h3':'Fortalecemos tu marca','met-p3':'Cada interacción con Sofia refleja tu marca. Respuestas consistentes, seguimiento profesional y reputación que atrae nuevos clientes — tu marca crece mientras tú duermes.',
     'met-cta':'Quiero mi diagnóstico gratuito →',
-    'prob-title':'Los fallos que encontramos en el 90% de los negocios',
-    'prob-sub':'Ningún dueño los ve hasta que los medimos. Y cuando los medimos, el número duele.',
-    'prob1-h3':'Una llamada perdida de un cliente nuevo',
-    'prob1-p':'Un cliente nuevo representa entre $80.000 y $500.000 COP en ingresos. Si no contestas, llama a la competencia — y no regresa.',
-    'prob2-h3':'Un lead sin respuesta en 5 minutos',
-    'prob2-p':'El 80% de los leads sin respuesta en los primeros 5 minutos se van con la competencia.',
-    'prob3-h3':'Una cita sin confirmar = no-show',
-    'prob3-p':'Cada cita sin confirmar tiene un 40% de probabilidad de no-show. Eso es entre $150K y $600K COP evaporados.',
+    'prob-title':'¿Por qué Sofia marca la diferencia en tu negocio?',
+    'prob-sub':'No somos un chatbot más. Somos la primera empresa en Colombia en integrar IA + marca + automatización en un sistema completo — diseñado para impulsar tu negocio.',
+    'prob1-h3':'Primeros en Colombia',
+    'prob1-p':'Somos la primera empresa en Colombia en integrar IA conversacional, automatización de ventas y construcción de marca en un solo sistema. No imitamos — innovamos.',
+    'prob2-h3':'Sistema integrado completo',
+    'prob2-p':'WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado. Sofia trabaja en todos tus canales mientras tú construyes tu negocio.',
+    'prob3-h3':'Resultados en 30 días',
+    'prob3-p':'La mayoría de nuestros clientes recupera el costo del sistema en los primeros 30 días. Medimos, reportamos y ajustamos cada mes.',
     'roi-title':'Calcula cuánto estás perdiendo al mes',
     'roi-sub':'Pon tus números reales. El resultado te va a sorprender.',
     'roi-lbl1':'1. Tu tipo de negocio','roi-lbl2':'2. Consultas perdidas / semana','roi-lbl3':'3. Valor promedio por cliente',
@@ -1612,14 +1629,14 @@ const T = {
     'met-h2':'We fix and automate','met-p2':'We design the system tailored to your specific failures — no copy-paste templates. Sofia responds, qualifies and converts leads 24/7 while your team focuses on closing deals.',
     'met-h3':'We strengthen your brand','met-p3':'Every interaction with Sofia reflects your brand. Consistent responses, professional follow-up, and a reputation that attracts new clients — your brand grows while you sleep.',
     'met-cta':'I want my free diagnosis →',
-    'prob-title':'The failures we find in 90% of businesses',
-    'prob-sub':'No owner sees them until we measure them. And when we measure them, the number hurts.',
-    'prob1-h3':'A missed call from a new customer',
-    'prob1-p':'A new customer represents $20–$120 USD in revenue. If you don\'t answer, they call your competitor — and they don\'t come back.',
-    'prob2-h3':'A lead with no response in 5 minutes',
-    'prob2-p':'80% of leads that don\'t receive a response in the first 5 minutes go to the competition.',
-    'prob3-h3':'An unconfirmed appointment = no-show',
-    'prob3-p':'Every unconfirmed appointment has a 40% chance of becoming a no-show. That\'s $40–$150 USD in lost revenue.',
+    'prob-title':'Why Sofia makes the difference for your business',
+    'prob-sub':'Not just another chatbot. The first company to integrate AI + brand + automation into one complete system — built to grow your business.',
+    'prob1-h3':'#1 Integrated System',
+    'prob1-p':'AJ Business Advisory is the first company to integrate conversational AI, sales automation, and brand-building into a single, complete system. We don\'t copy — we innovate.',
+    'prob2-h3':'Fully Connected, 24/7',
+    'prob2-p':'WhatsApp, calls, Instagram, bookings, and follow-ups — all in one system. Sofia never loses a lead while you focus on growing.',
+    'prob3-h3':'Results in 30 days',
+    'prob3-p':'Most of our clients recover the system cost within the first 30 days. We measure, report, and optimize every month.',
     'roi-title':'Calculate how much you\'re losing per month',
     'roi-sub':'Put in your real numbers. The result will surprise you.',
     'roi-lbl1':'1. Your business type','roi-lbl2':'2. Missed inquiries / week','roi-lbl3':'3. Average customer value',
@@ -1772,17 +1789,7 @@ function applyPrices(){
     document.getElementById('p5-addon-price').innerHTML = `$${addonMo.toLocaleString(loc)} ${suf}<span style="color:#888;font-size:11px;">/mo</span> + $${addonSet.toLocaleString(loc)} setup`;
     document.getElementById('p5-addon-save').textContent  = `Save $${saveMo.toLocaleString(loc)} ${suf}/mo vs. standalone`;
   }
-  // problem numbers
-  if(c === 'COP'){
-    document.getElementById('prob1-num').textContent = '$500K';
-    document.getElementById('prob3-num').textContent = '$600K';
-  } else if(c === 'USD'){
-    document.getElementById('prob1-num').textContent = '$120';
-    document.getElementById('prob3-num').textContent = '$150';
-  } else {
-    document.getElementById('prob1-num').textContent = '$2.5K';
-    document.getElementById('prob3-num').textContent = '$3K';
-  }
+  // problem numbers removed — section now shows brand differentiators, not prices
   // ROI ticket default
   const ticketDefaults = {COP:200000, USD:80, EUR:75};
   const ticketEl = document.getElementById('roiTicket');
