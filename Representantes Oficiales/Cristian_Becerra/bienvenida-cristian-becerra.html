@@ -662,21 +662,6 @@
     line-height: 1.5;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
-  /* ── DEVTOOLS SHIELD ── */
-  #_shield {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(10,10,10,.97);
-    z-index: 99998;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 10px;
-  }
-  #_shield.show { display: flex; }
-  #_shield p { color: #b5005e; font-size: 16px; font-weight: 700; font-family: monospace; }
-  #_shield small { color: #444; font-size: 12px; font-family: monospace; }
 </style>
 
 <script>
@@ -706,24 +691,6 @@
       if(e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') e.preventDefault();
     });
 
-    /* 4. Detectar DevTools — método console timing (no agresivo por tamaño de ventana) */
-    var _devOpen = false;
-    var _shield = document.getElementById('_shield');
-    function _toggleShield(open){
-      if(!_shield) return;
-      if(open && !_devOpen){ _devOpen = true; _shield.classList.add('show'); }
-      else if(!open && _devOpen){ _devOpen = false; _shield.classList.remove('show'); }
-    }
-    (function _trap(){
-      var _d = /./; var _on = false;
-      _d.toString = function(){ _on = true; return '●'; };
-      setInterval(function(){
-        _on = false;
-        console.log('%c ', _d);
-        if(console.clear) console.clear();
-        _toggleShield(_on);
-      }, 1800);
-    })();
   }
 
   /* ── Mostrar gate o iniciar directo ── */
@@ -762,11 +729,6 @@
   </div>
 </div>
 
-<!-- DEVTOOLS SHIELD -->
-<div id="_shield">
-  <p>⚠ Inspector deshabilitado</p>
-  <small>Documento confidencial · AJ Business Advisory LLC</small>
-</div>
 
 <!-- TOP BAR -->
 <div class="topbar">
