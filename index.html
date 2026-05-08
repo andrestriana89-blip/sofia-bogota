@@ -22,6 +22,47 @@
       --pink:#c9006c;--yellow:#ffd400;--text:#f0ecff;--muted:#a090c0;
       --radius:14px;
     }
+    /* ══════ MODO DÍA ══════ */
+    html.light-mode{
+      --bg:#f4f1fb;--bg2:rgba(255,255,255,0.55);--bg3:#ebe5f7;
+      --card:rgba(255,255,255,0.80);--border:rgba(181,0,94,0.18);
+      --text:#0d0820;--muted:#5e4d80;
+    }
+    html.light-mode body{
+      background-color:#f4f1fb;
+      background-image:
+        radial-gradient(ellipse 110% 85% at -8% -8%, rgba(210,0,110,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 95% 75% at 108% 112%, rgba(255,195,0,0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 65% 45% at 50% 50%, rgba(160,0,180,0.03) 0%, transparent 65%);
+    }
+    html.light-mode nav{background:rgba(244,241,251,.93);border-bottom-color:rgba(181,0,94,.14)}
+    html.light-mode .ticker{background:rgba(181,0,94,.04);border-color:rgba(181,0,94,.08)}
+    html.light-mode .ticker-item{color:#7a6a99}
+    html.light-mode .trust-bar{background:rgba(181,0,94,.03);border-color:rgba(181,0,94,.08)}
+    html.light-mode .trust-item{color:#5e4d80}
+    html.light-mode .section-dark{background:rgba(181,0,94,.04)}
+    html.light-mode .problem-card,
+    html.light-mode .step-card,
+    html.light-mode .pricing-card{background:rgba(255,255,255,.82);box-shadow:0 4px 24px rgba(181,0,94,.07),inset 0 1px 0 rgba(255,255,255,.9)}
+    html.light-mode .roi-wrap,
+    html.light-mode .audit-wrap{background:rgba(255,255,255,.85);box-shadow:0 8px 40px rgba(181,0,94,.08)}
+    html.light-mode .wa-mock{box-shadow:0 4px 20px rgba(0,0,0,.08)}
+    html.light-mode .faq-item{background:rgba(255,255,255,.7)}
+    html.light-mode .nav-link{color:#5e4d80}
+    html.light-mode .nav-link:hover{color:#0d0820}
+    html.light-mode .nav-select{background:rgba(181,0,94,.04);color:#5e4d80}
+    html.light-mode .lang-btn{background:rgba(181,0,94,.04);color:#5e4d80}
+    html.light-mode .logo-sub{color:#7a6a99}
+    html.light-mode .snav-dot{background:rgba(0,0,0,.12);border-color:rgba(0,0,0,.08)}
+    html.light-mode .hero-badge{background:rgba(181,0,94,.08)}
+    html.light-mode h1,html.light-mode h2,html.light-mode h3{color:#0d0820}
+    html.light-mode ::-webkit-scrollbar-track{background:rgba(0,0,0,.05)}
+    html.light-mode #scrollProgress{box-shadow:0 0 8px rgba(255,212,0,.4),0 0 3px rgba(210,0,110,.4)}
+    /* Botón tema */
+    .theme-btn{padding:5px 10px;border-radius:20px;border:1px solid rgba(181,0,94,.3);background:rgba(181,0,94,.05);
+      color:#bbb;font-size:14px;cursor:pointer;font-family:inherit;transition:all .2s;line-height:1}
+    .theme-btn:hover{border-color:var(--pink);color:var(--pink)}
+    html.light-mode .theme-btn{color:#5e4d80}
     html{scroll-behavior:smooth}
     body{
       font-family:'Inter',-apple-system,sans-serif;
@@ -619,6 +660,7 @@
     /* COUNTER */
     @keyframes countPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
     .pulsing{animation:countPulse .8s ease}
+    @keyframes bounceRight{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
 
     @media(max-width:640px){
       .hero{padding:56px 16px 44px}
@@ -681,6 +723,8 @@
       <option value="USD">🇺🇸 USD</option>
       <option value="MXN">🇲🇽 MXN</option>
     </select>
+    <!-- Theme toggle -->
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Modo día / noche">🌙</button>
     <!-- Language toggle -->
     <button class="lang-btn" id="langBtn" onclick="toggleLang()">🇺🇸 EN</button>
     <a class="nav-pill" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="nav-cta">Auditoría Gratuita →</a>
@@ -730,42 +774,59 @@
       <span style="display:inline-block;padding:4px 16px;border-radius:20px;background:rgba(181,0,94,.12);border:1px solid rgba(181,0,94,.3);font-size:10px;font-weight:800;color:var(--pink);letter-spacing:2px;text-transform:uppercase">● EN VIVO AHORA</span>
     </div>
     <h2 class="section-title fade-up" style="font-size:clamp(26px,4vw,44px);margin-bottom:14px">Escucha a Sofia.<br><span class="grad-text">Ahora. Sin registro.</span></h2>
-    <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto">Llámala, escríbele por WhatsApp o agenda una sesión con Andres, nuestro fundador. En menos de 30 segundos vas a entender por qué ningún negocio debería estar sin ella.</p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px">
-
-      <!-- Demo llamada Colombia -->
-      <a href="tel:+16693105168" style="text-decoration:none">
-        <div class="step-card card-shine fade-up" style="border-color:rgba(181,0,94,.4);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(181,0,94,.06)">
-          <div style="font-size:36px;margin-bottom:12px">📞</div>
-          <div style="font-size:11px;font-weight:700;color:var(--pink);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Llamar a Sofia</div>
-          <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">+1 (669) 310-5168</div>
-          <div style="font-size:11px;color:#666">Demo Colombia · Gratis</div>
-        </div>
-      </a>
-
-      <!-- Demo WhatsApp -->
-      <a href="https://wa.me/16696662773?text=Hola%2C%20quiero%20conocer%20a%20Sofia%20y%20saber%20c%C3%B3mo%20puede%20ayudar%20a%20mi%20negocio." target="_blank" rel="noopener" style="text-decoration:none">
-        <div class="step-card card-shine fade-up" style="border-color:rgba(37,211,102,.35);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(37,211,102,.04)">
-          <div style="font-size:36px;margin-bottom:12px">💬</div>
-          <div style="font-size:11px;font-weight:700;color:#25d366;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">WhatsApp con Sofia</div>
-          <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">Escríbele ahora</div>
-          <div style="font-size:11px;color:#666">Responde en segundos</div>
-        </div>
-      </a>
-
-      <!-- Auditoría Andres -->
-      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none">
-        <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04)">
-          <div style="font-size:36px;margin-bottom:12px">📅</div>
-          <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Auditoría con Andres · Fundador</div>
-          <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">30 min · Gratuito</div>
-          <div style="font-size:11px;color:#666">Te mostramos cuánto recuperas</div>
-        </div>
-      </a>
-
+    <!-- ══ VARIANTE INTERNACIONAL (no-US) ══ -->
+    <div id="demo-intl">
+      <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto">Llámala, escríbele por WhatsApp o agenda una sesión con Andres, nuestro fundador. En menos de 30 segundos vas a entender por qué ningún negocio debería estar sin ella.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px">
+        <!-- Demo llamada Colombia -->
+        <a href="tel:+16693105168" style="text-decoration:none">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(181,0,94,.4);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(181,0,94,.06)">
+            <div style="font-size:36px;margin-bottom:12px">📞</div>
+            <div style="font-size:11px;font-weight:700;color:var(--pink);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Llamar a Sofia</div>
+            <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">+1 (669) 310-5168</div>
+            <div style="font-size:11px;color:#666">Demo · Gratis</div>
+          </div>
+        </a>
+        <!-- Demo WhatsApp -->
+        <a href="https://wa.me/16696662773?text=Hola%2C%20quiero%20conocer%20a%20Sofia%20y%20saber%20c%C3%B3mo%20puede%20ayudar%20a%20mi%20negocio." target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(37,211,102,.35);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(37,211,102,.04)">
+            <div style="font-size:36px;margin-bottom:12px">💬</div>
+            <div style="font-size:11px;font-weight:700;color:#25d366;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">WhatsApp con Sofia</div>
+            <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">Escríbele ahora</div>
+            <div style="font-size:11px;color:#666">Responde en segundos</div>
+          </div>
+        </a>
+        <!-- Auditoría Andres -->
+        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04)">
+            <div style="font-size:36px;margin-bottom:12px">📅</div>
+            <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Auditoría con Andres · Fundador</div>
+            <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">30 min · Gratuito</div>
+            <div style="font-size:11px;color:#666">Te mostramos cuánto recuperas</div>
+          </div>
+        </a>
+      </div>
+      <p style="text-align:center;font-size:11px;color:#555">Sin compromiso · Sin tarjeta · Solo escucha lo que Sofia puede hacer por tu negocio</p>
     </div>
-    <p style="text-align:center;font-size:11px;color:#555">Sin compromiso · Sin tarjeta · Solo escucha lo que Sofia puede hacer por tu negocio</p>
+
+    <!-- ══ VARIANTE USA ══ -->
+    <div id="demo-us" style="display:none">
+      <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto">You're in the United States. To speak with Sofia right now, click the <strong style="color:#25d366">green button</strong> in the corner of this page — register your info and Sofia will take your call instantly.</p>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:20px">
+        <!-- Arrow pointing to widget -->
+        <div style="background:rgba(37,211,102,.06);border:1.5px solid rgba(37,211,102,.3);border-radius:18px;padding:28px 36px;text-align:center;max-width:480px;width:100%">
+          <div style="font-size:40px;margin-bottom:12px">💬</div>
+          <div style="font-size:15px;font-weight:800;color:#f0ecff;margin-bottom:8px">Talk to Sofia — right now</div>
+          <div style="font-size:13px;color:#aaa;line-height:1.7;margin-bottom:20px">Click the <span style="display:inline-block;background:#25d366;color:#fff;font-weight:700;padding:2px 10px;border-radius:20px;font-size:12px">● green button</span> at the bottom-right corner of this page, leave your info, and Sofia will connect with you immediately.</div>
+          <div style="font-size:22px;animation:bounceRight 1.2s ease-in-out infinite">👇</div>
+        </div>
+        <!-- Or schedule -->
+        <p style="font-size:12px;color:#666">Or prefer a scheduled call?</p>
+        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" class="btn-outline" style="font-size:13px;padding:11px 28px">Schedule with Andres, Founder →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1677,11 +1738,6 @@ function applyLang(lang){
     if(sl) sl.textContent = d['setup-lbl'] || (lang==='es'?'Setup único':'One-time setup');
     if(ml) ml.textContent = d['mo-lbl']    || (lang==='es'?'Mensual':'Monthly');
   });
-  // Sección demo solo visible en español
-  const demoSection = document.getElementById('demo-sofia');
-  const demoNav = document.querySelector('[data-section="demo-sofia"]');
-  if(demoSection) demoSection.style.display = lang === 'es' ? '' : 'none';
-  if(demoNav)     demoNav.style.display     = lang === 'es' ? '' : 'none';
   try{ localStorage.setItem('aj_lang',lang); }catch(e){}
 }
 
@@ -1934,9 +1990,42 @@ function hideCookie(){
 try{if(localStorage.getItem('cookie_consent')) document.getElementById('cookieBanner').style.display='none';}catch(e){}
 
 /* ═══════════════════════════════════════════════════
+   THEME (Day / Night)
+═══════════════════════════════════════════════════ */
+function toggleTheme(){
+  const html = document.getElementById('htmlRoot');
+  const isLight = html.classList.toggle('light-mode');
+  document.getElementById('themeBtn').textContent = isLight ? '☀️' : '🌙';
+  try{ localStorage.setItem('aj_theme', isLight ? 'light' : 'dark'); }catch(e){}
+}
+
+/* ═══════════════════════════════════════════════════
+   GEO DEMO SWITCH
+═══════════════════════════════════════════════════ */
+function applyGeoDemo(country){
+  const isUS = country === 'US';
+  const demoSection = document.getElementById('demo-sofia');
+  const demoNav = document.querySelector('[data-section="demo-sofia"]');
+  const intlDiv  = document.getElementById('demo-intl');
+  const usDiv    = document.getElementById('demo-us');
+  // Always show the demo section (visibility controlled by geo, not lang)
+  if(demoSection) demoSection.style.display = '';
+  if(demoNav)     demoNav.style.display     = '';
+  // Switch internal variant
+  if(intlDiv) intlDiv.style.display = isUS ? 'none' : '';
+  if(usDiv)   usDiv.style.display   = isUS ? ''     : 'none';
+}
+
+/* ═══════════════════════════════════════════════════
    INIT
 ═══════════════════════════════════════════════════ */
 (async()=>{
+  // Restore saved theme
+  const savedTheme = localStorage.getItem('aj_theme');
+  if(savedTheme === 'light'){
+    document.getElementById('htmlRoot').classList.add('light-mode');
+    document.getElementById('themeBtn').textContent = '☀️';
+  }
   // Restore saved currency
   const savedCur = localStorage.getItem('aj_currency');
   if(savedCur){
@@ -1946,6 +2035,8 @@ try{if(localStorage.getItem('cookie_consent')) document.getElementById('cookieBa
   // Detect + apply language (geo-aware)
   const lang = await detectLang();
   applyLang(lang);
+  // Apply geo-based demo section variant
+  applyGeoDemo(window._userCountry || '');
   applyPrices();
   roiCalc();
 })();
