@@ -67,6 +67,11 @@
       color:#bbb;font-size:14px;cursor:pointer;font-family:inherit;transition:all .2s;line-height:1}
     .theme-btn:hover{border-color:var(--pink);color:var(--pink)}
     html.light-mode .theme-btn{color:#5e4d80}
+    /* Labels moneda/idioma */
+    .nav-label{font-size:8px;font-weight:700;letter-spacing:.8px;color:#666;text-transform:uppercase;line-height:1;white-space:nowrap;text-align:center}
+    .nav-ctrl{display:flex;flex-direction:column;align-items:center;gap:3px}
+    html.light-mode .nav-label{color:#9080b0}
+    @media(max-width:760px){.nav-label{display:none}}
     html{scroll-behavior:smooth}
     body{
       font-family:'Inter',-apple-system,sans-serif;
@@ -722,15 +727,21 @@
   </div>
   <div class="nav-right">
     <!-- Currency selector -->
-    <select class="nav-select" id="currencySelect" onchange="setCurrency(this.value)" title="Currency">
-      <option value="COP">🇨🇴 COP</option>
-      <option value="USD">🇺🇸 USD</option>
-      <option value="MXN">🇲🇽 MXN</option>
-    </select>
+    <div class="nav-ctrl">
+      <span class="nav-label">Tu moneda</span>
+      <select class="nav-select" id="currencySelect" onchange="setCurrency(this.value)" title="Selecciona tu moneda / Select your currency">
+        <option value="COP">🇨🇴 COP</option>
+        <option value="USD">🇺🇸 USD</option>
+        <option value="MXN">🇲🇽 MXN</option>
+      </select>
+    </div>
     <!-- Theme toggle -->
     <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Modo día / noche">🌙</button>
     <!-- Language toggle -->
-    <button class="lang-btn" id="langBtn" onclick="toggleLang()">🇺🇸 EN</button>
+    <div class="nav-ctrl">
+      <span class="nav-label">Idioma</span>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">🇺🇸 EN</button>
+    </div>
     <a class="nav-pill" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="nav-cta">Auditoría Gratuita →</a>
   </div>
 </nav>
@@ -816,19 +827,56 @@
 
     <!-- ══ VARIANTE USA ══ -->
     <div id="demo-us" style="display:none">
-      <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto">You're in the United States. To speak with Sofia right now, click the <strong style="color:#25d366">green button</strong> in the corner of this page — register your info and Sofia will take your call instantly.</p>
-      <div style="display:flex;flex-direction:column;align-items:center;gap:20px">
-        <!-- Arrow pointing to widget -->
-        <div style="background:rgba(37,211,102,.06);border:1.5px solid rgba(37,211,102,.3);border-radius:18px;padding:28px 36px;text-align:center;max-width:480px;width:100%">
-          <div style="font-size:40px;margin-bottom:12px">💬</div>
-          <div style="font-size:15px;font-weight:800;color:#f0ecff;margin-bottom:8px">Talk to Sofia — right now</div>
-          <div style="font-size:13px;color:#aaa;line-height:1.7;margin-bottom:20px">Click the <span style="display:inline-block;background:#25d366;color:#fff;font-weight:700;padding:2px 10px;border-radius:20px;font-size:12px">● green button</span> at the bottom-right corner of this page, leave your info, and Sofia will connect with you immediately.</div>
-          <div style="font-size:22px;animation:bounceRight 1.2s ease-in-out infinite">👇</div>
+      <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:36px;max-width:560px;margin-left:auto;margin-right:auto">You're in the United States. Start with the fastest path — then choose how you'd like to connect with Sofia.</p>
+
+      <!-- STEP 1: Widget instruction -->
+      <div style="display:flex;flex-direction:column;align-items:center;margin-bottom:16px">
+        <div style="background:rgba(37,211,102,.07);border:1.5px solid rgba(37,211,102,.35);border-radius:18px;padding:28px 32px;text-align:center;max-width:500px;width:100%">
+          <div style="font-size:11px;font-weight:800;color:#25d366;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px">⚡ FASTEST ROUTE</div>
+          <div style="font-size:15px;font-weight:800;color:var(--text);margin-bottom:10px">Click the green button below</div>
+          <div style="font-size:13px;color:#aaa;line-height:1.7;margin-bottom:18px">You'll see a <span style="display:inline-block;background:#25d366;color:#fff;font-weight:700;padding:2px 10px;border-radius:20px;font-size:11px">● green chat button</span> at the bottom-right of this page. Click it, leave your info, and Sofia connects with you instantly — no waiting.</div>
+          <div style="font-size:24px;animation:bounceRight 1.2s ease-in-out infinite">👇</div>
         </div>
-        <!-- Or schedule -->
-        <p style="font-size:12px;color:#666">Or prefer a scheduled call?</p>
-        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" class="btn-outline" style="font-size:13px;padding:11px 28px">Schedule with Andres, Founder →</a>
       </div>
+
+      <!-- Divider -->
+      <div style="display:flex;align-items:center;gap:16px;max-width:500px;margin:32px auto">
+        <div style="flex:1;height:1px;background:rgba(255,255,255,.08)"></div>
+        <span style="font-size:11px;color:#555;white-space:nowrap">or reach Sofia directly</span>
+        <div style="flex:1;height:1px;background:rgba(255,255,255,.08)"></div>
+      </div>
+
+      <!-- STEP 2: Sofia contact options -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px">
+        <!-- Call Sofia -->
+        <a href="tel:+16693105168" style="text-decoration:none">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(181,0,94,.4);text-align:center;padding:24px 16px;cursor:pointer;background:rgba(181,0,94,.06)">
+            <div style="font-size:32px;margin-bottom:10px">📞</div>
+            <div style="font-size:10px;font-weight:700;color:var(--pink);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Call Sofia</div>
+            <div style="font-size:17px;font-weight:900;color:var(--text);margin-bottom:4px">+1 (669) 310-5168</div>
+            <div style="font-size:11px;color:#666">Live demo · Free</div>
+          </div>
+        </a>
+        <!-- WhatsApp Sofia -->
+        <a href="https://wa.me/16696662773?text=Hi%2C%20I%20want%20to%20meet%20Sofia%20and%20see%20how%20she%20can%20help%20my%20business." target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(37,211,102,.35);text-align:center;padding:24px 16px;cursor:pointer;background:rgba(37,211,102,.04)">
+            <div style="font-size:32px;margin-bottom:10px">💬</div>
+            <div style="font-size:10px;font-weight:700;color:#25d366;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">WhatsApp Sofia</div>
+            <div style="font-size:17px;font-weight:900;color:var(--text);margin-bottom:4px">Message her now</div>
+            <div style="font-size:11px;color:#666">Replies in seconds</div>
+          </div>
+        </a>
+        <!-- Schedule with Andres -->
+        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:24px 16px;cursor:pointer;background:rgba(255,212,0,.04)">
+            <div style="font-size:32px;margin-bottom:10px">📅</div>
+            <div style="font-size:10px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Andres · Founder</div>
+            <div style="font-size:17px;font-weight:900;color:var(--text);margin-bottom:4px">30 min · Free</div>
+            <div style="font-size:11px;color:#666">See how much you recover</div>
+          </div>
+        </a>
+      </div>
+      <p style="text-align:center;font-size:11px;color:#555">No commitment · No credit card · Just hear what Sofia can do for your business</p>
     </div>
 
   </div>
