@@ -17,8 +17,8 @@
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#08080f;--bg2:rgba(255,255,255,0.025);--bg3:#0d0d18;
-      --card:rgba(255,255,255,0.042);--border:rgba(255,255,255,0.09);
+      --bg:#210012;--bg2:rgba(255,255,255,0.030);--bg3:#18000d;
+      --card:rgba(255,255,255,0.058);--border:rgba(255,255,255,0.10);
       --pink:#d6006e;--yellow:#f5c400;--text:#eeebff;--muted:#8070b0;
       --radius:14px;
     }
@@ -35,6 +35,12 @@
         radial-gradient(ellipse 60% 45% at 105% 105%, rgba(200,0,90,0.04) 0%, transparent 55%);
     }
     html.light-mode nav{background:rgba(244,241,251,.93);border-bottom-color:rgba(181,0,94,.14)}
+    /* En modo claro los botones principales vuelven al rosado */
+    html.light-mode .btn-primary{background:var(--pink)!important;color:#fff!important;box-shadow:0 0 18px rgba(181,0,94,.25),0 4px 18px rgba(0,0,0,.15)!important}
+    html.light-mode .btn-primary:hover{background:#d4006f!important;box-shadow:0 0 32px rgba(181,0,94,.45),0 4px 20px rgba(0,0,0,.18)!important}
+    html.light-mode .nav-pill{background:var(--pink)!important;color:#fff!important}
+    html.light-mode .featured .pc-cta{background:var(--pink)!important;color:#fff!important;border-color:var(--pink)!important}
+    html.light-mode .featured .pc-cta:hover{background:#cc006b!important}
     html.light-mode .ticker{background:transparent}
     html.light-mode .ticker-item{color:#9080b0}
     html.light-mode .trust-bar{background:rgba(181,0,94,.03);border-color:rgba(181,0,94,.08)}
@@ -61,6 +67,52 @@
     html.light-mode h1,html.light-mode h2,html.light-mode h3{color:#0d0820}
     html.light-mode ::-webkit-scrollbar-track{background:rgba(0,0,0,.05)}
     html.light-mode #scrollProgress{box-shadow:0 0 8px rgba(255,212,0,.4),0 0 3px rgba(210,0,110,.4)}
+
+    /* ═══ MODO DÍA — correcciones extensas de contraste ═══ */
+    /* Textos de sección */
+    html.light-mode .section-title{color:#0d0820!important;text-shadow:none}
+    html.light-mode .section-sub{color:#3d2e5c!important}
+    /* Cards de pasos y problema */
+    html.light-mode .step-card h3,html.light-mode .problem-card h3{color:#0d0820!important}
+    html.light-mode .step-card p,html.light-mode .problem-card p{color:#3d2e5c!important}
+    html.light-mode .step-num{color:var(--pink)!important}
+    html.light-mode .step-icon{color:#1a0d35}
+    html.light-mode .tab-stat{color:#5e4080!important}
+    html.light-mode .tab-content h3{color:#0d0820!important}
+    html.light-mode .tab-content p{color:#3d2e5c!important}
+    /* Tabla comparativa */
+    html.light-mode .vs-col-generic .vs-row{color:#5a4070!important}
+    html.light-mode .vs-col-sofia .vs-row{color:#0d0820!important}
+    html.light-mode .vs-col-generic .vs-col-hdr-name{color:#7060a0!important}
+    html.light-mode #vs-cta-sub{color:#4a3468!important}
+    /* Comparativo: borde y bg */
+    html.light-mode .vs-wrap{border-color:rgba(181,0,94,0.25);box-shadow:0 4px 20px rgba(181,0,94,0.08)}
+    html.light-mode .vs-col-generic{background:rgba(0,0,0,0.03);border-right-color:rgba(181,0,94,0.15)}
+    html.light-mode .vs-col-sofia{background:rgba(181,0,94,0.05)}
+    /* ROI calculadora */
+    html.light-mode .roi-result-label,html.light-mode .roi-result-sub{color:#4a3468!important}
+    html.light-mode .roi-result-amount{color:var(--pink)!important}
+    html.light-mode .roi-step-label{color:#7060a0!important}
+    /* Precios */
+    html.light-mode .price-desc{color:#3d2e5c!important}
+    html.light-mode .price-feature{color:#4a3468!important}
+    html.light-mode .price-total-label{color:#7060a0!important}
+    html.light-mode .price-amount{color:#0d0820!important}
+    /* FAQ */
+    html.light-mode .faq-q{color:#0d0820!important}
+    html.light-mode .faq-body{color:#3d2e5c!important}
+    /* Hero sub y badge de sección */
+    html.light-mode #hero-sub{color:#3d2e5c!important}
+    html.light-mode .prob-num{color:var(--pink)!important}
+    html.light-mode .prob-badge{color:var(--pink)!important}
+    /* Testimonios / metodología */
+    html.light-mode .met-card p,html.light-mode [id$="-p"]{color:#3d2e5c}
+    /* Mocks (wa/cal/notif) permanecen con su propio fondo intencional */
+    /* Trust bar ítems ya manejados con .trust-item */
+    /* Tooltip nav dots */
+    html.light-mode .snav-dot::after{background:rgba(240,235,255,.97);color:#0d0820}
+    /* Loc-bar hint */
+    html.light-mode #loc-hint{color:var(--pink)}
     /* Botón tema */
     .theme-btn{padding:5px 10px;border-radius:20px;border:1px solid rgba(181,0,94,.3);background:rgba(181,0,94,.05);
       color:#bbb;font-size:14px;cursor:pointer;font-family:inherit;transition:all .2s;line-height:1}
@@ -75,12 +127,14 @@
     body{
       font-family:'Inter',-apple-system,sans-serif;
       color:var(--text);overflow-x:hidden;min-height:100vh;
-      background-color:#08080f;
+      background-color:#210012;
       background-image:
-        /* Indigo glow — top-center, muy suave */
-        radial-gradient(ellipse 75% 55% at 50% -5%, rgba(80,50,200,0.11) 0%, transparent 60%),
-        /* Pink hint — bottom-right, casi imperceptible */
-        radial-gradient(ellipse 55% 40% at 105% 105%, rgba(200,0,90,0.07) 0%, transparent 55%);
+        /* Indigo-violet — top-center, más visible sobre el morado */
+        radial-gradient(ellipse 80% 60% at 50% -5%, rgba(100,60,220,0.18) 0%, transparent 62%),
+        /* Pink — bottom-right */
+        radial-gradient(ellipse 55% 40% at 108% 105%, rgba(200,0,90,0.11) 0%, transparent 55%),
+        /* Violet accent — left-center */
+        radial-gradient(ellipse 40% 35% at -5% 60%, rgba(80,40,180,0.10) 0%, transparent 60%);
       background-attachment: fixed;
     }
 
@@ -109,6 +163,31 @@
     ::-webkit-scrollbar-track{background:rgba(255,255,255,.03)}
     ::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--pink),var(--yellow));border-radius:3px}
 
+    /* ══ MOBILE GLOBAL ══ */
+    html,body{max-width:100%;overflow-x:hidden}
+    @media(max-width:640px){
+      /* Prevent any element from blowing the viewport */
+      .section-inner,.hero-inner,.roi-wrap,.audit-wrap,.vs-wrap{max-width:100%!important;box-sizing:border-box}
+      /* Ticker stays contained */
+      .ticker{overflow:hidden;width:100%}
+      /* Brand strip logo row */
+      .brand-name-row{flex-wrap:wrap;gap:8px;padding:8px 14px}
+      /* Problem grid stacks nicely */
+      .problem-grid{grid-template-columns:1fr 1fr}
+      /* ROI steps single col already */
+      /* CTA demo cards: single column on mobile */
+      #demo-intl>div[style*="grid"]{grid-template-columns:1fr!important}
+      /* Fade-up more dramatic on mobile */
+      .fade-up{transform:translateY(28px) scale(0.97);filter:blur(2px)}
+      /* Section padding tighter */
+      .section{padding:52px 18px}
+      /* Section title slightly smaller */
+      .section-title{font-size:clamp(20px,6vw,30px)!important;line-height:1.2}
+    }
+    /* Pricing carousel hint dots */
+    .pricing-scroll-hint{display:none;text-align:center;font-size:11px;color:var(--muted);margin-top:4px;margin-bottom:10px;letter-spacing:.5px}
+    @media(max-width:900px){.pricing-scroll-hint{display:block}}
+
     /* COOKIE */
     #cookieBanner{position:fixed;bottom:0;left:0;right:0;z-index:998;background:rgba(17,17,17,.97);border-top:1px solid rgba(181,0,94,.25);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:12px;color:#aaa;line-height:1.6}
     #cookieBanner a{color:var(--pink);text-decoration:none}
@@ -116,8 +195,20 @@
     .ck-accept{background:var(--pink);color:#fff}
     .ck-decline{background:rgba(255,255,255,.08);color:#aaa}
 
+    /* SITE HEADER — fixed, siempre visible, fondo transparente con blur */
+    #site-header{
+      position:fixed;top:0;left:0;right:0;
+      z-index:200;
+      background:rgba(21,0,13,.72);
+      backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+      border-bottom:1px solid rgba(181,0,94,.15);
+    }
+    /* Compensa el espacio del header fijo para que el contenido no quede debajo */
+    body{padding-top:var(--header-h,155px)}
+    html.light-mode #site-header{background:rgba(244,241,251,.82)}
+
     /* NAV */
-    nav{position:sticky;top:3px;z-index:200;background:rgba(14,10,31,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(210,0,110,.2);padding:0 28px;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    nav{position:relative;z-index:1;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;border-bottom:1px solid rgba(210,0,110,.12);padding:0 28px;min-height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px}
     .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
     .logo-img{height:42px;width:auto;object-fit:contain;filter:brightness(1.05);transition:opacity .2s}
     .logo:hover .logo-img{opacity:.85}
@@ -132,33 +223,52 @@
     .nav-select:hover{border-color:var(--pink);color:var(--pink)}
     .lang-btn{padding:5px 12px;border-radius:20px;border:1px solid rgba(181,0,94,.3);background:rgba(181,0,94,.05);color:#bbb;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
     .lang-btn:hover{border-color:var(--pink);color:var(--pink)}
-    .nav-pill{padding:7px 18px;border-radius:20px;background:var(--pink);color:#fff;font-size:12px;font-weight:700;text-decoration:none;transition:all .2s;white-space:nowrap}
+    .nav-pill{padding:7px 18px;border-radius:20px;background:var(--yellow);color:#1a1a1a;font-size:12px;font-weight:700;text-decoration:none;transition:all .2s;white-space:nowrap}
     .nav-pill:hover{filter:brightness(1.1)}
     /* Academia pill */
     .nav-academia{background:linear-gradient(135deg,rgba(90,50,220,0.18),rgba(200,0,90,0.12));border:1px solid rgba(140,80,255,0.30);color:#c4a8ff}
     .nav-academia:hover{background:linear-gradient(135deg,rgba(90,50,220,0.32),rgba(200,0,90,0.20));border-color:rgba(160,100,255,.6);color:#fff}
+    /* Moneda + Idioma agrupados */
+    .nav-loc-group{display:flex;align-items:center;gap:0;background:rgba(181,0,94,0.05);border:1px solid rgba(181,0,94,0.28);border-radius:20px;padding:0 2px;transition:border-color .2s}
+    .nav-loc-group:hover{border-color:rgba(181,0,94,0.55)}
+    .nav-loc-sep{color:rgba(181,0,94,0.35);font-size:12px;padding:0 1px;user-select:none;line-height:1}
+    .nav-loc-group .nav-select{background:transparent!important;border:none!important;padding:4px 8px;color:#bbb}
+    .nav-loc-group .lang-btn{background:transparent!important;border:none!important;padding:4px 8px}
+    html.light-mode .nav-loc-group{background:rgba(181,0,94,0.04);border-color:rgba(181,0,94,0.20)}
+    html.light-mode .nav-loc-group .nav-select{color:#5e4d80}
+    @media(max-width:760px){.nav-loc-sep{display:none}.nav-loc-group{border:none;background:transparent;gap:2px}}
     html.light-mode .nav-academia{background:rgba(90,50,220,.07);border-color:rgba(90,50,220,.25);color:#6040c0}
     html.light-mode .nav-academia:hover{background:rgba(90,50,220,.15);color:#3020a0}
-    @media(max-width:640px){nav{padding:0 14px}.nav-links{display:none}}
+    @media(max-width:640px){
+      nav{padding:0 12px;gap:6px}
+      .nav-links{display:none}
+      .nav-academia{display:none}
+      .nav-right{gap:5px;flex-shrink:0}
+      #nav-cta{font-size:10px;padding:6px 10px;letter-spacing:0;white-space:nowrap}
+      .logo-sub{display:none}
+      .logo-img{height:28px}
+    }
 
-    /* STICKY MINI-BAR (appears after hero) */
-    #stickyBar{position:fixed;top:58px;left:0;right:0;z-index:190;background:rgba(181,0,94,.92);backdrop-filter:blur(10px);padding:8px 24px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:12px;color:#fff;transform:translateY(-100%);transition:transform .35s ease;pointer-events:none}
-    #stickyBar.show{transform:translateY(0);pointer-events:all}
-    #stickyBar a{color:#fff;font-weight:700;padding:4px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.4);text-decoration:none;transition:background .2s}
-    #stickyBar a:hover{background:rgba(255,255,255,.15)}
+    /* STICKY MINI-BAR — desactivado */
+    #stickyBar{display:none!important}
 
-    /* BRAND STRIP */
-    .brand-strip{background:rgba(181,0,94,.04);border-bottom:1px solid rgba(181,0,94,.10)}
-    .brand-name-row{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 28px 6px;border-bottom:1px solid rgba(181,0,94,.06)}
+    /* BRAND STRIP — dentro del site-header fijo */
+    .brand-strip{
+      position:relative;z-index:1;
+      background:transparent;
+      border-bottom:none;
+    }
+    html.light-mode .brand-strip{background:transparent!important}
+    .brand-name-row{display:flex;align-items:center;justify-content:center;gap:10px;padding:8px 28px 6px;border-bottom:1px solid rgba(181,0,94,.08)}
     .brand-name-logo{height:26px;width:auto;filter:brightness(1.08);opacity:.92;object-fit:contain}
     .brand-name-text{font-size:11px;font-weight:800;color:var(--text);letter-spacing:1.8px;text-transform:uppercase}
-    html.light-mode .brand-strip{background:rgba(181,0,94,.03);border-bottom-color:rgba(181,0,94,.08)}
+    html.light-mode .brand-strip{background:transparent;border-bottom-color:rgba(181,0,94,.08)}
     html.light-mode .brand-name-row{border-bottom-color:rgba(181,0,94,.05)}
     html.light-mode .brand-name-logo{filter:invert(1) brightness(0.12) saturate(0)}
     /* TICKER — now lives inside brand-strip */
-    .ticker{overflow:hidden;padding:7px 0}
+    .ticker{overflow:hidden;padding:7px 0;background:transparent}
     .ticker-track{display:flex;animation:ticker 38s linear infinite;width:max-content}
-    .ticker-item{font-size:11px;color:#777;padding:0 28px;border-right:1px solid rgba(181,0,94,.10);white-space:nowrap}
+    .ticker-item{font-size:11px;color:rgba(238,235,255,.28);padding:0 28px;border-right:1px solid rgba(181,0,94,.10);white-space:nowrap}
     @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
     /* HERO */
@@ -173,13 +283,12 @@
 
     /* ══ LOCALIZATION BAR ══ */
     #loc-bar{
-      background:rgba(14,10,31,0.62);
-      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-      border-bottom:1px solid rgba(181,0,94,0.12);
+      background:transparent;
+      border-bottom:1px solid rgba(181,0,94,0.10);
       padding:9px 28px;
       display:flex;align-items:center;justify-content:center;
       gap:12px;flex-wrap:wrap;
-      position:sticky;top:61px;z-index:198;
+      position:relative;z-index:1;
     }
     html.light-mode #loc-bar{
       background:rgba(244,241,251,0.78);
@@ -197,20 +306,54 @@
       transition:border-color .2s,color .2s;
     }
     .loc-select:hover,.loc-select:focus{border-color:var(--pink);color:var(--text)}
+    .loc-select.has-value{color:var(--text);border-color:rgba(181,0,94,0.55);background:rgba(181,0,94,0.13);font-weight:700}
     html.light-mode .loc-select{color:#5e4d80;background:rgba(181,0,94,0.05)}
+    html.light-mode .loc-select.has-value{color:#2a1a4a;background:rgba(181,0,94,0.10);border-color:rgba(181,0,94,0.40)}
+    /* Opciones nativas del select — texto legible en el popup del OS */
+    .loc-select option{background:#0d0d1a;color:#eeebff}
+    html.light-mode .loc-select option{background:#ffffff;color:#1a1a2e}
     @media(max-width:480px){#loc-bar{padding:8px 14px;gap:8px}.loc-text{display:none}}
+    /* Loc-bar obligatorio — pulsa hasta que el usuario elige región */
+    @keyframes locPulse{
+      0%,100%{box-shadow:0 2px 0 0 rgba(181,0,94,0)}
+      50%{box-shadow:0 2px 24px rgba(181,0,94,0.22),inset 0 0 18px rgba(181,0,94,0.06)}
+    }
+    #loc-bar:not(.region-chosen){animation:locPulse 2.8s ease-in-out infinite}
+    #loc-hint{
+      font-size:10px;font-weight:800;color:var(--pink);letter-spacing:.8px;
+      text-transform:uppercase;white-space:nowrap;
+      animation:hintBlink 2s ease-in-out infinite;
+    }
+    @keyframes hintBlink{0%,100%{opacity:1}50%{opacity:.3}}
+    #loc-bar.region-chosen #loc-hint{display:none}
+    @media(max-width:480px){#loc-hint{display:none}}
+    /* Botón guardar selección */
+    #loc-save-btn{
+      padding:5px 14px;border-radius:20px;
+      border:1px solid rgba(245,196,0,.35);
+      background:rgba(245,196,0,.07);
+      color:var(--yellow);font-size:10px;font-weight:700;
+      cursor:pointer;font-family:inherit;
+      transition:all .2s;white-space:nowrap;letter-spacing:.4px;
+      appearance:none;-webkit-appearance:none;outline:none;box-shadow:none;
+    }
+    #loc-save-btn:hover{background:rgba(245,196,0,.18);border-color:rgba(245,196,0,.65)}
+    html.light-mode #loc-save-btn{color:#b07d00;border-color:rgba(176,125,0,.4);background:rgba(176,125,0,.06)}
+    /* Animación de cierre del loc-bar */
+    #loc-bar{overflow:hidden;transition:max-height .45s ease, opacity .35s ease, padding .35s ease}
 
     /* BUTTONS */
     .btn-primary{
       display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:12px;
-      border:none;background:var(--pink);color:#fff;font-size:14px;font-weight:800;
+      border:none;background:var(--yellow);color:#1a1a1a;font-size:14px;font-weight:800;
       cursor:pointer;font-family:inherit;text-decoration:none;
       position:relative;overflow:hidden;
       transform-style:preserve-3d;
+      box-shadow:0 0 22px rgba(245,196,0,.30),0 4px 18px rgba(0,0,0,.30);
       transition:background .2s,box-shadow .2s;
       will-change:transform;
     }
-    .btn-primary:hover{background:#d4006f}
+    .btn-primary:hover{background:#e0b000;box-shadow:0 0 38px rgba(245,196,0,.55),0 4px 20px rgba(0,0,0,.32)}
     /* Light sweep ::before */
     .btn-primary::before{
       content:'';position:absolute;top:-50%;left:-120%;
@@ -288,10 +431,62 @@
     .trust-bar{padding:16px 28px;border-top:1px solid rgba(181,0,94,.1);border-bottom:1px solid rgba(181,0,94,.1);background:rgba(181,0,94,.02);display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
     .trust-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#999}
 
+    /* ═══ CURSOR SPOTLIGHT ═══ */
+    #cursor-spotlight{
+      position:fixed;left:50%;top:50%;
+      width:900px;height:900px;border-radius:50%;
+      pointer-events:none;z-index:1;
+      transform:translate(-50%,-50%);
+      background:radial-gradient(circle,
+        rgba(245,196,0,.09) 0%,
+        rgba(181,0,94,.07) 25%,
+        rgba(90,40,200,.04) 52%,
+        transparent 72%);
+      will-change:left,top;opacity:1;
+      transition:opacity .4s ease;
+    }
+    html.light-mode #cursor-spotlight{
+      background:radial-gradient(circle,rgba(181,0,94,.055) 0%,rgba(245,196,0,.03) 38%,transparent 65%);
+      opacity:.7;
+    }
+
+    /* ═══ LOGO WATERMARK — fijo en el viewport ═══ */
+    #bg-logo-watermark{
+      position:fixed;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      pointer-events:none;z-index:0;
+      opacity:.052;
+      mix-blend-mode:luminosity;
+      transition:opacity .6s ease;
+    }
+    #bg-logo-watermark.wm-hidden{opacity:0!important}
+    #bg-logo-watermark img{
+      width:min(500px,52vw);height:auto;
+      object-fit:contain;
+      filter:brightness(9) saturate(0);
+      user-select:none;-webkit-user-drag:none;
+    }
+    html.light-mode #bg-logo-watermark{opacity:.035;mix-blend-mode:multiply}
+    html.light-mode #bg-logo-watermark img{filter:brightness(0) saturate(0)}
+
+    /* ═══ SECTION GRID BACKGROUND — reutilizable ═══ */
+    .section-grid-bg{
+      position:absolute;inset:0;pointer-events:none;z-index:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.013) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.013) 1px,transparent 1px);
+      background-size:58px 58px;
+    }
+    html.light-mode .section-grid-bg{
+      background-image:
+        linear-gradient(rgba(0,0,0,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(0,0,0,.045) 1px,transparent 1px);
+    }
+
     /* SECTIONS */
     .section{padding:76px 20px}
-    .section-dark{background:rgba(0,0,0,.22);backdrop-filter:blur(0px)}
-    .section-inner{max-width:900px;margin:0 auto}
+    .section-dark{background:rgba(0,0,0,.22);backdrop-filter:blur(0px);position:relative;overflow:hidden}
+    .section-inner{max-width:900px;margin:0 auto;position:relative;z-index:1}
     .section-title{text-align:center;font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--text);margin-bottom:8px;line-height:1.2}
     .section-sub{text-align:center;font-size:14px;color:var(--muted);margin-bottom:44px;line-height:1.7;max-width:580px;margin-left:auto;margin-right:auto}
 
@@ -314,6 +509,49 @@
     .problem-card h3{font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px}
     .problem-card p{font-size:12.5px;color:var(--muted);line-height:1.7}
     .prob-icon{font-size:26px;margin-bottom:12px;display:block}
+
+    /* ═══ VS COMPARISON TABLE ═══ */
+    .vs-wrap{
+      display:grid;grid-template-columns:1fr 1fr;gap:0;
+      margin-top:40px;border-radius:18px;overflow:hidden;
+      border:1px solid rgba(181,0,94,0.28);
+      box-shadow:0 8px 40px rgba(181,0,94,0.10),0 0 0 1px rgba(255,255,255,0.04);
+      max-width:680px;margin-left:auto;margin-right:auto;
+    }
+    @media(max-width:560px){.vs-wrap{grid-template-columns:1fr}}
+    .vs-col{display:flex;flex-direction:column}
+    .vs-col-generic{background:rgba(255,255,255,0.03);border-right:1px solid rgba(181,0,94,0.18)}
+    .vs-col-sofia{background:rgba(181,0,94,0.06);position:relative}
+    .vs-col-sofia::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(181,0,94,0.08),transparent 70%);pointer-events:none}
+    .vs-col-hdr{
+      padding:16px 20px;display:flex;align-items:center;gap:9px;
+      border-bottom:1px solid rgba(255,255,255,0.07);
+    }
+    .vs-col-generic .vs-col-hdr{background:rgba(255,255,255,0.04)}
+    .vs-col-sofia .vs-col-hdr{background:rgba(181,0,94,0.14);border-bottom-color:rgba(181,0,94,0.25)}
+    .vs-col-hdr-icon{font-size:22px;line-height:1}
+    .vs-col-hdr-name{font-size:12px;font-weight:800;letter-spacing:.4px}
+    .vs-col-generic .vs-col-hdr-name{color:#666}
+    .vs-col-sofia .vs-col-hdr-name{color:var(--pink)}
+    .vs-col-sofia .vs-col-hdr::after{content:'⭐ #1';font-size:10px;font-weight:900;color:var(--yellow);margin-left:auto;letter-spacing:.5px}
+    .vs-rows{display:flex;flex-direction:column;padding:10px 8px;gap:2px;flex:1}
+    .vs-row{
+      display:flex;align-items:flex-start;gap:9px;padding:8px 10px;border-radius:8px;
+      font-size:12px;line-height:1.45;transition:background .15s;
+    }
+    .vs-col-generic .vs-row{color:#666}
+    .vs-col-sofia .vs-row{color:var(--text)}
+    .vs-col-sofia .vs-row:hover{background:rgba(181,0,94,0.07)}
+    .vs-check{width:17px;flex-shrink:0;font-size:14px;font-weight:900;line-height:1.45;text-align:center}
+    .vs-yes{color:#25d366}
+    .vs-no{color:#b71c1c;opacity:.65}
+    .vs-row-highlight{background:rgba(37,211,102,0.06)!important;border-radius:8px}
+    /* light mode */
+    html.light-mode .vs-col-generic{background:rgba(0,0,0,0.03)}
+    html.light-mode .vs-col-sofia{background:rgba(181,0,94,0.04)}
+    html.light-mode .vs-col-generic .vs-row{color:#888}
+    html.light-mode .vs-col-sofia .vs-row{color:#1a1a2e}
+    html.light-mode .vs-col-generic .vs-col-hdr{background:rgba(0,0,0,0.04)}
 
     /* ROI CALCULATOR */
     .roi-wrap{
@@ -358,7 +596,7 @@
       box-shadow:0 4px 16px rgba(181,0,94,.15),inset 0 1px 0 rgba(255,255,255,.06);
     }
     .tab-panel{display:none}
-    .tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .tab-panel.active{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
     @media(max-width:640px){.tab-panel.active{grid-template-columns:1fr}}
     .tab-content h3{font-size:20px;font-weight:800;color:var(--text);margin-bottom:12px;line-height:1.3}
     .tab-content p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:16px}
@@ -375,6 +613,44 @@
     .wa-in{background:#fff;border-radius:0 10px 10px 10px;padding:9px 12px;font-size:12px;color:#222;max-width:82%;line-height:1.5;box-shadow:0 1px 2px rgba(0,0,0,.1)}
     .wa-out{background:#dcf8c6;border-radius:10px 0 10px 10px;padding:9px 12px;font-size:12px;color:#222;max-width:82%;align-self:flex-end;line-height:1.5;box-shadow:0 1px 2px rgba(0,0,0,.1)}
     .wa-time{font-size:10px;color:#999;display:block;text-align:right;margin-top:3px}
+
+    /* ═══ MOCK CAROUSEL ═══ */
+    .mock-carousel{position:relative;max-width:320px;margin:0 auto}
+    .mock-slide{display:none}.mock-slide.active{display:block}
+    .mock-nav{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:10px}
+    .mock-dots{display:flex;gap:7px;align-items:center}
+    .mock-dot{width:7px;height:7px;border-radius:50%;background:rgba(181,0,94,0.2);cursor:pointer;transition:background .25s,transform .25s}
+    .mock-dot.active{background:var(--pink);transform:scale(1.25)}
+    .mock-arrow{background:none;border:1px solid rgba(181,0,94,0.3);border-radius:50%;width:26px;height:26px;color:var(--muted);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;line-height:1;font-family:inherit;padding:0}
+    .mock-arrow:hover{border-color:var(--pink);color:var(--pink)}
+    /* Calendar mock */
+    .cal-mock{background:#fff;border-radius:16px;overflow:hidden;max-width:320px;margin:0 auto;box-shadow:0 4px 24px rgba(0,0,0,0.15)}
+    .cal-mock-hdr{background:linear-gradient(135deg,#1a73e8 0%,#34a853 100%);padding:12px 16px;display:flex;align-items:center;gap:8px}
+    .cal-mock-icon{font-size:18px;line-height:1}
+    .cal-mock-title{font-size:13px;font-weight:700;color:#fff}
+    .cal-mock-body{padding:14px}
+    .cal-event-block{display:flex;gap:10px;align-items:flex-start;background:#e8f0fe;border-radius:10px;padding:12px;border-left:4px solid #1a73e8}
+    .cal-event-check{font-size:20px;flex-shrink:0;line-height:1}
+    .cal-event-title{font-size:13px;font-weight:800;color:#1a1a2e;line-height:1.3}
+    .cal-event-detail{font-size:11px;color:#555;margin-top:3px}
+    .cal-event-conf{font-size:10px;color:#1a73e8;margin-top:5px;font-weight:700}
+    .cal-mock-footer{margin-top:10px;text-align:center;font-size:10px;color:#aaa;padding:6px;background:#f5f5f5;border-radius:6px}
+    /* Notification/reminder mock */
+    .notif-mock{background:#1c1c1e;border-radius:16px;overflow:hidden;max-width:320px;margin:0 auto;box-shadow:0 4px 24px rgba(0,0,0,0.35)}
+    .notif-mock-hdr{background:#2c2c2e;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.07)}
+    .notif-app-name{font-size:11px;font-weight:700;color:#ccc}
+    .notif-time-lbl{font-size:10px;color:#666}
+    .notif-mock-body{padding:14px}
+    .notif-title{font-size:13px;font-weight:800;color:#fff;margin-bottom:7px}
+    .notif-text{font-size:12px;color:#aaa;line-height:1.45;margin-bottom:13px}
+    .notif-actions{display:flex;gap:8px}
+    .notif-btn{flex:1;padding:9px;border-radius:8px;border:none;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .2s}
+    .notif-btn:hover{opacity:.85}
+    .notif-btn-yes{background:var(--pink);color:#fff}
+    .notif-btn-later{background:rgba(255,255,255,0.09);color:#999}
+    /* Light mode overrides for mocks */
+    html.light-mode .notif-mock{box-shadow:0 4px 20px rgba(0,0,0,0.20)}
+    html.light-mode .cal-mock{box-shadow:0 4px 20px rgba(0,0,0,0.10)}
 
     /* STEPS */
     .steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
@@ -397,7 +673,39 @@
     .step-card p{font-size:12.5px;color:var(--muted);line-height:1.7}
 
     /* PRICING */
-    .pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px;margin-bottom:44px}
+    .pricing-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:14px;
+      margin-bottom:44px;
+      padding-top:22px;   /* espacio para badges que sobresalen */
+      align-items:stretch;
+    }
+    /* ── MOBILE: carrusel swipeable ── */
+    @media(max-width:900px){
+      .pricing-grid{
+        display:flex;
+        overflow-x:auto;
+        scroll-snap-type:x mandatory;
+        -webkit-overflow-scrolling:touch;
+        scroll-behavior:smooth;
+        scrollbar-width:none;
+        gap:14px;
+        padding-bottom:20px;
+        /* indicador de scroll */
+        padding-left:4px;padding-right:4px;
+      }
+      .pricing-grid::-webkit-scrollbar{display:none}
+      .pricing-grid .pricing-card{
+        flex:0 0 80%;
+        min-width:260px;
+        max-width:320px;
+        scroll-snap-align:start;
+      }
+    }
+    @media(max-width:500px){
+      .pricing-grid .pricing-card{flex:0 0 88%;min-width:240px}
+    }
     .pricing-card{
       padding:26px 20px;border-radius:var(--radius);
       background:rgba(255,255,255,.07);
@@ -432,8 +740,25 @@
     .pc-features li::before{content:'✓';color:var(--pink);font-weight:700;flex-shrink:0;margin-top:1px}
     .pc-cta{width:100%;padding:11px;border-radius:9px;border:1.5px solid rgba(181,0,94,.35);background:transparent;color:var(--pink);font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;text-align:center;text-decoration:none;display:block}
     .pc-cta:hover{background:rgba(181,0,94,.09)}
-    .featured .pc-cta{background:var(--pink);color:#fff;border-color:var(--pink)}
-    .featured .pc-cta:hover{background:#cc006b}
+    .featured .pc-cta{background:var(--yellow);color:#1a1a1a;border-color:var(--yellow)}
+    .featured .pc-cta:hover{background:#e0b000}
+
+    /* ── PRICES LOCKED (Andrés: quita la clase "prices-locked" del <section id="precios"> cuando los precios estén listos) ── */
+    .prices-locked .pc-divider,
+    .prices-locked .pc-setup-lbl,
+    .prices-locked .pc-setup-price,
+    .prices-locked .pc-mo-lbl,
+    .prices-locked .pc-mo-price,
+    .prices-locked #p2-founding,
+    .prices-locked #p5-addon-wrap{display:none!important}
+    .pc-price-placeholder{
+      display:none;align-items:center;justify-content:center;gap:7px;
+      padding:13px 0 16px;margin-bottom:10px;
+      font-size:12px;font-weight:700;color:var(--muted);
+      border:1px dashed rgba(245,196,0,.25);border-radius:9px;
+      letter-spacing:.3px;
+    }
+    .prices-locked .pc-price-placeholder{display:flex}
 
     /* LEAD CAPTURE / AUDIT CTA */
     .audit-wrap{
@@ -482,15 +807,294 @@
     footer a{color:#666;text-decoration:none}
     footer a:hover{color:var(--pink)}
 
+    /* ══════ ABOUT AJ — Flotante + Modal ══════ */
+
+    /* — Botón flotante (esquina inferior izquierda) — */
+    #aj-float{
+      position:fixed;bottom:24px;left:20px;
+      z-index:300;
+      display:flex;align-items:center;gap:12px;
+      background:rgba(21,0,13,.82);
+      backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+      border:1px solid rgba(181,0,94,.28);
+      border-radius:40px;
+      padding:11px 20px 11px 13px;
+      cursor:pointer;
+      box-shadow:0 4px 28px rgba(181,0,94,.20),0 2px 8px rgba(0,0,0,.40);
+      transition:all .25s cubic-bezier(.22,1,.36,1);
+      animation:ajFloatIn .7s .8s cubic-bezier(.22,1,.36,1) both;
+      user-select:none;
+    }
+    #aj-float:hover{
+      background:rgba(33,0,18,.92);
+      border-color:rgba(245,196,0,.45);
+      box-shadow:0 6px 40px rgba(245,196,0,.18),0 2px 12px rgba(0,0,0,.45);
+      transform:translateY(-2px);
+    }
+    html.light-mode #aj-float{
+      background:rgba(255,255,255,.88);
+      border-color:rgba(181,0,94,.22);
+      box-shadow:0 4px 24px rgba(181,0,94,.14),0 2px 8px rgba(0,0,0,.08);
+    }
+    html.light-mode #aj-float:hover{border-color:rgba(181,0,94,.45)}
+    @keyframes ajFloatIn{
+      from{opacity:0;transform:translateY(18px) scale(.92)}
+      to{opacity:1;transform:translateY(0) scale(1)}
+    }
+    .aj-float-logo{
+      width:36px;height:36px;object-fit:contain;flex-shrink:0;
+      filter:brightness(9) saturate(0);opacity:.8;
+    }
+    html.light-mode .aj-float-logo{filter:invert(1) brightness(.12) saturate(0)}
+    .aj-float-text{display:flex;flex-direction:column;gap:2px}
+    .aj-float-name{font-size:12.5px;font-weight:700;color:var(--text);
+      letter-spacing:.2px;white-space:nowrap}
+    .aj-float-hint{font-size:10.5px;color:var(--muted);letter-spacing:.2px}
+    /* Pulso sutil en el botón */
+    #aj-float::before{
+      content:'';position:absolute;inset:-1px;border-radius:40px;
+      border:1px solid rgba(245,196,0,.0);
+      animation:ajFloatPulse 3.5s 1.5s ease-in-out infinite;
+      pointer-events:none;
+    }
+    @keyframes ajFloatPulse{
+      0%,100%{border-color:rgba(245,196,0,.0);box-shadow:none}
+      50%{border-color:rgba(245,196,0,.30);box-shadow:0 0 14px rgba(245,196,0,.12)}
+    }
+
+    /* — Nav link "Uno de nosotros" — */
+    .nav-link-aj{
+      display:flex;flex-direction:column;align-items:center;gap:0px;
+      background:none;border:none;cursor:pointer;font-family:inherit;
+      padding:4px 12px;border-radius:7px;
+      text-align:center;transition:background .2s;
+      appearance:none;-webkit-appearance:none;outline:none;
+    }
+    .nav-link-aj:hover{background:rgba(255,255,255,.06)}
+    html.light-mode .nav-link-aj:hover{background:rgba(0,0,0,.05)}
+    .nav-link-aj-main{font-size:13px;font-weight:500;color:#aaa;
+      transition:color .2s;line-height:1.3}
+    .nav-link-aj:hover .nav-link-aj-main{color:var(--text)}
+    html.light-mode .nav-link-aj-main{color:#5e4d80}
+    html.light-mode .nav-link-aj:hover .nav-link-aj-main{color:#0d0820}
+    .nav-link-aj-sub{font-size:8.5px;font-weight:700;letter-spacing:.5px;
+      color:var(--pink);text-transform:uppercase;line-height:1;margin-top:2px}
+
+    /* — Modal overlay — */
+    #aj-info-modal{
+      position:fixed;inset:0;z-index:900;
+      display:flex;align-items:flex-end;justify-content:center;
+      opacity:0;pointer-events:none;
+      transition:opacity .3s ease;
+    }
+    #aj-info-modal.open{opacity:1;pointer-events:all}
+    .aj-modal-backdrop{
+      position:absolute;inset:0;
+      background:rgba(10,0,8,.65);
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+      cursor:pointer;
+    }
+    /* Panel principal */
+    .aj-modal-panel{
+      position:relative;z-index:1;
+      width:100%;max-width:560px;
+      background:rgba(26,0,16,.95);
+      border:1px solid rgba(181,0,94,.22);
+      border-bottom:none;
+      border-radius:24px 24px 0 0;
+      padding:28px 28px 36px;
+      max-height:90dvh;overflow-y:auto;
+      transform:translateY(100%);
+      transition:transform .45s cubic-bezier(.22,1,.36,1);
+      scrollbar-width:none;
+    }
+    .aj-modal-panel::-webkit-scrollbar{display:none}
+    #aj-info-modal.open .aj-modal-panel{transform:translateY(0)}
+    html.light-mode .aj-modal-panel{
+      background:rgba(248,245,255,.97);
+      border-color:rgba(181,0,94,.18);
+    }
+    /* Pill handle */
+    .aj-modal-handle{
+      width:38px;height:4px;border-radius:2px;
+      background:rgba(255,255,255,.15);
+      margin:0 auto 20px;
+    }
+    html.light-mode .aj-modal-handle{background:rgba(0,0,0,.12)}
+    /* Close button */
+    .aj-modal-close{
+      position:absolute;top:22px;right:22px;
+      width:30px;height:30px;border-radius:50%;
+      border:1px solid var(--border);background:rgba(255,255,255,.06);
+      color:var(--muted);font-size:14px;line-height:1;
+      cursor:pointer;display:flex;align-items:center;justify-content:center;
+      appearance:none;-webkit-appearance:none;outline:none;font-family:inherit;
+      transition:all .2s;
+    }
+    .aj-modal-close:hover{background:rgba(181,0,94,.18);color:var(--text);border-color:rgba(181,0,94,.4)}
+    /* Logo área */
+    .aj-modal-logo-wrap{text-align:center;padding:4px 0 22px}
+    .aj-modal-logo{
+      height:46px;width:auto;object-fit:contain;
+      filter:brightness(9) saturate(0);opacity:.65;
+      display:block;margin:0 auto 10px;
+    }
+    html.light-mode .aj-modal-logo{filter:invert(1) brightness(.12) saturate(0)}
+    .aj-modal-brand{font-size:15px;font-weight:800;color:var(--text);margin-bottom:3px}
+    .aj-modal-tagline{font-size:11px;color:var(--muted);letter-spacing:.3px}
+    /* Divisor */
+    .aj-modal-divider{height:1px;background:var(--border);margin:0 0 22px}
+    /* Bloques misión / visión / pilares */
+    .aj-modal-block{margin-bottom:22px}
+    .aj-modal-block:last-child{margin-bottom:0}
+    .aj-modal-label{
+      font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;
+      color:var(--pink);margin-bottom:8px;
+    }
+    .aj-modal-text{font-size:12.5px;color:var(--muted);line-height:1.75}
+    /* Pilares */
+    .aj-modal-pillars{display:flex;flex-direction:column;gap:9px}
+    .aj-modal-pillar{
+      display:flex;align-items:flex-start;gap:12px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:11px;padding:11px 13px;
+      transition:background .2s,border-color .2s;
+    }
+    .aj-modal-pillar:hover{background:rgba(255,255,255,.07);border-color:rgba(181,0,94,.20)}
+    html.light-mode .aj-modal-pillar{background:rgba(181,0,94,.04);border-color:rgba(181,0,94,.09)}
+    html.light-mode .aj-modal-pillar:hover{background:rgba(181,0,94,.08)}
+    .aj-modal-pillar-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+    .aj-modal-pillar strong{display:block;font-size:12px;font-weight:700;
+      color:var(--text);margin-bottom:2px}
+    .aj-modal-pillar p{font-size:11.5px;color:var(--muted);line-height:1.6;margin:0}
+    /* Responsive */
+    @media(min-width:600px){
+      #aj-info-modal{align-items:center}
+      .aj-modal-panel{border-radius:20px;border-bottom:1px solid rgba(181,0,94,.22);
+        max-height:85dvh;}
+      #aj-info-modal.open .aj-modal-panel{transform:translateY(0) scale(1)}
+      #aj-info-modal:not(.open) .aj-modal-panel{transform:translateY(30px) scale(.97)}
+    }
+    @media(max-width:480px){.aj-modal-panel{padding:22px 18px 30px}}
+
+    /* ══════ SOFIA TE LLAMA — Modal formulario ══════ */
+    #sofia-call-modal{
+      position:fixed;inset:0;z-index:910;
+      display:flex;align-items:flex-end;justify-content:center;
+      opacity:0;pointer-events:none;transition:opacity .3s ease;
+    }
+    #sofia-call-modal.open{opacity:1;pointer-events:all}
+    .scm-backdrop{position:absolute;inset:0;background:rgba(10,0,8,.65);
+      backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:pointer;}
+    .scm-panel{
+      position:relative;z-index:1;width:100%;max-width:480px;
+      background:rgba(26,0,16,.97);
+      border:1px solid rgba(181,0,94,.25);border-bottom:none;
+      border-radius:24px 24px 0 0;padding:26px 26px 38px;
+      transform:translateY(100%);
+      transition:transform .45s cubic-bezier(.22,1,.36,1);
+      max-height:92dvh;overflow-y:auto;scrollbar-width:none;
+    }
+    .scm-panel::-webkit-scrollbar{display:none}
+    #sofia-call-modal.open .scm-panel{transform:translateY(0)}
+    html.light-mode .scm-panel{background:rgba(248,245,255,.97);border-color:rgba(181,0,94,.18)}
+    .scm-handle{width:36px;height:4px;border-radius:2px;background:rgba(255,255,255,.15);margin:0 auto 18px}
+    html.light-mode .scm-handle{background:rgba(0,0,0,.12)}
+    .scm-close{
+      position:absolute;top:20px;right:20px;width:28px;height:28px;border-radius:50%;
+      border:1px solid var(--border);background:rgba(255,255,255,.06);
+      color:var(--muted);font-size:13px;line-height:1;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      appearance:none;-webkit-appearance:none;outline:none;font-family:inherit;transition:all .2s;
+    }
+    .scm-close:hover{background:rgba(181,0,94,.18);color:var(--text)}
+    .scm-header{text-align:center;margin-bottom:22px}
+    .scm-icon{font-size:38px;margin-bottom:10px}
+    .scm-title{font-size:20px;font-weight:900;color:var(--text);margin-bottom:6px}
+    .scm-sub{font-size:13px;color:var(--muted);line-height:1.65;max-width:340px;margin:0 auto}
+    /* Form */
+    .scm-form{display:flex;flex-direction:column;gap:11px;margin-top:22px}
+    .scm-input{
+      width:100%;padding:12px 15px;border-radius:11px;
+      border:1px solid var(--border);background:rgba(255,255,255,.05);
+      color:var(--text);font-size:13px;font-family:inherit;
+      outline:none;transition:border-color .2s;
+    }
+    .scm-input:focus{border-color:rgba(181,0,94,.55)}
+    .scm-input::placeholder{color:var(--muted)}
+    html.light-mode .scm-input{background:rgba(255,255,255,.8);color:#0d0820;border-color:rgba(0,0,0,.12)}
+    html.light-mode .scm-input::placeholder{color:#9080b0}
+    .scm-select{appearance:none;-webkit-appearance:none;cursor:pointer;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238070b0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat:no-repeat;background-position:right 14px center;}
+    .scm-submit{
+      width:100%;padding:14px;border-radius:12px;
+      background:var(--pink);color:#fff;font-size:13px;font-weight:800;
+      border:none;cursor:pointer;font-family:inherit;
+      appearance:none;-webkit-appearance:none;outline:none;
+      transition:all .2s;margin-top:4px;
+      box-shadow:0 0 22px rgba(181,0,94,.35),0 4px 16px rgba(0,0,0,.30);
+    }
+    .scm-submit:hover{background:#c0005f;box-shadow:0 0 38px rgba(181,0,94,.55),0 4px 18px rgba(0,0,0,.35)}
+    .scm-submit:disabled{opacity:.5;cursor:not-allowed}
+    /* Confirmación */
+    .scm-confirm{text-align:center;padding:10px 0;display:none}
+    .scm-confirm-icon{font-size:48px;margin-bottom:14px}
+    .scm-confirm-title{font-size:18px;font-weight:900;color:var(--text);margin-bottom:8px}
+    .scm-confirm-sub{font-size:13px;color:var(--muted);line-height:1.7}
+    .scm-note{font-size:10.5px;color:var(--muted);text-align:center;margin-top:14px;
+      border-top:1px solid var(--border);padding-top:12px;line-height:1.6}
+    /* Desktop */
+    @media(min-width:600px){
+      #sofia-call-modal{align-items:center}
+      .scm-panel{border-radius:20px;border-bottom:1px solid rgba(181,0,94,.22);max-height:88dvh}
+      #sofia-call-modal:not(.open) .scm-panel{transform:translateY(20px) scale(.97)}
+    }
+    @media(max-width:480px){.scm-panel{padding:20px 16px 32px}}
+
     /* ANDRES PLACEHOLDER BLOCK */
     .api-placeholder{border:1.5px dashed rgba(255,212,0,.3);border-radius:14px;padding:20px 24px;background:rgba(255,212,0,.03);margin:0 auto 16px}
     .api-placeholder-label{font-size:10px;font-weight:700;color:var(--yellow);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
     .api-placeholder p{font-size:12px;color:#666;line-height:1.6}
 
-    /* ═══ CINEMATIC KEYFRAMES ═══ */
+    /* ═══ CINEMATIC KEYFRAMES — spring entrance ═══ */
     @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-    .fade-up{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-    .fade-up.visible{opacity:1;transform:translateY(0)}
+    .fade-up{
+      opacity:0;
+      transform:translateY(42px) scale(0.96);
+      filter:blur(3px);
+      transition:
+        opacity .85s cubic-bezier(.22,1,.36,1),
+        transform .85s cubic-bezier(.22,1,.36,1),
+        filter .6s ease;
+    }
+    .fade-up.visible{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}
+    /* Stagger helpers — aplica automáticamente a hijos de grids via JS */
+    .anim-d1{transition-delay:.10s!important}
+    .anim-d2{transition-delay:.22s!important}
+    .anim-d3{transition-delay:.36s!important}
+    .anim-d4{transition-delay:.52s!important}
+    .anim-d5{transition-delay:.70s!important}
+    /* Mobile: stagger más rápido y dinámico */
+    @media(max-width:640px){
+      .anim-d1{transition-delay:.06s!important}
+      .anim-d2{transition-delay:.12s!important}
+      .anim-d3{transition-delay:.18s!important}
+      .anim-d4{transition-delay:.26s!important}
+      .anim-d5{transition-delay:.34s!important}
+      /* Títulos de sección: entran con zoom ligero además de fade */
+      .section-title.visible{transform:scale(1.02) translateY(0)!important;animation:mobileTitlePop .6s cubic-bezier(.22,1,.36,1) both}
+    }
+    @keyframes mobileTitlePop{
+      0%{opacity:0;transform:translateY(20px) scale(0.94)}
+      60%{transform:translateY(-3px) scale(1.03)}
+      100%{opacity:1;transform:translateY(0) scale(1)}
+    }
+    /* Reduced motion: sin blur ni transformación */
+    @media(prefers-reduced-motion:reduce){
+      .fade-up{filter:none;transform:none;transition:opacity .3s ease}
+    }
 
     /* Shimmer animado para textos gradient */
     @keyframes shimmerText{
@@ -510,8 +1114,8 @@
     }
     /* Glow pulsante en botones */
     @keyframes pulseGlow{
-      0%,100%{box-shadow:0 0 18px rgba(210,0,110,.35),0 4px 18px rgba(0,0,0,.35)}
-      50%{box-shadow:0 0 36px rgba(210,0,110,.65),0 0 18px rgba(255,212,0,.20),0 4px 18px rgba(0,0,0,.35)}
+      0%,100%{box-shadow:0 0 20px rgba(245,196,0,.35),0 4px 18px rgba(0,0,0,.35)}
+      50%{box-shadow:0 0 44px rgba(245,196,0,.70),0 0 20px rgba(255,150,0,.30),0 4px 18px rgba(0,0,0,.35)}
     }
     /* Float suave para iconos */
     @keyframes floatY{
@@ -526,12 +1130,13 @@
 
     /* ═══ GRADIENT TEXT ═══ */
     .grad-text{
-      background:linear-gradient(135deg,var(--pink) 0%,#ff5fa0 35%,var(--yellow) 70%,#ffca28 100%);
-      background-size:200% 200%;
+      background:linear-gradient(135deg,var(--pink) 0%,#ff3fa0 15%,#ff8c00 48%,var(--yellow) 72%,#ffe44d 100%);
+      background-size:220% 220%;
       -webkit-background-clip:text;background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:shimmerText 7s ease-in-out infinite;
+      animation:shimmerText 5.5s ease-in-out infinite;
       display:inline;
+      filter:drop-shadow(0 0 14px rgba(245,196,0,.38)) drop-shadow(0 0 32px rgba(181,0,94,.20));
     }
     .grad-text-yellow{
       background:linear-gradient(90deg,var(--yellow) 0%,#fff176 50%,var(--yellow) 100%);
@@ -605,15 +1210,16 @@
     /* ═══ PROB NUMBERS (large gradient) ═══ */
     .prob-num{
       font-size:44px !important;font-weight:900;line-height:1;margin-bottom:10px;
-      background:linear-gradient(135deg,var(--pink),var(--yellow));
-      background-size:200% 200%;
+      background:linear-gradient(135deg,var(--pink) 0%,#ff3fa0 20%,#ff8c00 52%,var(--yellow) 78%,#ffe44d 100%);
+      background-size:220% 220%;
       -webkit-background-clip:text;background-clip:text;
       -webkit-text-fill-color:transparent;
-      animation:shimmerText 6s ease-in-out infinite;
+      animation:shimmerText 5s ease-in-out infinite;
+      filter:drop-shadow(0 0 16px rgba(245,196,0,.40)) drop-shadow(0 0 8px rgba(181,0,94,.22));
     }
 
     /* ═══ SECTION TITLES ACCENTED ═══ */
-    .section-title{text-align:center;font-size:clamp(24px,3.2vw,38px) !important;font-weight:900;color:var(--text);margin-bottom:8px;line-height:1.15}
+    .section-title{text-align:center;font-size:clamp(24px,3.2vw,38px) !important;font-weight:900;color:var(--text);margin-bottom:8px;line-height:1.15;text-shadow:0 0 55px rgba(181,0,94,.25),0 0 110px rgba(90,50,200,.13)}
 
     /* ═══ STEP ICONS FLOAT ═══ */
     .step-icon{display:block;font-size:36px;margin-bottom:14px;animation:floatY 3s ease-in-out infinite}
@@ -686,10 +1292,11 @@
         inset 0 0 20px rgba(255,255,255,.04) !important;
       transform:translateY(-4px) !important;
     }
-    /* Inner glow pseudo-after para efecto cristal interior */
+    /* Inner glow — sigue el cursor dentro del card (CSS variables desde JS) */
     .card-shine::after{
       content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;
-      background:linear-gradient(135deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,0) 40%,rgba(255,255,255,0) 60%,rgba(255,255,255,.04) 100%);
+      background:radial-gradient(circle at var(--mx,50%) var(--my,50%),
+        rgba(255,255,255,.26) 0%,rgba(255,255,255,.08) 30%,transparent 65%);
       opacity:0;transition:opacity .4s ease;mix-blend-mode:overlay;z-index:1;
     }
     .card-shine:hover::after{opacity:1}
@@ -718,6 +1325,14 @@
 
 <!-- SCROLL PROGRESS BAR -->
 <div id="scrollProgress"></div>
+
+<!-- LOGO WATERMARK — siempre fijo al fondo del viewport -->
+<div id="bg-logo-watermark" aria-hidden="true">
+  <img src="ULTIMO_LOGO_SIN_LUZ.png" alt="">
+</div>
+
+<!-- CURSOR SPOTLIGHT — sigue al mouse con lag suave -->
+<div id="cursor-spotlight"></div>
 
 <!-- SECTION DOT NAV -->
 <div id="sectionNav">
@@ -748,6 +1363,9 @@
   <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="sticky-cta">Consultoría gratis →</a>
 </div>
 
+<!-- SITE HEADER: nav + loc-bar + brand-strip, todo sticky como una unidad -->
+<div id="site-header">
+
 <!-- NAV -->
 <nav>
   <a class="logo" href="#hero">
@@ -759,22 +1377,22 @@
     <a class="nav-link" href="#industrias"    id="nl-ind">Industrias</a>
     <a class="nav-link" href="#precios"       id="nl-pri">Precios</a>
     <a class="nav-link" href="#contacto"      id="nl-cnt">Contacto</a>
+    <button class="nav-link nav-link-aj" onclick="openAjModal()" id="nl-aj" aria-haspopup="dialog">
+      <span class="nav-link-aj-main" id="nl-aj-main">Nosotros</span>
+      <span class="nav-link-aj-sub">AJ Business Advisory</span>
+    </button>
   </div>
   <div class="nav-right">
-    <!-- Currency selector -->
-    <div class="nav-ctrl">
-      <span class="nav-label">Tu moneda</span>
+    <!-- Theme toggle — a un lado -->
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Modo día / noche">🌙</button>
+    <!-- Moneda + Idioma agrupados -->
+    <div class="nav-loc-group">
       <select class="nav-select" id="currencySelect" onchange="setCurrency(this.value)" title="Selecciona tu moneda / Select your currency">
         <option value="COP">🇨🇴 COP</option>
         <option value="USD">🇺🇸 USD</option>
         <option value="EUR">🇪🇺 EUR</option>
       </select>
-    </div>
-    <!-- Theme toggle -->
-    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Modo día / noche">🌙</button>
-    <!-- Language toggle -->
-    <div class="nav-ctrl">
-      <span class="nav-label">Idioma</span>
+      <span class="nav-loc-sep">|</span>
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">🇺🇸 EN</button>
     </div>
     <a class="nav-pill nav-academia" href="https://eldelosdatos.tech" target="_blank" rel="noopener" id="nav-academia">🎓 Academia</a>
@@ -796,6 +1414,8 @@
   <select class="loc-select" id="countrySelect" onchange="setCountry(this.value)" style="display:none">
     <option value="">— País / Country —</option>
   </select>
+  <span id="loc-hint" aria-hidden="true">👆 Elige tu región</span>
+  <button id="loc-save-btn" onclick="saveLocSelection()" title="Guardar selección de región">✓ Guardar mi selección</button>
 </div>
 
 <!-- BRAND STRIP: empresa siempre visible + ticker secundario -->
@@ -808,6 +1428,7 @@
     <div class="ticker-track" id="tickerTrack"></div>
   </div>
 </div>
+</div><!-- /site-header -->
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -818,7 +1439,7 @@
   <div class="hero-orb hero-orb-3"></div>
 
   <!-- Watermark logo — muy sutil, solo contexto de marca -->
-  <img src="ULTIMO_LOCO_CON_LUZ.png" alt="" class="hero-watermark" aria-hidden="true"/>
+  <img src="ULTIMO_LOGO_SIN_LUZ.png" alt="" class="hero-watermark" aria-hidden="true"/>
 
   <div class="hero-inner">
     <div class="hero-badge"><span>●</span> <span id="hero-badge">Servicio único en Colombia · IA + Marca + Automatización</span></div>
@@ -833,7 +1454,7 @@
 
 <!-- TRUST BAR -->
 <div class="trust-bar">
-  <div class="trust-item">🇨🇴 <span id="t1">Primeros en Colombia</span></div>
+  <div class="trust-item">⚡ <span id="t1">Sistema #1 de IA Integrada</span></div>
   <div class="trust-item">⚡ <span id="t2">Listo en 5 días hábiles</span></div>
   <div class="trust-item">📊 <span id="t3">Sin contratos forzosos</span></div>
   <div class="trust-item">🌎 <span id="t4">Colombia &amp; Global</span></div>
@@ -851,19 +1472,19 @@
     <!-- ══ VARIANTE INTERNACIONAL (no-US) ══ -->
     <div id="demo-intl">
       <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto">Llámala, escríbele por WhatsApp o agenda una sesión con Andres, nuestro fundador. En menos de 30 segundos vas a entender por qué ningún negocio debería estar sin ella.</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px">
-        <!-- Demo llamada Colombia -->
-        <a href="tel:+16693105168" style="text-decoration:none">
-          <div class="step-card card-shine fade-up" style="border-color:rgba(181,0,94,.4);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(181,0,94,.06)">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;align-items:stretch">
+        <!-- Sofia te llama — abre formulario (ANDRÉS: conectar POST a Vapi cuando esté listo) -->
+        <div onclick="openSofiaCall()" style="cursor:pointer;display:flex;flex-direction:column">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(181,0,94,.4);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(181,0,94,.06);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
             <div style="font-size:36px;margin-bottom:12px">📞</div>
-            <div style="font-size:11px;font-weight:700;color:var(--pink);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Llamar a Sofia</div>
-            <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">+1 (669) 310-5168</div>
-            <div style="font-size:11px;color:#666">Demo · Gratis</div>
+            <div style="font-size:11px;font-weight:700;color:var(--pink);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Sofia te llama</div>
+            <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">Demo personalizado</div>
+            <div style="font-size:11px;color:#666">Completa tus datos →</div>
           </div>
-        </a>
+        </div>
         <!-- Demo WhatsApp -->
-        <a href="https://wa.me/16696662773?text=Hola%2C%20quiero%20conocer%20a%20Sofia%20y%20saber%20c%C3%B3mo%20puede%20ayudar%20a%20mi%20negocio." target="_blank" rel="noopener" style="text-decoration:none">
-          <div class="step-card card-shine fade-up" style="border-color:rgba(37,211,102,.35);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(37,211,102,.04)">
+        <a href="https://wa.me/16696662773?text=Hola%2C%20quiero%20conocer%20a%20Sofia%20y%20saber%20c%C3%B3mo%20puede%20ayudar%20a%20mi%20negocio." target="_blank" rel="noopener" style="text-decoration:none;display:flex;flex-direction:column">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(37,211,102,.35);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(37,211,102,.04);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
             <div style="font-size:36px;margin-bottom:12px">💬</div>
             <div style="font-size:11px;font-weight:700;color:#25d366;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">WhatsApp con Sofia</div>
             <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">Escríbele ahora</div>
@@ -871,8 +1492,8 @@
           </div>
         </a>
         <!-- Consultoría Andres -->
-        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none">
-          <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04)">
+        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none;display:flex;flex-direction:column">
+          <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
             <div style="font-size:36px;margin-bottom:12px">📅</div>
             <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Consultoría con Andres · Fundador</div>
             <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">30 min · Gratuito</div>
@@ -979,10 +1600,10 @@
         <p>No es una plantilla. Sofia conoce tus servicios, tus precios, tu agenda y tu tono. Cada respuesta es tuya — escalada a la velocidad de la IA.</p>
       </div>
       <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.2)">
-        <span class="prob-icon">🇨🇴</span>
-        <div class="prob-num" style="font-size:26px">1era</div>
-        <h3>Única en Colombia</h3>
-        <p>No existe otra empresa en Colombia que ofrezca IA + estrategia de marca + contenido + automatización integrados en un solo sistema. Esto es AJ Business Advisory.</p>
+        <span class="prob-icon">🌍</span>
+        <div class="prob-num" style="font-size:22px">1era</div>
+        <h3>Una voz. Todo el mundo.</h3>
+        <p>Primera empresa en integrar IA, marca y canales en un único sistema — todos los idiomas, todos los países, una sola voz: Sofia. Siempre reflejando tu marca, en cualquier rincón del mundo.</p>
       </div>
     </div>
 
@@ -1083,24 +1704,25 @@
 
 <!-- ¿POR QUÉ SOFIA MARCA LA DIFERENCIA? -->
 <section class="section section-dark" id="problema" style="background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(80,50,200,.06) 0%,transparent 70%)">
+  <div class="section-grid-bg"></div>
   <div class="section-inner">
     <div style="text-align:center;margin-bottom:16px">
-      <span style="display:inline-block;padding:4px 18px;border-radius:20px;background:rgba(181,0,94,.12);border:1px solid rgba(181,0,94,.3);font-size:10px;font-weight:800;color:var(--pink);letter-spacing:2px;text-transform:uppercase">🇨🇴 PRIMERA EN COLOMBIA</span>
+      <span style="display:inline-block;padding:4px 18px;border-radius:20px;background:rgba(181,0,94,.12);border:1px solid rgba(181,0,94,.3);font-size:10px;font-weight:800;color:var(--pink);letter-spacing:2px;text-transform:uppercase" id="prob-badge">🌐 IA INTEGRAL — PRIMERA EN SU TIPO</span>
     </div>
     <h2 class="section-title fade-up" id="prob-title">¿Por qué Sofia <span class="grad-text">marca la diferencia</span> en tu negocio?</h2>
-    <p class="section-sub fade-up" id="prob-sub">No somos un chatbot más. Somos la primera empresa en Colombia en integrar IA + marca + automatización en un sistema completo — diseñado para impulsar tu negocio.</p>
+    <p class="section-sub fade-up" id="prob-sub">No somos un chatbot más. Somos los primeros en construir una IA verdaderamente integral — que no solo responde, sino que agenda, reactiva, vende y reporta, todo desde un solo sistema conectado.</p>
     <div class="problem-grid">
       <div class="problem-card fade-up card-shine" style="border-color:rgba(181,0,94,.35)">
-        <span class="prob-icon">🏆</span>
+        <span class="prob-icon">🌐</span>
         <div class="prob-num" style="font-size:24px">1eros</div>
-        <h3 id="prob1-h3">Primeros en Colombia</h3>
-        <p id="prob1-p">Somos la primera empresa en Colombia en integrar IA conversacional, automatización de ventas y construcción de marca en un solo sistema. No imitamos — innovamos.</p>
+        <h3 id="prob1-h3">Primeros en IA integral</h3>
+        <p id="prob1-p">No somos una herramienta de respuestas automáticas. Somos la primera plataforma que integra en un solo sistema: IA conversacional + agenda real + reactivación de clientes + construcción de marca. Nadie más lo hace todo junto.</p>
       </div>
       <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.3)">
         <span class="prob-icon">🔗</span>
         <div class="prob-num" style="font-size:24px">Todo</div>
-        <h3 id="prob2-h3">Sistema integrado completo</h3>
-        <p id="prob2-p">WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado en un sistema. Sofia trabaja en todos tus canales mientras tú construyes tu negocio.</p>
+        <h3 id="prob2-h3">Todos tus canales, un sistema</h3>
+        <p id="prob2-p">WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado. Sofia trabaja en todos tus canales simultáneamente, 24/7, mientras tú construyes tu negocio.</p>
       </div>
       <div class="problem-card fade-up card-shine" style="border-color:rgba(37,211,102,.25)">
         <span class="prob-icon">📈</span>
@@ -1109,13 +1731,54 @@
         <p id="prob3-p">La mayoría de nuestros clientes recupera el costo del sistema en los primeros 30 días. Medimos, reportamos y ajustamos cada mes con Andres, el Fundador.</p>
       </div>
     </div>
+
+    <!-- Sofia vs Chatbots genéricos -->
+    <div class="vs-wrap fade-up">
+      <!-- Columna: Chatbot genérico -->
+      <div class="vs-col vs-col-generic">
+        <div class="vs-col-hdr">
+          <span class="vs-col-hdr-icon">🤖</span>
+          <span class="vs-col-hdr-name" id="vs-col1-title">Chatbot genérico</span>
+        </div>
+        <div class="vs-rows">
+          <div class="vs-row"><span class="vs-check vs-yes">✓</span><span id="vs-f1">Responde preguntas simples</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f2">Agenda citas automáticamente</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f3">Reactiva clientes inactivos</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f4">WhatsApp + Instagram + llamadas</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f5">Integración real con tu agenda</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f6">Seguimiento post-cita/venta</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f7">Entrenada en tu negocio específico</span></div>
+          <div class="vs-row"><span class="vs-check vs-no">✗</span><span id="vs-f8">Reporte mensual con el fundador</span></div>
+        </div>
+      </div>
+      <!-- Columna: Sofia -->
+      <div class="vs-col vs-col-sofia">
+        <div class="vs-col-hdr">
+          <span class="vs-col-hdr-icon">⚡</span>
+          <span class="vs-col-hdr-name" id="vs-col2-title">Sofia — AJ Business Advisory</span>
+        </div>
+        <div class="vs-rows">
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s1">Responde preguntas simples</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s2">Agenda citas automáticamente</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s3">Reactiva clientes inactivos</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s4">WhatsApp + Instagram + llamadas</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s5">Integración real con tu agenda</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s6">Seguimiento post-cita/venta</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s7">Entrenada en tu negocio específico</span></div>
+          <div class="vs-row vs-row-highlight"><span class="vs-check vs-yes">✓</span><span id="vs-s8">Reporte mensual con el fundador</span></div>
+        </div>
+      </div>
+    </div>
+    <!-- CTA bajo el comparativo -->
+    <p style="text-align:center;margin-top:22px;font-size:13px;color:var(--muted);max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7" id="vs-cta-sub">No es solo tecnología ni integración — es <strong style="color:var(--pink)">unificación al servicio de tu marca</strong>. Sofia no solo conecta tus canales: construye y consolida tu imagen de marca desde el primer contacto con cada cliente.</p>
+
   </div>
 </section>
 
 <!-- ROI CALCULATOR -->
 <section class="section" id="calculadora">
   <div class="section-inner">
-    <h2 class="section-title fade-up" id="roi-title">Calcula cuánto estás perdiendo al mes</h2>
+    <h2 class="section-title fade-up" id="roi-title">Calcula cuánto estás <span class="grad-text">perdiendo al mes</span></h2>
     <p class="section-sub fade-up" id="roi-sub">Pon tus números reales. El resultado te va a sorprender.</p>
     <div class="roi-wrap fade-up">
       <div class="roi-steps">
@@ -1128,6 +1791,7 @@
             <button class="roi-pill"        data-industry="restaurant"  onclick="roiSetIndustry(this)">🍽️ Restaurante</button>
             <button class="roi-pill"        data-industry="smb"         onclick="roiSetIndustry(this)">🏢 PYME</button>
             <button class="roi-pill"        data-industry="fitness"     onclick="roiSetIndustry(this)">💪 Fitness</button>
+            <button class="roi-pill"        data-industry="other"       onclick="roiSetIndustry(this)">🏪 Otro negocio</button>
           </div>
         </div>
         <!-- Step 2: Missed per week -->
@@ -1154,8 +1818,9 @@
 
 <!-- INDUSTRY TABS -->
 <section class="section section-dark" id="industrias">
+  <div class="section-grid-bg"></div>
   <div class="section-inner">
-    <h2 class="section-title fade-up" id="ind-title">Cada negocio tiene una fuga diferente. Ya la conocemos.</h2>
+    <h2 class="section-title fade-up" id="ind-title">Cada negocio tiene una <span class="grad-text">fuga diferente</span>. Ya la conocemos.</h2>
     <p class="section-sub fade-up" id="ind-sub">Selecciona tu industria y ve exactamente cómo lo resolvemos.</p>
     <div class="tab-bar">
       <button class="tab-btn active" onclick="setTab('clinic',this)"     id="tab-clinic">🦷 Clínicas</button>
@@ -1173,12 +1838,47 @@
         <p id="clinic-p">Citas sin confirmar, agenda con huecos, pacientes que no responden. Sofia confirma cada cita automáticamente, reactiva pacientes dormidos y llena los espacios vacíos — sin que tu equipo haga nada.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="clinic-cta">Ver demo para mi clínica →</a>
       </div>
-      <div class="wa-mock card-shine">
-        <div class="wa-header"><div class="wa-avatar">🦷</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Consultorio</div><div class="wa-header-status" id="wa-status">en línea</div></div></div>
-        <div class="wa-body">
-          <div class="wa-in" id="wa-clinic-1">Hola! Tienes una cita mañana a las 10am con la Dra. López. ¿La confirmamos? 😊</div>
-          <div class="wa-out" id="wa-clinic-2">Sí, confirmo</div>
-          <div class="wa-in" id="wa-clinic-3">¡Perfecto! Te recuerdo 2 horas antes. ¿Necesitas cambiar algo?<span class="wa-time">⚡ 3 seg</span></div>
+      <div class="mock-carousel" data-carousel="clinic">
+        <!-- Slide 1: WhatsApp -->
+        <div class="mock-slide active">
+          <div class="wa-mock card-shine">
+            <div class="wa-header"><div class="wa-avatar">🦷</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Consultorio</div><div class="wa-header-status" id="wa-status">en línea</div></div></div>
+            <div class="wa-body">
+              <div class="wa-in" id="wa-clinic-1">Hola! Tienes una cita mañana a las 10am con la Dra. López. ¿La confirmamos? 😊</div>
+              <div class="wa-out" id="wa-clinic-2">Sí, confirmo</div>
+              <div class="wa-in" id="wa-clinic-3">¡Perfecto! Te recuerdo 2 horas antes. ¿Necesitas cambiar algo?<span class="wa-time">⚡ 3 seg</span></div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2: Calendar -->
+        <div class="mock-slide">
+          <div class="cal-mock card-shine">
+            <div class="cal-mock-hdr"><span class="cal-mock-icon">📅</span><span class="cal-mock-title">Mi Agenda — Sofia</span></div>
+            <div class="cal-mock-body">
+              <div class="cal-event-block">
+                <span class="cal-event-check">✅</span>
+                <div><div class="cal-event-title">Cita programada</div><div class="cal-event-detail">Consulta médica · Dra. López · Mañana 10:00am</div><div class="cal-event-conf">🤖 Confirmado por Sofia</div></div>
+              </div>
+              <div class="cal-mock-footer">Agendado automáticamente por Sofia · AJ Business Advisory</div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3: Reminder -->
+        <div class="mock-slide">
+          <div class="notif-mock card-shine">
+            <div class="notif-mock-hdr"><span class="notif-app-name">💬 Sofia · Consultorio</span><span class="notif-time-lbl">ahora</span></div>
+            <div class="notif-mock-body">
+              <div class="notif-title">🔔 Recuerda tu revisión médica</div>
+              <div class="notif-text">Han pasado 3 meses desde tu última cita con la Dra. López. ¡Es momento de tu revisión de rutina! 🩺</div>
+              <div class="notif-actions"><button class="notif-btn notif-btn-yes">Sí, agendar →</button><button class="notif-btn notif-btn-later">Después</button></div>
+            </div>
+          </div>
+        </div>
+        <!-- Nav -->
+        <div class="mock-nav">
+          <button class="mock-arrow" data-dir="prev">‹</button>
+          <div class="mock-dots"><span class="mock-dot active"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+          <button class="mock-arrow" data-dir="next">›</button>
         </div>
       </div>
     </div>
@@ -1189,12 +1889,43 @@
         <p id="salon-p">Clientes que reservan y no llegan, agenda con huecos de última hora. Sofia envía recordatorios por WhatsApp, confirma automáticamente y reactiva clientes que no han regresado en 30+ días.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="salon-cta">Ver demo para mi salón →</a>
       </div>
-      <div class="wa-mock card-shine">
-        <div class="wa-header"><div class="wa-avatar">💇</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Salón</div><div class="wa-header-status" id="wa-status2">en línea</div></div></div>
-        <div class="wa-body">
-          <div class="wa-in" id="wa-salon-1">¡Hola! Llevas 6 semanas sin visitarnos. Tenemos disponibilidad este sábado 🙌 ¿Te agendo?</div>
-          <div class="wa-out" id="wa-salon-2">Sí quiero a las 3pm</div>
-          <div class="wa-in" id="wa-salon-3">¡Listo! Cita agendada el sábado a las 3pm. Te recuerdo el viernes. 💈<span class="wa-time">⚡ 4 seg</span></div>
+      <div class="mock-carousel" data-carousel="salon">
+        <div class="mock-slide active">
+          <div class="wa-mock card-shine">
+            <div class="wa-header"><div class="wa-avatar">💇</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Salón</div><div class="wa-header-status" id="wa-status2">en línea</div></div></div>
+            <div class="wa-body">
+              <div class="wa-in" id="wa-salon-1">¡Hola! Llevas 6 semanas sin visitarnos. Tenemos disponibilidad este sábado 🙌 ¿Te agendo?</div>
+              <div class="wa-out" id="wa-salon-2">Sí quiero a las 3pm</div>
+              <div class="wa-in" id="wa-salon-3">¡Listo! Cita agendada el sábado a las 3pm. Te recuerdo el viernes. 💈<span class="wa-time">⚡ 4 seg</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="cal-mock card-shine">
+            <div class="cal-mock-hdr"><span class="cal-mock-icon">📅</span><span class="cal-mock-title">Mi Agenda — Sofia</span></div>
+            <div class="cal-mock-body">
+              <div class="cal-event-block">
+                <span class="cal-event-check">✅</span>
+                <div><div class="cal-event-title">Cita programada</div><div class="cal-event-detail">Corte & Color · Estilista Ana · Sábado 3:00pm</div><div class="cal-event-conf">🤖 Confirmado por Sofia</div></div>
+              </div>
+              <div class="cal-mock-footer">Agendado automáticamente por Sofia · AJ Business Advisory</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="notif-mock card-shine">
+            <div class="notif-mock-hdr"><span class="notif-app-name">💬 Sofia · Salón</span><span class="notif-time-lbl">ahora</span></div>
+            <div class="notif-mock-body">
+              <div class="notif-title">🔔 ¡Tu look te espera!</div>
+              <div class="notif-text">Llevas 6 semanas sin visitarnos. ¡Tenemos el turno perfecto para renovar tu estilo! 💈✨</div>
+              <div class="notif-actions"><button class="notif-btn notif-btn-yes">Sí, agendar →</button><button class="notif-btn notif-btn-later">Después</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <button class="mock-arrow" data-dir="prev">‹</button>
+          <div class="mock-dots"><span class="mock-dot active"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+          <button class="mock-arrow" data-dir="next">›</button>
         </div>
       </div>
     </div>
@@ -1205,12 +1936,43 @@
         <p id="rest-p">Llamadas perdidas en horas pico, reservas que no llegan. Sofia toma reservas por WhatsApp e Instagram a cualquier hora, confirma automáticamente y reduce no-shows con recordatorios el día antes.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="rest-cta">Ver demo para mi restaurante →</a>
       </div>
-      <div class="wa-mock card-shine">
-        <div class="wa-header"><div class="wa-avatar">🍽️</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Restaurante</div><div class="wa-header-status" id="wa-status3">en línea</div></div></div>
-        <div class="wa-body">
-          <div class="wa-in" id="wa-rest-1">¡Hola! Claro que sí. ¿Para cuántas personas y a qué hora el viernes?</div>
-          <div class="wa-out" id="wa-rest-2">Para 4, a las 8pm</div>
-          <div class="wa-in" id="wa-rest-3">¡Reserva confirmada! Mesa para 4 el viernes a las 8pm. Te envío recordatorio mañana 🎉<span class="wa-time">⚡ 3 seg</span></div>
+      <div class="mock-carousel" data-carousel="restaurant">
+        <div class="mock-slide active">
+          <div class="wa-mock card-shine">
+            <div class="wa-header"><div class="wa-avatar">🍽️</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Restaurante</div><div class="wa-header-status" id="wa-status3">en línea</div></div></div>
+            <div class="wa-body">
+              <div class="wa-in" id="wa-rest-1">¡Hola! Claro que sí. ¿Para cuántas personas y a qué hora el viernes?</div>
+              <div class="wa-out" id="wa-rest-2">Para 4, a las 8pm</div>
+              <div class="wa-in" id="wa-rest-3">¡Reserva confirmada! Mesa para 4 el viernes a las 8pm. Te envío recordatorio mañana 🎉<span class="wa-time">⚡ 3 seg</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="cal-mock card-shine">
+            <div class="cal-mock-hdr"><span class="cal-mock-icon">📅</span><span class="cal-mock-title">Mi Agenda — Sofia</span></div>
+            <div class="cal-mock-body">
+              <div class="cal-event-block">
+                <span class="cal-event-check">✅</span>
+                <div><div class="cal-event-title">Cita programada</div><div class="cal-event-detail">Reserva para 4 · Mesa VIP · Viernes 8:00pm</div><div class="cal-event-conf">🤖 Confirmado por Sofia</div></div>
+              </div>
+              <div class="cal-mock-footer">Agendado automáticamente por Sofia · AJ Business Advisory</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="notif-mock card-shine">
+            <div class="notif-mock-hdr"><span class="notif-app-name">💬 Sofia · Restaurante</span><span class="notif-time-lbl">ahora</span></div>
+            <div class="notif-mock-body">
+              <div class="notif-title">🔔 ¡Vuelve a visitarnos!</div>
+              <div class="notif-text">Ha pasado un mes desde tu última reserva. ¿Te reservamos tu mesa favorita para esta semana? 🍷</div>
+              <div class="notif-actions"><button class="notif-btn notif-btn-yes">Sí, reservar →</button><button class="notif-btn notif-btn-later">Después</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <button class="mock-arrow" data-dir="prev">‹</button>
+          <div class="mock-dots"><span class="mock-dot active"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+          <button class="mock-arrow" data-dir="next">›</button>
         </div>
       </div>
     </div>
@@ -1221,12 +1983,43 @@
         <p id="smb-p">Leads que preguntan por Instagram y desaparecen, WhatsApps sin responder, cotizaciones que nunca se cierran. Sofia responde en segundos, califica al lead y agenda una llamada con tu equipo.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="smb-cta">Ver demo para mi negocio →</a>
       </div>
-      <div class="wa-mock card-shine">
-        <div class="wa-header"><div class="wa-avatar">🏢</div><div class="wa-header-text"><div class="wa-header-name">Sofia — PYME</div><div class="wa-header-status">en línea</div></div></div>
-        <div class="wa-body">
-          <div class="wa-in">¡Hola! Vi que preguntaste por nuestros servicios. ¿Te cuento más o prefieres una cotización directa?</div>
-          <div class="wa-out">Una cotización por favor</div>
-          <div class="wa-in">Perfecto, te la preparo. ¿Cuándo te queda bien una llamada de 15 min?<span class="wa-time">⚡ 3 seg</span></div>
+      <div class="mock-carousel" data-carousel="smb">
+        <div class="mock-slide active">
+          <div class="wa-mock card-shine">
+            <div class="wa-header"><div class="wa-avatar">🏢</div><div class="wa-header-text"><div class="wa-header-name">Sofia — PYME</div><div class="wa-header-status">en línea</div></div></div>
+            <div class="wa-body">
+              <div class="wa-in">¡Hola! Vi que preguntaste por nuestros servicios. ¿Te cuento más o prefieres una cotización directa?</div>
+              <div class="wa-out">Una cotización por favor</div>
+              <div class="wa-in">Perfecto, te la preparo. ¿Cuándo te queda bien una llamada de 15 min?<span class="wa-time">⚡ 3 seg</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="cal-mock card-shine">
+            <div class="cal-mock-hdr"><span class="cal-mock-icon">📅</span><span class="cal-mock-title">Mi Agenda — Sofia</span></div>
+            <div class="cal-mock-body">
+              <div class="cal-event-block">
+                <span class="cal-event-check">✅</span>
+                <div><div class="cal-event-title">Cita programada</div><div class="cal-event-detail">Llamada de consultoría · Lunes 3:00pm</div><div class="cal-event-conf">🤖 Confirmado por Sofia</div></div>
+              </div>
+              <div class="cal-mock-footer">Agendado automáticamente por Sofia · AJ Business Advisory</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="notif-mock card-shine">
+            <div class="notif-mock-hdr"><span class="notif-app-name">💬 Sofia · Tu Negocio</span><span class="notif-time-lbl">ahora</span></div>
+            <div class="notif-mock-body">
+              <div class="notif-title">🔔 Tu cotización te espera</div>
+              <div class="notif-text">Hace 7 días pediste información sobre nuestros servicios. ¿Seguimos adelante con tu proyecto? 🚀</div>
+              <div class="notif-actions"><button class="notif-btn notif-btn-yes">Sí, continuar →</button><button class="notif-btn notif-btn-later">Después</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <button class="mock-arrow" data-dir="prev">‹</button>
+          <div class="mock-dots"><span class="mock-dot active"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+          <button class="mock-arrow" data-dir="next">›</button>
         </div>
       </div>
     </div>
@@ -1237,12 +2030,43 @@
         <p id="any-p">Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema para ti. Empieza con la consultoría gratuita y te decimos exactamente cuánto puedes recuperar.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="any-cta">Ver qué puedo recuperar →</a>
       </div>
-      <div class="wa-mock card-shine">
-        <div class="wa-header"><div class="wa-avatar">📱</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Tu negocio</div><div class="wa-header-status">en línea</div></div></div>
-        <div class="wa-body">
-          <div class="wa-in">¡Hola! Soy Sofia, asistente de [Tu Negocio]. ¿En qué te puedo ayudar hoy?</div>
-          <div class="wa-out">Quiero saber precios</div>
-          <div class="wa-in">Con gusto. ¿Me cuentas qué necesitas exactamente y te armo una cotización al instante?<span class="wa-time">⚡ 2 seg</span></div>
+      <div class="mock-carousel" data-carousel="any">
+        <div class="mock-slide active">
+          <div class="wa-mock card-shine">
+            <div class="wa-header"><div class="wa-avatar">📱</div><div class="wa-header-text"><div class="wa-header-name">Sofia — Tu negocio</div><div class="wa-header-status">en línea</div></div></div>
+            <div class="wa-body">
+              <div class="wa-in">¡Hola! Soy Sofia, asistente de [Tu Negocio]. ¿En qué te puedo ayudar hoy?</div>
+              <div class="wa-out">Quiero saber precios</div>
+              <div class="wa-in">Con gusto. ¿Me cuentas qué necesitas exactamente y te armo una cotización al instante?<span class="wa-time">⚡ 2 seg</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="cal-mock card-shine">
+            <div class="cal-mock-hdr"><span class="cal-mock-icon">📅</span><span class="cal-mock-title">Mi Agenda — Sofia</span></div>
+            <div class="cal-mock-body">
+              <div class="cal-event-block">
+                <span class="cal-event-check">✅</span>
+                <div><div class="cal-event-title">Cita programada</div><div class="cal-event-detail">Servicio confirmado · Mañana 11:00am</div><div class="cal-event-conf">🤖 Confirmado por Sofia</div></div>
+              </div>
+              <div class="cal-mock-footer">Agendado automáticamente por Sofia · AJ Business Advisory</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="notif-mock card-shine">
+            <div class="notif-mock-hdr"><span class="notif-app-name">💬 Sofia · Tu Negocio</span><span class="notif-time-lbl">ahora</span></div>
+            <div class="notif-mock-body">
+              <div class="notif-title">🔔 ¡Te esperamos!</div>
+              <div class="notif-text">Hace un tiempo no sabemos de ti. ¿En qué podemos ayudarte hoy? Sofia está lista para atenderte 24/7. 😊</div>
+              <div class="notif-actions"><button class="notif-btn notif-btn-yes">Sí, necesito ayuda →</button><button class="notif-btn notif-btn-later">Después</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <button class="mock-arrow" data-dir="prev">‹</button>
+          <div class="mock-dots"><span class="mock-dot active"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+          <button class="mock-arrow" data-dir="next">›</button>
         </div>
       </div>
     </div>
@@ -1253,15 +2077,173 @@
         <p id="fit-p">Clientes que preguntan horarios y precios y nunca regresan. Sofia hace el seguimiento automático, agenda clases de prueba y reactiva a quienes dejaron de venir — sin que tu equipo levante un dedo.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="fit-cta">Ver cuántos clientes recupero →</a>
       </div>
-      <div class="wa-mock card-shine">
-        <div class="wa-header"><div class="wa-avatar">💪</div><div class="wa-header-text"><div class="wa-header-name">Sofia — FitZone</div><div class="wa-header-status">en línea</div></div></div>
-        <div class="wa-body">
-          <div class="wa-out">Hola, ¿cuánto vale la membresía?</div>
-          <div class="wa-in">¡Hola! Tenemos 3 planes desde $89.000/mes 🏋️. ¿Quieres que te cuente qué incluye cada uno y agendamos una clase de prueba gratuita?<span class="wa-time">⚡ 3 seg</span></div>
-          <div class="wa-out">Sí, me interesa la clase de prueba</div>
-          <div class="wa-in">Perfecto. ¿Mañana a las 7am o 6pm te queda bien? Te reservo el cupo ahora mismo 🔥</div>
+      <div class="mock-carousel" data-carousel="fitness">
+        <div class="mock-slide active">
+          <div class="wa-mock card-shine">
+            <div class="wa-header"><div class="wa-avatar">💪</div><div class="wa-header-text"><div class="wa-header-name">Sofia — FitZone</div><div class="wa-header-status">en línea</div></div></div>
+            <div class="wa-body">
+              <div class="wa-out">Hola, ¿cuánto vale la membresía?</div>
+              <div class="wa-in">¡Hola! Tenemos 3 planes desde $89.000/mes 🏋️. ¿Quieres que te cuente qué incluye cada uno y agendamos una clase de prueba gratuita?<span class="wa-time">⚡ 3 seg</span></div>
+              <div class="wa-out">Sí, me interesa la clase de prueba</div>
+              <div class="wa-in">Perfecto. ¿Mañana a las 7am o 6pm te queda bien? Te reservo el cupo ahora mismo 🔥</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="cal-mock card-shine">
+            <div class="cal-mock-hdr"><span class="cal-mock-icon">📅</span><span class="cal-mock-title">Mi Agenda — Sofia</span></div>
+            <div class="cal-mock-body">
+              <div class="cal-event-block">
+                <span class="cal-event-check">✅</span>
+                <div><div class="cal-event-title">Cita programada</div><div class="cal-event-detail">Clase de prueba · FitZone · Mañana 7:00am</div><div class="cal-event-conf">🤖 Confirmado por Sofia</div></div>
+              </div>
+              <div class="cal-mock-footer">Agendado automáticamente por Sofia · AJ Business Advisory</div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-slide">
+          <div class="notif-mock card-shine">
+            <div class="notif-mock-hdr"><span class="notif-app-name">💬 Sofia · FitZone</span><span class="notif-time-lbl">ahora</span></div>
+            <div class="notif-mock-body">
+              <div class="notif-title">🔔 ¡Tu cuerpo te llama!</div>
+              <div class="notif-text">Llevas 2 semanas sin entrenar. ¿Retomamos tu rutina esta semana? ¡Reservamos tu cupo ahora! 🏋️🔥</div>
+              <div class="notif-actions"><button class="notif-btn notif-btn-yes">Sí, volver →</button><button class="notif-btn notif-btn-later">Después</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-nav">
+          <button class="mock-arrow" data-dir="prev">‹</button>
+          <div class="mock-dots"><span class="mock-dot active"></span><span class="mock-dot"></span><span class="mock-dot"></span></div>
+          <button class="mock-arrow" data-dir="next">›</button>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING — sigue directamente a la selección de industria -->
+<section class="section section-dark prices-locked" id="precios">
+  <div class="section-grid-bg"></div>
+  <div class="section-inner" style="max-width:1460px">
+    <h2 class="section-title fade-up" id="pri-title"><span class="grad-text">Precio de inversión</span> para tu <span id="pri-industry-label">negocio</span>, no de costo.</h2>
+    <p class="section-sub fade-up" id="pri-sub">Selecciona el plan que mejor se ajusta a tu negocio y agenda tu consultoría gratuita.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card featured fade-up">
+        <div class="feat-badge" id="feat-badge">MÁS POPULAR</div>
+        <span class="pc-icon">📅</span>
+        <h3 id="p1-name">Appointment Recovery System</h3>
+        <p class="pc-niche" id="p1-niche">Clínicas, consultorios, spas, barberías</p>
+        <div class="pc-divider"></div>
+        <div class="pc-setup-lbl" id="setup-lbl">Setup único</div>
+        <div class="pc-setup-price" id="p1-setup">$1.800.000 COP</div>
+        <div class="pc-mo-lbl" id="mo-lbl">Mensual</div>
+        <div class="pc-mo-price" id="p1-mo">$950.000 <span>COP/mes</span></div>
+        <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
+        <ul class="pc-features">
+          <li id="p1f1">Sofia WhatsApp 24/7 — responde, agenda y confirma citas</li>
+          <li id="p1f2">Recordatorios automáticos (reduce no-shows)</li>
+          <li id="p1f3">Reactivación de clientes dormidos</li>
+          <li id="p1f4">Integración con tu agenda actual</li>
+          <li id="p1f5">Reporte mensual de ingresos recuperados</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta1">Agendar Consultoría →</a>
+      </div>
+      <div class="pricing-card fade-up card-shine">
+        <div class="feat-badge" style="background:linear-gradient(135deg,#1a6b3a,#27a85c)">🚀 <span id="content-badge">CONTENIDO</span></div>
+        <span class="pc-icon">📸</span>
+        <h3 id="p2-name">Instagram Growth + ManyChat</h3>
+        <p class="pc-niche" id="p2-niche">Para crecer en Instagram y convertir seguidores</p>
+        <div class="pc-divider"></div>
+        <div class="pc-setup-lbl" id="setup-lbl2">Setup único</div>
+        <div class="pc-setup-price" id="p2-setup">$500.000 COP</div>
+        <div class="pc-mo-lbl" id="mo-lbl2">Mensual</div>
+        <div class="pc-mo-price" id="p2-mo">$1.500.000 <span>COP/mes</span></div>
+        <div id="p2-founding" style="margin:4px 0 14px;font-size:11px;color:#27a85c;font-weight:600;">Precios Founding Members disponibles — cupos limitados, consultar.</div>
+        <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
+        <ul class="pc-features">
+          <li id="p2f1">4 Reels mensuales con enfoque comercial</li>
+          <li id="p2f2">20 Carruseles educativos y de venta</li>
+          <li id="p2f3">Comentarios → DM → cita automática</li>
+          <li id="p2f4">Producción semanal en tu negocio</li>
+          <li id="p2f5">Reporte mensual de crecimiento</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta2">Agendar Consultoría →</a>
+      </div>
+      <div class="pricing-card fade-up card-shine">
+        <span class="pc-icon">🏢</span>
+        <h3 id="p3-name">SMB Digital Presence System</h3>
+        <p class="pc-niche" id="p3-niche">PYMES y comercio local</p>
+        <div class="pc-divider"></div>
+        <div class="pc-setup-lbl" id="setup-lbl3">Setup único</div>
+        <div class="pc-setup-price" id="p3-setup">$1.200.000 COP</div>
+        <div class="pc-mo-lbl" id="mo-lbl3">Mensual</div>
+        <div class="pc-mo-price" id="p3-mo">$750.000 <span>COP/mes</span></div>
+        <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
+        <ul class="pc-features">
+          <li id="p3f1">Web profesional con SEO local</li>
+          <li id="p3f2">Sofia WhatsApp 24/7</li>
+          <li id="p3f3">Automatización comentarios a DM</li>
+          <li id="p3f4">Seguimiento automático de leads</li>
+          <li id="p3f5">Reporte mensual de métricas</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta3">Agendar Consultoría →</a>
+      </div>
+      <div class="pricing-card fade-up card-shine">
+        <span class="pc-icon">💤</span>
+        <h3 id="p4-name">Dormant Client Reactivation</h3>
+        <p class="pc-niche" id="p4-niche">Clientes inactivos en tu base de datos</p>
+        <div class="pc-divider"></div>
+        <div class="pc-setup-lbl" id="setup-lbl4">Setup único</div>
+        <div class="pc-setup-price" id="p4-setup">$900.000 COP</div>
+        <div class="pc-mo-lbl" id="mo-lbl4">Mensual</div>
+        <div class="pc-mo-price" id="p4-mo">$390.000 <span>COP/mes</span></div>
+        <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
+        <ul class="pc-features">
+          <li id="p4f1">Campañas de reactivación por WhatsApp</li>
+          <li id="p4f2">Segmentación por última visita</li>
+          <li id="p4f3">Mensajes personalizados automáticos</li>
+          <li id="p4f4">Medición de clientes reactivados</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta4">Agendar Consultoría →</a>
+      </div>
+      <div class="pricing-card fade-up card-shine">
+        <span class="pc-icon">⭐</span>
+        <h3 id="p5-name">Google Reputation Compounding</h3>
+        <p class="pc-niche" id="p5-niche">Cualquier negocio local</p>
+        <div class="pc-divider"></div>
+        <div class="pc-setup-lbl" id="setup-lbl5">Setup único</div>
+        <div class="pc-setup-price" id="p5-setup">$500.000 COP</div>
+        <div class="pc-mo-lbl" id="mo-lbl5">Mensual</div>
+        <div class="pc-mo-price" id="p5-mo">$250.000 <span>COP/mes</span></div>
+        <div id="p5-addon-wrap" style="margin:4px 0 14px;padding:10px 14px;border-radius:10px;background:rgba(255,212,0,0.07);border:1px solid rgba(255,212,0,0.25);">
+          <div style="font-size:10px;font-weight:700;color:#ffd400;letter-spacing:0.8px;margin-bottom:4px;" id="p5-addon-label">💡 AGREGA A CUALQUIER PLAN ACTIVO</div>
+          <div id="p5-addon-price" style="font-size:13px;color:#f5f5f5;">$150.000<span style="color:#888;font-size:11px;">/mes</span> + $300.000 setup</div>
+          <div id="p5-addon-save" style="font-size:11px;color:#888;margin-top:2px;">Ahorra $100.000/mes vs. contratarlo solo</div>
+        </div>
+        <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
+        <ul class="pc-features">
+          <li id="p5f1">Automatización de reseñas Google</li>
+          <li id="p5f2">Respuesta automática a reseñas</li>
+          <li id="p5f3">Monitoreo de reputación mensual</li>
+          <li id="p5f4">Posicionamiento en Google Maps</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta5">Agendar Consultoría →</a>
+      </div>
+    </div>
+    <p class="pricing-scroll-hint">← Desliza para ver todos los planes →</p>
+
+    <!-- AUDIT CTA -->
+    <div class="audit-wrap fade-up" id="contacto">
+      <div class="audit-avatar">👤</div>
+      <h3 id="audit-h3">Empieza con una Consultoría gratuita.</h3>
+      <p id="audit-p">Encontramos la fuga antes de que pagues cualquier cosa. Ves el ROI antes de comprometerte.</p>
+      <ul class="audit-list">
+        <li><span class="ck">✓</span> <span id="al1">Calculamos tu fuga mensual en tu moneda</span></li>
+        <li><span class="ck">✓</span> <span id="al2">Ves el ROI antes de comprometerte</span></li>
+        <li><span class="ck">✓</span> <span id="al3">30 minutos — sin pitch, sin presión</span></li>
+      </ul>
+      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px;display:inline-flex" id="audit-cta">Agendar Consultoría Gratuita →</a>
+      <p class="audit-note" id="audit-note">Sin costo. Sin compromiso. Solo claridad.</p>
     </div>
   </div>
 </section>
@@ -1294,11 +2276,10 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="section section-dark" id="precios">
+<!-- PRICING (bloque original — movido arriba, justo después de #industrias) -->
+<section class="section section-dark" id="precios-legacy" style="display:none">
   <div class="section-inner">
-    <h2 class="section-title fade-up" id="pri-title"><span class="grad-text">Precio de inversión</span>, no de costo.</h2>
-    <p class="section-sub fade-up" id="pri-sub">La mayoría recupera el costo mensual en los primeros 30 días.</p>
+    <p style="color:#888;text-align:center">Pricing movido — ver sección #precios</p>
     <div class="pricing-grid">
       <div class="pricing-card featured fade-up">
         <div class="feat-badge" id="feat-badge">MÁS POPULAR</div>
@@ -1397,6 +2378,7 @@
         <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta5">Agendar Consultoría →</a>
       </div>
     </div>
+    <p class="pricing-scroll-hint">← Desliza para ver todos los planes →</p>
 
     <!-- AUDIT CTA -->
     <div class="audit-wrap fade-up" id="contacto">
@@ -1436,7 +2418,7 @@
 <!-- FAQ -->
 <section class="section section-dark" id="faq">
   <div class="section-inner">
-    <h2 class="section-title fade-up" id="faq-title">Preguntas frecuentes</h2>
+    <h2 class="section-title fade-up" id="faq-title">Preguntas <span class="grad-text">frecuentes</span></h2>
     <p class="section-sub fade-up" id="faq-sub">Todo lo que necesitas saber antes de empezar.</p>
     <div class="faq-list">
       <div class="faq-item">
@@ -1497,6 +2479,162 @@
   </div>
 </footer>
 
+<!-- ══════════════════════════════════════════════
+     SOFIA TE LLAMA — Modal formulario (solo versión INTL / no-US)
+     ANDRÉS: conectar onsubmit a Vapi cuando esté listo
+     POST → https://api.vapi.ai/call/phone
+     Body: { assistantId:"TU_ID", phoneNumberId:"TU_PHONE_ID",
+             customer:{ number: telefono, name: nombre } }
+════════════════════════════════════════════════ -->
+<div id="sofia-call-modal" role="dialog" aria-modal="true"
+     aria-labelledby="scmTitle" aria-hidden="true">
+
+  <div class="scm-backdrop" onclick="closeSofiaCall()" aria-hidden="true"></div>
+
+  <div class="scm-panel">
+    <div class="scm-handle" aria-hidden="true"></div>
+    <button class="scm-close" onclick="closeSofiaCall()" aria-label="Cerrar">✕</button>
+
+    <!-- Encabezado -->
+    <div class="scm-header">
+      <div class="scm-icon">📞</div>
+      <div class="scm-title" id="scmTitle">Sofia te llama</div>
+      <p class="scm-sub">Deja tus datos y Sofia te contacta en minutos para mostrarte cómo puede transformar tu negocio. Demo 100% gratis.</p>
+    </div>
+
+    <!-- Formulario -->
+    <form class="scm-form" id="sofiaCallForm" onsubmit="submitSofiaCall(event)" novalidate>
+
+      <input class="scm-input" type="text"  name="nombre"
+             placeholder="Tu nombre completo" required autocomplete="name"/>
+
+      <input class="scm-input" type="tel"   name="telefono"
+             placeholder="Tu número (ej. +57 300 123 4567)" required autocomplete="tel"/>
+
+      <input class="scm-input" type="email" name="correo"
+             placeholder="Tu correo electrónico" required autocomplete="email"/>
+
+      <select class="scm-input scm-select" name="nicho" required>
+        <option value="" disabled selected>🏷️ Tipo de negocio</option>
+        <option value="clinic">🦷 Clínica / Consultorio</option>
+        <option value="salon">💇 Salón / Barbería</option>
+        <option value="restaurant">🍽️ Restaurante</option>
+        <option value="smb">🏢 PYME / Comercio</option>
+        <option value="fitness">💪 Fitness / Gym</option>
+        <option value="other">🏪 Otro negocio</option>
+      </select>
+
+      <button class="scm-submit" type="submit" id="scmSubmitBtn">
+        Quiero que Sofia me llame →
+      </button>
+
+    </form>
+
+    <!-- Estado de confirmación (se muestra tras enviar) -->
+    <div class="scm-confirm" id="scmConfirm">
+      <div class="scm-confirm-icon">✅</div>
+      <div class="scm-confirm-title">¡Listo! Sofia te llamará pronto.</div>
+      <p class="scm-confirm-sub">Revisa tu teléfono — Sofia te contactará en los próximos minutos para mostrarte el demo personalizado de tu negocio.</p>
+    </div>
+
+    <p class="scm-note">Sin costo · Sin compromiso · Solo claridad<br>
+      <!-- ANDRÉS: mientras Vapi no esté conectado, los datos se registran en consola -->
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     BOTÓN FLOTANTE — AJ Business Advisory (inf. izq.)
+════════════════════════════════════════════════ -->
+<div id="aj-float" role="button" tabindex="0"
+     aria-label="Conoce AJ Business Advisory"
+     onclick="openAjModal()"
+     onkeydown="if(event.key==='Enter'||event.key===' ')openAjModal()">
+  <img src="ULTIMO_LOGO_SIN_LUZ.png" alt="" class="aj-float-logo" aria-hidden="true"/>
+  <div class="aj-float-text">
+    <span class="aj-float-name">AJ Business Advisory</span>
+    <span class="aj-float-hint">Conócenos →</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     MODAL — Misión, Visión & Pilares
+════════════════════════════════════════════════ -->
+<div id="aj-info-modal" role="dialog" aria-modal="true"
+     aria-labelledby="ajModalTitle" aria-hidden="true">
+
+  <!-- Backdrop / cierre al hacer clic fuera -->
+  <div class="aj-modal-backdrop" onclick="closeAjModal()" aria-hidden="true"></div>
+
+  <!-- Panel de contenido -->
+  <div class="aj-modal-panel">
+    <div class="aj-modal-handle" aria-hidden="true"></div>
+    <button class="aj-modal-close" onclick="closeAjModal()" aria-label="Cerrar">✕</button>
+
+    <!-- Cabecera con logo -->
+    <div class="aj-modal-logo-wrap">
+      <img src="ULTIMO_LOGO_SIN_LUZ.png" alt="AJ Business Advisory" class="aj-modal-logo"/>
+      <div class="aj-modal-brand" id="ajModalTitle">AJ Business Advisory</div>
+      <div class="aj-modal-tagline">Convertimos negocios en marcas sólidas</div>
+    </div>
+
+    <div class="aj-modal-divider"></div>
+
+    <!-- Misión -->
+    <div class="aj-modal-block">
+      <div class="aj-modal-label">Misión</div>
+      <p class="aj-modal-text">Convertir negocios en marcas sólidas, integrando tecnología, estrategia y automatización inteligente para que cada empresa crezca sin perder un solo cliente.</p>
+    </div>
+
+    <!-- Visión -->
+    <div class="aj-modal-block">
+      <div class="aj-modal-label">Visión</div>
+      <p class="aj-modal-text">Ser el aliado estratégico de las mejores marcas del mundo — construyendo el ecosistema de inteligencia artificial más completo del mercado, para que cada empresa que confía en nosotros opere, crezca y compita al más alto nivel, en cualquier país e idioma.</p>
+    </div>
+
+    <!-- Pilares fundamentales -->
+    <div class="aj-modal-block">
+      <div class="aj-modal-label">Pilares Fundamentales</div>
+      <div class="aj-modal-pillars">
+
+        <div class="aj-modal-pillar">
+          <span class="aj-modal-pillar-icon">🤝</span>
+          <div>
+            <strong>Servicio Transparente</strong>
+            <p>Siempre sabes qué hacemos, por qué lo hacemos y qué resultados puedes esperar.</p>
+          </div>
+        </div>
+
+        <div class="aj-modal-pillar">
+          <span class="aj-modal-pillar-icon">🏆</span>
+          <div>
+            <strong>Marcas</strong>
+            <p>Construimos beneficios reales y medibles para las marcas que confían en nosotros.</p>
+          </div>
+        </div>
+
+        <div class="aj-modal-pillar">
+          <span class="aj-modal-pillar-icon">💡</span>
+          <div>
+            <strong>Ideas Reales</strong>
+            <p>Hacemos reales tus ideas de negocio — tu visión se convierte en estrategia ejecutable.</p>
+          </div>
+        </div>
+
+        <div class="aj-modal-pillar">
+          <span class="aj-modal-pillar-icon">📈</span>
+          <div>
+            <strong>Crecimiento Real</strong>
+            <p>Hacemos reales el crecimiento de tu negocio. No es una promesa — es el resultado.</p>
+          </div>
+        </div>
+
+      </div><!-- /aj-modal-pillars -->
+    </div><!-- /pilares block -->
+
+  </div><!-- /aj-modal-panel -->
+</div><!-- /aj-info-modal -->
+
 <script>
 /* ═══════════════════════════════════════════════════
    TRANSLATIONS
@@ -1505,7 +2643,7 @@ const T = {
   es:{
     pageTitle:'AJ Business Advisory — Convertimos negocios en marcas sólidas',
     'nav-sub':'Marcas Sólidas · Colombia & Global',
-    'nl-met':'Diagnóstico','nl-ind':'Industrias','nl-pri':'Precios','nl-cnt':'Contacto',
+    'nl-met':'Diagnóstico','nl-ind':'Industrias','nl-pri':'Precios','nl-cnt':'Contacto','nl-aj-main':'Nosotros',
     'nav-academia':'🎓 Academia',
     'nav-cta':'Consultoría Gratuita →',
     langBtn:'🇺🇸 EN',
@@ -1516,7 +2654,7 @@ const T = {
     'hero-h1':'Convertimos negocios<br><em class="grad-text">en marcas sólidas.</em>',
     'hero-sub':'Ningún cliente de tu negocio se pierde — ni por WhatsApp, ni por llamada, ni por redes sociales. Sofia le da seguimiento a cada persona de forma automática, en todos los canales, <strong id="hero-range" style="color:#ffd400">mientras tú te enfocas en crecer.</strong>',
     'hero-cta1':'Obtén tu Consultoría Gratuita →','hero-cta2':'Ver cómo funciona',
-    t1:'Primeros en Colombia',t2:'Listo en 5 días hábiles',t3:'Sin contratos forzosos',t4:'Colombia & Global',
+    t1:'Sistema #1 de IA Integrada',t2:'Listo en 5 días hábiles',t3:'Sin contratos forzosos',t4:'Colombia & Global',
     'met-title':'Nos especializamos en detectar lo que está frenando tu negocio',
     'met-sub':'No ofrecemos soluciones genéricas. Primero encontramos el fallo exacto en tu negocio — y te mostramos cuánto te está costando. Luego lo corregimos.',
     'met-h1':'Detectamos las fugas','met-p1':'Analizamos cada punto de contacto de tu negocio: llamadas perdidas, WhatsApp sin respuesta, leads que se enfrían, citas sin confirmar. Encontramos exactamente dónde se van los clientes y el dinero.',
@@ -1524,20 +2662,32 @@ const T = {
     'met-h3':'Fortalecemos tu marca','met-p3':'Cada interacción con Sofia refleja tu marca. Respuestas consistentes, seguimiento profesional y reputación que atrae nuevos clientes — tu marca crece mientras tú duermes.',
     'met-cta':'Quiero mi diagnóstico gratuito →',
     'prob-title':'¿Por qué Sofia marca la diferencia en tu negocio?',
-    'prob-sub':'No somos un chatbot más. Somos la primera empresa en Colombia en integrar IA + marca + automatización en un sistema completo — diseñado para impulsar tu negocio.',
-    'prob1-h3':'Primeros en Colombia',
-    'prob1-p':'Somos la primera empresa en Colombia en integrar IA conversacional, automatización de ventas y construcción de marca en un solo sistema. No imitamos — innovamos.',
-    'prob2-h3':'Sistema integrado completo',
-    'prob2-p':'WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado. Sofia trabaja en todos tus canales mientras tú construyes tu negocio.',
+    'prob-sub':'No somos un chatbot más. Somos los primeros en construir una IA verdaderamente integral — que no solo responde, sino que agenda, reactiva, vende y reporta, todo desde un solo sistema conectado.',
+    'prob-badge':'🌐 IA INTEGRAL — PRIMERA EN SU TIPO',
+    'prob1-h3':'Primeros en IA integral',
+    'prob1-p':'No somos una herramienta de respuestas automáticas. Somos la primera plataforma que integra en un solo sistema: IA conversacional + agenda real + reactivación de clientes + construcción de marca. Nadie más lo hace todo junto.',
+    'prob2-h3':'Todos tus canales, un sistema',
+    'prob2-p':'WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado. Sofia trabaja en todos tus canales simultáneamente, 24/7, mientras tú construyes tu negocio.',
     'prob3-h3':'Resultados en 30 días',
     'prob3-p':'La mayoría de nuestros clientes recupera el costo del sistema en los primeros 30 días. Medimos, reportamos y ajustamos cada mes.',
-    'roi-title':'Calcula cuánto estás perdiendo al mes',
+    'vs-col1-title':'Chatbot genérico',
+    'vs-col2-title':'Sofia — AJ Business Advisory',
+    'vs-f1':'Responde preguntas simples','vs-s1':'Responde preguntas simples',
+    'vs-f2':'Agenda citas automáticamente','vs-s2':'Agenda citas automáticamente',
+    'vs-f3':'Reactiva clientes inactivos','vs-s3':'Reactiva clientes inactivos',
+    'vs-f4':'WhatsApp + Instagram + llamadas','vs-s4':'WhatsApp + Instagram + llamadas',
+    'vs-f5':'Integración real con tu agenda','vs-s5':'Integración real con tu agenda',
+    'vs-f6':'Seguimiento post-cita/venta','vs-s6':'Seguimiento post-cita/venta',
+    'vs-f7':'Entrenada en tu negocio específico','vs-s7':'Entrenada en tu negocio específico',
+    'vs-f8':'Reporte mensual con el fundador','vs-s8':'Reporte mensual con el fundador',
+    'vs-cta-sub':'No es solo tecnología ni integración — es <strong style="color:var(--pink)">unificación al servicio de tu marca</strong>. Sofia no solo conecta tus canales: construye y consolida tu imagen de marca desde el primer contacto con cada cliente.',
+    'roi-title':'Calcula cuánto estás <span class="grad-text">perdiendo al mes</span>',
     'roi-sub':'Pon tus números reales. El resultado te va a sorprender.',
     'roi-lbl1':'1. Tu tipo de negocio','roi-lbl2':'2. Consultas perdidas / semana','roi-lbl3':'3. Valor promedio por cliente',
     'roi-res-label':'Estás perdiendo aproximadamente',
     'roi-res-sub':'al mes — antes de contar el tiempo de tu equipo y el costo de adquisición.',
     'roi-cta':'Quiero recuperar ese dinero →',
-    'ind-title':'Cada negocio tiene una fuga diferente. Ya la conocemos.',
+    'ind-title':'Cada negocio tiene una <span class="grad-text">fuga diferente</span>. Ya la conocemos.',
     'ind-sub':'Selecciona tu industria y ve exactamente cómo lo resolvemos.',
     'tab-clinic':'🦷 Clínicas','tab-salon':'💇 Salones','tab-restaurant':'🍽️ Restaurantes','tab-smb':'🏢 PYMES','tab-fitness':'💪 Fitness','tab-any':'📱 Cualquier negocio',
     'clinic-stat':'📊 Hasta 35% de citas son no-show sin confirmación',
@@ -1579,7 +2729,7 @@ const T = {
     's1-h3':'Consultoría gratuita de ingresos','s1-p':'Analizamos llamadas perdidas, leads fríos y citas sin confirmar. Te decimos exactamente cuánto estás perdiendo — antes de pagar.',
     's2-h3':'Construimos el sistema','s2-p':'IA entrenada en tu negocio: responde WhatsApp, agenda citas, hace seguimiento 24/7. Listo en 5 días hábiles.',
     's3-h3':'Tú te quedas con los ingresos','s3-p':'El sistema corre solo. Reportes mensuales mostrando exactamente qué se recuperó.',
-    'pri-title':'Precio de inversión, no de costo.','pri-sub':'La mayoría recupera el costo en los primeros 30 días.',
+    'pri-title':'<span class="grad-text">Precio de inversión</span> para tu <span id="pri-industry-label">negocio</span>, no de costo.','pri-sub':'Selecciona el plan que mejor se ajusta a tu negocio y agenda tu consultoría gratuita.',
     'feat-badge':'MÁS POPULAR','content-badge':'CONTENIDO',
     'p1-name':'Appointment Recovery System','p1-niche':'Clínicas, consultorios, spas, barberías',
     'p2-name':'Instagram Growth + ManyChat','p2-niche':'Para crecer en Instagram y convertir seguidores',
@@ -1597,7 +2747,7 @@ const T = {
     'audit-h3':'Empieza con una Consultoría gratuita.','audit-p':'Encontramos la fuga antes de pagar. Ves el ROI antes de comprometerte.',
     al1:'Calculamos tu fuga mensual en tu moneda',al2:'Ves el ROI antes de comprometerte',al3:'30 minutos — sin pitch, sin presión',
     'audit-cta':'Agendar Consultoría Gratuita →','audit-note':'Sin costo. Sin compromiso. Solo claridad.',
-    'faq-title':'Preguntas frecuentes','faq-sub':'Todo lo que necesitas saber antes de empezar.',
+    'faq-title':'Preguntas <span class="grad-text">frecuentes</span>','faq-sub':'Todo lo que necesitas saber antes de empezar.',
     'faq1-q':'¿Cuánto tiempo tarda en estar listo?','faq1-a':'El sistema está operativo en 5 días hábiles. El día 1 hacemos la consultoría. Los días 2-4 entrenamos a Sofia. El día 5 va live.',
     'faq2-q':'¿Necesito cambiar mis sistemas actuales?','faq2-a':'No. Sofia se integra con lo que ya usas: Google Calendar, Calendly, tu número de WhatsApp actual y la mayoría de sistemas de citas.',
     'faq3-q':'¿Qué pasa si quiero cancelar?','faq3-a':'Sin permanencia forzosa. Cancelas con 30 días de aviso. Sin penalidades.',
@@ -1608,13 +2758,13 @@ const T = {
     'f-terms':'Términos de Servicio','f-privacy':'Política de Privacidad','f-cta':'Agendar Consultoría','f-rights':'Todos los derechos reservados.',
     'ck-text':'Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestra <a href="/privacy">Política de Privacidad</a>.',
     'ck-decline':'Rechazar','ck-accept':'Aceptar',
-    roiIndustryLabels:{clinic:'🦷 Clínica',salon:'💇 Salón',restaurant:'🍽️ Restaurante',smb:'🏢 PYME',fitness:'💪 Fitness'},
+    roiIndustryLabels:{clinic:'🦷 Clínica',salon:'💇 Salón',restaurant:'🍽️ Restaurante',smb:'🏢 PYME',fitness:'💪 Fitness',other:'🏪 Otro negocio'},
     'setup-lbl':'Setup único','mo-lbl':'Mensual',
   },
   en:{
     pageTitle:'AJ Business Advisory — We Turn Businesses Into Solid Brands',
     'nav-sub':'Solid Brands · Colombia & Global',
-    'nl-met':'Diagnosis','nl-ind':'Industries','nl-pri':'Pricing','nl-cnt':'Contact',
+    'nl-met':'Diagnosis','nl-ind':'Industries','nl-pri':'Pricing','nl-cnt':'Contact','nl-aj-main':'About us',
     'nav-academia':'🎓 Academy',
     'nav-cta':'Free Consultation →',
     langBtn:'🇨🇴 ES',
@@ -1625,7 +2775,7 @@ const T = {
     'hero-h1':'We turn businesses<br><em class="grad-text">into solid brands.</em>',
     'hero-sub':'No client ever slips away — not by WhatsApp, not by call, not by social media. Sofia follows up with every person automatically, across every channel, <strong id="hero-range" style="color:#ffd400">while you focus on growing.</strong>',
     'hero-cta1':'Get Your Free Consultation →','hero-cta2':'See how it works',
-    t1:'First in Colombia',t2:'Live in 5 business days',t3:'No forced long-term contracts',t4:'Colombia & Global',
+    t1:'#1 Integrated AI System',t2:'Live in 5 business days',t3:'No forced long-term contracts',t4:'Colombia & Global',
     'met-title':'We specialize in detecting what\'s holding your business back',
     'met-sub':'We don\'t offer generic solutions. First we find the exact failure in your business — and show you exactly what it\'s costing you. Then we fix it.',
     'met-h1':'We detect the leaks','met-p1':'We analyze every touchpoint in your business: missed calls, unanswered WhatsApp messages, cold leads, unconfirmed appointments. We find exactly where clients and revenue are slipping away.',
@@ -1633,20 +2783,32 @@ const T = {
     'met-h3':'We strengthen your brand','met-p3':'Every interaction with Sofia reflects your brand. Consistent responses, professional follow-up, and a reputation that attracts new clients — your brand grows while you sleep.',
     'met-cta':'I want my free diagnosis →',
     'prob-title':'Why Sofia makes the difference for your business',
-    'prob-sub':'Not just another chatbot. The first company to integrate AI + brand + automation into one complete system — built to grow your business.',
-    'prob1-h3':'#1 Integrated System',
-    'prob1-p':'AJ Business Advisory is the first company to integrate conversational AI, sales automation, and brand-building into a single, complete system. We don\'t copy — we innovate.',
-    'prob2-h3':'Fully Connected, 24/7',
-    'prob2-p':'WhatsApp, calls, Instagram, bookings, and follow-ups — all in one system. Sofia never loses a lead while you focus on growing.',
+    'prob-sub':'Not just another chatbot. We are the first to build a truly integral AI — one that doesn\'t just answer questions, but books, reactivates, sells, and reports, all from one connected system.',
+    'prob-badge':'🌐 INTEGRAL AI — FIRST OF ITS KIND',
+    'prob1-h3':'First Integral AI Platform',
+    'prob1-p':'We\'re not an auto-reply tool. We\'re the first platform that combines in one system: conversational AI + real calendar integration + client reactivation + brand building. Nobody else does all of this together.',
+    'prob2-h3':'All your channels, one system',
+    'prob2-p':'WhatsApp, calls, Instagram, bookings and follow-ups — all connected. Sofia works across every channel simultaneously, 24/7, while you build your business.',
     'prob3-h3':'Results in 30 days',
     'prob3-p':'Most of our clients recover the system cost within the first 30 days. We measure, report, and optimize every month.',
-    'roi-title':'Calculate how much you\'re losing per month',
+    'vs-col1-title':'Generic Chatbot',
+    'vs-col2-title':'Sofia — AJ Business Advisory',
+    'vs-f1':'Answers basic questions','vs-s1':'Answers basic questions',
+    'vs-f2':'Books appointments automatically','vs-s2':'Books appointments automatically',
+    'vs-f3':'Reactivates inactive clients','vs-s3':'Reactivates inactive clients',
+    'vs-f4':'WhatsApp + Instagram + calls','vs-s4':'WhatsApp + Instagram + calls',
+    'vs-f5':'Real calendar integration','vs-s5':'Real calendar integration',
+    'vs-f6':'Post-appointment follow-up','vs-s6':'Post-appointment follow-up',
+    'vs-f7':'Trained on your specific business','vs-s7':'Trained on your specific business',
+    'vs-f8':'Monthly report with the founder','vs-s8':'Monthly report with the founder',
+    'vs-cta-sub':'It\'s not just technology or integration — it\'s <strong style="color:var(--pink)">unification in service of your brand</strong>. Sofia doesn\'t just connect your channels: it builds and consolidates your brand identity from the very first customer interaction.',
+    'roi-title':'Calculate how much you\'re <span class="grad-text">losing per month</span>',
     'roi-sub':'Put in your real numbers. The result will surprise you.',
     'roi-lbl1':'1. Your business type','roi-lbl2':'2. Missed inquiries / week','roi-lbl3':'3. Average customer value',
     'roi-res-label':'You\'re losing approximately',
     'roi-res-sub':'per month — before counting your team\'s time and lead acquisition cost.',
     'roi-cta':'I want to recover that revenue →',
-    'ind-title':'Every business has a different leak. We already know yours.',
+    'ind-title':'Every business has a <span class="grad-text">different leak</span>. We already know yours.',
     'ind-sub':'Select your industry and see exactly how we solve it.',
     'tab-clinic':'🦷 Clinics','tab-salon':'💇 Salons','tab-restaurant':'🍽️ Restaurants','tab-smb':'🏢 SMBs','tab-fitness':'💪 Fitness','tab-any':'📱 Any business',
     'clinic-stat':'📊 Up to 35% of appointments are no-shows without confirmation',
@@ -1688,7 +2850,7 @@ const T = {
     's1-h3':'Free revenue consultation','s1-p':'We analyze missed calls, cold leads, and unconfirmed appointments and tell you exactly how much you\'re losing — before you pay anything.',
     's2-h3':'We build the system','s2-p':'AI trained on your business: answers WhatsApp, books appointments, follows up on leads 24/7. Live in 5 business days.',
     's3-h3':'You keep the revenue','s3-p':'The system runs itself. Monthly reports showing exactly what was recovered.',
-    'pri-title':'Investment price, not a cost.','pri-sub':'Most clients recover the monthly cost within 30 days.',
+    'pri-title':'<span class="grad-text">Investment price</span> for your <span id="pri-industry-label">business</span>, not a cost.','pri-sub':'Select the plan that best fits your business and book your free consultation.',
     'feat-badge':'MOST POPULAR','content-badge':'CONTENT',
     'p1-name':'Appointment Recovery System','p1-niche':'Clinics, practices, spas & barbershops',
     'p2-name':'Instagram Growth + ManyChat','p2-niche':'For any business that wants to grow on Instagram',
@@ -1706,7 +2868,7 @@ const T = {
     'audit-h3':'Start with a free Revenue Consultation.','audit-p':'We find the leak before you pay anything. You see the ROI before committing.',
     al1:'We calculate your monthly leak in your currency',al2:'See ROI before you commit to anything',al3:'30-minute call — no pitch, no pressure',
     'audit-cta':'Book Free Consultation →','audit-note':'No cost. No commitment. Just clarity.',
-    'faq-title':'Frequently asked questions','faq-sub':'Everything you need to know before starting.',
+    'faq-title':'Frequently asked <span class="grad-text">questions</span>','faq-sub':'Everything you need to know before starting.',
     'faq1-q':'How long until it\'s ready?','faq1-a':'The system is live in 5 business days. Day 1: strategy consultation and configuration. Days 2-4: we train Sofia on your business. Day 5: go live.',
     'faq2-q':'Do I need to change my current systems?','faq2-a':'No. Sofia integrates with what you already use: Google Calendar, Calendly, your current WhatsApp number, and most appointment systems.',
     'faq3-q':'What if I want to cancel?','faq3-a':'No forced contracts. Cancel with 30 days notice. No penalties.',
@@ -1717,7 +2879,7 @@ const T = {
     'f-terms':'Terms of Service','f-privacy':'Privacy Policy','f-cta':'Book Audit','f-rights':'All rights reserved.',
     'ck-text':'We use cookies to improve your experience. By continuing, you accept our <a href="/privacy">Privacy Policy</a>.',
     'ck-decline':'Decline','ck-accept':'Accept',
-    roiIndustryLabels:{clinic:'🦷 Clinic',salon:'💇 Salon',restaurant:'🍽️ Restaurant',smb:'🏢 SMB',fitness:'💪 Fitness'},
+    roiIndustryLabels:{clinic:'🦷 Clinic',salon:'💇 Salon',restaurant:'🍽️ Restaurant',smb:'🏢 SMB',fitness:'💪 Fitness',other:'🏪 Other business'},
     'setup-lbl':'One-time setup','mo-lbl':'Monthly',
   }
 };
@@ -1793,10 +2955,13 @@ function applyPrices(){
     document.getElementById('p5-addon-save').textContent  = `Save $${saveMo.toLocaleString(loc)} ${suf}/mo vs. standalone`;
   }
   // problem numbers removed — section now shows brand differentiators, not prices
-  // ROI ticket default
+  // ROI ticket default — siempre actualiza al cambiar moneda
   const ticketDefaults = {COP:200000, USD:80, EUR:75};
   const ticketEl = document.getElementById('roiTicket');
-  if(ticketEl && !ticketEl._userEdited) ticketEl.value = ticketDefaults[c];
+  if(ticketEl){
+    ticketEl.value = ticketDefaults[c] || 80;
+    ticketEl._userEdited = false; // reset para que futuras monedas también actualicen
+  }
   roiCalc();
 }
 
@@ -1865,6 +3030,31 @@ function toggleLang(){
 const SPANISH_COUNTRIES = ['CO','MX','AR','PE','VE','CL','EC','GT','CU','BO','DO','HN','PY','SV','NI','CR','PA','UY','ES'];
 const LATAM = ['CO','MX','AR','PE','VE','CL','EC','GT','CU','BO','DO','HN','PY','SV','NI','CR','PA','UY'];
 
+/* ── WhatsApp numbers por región ──────────────────────
+   Colombia  → número propio de Sofia en Colombia
+   Resto del mundo → número internacional (USA)
+   ANDRÉS: reemplaza WA_CO con el número real de Colombia
+   Formato: código de país SIN + → ej. 573001234567
+──────────────────────────────────────────────────── */
+const WA_NUMBERS = {
+  CO:   '57XXXXXXXXXX',   // ← ANDRÉS: número real Colombia (ej. 573001234567)
+  INTL: '16696662773'     // Internacional / USA — queda permanente
+};
+/* Mensajes pre-cargados por idioma */
+const WA_MSG = {
+  es: 'Hola%2C%20quiero%20conocer%20a%20Sofia%20y%20saber%20c%C3%B3mo%20puede%20ayudar%20a%20mi%20negocio.',
+  en: 'Hi%2C%20I%20want%20to%20meet%20Sofia%20and%20see%20how%20she%20can%20help%20my%20business.'
+};
+/* Actualiza TODOS los links de WhatsApp del sitio según país */
+function updateWaLinks(countryCode){
+  const num = (countryCode === 'CO') ? WA_NUMBERS.CO : WA_NUMBERS.INTL;
+  const msg = (countryCode === 'CO' || SPANISH_COUNTRIES.includes(countryCode))
+              ? WA_MSG.es : WA_MSG.en;
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(function(a){
+    a.href = 'https://wa.me/' + num + '?text=' + msg;
+  });
+}
+
 async function detectLang(){
   const savedLang = localStorage.getItem('aj_lang');
   if(savedLang) return savedLang;
@@ -1924,7 +3114,7 @@ setInterval(updateLoss, 100);
 /* ═══════════════════════════════════════════════════
    ROI CALCULATOR
 ═══════════════════════════════════════════════════ */
-const ROI_MULTIPLIERS = {clinic:0.55, salon:0.45, restaurant:0.4, smb:0.35, fitness:0.5};
+const ROI_MULTIPLIERS = {clinic:0.55, salon:0.45, restaurant:0.4, smb:0.35, fitness:0.5, other:0.42};
 
 function roiSetIndustry(btn){
   document.querySelectorAll('.roi-pill').forEach(p=>p.classList.remove('active'));
@@ -1937,21 +3127,22 @@ function roiCalc(){
   const missed = parseFloat(document.getElementById('roiMissed').value) || 0;
   const ticket = parseFloat(document.getElementById('roiTicket').value) || 0;
   const mult   = ROI_MULTIPLIERS[roiIndustry] || 0.4;
-  // Monthly loss = missed_per_week × 4.3 × ticket × conversion_rate
+  // ticket ya está en la moneda seleccionada → monthly también queda en esa moneda
   const monthly = missed * 4.3 * ticket * mult;
   if(monthly <= 0) return;
   const resultEl = document.getElementById('roiResult');
   const amountEl = document.getElementById('roiAmount');
   resultEl.classList.add('show');
-  // Format
+  // Formatear directamente en la moneda activa (sin conversión adicional)
+  const sym    = SYMBOLS[currentCurrency] || '$';
+  const suf    = SUFFIX[currentCurrency]  || currentCurrency;
+  const locale = LOCALES[currentCurrency] || 'en-US';
   if(currentCurrency === 'COP'){
-    amountEl.textContent = '$' + Math.round(monthly).toLocaleString('es-CO') + ' COP';
-  } else if(currentCurrency === 'MXN'){
-    const mxn = monthly * RATES.MXN / RATES.COP;
-    amountEl.textContent = '$' + Math.round(mxn).toLocaleString('es-MX') + ' MXN';
+    amountEl.textContent = sym + Math.round(monthly).toLocaleString(locale) + ' ' + suf;
   } else {
-    const usd = monthly * RATES.USD;
-    amountEl.textContent = '$' + Math.round(usd).toLocaleString('en-US') + ' USD';
+    // USD, EUR — dos decimales para valores menores a 1000
+    const rounded = Math.round(monthly);
+    amountEl.textContent = sym + rounded.toLocaleString(locale) + ' ' + suf;
   }
   amountEl.classList.add('pulsing');
   setTimeout(()=>amountEl.classList.remove('pulsing'), 800);
@@ -1962,11 +3153,23 @@ document.getElementById('roiTicket').addEventListener('input',function(){this._u
 /* ═══════════════════════════════════════════════════
    INDUSTRY TABS
 ═══════════════════════════════════════════════════ */
+const IND_LABEL = {
+  es:{clinic:'Clínica',salon:'Salón',restaurant:'Restaurante',smb:'PYME',fitness:'Fitness',any:'tu negocio'},
+  en:{clinic:'Clinic',salon:'Salon',restaurant:'Restaurant',smb:'SMB',fitness:'Fitness',any:'your business'}
+};
 function setTab(id, btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   btn.classList.add('active');
   document.getElementById('panel-'+id).classList.add('active');
+  /* Actualiza el nombre del negocio en el título de precios */
+  var lbl = document.getElementById('pri-industry-label');
+  if(lbl){
+    var names = IND_LABEL[currentLang] || IND_LABEL.es;
+    lbl.textContent = names[id] || (currentLang==='en'?'your business':'tu negocio');
+    lbl.style.animation = 'none';
+    requestAnimationFrame(function(){ lbl.style.animation = ''; });
+  }
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2184,11 +3387,29 @@ function _buildCountryList(regionKey){
   el.style.display = '';
 }
 
+/* Guardar selección de región — oculta el loc-bar para siempre */
+function saveLocSelection(){
+  try{ localStorage.setItem('aj_loc_saved','1'); }catch(e){}
+  var bar = document.getElementById('loc-bar');
+  if(!bar) return;
+  bar.style.maxHeight = bar.offsetHeight + 'px';
+  requestAnimationFrame(function(){
+    bar.style.maxHeight = '0';
+    bar.style.opacity   = '0';
+    bar.style.padding   = '0';
+    bar.style.borderBottomWidth = '0';
+  });
+  setTimeout(function(){ bar.style.display = 'none'; }, 460);
+}
+
 function setRegion(regionKey){
   const reg = REGIONS[regionKey];
   const countryEl = document.getElementById('countrySelect');
   if(!regionKey || !reg){ if(countryEl) countryEl.style.display='none'; return; }
   _buildCountryList(regionKey);
+  // Mark region select with has-value for contrast + quitar pulso obligatorio
+  document.getElementById('regionSelect').classList.add('has-value');
+  document.getElementById('loc-bar').classList.add('region-chosen');
   // Apply region defaults (language + currency)
   applyLang(reg.defaultLang);
   setCurrency(reg.defaultCurrency);
@@ -2207,6 +3428,8 @@ function setCountry(countryCode){
   applyLang(country.lang);
   setCurrency(country.currency);
   document.getElementById('currencySelect').value = country.currency;
+  // Mark country select with has-value for contrast
+  document.getElementById('countrySelect').classList.add('has-value');
   window._userCountry = countryCode;
   applyGeoDemo(countryCode);
   try{ localStorage.setItem('aj_currency_manual','1'); }catch(e){}
@@ -2252,6 +3475,8 @@ function applyGeoDemo(country){
   // Switch internal variant
   if(intlDiv) intlDiv.style.display = isUS ? 'none' : '';
   if(usDiv)   usDiv.style.display   = isUS ? ''     : 'none';
+  // ── WhatsApp: Colombia usa número propio, resto del mundo usa número INTL ──
+  updateWaLinks(country);
 }
 
 /* ═══════════════════════════════════════════════════
@@ -2275,16 +3500,22 @@ function applyGeoDemo(country){
   applyLang(lang);
   // Apply geo-based demo section variant
   applyGeoDemo(window._userCountry || '');
+  // Si el usuario ya guardó su selección → ocultar loc-bar directamente
+  if(localStorage.getItem('aj_loc_saved')){
+    const bar = document.getElementById('loc-bar');
+    if(bar) bar.style.display = 'none';
+  }
   // Restore saved region/country UI (returning visitor) OR auto-detect (new visitor)
   const savedRegion = localStorage.getItem('aj_region');
   const savedCountrySel = localStorage.getItem('aj_country_sel');
   if(savedRegion){
     // Rebuild country list without triggering currency/lang changes
     const rEl = document.getElementById('regionSelect');
-    if(rEl){ rEl.value = savedRegion; _buildCountryList(savedRegion); }
+    if(rEl){ rEl.value = savedRegion; _buildCountryList(savedRegion); rEl.classList.add('has-value'); }
+    document.getElementById('loc-bar').classList.add('region-chosen');
     if(savedCountrySel){
       const cEl = document.getElementById('countrySelect');
-      if(cEl) cEl.value = savedCountrySel;
+      if(cEl){ cEl.value = savedCountrySel; cEl.classList.add('has-value'); }
     }
   } else {
     // New visitor — auto-select based on IP geo
@@ -2298,6 +3529,196 @@ function applyGeoDemo(country){
 document.getElementById('currencySelect').addEventListener('change',function(){
   try{localStorage.setItem('aj_currency_manual','1');}catch(e){}
 });
+
+/* ═══════════════════════════════════════════════════
+   HEADER HEIGHT — ajusta padding-top al alto real
+═══════════════════════════════════════════════════ */
+(function(){
+  var hdr = document.getElementById('site-header');
+  if(!hdr) return;
+  function setH(){document.body.style.paddingTop = hdr.offsetHeight + 'px';}
+  setH();
+  new ResizeObserver(setH).observe(hdr);
+})();
+
+/* ═══════════════════════════════════════════════════
+   WATERMARK — oculta en el hero, visible en el resto
+═══════════════════════════════════════════════════ */
+(function(){
+  var wm = document.getElementById('bg-logo-watermark');
+  var hero = document.getElementById('hero');
+  if(!wm || !hero) return;
+  var obs = new IntersectionObserver(function(entries){
+    wm.classList.toggle('wm-hidden', entries[0].isIntersecting);
+  }, {threshold: 0.05});
+  obs.observe(hero);
+})();
+
+/* ═══════════════════════════════════════════════════
+   CURSOR SPOTLIGHT — brillo suave que sigue al mouse
+═══════════════════════════════════════════════════ */
+(function(){
+  var spot = document.getElementById('cursor-spotlight');
+  if(!spot) return;
+  /* Inicia en el centro del viewport */
+  var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+  var tx = cx, ty = cy;
+  spot.style.left = cx + 'px';
+  spot.style.top  = cy + 'px';
+  document.addEventListener('mousemove', function(e){
+    tx = e.clientX; ty = e.clientY;
+  });
+  /* Al salir del viewport el brillo se queda en su última posición — siempre visible */
+  (function tick(){
+    cx += (tx - cx) * 0.072;
+    cy += (ty - cy) * 0.072;
+    spot.style.left = cx + 'px';
+    spot.style.top  = cy + 'px';
+    requestAnimationFrame(tick);
+  })();
+})();
+
+/* ═══════════════════════════════════════════════════
+   INNER GLOW — luz que sigue el cursor en cards y botones
+═══════════════════════════════════════════════════ */
+document.querySelectorAll('.card-shine,.btn-primary,.btn-outline,.nav-pill').forEach(function(el){
+  el.addEventListener('mousemove', function(e){
+    var r = el.getBoundingClientRect();
+    var x = ((e.clientX - r.left) / r.width  * 100).toFixed(1) + '%';
+    var y = ((e.clientY - r.top)  / r.height * 100).toFixed(1) + '%';
+    el.style.setProperty('--mx', x);
+    el.style.setProperty('--my', y);
+  });
+});
+
+/* ═══════════════════════════════════════════════════
+   AUTO-STAGGER — stagger escalonado para hijos de grids
+═══════════════════════════════════════════════════ */
+document.querySelectorAll('.problem-grid,.steps-grid,.price-grid,.trust-grid,.met-grid,.problem-grid .vs-wrap').forEach(function(grid){
+  Array.from(grid.children).forEach(function(child, i){
+    if(child.classList.contains('fade-up')){
+      child.style.transitionDelay = (i * 0.13) + 's';
+    }
+  });
+});
+/* Stagger específico para vs-wrap (columnas del comparativo) */
+document.querySelectorAll('.vs-wrap').forEach(function(wrap){
+  Array.from(wrap.children).forEach(function(col, i){
+    col.style.transitionDelay = (i * 0.18) + 's';
+  });
+});
+
+/* ═══ MOCK CAROUSEL LOGIC ═══ */
+function initCarousels(){
+  document.querySelectorAll('.mock-carousel').forEach(function(carousel){
+    const slides = carousel.querySelectorAll('.mock-slide');
+    const dots   = carousel.querySelectorAll('.mock-dot');
+    let cur = 0;
+    function goTo(i){
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur = (i + slides.length) % slides.length;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+    }
+    carousel.querySelectorAll('.mock-arrow').forEach(function(arrow){
+      arrow.addEventListener('click', function(){
+        goTo(cur + (arrow.dataset.dir === 'next' ? 1 : -1));
+      });
+    });
+    dots.forEach(function(dot, idx){
+      dot.addEventListener('click', function(){ goTo(idx); });
+    });
+  });
+}
+initCarousels();
+
+/* ═══════════════════════════════════════════════════
+   SOFIA TE LLAMA — Modal formulario
+═══════════════════════════════════════════════════ */
+function openSofiaCall(){
+  var m = document.getElementById('sofia-call-modal');
+  if(!m) return;
+  // Resetear estado previo
+  document.getElementById('sofiaCallForm').style.display  = '';
+  document.getElementById('sofiaCallForm').reset();
+  document.getElementById('scmConfirm').style.display     = 'none';
+  var btn = document.getElementById('scmSubmitBtn');
+  if(btn){ btn.disabled = false; btn.textContent = 'Quiero que Sofia me llame →'; }
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeSofiaCall(){
+  var m = document.getElementById('sofia-call-modal');
+  if(!m) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+async function submitSofiaCall(e){
+  e.preventDefault();
+  var form = e.target;
+  var btn  = document.getElementById('scmSubmitBtn');
+  var data = {
+    nombre:   form.nombre.value.trim(),
+    telefono: form.telefono.value.trim(),
+    correo:   form.correo.value.trim(),
+    nicho:    form.nicho.value
+  };
+  // Deshabilitar botón mientras procesa
+  btn.disabled = true;
+  btn.textContent = 'Enviando…';
+
+  /* ──────────────────────────────────────────────────────────
+     ANDRÉS: cuando Vapi esté listo, descomenta y configura:
+     try {
+       await fetch('https://api.vapi.ai/call/phone', {
+         method: 'POST',
+         headers: { 'Authorization': 'Bearer TU_VAPI_KEY', 'Content-Type': 'application/json' },
+         body: JSON.stringify({
+           assistantId: 'TU_ASSISTANT_ID',
+           phoneNumberId: 'TU_PHONE_NUMBER_ID',
+           customer: { number: data.telefono, name: data.nombre }
+         })
+       });
+     } catch(err) { console.error('Vapi error:', err); }
+  ────────────────────────────────────────────────────────── */
+  console.log('[Sofia te llama] Lead registrado:', data);
+
+  // Simular delay de confirmación
+  await new Promise(function(r){ setTimeout(r, 900); });
+
+  // Mostrar confirmación
+  form.style.display = 'none';
+  document.getElementById('scmConfirm').style.display = 'block';
+}
+// Cerrar con ESC (comparte listener con modal AJ)
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){ closeSofiaCall(); closeAjModal(); }
+});
+
+/* ═══════════════════════════════════════════════════
+   ABOUT AJ — Modal flotante
+═══════════════════════════════════════════════════ */
+function openAjModal(){
+  var m = document.getElementById('aj-info-modal');
+  if(!m) return;
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  // Foco al panel para accesibilidad
+  var panel = m.querySelector('.aj-modal-panel');
+  if(panel) panel.focus && panel.setAttribute('tabindex','-1');
+}
+function closeAjModal(){
+  var m = document.getElementById('aj-info-modal');
+  if(!m) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+// ESC ya está manejado en el listener compartido de closeSofiaCall/closeAjModal
 </script>
 </body>
 </html>

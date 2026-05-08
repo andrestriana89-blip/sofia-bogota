@@ -26,6 +26,15 @@
     Referrer-Policy = "no-referrer"
     Cache-Control = "no-store, no-cache, must-revalidate"
 
+# ── CRÍTICO: redirige el subdominio de prueba al dominio principal ──
+# ANDRÉS: Para que esto funcione, agrega sofia.ajbusinessadvisory.com
+# como dominio adicional en Netlify → Site Settings → Domain Management
+[[redirects]]
+  from = "https://sofia.ajbusinessadvisory.com/*"
+  to   = "https://ajbusinessadvisory.com/:splat"
+  status = 301
+  force  = true
+
 [[redirects]]
   from = "/rep/cristian"
   to = "/representantes/cristian-becerra/"
