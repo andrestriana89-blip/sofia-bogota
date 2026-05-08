@@ -2,6 +2,16 @@
   functions = "netlify/functions"
 
 [[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"
+
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"
+
+[[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
