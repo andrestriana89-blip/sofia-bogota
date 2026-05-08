@@ -711,11 +711,6 @@
       <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="hero-cta1">Obtén tu Auditoría Gratuita →</a>
       <a class="btn-outline" href="#como-funciona" id="hero-cta2">Ver cómo funciona</a>
     </div>
-    <!-- live loss counter -->
-    <div class="loss-counter" id="lossCounter">
-      <span id="loss-label">💸 Dinero perdido mientras lees esto:</span>
-      <strong id="lossAmount">$0</strong>
-    </div>
   </div>
 </section>
 
@@ -735,7 +730,7 @@
       <span style="display:inline-block;padding:4px 16px;border-radius:20px;background:rgba(181,0,94,.12);border:1px solid rgba(181,0,94,.3);font-size:10px;font-weight:800;color:var(--pink);letter-spacing:2px;text-transform:uppercase">● EN VIVO AHORA</span>
     </div>
     <h2 class="section-title fade-up" style="font-size:clamp(26px,4vw,44px);margin-bottom:14px">Escucha a Sofia.<br><span class="grad-text">Ahora. Sin registro.</span></h2>
-    <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto">Llámala, escríbele por WhatsApp o agenda una sesión con Andres. En menos de 30 segundos vas a entender por qué ningún negocio debería estar sin ella.</p>
+    <p style="text-align:center;color:#aaa;font-size:15px;line-height:1.7;margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto">Llámala, escríbele por WhatsApp o agenda una sesión con Andres, nuestro fundador. En menos de 30 segundos vas a entender por qué ningún negocio debería estar sin ella.</p>
 
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:32px">
 
@@ -763,7 +758,7 @@
       <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none">
         <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04)">
           <div style="font-size:36px;margin-bottom:12px">📅</div>
-          <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Auditoría con Andres</div>
+          <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Auditoría con Andres · Fundador</div>
           <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">30 min · Gratuito</div>
           <div style="font-size:11px;color:#666">Te mostramos cuánto recuperas</div>
         </div>
@@ -1339,7 +1334,7 @@ const T = {
     'nl-met':'Diagnóstico','nl-ind':'Industrias','nl-pri':'Precios','nl-cnt':'Contacto',
     'nav-cta':'Auditoría Gratuita →',
     langBtn:'🇺🇸 EN',
-    tickers:['🇨🇴 Servicio único en Colombia','📞 Ningún cliente se pierde — 24/7','💰 La mayoría recupera el costo en 30 días','🗓️ Citas agendadas mientras duermes','📊 Revisión mensual con Andres','🚀 En funcionamiento en 5 días hábiles','💬 WhatsApp, llamadas e Instagram — automatizados','🌎 Colombia & Global'],
+    tickers:['🇨🇴 Servicio único en Colombia','📞 Ningún cliente se pierde — 24/7','💰 La mayoría recupera el costo en 30 días','🗓️ Citas agendadas mientras duermes','📊 Revisión mensual con Andres, Fundador','🚀 En funcionamiento en 5 días hábiles','💬 WhatsApp, llamadas e Instagram — automatizados','🌎 Colombia & Global'],
     'sticky-text':'🇨🇴 El primer sistema integrado de Colombia — ningún cliente se pierde',
     'sticky-cta':'Conoce a Sofia →',
     'hero-badge':'Servicio único en Colombia · IA + Marca + Automatización',
@@ -1448,7 +1443,7 @@ const T = {
     'nl-met':'Diagnosis','nl-ind':'Industries','nl-pri':'Pricing','nl-cnt':'Contact',
     'nav-cta':'Free Audit →',
     langBtn:'🇨🇴 ES',
-    tickers:['🇨🇴 First integrated system in Colombia','📞 No client ever lost — 24/7','💰 Most clients recover the cost within 30 days','🗓️ Appointments booked while you sleep','📊 Monthly growth review with Andres','🚀 Live in 5 business days','💬 WhatsApp, calls & Instagram — automated','🌎 Colombia & Global'],
+    tickers:['🇨🇴 First integrated system in Colombia','📞 No client ever lost — 24/7','💰 Most clients recover the cost within 30 days','🗓️ Appointments booked while you sleep','📊 Monthly review with Andres, Founder','🚀 Live in 5 business days','💬 WhatsApp, calls & Instagram — automated','🌎 Colombia & Global'],
     'sticky-text':'🇨🇴 Colombia\'s first integrated AI system — no client ever lost',
     'sticky-cta':'Meet Sofia →',
     'hero-badge':'Colombia\'s first · AI + Brand + Automation',
@@ -1682,6 +1677,11 @@ function applyLang(lang){
     if(sl) sl.textContent = d['setup-lbl'] || (lang==='es'?'Setup único':'One-time setup');
     if(ml) ml.textContent = d['mo-lbl']    || (lang==='es'?'Mensual':'Monthly');
   });
+  // Sección demo solo visible en español
+  const demoSection = document.getElementById('demo-sofia');
+  const demoNav = document.querySelector('[data-section="demo-sofia"]');
+  if(demoSection) demoSection.style.display = lang === 'es' ? '' : 'none';
+  if(demoNav)     demoNav.style.display     = lang === 'es' ? '' : 'none';
   try{ localStorage.setItem('aj_lang',lang); }catch(e){}
 }
 
