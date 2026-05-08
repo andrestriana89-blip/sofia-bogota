@@ -161,9 +161,34 @@
     .hero-sub{font-size:16px;color:#aaa;line-height:1.75;max-width:580px;margin:0 auto 28px}
     .hero-ctas{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:32px}
 
-    /* live loss counter */
-    .loss-counter{display:inline-flex;align-items:center;gap:10px;padding:12px 22px;border-radius:12px;background:rgba(255,212,0,.05);border:1px solid rgba(255,212,0,.2);font-size:13px;color:#bbb}
-    .loss-counter strong{font-size:20px;font-weight:900;color:var(--yellow);font-variant-numeric:tabular-nums}
+    /* ══ LOCALIZATION BAR ══ */
+    #loc-bar{
+      background:rgba(14,10,31,0.62);
+      backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(181,0,94,0.12);
+      padding:9px 28px;
+      display:flex;align-items:center;justify-content:center;
+      gap:12px;flex-wrap:wrap;
+      position:sticky;top:61px;z-index:198;
+    }
+    html.light-mode #loc-bar{
+      background:rgba(244,241,251,0.78);
+      border-bottom-color:rgba(181,0,94,0.10);
+    }
+    .loc-text{font-size:11px;color:#888;white-space:nowrap}
+    html.light-mode .loc-text{color:#7a6a99}
+    .loc-select{
+      padding:4px 14px;border-radius:20px;
+      border:1px solid rgba(181,0,94,0.25);
+      background:rgba(181,0,94,0.06);
+      color:#ccc;font-size:11px;font-weight:600;
+      cursor:pointer;font-family:inherit;
+      outline:none;appearance:none;-webkit-appearance:none;
+      transition:border-color .2s,color .2s;
+    }
+    .loc-select:hover,.loc-select:focus{border-color:var(--pink);color:var(--text)}
+    html.light-mode .loc-select{color:#5e4d80;background:rgba(181,0,94,0.05)}
+    @media(max-width:480px){#loc-bar{padding:8px 14px;gap:8px}.loc-text{display:none}}
 
     /* BUTTONS */
     .btn-primary{
@@ -710,7 +735,7 @@
 <!-- STICKY MINI-BAR -->
 <div id="stickyBar">
   <span id="sticky-text">🇨🇴 El primer sistema integrado de Colombia — ningún cliente se pierde</span>
-  <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="sticky-cta">Auditoría gratis →</a>
+  <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="sticky-cta">Consultoría gratis →</a>
 </div>
 
 <!-- NAV -->
@@ -732,7 +757,7 @@
       <select class="nav-select" id="currencySelect" onchange="setCurrency(this.value)" title="Selecciona tu moneda / Select your currency">
         <option value="COP">🇨🇴 COP</option>
         <option value="USD">🇺🇸 USD</option>
-        <option value="MXN">🇲🇽 MXN</option>
+        <option value="EUR">🇪🇺 EUR</option>
       </select>
     </div>
     <!-- Theme toggle -->
@@ -742,9 +767,25 @@
       <span class="nav-label">Idioma</span>
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">🇺🇸 EN</button>
     </div>
-    <a class="nav-pill" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="nav-cta">Auditoría Gratuita →</a>
+    <a class="nav-pill" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="nav-cta">Consultoría Gratuita →</a>
   </div>
 </nav>
+
+<!-- LOCALIZATION BAR -->
+<div id="loc-bar">
+  <span class="loc-text" id="loc-label">🌍 Selecciona tu lugar del mundo:</span>
+  <select class="loc-select" id="regionSelect" onchange="setRegion(this.value)">
+    <option value="">— Región / Region —</option>
+    <option value="latam">🌎 Latinoamérica</option>
+    <option value="northam">🌎 América del Norte</option>
+    <option value="europe">🌍 Europa / Europe</option>
+    <option value="asia">🌏 Asia</option>
+    <option value="oceania">🌏 Oceanía / Oceania</option>
+  </select>
+  <select class="loc-select" id="countrySelect" onchange="setCountry(this.value)" style="display:none">
+    <option value="">— País / Country —</option>
+  </select>
+</div>
 
 <!-- TICKER -->
 <div class="ticker" aria-hidden="true">
@@ -767,7 +808,7 @@
     <h1 id="hero-h1">Convertimos negocios<br><em class="grad-text">en marcas sólidas.</em></h1>
     <p class="hero-sub" id="hero-sub">Ningún cliente de tu negocio se pierde — ni por WhatsApp, ni por llamada, ni por redes sociales. Sofia le da seguimiento a cada persona de forma automática, en todos los canales, <strong id="hero-range" style="color:#ffd400">mientras tú te enfocas en crecer.</strong></p>
     <div class="hero-ctas">
-      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="hero-cta1">Obtén tu Auditoría Gratuita →</a>
+      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="hero-cta1">Obtén tu Consultoría Gratuita →</a>
       <a class="btn-outline" href="#como-funciona" id="hero-cta2">Ver cómo funciona</a>
     </div>
   </div>
@@ -812,11 +853,11 @@
             <div style="font-size:11px;color:#666">Responde en segundos</div>
           </div>
         </a>
-        <!-- Auditoría Andres -->
+        <!-- Consultoría Andres -->
         <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none">
           <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04)">
             <div style="font-size:36px;margin-bottom:12px">📅</div>
-            <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Auditoría con Andres · Fundador</div>
+            <div style="font-size:11px;font-weight:700;color:var(--yellow);letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">Consultoría con Andres · Fundador</div>
             <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">30 min · Gratuito</div>
             <div style="font-size:11px;color:#666">Te mostramos cuánto recuperas</div>
           </div>
@@ -1173,7 +1214,7 @@
       <div class="tab-content">
         <div class="tab-stat" id="any-stat">📱 Si tus clientes te escriben — Sofia responde</div>
         <h3 id="any-h3">Cualquier negocio local</h3>
-        <p id="any-p">Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema para ti. Empieza con la auditoría gratuita y te decimos exactamente cuánto puedes recuperar.</p>
+        <p id="any-p">Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema para ti. Empieza con la consultoría gratuita y te decimos exactamente cuánto puedes recuperar.</p>
         <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="any-cta">Ver qué puedo recuperar →</a>
       </div>
       <div class="wa-mock card-shine">
@@ -1214,7 +1255,7 @@
       <div class="step-card fade-up card-shine">
         <span class="step-icon">🔍</span>
         <div class="step-num">1</div>
-        <h3 id="s1-h3">Auditoría gratuita de ingresos</h3>
+        <h3 id="s1-h3">Consultoría gratuita de ingresos</h3>
         <p id="s1-p">Analizamos llamadas perdidas, leads fríos y citas sin confirmar. Te decimos exactamente cuánto estás perdiendo cada mes — antes de que pagues cualquier cosa.</p>
       </div>
       <div class="step-card fade-up card-shine">
@@ -1256,7 +1297,7 @@
           <li id="p1f4">Integración con tu agenda actual</li>
           <li id="p1f5">Reporte mensual de ingresos recuperados</li>
         </ul>
-        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta1">Agendar Auditoría →</a>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta1">Agendar Consultoría →</a>
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge" style="background:linear-gradient(135deg,#1a6b3a,#27a85c)">🚀 <span id="content-badge">CONTENIDO</span></div>
@@ -1276,7 +1317,7 @@
           <li id="p2f4">Producción semanal en tu negocio</li>
           <li id="p2f5">Reporte mensual de crecimiento</li>
         </ul>
-        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta2">Agendar Auditoría →</a>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta2">Agendar Consultoría →</a>
       </div>
       <div class="pricing-card fade-up card-shine">
         <span class="pc-icon">🏢</span>
@@ -1294,7 +1335,7 @@
           <li id="p3f4">Seguimiento automático de leads</li>
           <li id="p3f5">Reporte mensual de métricas</li>
         </ul>
-        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta3">Agendar Auditoría →</a>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta3">Agendar Consultoría →</a>
       </div>
       <div class="pricing-card fade-up card-shine">
         <span class="pc-icon">💤</span>
@@ -1311,7 +1352,7 @@
           <li id="p4f3">Mensajes personalizados automáticos</li>
           <li id="p4f4">Medición de clientes reactivados</li>
         </ul>
-        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta4">Agendar Auditoría →</a>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta4">Agendar Consultoría →</a>
       </div>
       <div class="pricing-card fade-up card-shine">
         <span class="pc-icon">⭐</span>
@@ -1333,21 +1374,21 @@
           <li id="p5f3">Monitoreo de reputación mensual</li>
           <li id="p5f4">Posicionamiento en Google Maps</li>
         </ul>
-        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta5">Agendar Auditoría →</a>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="plan-cta5">Agendar Consultoría →</a>
       </div>
     </div>
 
     <!-- AUDIT CTA -->
     <div class="audit-wrap fade-up" id="contacto">
       <div class="audit-avatar">👤</div>
-      <h3 id="audit-h3">Empieza con una Auditoría gratuita.</h3>
+      <h3 id="audit-h3">Empieza con una Consultoría gratuita.</h3>
       <p id="audit-p">Encontramos la fuga antes de que pagues cualquier cosa. Ves el ROI antes de comprometerte.</p>
       <ul class="audit-list">
         <li><span class="ck">✓</span> <span id="al1">Calculamos tu fuga mensual en tu moneda</span></li>
         <li><span class="ck">✓</span> <span id="al2">Ves el ROI antes de comprometerte</span></li>
         <li><span class="ck">✓</span> <span id="al3">30 minutos — sin pitch, sin presión</span></li>
       </ul>
-      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px;display:inline-flex" id="audit-cta">Agendar Auditoría Gratuita →</a>
+      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px;display:inline-flex" id="audit-cta">Agendar Consultoría Gratuita →</a>
       <p class="audit-note" id="audit-note">Sin costo. Sin compromiso. Solo claridad.</p>
     </div>
   </div>
@@ -1380,7 +1421,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)"><span id="faq1-q">¿Cuánto tiempo tarda en estar listo?</span><span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner" id="faq1-a">El sistema está operativo en 5 días hábiles. El día 1 hacemos la auditoría y definimos la configuración. Los días 2-4 entrenamos a Sofia con la información de tu negocio. El día 5 va live y empiezas a recuperar ingresos.</div></div>
+        <div class="faq-a"><div class="faq-a-inner" id="faq1-a">El sistema está operativo en 5 días hábiles. El día 1 hacemos la consultoría y definimos la configuración. Los días 2-4 entrenamos a Sofia con la información de tu negocio. El día 5 va live y empiezas a recuperar ingresos.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)"><span id="faq2-q">¿Necesito cambiar mis sistemas actuales?</span><span class="faq-icon">+</span></button>
@@ -1392,7 +1433,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)"><span id="faq4-q">¿Sofia habla igual que una persona real?</span><span class="faq-icon">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner" id="faq4-a">Sofia está entrenada con la información, tono y estilo de tu negocio. Responde en segundos, maneja objeciones comunes, agenda y confirma — sin que tus clientes noten que es IA. La auditoría gratuita incluye una demo en vivo para que lo compruebes.</div></div>
+        <div class="faq-a"><div class="faq-a-inner" id="faq4-a">Sofia está entrenada con la información, tono y estilo de tu negocio. Responde en segundos, maneja objeciones comunes, agenda y confirma — sin que tus clientes noten que es IA. La consultoría gratuita incluye una demo en vivo para que lo compruebes.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="toggleFaq(this)"><span id="faq5-q">¿Cuánto puedo recuperar realmente?</span><span class="faq-icon">+</span></button>
@@ -1422,7 +1463,7 @@
       <h4>Legal</h4>
       <a href="/terms"   id="f-terms">Términos de Servicio</a>
       <a href="/privacy" id="f-privacy">Política de Privacidad</a>
-      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="f-cta">Agendar Auditoría</a>
+      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="f-cta">Agendar Consultoría</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1445,7 +1486,7 @@ const T = {
     pageTitle:'AJ Business Advisory — Convertimos negocios en marcas sólidas',
     'nav-sub':'Marcas Sólidas · Colombia & Global',
     'nl-met':'Diagnóstico','nl-ind':'Industrias','nl-pri':'Precios','nl-cnt':'Contacto',
-    'nav-cta':'Auditoría Gratuita →',
+    'nav-cta':'Consultoría Gratuita →',
     langBtn:'🇺🇸 EN',
     tickers:['🇨🇴 Servicio único en Colombia','📞 Ningún cliente se pierde — 24/7','💰 La mayoría recupera el costo en 30 días','🗓️ Citas agendadas mientras duermes','📊 Revisión mensual con Andres, Fundador','🚀 En funcionamiento en 5 días hábiles','💬 WhatsApp, llamadas e Instagram — automatizados','🌎 Colombia & Global'],
     'sticky-text':'🇨🇴 El primer sistema integrado de Colombia — ningún cliente se pierde',
@@ -1453,7 +1494,7 @@ const T = {
     'hero-badge':'Servicio único en Colombia · IA + Marca + Automatización',
     'hero-h1':'Convertimos negocios<br><em class="grad-text">en marcas sólidas.</em>',
     'hero-sub':'Ningún cliente de tu negocio se pierde — ni por WhatsApp, ni por llamada, ni por redes sociales. Sofia le da seguimiento a cada persona de forma automática, en todos los canales, <strong id="hero-range" style="color:#ffd400">mientras tú te enfocas en crecer.</strong>',
-    'hero-cta1':'Obtén tu Auditoría Gratuita →','hero-cta2':'Ver cómo funciona',
+    'hero-cta1':'Obtén tu Consultoría Gratuita →','hero-cta2':'Ver cómo funciona',
     'loss-label':'💸 Dinero perdido mientras lees esto:',
     t1:'Primeros en Colombia',t2:'Listo en 5 días hábiles',t3:'Sin contratos forzosos',t4:'Colombia & Global',
     'met-title':'Nos especializamos en detectar lo que está frenando tu negocio',
@@ -1507,7 +1548,7 @@ const T = {
     'smb-cta':'Ver demo para mi negocio →',
     'any-stat':'📱 Si tus clientes te escriben — Sofia responde',
     'any-h3':'Cualquier negocio local',
-    'any-p':'Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema. Empieza con la auditoría gratuita.',
+    'any-p':'Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema. Empieza con la consultoría gratuita.',
     'any-cta':'Ver qué puedo recuperar →',
     'fit-stat':'💪 Sofia convierte consultas de membresía en 90 segundos',
     'fit-h3':'Gym / Estudio / Fitness',
@@ -1515,7 +1556,7 @@ const T = {
     'fit-cta':'Ver cuántos clientes recupero →',
     'how-title':'Encontramos la fuga. La tapamos. Los ingresos son tuyos.',
     'how-sub':'En funcionamiento en 5 días hábiles. La mayoría recupera el costo en 30.',
-    's1-h3':'Auditoría gratuita de ingresos','s1-p':'Analizamos llamadas perdidas, leads fríos y citas sin confirmar. Te decimos exactamente cuánto estás perdiendo — antes de pagar.',
+    's1-h3':'Consultoría gratuita de ingresos','s1-p':'Analizamos llamadas perdidas, leads fríos y citas sin confirmar. Te decimos exactamente cuánto estás perdiendo — antes de pagar.',
     's2-h3':'Construimos el sistema','s2-p':'IA entrenada en tu negocio: responde WhatsApp, agenda citas, hace seguimiento 24/7. Listo en 5 días hábiles.',
     's3-h3':'Tú te quedas con los ingresos','s3-p':'El sistema corre solo. Reportes mensuales mostrando exactamente qué se recuperó.',
     'pri-title':'Precio de inversión, no de costo.','pri-sub':'La mayoría recupera el costo en los primeros 30 días.',
@@ -1527,24 +1568,24 @@ const T = {
     'p2-founding':'Precios Founding Members disponibles — cupos limitados, consultar.',
     'p5-addon-label':'💡 AGREGA A CUALQUIER PLAN ACTIVO',
     'p5-name':'Google Reputation Compounding','p5-niche':'Cualquier negocio local',
-    'plan-cta1':'Agendar Auditoría →','plan-cta2':'Agendar Auditoría →','plan-cta3':'Agendar Auditoría →','plan-cta4':'Agendar Auditoría →','plan-cta5':'Agendar Auditoría →',
+    'plan-cta1':'Agendar Consultoría →','plan-cta2':'Agendar Consultoría →','plan-cta3':'Agendar Consultoría →','plan-cta4':'Agendar Consultoría →','plan-cta5':'Agendar Consultoría →',
     p1f1:'Sofia WhatsApp 24/7 — responde, agenda y confirma citas',p1f2:'Recordatorios automáticos (reduce no-shows)',p1f3:'Reactivación de clientes dormidos',p1f4:'Integración con tu agenda actual',p1f5:'Reporte mensual de ingresos recuperados',
     p2f1:'4 Reels mensuales con enfoque comercial',p2f2:'20 Carruseles educativos y de venta',p2f3:'Comentarios → DM → cita automática',p2f4:'Producción semanal en tu negocio',p2f5:'Reporte mensual de crecimiento',
     p3f1:'Web profesional con SEO local',p3f2:'Sofia WhatsApp 24/7',p3f3:'Automatización comentarios a DM',p3f4:'Seguimiento automático de leads',p3f5:'Reporte mensual de métricas',
     p4f1:'Campañas de reactivación por WhatsApp',p4f2:'Segmentación por última visita',p4f3:'Mensajes personalizados automáticos',p4f4:'Medición de clientes reactivados',
     p5f1:'Automatización de reseñas Google',p5f2:'Respuesta automática a reseñas',p5f3:'Monitoreo de reputación mensual',p5f4:'Posicionamiento en Google Maps',
-    'audit-h3':'Empieza con una Auditoría gratuita.','audit-p':'Encontramos la fuga antes de pagar. Ves el ROI antes de comprometerte.',
+    'audit-h3':'Empieza con una Consultoría gratuita.','audit-p':'Encontramos la fuga antes de pagar. Ves el ROI antes de comprometerte.',
     al1:'Calculamos tu fuga mensual en tu moneda',al2:'Ves el ROI antes de comprometerte',al3:'30 minutos — sin pitch, sin presión',
-    'audit-cta':'Agendar Auditoría Gratuita →','audit-note':'Sin costo. Sin compromiso. Solo claridad.',
+    'audit-cta':'Agendar Consultoría Gratuita →','audit-note':'Sin costo. Sin compromiso. Solo claridad.',
     'faq-title':'Preguntas frecuentes','faq-sub':'Todo lo que necesitas saber antes de empezar.',
-    'faq1-q':'¿Cuánto tiempo tarda en estar listo?','faq1-a':'El sistema está operativo en 5 días hábiles. El día 1 hacemos la auditoría. Los días 2-4 entrenamos a Sofia. El día 5 va live.',
+    'faq1-q':'¿Cuánto tiempo tarda en estar listo?','faq1-a':'El sistema está operativo en 5 días hábiles. El día 1 hacemos la consultoría. Los días 2-4 entrenamos a Sofia. El día 5 va live.',
     'faq2-q':'¿Necesito cambiar mis sistemas actuales?','faq2-a':'No. Sofia se integra con lo que ya usas: Google Calendar, Calendly, tu número de WhatsApp actual y la mayoría de sistemas de citas.',
     'faq3-q':'¿Qué pasa si quiero cancelar?','faq3-a':'Sin permanencia forzosa. Cancelas con 30 días de aviso. Sin penalidades.',
-    'faq4-q':'¿Sofia habla igual que una persona real?','faq4-a':'Sofia está entrenada con el tono de tu negocio. Responde en segundos y maneja objeciones comunes. La auditoría incluye demo en vivo.',
+    'faq4-q':'¿Sofia habla igual que una persona real?','faq4-a':'Sofia está entrenada con el tono de tu negocio. Responde en segundos y maneja objeciones comunes. La consultoría gratuita incluye demo en vivo.',
     'faq5-q':'¿Cuánto puedo recuperar realmente?','faq5-a':'Usa la calculadora para ver tu número. La mayoría recupera entre 3x y 8x el costo mensual en ingresos que antes se perdían.',
     'f-tagline':'Revenue Recovery Operation','f-markets':'Colombia 🇨🇴 & Global 🌎','f-services':'Servicios',
     'f-s1':'Appointment Recovery','f-s2':'SMB Digital Presence','f-s3':'Dormant Client Reactivation','f-s4':'Google Reputation Compounding',
-    'f-terms':'Términos de Servicio','f-privacy':'Política de Privacidad','f-cta':'Agendar Auditoría','f-rights':'Todos los derechos reservados.',
+    'f-terms':'Términos de Servicio','f-privacy':'Política de Privacidad','f-cta':'Agendar Consultoría','f-rights':'Todos los derechos reservados.',
     'ck-text':'Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestra <a href="/privacy">Política de Privacidad</a>.',
     'ck-decline':'Rechazar','ck-accept':'Aceptar',
     roiIndustryLabels:{clinic:'🦷 Clínica',salon:'💇 Salón',restaurant:'🍽️ Restaurante',smb:'🏢 PYME',fitness:'💪 Fitness'},
@@ -1554,7 +1595,7 @@ const T = {
     pageTitle:'AJ Business Advisory — We Turn Businesses Into Solid Brands',
     'nav-sub':'Solid Brands · Colombia & Global',
     'nl-met':'Diagnosis','nl-ind':'Industries','nl-pri':'Pricing','nl-cnt':'Contact',
-    'nav-cta':'Free Audit →',
+    'nav-cta':'Free Consultation →',
     langBtn:'🇨🇴 ES',
     tickers:['🇨🇴 First integrated system in Colombia','📞 No client ever lost — 24/7','💰 Most clients recover the cost within 30 days','🗓️ Appointments booked while you sleep','📊 Monthly review with Andres, Founder','🚀 Live in 5 business days','💬 WhatsApp, calls & Instagram — automated','🌎 Colombia & Global'],
     'sticky-text':'🇨🇴 Colombia\'s first integrated AI system — no client ever lost',
@@ -1562,7 +1603,7 @@ const T = {
     'hero-badge':'Colombia\'s first · AI + Brand + Automation',
     'hero-h1':'We turn businesses<br><em class="grad-text">into solid brands.</em>',
     'hero-sub':'No client ever slips away — not by WhatsApp, not by call, not by social media. Sofia follows up with every person automatically, across every channel, <strong id="hero-range" style="color:#ffd400">while you focus on growing.</strong>',
-    'hero-cta1':'Get Your Free Audit →','hero-cta2':'See how it works',
+    'hero-cta1':'Get Your Free Consultation →','hero-cta2':'See how it works',
     'loss-label':'💸 Revenue lost while you read this:',
     t1:'First in Colombia',t2:'Live in 5 business days',t3:'No forced long-term contracts',t4:'Colombia & Global',
     'met-title':'We specialize in detecting what\'s holding your business back',
@@ -1616,7 +1657,7 @@ const T = {
     'smb-cta':'See demo for my business →',
     'any-stat':'📱 If your clients write — Sofia answers',
     'any-h3':'Any local business',
-    'any-p':'If you have customers who call, message on WhatsApp, or book appointments — we have a system for you. Start with the free audit.',
+    'any-p':'If you have customers who call, message on WhatsApp, or book appointments — we have a system for you. Start with the free consultation.',
     'any-cta':'See what I can recover →',
     'fit-stat':'💪 Sofia converts membership inquiries in 90 seconds',
     'fit-h3':'Gym / Studio / Fitness',
@@ -1624,7 +1665,7 @@ const T = {
     'fit-cta':'See how many clients I can recover →',
     'how-title':'We find the leak. We plug it. The revenue is yours.',
     'how-sub':'Live in 5 business days. Most clients recover the cost within 30.',
-    's1-h3':'Free revenue audit','s1-p':'We analyze missed calls, cold leads, and unconfirmed appointments. We tell you exactly how much you\'re losing — before you pay anything.',
+    's1-h3':'Free revenue consultation','s1-p':'We analyze missed calls, cold leads, and unconfirmed appointments and tell you exactly how much you\'re losing — before you pay anything.',
     's2-h3':'We build the system','s2-p':'AI trained on your business: answers WhatsApp, books appointments, follows up on leads 24/7. Live in 5 business days.',
     's3-h3':'You keep the revenue','s3-p':'The system runs itself. Monthly reports showing exactly what was recovered.',
     'pri-title':'Investment price, not a cost.','pri-sub':'Most clients recover the monthly cost within 30 days.',
@@ -1642,14 +1683,14 @@ const T = {
     p3f1:'Professional website with local SEO',p3f2:'Sofia WhatsApp 24/7',p3f3:'Comment-to-DM social media automation',p3f4:'Automatic WhatsApp lead follow-up',p3f5:'Monthly metrics & growth report',
     p4f1:'WhatsApp reactivation campaigns',p4f2:'Segmentation by last visit or purchase',p4f3:'Personalized messages & auto follow-up',p4f4:'Reactivated clients vs. cost measurement',
     p5f1:'Automated Google review requests',p5f2:'Automatic responses to reviews',p5f3:'Monthly online reputation monitoring',p5f4:'Local Google Maps positioning strategy',
-    'audit-h3':'Start with a free Revenue Audit.','audit-p':'We find the leak before you pay anything. You see the ROI before committing.',
+    'audit-h3':'Start with a free Revenue Consultation.','audit-p':'We find the leak before you pay anything. You see the ROI before committing.',
     al1:'We calculate your monthly leak in your currency',al2:'See ROI before you commit to anything',al3:'30-minute call — no pitch, no pressure',
-    'audit-cta':'Book Free Audit →','audit-note':'No cost. No commitment. Just clarity.',
+    'audit-cta':'Book Free Consultation →','audit-note':'No cost. No commitment. Just clarity.',
     'faq-title':'Frequently asked questions','faq-sub':'Everything you need to know before starting.',
-    'faq1-q':'How long until it\'s ready?','faq1-a':'The system is live in 5 business days. Day 1: audit and configuration. Days 2-4: we train Sofia on your business. Day 5: go live.',
+    'faq1-q':'How long until it\'s ready?','faq1-a':'The system is live in 5 business days. Day 1: strategy consultation and configuration. Days 2-4: we train Sofia on your business. Day 5: go live.',
     'faq2-q':'Do I need to change my current systems?','faq2-a':'No. Sofia integrates with what you already use: Google Calendar, Calendly, your current WhatsApp number, and most appointment systems.',
     'faq3-q':'What if I want to cancel?','faq3-a':'No forced contracts. Cancel with 30 days notice. No penalties.',
-    'faq4-q':'Does Sofia sound like a real person?','faq4-a':'Sofia is trained with your business tone. It responds in seconds and handles common questions. The free audit includes a live demo.',
+    'faq4-q':'Does Sofia sound like a real person?','faq4-a':'Sofia is trained with your business tone. It responds in seconds and handles common questions. The free consultation includes a live demo.',
     'faq5-q':'How much can I actually recover?','faq5-a':'Use the calculator above for your real number. Most clients recover 3x–8x the monthly cost in previously lost revenue.',
     'f-tagline':'Revenue Recovery Operation','f-markets':'Colombia 🇨🇴 & Global 🌎','f-services':'Services',
     'f-s1':'Appointment Recovery','f-s2':'SMB Digital Presence','f-s3':'Dormant Client Reactivation','f-s4':'Google Reputation Compounding',
@@ -1672,10 +1713,10 @@ const BASE = {
   p4_setup:900000,  p4_mo:390000,
   p5_setup:500000,  p5_mo:250000,
 };
-const RATES = {COP:1, USD:1/4100, MXN:1/230};
-const SYMBOLS = {COP:'$',USD:'$',MXN:'$'};
-const SUFFIX = {COP:'COP',USD:'USD',MXN:'MXN'};
-const LOCALES = {COP:'es-CO',USD:'en-US',MXN:'es-MX'};
+const RATES = {COP:1, USD:1/4100, EUR:1/4500};
+const SYMBOLS = {COP:'$',USD:'$',EUR:'€'};
+const SUFFIX = {COP:'COP',USD:'USD',EUR:'EUR'};
+const LOCALES = {COP:'es-CO',USD:'en-US',EUR:'de-DE'};
 
 let currentLang = 'es';
 let currentCurrency = 'COP';
@@ -1727,7 +1768,7 @@ function applyPrices(){
     document.getElementById('p5-addon-price').innerHTML = `$${addonMo.toLocaleString('es-CO')}<span style="color:#888;font-size:11px;">/mes</span> + $${addonSet.toLocaleString('es-CO')} setup`;
     document.getElementById('p5-addon-save').textContent  = `Ahorra $${saveMo.toLocaleString('es-CO')}/mes vs. contratarlo solo`;
   } else {
-    const loc = c === 'MXN' ? 'es-MX' : 'en-US';
+    const loc = 'en-US';
     document.getElementById('p5-addon-price').innerHTML = `$${addonMo.toLocaleString(loc)} ${suf}<span style="color:#888;font-size:11px;">/mo</span> + $${addonSet.toLocaleString(loc)} setup`;
     document.getElementById('p5-addon-save').textContent  = `Save $${saveMo.toLocaleString(loc)} ${suf}/mo vs. standalone`;
   }
@@ -1743,7 +1784,7 @@ function applyPrices(){
     document.getElementById('prob3-num').textContent = '$3K';
   }
   // ROI ticket default
-  const ticketDefaults = {COP:200000, USD:80, MXN:1500};
+  const ticketDefaults = {COP:200000, USD:80, EUR:75};
   const ticketEl = document.getElementById('roiTicket');
   if(ticketEl && !ticketEl._userEdited) ticketEl.value = ticketDefaults[c];
   roiCalc();
@@ -1790,6 +1831,11 @@ function applyLang(lang){
     if(sl) sl.textContent = d['setup-lbl'] || (lang==='es'?'Setup único':'One-time setup');
     if(ml) ml.textContent = d['mo-lbl']    || (lang==='es'?'Mensual':'Monthly');
   });
+  // Update loc-bar label
+  const locLabel = document.getElementById('loc-label');
+  if(locLabel) locLabel.textContent = lang === 'es'
+    ? '🌍 Selecciona tu lugar del mundo:'
+    : '🌍 Select your location:';
   try{ localStorage.setItem('aj_lang',lang); }catch(e){}
 }
 
@@ -1822,13 +1868,6 @@ async function detectLang(){
     const cc = data.country_code || '';
     // Store country for future geo-aware features
     window._userCountry = cc;
-    if(LATAM.includes(cc)){
-      // Also set matching currency
-      if(cc === 'MX' && !localStorage.getItem('aj_currency')) {
-        document.getElementById('currencySelect').value = 'MXN';
-        currentCurrency = 'MXN';
-      }
-    }
     if(SPANISH_COUNTRIES.includes(cc)) return 'es';
     return 'en';
   }catch(e){
@@ -2042,6 +2081,143 @@ function hideCookie(){
 try{if(localStorage.getItem('cookie_consent')) document.getElementById('cookieBanner').style.display='none';}catch(e){}
 
 /* ═══════════════════════════════════════════════════
+   LOCALIZATION (Region / Country / Currency)
+═══════════════════════════════════════════════════ */
+const REGIONS = {
+  latam:{
+    label:{es:'🌎 Latinoamérica',en:'🌎 Latin America'},
+    defaultCurrency:'COP', defaultLang:'es',
+    countries:[
+      {code:'CO',name:'🇨🇴 Colombia',currency:'COP',lang:'es'},
+      {code:'MX',name:'🇲🇽 México',currency:'USD',lang:'es'},
+      {code:'AR',name:'🇦🇷 Argentina',currency:'USD',lang:'es'},
+      {code:'CL',name:'🇨🇱 Chile',currency:'USD',lang:'es'},
+      {code:'PE',name:'🇵🇪 Perú',currency:'USD',lang:'es'},
+      {code:'VE',name:'🇻🇪 Venezuela',currency:'USD',lang:'es'},
+      {code:'EC',name:'🇪🇨 Ecuador',currency:'USD',lang:'es'},
+      {code:'GT',name:'🇬🇹 Guatemala',currency:'USD',lang:'es'},
+      {code:'CR',name:'🇨🇷 Costa Rica',currency:'USD',lang:'es'},
+      {code:'PA',name:'🇵🇦 Panamá',currency:'USD',lang:'es'},
+      {code:'DO',name:'🇩🇴 Rep. Dominicana',currency:'USD',lang:'es'},
+      {code:'UY',name:'🇺🇾 Uruguay',currency:'USD',lang:'es'},
+      {code:'BO',name:'🇧🇴 Bolivia',currency:'USD',lang:'es'},
+      {code:'HN',name:'🇭🇳 Honduras',currency:'USD',lang:'es'},
+      {code:'PY',name:'🇵🇾 Paraguay',currency:'USD',lang:'es'},
+      {code:'SV',name:'🇸🇻 El Salvador',currency:'USD',lang:'es'},
+      {code:'NI',name:'🇳🇮 Nicaragua',currency:'USD',lang:'es'},
+    ]
+  },
+  northam:{
+    label:{es:'🌎 América del Norte',en:'🌎 North America'},
+    defaultCurrency:'USD', defaultLang:'en',
+    countries:[
+      {code:'US',name:'🇺🇸 United States',currency:'USD',lang:'en'},
+      {code:'CA',name:'🇨🇦 Canada',currency:'USD',lang:'en'},
+    ]
+  },
+  europe:{
+    label:{es:'🌍 Europa',en:'🌍 Europe'},
+    defaultCurrency:'EUR', defaultLang:'en',
+    countries:[
+      {code:'ES',name:'🇪🇸 España / Spain',currency:'EUR',lang:'es'},
+      {code:'PT',name:'🇵🇹 Portugal',currency:'EUR',lang:'es'},
+      {code:'DE',name:'🇩🇪 Germany',currency:'EUR',lang:'en'},
+      {code:'FR',name:'🇫🇷 France',currency:'EUR',lang:'en'},
+      {code:'IT',name:'🇮🇹 Italy',currency:'EUR',lang:'en'},
+      {code:'NL',name:'🇳🇱 Netherlands',currency:'EUR',lang:'en'},
+      {code:'BE',name:'🇧🇪 Belgium',currency:'EUR',lang:'en'},
+      {code:'AT',name:'🇦🇹 Austria',currency:'EUR',lang:'en'},
+      {code:'GB',name:'🇬🇧 United Kingdom',currency:'USD',lang:'en'},
+      {code:'CH',name:'🇨🇭 Switzerland',currency:'USD',lang:'en'},
+      {code:'PL',name:'🇵🇱 Poland',currency:'USD',lang:'en'},
+      {code:'SE',name:'🇸🇪 Sweden',currency:'USD',lang:'en'},
+    ]
+  },
+  asia:{
+    label:{es:'🌏 Asia',en:'🌏 Asia'},
+    defaultCurrency:'USD', defaultLang:'en',
+    countries:[
+      {code:'JP',name:'🇯🇵 Japan',currency:'USD',lang:'en'},
+      {code:'CN',name:'🇨🇳 China',currency:'USD',lang:'en'},
+      {code:'IN',name:'🇮🇳 India',currency:'USD',lang:'en'},
+      {code:'KR',name:'🇰🇷 South Korea',currency:'USD',lang:'en'},
+      {code:'SG',name:'🇸🇬 Singapore',currency:'USD',lang:'en'},
+      {code:'AE',name:'🇦🇪 UAE',currency:'USD',lang:'en'},
+      {code:'SA',name:'🇸🇦 Saudi Arabia',currency:'USD',lang:'en'},
+      {code:'TH',name:'🇹🇭 Thailand',currency:'USD',lang:'en'},
+      {code:'PH',name:'🇵🇭 Philippines',currency:'USD',lang:'en'},
+      {code:'MY',name:'🇲🇾 Malaysia',currency:'USD',lang:'en'},
+    ]
+  },
+  oceania:{
+    label:{es:'🌏 Oceanía',en:'🌏 Oceania'},
+    defaultCurrency:'USD', defaultLang:'en',
+    countries:[
+      {code:'AU',name:'🇦🇺 Australia',currency:'USD',lang:'en'},
+      {code:'NZ',name:'🇳🇿 New Zealand',currency:'USD',lang:'en'},
+    ]
+  }
+};
+
+function _buildCountryList(regionKey){
+  const reg = REGIONS[regionKey];
+  const el = document.getElementById('countrySelect');
+  if(!reg || !el) return;
+  const placeholder = currentLang === 'es' ? '— País —' : '— Country —';
+  el.innerHTML = `<option value="">${placeholder}</option>`;
+  reg.countries.forEach(c=>{
+    const opt = document.createElement('option');
+    opt.value = c.code;
+    opt.textContent = c.name;
+    el.appendChild(opt);
+  });
+  el.style.display = '';
+}
+
+function setRegion(regionKey){
+  const reg = REGIONS[regionKey];
+  const countryEl = document.getElementById('countrySelect');
+  if(!regionKey || !reg){ if(countryEl) countryEl.style.display='none'; return; }
+  _buildCountryList(regionKey);
+  // Apply region defaults (language + currency)
+  applyLang(reg.defaultLang);
+  setCurrency(reg.defaultCurrency);
+  document.getElementById('currencySelect').value = reg.defaultCurrency;
+  try{ localStorage.setItem('aj_region',regionKey); }catch(e){}
+  try{ localStorage.removeItem('aj_country_sel'); }catch(e){}
+}
+
+function setCountry(countryCode){
+  if(!countryCode) return;
+  const regionKey = document.getElementById('regionSelect').value;
+  const reg = REGIONS[regionKey];
+  if(!reg) return;
+  const country = reg.countries.find(c=>c.code===countryCode);
+  if(!country) return;
+  applyLang(country.lang);
+  setCurrency(country.currency);
+  document.getElementById('currencySelect').value = country.currency;
+  window._userCountry = countryCode;
+  applyGeoDemo(countryCode);
+  try{ localStorage.setItem('aj_currency_manual','1'); }catch(e){}
+  try{ localStorage.setItem('aj_country_sel',countryCode); }catch(e){}
+}
+
+function autoSelectLocale(countryCode){
+  if(!countryCode) return;
+  if(localStorage.getItem('aj_region')) return; // user already chose manually
+  for(const [rKey, reg] of Object.entries(REGIONS)){
+    if(reg.countries.find(c=>c.code===countryCode)){
+      const rEl = document.getElementById('regionSelect');
+      if(rEl){ rEl.value = rKey; _buildCountryList(rKey); }
+      const cEl = document.getElementById('countrySelect');
+      if(cEl) cEl.value = countryCode;
+      break;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════
    THEME (Day / Night)
 ═══════════════════════════════════════════════════ */
 function toggleTheme(){
@@ -2089,6 +2265,21 @@ function applyGeoDemo(country){
   applyLang(lang);
   // Apply geo-based demo section variant
   applyGeoDemo(window._userCountry || '');
+  // Restore saved region/country UI (returning visitor) OR auto-detect (new visitor)
+  const savedRegion = localStorage.getItem('aj_region');
+  const savedCountrySel = localStorage.getItem('aj_country_sel');
+  if(savedRegion){
+    // Rebuild country list without triggering currency/lang changes
+    const rEl = document.getElementById('regionSelect');
+    if(rEl){ rEl.value = savedRegion; _buildCountryList(savedRegion); }
+    if(savedCountrySel){
+      const cEl = document.getElementById('countrySelect');
+      if(cEl) cEl.value = savedCountrySel;
+    }
+  } else {
+    // New visitor — auto-select based on IP geo
+    autoSelectLocale(window._userCountry || '');
+  }
   applyPrices();
   roiCalc();
 })();
