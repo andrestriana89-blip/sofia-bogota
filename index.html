@@ -470,21 +470,20 @@
     }
     .card-shine:hover::before{left:140%}
 
-    /* ═══ LOGO WATERMARK — muy sutil ═══ */
+    /* ═══ LOGO HERO BACKGROUND — con luz, centrado y ancho ═══ */
     .hero-watermark{
       position:absolute;
-      right:-60px;top:50%;
-      transform:translateY(-50%);
-      width:480px;height:auto;
-      opacity:0.045;
+      left:50%;top:50%;
+      transform:translate(-50%,-50%);
+      width:min(820px,95vw);height:auto;
+      opacity:0.11;
       mix-blend-mode:screen;
       pointer-events:none;
       user-select:none;
       z-index:1;
-      filter:brightness(3);
     }
     @media(max-width:768px){
-      .hero-watermark{width:280px;right:-20px;opacity:0.035}
+      .hero-watermark{width:min(520px,95vw);opacity:0.09}
     }
 
     /* ═══ HERO ORBS ═══ */
@@ -666,7 +665,7 @@
 <!-- NAV -->
 <nav>
   <a class="logo" href="#hero">
-    <img src="logo_AJ_ADVISORY.png" alt="AJ Business Advisory" class="logo-img"/>
+    <img src="ULTIMO_LOGO_SIN_LUZ.png" alt="AJ Business Advisory" class="logo-img"/>
     <div class="logo-sub" id="nav-sub">Marcas Sólidas · Colombia &amp; Global</div>
   </a>
   <div class="nav-links">
@@ -702,7 +701,7 @@
   <div class="hero-orb hero-orb-3"></div>
 
   <!-- Watermark logo — muy sutil, solo contexto de marca -->
-  <img src="logo_AJ_ADVISORY.png" alt="" class="hero-watermark" aria-hidden="true"/>
+  <img src="ULTIMO_LOCO_CON_LUZ.png" alt="" class="hero-watermark" aria-hidden="true"/>
 
   <div class="hero-inner">
     <div class="hero-badge"><span>●</span> <span id="hero-badge">Servicio único en Colombia · IA + Marca + Automatización</span></div>
