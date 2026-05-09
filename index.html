@@ -3416,6 +3416,8 @@ function setRegion(regionKey){
   document.getElementById('currencySelect').value = reg.defaultCurrency;
   try{ localStorage.setItem('aj_region',regionKey); }catch(e){}
   try{ localStorage.removeItem('aj_country_sel'); }catch(e){}
+  // Redirect offer si seleccionan Norteamérica
+  if(regionKey === 'northam') offerUSRedirect();
 }
 
 function setCountry(countryCode){
@@ -3434,6 +3436,8 @@ function setCountry(countryCode){
   applyGeoDemo(countryCode);
   try{ localStorage.setItem('aj_currency_manual','1'); }catch(e){}
   try{ localStorage.setItem('aj_country_sel',countryCode); }catch(e){}
+  // Redirect si seleccionan USA o Canadá directamente
+  if(countryCode === 'US' || countryCode === 'CA') offerUSRedirect();
 }
 
 function autoSelectLocale(countryCode){
@@ -3461,10 +3465,52 @@ function toggleTheme(){
 }
 
 /* ═══════════════════════════════════════════════════
+   US REDIRECT — dirige a visitantes de USA al sitio gringo
+═══════════════════════════════════════════════════ */
+var _usRedirectShown = false;
+function offerUSRedirect(){
+  if(_usRedirectShown) return;
+  _usRedirectShown = true;
+  var existing = document.getElementById('us-redirect-bar');
+  if(existing) return;
+  var bar = document.createElement('div');
+  bar.id = 'us-redirect-bar';
+  bar.style.cssText = [
+    'position:fixed','bottom:0','left:0','right:0','z-index:990',
+    'background:linear-gradient(135deg,#0d0820 0%,#1a0035 100%)',
+    'border-top:1px solid rgba(181,0,94,.4)',
+    'padding:14px 24px','display:flex','align-items:center',
+    'justify-content:space-between','gap:16px','flex-wrap:wrap',
+    'font-family:Inter,sans-serif','font-size:13px','color:#ddd',
+    'box-shadow:0 -4px 30px rgba(181,0,94,.15)'
+  ].join(';');
+  var lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
+  var txt  = lang === 'es'
+    ? '🇺🇸 Pareces estar en <strong>Estados Unidos</strong>. Tenemos un sitio especial para ti.'
+    : '🇺🇸 You seem to be in the <strong>United States</strong>. We have a dedicated site for you.';
+  var btnTxt = lang === 'es' ? 'Ver sitio USA →' : 'Go to US site →';
+  var closeTxt = lang === 'es' ? 'Quedarme aquí' : 'Stay here';
+  bar.innerHTML = '<span>' + txt + '</span>' +
+    '<div style="display:flex;gap:10px;flex-shrink:0">' +
+      '<button onclick="document.getElementById(\'us-redirect-bar\').remove();_usRedirectShown=false;" ' +
+        'style="padding:7px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.2);' +
+        'background:transparent;color:#aaa;font-size:12px;cursor:pointer;font-family:inherit">' +
+        closeTxt + '</button>' +
+      '<a href="https://ajbusinessadvisory.com" ' +
+        'style="padding:8px 20px;border-radius:8px;background:#d6006e;color:#fff;' +
+        'font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap;' +
+        'box-shadow:0 0 16px rgba(210,0,110,.4)">' +
+        btnTxt + '</a>' +
+    '</div>';
+  document.body.appendChild(bar);
+}
+
+/* ═══════════════════════════════════════════════════
    GEO DEMO SWITCH
 ═══════════════════════════════════════════════════ */
 function applyGeoDemo(country){
-  const isUS = country === 'US';
+  const isUS = country === 'US' || country === 'CA';
+  const isNorthAm = ['US','CA'].includes(country);
   const demoSection = document.getElementById('demo-sofia');
   const demoNav = document.querySelector('[data-section="demo-sofia"]');
   const intlDiv  = document.getElementById('demo-intl');
@@ -3477,6 +3523,8 @@ function applyGeoDemo(country){
   if(usDiv)   usDiv.style.display   = isUS ? ''     : 'none';
   // ── WhatsApp: Colombia usa número propio, resto del mundo usa número INTL ──
   updateWaLinks(country);
+  // ── Redirect offer para visitantes de Norteamérica ──
+  if(isNorthAm) offerUSRedirect();
 }
 
 /* ═══════════════════════════════════════════════════
