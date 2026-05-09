@@ -2401,7 +2401,7 @@
      🔧 ANDRÉS — CONNECT HERE BEFORE GO-LIVE
      These sections are ready. Just plug in the APIs.
 ════════════════════════════════════════════════════ -->
-<section class="section" id="api-section" style="display:none">
+<section class="section" id="api-section">
   <!-- Hidden until Andrés connects APIs. Set display:block when ready. -->
   <div class="section-inner">
     <div class="api-placeholder" style="max-width:680px;margin:0 auto">
@@ -3037,7 +3037,7 @@ const LATAM = ['CO','MX','AR','PE','VE','CL','EC','GT','CU','BO','DO','HN','PY',
    Formato: código de país SIN + → ej. 573001234567
 ──────────────────────────────────────────────────── */
 const WA_NUMBERS = {
-  CO:   '57XXXXXXXXXX',   // ← ANDRÉS: número real Colombia (ej. 573001234567)
+  CO:   '573219664302',   // Sofia WA Colombia — Twilio +57 321-966-4302
   INTL: '16696662773'     // Internacional / USA — queda permanente
 };
 /* Mensajes pre-cargados por idioma */
@@ -3670,20 +3670,17 @@ async function submitSofiaCall(e){
   btn.disabled = true;
   btn.textContent = 'Enviando…';
 
-  /* ──────────────────────────────────────────────────────────
-     ANDRÉS: cuando Vapi esté listo, descomenta y configura:
-     try {
-       await fetch('https://api.vapi.ai/call/phone', {
-         method: 'POST',
-         headers: { 'Authorization': 'Bearer TU_VAPI_KEY', 'Content-Type': 'application/json' },
-         body: JSON.stringify({
-           assistantId: 'TU_ASSISTANT_ID',
-           phoneNumberId: 'TU_PHONE_NUMBER_ID',
-           customer: { number: data.telefono, name: data.nombre }
-         })
-       });
-     } catch(err) { console.error('Vapi error:', err); }
-  ────────────────────────────────────────────────────────── */
+  try {
+    await fetch('https://api.vapi.ai/call/phone', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer df91a017-7af0-4241-803a-f17d22b058e6', 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        assistantId: 'b142512e-ba3a-4267-beb9-2cf042862770',
+        phoneNumberId: 'fa257cfb-c786-4d72-8106-fad9b3b8e4dd',
+        customer: { number: data.telefono, name: data.nombre }
+      })
+    });
+  } catch(err) { console.error('Vapi error:', err); }
   console.log('[Sofia te llama] Lead registrado:', data);
 
   // Simular delay de confirmación
