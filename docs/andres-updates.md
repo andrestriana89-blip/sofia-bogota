@@ -39,6 +39,24 @@
 
 ---
 
+## 2026-05-10 — Sesión Andrés (tarde)
+
+**Repos tocados:**
+- `claude-code-g2` (~/claude-code-g2) — setup e intento de activación con Even G2
+
+**Cambios realizados:**
+- ✅ Investigado EvenHub (marketplace apps Even G2) — ~50 apps disponibles desde abril 2026
+- ✅ Identificada integración Claude Code + G2: repo ya estaba clonado y configurado en Mac de Andres
+- ✅ Backend de claude-code-g2 levantado en puerto 8787 — funcionando
+- ✅ Investigado Sensemaker (app EvenHub): captura voz pasiva → extrae personas, proyectos, acciones, fechas
+
+**Pendientes:**
+- [ ] Conectar gafas a claude-code-g2: levantar frontend en 10.0.0.143:5173 + generar QR
+- [ ] Actualizar firmware Even G2: gafas deben estar en cargador con >50% batería
+- [ ] Instalar Sensemaker desde EvenHub → portal.sensemaker-app.com
+
+---
+
 <!-- PLANTILLA PARA PRÓXIMAS ENTRADAS — copiar y llenar
 
 ## YYYY-MM-DD — Sesión Andrés
