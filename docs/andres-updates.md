@@ -57,6 +57,29 @@
 
 ---
 
+## 2026-05-10 — Sesión Andrés (noche — seguridad + Netlify deploy)
+
+**Repos tocados:**
+- `aj-business-advisory` → `webhook/index.html`, `CLAUDE.md`
+- `sofia-bogota` → `index.html`, `netlify/functions/start-call.js`
+
+**Cambios realizados:**
+- ✅ Security fix: Vapi key sacada del HTML público → `process.env.VAPI_API_KEY` en `start-call.js`
+- ✅ `submitSofiaCall` en `index.html` → llama `/.netlify/functions/start-call`, no Vapi directo
+- ✅ Banner LATAM en sitio USA — visitantes Colombia/LATAM ven banner rosa → `sofia.ajbusinessadvisory.com`
+- ✅ sofia-bogota desplegado en Netlify: `sofiabogota.netlify.app`
+- ✅ Dominio `sofia.ajbusinessadvisory.com` → Primary domain en Netlify (DNS propagando)
+- ✅ Regla de sync Valentina agregada al `CLAUDE.md` del repo USA
+
+**Pendientes:**
+- [ ] Andres: CNAME en Namecheap — Host `sofia` → Value `sofiabogota.netlify.app`
+- [ ] Andres: confirmar VAPI_API_KEY nueva en Netlify env vars
+- [ ] Andres: revocar keys viejas Vapi (`df91a017...` y `a693a66e...`)
+- [ ] Precios: clase `prices-locked` aún activa — Andres decide cuándo activar
+- [ ] GHL widget `69d334e30515dd19a13c80df` — verificar activo
+
+---
+
 <!-- PLANTILLA PARA PRÓXIMAS ENTRADAS — copiar y llenar
 
 ## YYYY-MM-DD — Sesión Andrés
