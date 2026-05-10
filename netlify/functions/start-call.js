@@ -4,7 +4,7 @@
 //  The Vapi Private Key stays here — never exposed to the browser.
 // ─────────────────────────────────────────────────────────────
 
-const VAPI_PRIVATE_KEY  = "a693a66e-3ceb-427a-903e-0e34fba9d4f7";
+const VAPI_PRIVATE_KEY  = process.env.VAPI_API_KEY;
 const VAPI_ASSISTANT_ID = "b142512e-ba3a-4267-beb9-2cf042862770";
 const VAPI_PHONE_ID     = "fa257cfb-c786-4d72-8106-fad9b3b8e4dd"; // +1 (669) 310 5168
 
