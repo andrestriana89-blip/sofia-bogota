@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentina · Content Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f4f2fa; --bg2:#ece8f7; --card:#ffffff;
+  --border:rgba(90,70,140,.13); --border2:rgba(90,70,140,.24);
+  --text:#1a1130; --muted:#7060a0; --muted2:#c4b8de;
+  --pink:#d6006e; --yellow:#c49000; --blue:#2563eb; --orange:#e05a20;
+  --gold:#9b7a2e; --green:#16a34a; --radius:16px; --radius-sm:10px;
+  --shadow:0 1px 4px rgba(90,70,140,.08),0 4px 16px rgba(90,70,140,.06);
+  --shadow-sm:0 1px 2px rgba(90,70,140,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* ── HEADER ── */
+.hdr{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);height:60px;display:flex;align-items:center;
+  padding:0 20px;gap:16px;box-shadow:var(--shadow-sm)}
+.hdr-logo{width:34px;height:34px;border-radius:10px;
+  background:linear-gradient(135deg,var(--pink),var(--yellow));
+  display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#000;flex-shrink:0}
+.hdr-brand{flex-shrink:0}
+.hdr-name{font-size:14px;font-weight:800;letter-spacing:-.3px}
+.hdr-sub{font-size:10px;color:var(--muted)}
+.hdr-nav{display:flex;gap:2px;background:rgba(255,255,255,0.04);border-radius:12px;padding:4px;overflow-x:auto;flex:1;max-width:600px;margin:0 auto}
+.hdr-nav::-webkit-scrollbar{display:none}
+.nav-btn{padding:6px 13px;border:none;background:transparent;color:var(--muted);
+  font-size:12px;font-weight:600;border-radius:8px;cursor:pointer;white-space:nowrap;
+  font-family:'Inter',sans-serif;transition:all .15s}
+.nav-btn:hover{color:var(--text);background:rgba(90,70,140,.07)}
+.nav-btn.active{background:rgba(214,0,110,.09);color:var(--pink);font-weight:700}
+.hdr-date{font-size:11px;color:var(--muted);margin-left:auto;flex-shrink:0;text-align:right}
+
+/* ── MAIN ── */
+.main{max-width:1300px;margin:0 auto;padding:20px}
+.tab{display:none}.tab.active{display:block}
+
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+.card-hdr{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;
+  color:var(--muted);margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g-today{display:grid;grid-template-columns:1fr 360px;gap:14px;align-items:start}
+
+/* ── SECTION TITLE ── */
+.sec-title{font-size:20px;font-weight:900;letter-spacing:-.5px;margin-bottom:2px}
+.sec-sub{font-size:12px;color:var(--muted);margin-bottom:18px}
+
+/* ── BUTTONS ── */
+.btn{padding:9px 18px;border-radius:10px;border:none;font-size:12px;font-weight:700;
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;
+  display:inline-flex;align-items:center;gap:5px}
+.btn-pink{background:var(--pink);color:#fff}.btn-pink:hover{background:#b8005c}
+.btn-yellow{background:#f5c400;color:#000}.btn-yellow:hover{background:#daa800}
+.btn-ghost{background:rgba(90,70,140,.06);color:var(--text);border:1px solid var(--border)}
+.btn-ghost:hover{background:rgba(90,70,140,.10)}
+.btn-sm{padding:5px 11px;font-size:11px;border-radius:8px}
+.btn-icon{width:32px;height:32px;padding:0;border-radius:8px;justify-content:center;font-size:15px}
+
+/* ── FORM ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.flabel{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.finput,.fselect,.ftextarea{
+  background:rgba(90,70,140,.05);border:1px solid var(--border);border-radius:10px;
+  padding:9px 13px;color:var(--text);font-size:13px;font-family:'Inter',sans-serif;
+  outline:none;width:100%;transition:border-color .15s}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:var(--pink);box-shadow:0 0 0 3px rgba(214,0,110,.08)}
+.finput::placeholder{color:var(--muted2)}
+.fselect{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237060a0' d='M6 8L1 3h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
+.fselect option{background:#ffffff;color:#1a1130}
+.ftextarea{resize:vertical;min-height:75px;line-height:1.5}
+
+/* ── POST ITEM ── */
+.post-item{background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:13px;cursor:pointer;transition:all .15s;margin-bottom:8px;box-shadow:var(--shadow-sm)}
+.post-item:hover{border-color:var(--border2);box-shadow:var(--shadow);transform:translateY(-1px)}
+.post-item.tipo-actualizacion{border-left:3px solid var(--blue);background:rgba(37,99,235,.03)}
+.post-item-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px}
+.post-item-name{font-size:13px;font-weight:600;flex:1;line-height:1.3}
+.post-meta{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:600;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.07);color:var(--muted)}
+.post-hook{font-size:11px;color:var(--muted);margin-top:5px;font-style:italic;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-actions{display:flex;gap:5px;margin-top:8px}
+
+/* STATUS BADGES */
+.sbadge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;cursor:pointer;border:none;font-family:'Inter',sans-serif;transition:all .15s}
+.s-idea{background:rgba(90,70,140,.12);color:var(--muted)}
+.s-prod{background:rgba(196,144,0,.14);color:#9a6e00}
+.s-listo{background:rgba(22,163,74,.14);color:var(--green)}
+.s-pub{background:rgba(37,99,235,.14);color:var(--blue)}
+
+/* BRAND PILL */
+.bpill{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:100px;
+  border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:11px;
+  font-weight:700;color:var(--muted);transition:all .15s;white-space:nowrap;box-shadow:var(--shadow-sm)}
+.bpill:hover{border-color:var(--border2);color:var(--text)}
+.bpill.active-aj{border-color:var(--pink);background:rgba(214,0,110,.12);color:var(--pink)}
+.bpill.active-datos{border-color:var(--blue);background:rgba(37,99,235,.12);color:#60a5fa}
+.bpill.active-dentalia{border-color:var(--gold);background:rgba(192,154,85,.12);color:var(--gold)}
+.bpill.active-all{border-color:var(--yellow);background:rgba(245,196,0,.1);color:var(--yellow)}
+.bdot{width:7px;height:7px;border-radius:50%}
+
+/* WEEK CHECKLIST */
+.wk-brand-section{margin-bottom:22px}
+.wk-brand-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;
+  padding-bottom:10px;border-bottom:1px solid var(--border)}
+.wk-brand-bar{width:4px;height:18px;border-radius:2px;flex-shrink:0}
+.wk-brand-name{font-size:13px;font-weight:800}
+.wk-brand-type{font-size:10px;color:var(--muted)}
+.wk-progress-txt{margin-left:auto;font-size:11px;color:var(--muted)}
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.chk{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:10px;
+  background:var(--card);border:1px solid var(--border);cursor:pointer;transition:all .15s;user-select:none;box-shadow:var(--shadow-sm)}
+.chk:hover{border-color:var(--border2)}
+.chk.done{border-color:rgba(22,163,74,.3);background:rgba(22,163,74,.06)}
+.chk-box{width:17px;height:17px;border-radius:5px;border:2px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;transition:all .15s}
+.chk.done .chk-box{background:var(--green);border-color:var(--green);color:#fff}
+.chk-label{font-size:12px;font-weight:600}
+.chk.done .chk-label{color:var(--muted);text-decoration:line-through}
+
+/* WEEK STATS */
+.wk-stats{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.wk-stat{flex:1;min-width:100px;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:14px;text-align:center;box-shadow:var(--shadow-sm)}
+.wk-stat-n{font-size:26px;font-weight:900;letter-spacing:-1px;line-height:1;margin-bottom:3px}
+.wk-stat-l{font-size:10px;color:var(--muted);font-weight:600}
+
+/* PROGRESS BAR */
+.pbar{height:3px;background:rgba(255,255,255,.06);border-radius:100px;margin:8px 0;overflow:hidden}
+.pbar-fill{height:100%;border-radius:100px;transition:width .4s ease}
+
+/* BRAND CARD */
+.brand-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:border-color .2s}
+.brand-card:hover{border-color:var(--border2)}
+.bc-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.bc-avatar{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.bc-info{flex:1}
+.bc-name{font-size:14px;font-weight:800;margin-bottom:2px}
+.bc-handle{font-size:11px;color:var(--muted)}
+.bc-badge{font-size:9px;font-weight:800;padding:2px 8px;border-radius:100px}
+.badge-propia{background:rgba(34,197,94,.15);color:var(--green)}
+.badge-liderada{background:rgba(245,196,0,.15);color:var(--yellow)}
+.bc-notes{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:12px;min-height:18px}
+.bc-links{display:flex;gap:6px;flex-wrap:wrap}
+.bc-link{font-size:11px;font-weight:600;padding:4px 10px;border-radius:7px;
+  border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .15s;cursor:pointer;background:none;font-family:'Inter',sans-serif}
+.bc-link:hover{color:var(--text);border-color:var(--border2)}
+.bc-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:12px}
+.bc-stat{background:rgba(255,255,255,.03);border-radius:8px;padding:9px;text-align:center}
+.bc-stat-n{font-size:17px;font-weight:900}
+.bc-stat-l{font-size:9px;color:var(--muted);font-weight:600}
+
+/* AGENDA */
+.agenda-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.agenda-item:last-child{border-bottom:none}
+.agenda-time{font-size:10px;color:var(--muted);font-weight:600;min-width:42px;padding-top:2px}
+.agenda-body{flex:1}
+.agenda-title{font-size:12px;font-weight:600}
+.agenda-brand{font-size:10px;color:var(--muted)}
+.agenda-del{background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:0 4px;transition:color .15s;flex-shrink:0}
+.agenda-del:hover{color:#f87171}
+.add-agenda-btn{width:100%;margin-top:8px;padding:9px;border:1px dashed var(--border);
+  border-radius:10px;background:transparent;color:var(--muted);font-size:12px;
+  font-family:'Inter',sans-serif;cursor:pointer;transition:all .15s}
+.add-agenda-btn:hover{border-color:var(--border2);color:var(--text)}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;background:rgba(20,10,40,.5);z-index:200;
+  display:flex;align-items:center;justify-content:center;padding:16px;
+  opacity:0;pointer-events:none;transition:opacity .2s;backdrop-filter:blur(4px)}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal{background:#ffffff;border:1px solid var(--border);border-radius:20px;
+  padding:24px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;
+  transform:translateY(16px);transition:transform .2s;box-shadow:0 8px 40px rgba(90,70,140,.18)}
+.modal-ov.open .modal{transform:translateY(0)}
+.modal-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:20px}
+.modal-title{font-size:15px;font-weight:800;line-height:1.3}
+.modal-close{width:28px;height:28px;border-radius:8px;background:rgba(90,70,140,.08);
+  border:none;color:var(--muted);font-size:16px;cursor:pointer;display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;transition:all .15s}
+.modal-close:hover{background:rgba(90,70,140,.14);color:var(--text)}
+.mfield{margin-bottom:14px}
+.mfield-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:4px}
+.mfield-val{font-size:13px;line-height:1.6;white-space:pre-wrap;color:var(--text)}
+.copy-btn{display:inline-flex;align-items:center;gap:4px;font-size:10px;padding:3px 8px;
+  border-radius:6px;background:rgba(90,70,140,.08);border:none;color:var(--muted);
+  cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s;margin-left:6px;vertical-align:middle}
+.copy-btn:hover{background:rgba(90,70,140,.14);color:var(--text)}
+
+/* CALENDAR */
+.cal-placeholder{height:380px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;color:var(--muted);text-align:center;padding:20px}
+.cal-placeholder .ico{font-size:38px}
+.cal-placeholder h3{font-size:15px;color:var(--text);font-weight:700}
+.cal-placeholder p{font-size:12px;line-height:1.6;max-width:300px}
+.cal-frame{width:100%;height:440px;border:none;border-radius:var(--radius)}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:#ffffff;
+  box-shadow:0 4px 20px rgba(90,70,140,.18);border:1px solid var(--border);border-radius:12px;
+  padding:11px 16px;font-size:12px;font-weight:600;z-index:300;color:var(--text);
+  transform:translateY(60px);opacity:0;transition:all .3s ease;max-width:280px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* SECTION DIVIDERS */
+.sec-divider{display:flex;align-items:center;gap:10px;margin:20px 0 12px}
+.sec-divider-line{flex:1;height:1px;background:var(--border)}
+.sec-divider-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);white-space:nowrap}
+
+/* ACTUALIZACION ITEM */
+.act-item{background:var(--card);border:1px solid rgba(37,99,235,.2);border-left:3px solid var(--blue);
+  border-radius:12px;padding:12px;margin-bottom:8px;box-shadow:var(--shadow-sm);cursor:pointer;transition:all .15s}
+.act-item:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.act-plataforma{font-size:10px;font-weight:700;padding:2px 8px;border-radius:6px;
+  background:rgba(37,99,235,.1);color:var(--blue);display:inline-block;margin-bottom:5px}
+
+/* CONFIG */
+.cfg-sec{margin-bottom:22px}
+.cfg-sec h3{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--text)}
+.cfg-hint{font-size:11px;color:var(--muted);line-height:1.6;margin-top:6px}
+
+/* EMPTY */
+.empty{text-align:center;padding:32px 16px;color:var(--muted)}
+.empty .ico{font-size:32px;margin-bottom:8px}
+.empty h3{font-size:14px;color:var(--text);font-weight:700;margin-bottom:4px}
+.empty p{font-size:12px;line-height:1.5}
+
+/* INLINE ADD AGENDA */
+.agenda-add-form{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:10px;padding:12px;margin-top:8px;display:none;gap:8px;flex-direction:column}
+.agenda-add-form.open{display:flex}
+.agenda-row{display:flex;gap:8px}
+
+/* AUTOMATION SECTION */
+.auto-sec{border:1px solid rgba(34,197,94,.2);border-radius:12px;overflow:hidden;background:rgba(34,197,94,.03)}
+.auto-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 15px;
+  cursor:pointer;font-size:12px;font-weight:700;color:var(--green);
+  background:rgba(34,197,94,.06);transition:background .15s;user-select:none;gap:8px}
+.auto-hdr:hover{background:rgba(34,197,94,.1)}
+.auto-hdr-left{display:flex;align-items:center;gap:8px}
+.auto-toggle{font-size:10px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.auto-toggle.open{transform:rotate(180deg)}
+.auto-body{padding:16px;display:none;border-top:1px solid rgba(34,197,94,.15)}
+.auto-body.open{display:block}
+.auto-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+.abadge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:100px;display:inline-flex;align-items:center;gap:3px}
+.abadge-green{background:rgba(34,197,94,.18);color:var(--green)}
+.abadge-yellow{background:rgba(245,196,0,.18);color:var(--yellow)}
+.abadge-muted{background:rgba(120,120,140,.12);color:var(--muted)}
+.abadge-blue{background:rgba(37,99,235,.18);color:#60a5fa}
+.abadge-orange{background:rgba(255,107,53,.18);color:var(--orange)}
+.auto-status-row{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);padding:3px 0}
+.auto-status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.dot-green{background:var(--green)}.dot-yellow{background:var(--yellow)}.dot-red{background:#f87171}.dot-gray{background:var(--muted)}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(90,70,140,.2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(90,70,140,.35)}
+
+/* TIPO SELECTOR */
+.tipo-selector{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.tipo-opt{padding:6px 14px;border-radius:8px;border:1.5px solid var(--border);background:transparent;
+  font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;
+  color:var(--muted);transition:all .15s}
+.tipo-opt:hover{border-color:var(--border2);color:var(--text)}
+.tipo-opt.selected-contenido{border-color:var(--pink);background:rgba(214,0,110,.08);color:var(--pink)}
+.tipo-opt.selected-actualizacion{border-color:var(--blue);background:rgba(37,99,235,.08);color:var(--blue)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .g-today{grid-template-columns:1fr}
+  .g3{grid-template-columns:1fr 1fr}
+  .form-grid{grid-template-columns:1fr}
+  .hdr-nav{max-width:none}
+}
+@media(max-width:600px){
+  .g2,.g3{grid-template-columns:1fr}
+  .main{padding:12px}
+  .hdr{padding:0 12px;gap:10px}
+  .hdr-sub{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="hdr">
+  <div class="hdr-logo">V</div>
+  <div class="hdr-brand">
+    <div class="hdr-name">Content Hub</div>
+    <div class="hdr-sub">Valentina · AJ Business Advisory</div>
+  </div>
+  <nav class="hdr-nav">
+    <button class="nav-btn active" onclick="switchTab('hoy',this)">📅 Hoy</button>
+    <button class="nav-btn" onclick="switchTab('semana',this)">📆 Esta Semana</button>
+    <button class="nav-btn" onclick="switchTab('nuevo',this)">✍️ Nuevo Post</button>
+    <button class="nav-btn" onclick="switchTab('marcas',this)">🎯 Mis Marcas</button>
+    <button class="nav-btn" onclick="switchTab('config',this)">⚙️ Ajustes</button>
+  </nav>
+  <div class="hdr-date" id="hdr-date"></div>
+</header>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+<!-- ═══════════════════════════════════════════════════
+     TAB: HOY
+═══════════════════════════════════════════════════ -->
+<section class="tab active" id="tab-hoy">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+    <div class="sec-title" id="today-title">Hoy</div>
+    <button class="btn btn-pink btn-sm" onclick="switchTab('nuevo',document.querySelectorAll('.nav-btn')[2])">✍️ Crear post</button>
+  </div>
+  <div class="sec-sub">Tu calendario, contenido y actualizaciones del día</div>
+
+  <!-- CALENDAR — full width, prominent -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-hdr">
+      🗓 Google Calendar
+      <button class="btn btn-ghost btn-sm" onclick="switchTab('config',document.querySelectorAll('.nav-btn')[4])">⚙️ Configurar</button>
+    </div>
+    <div id="cal-area"></div>
+  </div>
+
+  <!-- TWO COLUMNS: Agenda | Posts + Pendientes -->
+  <div class="g-today">
+    <!-- LEFT: Agenda del día -->
+    <div>
+      <div class="card">
+        <div class="card-hdr">
+          📌 Agenda del día
+          <button class="btn btn-ghost btn-sm" onclick="toggleAgendaForm()">+ Agregar</button>
+        </div>
+        <div id="agenda-list"></div>
+        <div class="agenda-add-form" id="agenda-form">
+          <div class="agenda-row">
+            <input class="finput" id="ag-time" type="time" placeholder="10:00" style="width:90px;flex-shrink:0">
+            <input class="finput" id="ag-title" placeholder="Descripción de la tarea..." style="flex:1">
+          </div>
+          <div class="agenda-row">
+            <select class="fselect" id="ag-brand" style="flex:1">
+              <option value="">Sin marca</option>
+            </select>
+            <button class="btn btn-pink btn-sm" onclick="addAgendaItem()">Guardar</button>
+            <button class="btn btn-ghost btn-sm" onclick="toggleAgendaForm()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Posts de hoy + Pendientes + Actualizaciones -->
+    <div>
+      <!-- Posts programados HOY -->
+      <div class="card-hdr" style="margin-bottom:10px">
+        📤 Posts de hoy
+        <span class="tag" id="today-posts-count">0</span>
+      </div>
+      <div id="today-posts-list"></div>
+
+      <!-- Actualizaciones pendientes hoy -->
+      <div id="today-updates-section" style="display:none;margin-top:14px">
+        <div class="sec-divider">
+          <div class="sec-divider-line"></div>
+          <div class="sec-divider-label">⚡ Actualizaciones pendientes</div>
+          <div class="sec-divider-line"></div>
+        </div>
+        <div id="today-updates-list"></div>
+      </div>
+
+      <!-- Posts PENDIENTES (no publicados) -->
+      <div style="margin-top:16px">
+        <div class="sec-divider">
+          <div class="sec-divider-line"></div>
+          <div class="sec-divider-label">⏳ Posts pendientes</div>
+          <div class="sec-divider-line"></div>
+        </div>
+        <div id="pending-posts-list"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TAB: ESTA SEMANA
+═══════════════════════════════════════════════════ -->
+<section class="tab" id="tab-semana">
+  <div class="sec-title" id="week-title">Esta Semana</div>
+  <div class="sec-sub" id="week-range"></div>
+
+  <!-- Stats row -->
+  <div class="wk-stats" id="week-stats"></div>
+
+  <!-- Progress bar -->
+  <div class="pbar"><div class="pbar-fill" id="week-pbar" style="background:linear-gradient(90deg,var(--pink),var(--yellow))"></div></div>
+
+  <!-- Checklist per brand -->
+  <div id="week-checklist"></div>
+
+  <!-- All posts this week -->
+  <div style="margin-top:22px">
+    <div class="card-hdr" style="margin-bottom:10px">📋 Posts de esta semana</div>
+    <div id="week-posts-list"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TAB: NUEVO POST
+═══════════════════════════════════════════════════ -->
+<section class="tab" id="tab-nuevo">
+  <div class="sec-title">Nuevo Post</div>
+  <div class="sec-sub">Completa los campos del Brand Storytelling OS</div>
+
+  <div class="card">
+    <div class="form-grid">
+      <!-- TIPO SELECTOR -->
+      <div class="fg full" style="margin-bottom:4px">
+        <label class="flabel">¿Qué estás creando?</label>
+        <div class="tipo-selector">
+          <button type="button" class="tipo-opt selected-contenido" id="tipo-btn-contenido" onclick="setTipo('contenido')">📝 Post de contenido</button>
+          <button type="button" class="tipo-opt" id="tipo-btn-actualizacion" onclick="setTipo('actualizacion')">🌐 Actualización web / RRSS</button>
+        </div>
+        <input type="hidden" id="f-tipo" value="contenido">
+      </div>
+      <!-- Row 1 -->
+      <div class="fg">
+        <label class="flabel">Nombre / Título *</label>
+        <input class="finput" id="f-name" placeholder="Ej: Lanzamiento Academia AJ — Prompts que cambian todo">
+      </div>
+      <div class="fg">
+        <label class="flabel">Fecha *</label>
+        <input class="finput" id="f-fecha" type="date">
+      </div>
+      <!-- Plataforma de actualización — solo visible si tipo=actualizacion -->
+      <div class="fg full" id="f-plat-act-wrap" style="display:none">
+        <label class="flabel">🌐 ¿Qué actualizar?</label>
+        <select class="fselect" id="f-plat-act">
+          <option value="">Seleccionar plataforma...</option>
+          <option value="Web AJ Business Advisory">🌐 Web AJ Business Advisory</option>
+          <option value="Academia AJ">🎓 Academia AJ</option>
+          <option value="Landing Dentalia">🦷 Landing Dentalia</option>
+          <option value="Instagram AJ">📷 Instagram AJ</option>
+          <option value="Instagram El de los Datos">📷 Instagram El de los Datos</option>
+          <option value="Instagram Dentalia">📷 Instagram Dentalia</option>
+          <option value="TikTok El de los Datos">🎵 TikTok El de los Datos</option>
+          <option value="Link en bio">🔗 Link en bio</option>
+          <option value="Promo / Campaña activa">📣 Promo / Campaña activa</option>
+          <option value="Otro">📌 Otro</option>
+        </select>
+      </div>
+      <!-- Row 2 -->
+      <div class="fg" id="f-marca-wrap">
+        <label class="flabel">Marca *</label>
+        <select class="fselect" id="f-marca">
+          <option value="">Seleccionar marca...</option>
+          <option value="aj">🟡 AJ Business Advisory</option>
+          <option value="datos">🔵 El de los Datos</option>
+          <option value="dentalia">🦷 Dentalia / Dra. Natalia</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="flabel">Estado</label>
+        <select class="fselect" id="f-estado">
+          <option value="idea">💡 Idea</option>
+          <option value="produccion" selected>🎬 En producción</option>
+          <option value="listo">✅ Listo</option>
+          <option value="publicado">📤 Publicado</option>
+        </select>
+      </div>
+      <!-- Row 3 -->
+      <div class="fg">
+        <label class="flabel">Formato</label>
+        <select class="fselect" id="f-formato">
+          <option value="Carrusel">🎠 Carrusel</option>
+          <option value="Reel">🎬 Reel</option>
+          <option value="TikTok">🎵 TikTok</option>
+          <option value="Story">📸 Story</option>
+          <option value="Post">🖼 Post estático</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="flabel">Plataforma</label>
+        <select class="fselect" id="f-plataforma">
+          <option value="Instagram">📷 Instagram</option>
+          <option value="TikTok">🎵 TikTok</option>
+          <option value="Ambos">📱 Instagram + TikTok</option>
+          <option value="LinkedIn">💼 LinkedIn</option>
+          <option value="YouTube">▶️ YouTube</option>
+        </select>
+      </div>
+      <!-- Row 4 -->
+      <div class="fg">
+        <label class="flabel">Pilar Narrativo</label>
+        <select class="fselect" id="f-pilar">
+          <option value="">Sin pilar</option>
+          <option value="Criterio & Opinión">🧠 Criterio & Opinión</option>
+          <option value="Educación & Traducción">🔍 Educación & Traducción</option>
+          <option value="Tendencia & Actualidad">⚡ Tendencia & Actualidad</option>
+          <option value="Academia & Herramientas">🎓 Academia & Herramientas</option>
+          <option value="Transformación & Resultados">🏆 Transformación & Resultados</option>
+          <option value="Sistema & Automatización">🤖 Sistema & Automatización</option>
+          <option value="Marca & Posicionamiento">🎯 Marca & Posicionamiento</option>
+          <option value="Retorno & Negocio">💰 Retorno & Negocio</option>
+          <option value="Comunidad & Conexión">👥 Comunidad & Conexión</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label class="flabel">Función de Marca</label>
+        <select class="fselect" id="f-funcion">
+          <option value="">Sin función</option>
+          <option value="Autoridad">🎯 Autoridad</option>
+          <option value="Alcance">📢 Alcance</option>
+          <option value="Conexión">❤️ Conexión</option>
+          <option value="Consideración">🤔 Consideración</option>
+          <option value="Conversión">💳 Conversión</option>
+          <option value="Fidelización">🔁 Fidelización</option>
+          <option value="Lanzamiento">🚀 Lanzamiento</option>
+        </select>
+      </div>
+      <!-- Row 5 -->
+      <div class="fg full">
+        <label class="flabel">Hook / Ángulo <span style="color:var(--pink)">★ Lo más importante</span></label>
+        <input class="finput" id="f-hook" placeholder="La primera línea que detiene el scroll...">
+      </div>
+      <!-- Row 6 -->
+      <div class="fg full">
+        <label class="flabel">Caption completo</label>
+        <textarea class="ftextarea" id="f-caption" rows="5" placeholder="El texto completo listo para copiar y pegar..."></textarea>
+      </div>
+      <!-- Row 7 -->
+      <div class="fg">
+        <label class="flabel">CTA</label>
+        <input class="finput" id="f-cta" placeholder="Ej: Comenta ACADEMIA y te lo enviamos">
+      </div>
+      <div class="fg">
+        <label class="flabel">Keyword ManyChat</label>
+        <input class="finput" id="f-keyword" placeholder="Ej: ACADEMIA">
+      </div>
+      <!-- Row 8 -->
+      <div class="fg full">
+        <label class="flabel">Notas de producción</label>
+        <textarea class="ftextarea" id="f-notas" rows="3" placeholder="Instrucciones de diseño, música, colores, referencias..."></textarea>
+      </div>
+    </div>
+
+    <!-- ── SECCIÓN AUTOMATIZACIÓN ── -->
+    <div class="auto-sec" style="margin-top:20px">
+      <div class="auto-hdr" onclick="toggleAutoSection(this)">
+        <div class="auto-hdr-left">
+          <span>⚡</span>
+          <span>Automatización & Publicación</span>
+          <span class="abadge abadge-green">ManyChat · GHL · Sofia AI</span>
+        </div>
+        <span class="auto-toggle">▼</span>
+      </div>
+      <div class="auto-body" id="auto-body-form">
+        <div class="form-grid">
+          <!-- Publicación -->
+          <div class="fg">
+            <label class="flabel">⏰ Hora exacta de publicación</label>
+            <input class="finput" id="f-hora" type="time" placeholder="12:00">
+          </div>
+          <div class="fg">
+            <label class="flabel">📅 Estado de programación</label>
+            <select class="fselect" id="f-prog">
+              <option value="sin_programar">⬜ Sin programar</option>
+              <option value="listo_programar">🟡 Listo para programar</option>
+              <option value="programado_meta">🟢 Programado en Meta/TikTok</option>
+              <option value="publicado_auto">✅ Publicado automático</option>
+            </select>
+          </div>
+          <!-- ManyChat -->
+          <div class="fg">
+            <label class="flabel">🤖 Flujo ManyChat</label>
+            <select class="fselect" id="f-mc-estado">
+              <option value="no_configurado">⬜ No configurado</option>
+              <option value="pendiente">🟡 Pendiente activar</option>
+              <option value="activo">🟢 Flujo activo</option>
+              <option value="inactivo">🔴 Inactivo</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="flabel">💬 Respuesta automática ManyChat</label>
+            <input class="finput" id="f-mc-msg" placeholder='Ej: "Hola [nombre], aquí está tu guía 👉"'>
+          </div>
+          <!-- GHL + Sofia -->
+          <div class="fg">
+            <label class="flabel">🗂 Lead → GHL</label>
+            <select class="fselect" id="f-ghl">
+              <option value="no_conectado">⬜ No conectado</option>
+              <option value="conectado">🟢 Conectado a GHL</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label class="flabel">🧠 Seguimiento Sofia AI</label>
+            <select class="fselect" id="f-sofia">
+              <option value="sin_seguimiento">⬜ Sin seguimiento</option>
+              <option value="inmediato">⚡ Inmediato</option>
+              <option value="24h">🕐 24h después</option>
+              <option value="48h">🕑 48h después</option>
+            </select>
+          </div>
+          <!-- Link publicado -->
+          <div class="fg full">
+            <label class="flabel">🔗 Link del post publicado</label>
+            <input class="finput" id="f-link-post" type="url" placeholder="https://www.instagram.com/p/...">
+          </div>
+          <!-- Notas auto -->
+          <div class="fg full">
+            <label class="flabel">📝 Notas de automatización</label>
+            <textarea class="ftextarea" id="f-auto-notas" rows="2" placeholder="Ej: Activar keyword en ManyChat antes de publicar. Confirmar con Andrés..."></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:10px;margin-top:18px;justify-content:flex-end">
+      <button class="btn btn-ghost" onclick="clearForm()">Limpiar</button>
+      <button class="btn btn-yellow" onclick="savePost()">💾 Guardar Post</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TAB: MIS MARCAS
+═══════════════════════════════════════════════════ -->
+<section class="tab" id="tab-marcas">
+  <div class="sec-title">Mis Marcas</div>
+  <div class="sec-sub">Cuentas que gestionas y líderas</div>
+  <div class="g3" id="brands-grid"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     TAB: AJUSTES
+═══════════════════════════════════════════════════ -->
+<section class="tab" id="tab-config">
+  <div class="sec-title">Ajustes</div>
+  <div class="sec-sub">Configura tu Content Hub</div>
+
+  <div class="g2">
+    <div>
+      <div class="cfg-sec">
+        <h3>📅 Google Calendar</h3>
+        <div class="fg">
+          <label class="flabel">URL del embed de Google Calendar</label>
+          <input class="finput" id="cfg-cal-url" placeholder="https://calendar.google.com/calendar/embed?src=...">
+          <div class="cfg-hint">
+            Cómo obtenerlo:<br>
+            1. Ve a calendar.google.com<br>
+            2. Clic en ⚙️ → Configuración → [nombre de tu calendario]<br>
+            3. Baja hasta "Integrar el calendario"<br>
+            4. Copia la URL del iframe (todo lo que está dentro de src="...")<br>
+            5. Pégala aquí y guarda
+          </div>
+        </div>
+        <button class="btn btn-pink" style="margin-top:12px" onclick="saveCalUrl()">💾 Guardar URL del calendario</button>
+      </div>
+
+      <div class="cfg-sec">
+        <h3>🎯 Metas semanales de contenido</h3>
+        <div class="g3">
+          <div class="fg">
+            <label class="flabel">AJ (posts/semana)</label>
+            <input class="finput" id="cfg-goal-aj" type="number" min="1" max="20" placeholder="4">
+          </div>
+          <div class="fg">
+            <label class="flabel">El de los Datos</label>
+            <input class="finput" id="cfg-goal-datos" type="number" min="1" max="20" placeholder="4">
+          </div>
+          <div class="fg">
+            <label class="flabel">Dentalia</label>
+            <input class="finput" id="cfg-goal-dentalia" type="number" min="1" max="20" placeholder="3">
+          </div>
+        </div>
+        <button class="btn btn-ghost" style="margin-top:12px" onclick="saveGoals()">💾 Guardar metas</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="cfg-sec">
+        <h3>🔗 Links rápidos</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          <a href="https://www.notion.so/07b9ac54971e4877a158ec63cf8a10f5" target="_blank" class="bc-link" style="display:block;padding:10px 14px">📁 Notion — AJ Business Advisory</a>
+          <a href="https://www.notion.so/35b6fc7b0fb681c19845f6bd5df3fc6a" target="_blank" class="bc-link" style="display:block;padding:10px 14px">🧠 Brand Command Center</a>
+          <a href="https://www.notion.so/d4ce00bf5603452d9a5edf22155a097a" target="_blank" class="bc-link" style="display:block;padding:10px 14px">📅 Content Calendar (Notion)</a>
+          <a href="https://contrato-paula-dentalia.netlify.app/" target="_blank" class="bc-link" style="display:block;padding:10px 14px">📄 Contrato Paula — Dentalia</a>
+          <a href="https://parrilla-dentalia-aj.netlify.app/" target="_blank" class="bc-link" style="display:block;padding:10px 14px">📊 Parrilla Dentalia (PIN: AJN2026)</a>
+          <a href="https://ajbusinessadvisory.com" target="_blank" class="bc-link" style="display:block;padding:10px 14px">🌐 ajbusinessadvisory.com</a>
+        </div>
+      </div>
+
+      <div class="cfg-sec">
+        <h3>💾 Datos</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" onclick="exportData()">📤 Exportar JSON</button>
+          <button class="btn btn-ghost btn-sm" onclick="importData()">📥 Importar JSON</button>
+          <button class="btn btn-ghost btn-sm" style="color:#f87171" onclick="clearAllData()">🗑 Borrar todo</button>
+        </div>
+        <div class="cfg-hint" style="margin-top:8px">Los datos se guardan en tu navegador (localStorage). Exporta regularmente como respaldo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ── POST DETAIL MODAL ── -->
+<div class="modal-ov" id="post-modal">
+  <div class="modal">
+    <div class="modal-hdr">
+      <div class="modal-title" id="modal-title">Post</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div id="modal-body"></div>
+    <div style="display:flex;gap:8px;margin-top:18px;flex-wrap:wrap">
+      <button class="btn btn-ghost btn-sm" onclick="editPostFromModal()">✏️ Editar</button>
+      <button class="btn btn-ghost btn-sm" id="modal-status-btn" onclick="cycleStatusFromModal()">Cambiar estado</button>
+      <button class="btn btn-ghost btn-sm" style="color:#f87171;margin-left:auto" onclick="deletePostFromModal()">🗑 Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── HIDDEN FILE INPUT ── -->
+<input type="file" id="import-file" accept=".json" style="display:none" onchange="handleImport(event)">
+
+<script>
+// ═══════════════════════════════════════════════
+//  STATE & PERSISTENCE
+// ═══════════════════════════════════════════════
+const SKEY = 'vhub_v2';
+let S = loadState();
+let activeModalPostId = null;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(SKEY);
+    const d = defaultState();
+    if (!raw) return d;
+    const loaded = JSON.parse(raw);
+    return {
+      posts:          loaded.posts          || d.posts,
+      calendarUrl:    loaded.calendarUrl    || d.calendarUrl,
+      weeklyGoals:    {...d.weeklyGoals,    ...(loaded.weeklyGoals    || {})},
+      weeklyChecklist:loaded.weeklyChecklist|| d.weeklyChecklist,
+      manualAgenda:   loaded.manualAgenda   || d.manualAgenda,
+      brands:         loaded.brands         || d.brands
+    };
+  } catch(e) { return defaultState(); }
+}
+function save() { localStorage.setItem(SKEY, JSON.stringify(S)); }
+
+function defaultState() {
+  return {
+    posts: [
+      // ── HOY: El de los Datos ──
+      { id:'post-prompt-marco', nombre:'El Prompt Marco — Este prompt te ahorra 2h al día', fecha:'2026-05-09', marca:'datos', id_brand:'datos', tipo:'contenido',
+        estado:'produccion', formato:'Carrusel', plataforma:'Instagram',
+        pilar:'Educación & Traducción', funcion:'Autoridad',
+        hook:'Este prompt me ahorra 2 horas al día. Y la mayoría ni sabe que existe.',
+        caption:'¿Usas ChatGPT todos los días pero sientes que no saca todo su potencial?\n\nEste es el prompt que cambió cómo trabajo.\n\nNo es magia. Es estructura.\n\nDesliza y coméntame PROMPT — te lo mando directo.',
+        cta:'Comenta PROMPT y te lo enviamos', keyword:'PROMPT',
+        notas:'6 slides. Slide 1: Hook fuerte. Slides 2-5: el prompt desglosado paso a paso. Slide 6: CTA con keyword.',
+        hora:'12:00', progEstado:'listo_programar', mcEstado:'pendiente', ghl:'no_conectado', sofia:'24h',
+        createdAt:'2026-05-09T09:00:00Z' },
+      // ── HOY: AJ Business Advisory ──
+      { id:'post-academia-aj', nombre:'Lanzamiento Academia AJ — La IA más cara no es la que pagas', fecha:'2026-05-09', marca:'aj', id_brand:'aj', tipo:'contenido',
+        estado:'produccion', formato:'Carrusel', plataforma:'Instagram',
+        pilar:'Academia & Herramientas', funcion:'Lanzamiento',
+        hook:'La IA más cara no es la que pagas. Es la que no sabes usar.',
+        caption:'Llevas meses oyendo que la IA va a cambiar todo.\n\nY tienes razón. Pero no por la razón que crees.\n\nEl problema no es el acceso a la IA. Es que nadie te enseñó a usarla como estrategia de negocio.\n\nPor eso creamos la Academia AJ.\n\nComenta ACADEMIA y te cuento qué viene.',
+        cta:'Comenta ACADEMIA y te contamos qué viene', keyword:'ACADEMIA',
+        notas:'7 slides. Slide 1: Hook. Slides 2-5: problema de no saber usar IA. Slide 6: Academia AJ como solución. Slide 7: CTA.',
+        hora:'18:00', progEstado:'listo_programar', mcEstado:'pendiente', ghl:'no_conectado', sofia:'24h',
+        createdAt:'2026-05-09T09:00:00Z' },
+      // ── SEMANA: Agentes de IA ──
+      { id:'post-agentes-ia', nombre:'Agentes de IA — Qué son y por qué cambian todo para tu negocio', fecha:'2026-05-10', marca:'aj', id_brand:'aj', tipo:'contenido',
+        estado:'idea', formato:'Reel', plataforma:'Instagram + TikTok',
+        pilar:'Sistema & Automatización', funcion:'Alcance',
+        hook:'Tu competencia ya tiene un empleado que no duerme, no cobra y no se equivoca.',
+        caption:'', cta:'', keyword:'AGENTE', notas:'Reel 30-60s. Mostrar el antes/después de un negocio con agente vs sin agente.',
+        createdAt:'2026-05-09T09:00:00Z' },
+      // ── DENTALIA — Semana 1 ──
+      { id:'dnt-post-1', nombre:'Tu sonrisa en 3 pasos: lo que cambia cuando te cuidas de verdad', fecha:'2026-05-19', marca:'dentalia', id_brand:'dentalia', tipo:'contenido',
+        estado:'idea', formato:'Carrusel', plataforma:'Instagram',
+        pilar:'Educación & Traducción', funcion:'Autoridad',
+        hook:'La mayoría espera a que duela. No esperes.',
+        caption:'', cta:'Comenta SONRISA y te contamos cómo empezar', keyword:'SONRISA',
+        notas:'7 slides. Paula lo produce. Entrega antes del 16 mayo.',
+        createdAt:'2026-05-09T09:00:00Z' },
+      { id:'dnt-post-2', nombre:'Lo que nadie te dice sobre los brackets (y ya era hora de decirlo)', fecha:'2026-05-20', marca:'dentalia', id_brand:'dentalia', tipo:'contenido',
+        estado:'idea', formato:'Carrusel', plataforma:'Instagram',
+        pilar:'Transformación & Resultados', funcion:'Conexión',
+        hook:'¿Miedo a la ortodoncia? Esto es lo que realmente te espera.',
+        caption:'Si llevas años evitando el dentista por miedo — este es para ti. 💛\n\nNo eres el único. El 30% de adultos tiene ansiedad dental real.\n\nComenta MIEDO y te contamos cómo manejamos la primera cita.',
+        cta:'Comenta MIEDO y te contamos', keyword:'MIEDO',
+        notas:'6 slides. Paula lo produce.',
+        createdAt:'2026-05-09T09:00:00Z' },
+      { id:'dnt-post-3', nombre:'¿Cuánto cuesta realmente un diseño de sonrisa en Bogotá?', fecha:'2026-05-21', marca:'dentalia', id_brand:'dentalia', tipo:'contenido',
+        estado:'idea', formato:'Carrusel', plataforma:'Instagram',
+        pilar:'Retorno & Negocio', funcion:'Consideración',
+        hook:'Nadie te lo había dicho así de claro. Hoy sí.',
+        caption:'No te decimos que gastes más. Te decimos que decidas con información real. 🦷\n\nComenta PRECIO y te explicamos qué incluye cualquier procedimiento.',
+        cta:'Comenta PRECIO', keyword:'PRECIO',
+        notas:'7 slides con precios reales. Paula lo produce.',
+        createdAt:'2026-05-09T09:00:00Z' },
+      { id:'dnt-post-4', nombre:'Antes y después real: así cambió su sonrisa en pocas semanas', fecha:'2026-05-22', marca:'dentalia', id_brand:'dentalia', tipo:'contenido',
+        estado:'idea', formato:'Carrusel', plataforma:'Instagram',
+        pilar:'Transformación & Resultados', funcion:'Conversión',
+        hook:'No filtros. No edición exagerada. Resultado real.',
+        caption:'', cta:'Comenta SONRISA', keyword:'SONRISA',
+        notas:'5 slides. Caso real de paciente. Paula lo produce.',
+        createdAt:'2026-05-09T09:00:00Z' },
+      // ── HOY: Video storytelling logo AJ ──
+      { id:'post-logo-story', nombre:'Video storytelling — Logo AJ en el mundo real', fecha:'2026-05-09', marca:'aj', id_brand:'aj', tipo:'contenido',
+        estado:'listo', formato:'Reel', plataforma:'Instagram + TikTok',
+        pilar:'Marca & Posicionamiento', funcion:'Alcance',
+        hook:'Una marca que no ves en todas partes... todavía.',
+        caption:'El logo en el rayón de un carro.\nEn la cola de un caballo.\nComo pintura en una pared.\n\nUna marca no es un archivo PNG.\nEs una presencia.\n\nAJ Business Advisory — construyendo marcas que se quedan.',
+        cta:'¿Dónde lo pondrías tú? Cuéntanos abajo 👇', keyword:'',
+        notas:'Reel storytelling: secuencia del logo AJ en distintos contextos visuales — carro, caballo, pintura. Música emocional/cinematográfica. Sin texto pesado, dejar que la imagen hable.',
+        hora:'19:00', progEstado:'listo_programar', mcEstado:'no_configurado', ghl:'no_conectado', sofia:'sin_seguimiento',
+        createdAt:'2026-05-09T09:00:00Z' },
+      // ── ACTUALIZACIÓN WEB ──
+      { id:'act-academia-web', nombre:'Actualizar sección Academia en web AJ cuando se confirme lanzamiento', fecha:'2026-05-09', marca:'aj', id_brand:'aj', tipo:'actualizacion',
+        platActualizacion:'Web AJ Business Advisory',
+        estado:'idea', formato:'', plataforma:'',
+        hook:'', caption:'', cta:'', keyword:'',
+        notas:'Cuando Andrés confirme el lanzamiento de Academia AJ, actualizar la sección de precios y agregar la landing de la academia.',
+        createdAt:'2026-05-09T09:00:00Z' }
+    ],
+    calendarUrl: 'https://calendar.google.com/calendar/embed?src=valentina%40ajbusinessadvisory.com&ctz=America%2FBogota',
+    weeklyGoals: { aj: 4, datos: 4, dentalia: 3 },
+    weeklyChecklist: {},
+    manualAgenda: {},
+    brands: [
+      { id:'aj',       name:'AJ Business Advisory',    handle:'@ajbusinessadvisory.col', type:'propia',   emoji:'🟡', color:'#d6006e', ig:'', tiktok:'', web:'https://ajbusinessadvisory.com', notes:'Marca de servicios. Automatización, IA, sistemas para negocios. Colombia & Global.', followers:0, monthlyPosts:0 },
+      { id:'datos',    name:'El de los Datos',          handle:'@eldelosdatos.tech',      type:'propia',   emoji:'🔵', color:'#2563eb', ig:'', tiktok:'', web:'',                              notes:'Marca de contenido. IA, tecnología, prompts, productividad. Habla hispana.',         followers:0, monthlyPosts:0 },
+      { id:'dentalia', name:'Dentalia / Dra. Natalia',  handle:'@dentalia',               type:'liderada', emoji:'🦷', color:'#C09A55', ig:'', tiktok:'', web:'',                              notes:'Cliente activo. Paula produce contenido (Mar 12pm · Jue 12pm · Vie 7pm). Valentina lidera estrategia.', followers:0, monthlyPosts:0 }
+    ]
+  };
+}
+
+// ═══════════════════════════════════════════════
+//  UTILITIES
+// ═══════════════════════════════════════════════
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+function today() { return new Date().toISOString().slice(0,10); }
+function fmtDate(d) {
+  const dt = new Date(d + 'T12:00:00');
+  return dt.toLocaleDateString('es-CO', { weekday:'short', day:'numeric', month:'short' });
+}
+function getISOWeek(date) {
+  const d = new Date(date); d.setHours(12,0,0,0);
+  d.setDate(d.getDate() + 4 - (d.getDay()||7));
+  const y = d.getFullYear();
+  const w = Math.ceil((((d - new Date(y,0,1))/86400000)+1)/7);
+  return `${y}-W${String(w).padStart(2,'0')}`;
+}
+function getWeekRange(isoWeek) {
+  const [y,w] = isoWeek.split('-W').map(Number);
+  const jan4 = new Date(y, 0, 4);
+  const weekStart = new Date(jan4);
+  weekStart.setDate(jan4.getDate() - (jan4.getDay()||7) + 1 + (w-1)*7);
+  const weekEnd = new Date(weekStart); weekEnd.setDate(weekStart.getDate()+6);
+  const fmt = d => d.toLocaleDateString('es-CO', {day:'numeric', month:'short'});
+  return `${fmt(weekStart)} — ${fmt(weekEnd)} · ${y}`;
+}
+function brandById(id) { return S.brands.find(b => b.id===id) || null; }
+function brandColor(id) { const b = brandById(id); return b ? b.color : 'var(--muted)'; }
+function brandEmoji(id) { const b = brandById(id); return b ? b.emoji : '◾'; }
+function brandName(id) { const b = brandById(id); return b ? b.name : id; }
+
+function showToast(msg, duration=2500) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), duration);
+}
+
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent; btn.textContent = '✓ Copiado';
+    setTimeout(() => btn.textContent = orig, 1800);
+    showToast('📋 Copiado al portapapeles');
+  });
+}
+
+// ═══════════════════════════════════════════════
+//  STATUS HELPERS
+// ═══════════════════════════════════════════════
+const STATUS_CYCLE = ['idea','produccion','listo','publicado'];
+const STATUS_LABEL = { idea:'💡 Idea', produccion:'🎬 En prod.', listo:'✅ Listo', publicado:'📤 Publicado' };
+const STATUS_CLASS = { idea:'s-idea', produccion:'s-prod', listo:'s-listo', publicado:'s-pub' };
+
+function nextStatus(current) {
+  const i = STATUS_CYCLE.indexOf(current);
+  return STATUS_CYCLE[(i+1) % STATUS_CYCLE.length];
+}
+
+// ═══════════════════════════════════════════════
+//  TAB NAVIGATION
+// ═══════════════════════════════════════════════
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  if (id==='hoy')     renderToday();
+  if (id==='semana')  renderWeek();
+  if (id==='marcas')  renderBrands();
+  if (id==='config')  renderConfig();
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER: HEADER DATE
+// ═══════════════════════════════════════════════
+function renderHeaderDate() {
+  const now = new Date();
+  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.getElementById('hdr-date').innerHTML = `${dias[now.getDay()]}<br>${now.getDate()} ${meses[now.getMonth()]} ${now.getFullYear()}`;
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER: TODAY
+// ═══════════════════════════════════════════════
+function renderToday() {
+  const now = new Date();
+  const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+  const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  document.getElementById('today-title').textContent = `${dias[now.getDay()]}, ${now.getDate()} de ${meses[now.getMonth()]}`;
+
+  renderCalendar();
+  renderAgenda();
+  renderTodayPosts();
+}
+
+function renderCalendar() {
+  const el = document.getElementById('cal-area');
+  if (S.calendarUrl && S.calendarUrl.length > 10) {
+    el.innerHTML = `<iframe class="cal-frame" src="${S.calendarUrl}" frameborder="0" scrolling="no"></iframe>`;
+  } else {
+    el.innerHTML = `
+      <div class="cal-placeholder">
+        <div class="ico">📅</div>
+        <h3>Conecta tu Google Calendar</h3>
+        <p>Ve a <strong>Ajustes → Google Calendar</strong> y pega la URL de tu calendario para verlo aquí.</p>
+        <button class="btn btn-ghost btn-sm" style="margin-top:8px" onclick="switchTab('config',document.querySelectorAll('.nav-btn')[4])">Configurar ahora →</button>
+      </div>`;
+  }
+}
+
+function renderAgenda() {
+  const todayKey = today();
+  const items = (S.manualAgenda[todayKey] || []).sort((a,b)=>a.time.localeCompare(b.time));
+  const el = document.getElementById('agenda-list');
+
+  // Populate brand select
+  const sel = document.getElementById('ag-brand');
+  sel.innerHTML = '<option value="">Sin marca</option>' +
+    S.brands.map(b => `<option value="${b.id}">${b.emoji} ${b.name}</option>`).join('');
+
+  if (!items.length) {
+    el.innerHTML = `<div style="padding:14px 0;text-align:center;color:var(--muted);font-size:12px">Sin tareas programadas hoy</div>`;
+    return;
+  }
+  el.innerHTML = items.map((it,i) => `
+    <div class="agenda-item">
+      <div class="agenda-time">${it.time || '—'}</div>
+      <div class="agenda-body">
+        <div class="agenda-title">${it.title}</div>
+        ${it.brand ? `<div class="agenda-brand">${brandEmoji(it.brand)} ${brandName(it.brand)}</div>` : ''}
+      </div>
+      <button class="agenda-del" onclick="deleteAgendaItem(${i})">×</button>
+    </div>`).join('');
+}
+
+function toggleAgendaForm() {
+  const f = document.getElementById('agenda-form');
+  f.classList.toggle('open');
+  if (f.classList.contains('open')) document.getElementById('ag-title').focus();
+}
+
+function addAgendaItem() {
+  const time  = document.getElementById('ag-time').value;
+  const title = document.getElementById('ag-title').value.trim();
+  const brand = document.getElementById('ag-brand').value;
+  if (!title) { showToast('Escribe una descripción'); return; }
+  const todayKey = today();
+  if (!S.manualAgenda[todayKey]) S.manualAgenda[todayKey] = [];
+  S.manualAgenda[todayKey].push({ time, title, brand });
+  save(); renderAgenda();
+  document.getElementById('ag-time').value = '';
+  document.getElementById('ag-title').value = '';
+  document.getElementById('ag-brand').value = '';
+  document.getElementById('agenda-form').classList.remove('open');
+  showToast('✅ Tarea agregada');
+}
+
+function deleteAgendaItem(idx) {
+  const todayKey = today();
+  S.manualAgenda[todayKey].splice(idx,1);
+  save(); renderAgenda();
+}
+
+function renderTodayPosts() {
+  const todayStr = today();
+
+  // Posts de contenido programados para hoy
+  const todayContent = S.posts.filter(p => p.fecha === todayStr && (p.tipo || 'contenido') === 'contenido');
+  document.getElementById('today-posts-count').textContent = todayContent.length;
+  const el = document.getElementById('today-posts-list');
+  if (!todayContent.length) {
+    el.innerHTML = `<div class="empty"><div class="ico">📝</div><h3>Sin posts para hoy</h3><p>Pulsa "✍️ Crear post" y ponle la fecha de hoy</p></div>`;
+  } else {
+    el.innerHTML = todayContent.map(p => renderPostItem(p)).join('');
+  }
+
+  // Actualizaciones de hoy
+  const todayActs = S.posts.filter(p => p.fecha === todayStr && p.tipo === 'actualizacion' && p.estado !== 'publicado');
+  const actsSection = document.getElementById('today-updates-section');
+  const actsList    = document.getElementById('today-updates-list');
+  if (todayActs.length) {
+    actsSection.style.display = 'block';
+    actsList.innerHTML = todayActs.map(p => renderActItem(p)).join('');
+  } else {
+    actsSection.style.display = 'none';
+  }
+
+  // Posts PENDIENTES — todos los que no son de hoy y no están publicados
+  const pending = S.posts.filter(p =>
+    (p.tipo || 'contenido') === 'contenido' &&
+    p.estado !== 'publicado' &&
+    p.fecha !== todayStr
+  ).sort((a,b) => (a.fecha||'').localeCompare(b.fecha||''));
+
+  const pendEl = document.getElementById('pending-posts-list');
+  if (!pending.length) {
+    pendEl.innerHTML = `<div class="empty"><div class="ico">🎉</div><h3>¡Sin pendientes!</h3><p>Todo el pipeline está al día</p></div>`;
+  } else {
+    // Group by fecha
+    const byDate = {};
+    pending.forEach(p => {
+      const k = p.fecha || 'sin-fecha';
+      if (!byDate[k]) byDate[k] = [];
+      byDate[k].push(p);
+    });
+    pendEl.innerHTML = Object.entries(byDate).map(([fecha, posts]) => `
+      <div style="margin-bottom:14px">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.5px;margin-bottom:6px;text-transform:uppercase">
+          📅 ${fecha !== 'sin-fecha' ? fmtDate(fecha) : 'Sin fecha'}
+        </div>
+        ${posts.map(p => renderPostItem(p)).join('')}
+      </div>`).join('');
+  }
+}
+
+function renderActItem(p) {
+  return `
+    <div class="act-item" onclick="openModal('${p.id}')">
+      <div class="act-plataforma">${p.platActualizacion || '📌 Actualización'}</div>
+      <div style="font-size:13px;font-weight:600;margin-bottom:3px">${p.nombre}</div>
+      ${p.notas ? `<div style="font-size:11px;color:var(--muted)">${p.notas.slice(0,80)}${p.notas.length>80?'…':''}</div>` : ''}
+      <div style="display:flex;align-items:center;gap:6px;margin-top:7px">
+        <span style="font-size:9px;font-weight:700;padding:2px 7px;border-radius:6px;background:rgba(90,70,140,.1);color:var(--muted)">${brandEmoji(p.id_brand)} ${brandName(p.id_brand)}</span>
+      </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER: WEEK
+// ═══════════════════════════════════════════════
+function renderWeek() {
+  const wk = getISOWeek(new Date());
+  document.getElementById('week-title').textContent = 'Esta Semana';
+  document.getElementById('week-range').textContent = getWeekRange(wk);
+
+  if (!S.weeklyChecklist[wk]) S.weeklyChecklist[wk] = {};
+
+  // Posts this week
+  const weekPosts = S.posts.filter(p => p.fecha && getISOWeek(new Date(p.fecha+'T12:00:00')) === wk);
+  const published = weekPosts.filter(p => p.estado === 'publicado').length;
+
+  // Stats
+  const totalGoal = Object.values(S.weeklyGoals).reduce((a,b)=>a+b,0);
+  const totalDone = countChecked(wk);
+  document.getElementById('week-pbar').style.width = totalGoal ? Math.min(100, Math.round(totalDone/totalGoal*100))+'%' : '0%';
+
+  document.getElementById('week-stats').innerHTML = `
+    <div class="wk-stat"><div class="wk-stat-n" style="color:var(--yellow)">${totalDone}</div><div class="wk-stat-l">Piezas listas</div></div>
+    <div class="wk-stat"><div class="wk-stat-n" style="color:var(--pink)">${weekPosts.length}</div><div class="wk-stat-l">Posts en pipeline</div></div>
+    <div class="wk-stat"><div class="wk-stat-n" style="color:var(--green)">${published}</div><div class="wk-stat-l">Publicados</div></div>
+    <div class="wk-stat"><div class="wk-stat-n" style="color:var(--muted)">${Math.max(0,totalGoal-totalDone)}</div><div class="wk-stat-l">Pendientes</div></div>`;
+
+  // Checklist per brand
+  const formats = [
+    { key:'carrusel', label:'🎠 Carrusel' },
+    { key:'reel',     label:'🎬 Reel' },
+    { key:'tiktok',   label:'🎵 TikTok' },
+    { key:'story',    label:'📸 Story' },
+    { key:'post',     label:'🖼 Post' }
+  ];
+  let ckHtml = '';
+  S.brands.forEach(b => {
+    if (!S.weeklyChecklist[wk][b.id]) S.weeklyChecklist[wk][b.id] = {};
+    const done = formats.filter(f => S.weeklyChecklist[wk][b.id][f.key]).length;
+    const goal = S.weeklyGoals[b.id] || 4;
+    ckHtml += `
+      <div class="wk-brand-section">
+        <div class="wk-brand-hdr">
+          <div class="wk-brand-bar" style="background:${b.color}"></div>
+          <div>
+            <div class="wk-brand-name">${b.emoji} ${b.name}</div>
+            <div class="wk-brand-type">${b.type === 'propia' ? 'Marca propia' : 'Marca liderada'}</div>
+          </div>
+          <div class="wk-progress-txt">${done} / ${goal} formatos</div>
+        </div>
+        <div class="pbar"><div class="pbar-fill" style="width:${goal ? Math.min(100,Math.round(done/goal*100)) : 0}%;background:${b.color}"></div></div>
+        <div class="check-grid">
+          ${formats.map(f => {
+            const checked = !!S.weeklyChecklist[wk][b.id][f.key];
+            return `<div class="chk${checked?' done':''}" onclick="toggleCheck('${wk}','${b.id}','${f.key}',this)">
+              <div class="chk-box">${checked?'✓':''}</div>
+              <span class="chk-label">${f.label}</span>
+            </div>`;
+          }).join('')}
+        </div>
+      </div>`;
+  });
+  document.getElementById('week-checklist').innerHTML = ckHtml;
+
+  // Week posts list
+  const wpl = document.getElementById('week-posts-list');
+  if (!weekPosts.length) {
+    wpl.innerHTML = `<div class="empty"><div class="ico">📅</div><h3>Sin posts esta semana</h3><p>Crea posts y asígnales fechas de esta semana</p></div>`;
+  } else {
+    wpl.innerHTML = weekPosts.sort((a,b)=>a.fecha.localeCompare(b.fecha)).map(p => renderPostItem(p)).join('');
+  }
+}
+
+function countChecked(wk) {
+  let c = 0;
+  if (!S.weeklyChecklist[wk]) return 0;
+  Object.values(S.weeklyChecklist[wk]).forEach(brand => {
+    Object.values(brand).forEach(v => { if(v) c++; });
+  });
+  return c;
+}
+
+function toggleCheck(wk, brandId, format, el) {
+  if (!S.weeklyChecklist[wk]) S.weeklyChecklist[wk] = {};
+  if (!S.weeklyChecklist[wk][brandId]) S.weeklyChecklist[wk][brandId] = {};
+  S.weeklyChecklist[wk][brandId][format] = !S.weeklyChecklist[wk][brandId][format];
+  save();
+  el.classList.toggle('done');
+  el.querySelector('.chk-box').textContent = S.weeklyChecklist[wk][brandId][format] ? '✓' : '';
+  // Update stats without full re-render
+  const totalDone = countChecked(wk);
+  const totalGoal = Object.values(S.weeklyGoals).reduce((a,b)=>a+b,0);
+  document.getElementById('week-pbar').style.width = totalGoal ? Math.min(100, Math.round(totalDone/totalGoal*100))+'%' : '0%';
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER: POST ITEM (shared)
+// ═══════════════════════════════════════════════
+function renderPostItem(p) {
+  if (p.tipo === 'actualizacion') return renderActItem(p);
+  const sc = STATUS_CLASS[p.estado] || 's-idea';
+  const sl = STATUS_LABEL[p.estado] || '💡 Idea';
+  const bc = brandColor(p.id_brand || p.marca);
+  const be = brandEmoji(p.id_brand || p.marca);
+
+  // Automation badges
+  let autoBadges = '';
+  if (p.progEstado === 'programado_meta' || p.progEstado === 'publicado_auto') {
+    autoBadges += `<span class="abadge abadge-green">📅 Programado</span>`;
+  } else if (p.progEstado === 'listo_programar') {
+    autoBadges += `<span class="abadge abadge-yellow">📅 Listo</span>`;
+  }
+  if (p.mcEstado === 'activo') {
+    autoBadges += `<span class="abadge abadge-green">🤖 MC Activo</span>`;
+  } else if (p.mcEstado === 'pendiente') {
+    autoBadges += `<span class="abadge abadge-yellow">🤖 MC Pendiente</span>`;
+  }
+  if (p.ghl === 'conectado') {
+    autoBadges += `<span class="abadge abadge-blue">🗂 GHL</span>`;
+  }
+  if (p.sofia && p.sofia !== 'sin_seguimiento') {
+    autoBadges += `<span class="abadge abadge-muted">🧠 Sofia</span>`;
+  }
+  if (p.linkPost) {
+    autoBadges += `<span class="abadge abadge-green">🔗 Link</span>`;
+  }
+
+  return `
+    <div class="post-item" onclick="openModal('${p.id}')">
+      <div class="post-item-top">
+        <div class="post-item-name">${p.nombre}</div>
+        <button class="sbadge ${sc}" onclick="event.stopPropagation();cycleStatus('${p.id}')">${sl}</button>
+      </div>
+      <div class="post-meta">
+        <span class="tag" style="color:${bc}">${be} ${brandName(p.id_brand || p.marca)}</span>
+        ${p.formato ? `<span class="tag">${p.formato}</span>` : ''}
+        ${p.plataforma ? `<span class="tag">${p.plataforma}</span>` : ''}
+        ${p.fecha ? `<span class="tag">📅 ${fmtDate(p.fecha)}${p.hora ? ' '+p.hora : ''}</span>` : ''}
+        ${p.keyword ? `<span class="tag" style="color:var(--yellow)">🔑 ${p.keyword}</span>` : ''}
+      </div>
+      ${p.hook ? `<div class="post-hook">"${p.hook}"</div>` : ''}
+      ${autoBadges ? `<div class="auto-badges" style="margin-top:7px">${autoBadges}</div>` : ''}
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════
+//  POSTS: SAVE / EDIT / DELETE / CYCLE
+// ═══════════════════════════════════════════════
+function savePost(existingId) {
+  const nombre = document.getElementById('f-name').value.trim();
+  if (!nombre) { showToast('⚠️ El nombre del post es obligatorio'); return; }
+
+  const post = {
+    id:        existingId || genId(),
+    nombre,
+    fecha:     document.getElementById('f-fecha').value,
+    marca:     document.getElementById('f-marca').value,
+    id_brand:  document.getElementById('f-marca').value,
+    estado:    document.getElementById('f-estado').value,
+    formato:   document.getElementById('f-formato').value,
+    plataforma:document.getElementById('f-plataforma').value,
+    pilar:     document.getElementById('f-pilar').value,
+    funcion:   document.getElementById('f-funcion').value,
+    hook:      document.getElementById('f-hook').value.trim(),
+    caption:   document.getElementById('f-caption').value.trim(),
+    cta:       document.getElementById('f-cta').value.trim(),
+    tipo:      document.getElementById('f-tipo').value || 'contenido',
+    platActualizacion: document.getElementById('f-plat-act').value,
+    keyword:   document.getElementById('f-keyword').value.trim().toUpperCase(),
+    notas:     document.getElementById('f-notas').value.trim(),
+    // Automatización
+    hora:      document.getElementById('f-hora').value,
+    progEstado:document.getElementById('f-prog').value,
+    mcEstado:  document.getElementById('f-mc-estado').value,
+    mcMsg:     document.getElementById('f-mc-msg').value.trim(),
+    ghl:       document.getElementById('f-ghl').value,
+    sofia:     document.getElementById('f-sofia').value,
+    linkPost:  document.getElementById('f-link-post').value.trim(),
+    autoNotas: document.getElementById('f-auto-notas').value.trim(),
+    createdAt: existingId ? (S.posts.find(p=>p.id===existingId)||{}).createdAt : new Date().toISOString()
+  };
+
+  if (existingId) {
+    const idx = S.posts.findIndex(p => p.id===existingId);
+    if (idx > -1) S.posts[idx] = post;
+  } else {
+    S.posts.unshift(post);
+  }
+  save(); clearForm();
+  showToast(existingId ? '✅ Post actualizado' : '🎉 Post guardado');
+  switchTab('hoy', document.querySelectorAll('.nav-btn')[0]);
+}
+
+function clearForm() {
+  ['f-name','f-fecha','f-hook','f-caption','f-cta','f-keyword','f-notas',
+   'f-hora','f-mc-msg','f-link-post','f-auto-notas'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  ['f-marca','f-estado','f-formato','f-plataforma','f-pilar','f-funcion',
+   'f-prog','f-mc-estado','f-ghl','f-sofia','f-plat-act'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.options.length) el.selectedIndex = id === 'f-estado' ? 1 : 0;
+  });
+  setTipo('contenido');
+  // Reset save button to normal mode
+  const saveBtn = document.querySelector('#tab-nuevo .btn-yellow');
+  if (saveBtn) { saveBtn.textContent = '💾 Guardar'; saveBtn.onclick = savePost; }
+  document.getElementById('f-fecha').value = today();
+}
+
+// ═══════════════════════════════════════════════
+//  TIPO SELECTOR
+// ═══════════════════════════════════════════════
+function setTipo(tipo) {
+  document.getElementById('f-tipo').value = tipo;
+  const btnC = document.getElementById('tipo-btn-contenido');
+  const btnA = document.getElementById('tipo-btn-actualizacion');
+  const platWrap = document.getElementById('f-plat-act-wrap');
+  if (btnC) { btnC.className = tipo === 'contenido' ? 'tipo-opt selected-contenido' : 'tipo-opt'; }
+  if (btnA) { btnA.className = tipo === 'actualizacion' ? 'tipo-opt selected-actualizacion' : 'tipo-opt'; }
+  if (platWrap) platWrap.style.display = tipo === 'actualizacion' ? 'flex' : 'none';
+}
+
+function cycleStatus(postId) {
+  const p = S.posts.find(x => x.id===postId);
+  if (!p) return;
+  p.estado = nextStatus(p.estado);
+  save();
+  const activeTab = document.querySelector('.tab.active').id;
+  if (activeTab === 'tab-hoy')    renderTodayPosts();
+  if (activeTab === 'tab-semana') renderWeek();
+  showToast(`Estado → ${STATUS_LABEL[p.estado]}`);
+}
+
+// ═══════════════════════════════════════════════
+//  MODAL
+// ═══════════════════════════════════════════════
+function openModal(postId) {
+  const p = S.posts.find(x => x.id===postId);
+  if (!p) return;
+  activeModalPostId = postId;
+  document.getElementById('modal-title').textContent = p.nombre;
+  document.getElementById('modal-status-btn').textContent = `→ ${STATUS_LABEL[nextStatus(p.estado)]}`;
+
+  const fields = [
+    { label:'Marca',      val: `${brandEmoji(p.marca)} ${brandName(p.marca)}` },
+    { label:'Estado',     val: STATUS_LABEL[p.estado] },
+    { label:'Fecha',      val: p.fecha ? fmtDate(p.fecha) : '—' },
+    { label:'Formato',    val: [p.formato, p.plataforma].filter(Boolean).join(' · ') || '—' },
+    { label:'Pilar',      val: p.pilar || '—' },
+    { label:'Función',    val: p.funcion || '—' },
+    { label:'Hook / Ángulo', val: p.hook || '—', copy: p.hook },
+    { label:'Caption',    val: p.caption || '—', copy: p.caption },
+    { label:'CTA',        val: p.cta || '—' },
+    { label:'Keyword ManyChat', val: p.keyword || '—' },
+    { label:'Notas de producción', val: p.notas || '—' }
+  ].filter(f => f.val && f.val !== '—' || f.label === 'Hook / Ángulo');
+
+  // Auto labels helpers
+  const PROG_L = { sin_programar:'⬜ Sin programar', listo_programar:'🟡 Listo para programar', programado_meta:'🟢 Programado en Meta/TikTok', publicado_auto:'✅ Publicado automático' };
+  const MC_L   = { no_configurado:'⬜ No configurado', pendiente:'🟡 Pendiente activar', activo:'🟢 Flujo activo', inactivo:'🔴 Inactivo' };
+  const GHL_L  = { no_conectado:'⬜ No conectado', conectado:'🟢 Conectado a GHL' };
+  const SOF_L  = { sin_seguimiento:'⬜ Sin seguimiento', inmediato:'⚡ Inmediato', '24h':'🕐 24h después', '48h':'🕑 48h después' };
+
+  const hasAuto = p.hora || (p.progEstado && p.progEstado !== 'sin_programar') ||
+                  (p.mcEstado && p.mcEstado !== 'no_configurado') || p.mcMsg ||
+                  (p.ghl && p.ghl !== 'no_conectado') || (p.sofia && p.sofia !== 'sin_seguimiento') ||
+                  p.linkPost || p.autoNotas;
+
+  let autoHtml = '';
+  if (hasAuto) {
+    autoHtml = `
+      <div style="border-top:1px solid var(--border);margin:14px 0;padding-top:14px">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--green);margin-bottom:10px">⚡ Automatización</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          ${p.hora ? `<div class="mfield"><div class="mfield-label">⏰ Hora</div><div class="mfield-val">${p.hora}</div></div>` : ''}
+          ${p.progEstado ? `<div class="mfield"><div class="mfield-label">📅 Programación</div><div class="mfield-val">${PROG_L[p.progEstado]||p.progEstado}</div></div>` : ''}
+          ${p.mcEstado ? `<div class="mfield"><div class="mfield-label">🤖 ManyChat</div><div class="mfield-val">${MC_L[p.mcEstado]||p.mcEstado}</div></div>` : ''}
+          ${p.ghl ? `<div class="mfield"><div class="mfield-label">🗂 GHL</div><div class="mfield-val">${GHL_L[p.ghl]||p.ghl}</div></div>` : ''}
+          ${p.sofia ? `<div class="mfield"><div class="mfield-label">🧠 Sofia AI</div><div class="mfield-val">${SOF_L[p.sofia]||p.sofia}</div></div>` : ''}
+        </div>
+        ${p.mcMsg ? `<div class="mfield"><div class="mfield-label">💬 Mensaje ManyChat<button class="copy-btn" onclick="copyText('${p.mcMsg.replace(/'/g,"\\'")}',this)">📋 Copiar</button></div><div class="mfield-val">${p.mcMsg}</div></div>` : ''}
+        ${p.linkPost ? `<div class="mfield"><div class="mfield-label">🔗 Link publicado</div><div class="mfield-val"><a href="${p.linkPost}" target="_blank" style="color:var(--blue);font-size:12px">${p.linkPost}</a></div></div>` : ''}
+        ${p.autoNotas ? `<div class="mfield"><div class="mfield-label">📝 Notas auto</div><div class="mfield-val">${p.autoNotas}</div></div>` : ''}
+      </div>`;
+  }
+
+  document.getElementById('modal-body').innerHTML =
+    fields.map(f => `
+      <div class="mfield">
+        <div class="mfield-label">${f.label}${f.copy ? `<button class="copy-btn" onclick="copyText(\`${(f.copy||'').replace(/`/g,"'")}\`, this)">📋 Copiar</button>` : ''}</div>
+        <div class="mfield-val">${f.val}</div>
+      </div>`).join('') + autoHtml;
+
+  document.getElementById('post-modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('post-modal').classList.remove('open');
+  activeModalPostId = null;
+}
+
+function cycleStatusFromModal() {
+  if (activeModalPostId) { cycleStatus(activeModalPostId); openModal(activeModalPostId); }
+}
+
+function editPostFromModal() {
+  const p = S.posts.find(x => x.id===activeModalPostId);
+  if (!p) return;
+  closeModal();
+  // Populate form
+  document.getElementById('f-name').value      = p.nombre || '';
+  document.getElementById('f-fecha').value     = p.fecha || '';
+  document.getElementById('f-marca').value     = p.marca || '';
+  document.getElementById('f-estado').value    = p.estado || 'idea';
+  document.getElementById('f-formato').value   = p.formato || 'Carrusel';
+  document.getElementById('f-plataforma').value= p.plataforma || 'Instagram';
+  document.getElementById('f-pilar').value     = p.pilar || '';
+  document.getElementById('f-funcion').value   = p.funcion || '';
+  document.getElementById('f-hook').value      = p.hook || '';
+  document.getElementById('f-caption').value   = p.caption || '';
+  document.getElementById('f-cta').value       = p.cta || '';
+  document.getElementById('f-keyword').value   = p.keyword || '';
+  document.getElementById('f-notas').value     = p.notas || '';
+  // Automatización
+  setTipo(p.tipo || 'contenido');
+  const pa = document.getElementById('f-plat-act');
+  if (pa) pa.value = p.platActualizacion || '';
+  document.getElementById('f-hora').value        = p.hora || '';
+  document.getElementById('f-prog').value         = p.progEstado || 'sin_programar';
+  document.getElementById('f-mc-estado').value   = p.mcEstado || 'no_configurado';
+  document.getElementById('f-mc-msg').value       = p.mcMsg || '';
+  document.getElementById('f-ghl').value          = p.ghl || 'no_conectado';
+  document.getElementById('f-sofia').value        = p.sofia || 'sin_seguimiento';
+  document.getElementById('f-link-post').value   = p.linkPost || '';
+  document.getElementById('f-auto-notas').value  = p.autoNotas || '';
+  // Switch to form tab
+  const btn = document.querySelectorAll('.nav-btn')[2];
+  switchTab('nuevo', btn);
+  // Update save button
+  const saveBtn = document.querySelector('#tab-nuevo .btn-yellow');
+  saveBtn.textContent = '💾 Actualizar Post';
+  const editId = activeModalPostId;
+  saveBtn.onclick = () => savePost(editId);
+  window.scrollTo(0,0);
+}
+
+function deletePostFromModal() {
+  if (!activeModalPostId) return;
+  if (!confirm('¿Eliminar este post?')) return;
+  S.posts = S.posts.filter(p => p.id !== activeModalPostId);
+  save(); closeModal();
+  showToast('🗑 Post eliminado');
+  renderToday();
+}
+
+// ═══════════════════════════════════════════════
+//  AUTOMATION TOGGLE
+// ═══════════════════════════════════════════════
+function toggleAutoSection(hdr) {
+  const body = document.getElementById('auto-body-form');
+  const arrow = hdr.querySelector('.auto-toggle');
+  body.classList.toggle('open');
+  arrow.classList.toggle('open');
+}
+
+// Close modal on backdrop click
+document.getElementById('post-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+
+// ═══════════════════════════════════════════════
+//  RENDER: BRANDS
+// ═══════════════════════════════════════════════
+function renderBrands() {
+  document.getElementById('brands-grid').innerHTML = S.brands.map(b => `
+    <div class="brand-card">
+      <div class="bc-top">
+        <div class="bc-avatar" style="background:${b.color}22;border:1px solid ${b.color}44">${b.emoji}</div>
+        <div class="bc-info">
+          <div class="bc-name">${b.name}</div>
+          <div class="bc-handle">${b.handle}</div>
+        </div>
+        <span class="bc-badge ${b.type==='propia'?'badge-propia':'badge-liderada'}">${b.type==='propia'?'Propia':'Liderada'}</span>
+      </div>
+      <div class="bc-stat-row">
+        <div class="bc-stat"><div class="bc-stat-n" style="color:${b.color}">${b.followers||0}</div><div class="bc-stat-l">Seguidores</div></div>
+        <div class="bc-stat"><div class="bc-stat-n" style="color:${b.color}">${S.posts.filter(p=>p.marca===b.id).length}</div><div class="bc-stat-l">Posts hub</div></div>
+        <div class="bc-stat"><div class="bc-stat-n" style="color:${b.color}">${S.posts.filter(p=>p.marca===b.id&&p.estado==='publicado').length}</div><div class="bc-stat-l">Publicados</div></div>
+      </div>
+      <div class="bc-notes">${b.notes || 'Sin notas'}</div>
+      <div class="bc-links">
+        ${b.ig    ? `<a class="bc-link" href="${b.ig}" target="_blank">📷 Instagram</a>` : `<span class="bc-link" onclick="promptBrandLink('${b.id}','ig')">+ Instagram</span>`}
+        ${b.tiktok? `<a class="bc-link" href="${b.tiktok}" target="_blank">🎵 TikTok</a>` : `<span class="bc-link" onclick="promptBrandLink('${b.id}','tiktok')">+ TikTok</span>`}
+        ${b.web   ? `<a class="bc-link" href="${b.web}" target="_blank">🌐 Web</a>` : ''}
+        <span class="bc-link" onclick="editBrandStats('${b.id}')">📊 Stats</span>
+        <span class="bc-link" onclick="editBrandNotes('${b.id}')">📝 Notas</span>
+      </div>
+    </div>`).join('');
+}
+
+function promptBrandLink(brandId, field) {
+  const label = field === 'ig' ? 'URL de Instagram' : 'URL de TikTok';
+  const url = prompt(label + ':');
+  if (url) {
+    const b = S.brands.find(x=>x.id===brandId);
+    if (b) { b[field] = url; save(); renderBrands(); showToast('✅ Link guardado'); }
+  }
+}
+
+function editBrandStats(brandId) {
+  const b = S.brands.find(x=>x.id===brandId);
+  if (!b) return;
+  const val = prompt(`Seguidores de ${b.name}:`, b.followers||0);
+  if (val !== null) { b.followers = parseInt(val)||0; save(); renderBrands(); }
+}
+
+function editBrandNotes(brandId) {
+  const b = S.brands.find(x=>x.id===brandId);
+  if (!b) return;
+  const val = prompt(`Notas para ${b.name}:`, b.notes||'');
+  if (val !== null) { b.notes = val; save(); renderBrands(); showToast('✅ Nota guardada'); }
+}
+
+// ═══════════════════════════════════════════════
+//  RENDER: CONFIG
+// ═══════════════════════════════════════════════
+function renderConfig() {
+  document.getElementById('cfg-cal-url').value    = S.calendarUrl || '';
+  document.getElementById('cfg-goal-aj').value    = S.weeklyGoals.aj || 4;
+  document.getElementById('cfg-goal-datos').value = S.weeklyGoals.datos || 4;
+  document.getElementById('cfg-goal-dentalia').value = S.weeklyGoals.dentalia || 3;
+}
+
+function saveCalUrl() {
+  S.calendarUrl = document.getElementById('cfg-cal-url').value.trim();
+  save(); showToast('📅 URL del calendario guardada');
+}
+
+function saveGoals() {
+  S.weeklyGoals.aj       = parseInt(document.getElementById('cfg-goal-aj').value)||4;
+  S.weeklyGoals.datos    = parseInt(document.getElementById('cfg-goal-datos').value)||4;
+  S.weeklyGoals.dentalia = parseInt(document.getElementById('cfg-goal-dentalia').value)||3;
+  save(); showToast('🎯 Metas guardadas');
+}
+
+// ═══════════════════════════════════════════════
+//  DATA EXPORT / IMPORT
+// ═══════════════════════════════════════════════
+function exportData() {
+  const blob = new Blob([JSON.stringify(S, null, 2)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `valentina-hub-backup-${today()}.json`;
+  a.click(); showToast('📤 Backup descargado');
+}
+
+function importData() { document.getElementById('import-file').click(); }
+
+function handleImport(e) {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (confirm('¿Reemplazar todos los datos actuales con el backup?')) {
+        S = data; save(); location.reload();
+      }
+    } catch { showToast('❌ Archivo inválido'); }
+  };
+  reader.readAsText(file);
+}
+
+function clearAllData() {
+  if (confirm('¿Borrar TODOS los datos? Esta acción no se puede deshacer.')) {
+    localStorage.removeItem(SKEY); location.reload();
+  }
+}
+
+// ═══════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // Set today's date in form
+  document.getElementById('f-fecha').value = today();
+  renderHeaderDate();
+  renderToday();
+  // Update header date every minute
+  setInterval(renderHeaderDate, 60000);
+});
+</script>
+</body>
+</html>
