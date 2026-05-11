@@ -5,6 +5,39 @@
 
 ---
 
+## 2026-05-11 — Sesión Andrés
+
+**Repos tocados:**
+- `aj-business-advisory` → `status/clients/natalia-dentalia.md`, `status/clients/_TEMPLATE.md`, `ops/paletas-por-nicho.md`
+
+**Cambios realizados:**
+
+### CRM en Notion — construido desde cero
+- ✅ 5 bases de datos: Clientes, Tareas, Cobros, Reps, Cobros Reps (con relaciones)
+- ✅ Natalia Barrantes cargada como primer cliente
+- ✅ Cristian Becerra cargado como primer rep
+- ✅ Home Dashboard + Rep Dashboard creados
+- ⚠️ Workspace Notion en plan Free — bloques agotados
+- 🔧 PENDIENTE VALENTINA: Andres te va a compartir las páginas del CRM como Guest (gratis). Cuando llegue el invite, acepta y tendrás acceso completo.
+
+### 5 workflows N8N creados (CRM alerts → SMS a Andres)
+- WF 13: Seguimiento diario 8am — clientes con acción hoy
+- WF 14: Cobros pendientes — día 1 y 15 de cada mes
+- WF 15: Tareas atascadas >5 días — 8:30am diario
+- WF 16: Resumen diario 7pm — todas las tareas abiertas
+- WF 17: Clientes en riesgo — lunes 9am
+- ⚠️ PENDIENTE ANDRES: agregar token Notion en n8n-aj-lovk.onrender.com → Credentials → "Notion API · AJ Business Advisory" y activar los 5 workflows
+
+### Documentación sistema de marca
+- ✅ `status/clients/natalia-dentalia.md` — paleta CSS completa, tipografía, servicios/precios, horarios, logo, restricciones
+- ✅ `ops/paletas-por-nicho.md` — paletas de color para 11 nichos
+
+**Pendientes Valentina:**
+- [ ] Esperar invite de Notion de Andres (como Guest) → aceptar
+- [ ] Página web Natalia en `landing/dentalia.html` — continuar (colores: negro #1A1A1A, caramelo #C4A882, blanco #F8F6F3 — SIN MORADO)
+
+---
+
 ## 2026-05-10 — Sesión Andrés
 
 **Repos tocados:**
