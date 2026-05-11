@@ -50,6 +50,10 @@
       from { opacity: 0; }
       to   { opacity: 1; }
     }
+    @keyframes fadeInSubtle {
+      from { opacity: 0; }
+      to   { opacity: 0.04; }
+    }
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
       50%       { transform: translateY(-8px); }
@@ -693,50 +697,81 @@
     .hero-badge2-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.85); margin-top: 2px; }
 
     /* ─── STATS BAR ─── */
-    .stats-bar {
+    /* ─── SOCIAL BAR ─── */
+    .social-bar {
       background: var(--dark);
-      padding: 40px 0;
+      padding: 24px 0;
+      border-top: 1px solid rgba(192,154,85,0.12);
+      border-bottom: 1px solid rgba(192,154,85,0.12);
+      position: relative;
+      overflow: hidden;
     }
-    .stats-inner {
-      max-width: 1200px;
+    .social-bar-inner {
+      max-width: 560px;
       margin: 0 auto;
       padding: 0 32px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .stat-item {
+    .social-link {
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      padding: 0 24px;
-      position: relative;
+      gap: 10px;
+      text-decoration: none;
+      color: rgba(255,255,255,0.50);
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), color 0.3s;
+      flex: 1;
     }
-    .stat-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0; top: 50%;
-      transform: translateY(-50%);
-      height: 36px; width: 1px;
-      background: rgba(192,154,85,0.25);
+    .social-link:hover { transform: translateY(-7px); color: rgba(255,255,255,0.90); }
+    .social-icon {
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(192,154,85,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(192,154,85,0.07);
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.35s;
     }
-    .stat-value {
-      font-size: 30px;
-      font-weight: 900;
-      color: var(--gold);
-      line-height: 1;
-      letter-spacing: -1px;
+    .social-link:hover .social-icon {
+      background: rgba(192,154,85,0.14);
+      border-color: rgba(192,154,85,0.75);
+      box-shadow: 0 0 40px rgba(192,154,85,0.20), 0 10px 28px rgba(0,0,0,0.35);
     }
-    .stat-label {
-      font-size: 12px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.5);
-      margin-top: 6px;
-      letter-spacing: 0.5px;
+    .social-icon svg { width: 24px; height: 24px; fill: var(--gold); transition: transform 0.3s; }
+    .social-link:hover .social-icon svg { transform: scale(1.12); }
+    .social-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .social-link:hover .social-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .social-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(192,154,85,0.18);
+      flex-shrink: 0;
+      margin: 0 8px;
+    }
+    @media (max-width: 480px) {
+      .social-bar { padding: 18px 0; }
+      .social-icon { width: 48px; height: 48px; }
+      .social-icon svg { width: 20px; height: 20px; }
+      .social-divider { height: 32px; margin: 0 4px; }
+      .social-label { font-size: 9px; letter-spacing: 1.5px; }
     }
 
     /* ─── SECTION SHARED ─── */
-    .section { padding: 100px 0; }
+    .section { padding: 100px 0; position: relative; overflow: hidden; }
     .section-alt { background: var(--gold-pale); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
     .section-tag {
@@ -1223,163 +1258,6 @@
     .pkg-tab-row.active .packages-grid > *:nth-child(3) { animation-delay: 0.25s; }
 
     /* ─── EQUIPO DE DOCTORES ─── */
-    .team-section {
-      margin-top: 80px;
-    }
-    .team-header {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-    .team-header-left { flex: 1; }
-    .team-header h3 {
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 900;
-      color: var(--text);
-      letter-spacing: -1px;
-      line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    .team-header p {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--text-muted);
-      max-width: 460px;
-      line-height: 1.6;
-    }
-    .team-controls {
-      display: flex;
-      gap: 8px;
-      flex-shrink: 0;
-    }
-    .team-arrow {
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      border: 1px solid var(--gold-border);
-      background: var(--white);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s, border-color 0.2s, transform 0.2s;
-    }
-    .team-arrow:hover { background: var(--gold); border-color: var(--gold); transform: scale(1.05); }
-    .team-arrow:hover svg { color: var(--white); }
-    .team-arrow svg { width: 18px; height: 18px; color: var(--gold-deep); transition: color 0.2s; }
-    .team-arrow:disabled { opacity: 0.4; cursor: not-allowed; }
-    .team-track-wrap {
-      overflow: hidden;
-      position: relative;
-      margin: 0 -8px;
-      padding: 8px;
-    }
-    .team-track {
-      display: flex;
-      gap: 22px;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
-    }
-    .doctor-card {
-      flex: 0 0 calc((100% - 44px) / 3);
-      background: var(--white);
-      border: 1px solid var(--gold-border);
-      border-radius: 22px;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-      position: relative;
-    }
-    .doctor-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 24px 60px rgba(155,122,48,0.22);
-      background: linear-gradient(155deg, rgba(255,255,255,0.95), rgba(248,242,232,0.7));
-      backdrop-filter: blur(14px);
-      border-color: var(--gold);
-    }
-    .doctor-card.featured {
-      border-color: var(--gold);
-      box-shadow: 0 12px 40px rgba(192,154,85,0.18);
-    }
-    .doctor-photo {
-      position: relative;
-      aspect-ratio: 4/5;
-      overflow: hidden;
-      background: linear-gradient(135deg, #F2DCB0, #C4A882);
-    }
-    .doctor-photo-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .doctor-photo-placeholder svg { width: 56px; height: 56px; color: rgba(107,79,14,0.4); }
-    .doctor-photo-placeholder span { font-size: 10px; color: rgba(107,79,14,0.5); letter-spacing: 1.5px; font-weight: 700; }
-    .doctor-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .doctor-photo-badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(10px);
-      padding: 5px 12px;
-      border-radius: 100px;
-      font-size: 9.5px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-    }
-    .doctor-photo-badge.featured-badge {
-      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-      color: var(--white);
-    }
-    .doctor-info { padding: 22px 24px 24px; }
-    .doctor-name {
-      font-size: 17px;
-      font-weight: 900;
-      color: var(--text);
-      letter-spacing: -0.4px;
-      margin-bottom: 4px;
-    }
-    .doctor-role {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold-deep);
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .doctor-bio {
-      font-size: 13px;
-      font-weight: 300;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 18px;
-    }
-    .doctor-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--whatsapp);
-      color: var(--white);
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-size: 12px;
-      font-weight: 700;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.2s, gap 0.2s;
-      box-shadow: 0 4px 14px rgba(37,211,102,0.25);
-    }
-    .doctor-cta:hover { background: #1a9f4a; transform: scale(1.04); gap: 12px; }
-    .doctor-cta svg { width: 14px; height: 14px; fill: currentColor; }
-    .doctor-cta.gold { background: var(--gold); box-shadow: 0 4px 14px rgba(192,154,85,0.30); }
-    .doctor-cta.gold:hover { background: var(--gold-deep); }
-    @media (max-width: 1024px) { .doctor-card { flex: 0 0 calc((100% - 22px) / 2); } }
-    @media (max-width: 640px)  { .doctor-card { flex: 0 0 100%; } }
 
     /* ─── WHY ─── */
     .why-grid {
@@ -1448,133 +1326,148 @@
     }
 
     /* ─── GALLERY / RESULTADOS ─── */
-    .gallery-hero {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
+    /* ─── COMPARISON SLIDER ─── */
+    .comparison-wrap {
+      position: relative;
       border-radius: 28px;
       overflow: hidden;
+      cursor: col-resize;
+      user-select: none;
+      touch-action: none;
       box-shadow: 0 30px 80px rgba(155,122,48,0.20);
-      margin-bottom: 24px;
-      position: relative;
+      aspect-ratio: 4/3;
       background: var(--dark);
+      margin-bottom: 24px;
     }
-    .gallery-hero-side {
-      position: relative;
-      aspect-ratio: 1/1;
-      overflow: hidden;
-      background: linear-gradient(135deg, #2A2018 0%, #1C1710 100%);
-    }
-    .gallery-hero-img {
+    .comparison-img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.8s ease;
+      pointer-events: none;
+      -webkit-user-drag: none;
     }
-    .gallery-hero-side:hover .gallery-hero-img { transform: scale(1.05); }
-    .gallery-hero-placeholder {
-      width: 100%; height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 12px;
-      background: linear-gradient(135deg, #6B5C42 0%, #3F3525 100%);
-    }
-    .gallery-hero-placeholder svg { width: 56px; height: 56px; opacity: 0.4; color: var(--gold); }
-    .gallery-hero-placeholder span { font-size: 11px; color: var(--gold); opacity: 0.7; letter-spacing: 2px; font-weight: 700; text-transform: uppercase; }
-    .gallery-hero-label {
+    .comparison-before-layer {
       position: absolute;
-      top: 24px;
-      left: 24px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      padding: 8px 16px;
-      border-radius: 100px;
-      backdrop-filter: blur(10px);
+      inset: 0;
+      clip-path: inset(0 50% 0 0);
       z-index: 2;
     }
-    .gallery-hero-label.antes {
-      background: rgba(28,23,16,0.65);
-      color: rgba(255,255,255,0.85);
-      border: 1px solid rgba(255,255,255,0.20);
+    .comparison-before-layer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      pointer-events: none;
+      -webkit-user-drag: none;
     }
-    .gallery-hero-label.despues {
-      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-      color: var(--white);
-      box-shadow: 0 4px 16px rgba(192,154,85,0.4);
-    }
-    .gallery-hero-divider {
+    .comparison-label {
       position: absolute;
-      top: 50%;
+      top: 18px;
+      padding: 7px 16px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+      z-index: 4;
+      pointer-events: none;
+    }
+    .comparison-label.antes  { left: 18px;  background: rgba(28,23,16,0.65); color: rgba(255,255,255,0.85); border: 1px solid rgba(255,255,255,0.18); }
+    .comparison-label.despues { right: 18px; background: linear-gradient(135deg, var(--gold), var(--gold-deep)); color: var(--white); box-shadow: 0 4px 16px rgba(192,154,85,0.4); }
+    .comparison-handle {
+      position: absolute;
+      top: 0; bottom: 0;
       left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px; height: 80px;
-      background: var(--white);
-      border-radius: 50%;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.40);
-      z-index: 3;
+      width: 2px;
+      transform: translateX(-50%);
+      z-index: 5;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
-      font-weight: 900;
-      color: var(--gold-deep);
-      letter-spacing: 1px;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 0 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(192,154,85,0.35);
+      pointer-events: none;
     }
-    .gallery-hero-divider::before {
-      content: '✦';
+    .comparison-circle {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      border: 2px solid rgba(192,154,85,0.6);
+      flex-shrink: 0;
+    }
+    .comparison-hint {
       position: absolute;
-      top: 50%;
+      bottom: 18px;
       left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 22px;
-      color: var(--gold);
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(10px);
+      color: rgba(255,255,255,0.85);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 7px 18px;
+      border-radius: 100px;
+      white-space: nowrap;
+      z-index: 6;
+      transition: opacity 0.6s;
+      pointer-events: none;
     }
-    .gallery-hero-caption {
-      grid-column: 1 / -1;
-      background: var(--dark);
-      padding: 24px 32px;
+    .comparison-wrap.dragged .comparison-hint { opacity: 0; }
+    .comparison-caption {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
+      padding: 22px 28px;
+      background: var(--gold-pale);
+      border-radius: 18px;
+      border: 1px solid var(--gold-border);
+      margin-bottom: 24px;
     }
-    .gallery-hero-caption-text {
-      flex: 1;
-      min-width: 240px;
-    }
-    .gallery-hero-caption-title {
+    .comparison-caption-title {
       font-size: 17px;
       font-weight: 900;
-      color: var(--white);
-      margin-bottom: 4px;
+      color: var(--text);
       letter-spacing: -0.3px;
+      margin-bottom: 4px;
     }
-    .gallery-hero-caption-sub {
+    .comparison-caption-sub {
       font-size: 13px;
-      color: rgba(255,255,255,0.55);
+      color: var(--text-muted);
       font-weight: 300;
     }
-    .gallery-hero-caption-cta {
+    .comparison-caption-cta {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(192,154,85,0.15);
-      border: 1px solid rgba(192,154,85,0.35);
-      color: var(--gold);
-      padding: 9px 18px;
+      background: var(--gold);
+      color: var(--white);
+      padding: 10px 20px;
       border-radius: 100px;
       font-size: 12px;
       font-weight: 700;
       text-decoration: none;
-      transition: background 0.2s, border-color 0.2s, gap 0.2s;
+      transition: background 0.2s, gap 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(192,154,85,0.30);
     }
-    .gallery-hero-caption-cta:hover { background: var(--gold); color: var(--white); border-color: var(--gold); gap: 10px; }
+    .comparison-caption-cta:hover { background: var(--gold-deep); gap: 10px; }
+    @media (max-width: 640px) {
+      .comparison-wrap { aspect-ratio: 3/4; border-radius: 20px; }
+      .comparison-caption { padding: 16px 18px; }
+    }
 
     .gallery-grid {
       display: grid;
@@ -2086,14 +1979,12 @@
       position: relative;
     }
     .zoom-on-scroll img,
-    .zoom-on-scroll .gallery-placeholder,
-    .zoom-on-scroll .gallery-hero-placeholder {
+    .zoom-on-scroll .gallery-placeholder {
       transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
       transform: scale(1.08);
     }
     .zoom-on-scroll.visible img,
-    .zoom-on-scroll.visible .gallery-placeholder,
-    .zoom-on-scroll.visible .gallery-hero-placeholder {
+    .zoom-on-scroll.visible .gallery-placeholder {
       transform: scale(1);
     }
 
@@ -2221,58 +2112,6 @@
     }
 
     /* ─── TRUST STRIP ─── */
-    .trust-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--gold-border);
-    }
-    .trust-strip-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 22px 20px;
-      border-right: 1px solid var(--gold-border);
-    }
-    .trust-item:last-child { border-right: none; }
-    .trust-icon {
-      width: 44px; height: 44px;
-      background: rgba(192,154,85,0.10);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .trust-icon svg { width: 22px; height: 22px; color: var(--gold-deep); }
-    .trust-title {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 2px;
-      line-height: 1.3;
-    }
-    .trust-desc {
-      font-size: 11.5px;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-    @media (max-width: 1024px) {
-      .trust-strip-inner { grid-template-columns: repeat(2, 1fr); }
-      .trust-item:nth-child(2) { border-right: none; }
-      .trust-item:nth-child(3) { border-top: 1px solid var(--gold-border); }
-      .trust-item:nth-child(4) { border-top: 1px solid var(--gold-border); border-right: none; }
-    }
-    @media (max-width: 640px) {
-      .trust-strip-inner { grid-template-columns: 1fr; }
-      .trust-item { border-right: none; border-top: 1px solid var(--gold-border); padding: 16px 20px; }
-      .trust-item:first-child { border-top: none; }
-    }
 
     /* ─── DISPONIBILIDAD · AGENDAMIENTO PREMIUM ─── */
     .disponibilidad {
@@ -2687,6 +2526,14 @@
       transform: rotate(-8deg);
       animation: fadeIn 1.4s ease 1.2s forwards, float 5s ease-in-out 2s infinite;
     }
+    .nb-watermark.section-wm {
+      width: 320px;
+      opacity: 0;
+      animation: fadeInSubtle 1.6s ease 0.6s forwards, float 8s ease-in-out 1.5s infinite;
+    }
+    .nb-watermark.section-wm.right { right: -90px; top: -60px; }
+    .nb-watermark.section-wm.left  { left: -90px;  bottom: -60px; transform: scaleX(-1); }
+
     .dentalia-watermark {
       position: absolute;
       pointer-events: none;
@@ -3071,15 +2918,23 @@
       .nav-links.open a { font-size: 22px; font-weight: 700; }
       .nav-hamburger { display: flex; z-index: 100; }
       .nav-cta { font-size: 12px !important; padding: 9px 18px; }
-      .hero { padding: 100px 0 60px; }
-      .hero h1 { font-size: 44px; letter-spacing: -1.5px; }
-      .hero-image, .hero-image-placeholder { height: 300px; border-radius: 22px; }
-      .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px; }
-      .stat-item:not(:last-child)::after { display: none; }
-      .stat-item:nth-child(1), .stat-item:nth-child(2) {
-        border-bottom: 1px solid rgba(192,154,85,0.15);
-        padding-bottom: 24px;
+      .hero { padding: 24px 0 40px; }
+      .hero h1 { font-size: 36px; letter-spacing: -1.5px; line-height: 1.12; }
+      .hero-inner { gap: 20px; }
+      .hero-image-wrap { max-width: 240px; margin: 0 auto; }
+      .hero-image, .hero-image-placeholder {
+        height: auto;
+        aspect-ratio: 3/4;
+        max-height: 300px;
+        border-radius: 44% 44% 52% 52% / 14% 14% 58% 58%;
       }
+      .hero-image-seal { top: -8px; right: -8px; }
+      .hero-image-seal-inner { width: 64px; height: 64px; }
+      .hero-image-seal-num { font-size: 17px; }
+      .hero-image-sparkle.s1 { right: -4px; }
+      .hero-image-sparkle.s3 { right: -10px; }
+      .hero-label { font-size: 9px; }
+      .hero-sub { font-size: 15px; }
       .services-grid { grid-template-columns: 1fr; }
       .packages-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
@@ -3093,6 +2948,19 @@
       .nav-inner { padding: 0 20px; }
       .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
     }
+
+    /* ─── PROTECCIÓN DE CONTENIDO ─── */
+    body, body * {
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      user-select: none !important;
+    }
+    input, textarea, [contenteditable] {
+      -webkit-user-select: text !important;
+      user-select: text !important;
+    }
+    img { -webkit-user-drag: none; }
+    @media print { body { display: none !important; } }
   </style>
 </head>
 <body>
@@ -3352,76 +3220,29 @@
     </div>
   </section>
 
-  <!-- ─── TRUST STRIP ─── -->
-  <div class="trust-strip">
-    <div class="trust-strip-inner">
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
-          </svg>
+  <!-- ─── SOCIAL BAR ─── -->
+  <div class="social-bar">
+    <div class="social-bar-inner">
+      <a href="https://www.instagram.com/dentaliaodontologia/" target="_blank" rel="noopener" class="social-link reveal">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
         </div>
-        <div>
-          <div class="trust-title">Agenda en cualquier momento</div>
-          <div class="trust-desc">Sofia AI gestiona tu cita 24/7</div>
+        <span class="social-label">Instagram</span>
+      </a>
+      <div class="social-divider"></div>
+      <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="social-link reveal">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
         </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.5 11 19.79 19.79 0 01.46 2.29 2 2 0 012.46.11h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.29-.79a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-          </svg>
+        <span class="social-label">WhatsApp</span>
+      </a>
+      <div class="social-divider"></div>
+      <a href="https://www.google.com/maps?q=Cra.+112g+%2386a-05,+Bogot%C3%A1,+Colombia" target="_blank" rel="noopener" class="social-link reveal">
+        <div class="social-icon">
+          <svg viewBox="0 0 24 24" style="fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
-        <div>
-          <div class="trust-title">Urgencias · Cita prioritaria</div>
-          <div class="trust-desc">Sofia gestiona tu turno de emergencia</div>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-title">Proceso 100% transparente</div>
-          <div class="trust-desc">Precios claros · Sin sorpresas</div>
-        </div>
-      </div>
-      <div class="trust-item">
-        <div class="trust-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-          </svg>
-        </div>
-        <div>
-          <div class="trust-title">5.0★ en Google</div>
-          <div class="trust-desc">Reseña verificada · Bogotá</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── STATS BAR ─── -->
-  <div class="stats-bar" style="position:relative; overflow:hidden;">
-    <img class="dentalia-floating tr" src="fotos/logo-dentalia.png" alt="" style="opacity:0.18; filter:drop-shadow(0 4px 12px rgba(0,0,0,0.30));" onerror="this.style.display='none'" />
-    <div class="stats-inner">
-      <div class="stat-item reveal">
-        <div class="stat-value">5.0★</div>
-        <div class="stat-label">Calificación Google</div>
-      </div>
-      <div class="stat-item reveal reveal-d1">
-        <div class="stat-value">6</div>
-        <div class="stat-label">Paquetes de sonrisa</div>
-      </div>
-      <div class="stat-item reveal reveal-d2">
-        <div class="stat-value">24/7</div>
-        <div class="stat-label">Sofia te atiende</div>
-      </div>
-      <div class="stat-item reveal reveal-d3">
-        <div class="stat-value">6+</div>
-        <div class="stat-label">Años de experiencia</div>
-      </div>
+        <span class="social-label">Cómo llegar</span>
+      </a>
     </div>
   </div>
 
@@ -3476,6 +3297,7 @@
 
   <!-- ─── SERVICES ─── -->
   <section class="section" id="servicios">
+    <img class="nb-watermark section-wm right" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
     <div class="container">
       <div class="section-head reveal">
         <span class="section-tag">Servicios</span>
@@ -3726,6 +3548,7 @@
 
   <!-- ─── PACKAGES ─── -->
   <section class="section section-alt" id="paquetes">
+    <img class="nb-watermark section-wm left" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
     <div class="container">
       <div class="section-head centered reveal">
         <span class="section-tag">Paquetes</span>
@@ -3987,6 +3810,7 @@
 
   <!-- ─── WHY DRA. BARRANTES ─── -->
   <section class="section" id="nosotros">
+    <img class="nb-watermark section-wm right" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
     <div class="container">
       <div class="why-grid">
         <div class="why-image-wrap reveal">
@@ -4059,113 +3883,6 @@
         </div>
       </div>
 
-      <!-- ─── EQUIPO DE DOCTORES (movido después de Resultados via JS) ─── -->
-      <div class="team-section reveal" id="teamSection" style="position:relative;">
-        <img class="dentalia-floating bl" src="fotos/logo-dentalia.png" alt="" style="bottom:auto; left:auto; top:-20px; right:-10px; width:88px; opacity:0.22;" onerror="this.style.display='none'" />
-        <div class="team-header">
-          <div class="team-header-left">
-            <span class="section-tag">Nuestro equipo</span>
-            <h3>Doctores Dentalia</h3>
-            <p>Profesionales especializados que trabajan juntos para ofrecerte la mejor atención. Cada uno experto en su área.</p>
-          </div>
-          <div class="team-controls">
-            <button class="team-arrow" id="teamPrev" aria-label="Anterior" onclick="teamScroll(-1)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-                <polyline points="15 18 9 12 15 6"/>
-              </svg>
-            </button>
-            <button class="team-arrow" id="teamNext" aria-label="Siguiente" onclick="teamScroll(1)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="team-track-wrap">
-          <div class="team-track" id="teamTrack">
-            <div class="doctor-card featured glass-hover">
-              <div class="doctor-photo">
-                <div class="doctor-photo-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                  </svg>
-                  <span>Foto Dra. Natalia</span>
-                </div>
-                <span class="doctor-photo-badge featured-badge">Fundadora</span>
-              </div>
-              <div class="doctor-info">
-                <div class="doctor-name">Dra. Natalia Barrantes</div>
-                <div class="doctor-role">Diseño de Sonrisa · Estética</div>
-                <div class="doctor-bio">Especialista en diseño de sonrisa y odontología estética. Lidera Dentalia con un enfoque cercano y resultados naturales.</div>
-                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20la%20Dra.%20Natalia%20Barrantes%20para%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="doctor-cta gold glass-hover">
-                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-                  Reservar con Sofia
-                </a>
-              </div>
-            </div>
-            <div class="doctor-card glass-hover">
-              <div class="doctor-photo">
-                <div class="doctor-photo-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                  </svg>
-                  <span>Foto Dr. A · próximamente</span>
-                </div>
-                <span class="doctor-photo-badge">Especialista</span>
-              </div>
-              <div class="doctor-info">
-                <div class="doctor-name">Dr. A · [Nombre]</div>
-                <div class="doctor-role">Ortodoncia</div>
-                <div class="doctor-bio">Experto en alineadores invisibles y brackets estéticos. [Bio pendiente — completar info].</div>
-                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20el%20Dr.%20A%20para%20ortodoncia" target="_blank" rel="noopener" class="doctor-cta glass-hover">
-                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-                  Reservar con Sofia
-                </a>
-              </div>
-            </div>
-            <div class="doctor-card glass-hover">
-              <div class="doctor-photo">
-                <div class="doctor-photo-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                  </svg>
-                  <span>Foto Dra. B · próximamente</span>
-                </div>
-                <span class="doctor-photo-badge">Especialista</span>
-              </div>
-              <div class="doctor-info">
-                <div class="doctor-name">Dra. B · [Nombre]</div>
-                <div class="doctor-role">Endodoncia · Periodoncia</div>
-                <div class="doctor-bio">Especialista en tratamientos de conductos y salud de las encías. [Bio pendiente — completar info].</div>
-                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20la%20Dra.%20B%20para%20endodoncia%20o%20periodoncia" target="_blank" rel="noopener" class="doctor-cta glass-hover">
-                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-                  Reservar con Sofia
-                </a>
-              </div>
-            </div>
-            <div class="doctor-card glass-hover">
-              <div class="doctor-photo">
-                <div class="doctor-photo-placeholder">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/>
-                  </svg>
-                  <span>Foto Dr. C · próximamente</span>
-                </div>
-                <span class="doctor-photo-badge">Especialista</span>
-              </div>
-              <div class="doctor-info">
-                <div class="doctor-name">Dr. C · [Nombre]</div>
-                <div class="doctor-role">Implantología · Odontopediatría</div>
-                <div class="doctor-bio">Experto en implantes dentales y atención infantil. [Bio pendiente — completar info].</div>
-                <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20reservar%20cita%20con%20el%20Dr.%20C%20para%20implantes%20u%20odontopediatría" target="_blank" rel="noopener" class="doctor-cta glass-hover">
-                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
-                  Reservar con Sofia
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -4178,39 +3895,28 @@
         <p class="section-sub">Cada sonrisa es un caso único. Estos son algunos de nuestros resultados más destacados.</p>
       </div>
 
-      <!--
-        GALERÍA · CASOS REALES
-        ───────────────────────
-        Para usar las fotos: ponlas en la carpeta /fotos/ del proyecto
-        y cambia los src de <img class="gallery-hero-img"> y <img class="gallery-img">
-        Estructura sugerida:
-          /fotos/caso-antes.jpg     — foto antes (hombre con dientes apiñados)
-          /fotos/caso-despues.jpg   — foto después (sonrisa transformada)
-          /fotos/sonrisa-1.jpg      — sonrisa femenina frontal
-          /fotos/sonrisa-2.jpg      — sonrisa femenina lateral / sonrisa
-          /fotos/sonrisa-3.jpg      — sonrisa femenina con resultado natural
-      -->
-
-      <!-- CASO PROTAGONISTA · ANTES / DESPUÉS -->
-      <div class="gallery-hero reveal zoom-on-scroll">
-        <div class="gallery-hero-side">
-          <span class="gallery-hero-label antes">Antes</span>
-          <img class="gallery-hero-img" src="fotos/foto_antes_hombres.png" alt="Antes del tratamiento de diseño de sonrisa" />
+      <!-- COMPARADOR INTERACTIVO ANTES / DESPUÉS -->
+      <div class="comparison-wrap reveal" id="comparisonWrap">
+        <img class="comparison-img" src="fotos/foto_despues_hombre.png" alt="Después del tratamiento — sonrisa transformada" />
+        <div class="comparison-before-layer" id="comparisonBefore">
+          <img src="fotos/foto_antes_hombres.png" alt="Antes del tratamiento de diseño de sonrisa" />
         </div>
-        <div class="gallery-hero-side">
-          <span class="gallery-hero-label despues">Después</span>
-          <img class="gallery-hero-img" src="fotos/foto_despues_hombre.png" alt="Después del tratamiento — sonrisa transformada" />
-        </div>
-        <div class="gallery-hero-divider"></div>
-        <div class="gallery-hero-caption">
-          <div class="gallery-hero-caption-text">
-            <div class="gallery-hero-caption-title">Caso real · Diseño de Sonrisa Premium</div>
-            <div class="gallery-hero-caption-sub">Transformación completa con carillas de disilicato de litio · Resultado natural y duradero</div>
+        <span class="comparison-label antes">Antes</span>
+        <span class="comparison-label despues">Después</span>
+        <div class="comparison-handle" id="comparisonHandle">
+          <div class="comparison-circle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
-          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="gallery-hero-caption-cta glass-hover">
-            Ver mi caso →
-          </a>
         </div>
+        <div class="comparison-hint">← Arrastra para comparar →</div>
+      </div>
+      <div class="comparison-caption reveal">
+        <div>
+          <div class="comparison-caption-title">Caso real · Diseño de Sonrisa Premium</div>
+          <div class="comparison-caption-sub">Transformación completa con carillas de disilicato de litio · Resultado natural y duradero</div>
+        </div>
+        <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="comparison-caption-cta">Ver mi caso →</a>
       </div>
 
       <!-- 3 SONRISAS DESTACADAS -->
@@ -4250,6 +3956,7 @@
 
   <!-- ─── TESTIMONIALS ─── -->
   <section class="section">
+    <img class="nb-watermark section-wm left" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
     <div class="container">
       <div class="section-head centered reveal">
         <span class="section-tag">Testimonios</span>
@@ -4351,7 +4058,7 @@
             <div>
               <div class="location-info-label">Instagram</div>
               <div class="location-info-value">
-                <a href="https://instagram.com/nataliabarrantesodontologia" target="_blank" rel="noopener">@nataliabarrantesodontologia</a>
+                <a href="https://www.instagram.com/dentaliaodontologia/" target="_blank" rel="noopener">@dentaliaodontologia</a>
               </div>
             </div>
           </div>
@@ -4411,7 +4118,7 @@
             <div>Odontología Integral · Tu nueva sonrisa empieza aquí.</div>
           </div>
           <div class="footer-social">
-            <a href="https://instagram.com/nataliabarrantesodontologia" target="_blank" rel="noopener" aria-label="Instagram">
+            <a href="https://www.instagram.com/dentaliaodontologia/" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
             <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20diseño%20de%20sonrisa" target="_blank" rel="noopener" aria-label="WhatsApp">
@@ -4604,22 +4311,28 @@
       }
     });
 
-    // ─── REORDENAR: team-section DESPUÉS de resultados/gallery ───
-    (function moveTeamAfterGallery() {
-      const team = document.getElementById('teamSection');
-      const resultados = document.getElementById('resultados');
-      if (!team || !resultados) return;
-      // Crear sección wrapper standalone para el equipo
-      const wrapper = document.createElement('section');
-      wrapper.className = 'section';
-      wrapper.id = 'equipo';
-      wrapper.style.position = 'relative';
-      const container = document.createElement('div');
-      container.className = 'container';
-      container.appendChild(team);
-      team.style.marginTop = '0';
-      wrapper.appendChild(container);
-      resultados.parentNode.insertBefore(wrapper, resultados.nextSibling);
+    // ─── COMPARISON SLIDER ───
+    (function initComparison() {
+      const wrap = document.getElementById('comparisonWrap');
+      if (!wrap) return;
+      const before = document.getElementById('comparisonBefore');
+      const handle = document.getElementById('comparisonHandle');
+      let dragging = false;
+
+      function setPos(clientX) {
+        const rect = wrap.getBoundingClientRect();
+        const pct = Math.min(98, Math.max(2, ((clientX - rect.left) / rect.width) * 100));
+        before.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+        handle.style.left = pct + '%';
+        wrap.classList.add('dragged');
+      }
+
+      wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
+      window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
+      window.addEventListener('mouseup', () => { dragging = false; });
+      wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchend', () => { dragging = false; });
     })();
 
     // ─── SERVICES TOGGLE ───
@@ -4636,24 +4349,6 @@
       document.querySelectorAll('.pkg-tab-row').forEach(r => r.classList.toggle('active', r.dataset.row === name));
     }
 
-    // ─── TEAM CAROUSEL ───
-    const teamTrack = document.getElementById('teamTrack');
-    let teamIndex = 0;
-    function teamScroll(dir) {
-      const cards = teamTrack.querySelectorAll('.doctor-card');
-      if (!cards.length) return;
-      const cardWidth = cards[0].offsetWidth + 22;
-      const visible = Math.floor(teamTrack.parentElement.offsetWidth / cardWidth) || 1;
-      const max = Math.max(0, cards.length - visible);
-      teamIndex = Math.min(max, Math.max(0, teamIndex + dir));
-      teamTrack.style.transform = `translateX(-${teamIndex * cardWidth}px)`;
-      document.getElementById('teamPrev').disabled = teamIndex === 0;
-      document.getElementById('teamNext').disabled = teamIndex === max;
-    }
-    if (teamTrack) {
-      teamScroll(0);
-      window.addEventListener('resize', () => teamScroll(0), { passive: true });
-    }
 
     // ─── STORY MODAL ───
     function openStory() {
@@ -4669,7 +4364,7 @@
     });
 
     // ─── ADAPTIVE NAV · cambia color según la sección debajo ───
-    const darkSelectors = ['.stats-bar', '.disponibilidad', '.sofia-cta', 'footer', '.emergency-bar'];
+    const darkSelectors = ['.social-bar', '.disponibilidad', '.sofia-cta', 'footer', '.emergency-bar'];
     const darkSections = darkSelectors.flatMap(s => Array.from(document.querySelectorAll(s)));
     function updateNavTheme() {
       const navH = navbar.offsetHeight;
@@ -4771,6 +4466,56 @@
         requestAnimationFrame(draw);
       }
       draw();
+    })();
+
+    // ─── PROTECCIÓN DE CONTENIDO ───
+    (function protectPage() {
+      // Bloquear clic derecho
+      document.addEventListener('contextmenu', e => e.preventDefault());
+
+      // Bloquear atajos de teclado
+      document.addEventListener('keydown', e => {
+        const k = e.key.toLowerCase();
+        if (e.key === 'F12') { e.preventDefault(); return; }
+        if (e.ctrlKey && ['u','s','a','p'].includes(k)) { e.preventDefault(); return; }
+        if (e.ctrlKey && e.shiftKey && ['i','j','c','k'].includes(k)) { e.preventDefault(); return; }
+      });
+
+      // Bloquear selección de texto
+      document.addEventListener('selectstart', e => {
+        if (!e.target.closest('input, textarea')) e.preventDefault();
+      });
+
+      // Bloquear arrastre de imágenes
+      document.addEventListener('dragstart', e => e.preventDefault());
+
+      // Mensaje en consola (disuasión)
+      console.log('%c🔒 STOP', 'color:#C09A55;font-size:48px;font-weight:900;');
+      console.log('%cEste sitio es propiedad de Dra. Natalia Barrantes · Dentalia.\nSi quieres construir algo así para tu negocio, contáctanos.', 'color:#9B7A30;font-size:14px;line-height:1.8;');
+
+      // Overlay cuando DevTools está abierto
+      function checkDevTools() {
+        const open = (window.outerWidth - window.innerWidth > 160) ||
+                     (window.outerHeight - window.innerHeight > 160);
+        let overlay = document.getElementById('_pt_overlay');
+        if (open && !overlay) {
+          overlay = document.createElement('div');
+          overlay.id = '_pt_overlay';
+          overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(28,23,16,0.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;backdrop-filter:blur(24px);';
+          overlay.innerHTML = `
+            <div style="font-size:52px">🔒</div>
+            <div style="color:#C09A55;font-size:22px;font-weight:900;font-family:Lato,sans-serif;letter-spacing:-0.5px">Contenido protegido</div>
+            <div style="color:rgba(255,255,255,0.5);font-size:14px;font-family:Lato,sans-serif;text-align:center;max-width:300px;line-height:1.7">Este sitio es propiedad de<br><strong style="color:rgba(255,255,255,0.75)">Dra. Natalia Barrantes · Dentalia</strong><br><br>Cierra las herramientas del desarrollador para continuar.</div>
+          `;
+          document.body.appendChild(overlay);
+          document.body.style.overflow = 'hidden';
+        } else if (!open && overlay) {
+          overlay.remove();
+          document.body.style.overflow = '';
+        }
+      }
+      setInterval(checkDevTools, 800);
+      checkDevTools();
     })();
   </script>
 </body>
