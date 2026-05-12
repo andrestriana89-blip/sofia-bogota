@@ -5,6 +5,41 @@
 
 ---
 
+## 2026-05-11 — Sesión Valentina (verificación técnica Sofia voz + GHL)
+
+**Repos tocados:**
+- `sofia-bogota` → `netlify/functions/start-call.js` (bug fix · commit `02b4939`)
+
+**Cambios realizados:**
+- ✅ Bug corregido en `start-call.js` — variable `phone` no declarada causaba ReferenceError → función devolvía 500 sin llamar a Vapi. Fix: renombrar a `rawPhone2`
+
+**Pendientes para Andrés — ACCIONES REQUERIDAS:**
+
+### 🔴 1. VAPI_API_KEY en Netlify (sin esto Sofia no llama)
+La función serverless lee `process.env.VAPI_API_KEY` pero la variable debe estar configurada en Netlify:
+- Netlify Dashboard → Site Settings → Environment variables → Add variable
+- Key: `VAPI_API_KEY`
+- Value: tu Private Key de Vapi → Dashboard → Account → API Keys
+
+### 🔴 2. GHL webhook para Academia (sin esto los leads de Academia se pierden)
+Los formularios de la sección Academia (descargar agente, mentoría, cuéntanos) envían datos a GHL, pero el webhook URL aún es el placeholder. Los leads **no llegan al CRM**.
+- GHL Dashboard → Settings → Integrations → Webhooks → Crear nuevo webhook → copiar URL
+- En `index.html` línea 4327, reemplazar:
+  ```
+  var GHL_WEBHOOK_URL = 'GHL_WEBHOOK_URL';
+  ```
+  por:
+  ```
+  var GHL_WEBHOOK_URL = 'https://backend.leadconnectorhq.com/hooks/TU-URL-REAL';
+  ```
+- Hacer push → Netlify despliega automáticamente
+
+### 🟡 3. GHL chat widget — cambiar idioma a español
+El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en inglés para visitantes colombianos.
+- GHL Dashboard → Settings → Conversations → Chat Widget → Language → **Español**
+
+---
+
 ## 2026-05-11 — Sesión Andrés
 
 **Repos tocados:**
