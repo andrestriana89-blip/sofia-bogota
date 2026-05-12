@@ -2940,7 +2940,7 @@
       .nav-hamburger { display: flex; z-index: 100; }
       .nav-cta { font-size: 12px !important; padding: 9px 18px; }
       .hero { padding: 24px 0 40px; }
-      .hero h1 { font-size: 36px; letter-spacing: -1.5px; line-height: 1.12; }
+      .hero h1 { font-size: 44px; letter-spacing: -1.5px; line-height: 1.12; }
       .hero-inner { gap: 20px; }
       .hero-image-wrap { max-width: 240px; margin: 0 auto; }
       .hero-image, .hero-image-placeholder {
@@ -2955,7 +2955,7 @@
       .hero-image-sparkle.s1 { right: -4px; }
       .hero-image-sparkle.s3 { right: -10px; }
       .hero-label { font-size: 9px; }
-      .hero-sub { font-size: 15px; }
+      .hero-sub { font-size: 17px; }
       .services-grid { grid-template-columns: 1fr; }
       .packages-grid { grid-template-columns: 1fr; }
       .gallery-grid { grid-template-columns: 1fr 1fr; }
@@ -2999,6 +2999,15 @@
       .google-reviews-cta { font-size: 12px !important; padding: 12px 18px !important; }
     }
     @media (max-width: 480px) {
+      /* Nav: ocultar botón "Agendar cita" para que el header no se corte */
+      .nav-cta { display: none !important; }
+      /* Nav: logo más pequeño y sin subtítulo */
+      .nav-logo-img, .nav-logo-svg { height: 36px !important; }
+      .nav-logo-name { font-size: 14px !important; }
+      .nav-logo-sub { display: none !important; }
+      .nav-logo { gap: 8px !important; }
+      /* Hero: h1 ligeramente más compacto en pantallas muy pequeñas */
+      .hero h1 { font-size: 40px; }
       /* Botones nav carrusel más grandes en móvil pequeño */
       .comp-nav-btn { width: 48px; height: 48px; }
       .comp-dot { width: 12px; height: 12px; }
