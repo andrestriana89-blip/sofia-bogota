@@ -5,6 +5,31 @@
 
 ---
 
+## 2026-05-12 — Sesión Andrés
+
+**Repos tocados:**
+- `aj-business-advisory` → `status/clients/natalia-dentalia.md`
+
+**Cambios realizados:**
+
+### Dominio de Natalia — comprado ✅
+- Dominio registrado: **`dranataliabarrantes.com`** en Namecheap
+- Costo: $11.48/año · Privacy incluida · Order #202241731
+- **IMPORTANTE Valentina:** La página de Natalia va en **Netlify** (igual que sofia-bogota), NO en Render
+- Motivo: los clientes de Natalia son 100% de Bogotá — Netlify tiene CDN en São Paulo y carga mucho más rápido desde Colombia
+
+### Qué falta para activar el dominio (lo hace Andres cuando tú termines la página):
+1. En Netlify: agregar `dranataliabarrantes.com` como custom domain del sitio de Natalia
+2. En Namecheap: agregar CNAME apuntando al sitio de Netlify
+3. Listo — no hay que tocar Render para nada
+
+**Pendientes Valentina:**
+- [ ] Construir la página de Natalia (`dranataliabarrantes.com`) en Netlify
+- [ ] Colores: negro `#1A1A1A`, caramelo `#C4A882`, blanco `#F8F6F3` — **SIN MORADO bajo ninguna circunstancia**
+- [ ] Cuando termines, avísale a Andres para que apunte el dominio
+
+---
+
 ## 2026-05-11 — Sesión Valentina (verificación técnica Sofia voz + GHL)
 
 **Repos tocados:**
