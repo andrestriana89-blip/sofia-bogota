@@ -2970,6 +2970,47 @@
       .wa-float { bottom: 20px; right: 20px; width: 52px; height: 52px; }
     }
 
+    /* ── BOTÓN FLOTANTE DENTALIA EN HERO ── */
+    .dentalia-hero-fab {
+      position: absolute; top: 28px; right: 28px; z-index: 10;
+      background: rgba(255,255,255,0.10); border: 1.5px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(10px); border-radius: 50px;
+      padding: 8px 14px 8px 8px; display: flex; align-items: center; gap: 9px;
+      cursor: pointer; transition: all 0.25s; box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+    }
+    .dentalia-hero-fab:hover { background: rgba(255,255,255,0.18); }
+    .dentalia-hero-fab-logo {
+      width: 28px; height: 28px; object-fit: contain;
+      border-radius: 50%; background: #fff; padding: 3px;
+    }
+    .dentalia-hero-fab-text {
+      font-size: 11px; font-weight: 600; color: #fff;
+      letter-spacing: 0.04em; line-height: 1.3; text-align: left;
+    }
+
+    /* ── MOBILE FIXES — elementos nuevos ── */
+    @media (max-width: 768px) {
+      /* Botón Dentalia: se oculta en móvil — el story-fab flotante ya cumple esa función */
+      .dentalia-hero-fab { display: none; }
+      /* Flechas carrusel más pequeñas y dentro de la imagen */
+      .comp-arrow { width: 36px; height: 36px; top: 38%; }
+      .comp-arrow-left  { left: 8px; }
+      .comp-arrow-right { right: 8px; }
+      /* Caption comparador: apilar en móvil */
+      .comparison-caption { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .comparison-caption-cta { align-self: stretch; text-align: center; justify-content: center; }
+      /* CTA Google reviews: texto más pequeño y padding ajustado */
+      .google-reviews-cta { font-size: 12px !important; padding: 12px 18px !important; }
+    }
+    @media (max-width: 480px) {
+      /* Puntos del carrusel más fáciles de tocar */
+      .comp-dot { width: 12px; height: 12px; }
+      /* Equipo: reducir texto en móvil pequeño */
+      .section-sub { font-size: 14px; }
+      /* Testimonios: asegurar que el "Ver en Google" no se corte */
+      .testimonial-card { min-height: unset; }
+    }
+
     /* ─── PROTECCIÓN DE CONTENIDO ─── */
     body, body * {
       -webkit-user-select: none !important;
@@ -3192,9 +3233,9 @@
     <!-- Watermark NB grande de fondo (sutil, decorativo) -->
     <img class="nb-watermark hero-bg" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
     <!-- ícono flotante Dentalia (logo antiguo) → abre modal Sabías qué -->
-    <button onclick="openStory()" aria-label="¿Sabías qué? Dentalia ahora es Dra. Natalia Barrantes" style="position:absolute;top:28px;right:28px;z-index:10;background:rgba(255,255,255,0.10);border:1.5px solid rgba(255,255,255,0.18);backdrop-filter:blur(10px);border-radius:50px;padding:8px 14px 8px 8px;display:flex;align-items:center;gap:9px;cursor:pointer;transition:all 0.25s;box-shadow:0 4px 18px rgba(0,0,0,0.15);" onmouseenter="this.style.background='rgba(255,255,255,0.18)'" onmouseleave="this.style.background='rgba(255,255,255,0.10)'">
-      <img src="fotos/logo-dentalia.png" alt="Dentalia" style="width:28px;height:28px;object-fit:contain;border-radius:50%;background:#fff;padding:3px;" onerror="this.style.display='none'" />
-      <span style="font-size:11px;font-weight:600;color:#fff;letter-spacing:0.04em;line-height:1.2;text-align:left;">Antes éramos<br/><span style="color:var(--gold);">Dentalia</span></span>
+    <button class="dentalia-hero-fab" onclick="openStory()" aria-label="¿Sabías qué? Dentalia ahora es Dra. Natalia Barrantes">
+      <img src="fotos/logo-dentalia.png" alt="Dentalia" class="dentalia-hero-fab-logo" onerror="this.style.display='none'" />
+      <span class="dentalia-hero-fab-text">Antes éramos<br/><span style="color:var(--gold);">Dentalia</span></span>
     </button>
     <div class="hero-inner">
       <div class="hero-content">
@@ -4069,7 +4110,7 @@
         </a>
       </div>
       <div class="reveal" style="text-align:center;margin-top:40px;">
-        <a href="https://share.google/k1qupNcfw8GCn5jGE" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:14px 28px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.03em;transition:all 0.2s;">
+        <a href="https://share.google/k1qupNcfw8GCn5jGE" target="_blank" rel="noopener" class="google-reviews-cta" style="display:inline-flex;align-items:center;gap:10px;background:transparent;border:1.5px solid var(--gold);color:var(--gold);padding:14px 28px;border-radius:50px;font-size:14px;font-weight:600;text-decoration:none;letter-spacing:0.03em;transition:all 0.2s;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
           Ver las 26 opiniones en Google · ★ 4.7
         </a>
