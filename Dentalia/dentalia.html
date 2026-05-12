@@ -3049,7 +3049,7 @@
       .testimonial-card { min-height: unset; }
     }
 
-    /* ── MENÚ MÓVIL OVERLAY — fuera del nav para evitar backdrop-filter trap ── */
+    /* ── MENÚ MÓVIL OVERLAY ── */
     .mobile-menu-overlay {
       display: none;
       position: fixed;
@@ -3059,35 +3059,60 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 36px;
+      gap: 0;
+      overflow-y: auto;
     }
-    .mobile-menu-overlay.open { display: flex; }
-    .mobile-menu-overlay a {
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--text);
-      text-decoration: none;
+    .mobile-menu-overlay.open { display: flex; animation: fadeIn 0.25s ease both; }
+    .mobile-menu-close {
+      position: absolute; top: 20px; right: 20px;
+      background: none; border: 1.5px solid var(--gold-border);
+      border-radius: 50%; width: 40px; height: 40px;
+      font-size: 18px; line-height: 1; color: var(--text-muted);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .mob-menu-logo {
+      width: 64px; height: 64px; object-fit: contain;
+      margin-bottom: 6px;
+    }
+    .mob-menu-name {
+      font-size: 15px; font-weight: 700; color: var(--text);
+      letter-spacing: 0.3px; margin-bottom: 2px;
+    }
+    .mob-menu-tagline {
+      font-size: 11px; color: var(--text-muted);
+      letter-spacing: 0.5px; margin-bottom: 28px;
+    }
+    .mob-menu-links {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 4px;
+      width: 100%; padding: 0 40px;
+    }
+    .mob-menu-links a {
+      font-size: 20px; font-weight: 700;
+      color: var(--text); text-decoration: none;
+      padding: 10px 0; width: 100%; text-align: center;
+      border-bottom: 1px solid var(--gold-border);
       transition: color 0.2s;
     }
-    .mobile-menu-overlay a:hover { color: var(--gold); }
-    .mobile-menu-close {
-      position: absolute;
-      top: 22px; right: 22px;
-      background: none; border: none;
-      font-size: 30px; line-height: 1;
-      color: var(--text); cursor: pointer;
-      padding: 4px 8px;
+    .mob-menu-links a:last-child { border-bottom: none; }
+    .mob-menu-links a:hover { color: var(--gold); }
+    .mob-menu-bottom {
+      margin-top: 28px; display: flex; flex-direction: column;
+      align-items: center; gap: 12px;
     }
-    .mobile-menu-cta-overlay {
-      margin-top: 8px;
-      background: var(--gold);
-      color: var(--dark) !important;
-      font-weight: 800 !important;
-      padding: 14px 32px;
-      border-radius: 100px;
-      font-size: 16px !important;
+    .mob-menu-before {
+      font-size: 11px; color: var(--text-muted);
+      letter-spacing: 0.8px; font-style: italic;
+    }
+    .mob-menu-cta {
+      background: var(--gold); color: var(--dark);
+      font-weight: 800; font-size: 15px;
+      padding: 14px 36px; border-radius: 100px;
+      text-decoration: none; display: inline-block;
       box-shadow: 0 6px 24px rgba(192,154,85,0.35);
+      transition: background 0.2s;
     }
+    .mob-menu-cta:hover { background: var(--gold-deep); }
 
     /* ─── PROTECCIÓN DE CONTENIDO ─── */
     body, body * {
@@ -4438,17 +4463,18 @@
 
     // ─── MOBILE MENU ───
     const hamburger = document.getElementById('hamburger');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     let menuOpen = false;
     function toggleMenu() {
+      const overlay = document.getElementById('mobileMenuOverlay');
       menuOpen = !menuOpen;
-      mobileMenuOverlay.classList.toggle('open', menuOpen);
+      overlay.classList.toggle('open', menuOpen);
       hamburger.setAttribute('aria-expanded', menuOpen);
       document.body.style.overflow = menuOpen ? 'hidden' : '';
     }
     function closeMenu() {
+      const overlay = document.getElementById('mobileMenuOverlay');
       menuOpen = false;
-      mobileMenuOverlay.classList.remove('open');
+      overlay.classList.remove('open');
       document.body.style.overflow = '';
     }
 
@@ -4730,15 +4756,32 @@
     })();
   </script>
 
-  <!-- MENÚ MÓVIL — fuera del nav, sin backdrop-filter trap -->
+  <!-- MENÚ MÓVIL — body-level, sin backdrop-filter trap -->
   <div id="mobileMenuOverlay" class="mobile-menu-overlay">
-    <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Cerrar menú">✕</button>
-    <a href="#servicios" onclick="closeMenu()">Servicios</a>
-    <a href="#paquetes" onclick="closeMenu()">Paquetes</a>
-    <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
-    <a href="#resultados" onclick="closeMenu()">Resultados</a>
-    <a href="#contacto" onclick="closeMenu()">Contacto</a>
-    <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" class="mobile-menu-cta-overlay" onclick="closeMenu()">Agendar cita</a>
+    <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Cerrar">✕</button>
+
+    <!-- Logo -->
+    <img class="mob-menu-logo" src="fotos/logo-nb.png" alt="Dra. Natalia Barrantes"
+         onerror="this.style.display='none'" />
+    <div class="mob-menu-name">Dra. Natalia Barrantes</div>
+    <div class="mob-menu-tagline">Odontología Integral · Bogotá</div>
+
+    <!-- Links -->
+    <nav class="mob-menu-links">
+      <a href="#servicios" onclick="closeMenu()">Servicios</a>
+      <a href="#paquetes" onclick="closeMenu()">Paquetes</a>
+      <a href="#nosotros" onclick="closeMenu()">Nosotros</a>
+      <a href="#resultados" onclick="closeMenu()">Resultados</a>
+      <a href="#contacto" onclick="closeMenu()">Contacto</a>
+    </nav>
+
+    <!-- CTA -->
+    <div class="mob-menu-bottom">
+      <span class="mob-menu-before">Antes éramos · Dentalia</span>
+      <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20mi%20cita"
+         target="_blank" rel="noopener"
+         class="mob-menu-cta" onclick="closeMenu()">Agendar mi cita →</a>
+    </div>
   </div>
 </body>
 </html>
