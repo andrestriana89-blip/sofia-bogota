@@ -68,9 +68,9 @@ exports.handler = async function(event) {
     ? `¡Hola! Soy Sofia, la recepcionista de inteligencia artificial para ${bizName}. ¿En qué te puedo ayudar hoy?`
     : `Hi there! This is Sofia, the AI receptionist for ${bizName}. How can I help you today?`;
 
-  const phoneLine  = phone  ? (isES ? `\n- Teléfono del negocio: ${phone}`        : `\n- Business phone: ${phone}`)        : "";
-  const emailLine  = email  ? (isES ? `\n- Email del negocio: ${email}`            : `\n- Business email: ${email}`)         : "";
-  const socialLine = social ? (isES ? `\n- Web/redes del negocio: ${social}`       : `\n- Business website/social: ${social}`) : "";
+  const phoneLine  = rawPhone2  ? (isES ? `\n- Teléfono del negocio: ${rawPhone2}`        : `\n- Business phone: ${rawPhone2}`)        : "";
+  const emailLine  = email      ? (isES ? `\n- Email del negocio: ${email}`                : `\n- Business email: ${email}`)             : "";
+  const socialLine = social     ? (isES ? `\n- Web/redes del negocio: ${social}`           : `\n- Business website/social: ${social}`)   : "";
 
   const systemPrompt = isES
     ? `Eres Sofia, una recepcionista de IA cálida y profesional para ${bizName}, un negocio de ${nicho}.
