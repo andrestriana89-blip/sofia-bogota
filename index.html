@@ -239,6 +239,154 @@
     @media(max-width:760px){.nav-loc-sep{display:none}.nav-loc-group{border:none;background:transparent;gap:2px}}
     html.light-mode .nav-academia{background:rgba(90,50,220,.07);border-color:rgba(90,50,220,.25);color:#6040c0}
     html.light-mode .nav-academia:hover{background:rgba(90,50,220,.15);color:#3020a0}
+
+    /* ── ACADEMIA MODAL ── */
+    :root{--acad-green:#00c47a;--acad-green-dim:rgba(0,196,122,.18)}
+    #academia-modal{
+      position:fixed;inset:0;z-index:1200;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(10,0,20,.80);backdrop-filter:blur(8px);
+      opacity:0;pointer-events:none;transition:opacity .3s ease;
+    }
+    #academia-modal.open{opacity:1;pointer-events:all}
+    .acad-backdrop{position:absolute;inset:0;z-index:0;cursor:pointer}
+    .acad-panel{
+      position:relative;z-index:1;
+      width:min(960px,96vw);max-height:90vh;overflow-y:auto;
+      background:rgba(16,4,28,.97);
+      border:1px solid rgba(0,196,122,.20);border-radius:20px;
+      box-shadow:0 0 60px rgba(0,196,122,.10),0 0 120px rgba(214,0,110,.08);
+      transform:translateY(30px) scale(.97);
+      transition:transform .35s cubic-bezier(.22,1,.36,1);
+      scrollbar-width:thin;scrollbar-color:rgba(0,196,122,.3) transparent;
+    }
+    #academia-modal.open .acad-panel{transform:translateY(0) scale(1)}
+    .acad-panel::-webkit-scrollbar{width:6px}
+    .acad-panel::-webkit-scrollbar-track{background:transparent}
+    .acad-panel::-webkit-scrollbar-thumb{background:rgba(0,196,122,.25);border-radius:3px}
+    .acad-header{
+      padding:36px 36px 28px;
+      background:linear-gradient(135deg,rgba(214,0,110,.14) 0%,rgba(0,196,122,.10) 100%);
+      border-bottom:1px solid rgba(0,196,122,.14);position:relative;
+    }
+    .acad-badge{
+      display:inline-flex;align-items:center;gap:6px;
+      background:linear-gradient(135deg,rgba(214,0,110,.22),rgba(0,196,122,.18));
+      border:1px solid rgba(0,196,122,.35);border-radius:20px;
+      padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:#7ff5c8;margin-bottom:14px;
+    }
+    .acad-header h2{
+      font-size:clamp(22px,4vw,30px);font-weight:800;
+      background:linear-gradient(90deg,#d6006e,#ff6ab8 40%,#00c47a 70%,#7ff5c8);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      margin-bottom:8px;
+    }
+    .acad-header p{color:rgba(238,235,255,.55);font-size:14px;line-height:1.65;max-width:560px}
+    .acad-close{
+      position:absolute;top:16px;right:16px;
+      background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+      color:#aaa;border-radius:50%;width:34px;height:34px;font-size:14px;
+      cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;
+    }
+    .acad-close:hover{background:rgba(214,0,110,.25);border-color:rgba(214,0,110,.5);color:#fff}
+    .acad-tabs{display:flex;padding:0 36px;border-bottom:1px solid rgba(0,196,122,.12)}
+    .acad-tab{
+      padding:16px 26px;font-size:13px;font-weight:700;
+      background:transparent;border:none;border-bottom:2px solid transparent;
+      color:rgba(238,235,255,.40);cursor:pointer;transition:all .2s;margin-bottom:-1px;
+    }
+    .acad-tab.active{color:#7ff5c8;border-bottom-color:#00c47a}
+    .acad-tab:hover:not(.active){color:rgba(238,235,255,.72)}
+    .acad-content{padding:32px 36px 44px}
+    .acad-section-label{
+      font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+      color:rgba(0,196,122,.65);margin-bottom:22px;
+    }
+    /* Agent cards */
+    .acad-agents-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .acad-agent-card{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;padding:22px;transition:border-color .25s,transform .25s;
+    }
+    .acad-agent-card:hover{border-color:rgba(0,196,122,.30);transform:translateY(-2px)}
+    .acad-agent-icon{font-size:28px;margin-bottom:12px;display:block}
+    .acad-agent-name{font-size:15px;font-weight:700;color:#eeebff;margin-bottom:6px}
+    .acad-agent-desc{font-size:12px;color:rgba(238,235,255,.48);line-height:1.65;margin-bottom:18px}
+    .acad-agent-btns{display:flex;gap:8px;flex-wrap:wrap}
+    .acad-btn-free{
+      flex:1;min-width:110px;padding:9px 14px;border-radius:9px;font-size:11px;font-weight:700;
+      background:rgba(0,196,122,.10);border:1px solid rgba(0,196,122,.30);color:#7ff5c8;
+      cursor:pointer;text-decoration:none;text-align:center;transition:all .2s;
+    }
+    .acad-btn-free:hover{background:rgba(0,196,122,.22);border-color:rgba(0,196,122,.55)}
+    .acad-btn-buy{
+      flex:1;min-width:110px;padding:9px 14px;border-radius:9px;font-size:11px;font-weight:700;
+      background:linear-gradient(135deg,rgba(214,0,110,.85),rgba(180,0,90,.95));
+      border:1px solid rgba(214,0,110,.50);color:#fff;
+      cursor:pointer;text-decoration:none;text-align:center;transition:all .2s;
+    }
+    .acad-btn-buy:hover{filter:brightness(1.15)}
+    /* Prompt packs */
+    .acad-prompts-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:16px}
+    .acad-pack-card{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;padding:22px;transition:border-color .25s,transform .25s;
+      position:relative;overflow:hidden;
+    }
+    .acad-pack-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,#d6006e,#00c47a);
+    }
+    .acad-pack-card:hover{border-color:rgba(214,0,110,.30);transform:translateY(-2px)}
+    .acad-pack-thumb{
+      width:100%;aspect-ratio:16/9;
+      background:linear-gradient(135deg,rgba(214,0,110,.13),rgba(0,196,122,.08));
+      border-radius:9px;margin-bottom:14px;
+      display:flex;align-items:center;justify-content:center;font-size:36px;
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .acad-pack-name{font-size:15px;font-weight:700;color:#eeebff;margin-bottom:6px}
+    .acad-pack-desc{font-size:12px;color:rgba(238,235,255,.48);line-height:1.65;margin-bottom:6px}
+    .acad-pack-count{font-size:11px;color:rgba(0,196,122,.70);margin-bottom:18px;font-weight:600}
+    .acad-pack-footer{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .acad-price-tag{
+      font-size:20px;font-weight:800;
+      background:linear-gradient(90deg,#d6006e,#00c47a);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      white-space:nowrap;
+    }
+    .acad-btn-pack{
+      padding:9px 18px;border-radius:9px;font-size:11px;font-weight:700;
+      background:linear-gradient(135deg,rgba(214,0,110,.85),rgba(180,0,90,.95));
+      border:1px solid rgba(214,0,110,.50);color:#fff;
+      cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap;
+    }
+    .acad-btn-pack:hover{filter:brightness(1.15)}
+    /* Mobile */
+    @media(max-width:640px){
+      .acad-header{padding:24px 20px 20px}
+      .acad-tabs{padding:0 16px}
+      .acad-tab{padding:14px 16px;font-size:12px}
+      .acad-content{padding:24px 16px 36px}
+      .acad-agents-grid,.acad-prompts-grid{grid-template-columns:1fr}
+    }
+    /* Light mode */
+    html.light-mode #academia-modal{background:rgba(230,220,255,.82)}
+    html.light-mode .acad-panel{background:rgba(255,253,252,.98);border-color:rgba(0,196,122,.28)}
+    html.light-mode .acad-agent-card,
+    html.light-mode .acad-pack-card{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.09)}
+    html.light-mode .acad-agent-card:hover{border-color:rgba(0,196,122,.35)}
+    html.light-mode .acad-pack-card:hover{border-color:rgba(214,0,110,.35)}
+    html.light-mode .acad-agent-name,
+    html.light-mode .acad-pack-name{color:#1a0d30}
+    html.light-mode .acad-agent-desc,
+    html.light-mode .acad-pack-desc{color:#6050a0}
+    html.light-mode .acad-tab{color:rgba(30,10,60,.38)}
+    html.light-mode .acad-tab.active{color:#007a50;border-bottom-color:#00885a}
+    html.light-mode .acad-section-label{color:rgba(0,150,100,.80)}
+    html.light-mode .acad-btn-free{color:#006040;background:rgba(0,196,122,.08);border-color:rgba(0,196,122,.30)}
+
     @media(max-width:640px){
       nav{padding:0 12px;gap:6px}
       .nav-links{display:none}
@@ -1395,7 +1543,7 @@
       <span class="nav-loc-sep">|</span>
       <button class="lang-btn" id="langBtn" onclick="toggleLang()">🇺🇸 EN</button>
     </div>
-    <a class="nav-pill nav-academia" href="https://eldelosdatos.tech" target="_blank" rel="noopener" id="nav-academia">🎓 Academia</a>
+    <button class="nav-pill nav-academia" onclick="openAcademiaModal()" id="nav-academia">🎓 Academia</button>
     <a class="nav-pill" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="nav-cta">Consultoría Gratuita →</a>
   </div>
 </nav>
@@ -2478,6 +2626,134 @@
                4) Activar sección #api-section (display:block) cuando APIs estén listos -->
   </div>
 </footer>
+
+<!-- ══════════════════════════════════════════════
+     ACADEMIA — Modal marketplace de agentes y prompts
+════════════════════════════════════════════════ -->
+<div id="academia-modal" role="dialog" aria-modal="true"
+     aria-labelledby="acadModalTitle" aria-hidden="true">
+
+  <div class="acad-backdrop" onclick="closeAcademiaModal()" aria-hidden="true"></div>
+
+  <div class="acad-panel">
+
+    <!-- Header -->
+    <div class="acad-header">
+      <button class="acad-close" onclick="closeAcademiaModal()" aria-label="Cerrar">✕</button>
+      <div class="acad-badge">🎓 AJ Academia</div>
+      <h2 id="acadModalTitle">Herramientas de IA para tu negocio</h2>
+      <p>Agentes de inteligencia artificial + Packs de prompts profesionales. Descarga, prueba y escala sin límites.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="acad-tabs" role="tablist">
+      <button class="acad-tab active" role="tab" aria-selected="true"
+              onclick="setAcademiaTab('agentes',this)">🤖 Agentes IA</button>
+      <button class="acad-tab" role="tab" aria-selected="false"
+              onclick="setAcademiaTab('prompts',this)">✨ Packs de Prompts</button>
+    </div>
+
+    <!-- ── AGENTES ── -->
+    <div id="acad-agentes" class="acad-content">
+      <p class="acad-section-label">5 agentes disponibles — preview gratuito · versión completa $10 USD</p>
+      <div class="acad-agents-grid">
+
+        <div class="acad-agent-card">
+          <span class="acad-agent-icon">🤖</span>
+          <div class="acad-agent-name">Agente de Ventas</div>
+          <p class="acad-agent-desc">Califica prospectos, responde objeciones y cierra tratos de forma autónoma. Entrenado para convertir conversaciones en ingresos reales.</p>
+          <div class="acad-agent-btns">
+            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <a href="#" class="acad-btn-buy">Completo — $10</a>
+          </div>
+        </div>
+
+        <div class="acad-agent-card">
+          <span class="acad-agent-icon">⚙️</span>
+          <div class="acad-agent-name">Agente de Automatización</div>
+          <p class="acad-agent-desc">Elimina tareas repetitivas de tu operación. Conecta sistemas, mueve datos y ejecuta flujos completos sin intervención humana.</p>
+          <div class="acad-agent-btns">
+            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <a href="#" class="acad-btn-buy">Completo — $10</a>
+          </div>
+        </div>
+
+        <div class="acad-agent-card">
+          <span class="acad-agent-icon">📊</span>
+          <div class="acad-agent-name">Agente de Datos</div>
+          <p class="acad-agent-desc">Extrae, analiza y presenta la información clave de tu negocio. De hojas de cálculo dispersas a decisiones claras en segundos.</p>
+          <div class="acad-agent-btns">
+            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <a href="#" class="acad-btn-buy">Completo — $10</a>
+          </div>
+        </div>
+
+        <div class="acad-agent-card">
+          <span class="acad-agent-icon">💬</span>
+          <div class="acad-agent-name">Agente de Atención al Cliente</div>
+          <p class="acad-agent-desc">Responde consultas, agenda citas y gestiona quejas 24/7. Sin tiempo de espera, sin costo de personal adicional.</p>
+          <div class="acad-agent-btns">
+            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <a href="#" class="acad-btn-buy">Completo — $10</a>
+          </div>
+        </div>
+
+        <div class="acad-agent-card">
+          <span class="acad-agent-icon">📈</span>
+          <div class="acad-agent-name">Agente de Predicción</div>
+          <p class="acad-agent-desc">Anticipa tendencias, detecta patrones en tus métricas y genera reportes predictivos para tomar decisiones con ventaja competitiva.</p>
+          <div class="acad-agent-btns">
+            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <a href="#" class="acad-btn-buy">Completo — $10</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PROMPTS ── -->
+    <div id="acad-prompts" class="acad-content" style="display:none">
+      <p class="acad-section-label">Packs de prompts para imágenes de alta retención — $7 USD por pack · uso comercial incluido</p>
+      <div class="acad-prompts-grid">
+
+        <div class="acad-pack-card">
+          <div class="acad-pack-thumb">📸</div>
+          <div class="acad-pack-name">Pack Profesional</div>
+          <p class="acad-pack-desc">Prompts para generar imágenes de alto impacto visual en Instagram. Diseñados para aumentar retención, saves y alcance orgánico.</p>
+          <div class="acad-pack-count">✦ 20 prompts listos para copiar y pegar</div>
+          <div class="acad-pack-footer">
+            <span class="acad-price-tag">$7 USD</span>
+            <a href="#" class="acad-btn-pack">Comprar Pack →</a>
+          </div>
+        </div>
+
+        <div class="acad-pack-card">
+          <div class="acad-pack-thumb">📚</div>
+          <div class="acad-pack-name">Pack Portadas de Libros</div>
+          <p class="acad-pack-desc">Diseños editoriales premium para portadas de libros, e-books y contenido intelectual. Resultados de nivel editorial profesional.</p>
+          <div class="acad-pack-count">✦ 15 prompts + guía de estilos</div>
+          <div class="acad-pack-footer">
+            <span class="acad-price-tag">$7 USD</span>
+            <a href="#" class="acad-btn-pack">Comprar Pack →</a>
+          </div>
+        </div>
+
+        <div class="acad-pack-card">
+          <div class="acad-pack-thumb">🎞️</div>
+          <div class="acad-pack-name">Pack Editorial Fotográfico</div>
+          <p class="acad-pack-desc">Prompts estilo revista para construir un feed premium en Instagram. Consistencia visual que proyecta lujo y credibilidad de marca.</p>
+          <div class="acad-pack-count">✦ 18 prompts + paletas de color recomendadas</div>
+          <div class="acad-pack-footer">
+            <span class="acad-price-tag">$7 USD</span>
+            <a href="#" class="acad-btn-pack">Comprar Pack →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /acad-panel -->
+</div><!-- /academia-modal -->
 
 <!-- ══════════════════════════════════════════════
      SOFIA TE LLAMA — Modal formulario (solo versión INTL / no-US)
@@ -3741,10 +4017,37 @@ async function submitSofiaCall(e){
   form.style.display = 'none';
   document.getElementById('scmConfirm').style.display = 'block';
 }
-// Cerrar con ESC (comparte listener con modal AJ)
+// Cerrar con ESC (comparte listener con todos los modales)
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){ closeSofiaCall(); closeAjModal(); }
+  if(e.key==='Escape'){ closeSofiaCall(); closeAjModal(); closeAcademiaModal(); }
 });
+
+/* ═══════════════════════════════════════════════════
+   ACADEMIA — Modal marketplace
+═══════════════════════════════════════════════════ */
+function openAcademiaModal(){
+  var m = document.getElementById('academia-modal');
+  if(!m) return;
+  m.classList.add('open');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeAcademiaModal(){
+  var m = document.getElementById('academia-modal');
+  if(!m) return;
+  m.classList.remove('open');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+function setAcademiaTab(tab, btn){
+  document.getElementById('acad-agentes').style.display = tab==='agentes' ? 'block' : 'none';
+  document.getElementById('acad-prompts').style.display  = tab==='prompts'  ? 'block' : 'none';
+  document.querySelectorAll('.acad-tab').forEach(function(b){
+    b.classList.remove('active');
+    b.setAttribute('aria-selected','false');
+  });
+  if(btn){ btn.classList.add('active'); btn.setAttribute('aria-selected','true'); }
+}
 
 /* ═══════════════════════════════════════════════════
    ABOUT AJ — Modal flotante
