@@ -387,6 +387,119 @@
     html.light-mode .acad-section-label{color:rgba(0,150,100,.80)}
     html.light-mode .acad-btn-free{color:#006040;background:rgba(0,196,122,.08);border-color:rgba(0,196,122,.30)}
 
+    /* ── ACADEMIA: inputs compartidos ── */
+    .acad-input{
+      width:100%;padding:11px 14px;border-radius:10px;font-size:13px;
+      background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+      color:var(--text);margin-bottom:10px;box-sizing:border-box;
+      transition:border-color .2s;font-family:inherit;
+    }
+    .acad-input:focus{outline:none;border-color:rgba(0,196,122,.45)}
+    .acad-input::placeholder{color:var(--muted)}
+    select.acad-input option{background:#210012}
+    textarea.acad-input{resize:vertical;min-height:80px}
+    html.light-mode .acad-input{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.14);color:#1a0d30}
+    html.light-mode .acad-input::placeholder{color:#8070b0}
+    html.light-mode select.acad-input option{background:#fff}
+
+    /* Lead capture overlay */
+    .acad-lead-overlay{
+      position:absolute;inset:0;z-index:20;
+      background:rgba(16,4,28,.97);border-radius:20px;
+      display:flex;align-items:center;justify-content:center;
+      padding:32px 24px;
+      opacity:0;pointer-events:none;transition:opacity .25s ease;
+    }
+    .acad-lead-overlay.open{opacity:1;pointer-events:all}
+    .acad-lead-box{max-width:400px;width:100%;text-align:left}
+    .acad-lead-back{
+      background:none;border:none;color:rgba(0,196,122,.80);
+      font-size:13px;font-weight:600;cursor:pointer;
+      margin-bottom:22px;display:inline-flex;align-items:center;gap:5px;
+      transition:color .2s;padding:0;
+    }
+    .acad-lead-back:hover{color:#7ff5c8}
+    .acad-lead-icon{font-size:34px;margin-bottom:10px;display:block}
+    .acad-lead-title{font-size:18px;font-weight:800;color:#eeebff;margin-bottom:6px}
+    .acad-lead-sub{font-size:13px;color:rgba(238,235,255,.48);margin-bottom:20px;line-height:1.6}
+    .acad-lead-submit{width:100%;padding:13px;font-size:13px}
+    .acad-lead-confirm{display:none;text-align:center;padding:16px 0}
+    .acad-lead-confirm-icon{font-size:40px;margin-bottom:12px}
+    .acad-lead-confirm-title{font-size:16px;font-weight:700;color:#7ff5c8;margin-bottom:8px}
+    .acad-lead-confirm-sub{font-size:13px;color:rgba(238,235,255,.48);line-height:1.6}
+    html.light-mode .acad-lead-overlay{background:rgba(248,245,255,.99)}
+    html.light-mode .acad-lead-title{color:#1a0d30}
+    html.light-mode .acad-lead-sub{color:#6050a0}
+
+    /* Mentoría */
+    .acad-mentoria-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+    .acad-mentoria-hero{
+      background:linear-gradient(135deg,rgba(214,0,110,.09) 0%,rgba(0,196,122,.07) 100%);
+      border:1px solid rgba(0,196,122,.18);border-radius:14px;padding:26px;
+    }
+    .acad-mentoria-badge{
+      display:inline-block;
+      background:linear-gradient(135deg,rgba(214,0,110,.20),rgba(0,196,122,.16));
+      border:1px solid rgba(0,196,122,.28);border-radius:20px;
+      padding:3px 12px;font-size:11px;font-weight:700;letter-spacing:.08em;
+      text-transform:uppercase;color:#7ff5c8;margin-bottom:14px;
+    }
+    .acad-mentoria-hero h3{font-size:19px;font-weight:800;color:#eeebff;margin-bottom:10px}
+    .acad-mentoria-hero p{font-size:13px;color:rgba(238,235,255,.50);line-height:1.65;margin-bottom:18px}
+    .acad-mentoria-feats{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+    .acad-mentoria-feats li{font-size:13px;color:rgba(238,235,255,.72);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+    .acad-mentoria-feats li::before{content:'✓';color:#00c47a;font-weight:700;flex-shrink:0;margin-top:1px}
+    .acad-form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:26px}
+    .acad-form-card h4{font-size:16px;font-weight:700;color:#eeebff;margin-bottom:18px}
+    .acad-form-confirm{text-align:center;padding:20px 0}
+    .acad-form-confirm-icon{font-size:36px;margin-bottom:10px}
+    .acad-form-confirm-title{font-size:15px;font-weight:700;color:#7ff5c8;margin-bottom:6px}
+    .acad-form-confirm-sub{font-size:13px;color:rgba(238,235,255,.48);line-height:1.6}
+    html.light-mode .acad-mentoria-hero{background:rgba(0,196,122,.04);border-color:rgba(0,196,122,.18)}
+    html.light-mode .acad-mentoria-hero h3{color:#1a0d30}
+    html.light-mode .acad-mentoria-hero p,.acad-form-confirm-sub{color:#6050a0}
+    html.light-mode .acad-mentoria-feats li{color:#3020a0}
+    html.light-mode .acad-form-card{background:rgba(0,0,0,.03);border-color:rgba(0,0,0,.08)}
+    html.light-mode .acad-form-card h4{color:#1a0d30}
+
+    /* Cursos — Próximamente */
+    .acad-launch-banner{max-width:620px;margin:0 auto;text-align:center;padding:16px 0}
+    .acad-launch-icon{font-size:48px;margin-bottom:16px}
+    .acad-prox-badge{
+      display:inline-block;
+      background:linear-gradient(135deg,rgba(245,196,0,.18),rgba(245,196,0,.08));
+      border:1px solid rgba(245,196,0,.35);border-radius:20px;
+      padding:4px 14px;font-size:11px;font-weight:700;letter-spacing:.10em;
+      text-transform:uppercase;color:#f5c400;margin-bottom:16px;
+    }
+    .acad-launch-banner h3{font-size:clamp(20px,3vw,26px);font-weight:800;color:#eeebff;margin-bottom:10px}
+    .acad-launch-banner > p{font-size:14px;color:rgba(238,235,255,.50);line-height:1.65;margin-bottom:22px}
+    .acad-course-previews{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:28px}
+    .acad-course-pill{
+      padding:8px 16px;border-radius:20px;font-size:12px;font-weight:600;
+      background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);
+      color:rgba(238,235,255,.62);
+    }
+    .acad-waitlist-form{display:flex;gap:10px;max-width:440px;margin:0 auto}
+    .acad-waitlist-form .acad-input{margin-bottom:0;flex:1}
+    .acad-launch-confirm{margin-top:14px;font-size:14px;color:#7ff5c8;font-weight:600}
+    html.light-mode .acad-launch-banner h3{color:#1a0d30}
+    html.light-mode .acad-course-pill{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.09);color:#5040a0}
+
+    /* Cuéntanos */
+    .acad-cuentanos-wrap{max-width:560px;margin:0 auto}
+    .acad-cuentanos-intro{text-align:center;margin-bottom:26px}
+    .acad-cuentanos-intro h3{font-size:20px;font-weight:800;color:#eeebff;margin-bottom:8px}
+    .acad-cuentanos-intro p{font-size:13px;color:rgba(238,235,255,.50);line-height:1.65}
+    .acad-form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    html.light-mode .acad-cuentanos-intro h3{color:#1a0d30}
+    html.light-mode .acad-cuentanos-intro p{color:#6050a0}
+    @media(max-width:640px){
+      .acad-mentoria-grid{grid-template-columns:1fr}
+      .acad-form-row{grid-template-columns:1fr}
+      .acad-waitlist-form{flex-direction:column}
+    }
+
     @media(max-width:640px){
       nav{padding:0 12px;gap:6px}
       .nav-links{display:none}
@@ -2650,7 +2763,13 @@
       <button class="acad-tab active" role="tab" aria-selected="true"
               onclick="setAcademiaTab('agentes',this)">🤖 Agentes IA</button>
       <button class="acad-tab" role="tab" aria-selected="false"
-              onclick="setAcademiaTab('prompts',this)">✨ Packs de Prompts</button>
+              onclick="setAcademiaTab('prompts',this)">✨ Prompts</button>
+      <button class="acad-tab" role="tab" aria-selected="false"
+              onclick="setAcademiaTab('mentoria',this)">🎓 Mentoría</button>
+      <button class="acad-tab" role="tab" aria-selected="false"
+              onclick="setAcademiaTab('cursos',this)">📚 Cursos</button>
+      <button class="acad-tab" role="tab" aria-selected="false"
+              onclick="setAcademiaTab('cuentanos',this)">💬 Cuéntanos</button>
     </div>
 
     <!-- ── AGENTES ── -->
@@ -2663,7 +2782,7 @@
           <div class="acad-agent-name">Agente de Ventas</div>
           <p class="acad-agent-desc">Califica prospectos, responde objeciones y cierra tratos de forma autónoma. Entrenado para convertir conversaciones en ingresos reales.</p>
           <div class="acad-agent-btns">
-            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <button class="acad-btn-free" onclick="openLeadOverlay(this,'Agente de Ventas','🤖')">↓ Preview Gratis</button>
             <a href="#" class="acad-btn-buy">Completo — $10</a>
           </div>
         </div>
@@ -2673,7 +2792,7 @@
           <div class="acad-agent-name">Agente de Automatización</div>
           <p class="acad-agent-desc">Elimina tareas repetitivas de tu operación. Conecta sistemas, mueve datos y ejecuta flujos completos sin intervención humana.</p>
           <div class="acad-agent-btns">
-            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <button class="acad-btn-free" onclick="openLeadOverlay(this,'Agente de Automatización','⚙️')">↓ Preview Gratis</button>
             <a href="#" class="acad-btn-buy">Completo — $10</a>
           </div>
         </div>
@@ -2683,7 +2802,7 @@
           <div class="acad-agent-name">Agente de Datos</div>
           <p class="acad-agent-desc">Extrae, analiza y presenta la información clave de tu negocio. De hojas de cálculo dispersas a decisiones claras en segundos.</p>
           <div class="acad-agent-btns">
-            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <button class="acad-btn-free" onclick="openLeadOverlay(this,'Agente de Datos','📊')">↓ Preview Gratis</button>
             <a href="#" class="acad-btn-buy">Completo — $10</a>
           </div>
         </div>
@@ -2693,7 +2812,7 @@
           <div class="acad-agent-name">Agente de Atención al Cliente</div>
           <p class="acad-agent-desc">Responde consultas, agenda citas y gestiona quejas 24/7. Sin tiempo de espera, sin costo de personal adicional.</p>
           <div class="acad-agent-btns">
-            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <button class="acad-btn-free" onclick="openLeadOverlay(this,'Agente de Atención al Cliente','💬')">↓ Preview Gratis</button>
             <a href="#" class="acad-btn-buy">Completo — $10</a>
           </div>
         </div>
@@ -2703,7 +2822,7 @@
           <div class="acad-agent-name">Agente de Predicción</div>
           <p class="acad-agent-desc">Anticipa tendencias, detecta patrones en tus métricas y genera reportes predictivos para tomar decisiones con ventaja competitiva.</p>
           <div class="acad-agent-btns">
-            <a href="#" class="acad-btn-free">↓ Preview Gratis</a>
+            <button class="acad-btn-free" onclick="openLeadOverlay(this,'Agente de Predicción','📈')">↓ Preview Gratis</button>
             <a href="#" class="acad-btn-buy">Completo — $10</a>
           </div>
         </div>
@@ -2749,6 +2868,134 @@
           </div>
         </div>
 
+      </div>
+    </div>
+
+    <!-- ── MENTORÍA ── -->
+    <div id="acad-mentoria" class="acad-content" style="display:none">
+      <div class="acad-mentoria-grid">
+        <div class="acad-mentoria-hero">
+          <div class="acad-mentoria-badge">🎓 Mentoría Personalizada</div>
+          <h3>Construye tu negocio con los que ya lo hicieron</h3>
+          <p>Para emprendedores que quieren iniciar o escalar con IA y estrategia real. Andrés trabaja contigo directamente — sin plantillas, sin talleres masivos.</p>
+          <ul class="acad-mentoria-feats">
+            <li>Diagnóstico profundo de tu idea o negocio actual</li>
+            <li>Hoja de ruta personalizada con pasos concretos</li>
+            <li>Sesiones 1:1 con seguimiento real entre sesiones</li>
+            <li>Acceso directo al ecosistema AJ Business Advisory</li>
+            <li>Implementación de IA adaptada a tu modelo de negocio</li>
+          </ul>
+        </div>
+        <div class="acad-form-card">
+          <h4>Aplica para mentoría</h4>
+          <div id="mentoriaFormWrap">
+            <form id="acadFormMentoria" onsubmit="submitAcademiaForm(event,'Mentoría','mentoriaConfirm','mentoriaFormWrap')" novalidate>
+              <input type="text"  name="nombre"   placeholder="Nombre completo"                  required class="acad-input"/>
+              <input type="email" name="email"    placeholder="Correo electrónico"               required class="acad-input"/>
+              <input type="tel"   name="whatsapp" placeholder="WhatsApp (con código de país)"             class="acad-input"/>
+              <select name="etapa" class="acad-input" required>
+                <option value="" disabled selected>¿En qué etapa está tu negocio?</option>
+                <option value="idea">💡 Tengo una idea</option>
+                <option value="inicio">🌱 Estoy iniciando</option>
+                <option value="marcha">🚀 Ya estoy operando</option>
+                <option value="escalar">📈 Quiero escalar</option>
+              </select>
+              <textarea name="mensaje" placeholder="Cuéntanos brevemente qué necesitas..." class="acad-input" rows="3"></textarea>
+              <button type="submit" class="acad-btn-buy" style="width:100%;padding:13px;font-size:13px">Aplicar para mentoría →</button>
+            </form>
+          </div>
+          <div class="acad-form-confirm" id="mentoriaConfirm" style="display:none">
+            <div class="acad-form-confirm-icon">✅</div>
+            <div class="acad-form-confirm-title">¡Solicitud recibida!</div>
+            <p class="acad-form-confirm-sub">El equipo de AJ te contactará en las próximas 24 horas para coordinar tu primera sesión.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CURSOS ── -->
+    <div id="acad-cursos" class="acad-content" style="display:none">
+      <div class="acad-launch-banner">
+        <div class="acad-launch-icon">🚀</div>
+        <div class="acad-prox-badge">✦ Próximamente — 2026</div>
+        <h3>Cursos Cortos de IA para tu Negocio</h3>
+        <p>Aprendizaje práctico, personalizado y aplicado. Desde cero hasta avanzado — con casos reales de negocios como el tuyo.</p>
+        <div class="acad-course-previews">
+          <span class="acad-course-pill">🤖 Automatización con IA</span>
+          <span class="acad-course-pill">📱 IA para Instagram y Marketing</span>
+          <span class="acad-course-pill">💼 Agentes para tu Negocio</span>
+          <span class="acad-course-pill">📊 Análisis de Datos con IA</span>
+          <span class="acad-course-pill">🎯 Ventas con IA</span>
+          <span class="acad-course-pill">🌐 Marca Digital con IA</span>
+        </div>
+        <p style="font-size:13px;color:rgba(238,235,255,.40);margin-bottom:10px">Sé el primero en enterarte del lanzamiento:</p>
+        <div id="cursosFormWrap">
+          <form class="acad-waitlist-form" id="acadFormCursos" onsubmit="submitAcademiaForm(event,'Cursos Waitlist','cursosConfirm','cursosFormWrap')" novalidate>
+            <input type="email" name="email" placeholder="Tu correo electrónico" required class="acad-input"/>
+            <button type="submit" class="acad-btn-buy" style="white-space:nowrap;padding:12px 20px">Avisarme →</button>
+          </form>
+        </div>
+        <div class="acad-launch-confirm" id="cursosConfirm" style="display:none">✅ ¡Anotado! Te avisamos antes del lanzamiento.</div>
+      </div>
+    </div>
+
+    <!-- ── CUÉNTANOS ── -->
+    <div id="acad-cuentanos" class="acad-content" style="display:none">
+      <div class="acad-cuentanos-wrap">
+        <div class="acad-cuentanos-intro">
+          <h3>Cuéntanos sobre tu negocio</h3>
+          <p>¿Tienes una idea o ya estás operando? El equipo de AJ estudia tu caso y te responde con opciones concretas: agente, mentoría, curso o estrategia personalizada.</p>
+        </div>
+        <div id="cuentanosFormWrap">
+          <form id="acadFormCuentanos" onsubmit="submitAcademiaForm(event,'Cuéntanos','cuentanosConfirm','cuentanosFormWrap')" novalidate>
+            <div class="acad-form-row">
+              <input type="text" name="nombre"   placeholder="Nombre completo"              required class="acad-input"/>
+              <input type="tel"  name="whatsapp" placeholder="WhatsApp (con código de país)" required class="acad-input"/>
+            </div>
+            <input type="email" name="email"   placeholder="Correo electrónico"                   required class="acad-input"/>
+            <input type="text"  name="negocio" placeholder="¿A qué te dedicas o cuál es tu idea?" required class="acad-input"/>
+            <select name="necesidad" class="acad-input" required>
+              <option value="" disabled selected>¿Qué necesitas principalmente?</option>
+              <option value="agente">🤖 Un agente de IA para mi negocio</option>
+              <option value="mentoria">🎓 Mentoría para iniciar o crecer</option>
+              <option value="prompts">✨ Prompts para mi contenido</option>
+              <option value="curso">📚 Aprender IA desde cero</option>
+              <option value="todo">🚀 Todo — quiero una estrategia completa</option>
+              <option value="no-se">🤔 No sé, necesito orientación</option>
+            </select>
+            <textarea name="mensaje" placeholder="Cuéntanos más sobre tu situación y qué quieres lograr..." class="acad-input" rows="4"></textarea>
+            <button type="submit" class="acad-btn-buy" style="width:100%;padding:13px;font-size:13px">Enviar al equipo AJ →</button>
+          </form>
+        </div>
+        <div class="acad-form-confirm" id="cuentanosConfirm" style="display:none">
+          <div class="acad-form-confirm-icon">✅</div>
+          <div class="acad-form-confirm-title">¡Recibido en el CRM!</div>
+          <p class="acad-form-confirm-sub">El equipo de AJ Business Advisory revisará tu caso y te contactará dentro de las próximas 24 horas con la mejor opción para ti.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── LEAD CAPTURE OVERLAY (se activa al pedir preview de agente) ── -->
+    <div id="acad-lead-overlay" class="acad-lead-overlay">
+      <div class="acad-lead-box">
+        <button class="acad-lead-back" onclick="closeLeadOverlay()">← Volver a Agentes</button>
+        <div id="acad-lead-form-section">
+          <span class="acad-lead-icon" id="acad-lead-icon">🤖</span>
+          <div class="acad-lead-title" id="acad-lead-title">Descarga el preview gratuito</div>
+          <p class="acad-lead-sub">Deja tus datos y te enviamos el archivo al correo. Sin costo, sin tarjeta.</p>
+          <form id="acadLeadForm" onsubmit="submitLeadDownload(event)" novalidate>
+            <input type="hidden" name="agente" id="acad-lead-agent-field"/>
+            <input type="text"  name="nombre"   placeholder="Nombre completo"              required class="acad-input"/>
+            <input type="email" name="email"    placeholder="Correo electrónico"           required class="acad-input"/>
+            <input type="tel"   name="whatsapp" placeholder="WhatsApp (con código de país)"         class="acad-input"/>
+            <button type="submit" class="acad-btn-buy acad-lead-submit">Recibir preview gratis →</button>
+          </form>
+        </div>
+        <div class="acad-lead-confirm" id="acad-lead-confirm">
+          <div class="acad-lead-confirm-icon">✅</div>
+          <div class="acad-lead-confirm-title">¡Enviado al CRM!</div>
+          <p class="acad-lead-confirm-sub">Revisa tu correo — el preview llega en minutos. El equipo de AJ también te contactará pronto.</p>
+        </div>
       </div>
     </div>
 
@@ -4040,13 +4287,83 @@ function closeAcademiaModal(){
   document.body.style.overflow='';
 }
 function setAcademiaTab(tab, btn){
-  document.getElementById('acad-agentes').style.display = tab==='agentes' ? 'block' : 'none';
-  document.getElementById('acad-prompts').style.display  = tab==='prompts'  ? 'block' : 'none';
+  var tabs = ['agentes','prompts','mentoria','cursos','cuentanos'];
+  tabs.forEach(function(t){
+    var el = document.getElementById('acad-'+t);
+    if(el) el.style.display = t===tab ? 'block' : 'none';
+  });
   document.querySelectorAll('.acad-tab').forEach(function(b){
     b.classList.remove('active');
     b.setAttribute('aria-selected','false');
   });
   if(btn){ btn.classList.add('active'); btn.setAttribute('aria-selected','true'); }
+  closeLeadOverlay();
+}
+
+/* ── GHL CRM ──
+   Andrés: reemplaza GHL_WEBHOOK_URL con el webhook real de tu location en GHL
+   Dashboard GHL → Settings → Integrations → Webhooks → Crear webhook → copiar URL
+*/
+var GHL_WEBHOOK_URL = 'GHL_WEBHOOK_URL';
+
+function sendToGHL(data){
+  if(GHL_WEBHOOK_URL === 'GHL_WEBHOOK_URL'){ console.log('[Academia → GHL]', data); return; }
+  fetch(GHL_WEBHOOK_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(Object.assign({source:'Academia AJ Business Advisory', fecha: new Date().toISOString()}, data))
+  }).catch(function(e){ console.warn('GHL webhook error:', e); });
+}
+
+function openLeadOverlay(btn, agentName, icon){
+  document.getElementById('acad-lead-icon').textContent  = icon  || '🤖';
+  document.getElementById('acad-lead-title').textContent = 'Preview: ' + agentName;
+  document.getElementById('acad-lead-agent-field').value = agentName;
+  document.getElementById('acad-lead-form-section').style.display = 'block';
+  document.getElementById('acad-lead-confirm').style.display = 'none';
+  document.getElementById('acadLeadForm').reset();
+  document.getElementById('acad-lead-agent-field').value = agentName;
+  document.getElementById('acad-lead-overlay').classList.add('open');
+}
+
+function closeLeadOverlay(){
+  document.getElementById('acad-lead-overlay').classList.remove('open');
+}
+
+function submitLeadDownload(e){
+  e.preventDefault();
+  var form = e.target;
+  var data = {
+    tag: 'Preview Agente',
+    agente:   form.agente.value,
+    nombre:   form.nombre.value,
+    email:    form.email.value,
+    whatsapp: form.whatsapp ? form.whatsapp.value : ''
+  };
+  var btn = form.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  sendToGHL(data);
+  setTimeout(function(){
+    document.getElementById('acad-lead-form-section').style.display = 'none';
+    document.getElementById('acad-lead-confirm').style.display = 'block';
+  }, 600);
+}
+
+function submitAcademiaForm(e, tag, confirmId, wrapId){
+  e.preventDefault();
+  var form = e.target;
+  var data = { tag: tag };
+  new FormData(form).forEach(function(v,k){ data[k] = v; });
+  var btn = form.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  sendToGHL(data);
+  setTimeout(function(){
+    if(wrapId){ var w = document.getElementById(wrapId); if(w) w.style.display='none'; }
+    var c = document.getElementById(confirmId);
+    if(c) c.style.display = 'block';
+  }, 600);
 }
 
 /* ═══════════════════════════════════════════════════
