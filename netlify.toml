@@ -12,6 +12,11 @@
     Cache-Control = "no-store, no-cache, must-revalidate"
 
 [[headers]]
+  for = "/Dentalia/dentalia.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate"
+
+[[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
