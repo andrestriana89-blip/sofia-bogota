@@ -4724,32 +4724,8 @@
       document.addEventListener('dragstart', e => e.preventDefault());
 
       // Mensaje en consola (disuasión)
-      console.log('%c🔒 STOP', 'color:#C09A55;font-size:48px;font-weight:900;');
+      console.log('%c🔒', 'color:#C09A55;font-size:48px;font-weight:900;');
       console.log('%cEste sitio es propiedad de Dra. Natalia Barrantes · Dentalia.\nSi quieres construir algo así para tu negocio, contáctanos.', 'color:#9B7A30;font-size:14px;line-height:1.8;');
-
-      // Overlay cuando DevTools está abierto
-      function checkDevTools() {
-        const open = (window.outerWidth - window.innerWidth > 160) ||
-                     (window.outerHeight - window.innerHeight > 160);
-        let overlay = document.getElementById('_pt_overlay');
-        if (open && !overlay) {
-          overlay = document.createElement('div');
-          overlay.id = '_pt_overlay';
-          overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(28,23,16,0.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;backdrop-filter:blur(24px);';
-          overlay.innerHTML = `
-            <div style="font-size:52px">🔒</div>
-            <div style="color:#C09A55;font-size:22px;font-weight:900;font-family:Lato,sans-serif;letter-spacing:-0.5px">Contenido protegido</div>
-            <div style="color:rgba(255,255,255,0.5);font-size:14px;font-family:Lato,sans-serif;text-align:center;max-width:300px;line-height:1.7">Este sitio es propiedad de<br><strong style="color:rgba(255,255,255,0.75)">Dra. Natalia Barrantes · Dentalia</strong><br><br>Cierra las herramientas del desarrollador para continuar.</div>
-          `;
-          document.body.appendChild(overlay);
-          document.body.style.overflow = 'hidden';
-        } else if (!open && overlay) {
-          overlay.remove();
-          document.body.style.overflow = '';
-        }
-      }
-      setInterval(checkDevTools, 800);
-      checkDevTools();
     })();
   </script>
 
