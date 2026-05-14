@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kit Valentina — AJ Business Advisory</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lora:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0a0a0a;--bg2:#141414;--bg3:#1a1a1a;
+  --green:#00c06b;--blue:#0095ff;--gold:#ffc400;--pink:#b5005e;
+  --text:#f0ece4;--muted:#777;--border:#222;
+}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);padding:0 0 80px;}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);z-index:100;}
+.nav-logo{font-size:10px;letter-spacing:3px;color:var(--green);text-transform:uppercase;}
+.nav-links{display:flex;gap:24px;}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.5px;}
+.nav-links a:hover{color:var(--text);}
+
+/* HERO */
+.hero{text-align:center;padding:60px 24px 48px;max-width:680px;margin:0 auto;}
+.hero-tag{display:inline-block;background:rgba(0,192,107,0.12);color:var(--green);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:24px;}
+.hero h1{font-family:'Lora',serif;font-size:clamp(2rem,5vw,3rem);font-weight:500;font-style:italic;line-height:1.2;margin-bottom:16px;}
+.hero h1 strong{font-style:normal;font-weight:800;color:var(--green);}
+.hero p{font-size:1rem;color:var(--muted);line-height:1.7;max-width:480px;margin:0 auto;}
+
+/* SECTION */
+.section{max-width:1000px;margin:0 auto;padding:48px 24px 0;}
+.section-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;}
+.section-title{font-size:1.4rem;font-weight:700;margin-bottom:8px;}
+.section-sub{font-size:0.9rem;color:var(--muted);margin-bottom:32px;line-height:1.6;}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:14px;}
+.card.green{border-color:rgba(0,192,107,0.25);}
+.card.blue{border-color:rgba(0,149,255,0.25);}
+.card.gold{border-color:rgba(255,196,0,0.25);}
+.card.pink{border-color:rgba(181,0,94,0.25);}
+
+.card-head{display:flex;align-items:center;gap:12px;}
+.card-icon{font-size:28px;}
+.badge{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+.badge.green{background:rgba(0,192,107,0.12);color:var(--green);}
+.badge.blue{background:rgba(0,149,255,0.12);color:var(--blue);}
+.badge.gold{background:rgba(255,196,0,0.12);color:var(--gold);}
+.badge.pink{background:rgba(181,0,94,0.12);color:var(--pink);}
+
+.card-title{font-size:1rem;font-weight:700;}
+.card-desc{font-size:0.83rem;color:var(--muted);line-height:1.6;}
+
+.qr-block{background:#fff;border-radius:12px;padding:10px;width:130px;height:130px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.qr-block img{width:110px;height:110px;}
+
+.card-row{display:flex;gap:16px;align-items:flex-start;}
+.card-row-info{display:flex;flex-direction:column;gap:8px;flex:1;}
+
+.url-box{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;}
+.url-box .label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px;}
+.url-box .url{font-size:0.8rem;color:var(--text);word-break:break-all;}
+
+.btn-copy{display:inline-flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);color:var(--text);font-size:0.78rem;font-weight:600;padding:7px 14px;border-radius:8px;cursor:pointer;transition:all .15s;font-family:inherit;}
+.btn-copy:hover{background:var(--border);}
+
+/* INSTRUCCIONES */
+.steps{display:flex;flex-direction:column;gap:16px;}
+.step{display:flex;gap:16px;align-items:flex-start;}
+.step-num{width:32px;height:32px;border-radius:50%;background:var(--green);color:#000;font-size:0.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.step-txt .step-title{font-size:0.95rem;font-weight:700;margin-bottom:4px;}
+.step-txt .step-desc{font-size:0.85rem;color:var(--muted);line-height:1.55;}
+
+/* TABLA */
+table{width:100%;border-collapse:collapse;}
+th{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 16px;border-bottom:1px solid var(--border);}
+td{font-size:0.85rem;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;}
+td a{color:var(--green);text-decoration:none;}
+td a:hover{text-decoration:underline;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+
+/* NOTA */
+.note{background:rgba(0,192,107,0.06);border:1px solid rgba(0,192,107,0.2);border-radius:12px;padding:18px 20px;font-size:0.85rem;line-height:1.6;color:var(--text);}
+.note strong{color:var(--green);}
+
+.divider{height:1px;background:var(--border);margin:48px 0 0;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <span class="nav-logo">AJ Business Advisory</span>
+  <div class="nav-links">
+    <a href="#demos">Demos</a>
+    <a href="#clientes">Clientes</a>
+    <a href="#sofía">Sofia</a>
+    <a href="#mi-voz">Mi Voz</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">Solo para Valentina · Confidencial</span>
+  <h1>Tu kit de trabajo <strong>completo</strong></h1>
+  <p>Todo lo que necesitas para operar, hacer demos, conseguir clientes y apoyar a Andres — en un solo lugar. Actualizado 2026-05-13.</p>
+</div>
+
+<!-- ────────────────────────────────── DEMOS ── -->
+<div class="section" id="demos">
+  <p class="section-label">01 · Links y QR de demos</p>
+  <h2 class="section-title">Cómo usar Sofia para demos con prospectos</h2>
+  <p class="section-sub">Comparte el link o el QR en presentaciones, WhatsApp o impreso. El prospecto escanea y Sofia lo atiende automáticamente.</p>
+
+  <div class="cards">
+
+    <!-- KIT COMPLETO -->
+    <div class="card green" style="grid-column:1/-1;">
+      <div class="card-head"><div class="card-icon">🗂️</div><span class="badge green">Empezar aquí</span></div>
+      <div class="card-title">Página de demos completa</div>
+      <div class="card-desc">Abre esta URL cuando estés en una presentación o reunión. Tiene todos los QR codes en pantalla — el prospecto escanea el que aplique a su caso.</div>
+      <div class="url-box">
+        <div class="label">URL</div>
+        <div class="url">ajbusinessadvisory.com/kit-demos</div>
+      </div>
+      <button class="btn-copy" onclick="copy('https://ajbusinessadvisory.com/kit-demos',this)">📋 Copiar link</button>
+    </div>
+
+    <!-- INBOUND -->
+    <div class="card green">
+      <div class="card-head"><div class="card-icon">📞</div><span class="badge green">Inbound</span></div>
+      <div class="card-title">El prospecto llama a Sofia</div>
+      <div class="card-desc">Comparte este QR o link. El prospecto llama y Sofia contesta — como si fuera la recepcionista del negocio del cliente.</div>
+      <div class="card-row">
+        <div class="qr-block"><img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https%3A%2F%2Fajbusinessadvisory.com%2Finbound" alt="QR"></div>
+        <div class="card-row-info">
+          <div class="url-box"><div class="label">URL</div><div class="url">ajbusinessadvisory.com/inbound</div></div>
+          <div class="url-box"><div class="label">Teléfono directo</div><div class="url">+1 (669) 310-5168</div></div>
+          <button class="btn-copy" onclick="copy('https://ajbusinessadvisory.com/inbound',this)">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTBOUND USA -->
+    <div class="card blue">
+      <div class="card-head"><div class="card-icon">🇺🇸</div><span class="badge blue">Outbound · USA</span></div>
+      <div class="card-title">Sofia llama al prospecto · USA</div>
+      <div class="card-desc">El prospecto pone su número y Sofia lo llama en menos de 60 segundos. En inglés o español. Ideal para demos en vivo.</div>
+      <div class="card-row">
+        <div class="qr-block"><img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https%3A%2F%2Fajbusinessadvisory.com%2Fllamar" alt="QR"></div>
+        <div class="card-row-info">
+          <div class="url-box"><div class="label">URL</div><div class="url">ajbusinessadvisory.com/llamar</div></div>
+          <button class="btn-copy" onclick="copy('https://ajbusinessadvisory.com/llamar',this)">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTBOUND COLOMBIA -->
+    <div class="card gold">
+      <div class="card-head"><div class="card-icon">🇨🇴</div><span class="badge gold">Outbound · Colombia</span></div>
+      <div class="card-title">Sofia llama al prospecto · Colombia</div>
+      <div class="card-desc">Para números colombianos. El prospecto pone su celular y Sofia lo llama desde un número colombiano en segundos.</div>
+      <div class="card-row">
+        <div class="qr-block"><img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https%3A%2F%2Fajbusinessadvisory.com%2Fqr-co" alt="QR"></div>
+        <div class="card-row-info">
+          <div class="url-box"><div class="label">URL</div><div class="url">ajbusinessadvisory.com/qr-co</div></div>
+          <button class="btn-copy" onclick="copy('https://ajbusinessadvisory.com/qr-co',this)">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECLUTAMIENTO -->
+    <div class="card pink">
+      <div class="card-head"><div class="card-icon">🤝</div><span class="badge pink">Reclutamiento</span></div>
+      <div class="card-title">Sofia recluta representantes</div>
+      <div class="card-desc">El candidato pone su número y Sofia lo llama para explicarle la oportunidad de ser representante de marca. <strong style="color:#b5005e;">Próximamente activo.</strong></div>
+      <div class="card-row">
+        <div class="qr-block"><img src="https://api.qrserver.com/v1/create-qr-code/?size=110x110&data=https%3A%2F%2Fajbusinessadvisory.com%2Funirse" alt="QR"></div>
+        <div class="card-row-info">
+          <div class="url-box"><div class="label">URL</div><div class="url">ajbusinessadvisory.com/unirse</div></div>
+          <button class="btn-copy" onclick="copy('https://ajbusinessadvisory.com/unirse',this)">📋 Copiar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:24px;">
+    <strong>¿Cuándo usar cuál?</strong><br>
+    · <strong>Inbound</strong> → cuando dejas el link en un lugar y el prospecto llama cuando quiera.<br>
+    · <strong>Outbound</strong> → cuando estás con el prospecto en persona o por videollamada y quieres que Sofia lo llame ahí mismo.<br>
+    · <strong>Reclutamiento</strong> → para reuniones donde estás buscando representantes de marca.
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ────────────────────────────────── CLIENTES ── -->
+<div class="section" id="clientes">
+  <p class="section-label">02 · Clientes activos</p>
+  <h2 class="section-title">Estado de cada cliente</h2>
+  <p class="section-sub">Lo que está activo, lo que falta, y lo que es responsabilidad de Valentina.</p>
+
+  <table>
+    <tr>
+      <th>Cliente</th>
+      <th>Qué tienes que hacer tú</th>
+      <th>Estado</th>
+    </tr>
+    <tr>
+      <td><strong>Dra. Natalia Barrantes</strong><br><span style="color:var(--muted);font-size:0.78rem;">Odontología Integral · Bogotá</span></td>
+      <td>
+        · Construir web en Netlify — colores #1A1A1A / #C4A882 / #F8F6F3 · <strong>SIN morado</strong><br>
+        · Instagram: 4 Reels + 20 carruseles/mes<br>
+        · Cobrar $2.950.000 COP en tu cuenta personal (setup + Instagram mayo)
+      </td>
+      <td><span style="color:var(--gold);">🟡 En construcción</span></td>
+    </tr>
+  </table>
+
+  <div class="note" style="margin-top:20px;">
+    <strong>Cobros Colombia (IMPORTANTE):</strong> Andres no puede aparecer en cuentas colombianas. Todo lo de Colombia se recibe en tu cuenta personal. Cuando haya 2–3 clientes abrimos SAS a tu nombre (~$300K COP, 1 día).
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ────────────────────────────────── SOFIA ── -->
+<div class="section" id="sofía">
+  <p class="section-label">03 · Cómo funciona Sofia</p>
+  <h2 class="section-title">Lo que Sofia hace y cómo presentarla</h2>
+  <p class="section-sub">Sofia es la asistente de inteligencia artificial de AJ Business Advisory. Atiende llamadas, responde mensajes y recluta representantes — las 24 horas.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-txt">
+        <div class="step-title">Sofia atiende llamadas telefónicas (inbound)</div>
+        <div class="step-desc">Cuando un cliente llama al número del negocio, Sofia contesta, resuelve preguntas frecuentes y agenda citas. Como una recepcionista, pero 24/7 y sin sueldo.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-txt">
+        <div class="step-title">Sofia llama a prospectos (outbound)</div>
+        <div class="step-desc">Cuando alguien llena un formulario o deja su número, Sofia lo llama en segundos para hacer el primer contacto. El negocio nunca pierde un lead por no contestar a tiempo.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-txt">
+        <div class="step-title">Sofia responde WhatsApp e Instagram</div>
+        <div class="step-desc">Con N8N conectado, Sofia también responde mensajes de WhatsApp Business e Instagram DMs — automáticamente, en el idioma del cliente.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-txt">
+        <div class="step-title">Cada cliente tiene su propia Sofia</div>
+        <div class="step-desc">El script, la voz y las respuestas se personalizan por industria y por negocio. El cliente de barbería tiene una Sofia diferente a la del consultorio dental.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="note" style="margin-top:32px;">
+    <strong>Frase clave para presentaciones:</strong><br>
+    "Sofia no es un chatbot. Es una asistente con voz, que llama, que contesta, que agenda — y que nunca se cansa, nunca falla y nunca cobra horas extras."
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ────────────────────────────────── MI VOZ ── -->
+<div class="section" id="mi-voz">
+  <p class="section-label">04 · Mi Voz</p>
+  <h2 class="section-title">El proyecto del abuelo — lanzamiento esta semana</h2>
+  <p class="section-sub">App de comunicación para personas con movilidad reducida. Construida para el abuelo de Andres. Ahora la estamos vendiendo a $10 USD.</p>
+
+  <div class="cards">
+    <div class="card green">
+      <div class="card-head"><div class="card-icon">🗣️</div><span class="badge green">Mi Voz · $10</span></div>
+      <div class="card-title">Página de ventas activa</div>
+      <div class="card-desc">Página ya está live. Compras van a Stripe. El comprador recibe acceso automático por email.</div>
+      <div class="url-box"><div class="label">URL de ventas</div><div class="url">ajbusinessadvisory.com/mi-voz</div></div>
+      <button class="btn-copy" onclick="copy('https://ajbusinessadvisory.com/mi-voz',this)">📋 Copiar</button>
+    </div>
+
+    <div class="card blue">
+      <div class="card-head"><div class="card-icon">🎬</div><span class="badge blue">Video · Urgente</span></div>
+      <div class="card-title">Video del abuelo — esta semana</div>
+      <div class="card-desc">La tía va a filmar el video fundador. Valentina hace la edición, subtítulos y música. Brief completo en el archivo que te envió Andres.</div>
+      <div class="url-box"><div class="label">Brief de filmación</div><div class="url">clients/mi-voz/video-brief-tia.md</div></div>
+      <div class="note" style="margin-top:4px;font-size:0.78rem;">
+        Cuando el video esté listo → súbelo a YouTube → mándale el link a Andres para incrustarlo en la página de ventas.
+      </div>
+    </div>
+
+    <div class="card gold">
+      <div class="card-head"><div class="card-icon">🛍️</div><span class="badge gold">Gumroad</span></div>
+      <div class="card-title">También en Gumroad</div>
+      <div class="card-desc">Mi Voz va a estar en Gumroad para llegar a compradores que descubren productos ahí. Andres lo está configurando hoy.</div>
+      <div class="url-box"><div class="label">Marketplace</div><div class="url">gumroad.com · producto en proceso</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ────────────────────────────────── PRECIOS ── -->
+<div class="section">
+  <p class="section-label">05 · Precios de referencia</p>
+  <h2 class="section-title">Qué cobrar por qué</h2>
+  <p class="section-sub">Para cuando estés en una reunión y te pregunten cuánto cuesta. Nunca cotices precios que no estén aquí.</p>
+
+  <table>
+    <tr><th>Producto / Sistema</th><th>Setup</th><th>Mensual</th><th>Notas</th></tr>
+    <tr><td>Sofia WhatsApp 24/7</td><td>—</td><td>$390.000 COP</td><td>Como el de Natalia</td></tr>
+    <tr><td>Página Web + Mantenimiento</td><td>—</td><td>$200.000 COP</td><td></td></tr>
+    <tr><td>Instagram Growth + ManyChat</td><td>—</td><td>$950.000 COP</td><td>Precio Founding Member — nadie más tiene este precio</td></tr>
+    <tr><td>Paquete completo Colombia</td><td>$2.950.000 COP</td><td>$1.540.000 COP</td><td>Setup incluye primera instalación + Instagram mayo</td></tr>
+    <tr><td>Mi Voz (app abuelo)</td><td>$10 USD · único</td><td>—</td><td>Pago único, acceso de por vida</td></tr>
+    <tr><td>Sofia USA Tier 1</td><td>$500 USD</td><td>$297 USD</td><td>Solo para clientes USA</td></tr>
+  </table>
+</div>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<div class="section" style="padding-bottom:0;">
+  <div class="note">
+    <strong>Contacto Andres:</strong> andres@ajbusinessadvisory.com · WhatsApp disponible<br>
+    <strong>Última actualización:</strong> 2026-05-13 — Andres<br>
+    <strong>Este archivo:</strong> Confidencial — solo para Valentina
+  </div>
+</div>
+
+<script>
+function copy(text,btn){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='✅ Copiado';
+    setTimeout(()=>btn.textContent=orig,1800);
+  });
+}
+</script>
+
+</body>
+</html>
