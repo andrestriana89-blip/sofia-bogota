@@ -1515,6 +1515,10 @@
       .hero-watermark{width:min(520px,95vw);opacity:0.09}
     }
 
+    /* ═══ HERO GLOBE CANVAS ═══ */
+    #hero-globe{position:absolute;bottom:0;left:0;right:0;height:52vh;max-height:460px;pointer-events:none;z-index:1;}
+    @media(max-width:640px){#hero-globe{height:220px;}}
+
     /* ═══ HERO ORBS ═══ */
     .hero-orb{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px);z-index:1}
     .hero-orb-1{
@@ -1779,6 +1783,9 @@
 
   <!-- Watermark logo — muy sutil, solo contexto de marca -->
   <img src="ULTIMO_LOGO_SIN_LUZ.png" alt="" class="hero-watermark" aria-hidden="true"/>
+
+  <!-- Hero globe — cinematic Earth from space -->
+  <canvas id="hero-globe" aria-hidden="true"></canvas>
 
   <div class="hero-inner">
     <div class="hero-badge"><span>●</span> <span id="hero-badge">Servicio único en Colombia · IA + Marca + Automatización</span></div>
@@ -4815,6 +4822,180 @@ document.addEventListener('keydown', function(e){
     document.querySelectorAll('.globe-canvas').forEach(bindCanvas);
     drawFrame();
   });
+})();
+
+/* ═══════════════════════════════════════════════════
+   HERO GLOBE — Cinematic Earth from space
+═══════════════════════════════════════════════════ */
+(function(){
+  var canvas=document.getElementById('hero-globe');
+  if(!canvas)return;
+  var ctx=canvas.getContext('2d');
+
+  var NODES=[
+    [4.7,-74.1],[40.7,-74.0],[25.8,-80.2],[51.5,-0.1],[48.9,2.3],
+    [25.2,55.3],[1.3,103.8],[35.7,139.7],[-33.9,151.2],[-23.5,-46.6],
+    [34.1,-118.2],[19.4,-99.1],[43.7,-79.4],[-34.6,-58.4],
+  ];
+  var EDGES=[
+    [0,1],[0,2],[0,9],[0,3],[0,11],[0,13],
+    [1,2],[1,3],[1,10],[1,12],
+    [3,4],[3,5],[4,5],
+    [5,6],[6,7],[7,8],[7,10],
+    [2,9],[9,13],[10,8],[12,1],
+  ];
+  var rY=-1.3,vY=.0018,rX=.18;
+  var W=0,H=0,R=0,cx=0,cy=0;
+  var pars=EDGES.map(function(){return{t:Math.random(),s:.0018+Math.random()*.003};});
+
+  /* static stars — generated once */
+  var STARS=[];
+  for(var i=0;i<220;i++){STARS.push({x:Math.random(),y:Math.random()*.75,r:.3+Math.random()*1.3,a:.15+Math.random()*.65});}
+
+  function v3(lat,lng){
+    var f=(90-lat)*Math.PI/180,t=lng*Math.PI/180;
+    return[Math.sin(f)*Math.cos(t),Math.cos(f),Math.sin(f)*Math.sin(t)];
+  }
+  function rot(v){
+    var x=v[0],y=v[1],z=v[2];
+    var cy2=Math.cos(rY),sy2=Math.sin(rY);
+    var x2=x*cy2-z*sy2,z2=x*sy2+z*cy2;
+    var cx2=Math.cos(rX),sx2=Math.sin(rX);
+    return[x2,y*cx2-z2*sx2,y*sx2+z2*cx2];
+  }
+  function prj(lat,lng){var r=rot(v3(lat,lng));return{sx:cx+r[0]*R,sy:cy-r[1]*R,d:r[2]};}
+  function slp(a,b,t){
+    var va=v3(a[0],a[1]),vb=v3(b[0],b[1]);
+    var dt=Math.min(1,Math.max(-1,va[0]*vb[0]+va[1]*vb[1]+va[2]*vb[2]));
+    var o=Math.acos(dt);
+    if(o<.001)return prj(a[0],a[1]);
+    var s=Math.sin(o),f1=Math.sin((1-t)*o)/s,f2=Math.sin(t*o)/s;
+    var r=rot([va[0]*f1+vb[0]*f2,va[1]*f1+vb[1]*f2,va[2]*f1+vb[2]*f2]);
+    return{sx:cx+r[0]*R,sy:cy-r[1]*R,d:r[2]};
+  }
+
+  function resize(){
+    W=canvas.offsetWidth||window.innerWidth;
+    H=canvas.offsetHeight||300;
+    canvas.width=W;canvas.height=H;
+    R=Math.min(W*.52,H*.88);
+    cx=W/2;cy=H*.82;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    /* stars */
+    STARS.forEach(function(s){
+      ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,'+s.a+')';ctx.fill();
+    });
+
+    /* sphere gradient — deep navy blue */
+    var g=ctx.createRadialGradient(cx-R*.28,cy-R*.3,R*.04,cx,cy,R);
+    g.addColorStop(0,'rgba(28,72,190,.95)');
+    g.addColorStop(.32,'rgba(14,42,130,.9)');
+    g.addColorStop(.65,'rgba(6,18,68,.88)');
+    g.addColorStop(1,'rgba(2,6,28,.7)');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+
+    /* specular shimmer */
+    var sg=ctx.createRadialGradient(cx-R*.32,cy-R*.36,0,cx-R*.18,cy-R*.2,R*.48);
+    sg.addColorStop(0,'rgba(130,210,255,.18)');sg.addColorStop(1,'rgba(130,210,255,0)');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=sg;ctx.fill();
+
+    /* clip sphere */
+    ctx.save();ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.clip();
+
+    /* grid */
+    var lat,lng,p,fst;
+    ctx.strokeStyle='rgba(80,160,255,.07)';ctx.lineWidth=.6;
+    for(lat=-60;lat<=60;lat+=30){
+      ctx.beginPath();fst=true;
+      for(lng=-180;lng<=180;lng+=4){
+        p=prj(lat,lng);if(p.d<-.1){fst=true;continue;}
+        if(fst){ctx.moveTo(p.sx,p.sy);fst=false;}else ctx.lineTo(p.sx,p.sy);
+      }ctx.stroke();
+    }
+    for(lng=-165;lng<=180;lng+=30){
+      ctx.beginPath();fst=true;
+      for(lat=-82;lat<=82;lat+=4){
+        p=prj(lat,lng);if(p.d<-.1){fst=true;continue;}
+        if(fst){ctx.moveTo(p.sx,p.sy);fst=false;}else ctx.lineTo(p.sx,p.sy);
+      }ctx.stroke();
+    }
+
+    /* connection arcs */
+    EDGES.forEach(function(e){
+      var a=NODES[e[0]],b=NODES[e[1]];
+      /* glow pass */
+      ctx.beginPath();fst=true;
+      for(var s=0;s<=44;s++){p=slp(a,b,s/44);if(p.d<-.06){fst=true;continue;}if(fst){ctx.moveTo(p.sx,p.sy);fst=false;}else ctx.lineTo(p.sx,p.sy);}
+      ctx.strokeStyle='rgba(100,200,255,.09)';ctx.lineWidth=4;ctx.stroke();
+      /* core line */
+      ctx.beginPath();fst=true;
+      for(var s=0;s<=44;s++){p=slp(a,b,s/44);if(p.d<-.06){fst=true;continue;}if(fst){ctx.moveTo(p.sx,p.sy);fst=false;}else ctx.lineTo(p.sx,p.sy);}
+      ctx.strokeStyle='rgba(220,240,255,.32)';ctx.lineWidth=.9;ctx.stroke();
+    });
+
+    /* city dots */
+    NODES.forEach(function(n,i){
+      p=prj(n[0],n[1]);if(p.d<0)return;
+      var a=Math.min(1,(p.d+.25)*2);
+      var bg=ctx.createRadialGradient(p.sx,p.sy,0,p.sx,p.sy,14);
+      bg.addColorStop(0,'rgba(120,220,255,'+(a*.38)+')');bg.addColorStop(1,'rgba(120,220,255,0)');
+      ctx.beginPath();ctx.arc(p.sx,p.sy,14,0,Math.PI*2);ctx.fillStyle=bg;ctx.fill();
+      ctx.beginPath();ctx.arc(p.sx,p.sy,i===0?3.5:2.4,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,'+a+')';ctx.fill();
+      if(i===0){
+        ctx.beginPath();ctx.arc(p.sx,p.sy,6.5,0,Math.PI*2);
+        ctx.strokeStyle='rgba(100,220,255,'+(a*.7)+')';ctx.lineWidth=1.4;ctx.stroke();
+      }
+    });
+
+    /* particles */
+    pars.forEach(function(par,i){
+      par.t=(par.t+par.s)%1;
+      var e=EDGES[i],pp=slp(NODES[e[0]],NODES[e[1]],par.t);
+      if(!pp||pp.d<0)return;
+      var a=Math.min(1,(pp.d+.2)*2);
+      var pg=ctx.createRadialGradient(pp.sx,pp.sy,0,pp.sx,pp.sy,7);
+      pg.addColorStop(0,'rgba(200,240,255,'+(a*.95)+')');
+      pg.addColorStop(.4,'rgba(100,200,255,'+(a*.5)+')');
+      pg.addColorStop(1,'rgba(100,200,255,0)');
+      ctx.beginPath();ctx.arc(pp.sx,pp.sy,7,0,Math.PI*2);ctx.fillStyle=pg;ctx.fill();
+      ctx.beginPath();ctx.arc(pp.sx,pp.sy,2.2,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,'+a+')';ctx.fill();
+    });
+
+    /* atmospheric rim (inside clip) */
+    var ag=ctx.createRadialGradient(cx,cy,R*.78,cx,cy,R);
+    ag.addColorStop(0,'rgba(40,130,255,0)');
+    ag.addColorStop(.5,'rgba(40,160,255,.06)');
+    ag.addColorStop(1,'rgba(60,200,255,.22)');
+    ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.fillStyle=ag;ctx.fill();
+    ctx.restore();
+
+    /* outer atmospheric halo */
+    var halo=ctx.createRadialGradient(cx,cy,R*.97,cx,cy,R*1.09);
+    halo.addColorStop(0,'rgba(50,170,255,.14)');
+    halo.addColorStop(1,'rgba(50,170,255,0)');
+    ctx.beginPath();ctx.arc(cx,cy,R*1.09,0,Math.PI*2);ctx.fillStyle=halo;ctx.fill();
+
+    /* top fade — blends into hero background */
+    var fade=ctx.createLinearGradient(0,0,0,H*.55);
+    fade.addColorStop(0,'rgba(33,0,18,1)');
+    fade.addColorStop(1,'rgba(33,0,18,0)');
+    ctx.fillStyle=fade;ctx.fillRect(0,0,W,H*.55);
+
+    rY+=vY;
+    requestAnimationFrame(draw);
+  }
+
+  function init(){resize();draw();}
+  window.addEventListener('resize',resize);
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}
+  else{init();}
 })();
 </script>
 
