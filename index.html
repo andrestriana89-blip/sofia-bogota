@@ -113,6 +113,21 @@
     html.light-mode .snav-dot::after{background:rgba(240,235,255,.97);color:#0d0820}
     /* Loc-bar hint */
     html.light-mode #loc-hint{color:var(--pink)}
+    /* ── Botones outline en modo claro ── */
+    html.light-mode .btn-outline{color:#0d0820!important;border-color:rgba(181,0,94,.25)!important;background:rgba(255,255,255,.7)!important}
+    html.light-mode .btn-outline:hover{border-color:rgba(181,0,94,.5)!important;background:rgba(181,0,94,.06)!important;color:#0d0820!important}
+    /* ── Pricing cards en modo claro ── */
+    html.light-mode .pc-setup-price{color:#0d0820!important}
+    html.light-mode .pc-setup-lbl,html.light-mode .pc-mo-lbl{color:#7060a0!important}
+    html.light-mode .pc-price-placeholder{color:#7060a0!important}
+    html.light-mode .pc-features li{color:#3d2e5c!important}
+    html.light-mode .pc-niche{color:#5a4880!important}
+    html.light-mode .pc-flip-back{background:#fff!important;border-color:rgba(181,0,94,.3)!important}
+    html.light-mode .pc-flip-back-step{color:#4a3468!important}
+    html.light-mode .pc-flip-front{background:rgba(181,0,94,.05)!important;border-color:rgba(181,0,94,.15)!important}
+    html.light-mode .pc-flip-front::after{color:rgba(13,8,32,.35)!important}
+    /* ── Descripciones inline en precios (var(--muted) queda ok, pero forzamos si es muy claro) ── */
+    html.light-mode .pricing-card p[style]{color:#5a4880!important}
     /* Botón tema */
     .theme-btn{padding:5px 10px;border-radius:20px;border:1px solid rgba(181,0,94,.3);background:rgba(181,0,94,.05);
       color:#bbb;font-size:14px;cursor:pointer;font-family:inherit;transition:all .2s;line-height:1}
