@@ -1566,6 +1566,12 @@
 
     /* ── COMPARADOR MÓVIL — slider interactivo visible en mobile ── */
     .comparison-mobile-view { display: none; }
+    /* Permite scroll vertical sobre el comparador — solo el arrastre horizontal activa el slider */
+    .comparison-wrap { touch-action: pan-y; }
+    /* Scroll horizontal limpio en paquetes mobile */
+    @media (max-width: 640px) {
+      .packages-grid { touch-action: pan-x; }
+    }
 
     /* ── PAQUETES MOBILE — scroll horizontal snap ── */
     @media (max-width: 640px) {
@@ -4638,9 +4644,21 @@
         wrap.addEventListener('mousedown', e => { dragging = true; setPos(e.clientX); e.preventDefault(); });
         window.addEventListener('mousemove', e => { if (dragging) setPos(e.clientX); });
         window.addEventListener('mouseup', () => { dragging = false; });
-        wrap.addEventListener('touchstart', e => { dragging = true; setPos(e.touches[0].clientX); }, { passive: true });
-        window.addEventListener('touchmove', e => { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-        window.addEventListener('touchend', () => { dragging = false; });
+        let touchStartX, touchStartY;
+        wrap.addEventListener('touchstart', e => {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          dragging = false;
+        }, { passive: true });
+        window.addEventListener('touchmove', e => {
+          if (touchStartX === undefined) return;
+          const dx = Math.abs(e.touches[0].clientX - touchStartX);
+          const dy = Math.abs(e.touches[0].clientY - touchStartY);
+          if (dx > dy && dx > 8) dragging = true;
+          if (dragging) setPos(e.touches[0].clientX);
+        }, { passive: true });
+        window.addEventListener('touchend', () => { dragging = false; touchStartX = undefined; });
+        wrap.addEventListener('touchcancel', () => { dragging = false; touchStartX = undefined; });
       });
 
       window.compGoTo = function(idx) {
