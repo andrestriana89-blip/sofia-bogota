@@ -3547,6 +3547,121 @@
     </div>
   </section>
 
+  <!-- ─── RESULTADOS / GALLERY ─── -->
+  <section class="section section-alt" id="resultados">
+    <div class="container">
+      <div class="section-head centered reveal">
+        <span class="section-tag">Resultados</span>
+        <h2 class="section-h2">Transformaciones reales</h2>
+        <p class="section-sub">Cada sonrisa es un caso único. Estos son algunos de nuestros resultados más destacados.</p>
+      </div>
+
+      <!-- CARRUSEL COMPARADOR ANTES / DESPUÉS -->
+      <div class="comparison-carousel-wrap reveal">
+
+        <!-- Slide 1: Caso hombre -->
+        <div class="comparison-slide active">
+          <div class="comparison-wrap" data-comp>
+            <img class="comparison-img" src="fotos/foto_despues_hombre.png" alt="Después del tratamiento — sonrisa transformada" />
+            <div class="comparison-before-layer">
+              <img src="fotos/foto_antes_hombres.png" alt="Antes del tratamiento de diseño de sonrisa" />
+            </div>
+            <span class="comparison-label antes">Antes</span>
+            <span class="comparison-label despues">Después</span>
+            <div class="comparison-handle">
+              <div class="comparison-circle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+            <div class="comparison-hint">← Arrastra para comparar →</div>
+          </div>
+          <div class="comparison-caption">
+            <div>
+              <div class="comparison-caption-title">Caso 1 · Diseño de Sonrisa Premium</div>
+              <div class="comparison-caption-sub">Transformación completa con carillas de disilicato de litio · Resultado natural y duradero</div>
+            </div>
+            <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="comparison-caption-cta">Ver mi caso →</a>
+          </div>
+        </div>
+
+        <!-- Slide 2: Caso mujer (nuevo) -->
+        <div class="comparison-slide">
+          <div class="comparison-wrap" data-comp>
+            <img class="comparison-img" src="fotos/foto-despues-mujer.png" alt="Después — sonrisa transformada con cerámica" />
+            <div class="comparison-before-layer">
+              <img src="fotos/foto-antes-mujer.png" alt="Antes del diseño de sonrisa" />
+            </div>
+            <span class="comparison-label antes">Antes</span>
+            <span class="comparison-label despues">Después</span>
+            <div class="comparison-handle">
+              <div class="comparison-circle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+            </div>
+            <div class="comparison-hint">← Arrastra para comparar →</div>
+          </div>
+          <div class="comparison-caption">
+            <div>
+              <div class="comparison-caption-title">Caso 2 · Diseño de Sonrisa en Cerámica</div>
+              <div class="comparison-caption-sub">Resultado brillante y uniforme · Carillas cerámicas de alta estética</div>
+            </div>
+            <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="comparison-caption-cta">Ver mi caso →</a>
+          </div>
+        </div>
+
+      </div><!-- /comparison-carousel-wrap -->
+
+      <!-- Navegación del carrusel — fuera del comparador para evitar conflictos touch -->
+      <div class="comp-nav-bar">
+        <button class="comp-nav-btn" onclick="compCarousel(-1)" aria-label="Caso anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="comp-dots">
+          <span class="comp-dot active" onclick="compGoTo(0)"></span>
+          <span class="comp-dot" onclick="compGoTo(1)"></span>
+        </div>
+        <button class="comp-nav-btn" onclick="compCarousel(1)" aria-label="Caso siguiente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <!-- 3 SONRISAS DESTACADAS -->
+      <div class="gallery-grid reveal">
+        <div class="gallery-card glass-hover zoom-on-scroll">
+          <img class="gallery-img" src="fotos/foto-mujer-diseño.png" alt="Sonrisa caso 1" />
+          <span class="gallery-tag">Resultado</span>
+          <div class="gallery-overlay">
+            <div class="gallery-label">Diseño Estético</div>
+            <div class="gallery-sub">Forma y color natural</div>
+          </div>
+        </div>
+        <div class="gallery-card glass-hover zoom-on-scroll">
+          <img class="gallery-img" src="fotos/diseño-sonrisa.png" alt="Modelo de diseño de sonrisa en cerámica" />
+          <span class="gallery-tag">Proceso</span>
+          <div class="gallery-overlay">
+            <div class="gallery-label">Diseño en Cerámica</div>
+            <div class="gallery-sub">Modelo previo al tratamiento</div>
+          </div>
+        </div>
+        <div class="gallery-card glass-hover zoom-on-scroll">
+          <img class="gallery-img" src="fotos/diseño-mujer-frontal.png" alt="Sonrisa caso 3" />
+          <span class="gallery-tag">Resultado</span>
+          <div class="gallery-overlay">
+            <div class="gallery-label">Sonrisa Plena</div>
+            <div class="gallery-sub">Cerámica + simetría</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="gallery-note reveal" style="margin-top: 28px;">
+        Casos reales · Confidencialidad garantizada ·
+        <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; font-weight:700;">Ver portafolio completo en WhatsApp →</a>
+      </p>
+    </div>
+  </section>
+
   <!-- ─── SERVICES ─── -->
   <section class="section" id="servicios">
     <img class="nb-watermark section-wm right" src="fotos/logo-nb.png" alt="" onerror="this.style.display='none'" />
@@ -3719,121 +3834,6 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ─── RESULTADOS / GALLERY ─── -->
-  <section class="section section-alt" id="resultados">
-    <div class="container">
-      <div class="section-head centered reveal">
-        <span class="section-tag">Resultados</span>
-        <h2 class="section-h2">Transformaciones reales</h2>
-        <p class="section-sub">Cada sonrisa es un caso único. Estos son algunos de nuestros resultados más destacados.</p>
-      </div>
-
-      <!-- CARRUSEL COMPARADOR ANTES / DESPUÉS -->
-      <div class="comparison-carousel-wrap reveal">
-
-        <!-- Slide 1: Caso hombre -->
-        <div class="comparison-slide active">
-          <div class="comparison-wrap" data-comp>
-            <img class="comparison-img" src="fotos/foto_despues_hombre.png" alt="Después del tratamiento — sonrisa transformada" />
-            <div class="comparison-before-layer">
-              <img src="fotos/foto_antes_hombres.png" alt="Antes del tratamiento de diseño de sonrisa" />
-            </div>
-            <span class="comparison-label antes">Antes</span>
-            <span class="comparison-label despues">Después</span>
-            <div class="comparison-handle">
-              <div class="comparison-circle">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-            </div>
-            <div class="comparison-hint">← Arrastra para comparar →</div>
-          </div>
-          <div class="comparison-caption">
-            <div>
-              <div class="comparison-caption-title">Caso 1 · Diseño de Sonrisa Premium</div>
-              <div class="comparison-caption-sub">Transformación completa con carillas de disilicato de litio · Resultado natural y duradero</div>
-            </div>
-            <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="comparison-caption-cta">Ver mi caso →</a>
-          </div>
-        </div>
-
-        <!-- Slide 2: Caso mujer (nuevo) -->
-        <div class="comparison-slide">
-          <div class="comparison-wrap" data-comp>
-            <img class="comparison-img" src="fotos/foto-despues-mujer.png" alt="Después — sonrisa transformada con cerámica" />
-            <div class="comparison-before-layer">
-              <img src="fotos/foto-antes-mujer.png" alt="Antes del diseño de sonrisa" />
-            </div>
-            <span class="comparison-label antes">Antes</span>
-            <span class="comparison-label despues">Después</span>
-            <div class="comparison-handle">
-              <div class="comparison-circle">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold-deep)" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </div>
-            </div>
-            <div class="comparison-hint">← Arrastra para comparar →</div>
-          </div>
-          <div class="comparison-caption">
-            <div>
-              <div class="comparison-caption-title">Caso 2 · Diseño de Sonrisa en Cerámica</div>
-              <div class="comparison-caption-sub">Resultado brillante y uniforme · Carillas cerámicas de alta estética</div>
-            </div>
-            <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" class="comparison-caption-cta">Ver mi caso →</a>
-          </div>
-        </div>
-
-      </div><!-- /comparison-carousel-wrap -->
-
-      <!-- Navegación del carrusel — fuera del comparador para evitar conflictos touch -->
-      <div class="comp-nav-bar">
-        <button class="comp-nav-btn" onclick="compCarousel(-1)" aria-label="Caso anterior">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="comp-dots">
-          <span class="comp-dot active" onclick="compGoTo(0)"></span>
-          <span class="comp-dot" onclick="compGoTo(1)"></span>
-        </div>
-        <button class="comp-nav-btn" onclick="compCarousel(1)" aria-label="Caso siguiente">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-
-      <!-- 3 SONRISAS DESTACADAS -->
-      <div class="gallery-grid reveal">
-        <div class="gallery-card glass-hover zoom-on-scroll">
-          <img class="gallery-img" src="fotos/foto-mujer-diseño.png" alt="Sonrisa caso 1" />
-          <span class="gallery-tag">Resultado</span>
-          <div class="gallery-overlay">
-            <div class="gallery-label">Diseño Estético</div>
-            <div class="gallery-sub">Forma y color natural</div>
-          </div>
-        </div>
-        <div class="gallery-card glass-hover zoom-on-scroll">
-          <img class="gallery-img" src="fotos/diseño-sonrisa.png" alt="Modelo de diseño de sonrisa en cerámica" />
-          <span class="gallery-tag">Proceso</span>
-          <div class="gallery-overlay">
-            <div class="gallery-label">Diseño en Cerámica</div>
-            <div class="gallery-sub">Modelo previo al tratamiento</div>
-          </div>
-        </div>
-        <div class="gallery-card glass-hover zoom-on-scroll">
-          <img class="gallery-img" src="fotos/diseño-mujer-frontal.png" alt="Sonrisa caso 3" />
-          <span class="gallery-tag">Resultado</span>
-          <div class="gallery-overlay">
-            <div class="gallery-label">Sonrisa Plena</div>
-            <div class="gallery-sub">Cerámica + simetría</div>
-          </div>
-        </div>
-      </div>
-
-      <p class="gallery-note reveal" style="margin-top: 28px;">
-        Casos reales · Confidencialidad garantizada ·
-        <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20ver%20más%20casos%20de%20diseño%20de%20sonrisa" target="_blank" rel="noopener" style="color: var(--gold); text-decoration: none; font-weight:700;">Ver portafolio completo en WhatsApp →</a>
-      </p>
     </div>
   </section>
 
