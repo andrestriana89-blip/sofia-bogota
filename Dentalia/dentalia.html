@@ -47,7 +47,13 @@
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
         "opens": "08:00",
-        "closes": "18:00"
+        "closes": "19:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday"],
+        "opens": "08:00",
+        "closes": "13:00"
       }
     ],
     "sameAs": [
@@ -1553,6 +1559,9 @@
     @media (max-width: 640px) {
       .comparison-wrap { aspect-ratio: 3/4; border-radius: 20px; }
       .comparison-caption { padding: 16px 18px; }
+      .comparison-slide:nth-child(2) .comparison-wrap { aspect-ratio: 4/5; }
+      .comparison-slide:nth-child(2) .comparison-img,
+      .comparison-slide:nth-child(2) .comparison-before-layer img { object-position: center top; }
     }
 
     /* ── COMPARADOR MÓVIL — slider interactivo visible en mobile ── */
@@ -2564,6 +2573,8 @@
     .chat-option-icon.wa svg { color: #1a9f4a; fill: #1a9f4a; }
     .chat-option-icon.cita  { background: rgba(59,130,246,0.10); }
     .chat-option-icon.cita svg { color: #3B82F6; }
+    .chat-option-icon.ig    { background: rgba(225,48,108,0.10); }
+    .chat-option-icon.ig svg { color: #e1306c; fill: #e1306c; }
     .chat-option-text { font-size: 13.5px; font-weight: 700; color: var(--text); }
     .chat-option-sub  { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
     .chat-trigger {
@@ -3229,6 +3240,15 @@
           <div class="chat-option-sub">Valoración inicial $15.000 COP</div>
         </div>
       </a>
+      <a href="https://www.instagram.com/dentaliaodontologia/" target="_blank" rel="noopener" class="chat-option">
+        <div class="chat-option-icon ig">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div>
+          <div class="chat-option-text">Seguir en Instagram</div>
+          <div class="chat-option-sub">@dentaliaodontologia · DM abiertos</div>
+        </div>
+      </a>
     </div>
     <button class="chat-trigger" id="chatTrigger" onclick="toggleChat()" aria-label="Abrir chat">
       <svg class="icon-chat" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 0C5.373 0 0 5.373 0 12c0 2.095.539 4.065 1.482 5.782L0 24l6.419-1.449A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.001-1.373l-.36-.214-3.807.859.875-3.702-.235-.381A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/></svg>
@@ -3519,7 +3539,7 @@
           </div>
           <div class="dispo-card-content">
             <div class="dispo-card-title">Agenda tu valoración</div>
-            <div class="dispo-card-text">Lun–Vie 8am–6pm · Sáb 9am–2pm · Valoración $15.000 COP.</div>
+            <div class="dispo-card-text">Lun–Vie 8am–7pm · Sáb 8am–1pm · Pausa de almuerzo.</div>
           </div>
           <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20cita%20de%20valoración" target="_blank" rel="noopener" class="dispo-card-cta glass-hover">Agendar cita</a>
         </div>
@@ -3585,7 +3605,7 @@
             </svg>
           </div>
           <div class="service-name">Limpieza Dental</div>
-          <div class="service-desc">Profilaxis profesional · detartraje · pulido y aplicación de flúor</div>
+          <div class="service-desc">Profilaxis profesional · detartraje · pulido dental</div>
         </div>
         <div class="service-card glass-hover reveal reveal-d3">
           <div class="service-icon">
@@ -3737,7 +3757,7 @@
               </div>
               <div class="process-step-content">
                 <div class="process-step-title">Plan y presupuesto en tu mano</div>
-                <div class="process-step-text">Al finalizar tu cita recibes un documento con tu plan completo: tratamientos recomendados, tiempos, precios exactos y opciones de financiación. Te lo llevas para revisarlo con calma.</div>
+                <div class="process-step-text">Al finalizar tu cita recibes un documento con tu plan completo: tratamientos recomendados, tiempos y precios exactos. Te lo llevas para revisarlo con calma.</div>
               </div>
             </div>
             <div class="process-step">
@@ -3760,7 +3780,6 @@
             <ul class="process-promise-features">
               <li>Valoración inicial $15.000 COP (valor simbólico)</li>
               <li>Precios fijos y transparentes</li>
-              <li>Financiación a cuotas disponible</li>
               <li>Materiales de primera calidad</li>
               <li>Seguimiento post-tratamiento incluido</li>
               <li>Sofia AI disponible 24/7</li>
@@ -3785,7 +3804,7 @@
       <div class="section-head centered reveal">
         <span class="section-tag">Paquetes</span>
         <h2 class="section-h2">Encuentra tu paquete ideal</h2>
-        <p class="section-sub">Todos incluyen limpieza. Valoración inicial $15.000 COP. Financiación disponible a cuotas.</p>
+        <p class="section-sub">Todos incluyen limpieza. Valoración inicial $15.000 COP.</p>
       </div>
 
       <div class="packages-tabs-wrap reveal">
@@ -3807,7 +3826,7 @@
           <div class="package-material">Cerámica · Entrada Premium</div>
           <div class="package-name">Cerámica + Blanqueamiento</div>
           <div class="package-price">$5.900.000</div>
-          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-currency">COP</div>
           <div class="package-divider"></div>
           <ul class="package-features">
             <li>Limpieza dental profesional</li>
@@ -3821,7 +3840,7 @@
           <div class="package-material">Cerámica</div>
           <div class="package-name">Cerámica Superior</div>
           <div class="package-price">$7.600.000</div>
-          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-currency">COP</div>
           <div class="package-divider"></div>
           <ul class="package-features">
             <li>Limpieza dental profesional</li>
@@ -3835,7 +3854,7 @@
           <div class="package-material">Cerámica · Máximo Resultado</div>
           <div class="package-name">Cerámica Full</div>
           <div class="package-price">$12.000.000</div>
-          <div class="package-currency">COP · cuotas disponibles</div>
+          <div class="package-currency">COP</div>
           <div class="package-divider"></div>
           <ul class="package-features">
             <li>Limpieza dental profesional</li>
@@ -3849,7 +3868,7 @@
       </div><!-- /pkg-tab-row ceramica -->
 
       <div class="pkg-tab-row" data-row="resina">
-      <div class="packages-row-label reveal">Resina de Alta Estética · Inversión accesible</div>
+      <div class="packages-row-label reveal">Resina de Alta Estética · Desde $110.000 COP</div>
       <div class="packages-grid">
         <div class="package-card glass-hover reveal reveal-d1">
           <div class="package-material">Resina</div>
@@ -3898,36 +3917,36 @@
       <div class="packages-grid">
         <div class="package-card glass-hover reveal reveal-d1">
           <div class="package-material">Brackets metálicos</div>
-          <div class="package-name">Ortodoncia Tradicional</div>
+          <div class="package-name">Ortodoncia Convencional</div>
           <div class="package-price" style="font-size:1.15rem;letter-spacing:0;">Agenda una cita</div>
           <div class="package-currency">y conoce tu precio personalizado</div>
           <div class="package-divider"></div>
           <ul class="package-features">
-            <li>Diagnóstico y radiografías incluidas</li>
+            <li>Diagnóstico personalizado (adicional)</li>
             <li>Brackets metálicos + arcos</li>
             <li>Controles mensuales durante el tratamiento</li>
             <li>Retenedores al finalizar</li>
           </ul>
-          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Ortodoncia%20Tradicional" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Ortodoncia%20Convencional" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
         </div>
         <div class="package-card featured glass-hover reveal reveal-d2">
           <div class="popular-badge">Más Solicitado</div>
-          <div class="package-material">Brackets cerámica</div>
+          <div class="package-material">Brackets Zafiro</div>
           <div class="package-name">Ortodoncia Estética</div>
           <div class="package-price" style="font-size:1.15rem;letter-spacing:0;">Agenda una cita</div>
           <div class="package-currency">y conoce tu precio personalizado</div>
           <div class="package-divider"></div>
           <ul class="package-features">
-            <li>Diagnóstico y radiografías incluidas</li>
-            <li>Brackets de cerámica (casi invisibles)</li>
+            <li>Diagnóstico personalizado (adicional)</li>
+            <li>Brackets Zafiro (casi invisibles)</li>
             <li>Controles mensuales durante el tratamiento</li>
             <li>Retenedores al finalizar</li>
           </ul>
           <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Ortodoncia%20Estética" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
         </div>
         <div class="package-card glass-hover reveal reveal-d3">
-          <div class="package-material">Alineadores invisibles</div>
-          <div class="package-name">Alineadores Clear</div>
+          <div class="package-material">Alineadores Invisibles</div>
+          <div class="package-name">Ortodoncia Invisible</div>
           <div class="package-price" style="font-size:1.15rem;letter-spacing:0;">Agenda una cita</div>
           <div class="package-currency">y conoce tu precio personalizado</div>
           <div class="package-divider"></div>
@@ -3937,7 +3956,7 @@
             <li>Retira para comer y cepillarte</li>
             <li>Retenedores al finalizar</li>
           </ul>
-          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Alineadores%20Clear" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
+          <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20Ortodoncia%20Invisible" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
         </div>
       </div>
       </div><!-- /pkg-tab-row ortodoncia -->
@@ -3953,7 +3972,7 @@
           <div class="package-divider"></div>
           <ul class="package-features">
             <li>Eliminación de placa y sarro</li>
-            <li>Pulido y aplicación de flúor</li>
+            <li>Pulido dental profesional</li>
             <li>Revisión clínica completa</li>
             <li>Recomendaciones personalizadas</li>
           </ul>
@@ -3968,7 +3987,7 @@
           <ul class="package-features">
             <li>Valoración con radiografía panorámica</li>
             <li>Cirugía con anestesia local</li>
-            <li>Medicamentos post-operatorios</li>
+            <li>Solo receta de medicamentos post-operatorios</li>
             <li>Controles de seguimiento incluidos</li>
           </ul>
           <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20información%20sobre%20extracción%20de%20cordales" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
@@ -3982,7 +4001,8 @@
           <div class="package-divider"></div>
           <ul class="package-features">
             <li>Implante de titanio de primera calidad</li>
-            <li>Corona de porcelana sobre implante</li>
+            <li>Corona de metal cerámica o zirconio</li>
+            <li>Requiere radiografía panorámica o tomografía</li>
             <li>Cirugía + colocación + ajuste</li>
             <li>Garantía y controles incluidos</li>
           </ul>
@@ -4004,12 +4024,11 @@
             <li>Revisión clínica completa</li>
             <li>Diagnóstico personalizado</li>
             <li>Plan de tratamiento por escrito</li>
-            <li>Asesoría sobre opciones y financiación</li>
+            <li>Asesoría sobre opciones de tratamiento</li>
           </ul>
           <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20mi%20valoración%20inicial" target="_blank" rel="noopener" class="btn-consultar glass-hover">Reservar →</a>
         </div>
-        <div class="package-card featured glass-hover reveal reveal-d2">
-          <div class="popular-badge">Recomendado</div>
+        <div class="package-card glass-hover reveal reveal-d2">
           <div class="package-material">Limpieza profesional</div>
           <div class="package-name">Profilaxis + Detartraje</div>
           <div class="package-price">$180.000</div>
@@ -4018,12 +4037,12 @@
           <ul class="package-features">
             <li>Eliminación de placa y sarro</li>
             <li>Pulido dental profesional</li>
-            <li>Aplicación tópica de flúor</li>
             <li>Recomendaciones de higiene</li>
           </ul>
           <a href="https://wa.me/573118490623?text=Hola%2C%20quiero%20agendar%20una%20limpieza%20dental" target="_blank" rel="noopener" class="btn-consultar glass-hover">Consultar →</a>
         </div>
-        <div class="package-card glass-hover reveal reveal-d3">
+        <div class="package-card featured glass-hover reveal reveal-d3">
+          <div class="popular-badge">Recomendado</div>
           <div class="package-material">Pack inicial completo</div>
           <div class="package-name">Valoración + Limpieza</div>
           <div class="package-price">$190.000</div>
@@ -4031,7 +4050,7 @@
           <div class="package-divider"></div>
           <ul class="package-features">
             <li>Valoración inicial completa</li>
-            <li>Limpieza profesional + flúor</li>
+            <li>Limpieza profesional</li>
             <li>Diagnóstico clínico detallado</li>
             <li>Plan de tratamiento personalizado</li>
           </ul>
@@ -4358,8 +4377,8 @@
               <div class="location-info-label">Horarios de atención</div>
               <div class="location-info-value">
                 <table class="hours-table">
-                  <tr><td>Lunes – Viernes</td><td>8:00 am – 6:00 pm</td></tr>
-                  <tr><td>Sábados</td><td>9:00 am – 2:00 pm</td></tr>
+                  <tr><td>Lunes – Viernes</td><td>8:00 am – 7:00 pm</td></tr>
+                  <tr><td>Sábados</td><td>8:00 am – 1:00 pm</td></tr>
                   <tr><td>Domingos</td><td>Cerrado</td></tr>
                   <tr><td>Sofia AI</td><td>24 horas / 7 días</td></tr>
                 </table>
@@ -4439,9 +4458,9 @@
             <li><a href="#paquetes">Micro Diseño</a></li>
             <li><a href="#paquetes">Resina + Blanqueamiento</a></li>
             <li><a href="#paquetes">Resina Full</a></li>
-            <li><a href="#paquetes">Ortodoncia Tradicional</a></li>
+            <li><a href="#paquetes">Ortodoncia Convencional</a></li>
             <li><a href="#paquetes">Ortodoncia Estética</a></li>
-            <li><a href="#paquetes">Alineadores Clear</a></li>
+            <li><a href="#paquetes">Ortodoncia Invisible</a></li>
             <li><a href="#paquetes">Limpieza Profesional</a></li>
             <li><a href="#paquetes">Extracción de Cordales</a></li>
             <li><a href="#paquetes">Implante Premium</a></li>
@@ -4597,6 +4616,16 @@
         chatTrigger.classList.remove('active');
       }
     });
+
+    // ─── MOBILE: mover sección resultados después de paquetes ───
+    (function reorderMobile() {
+      if (window.innerWidth >= 768) return;
+      var resultados = document.getElementById('resultados');
+      var paquetes   = document.getElementById('paquetes');
+      if (!resultados || !paquetes) return;
+      var next = paquetes.nextSibling;
+      paquetes.parentNode.insertBefore(resultados, next);
+    })();
 
     // ─── COMPARISON CAROUSEL ───
     (function initComparisons() {
