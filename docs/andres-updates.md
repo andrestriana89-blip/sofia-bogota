@@ -233,3 +233,24 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] 
 
 -->
+
+---
+
+## 2026-05-14 — Sesión Andrés (Mi Voz lanzamiento)
+
+**Repos tocados:**
+- `sofia-bogota` → `mi-voz/index.html`, `mi-voz/cuidador.html` (nuevos), `docs/brief-videos-abuelo.html` (ya existía)
+- `aj-business-advisory` → `landing/gilberto/cuidador.html`, `landing/gilberto/don-gilberto-familia.html`, `webhook/main.py`
+
+**Cambios realizados:**
+- ✅ **Mi Voz v2 lanzada** en `sofiabogota.netlify.app/mi-voz/` — ES/EN/FR/PT, selector de voz ♂/♀, onboarding 5 pasos estilo Wispr Flow, sin Render
+- ✅ **Panel del cuidador** en `sofiabogota.netlify.app/mi-voz/cuidador.html` — notificaciones en tiempo real vía ntfy.sh, compatible Apple Watch
+- ✅ **Gumroad publicado** — `andrestriana3.gumroad.com/l/mi-voz` — $10 USD, ya está a la venta
+- ✅ **Brief de edición de videos** ya estaba listo en `sofiabogota.netlify.app/docs/brief-videos-abuelo.html`
+
+**Pendientes para Valentina:**
+- [ ] Editar Video 1 (VIDEO-2026-05-13-13-18-27.mp4 — "quiero roscón") según el brief
+- [ ] Subir el video editado a YouTube (puede ser no listado)
+- [ ] Mandar el link de YouTube a Andres por WhatsApp — él lo incrusta en la página de ventas ese día
+
+**Nota:** La app del abuelo Don Gilberto no cambia — sigue en `ajbusinessadvisory.com/gilberto/familia` con ElevenLabs. Mi Voz v2 es el producto de Gumroad para otras familias.
