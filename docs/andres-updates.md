@@ -5,6 +5,34 @@
 
 ---
 
+## 2026-05-14 — Protocolo de publicación (Valentina → Andrés)
+
+**⚠️ ANDRÉS — ACCIÓN REQUERIDA: agregar a tu CLAUDE.md**
+
+Los créditos de Netlify/Render se están agotando rápido porque se hace push por cada cambio pequeño.
+
+**Nueva regla para los dos:** máximo **1 deploy por día** por sitio.
+
+Agrega esto al inicio de tu `CLAUDE.md` en `aj-business-advisory`:
+
+```markdown
+## 🚨 PROTOCOLO DE PUBLICACIÓN — NETLIFY Y RENDER
+
+Regla: máximo 1 deploy por día por sitio.
+
+Antes de cualquier git push que dispare un deploy, Claude debe:
+1. Preguntar: "¿Tienes algo más para este sitio hoy? Solo podemos subir UNA vez al día."
+2. Sugerir: "Revisa los cambios en el HTML local antes de publicar."
+3. Solo entonces hacer el commit + push.
+
+Aplica para: Netlify, Render, cualquier plataforma de deploy automático.
+```
+
+El `CLAUDE.md` del repo `sofia-bogota` ya tiene esta regla activa.  
+Instrucciones completas en: `docs/INSTRUCCION-PARA-ANDRES-CLAUDE.md`
+
+---
+
 ## 2026-05-14 — Sesión Valentina (globos + hero fotorealista)
 
 **Repos tocados:**

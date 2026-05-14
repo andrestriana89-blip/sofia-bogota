@@ -3,6 +3,34 @@
 
 ---
 
+## 🚨 PROTOCOLO DE PUBLICACIÓN — NETLIFY Y RENDER
+
+> **Aplica para Andrés Y Valentina. Claude debe activar esta alerta SIEMPRE antes de hacer push.**
+
+### Regla única: máximo 1 deploy por día por sitio
+
+Antes de cualquier `git push` que dispare un deploy en Netlify o Render, Claude debe:
+
+1. **Preguntar:** *"¿Tienes algo más para este sitio hoy? Solo podemos subir UNA vez al día."*
+2. **Sugerir:** *"Revisa los cambios en el archivo HTML local antes de publicar para confirmar que todo está bien."*
+3. **Solo entonces** hacer el commit + push.
+
+### Por qué
+- Los créditos de build se agotan rápido si se hace push por cada cambio pequeño
+- Netlify: 300 minutos/mes en plan gratuito
+- Render: también tiene límite de deploys en plan gratuito
+- Cada push = 1 deploy = créditos consumidos
+
+### Sitios afectados
+| Sitio | Repo | Plataforma |
+|-------|------|------------|
+| `dranataliabarrantes.com` | `sofia-bogota/Dentalia/` | Netlify |
+| `sofia.ajbusinessadvisory.com` | `sofia-bogota/` | Netlify |
+| `ajbusinessadvisory.com` | `aj-business-advisory/` | Netlify/Render |
+| Cualquier propuesta o landing | cualquier repo | Render/Netlify |
+
+---
+
 ## ⚠️ REGLA DE ORO — LEE ESTO PRIMERO
 
 Este sitio tiene un diseño, sistema de animaciones y estructura visual que fue construido y aprobado por el equipo. **Andrés solo tiene tareas de conexión técnica.** Claude no debe sugerir, modificar ni "mejorar" nada del diseño visual bajo ninguna circunstancia.

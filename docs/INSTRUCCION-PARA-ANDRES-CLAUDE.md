@@ -48,6 +48,25 @@ git push origin main
 
 ---
 
+## 🚨 PROTOCOLO DE PUBLICACIÓN — AGREGAR A TU CLAUDE.md
+
+Copia este bloque y agrégalo al inicio del `CLAUDE.md` de tu repo `aj-business-advisory`:
+
+```markdown
+## 🚨 PROTOCOLO DE PUBLICACIÓN — NETLIFY Y RENDER
+
+Regla: **máximo 1 deploy por día por sitio.**
+
+Antes de cualquier `git push` que dispare un deploy, Claude debe:
+1. Preguntar: "¿Tienes algo más para este sitio hoy? Solo podemos subir UNA vez al día."
+2. Sugerir: "Revisa los cambios en el HTML local antes de publicar."
+3. Solo entonces hacer el commit + push.
+
+Esto aplica para: Netlify, Render, cualquier plataforma de deploy automático.
+```
+
+---
+
 ## Prerequisito — clonar sofia-bogota (solo una vez)
 
 Si no tienes el repo sofia-bogota clonado en tu máquina:
