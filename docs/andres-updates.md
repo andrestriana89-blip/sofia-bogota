@@ -5,6 +5,50 @@
 
 ---
 
+## 2026-05-14 — Sesión Andrés
+
+**Repos tocados:**
+- `aj-business-advisory` → `landing/clients/bunny-burger/propuesta.html`, `landing/clients/julian-rpd/propuesta.html`, `ops/pricing.md`, `brain/MASTER_BRAIN.md`, `CLAUDE.md`
+
+**Cambios realizados:**
+
+### Separación propuestas Julián — RPD vs Bunny Burger
+- ✅ Propuesta RPD: eliminado el add-on de Bunny Burger — ahora incluye "Missed Lead Recovery System" ($450K/mes) para la base de clientes dormidos de RPD
+- ✅ Propuesta Bunny Burger: precio corregido de $1.5M a $750K/mes + $400K setup. Info real de Instagram: 2,061 seguidores, @bunnyburgerdc, Hayuelos Cll 19A #93-98, jue-dom 6pm-12am
+- ⚠️ **VALENTINA: Bunny Burger ya tiene equipo de Instagram propio.** El pitch para ellos es ÚNICAMENTE Sofia para DMs (ManyChat-style). La propuesta actual habla de producción de contenido — eso hay que reescribirlo. El único servicio es: Sofia responde DMs de Instagram y/o WhatsApp mientras el local está cerrado lunes-miércoles.
+
+### Feedback directo sobre propuesta Ruztik (propuesta-ruztik.html)
+**Lo que está muy bien — no cambies:**
+- Dark theme + amarillo + Bebas Neue → identidad correcta, no parece plantilla ✅
+- 3 planes A/$1M · B/$2M · C/$3M con mantenimiento en B y C ✅
+- Pago 50/50 ✅
+- Sofia como upsell en Plan C ("Preparación para integrar Sofía IA") ✅
+- Sección de protección de contenido — excelente diferenciador ✅
+- CTA a WhatsApp en cada plan con mensaje pre-escrito ✅
+- Bloque "¿Tienes una propuesta diferente?" → humaniza ✅
+- Validez 15 días → urgencia ✅
+
+**Lo que puedes mejorar:**
+1. **Plan A no tiene mantenimiento** — agregar nota: "Mantenimiento $150.000 COP/mes disponible como add-on"
+2. **Agregar argumento SEO** — "Google puede encontrarte aunque no te busquen por nombre" es el argumento más fuerte para marcas que solo tienen Instagram. Ponlo en la sección "Entendimiento del negocio"
+3. **ROI en 1 cliente** — Ruztik fabrica artesanal/industrial. Si un cliente B2B vale $5M–$20M COP, un solo proyecto extra en 3 meses paga todo el Plan C. Falta esa narrativa en la sección de objetivos
+4. **Agregar Sofia WA como add-on post-web** — En la sección de Sofia, mencionar precio: "Cuando el sitio esté recibiendo visitas, Sofia WhatsApp se activa desde $300.000 COP/mes" — así el cliente ya llega con expectativa de cuánto va a pagar después
+
+### Precios estandarizados (setup = 1.5× mensual)
+- ✅ pricing.md, MASTER_BRAIN.md y CLAUDE.md actualizados con regla universal
+- ✅ Regla: Setup = 1.5× mensual · Mínimo $150K COP / $150 USD
+- ✅ Excepción: Instagram Growth setup = 1× mensual ($1.5M COP) — NO 1.5×
+- ✅ Promo estándar: paga setup → mes 1 gratis → mensualidad arranca mes 2
+- ✅ Natalia tiene $950K/mes de Instagram EXCLUSIVO vitalicio — nadie más jamás
+
+**Pendientes Valentina:**
+- [ ] Reescribir propuesta Bunny Burger → SOLO Sofia DMs (sin producción de contenido)
+- [ ] Agregar argumento SEO + ROI en propuesta Ruztik
+- [ ] Agregar mantenimiento $150K/mes como add-on en Plan A de Ruztik
+- [ ] Agregar bloque "Sofia como siguiente paso" con precio en propuesta Ruztik
+
+---
+
 ## 2026-05-12 — Sesión Andrés
 
 **Repos tocados:**
