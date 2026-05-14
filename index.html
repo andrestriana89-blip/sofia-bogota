@@ -1758,14 +1758,14 @@
           </div>
         </div>
         <!-- Demo WhatsApp -->
-        <a href="https://wa.me/16696662773?text=Hola%2C%20quiero%20conocer%20a%20Sofia%20y%20saber%20c%C3%B3mo%20puede%20ayudar%20a%20mi%20negocio." target="_blank" rel="noopener" style="text-decoration:none;display:flex;flex-direction:column">
+        <div onclick="openWaModal()" style="text-decoration:none;display:flex;flex-direction:column;cursor:pointer">
           <div class="step-card card-shine fade-up" style="border-color:rgba(37,211,102,.35);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(37,211,102,.04);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
             <div style="font-size:36px;margin-bottom:12px">💬</div>
             <div style="font-size:11px;font-weight:700;color:#25d366;letter-spacing:1px;margin-bottom:6px;text-transform:uppercase">WhatsApp con Sofia</div>
             <div style="font-size:19px;font-weight:900;color:var(--text);margin-bottom:4px">Escríbele ahora</div>
-            <div style="font-size:11px;color:#666">Responde en segundos</div>
+            <div style="font-size:11px;color:#666">Selecciona tu región →</div>
           </div>
-        </a>
+        </div>
         <!-- Consultoría Andres -->
         <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="text-decoration:none;display:flex;flex-direction:column">
           <div class="step-card card-shine fade-up" style="border-color:rgba(255,212,0,.3);text-align:center;padding:28px 20px;cursor:pointer;background:rgba(255,212,0,.04);flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
@@ -1839,48 +1839,8 @@
 <!-- ¿POR QUÉ SOFIA? -->
 <section class="section" id="por-que-sofia" style="background:radial-gradient(ellipse 70% 55% at 50% 50%,rgba(80,50,200,.04) 0%,transparent 65%)">
   <div class="section-inner">
-    <h2 class="section-title fade-up">Sofia impulsa tu marca.<br><span class="grad-text">La IA que trabaja como tú.</span></h2>
-    <p class="section-sub fade-up">Entrenada en tu negocio. Conectada a todos tus canales. Diseñada para que tu marca crezca con cada conversación — sin que pierdas un solo cliente.</p>
-
-    <!-- 6 Beneficios -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:52px">
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(181,0,94,.25)">
-        <span class="prob-icon">🚫</span>
-        <div class="prob-num" style="font-size:26px">0 perdidos</div>
-        <h3>Ningún cliente se escapa</h3>
-        <p>Sofia responde en 3 segundos. Sin importar si es domingo a las 11pm o lunes en hora pico — cada lead es contactado y guiado al cierre.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.2)">
-        <span class="prob-icon">🎙️</span>
-        <div class="prob-num" style="font-size:26px">Tu voz</div>
-        <h3>Tu marca en cada mensaje</h3>
-        <p>Sofia habla como tu negocio, no como un bot genérico. Cada respuesta refuerza tu marca, tu tono y tu diferencial — construyendo reputación automáticamente.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(181,0,94,.25)">
-        <span class="prob-icon">⚡</span>
-        <div class="prob-num" style="font-size:26px">3 seg</div>
-        <h3>Velocidad que cierra ventas</h3>
-        <p>El 80% de los leads van con quien responde primero. Sofia responde en segundos mientras tu competencia aún está despierta buscando el mensaje.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.2)">
-        <span class="prob-icon">🔗</span>
-        <div class="prob-num" style="font-size:26px">Todos</div>
-        <h3>Integrada en todos tus canales</h3>
-        <p>WhatsApp, Instagram, llamadas, formularios web. No importa de dónde venga el cliente — Sofia está ahí. Sin gaps, sin huecos, sin clientes perdidos.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(181,0,94,.25)">
-        <span class="prob-icon">🧠</span>
-        <div class="prob-num" style="font-size:26px">100%</div>
-        <h3>Entrenada en tu negocio</h3>
-        <p>No es una plantilla. Sofia conoce tus servicios, tus precios, tu agenda y tu tono. Cada respuesta es tuya — escalada a la velocidad de la IA.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.2)">
-        <span class="prob-icon">🌍</span>
-        <div class="prob-num" style="font-size:22px">1era</div>
-        <h3>Una voz. Todo el mundo.</h3>
-        <p>Primera empresa en integrar IA, marca y canales en un único sistema — todos los idiomas, todos los países, una sola voz: Sofia. Siempre reflejando tu marca, en cualquier rincón del mundo.</p>
-      </div>
-    </div>
+    <h2 class="section-title fade-up" id="met-title">Nos especializamos en <span class="grad-text">detectar</span> lo que está frenando tu negocio</h2>
+    <p class="section-sub fade-up" id="met-sub">No ofrecemos soluciones genéricas. Primero encontramos el fallo exacto en tu negocio — y te mostramos cuánto te está costando. Luego lo corregimos con Sofia.</p>
 
     <!-- Sofia capabilities highlight -->
     <div class="fade-up" style="background:rgba(181,0,94,.06);border:1px solid rgba(181,0,94,.2);border-radius:20px;padding:36px 32px;margin-bottom:44px;position:relative;overflow:hidden">
@@ -1943,39 +1903,13 @@
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:8px">
-      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Quiero que Sofia trabaje en mi negocio →</a>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">📅 Agendar Consultoría</a>
+      <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit">💬 Hablar por WhatsApp</button>
     </div>
   </div>
 </section>
 
-<!-- DIAGNÓSTICO / METODOLOGÍA -->
-<section class="section" id="metodologia">
-  <div class="section-inner">
-    <h2 class="section-title fade-up" id="met-title">Nos especializamos en <span class="grad-text">detectar</span> lo que está frenando tu negocio</h2>
-    <p class="section-sub fade-up" id="met-sub">No ofrecemos soluciones genéricas. Primero encontramos el fallo exacto en tu negocio — y te mostramos cuánto te está costando. Luego lo corregimos.</p>
-    <div class="steps-grid">
-      <div class="step-card fade-up card-shine" style="border-color:rgba(255,212,0,.18)">
-        <span class="step-icon">🔍</span>
-        <h3 id="met-h1">Detectamos las fugas</h3>
-        <p id="met-p1">Analizamos cada punto de contacto de tu negocio: llamadas perdidas, WhatsApp sin respuesta, leads que se enfrían, citas sin confirmar. Encontramos exactamente dónde se van los clientes y el dinero.</p>
-      </div>
-      <div class="step-card fade-up card-shine" style="border-color:rgba(181,0,94,.25)">
-        <span class="step-icon">⚙️</span>
-        <h3 id="met-h2">Corregimos y automatizamos</h3>
-        <p id="met-p2">Diseñamos el sistema a la medida de tus fallas específicas — no copiamos plantillas. Sofia responde, califica y convierte leads 24/7 mientras tu equipo se enfoca en cerrar negocios.</p>
-      </div>
-      <div class="step-card fade-up card-shine" style="border-color:rgba(255,212,0,.18)">
-        <span class="step-icon">🏆</span>
-        <h3 id="met-h3">Fortalecemos tu marca</h3>
-        <p id="met-p3">Cada interacción con Sofia refleja tu marca. Respuestas consistentes, seguimiento profesional y reputación que atrae nuevos clientes — tu marca crece mientras tú duermes.</p>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:36px">
-      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="met-cta">Quiero mi diagnóstico gratuito →</a>
-    </div>
-  </div>
-</section>
 
 <!-- ¿POR QUÉ SOFIA MARCA LA DIFERENCIA? -->
 <section class="section section-dark" id="problema" style="background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(80,50,200,.06) 0%,transparent 70%)">
@@ -1986,26 +1920,6 @@
     </div>
     <h2 class="section-title fade-up" id="prob-title">¿Por qué Sofia <span class="grad-text">marca la diferencia</span> en tu negocio?</h2>
     <p class="section-sub fade-up" id="prob-sub">No somos un chatbot más. Somos los primeros en construir una IA verdaderamente integral — que no solo responde, sino que agenda, reactiva, vende y reporta, todo desde un solo sistema conectado.</p>
-    <div class="problem-grid">
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(181,0,94,.35)">
-        <span class="prob-icon">🌐</span>
-        <div class="prob-num" style="font-size:24px">1eros</div>
-        <h3 id="prob1-h3">Primeros en IA integral</h3>
-        <p id="prob1-p">No somos una herramienta de respuestas automáticas. Somos la primera plataforma que integra en un solo sistema: IA conversacional + agenda real + reactivación de clientes + construcción de marca. Nadie más lo hace todo junto.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(255,212,0,.3)">
-        <span class="prob-icon">🔗</span>
-        <div class="prob-num" style="font-size:24px">Todo</div>
-        <h3 id="prob2-h3">Todos tus canales, un sistema</h3>
-        <p id="prob2-p">WhatsApp, llamadas, Instagram, citas y seguimiento — todo conectado. Sofia trabaja en todos tus canales simultáneamente, 24/7, mientras tú construyes tu negocio.</p>
-      </div>
-      <div class="problem-card fade-up card-shine" style="border-color:rgba(37,211,102,.25)">
-        <span class="prob-icon">📈</span>
-        <div class="prob-num" style="font-size:24px">30 días</div>
-        <h3 id="prob3-h3">Resultados en 30 días</h3>
-        <p id="prob3-p">La mayoría de nuestros clientes recupera el costo del sistema en los primeros 30 días. Medimos, reportamos y ajustamos cada mes con Andres, el Fundador.</p>
-      </div>
-    </div>
 
     <!-- Sofia vs Chatbots genéricos -->
     <div class="vs-wrap fade-up">
@@ -2085,7 +1999,10 @@
         <div class="roi-result-label" id="roi-res-label">Estás perdiendo aproximadamente</div>
         <div class="roi-result-amount" id="roiAmount">$0</div>
         <div class="roi-result-sub" id="roi-res-sub">al mes — antes de contar el tiempo de tu equipo y el costo de adquisición de esos leads.</div>
-        <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="roi-cta" style="display:inline-flex;margin:0 auto">Quiero recuperar ese dinero →</a>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 auto">
+          <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="roi-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit">💬 Hablar por WhatsApp</button>
+        </div>
       </div>
     </div>
   </div>
@@ -2111,7 +2028,10 @@
         <div class="tab-stat" id="clinic-stat">📊 Hasta 35% de citas son no-show sin sistema de confirmación</div>
         <h3 id="clinic-h3">Clínicas y Consultorios</h3>
         <p id="clinic-p">Citas sin confirmar, agenda con huecos, pacientes que no responden. Sofia confirma cada cita automáticamente, reactiva pacientes dormidos y llena los espacios vacíos — sin que tu equipo haga nada.</p>
-        <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="clinic-cta">Ver demo para mi clínica →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="clinic-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+        </div>
       </div>
       <div class="mock-carousel" data-carousel="clinic">
         <!-- Slide 1: WhatsApp -->
@@ -2162,7 +2082,10 @@
         <div class="tab-stat" id="salon-stat">✂️ Sofia reduce cancelaciones hasta un 60%</div>
         <h3 id="salon-h3">Barberías y Salones</h3>
         <p id="salon-p">Clientes que reservan y no llegan, agenda con huecos de última hora. Sofia envía recordatorios por WhatsApp, confirma automáticamente y reactiva clientes que no han regresado en 30+ días.</p>
-        <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="salon-cta">Ver demo para mi salón →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="salon-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+        </div>
       </div>
       <div class="mock-carousel" data-carousel="salon">
         <div class="mock-slide active">
@@ -2209,7 +2132,10 @@
         <div class="tab-stat" id="rest-stat">🍽️ Captura reservas 24/7 — incluso a las 11pm</div>
         <h3 id="rest-h3">Restaurantes</h3>
         <p id="rest-p">Llamadas perdidas en horas pico, reservas que no llegan. Sofia toma reservas por WhatsApp e Instagram a cualquier hora, confirma automáticamente y reduce no-shows con recordatorios el día antes.</p>
-        <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="rest-cta">Ver demo para mi restaurante →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="rest-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+        </div>
       </div>
       <div class="mock-carousel" data-carousel="restaurant">
         <div class="mock-slide active">
@@ -2256,7 +2182,10 @@
         <div class="tab-stat" id="smb-stat">🏢 Convierte consultas en clientes automáticamente</div>
         <h3 id="smb-h3">PYMES y Comercio</h3>
         <p id="smb-p">Leads que preguntan por Instagram y desaparecen, WhatsApps sin responder, cotizaciones que nunca se cierran. Sofia responde en segundos, califica al lead y agenda una llamada con tu equipo.</p>
-        <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="smb-cta">Ver demo para mi negocio →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="smb-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+        </div>
       </div>
       <div class="mock-carousel" data-carousel="smb">
         <div class="mock-slide active">
@@ -2303,7 +2232,10 @@
         <div class="tab-stat" id="any-stat">📱 Si tus clientes te escriben — Sofia responde</div>
         <h3 id="any-h3">Cualquier negocio local</h3>
         <p id="any-p">Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema para ti. Empieza con la consultoría gratuita y te decimos exactamente cuánto puedes recuperar.</p>
-        <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="any-cta">Ver qué puedo recuperar →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="any-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+        </div>
       </div>
       <div class="mock-carousel" data-carousel="any">
         <div class="mock-slide active">
@@ -2350,7 +2282,10 @@
         <div class="tab-stat" id="fit-stat">💪 Sofia convierte consultas de membresía en 90 segundos</div>
         <h3 id="fit-h3">Gym / Estudio / Fitness</h3>
         <p id="fit-p">Clientes que preguntan horarios y precios y nunca regresan. Sofia hace el seguimiento automático, agenda clases de prueba y reactiva a quienes dejaron de venir — sin que tu equipo levante un dedo.</p>
-        <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="fit-cta">Ver cuántos clientes recupero →</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="fit-cta">📅 Agendar Consultoría</a>
+          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+        </div>
       </div>
       <div class="mock-carousel" data-carousel="fitness">
         <div class="mock-slide active">
@@ -2410,7 +2345,7 @@
         <p class="pc-niche" id="p1-niche">Clínicas, consultorios, spas, barberías</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl">Setup único</div>
-        <div class="pc-setup-price" id="p1-setup">$1.800.000 COP</div>
+        <div class="pc-setup-price" id="p1-setup">$1.425.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl">Mensual</div>
         <div class="pc-mo-price" id="p1-mo">$950.000 <span>COP/mes</span></div>
         <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
@@ -2430,7 +2365,7 @@
         <p class="pc-niche" id="p2-niche">Para crecer en Instagram y convertir seguidores</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl2">Setup único</div>
-        <div class="pc-setup-price" id="p2-setup">$500.000 COP</div>
+        <div class="pc-setup-price" id="p2-setup">$1.500.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl2">Mensual</div>
         <div class="pc-mo-price" id="p2-mo">$1.500.000 <span>COP/mes</span></div>
         <div id="p2-founding" style="margin:4px 0 14px;font-size:11px;color:#27a85c;font-weight:600;">Precios Founding Members disponibles — cupos limitados, consultar.</div>
@@ -2451,7 +2386,7 @@
         <p class="pc-niche" id="p3-niche">PYMES y comercio local</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl3">Setup único</div>
-        <div class="pc-setup-price" id="p3-setup">$1.200.000 COP</div>
+        <div class="pc-setup-price" id="p3-setup">$1.125.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl3">Mensual</div>
         <div class="pc-mo-price" id="p3-mo">$750.000 <span>COP/mes</span></div>
         <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
@@ -2471,7 +2406,7 @@
         <p class="pc-niche" id="p4-niche">Clientes inactivos en tu base de datos</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl4">Setup único</div>
-        <div class="pc-setup-price" id="p4-setup">$900.000 COP</div>
+        <div class="pc-setup-price" id="p4-setup">$585.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl4">Mensual</div>
         <div class="pc-mo-price" id="p4-mo">$390.000 <span>COP/mes</span></div>
         <div class="pc-price-placeholder">💬 Agenda para conocer tu precio</div>
@@ -2490,7 +2425,7 @@
         <p class="pc-niche" id="p5-niche">Cualquier negocio local</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl5">Setup único</div>
-        <div class="pc-setup-price" id="p5-setup">$500.000 COP</div>
+        <div class="pc-setup-price" id="p5-setup">$375.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl5">Mensual</div>
         <div class="pc-mo-price" id="p5-mo">$250.000 <span>COP/mes</span></div>
         <div id="p5-addon-wrap" style="margin:4px 0 14px;padding:10px 14px;border-radius:10px;background:rgba(255,212,0,0.07);border:1px solid rgba(255,212,0,0.25);">
@@ -2520,7 +2455,10 @@
         <li><span class="ck">✓</span> <span id="al2">Ves el ROI antes de comprometerte</span></li>
         <li><span class="ck">✓</span> <span id="al3">30 minutos — sin pitch, sin presión</span></li>
       </ul>
-      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px;display:inline-flex" id="audit-cta">Agendar Consultoría Gratuita →</a>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px" id="audit-cta">📅 Agendar Consultoría Gratuita</a>
+        <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:13px;padding:13px 28px;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 Hablar por WhatsApp</button>
+      </div>
       <p class="audit-note" id="audit-note">Sin costo. Sin compromiso. Solo claridad.</p>
     </div>
   </div>
@@ -2566,7 +2504,7 @@
         <p class="pc-niche" id="p1-niche">Clínicas, consultorios, spas, barberías</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl">Setup único</div>
-        <div class="pc-setup-price" id="p1-setup">$1.800.000 COP</div>
+        <div class="pc-setup-price" id="p1-setup">$1.425.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl">Mensual</div>
         <div class="pc-mo-price" id="p1-mo">$950.000 <span>COP/mes</span></div>
         <ul class="pc-features">
@@ -2585,7 +2523,7 @@
         <p class="pc-niche" id="p2-niche">Para crecer en Instagram y convertir seguidores</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl2">Setup único</div>
-        <div class="pc-setup-price" id="p2-setup">$500.000 COP</div>
+        <div class="pc-setup-price" id="p2-setup">$1.500.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl2">Mensual</div>
         <div class="pc-mo-price" id="p2-mo">$1.500.000 <span>COP/mes</span></div>
         <div id="p2-founding" style="margin:4px 0 14px;font-size:11px;color:#27a85c;font-weight:600;">Precios Founding Members disponibles — cupos limitados, consultar.</div>
@@ -2605,7 +2543,7 @@
         <p class="pc-niche" id="p3-niche">PYMES y comercio local</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl3">Setup único</div>
-        <div class="pc-setup-price" id="p3-setup">$1.200.000 COP</div>
+        <div class="pc-setup-price" id="p3-setup">$1.125.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl3">Mensual</div>
         <div class="pc-mo-price" id="p3-mo">$750.000 <span>COP/mes</span></div>
         <ul class="pc-features">
@@ -2624,7 +2562,7 @@
         <p class="pc-niche" id="p4-niche">Clientes inactivos en tu base de datos</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl4">Setup único</div>
-        <div class="pc-setup-price" id="p4-setup">$900.000 COP</div>
+        <div class="pc-setup-price" id="p4-setup">$585.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl4">Mensual</div>
         <div class="pc-mo-price" id="p4-mo">$390.000 <span>COP/mes</span></div>
         <ul class="pc-features">
@@ -2642,7 +2580,7 @@
         <p class="pc-niche" id="p5-niche">Cualquier negocio local</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl5">Setup único</div>
-        <div class="pc-setup-price" id="p5-setup">$500.000 COP</div>
+        <div class="pc-setup-price" id="p5-setup">$375.000 COP</div>
         <div class="pc-mo-lbl" id="mo-lbl5">Mensual</div>
         <div class="pc-mo-price" id="p5-mo">$250.000 <span>COP/mes</span></div>
         <div id="p5-addon-wrap" style="margin:4px 0 14px;padding:10px 14px;border-radius:10px;background:rgba(255,212,0,0.07);border:1px solid rgba(255,212,0,0.25);">
@@ -2671,7 +2609,10 @@
         <li><span class="ck">✓</span> <span id="al2">Ves el ROI antes de comprometerte</span></li>
         <li><span class="ck">✓</span> <span id="al3">30 minutos — sin pitch, sin presión</span></li>
       </ul>
-      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px;display:inline-flex" id="audit-cta">Agendar Consultoría Gratuita →</a>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px" id="audit-cta">📅 Agendar Consultoría Gratuita</a>
+        <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:13px;padding:13px 28px;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 Hablar por WhatsApp</button>
+      </div>
       <p class="audit-note" id="audit-note">Sin costo. Sin compromiso. Solo claridad.</p>
     </div>
   </div>
@@ -4407,6 +4348,63 @@ function closeAjModal(){
   document.body.style.overflow='';
 }
 // ESC ya está manejado en el listener compartido de closeSofiaCall/closeAjModal
+
+/* ═══════════════════════════════════════════════════
+   WA REGION MODAL — selector de región antes de abrir WhatsApp
+═══════════════════════════════════════════════════ */
+var _waMsgOverride = '';
+function openWaModal(msg){
+  _waMsgOverride = msg || '';
+  var m = document.getElementById('wa-region-modal');
+  if(m){ m.style.display='flex'; document.body.style.overflow='hidden'; }
+}
+function closeWaModal(){
+  var m = document.getElementById('wa-region-modal');
+  if(m){ m.style.display='none'; document.body.style.overflow=''; }
+}
+function goWa(region){
+  var nums = { CO:'573219664302', US:'16696662773', INTL:'16696662773' };
+  var msgs = {
+    CO:'Hola%2C%20quiero%20que%20Sofia%20trabaje%20en%20mi%20negocio.%20%C2%BFC%C3%B3mo%20empezamos%3F',
+    US:'Hi%2C%20I%20want%20to%20learn%20how%20Sofia%20can%20help%20my%20business.',
+    INTL:'Hola%2C%20quiero%20saber%20c%C3%B3mo%20Sofia%20puede%20ayudar%20a%20mi%20negocio.'
+  };
+  var num = nums[region] || nums.INTL;
+  var msg = _waMsgOverride || msgs[region] || msgs.INTL;
+  closeWaModal();
+  window.open('https://wa.me/'+num+'?text='+msg,'_blank');
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape'){ closeWaModal(); }
+});
 </script>
+
+<!-- WA REGION MODAL -->
+<div id="wa-region-modal" style="display:none;position:fixed;inset:0;z-index:9100;background:rgba(0,0,0,.78);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:20px" role="dialog" aria-modal="true">
+  <div style="background:#18000d;border:1px solid rgba(37,211,102,.3);border-radius:22px;padding:40px 28px;max-width:400px;width:100%;text-align:center;box-shadow:0 0 80px rgba(37,211,102,.06)">
+    <div style="font-size:36px;margin-bottom:14px">💬</div>
+    <h3 style="font-size:21px;font-weight:900;color:#eeebff;margin-bottom:8px">¿Desde dónde nos escribes?</h3>
+    <p style="font-size:13px;color:#8070b0;margin-bottom:28px;line-height:1.6">Selecciona tu región para conectarte con el número correcto de WhatsApp.</p>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <button onclick="goWa('CO')" style="padding:15px 20px;border-radius:13px;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);cursor:pointer;font-size:15px;font-weight:800;color:#eeebff;display:flex;align-items:center;gap:12px;transition:background .2s" onmouseover="this.style.background='rgba(37,211,102,.12)'" onmouseout="this.style.background='rgba(37,211,102,.05)'">
+        <span style="font-size:22px">🇨🇴</span>
+        <span style="flex:1;text-align:left">Colombia</span>
+        <span style="font-size:11px;color:#25d366;font-weight:700">WhatsApp →</span>
+      </button>
+      <button onclick="goWa('US')" style="padding:15px 20px;border-radius:13px;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);cursor:pointer;font-size:15px;font-weight:800;color:#eeebff;display:flex;align-items:center;gap:12px;transition:background .2s" onmouseover="this.style.background='rgba(37,211,102,.12)'" onmouseout="this.style.background='rgba(37,211,102,.05)'">
+        <span style="font-size:22px">🇺🇸</span>
+        <span style="flex:1;text-align:left">Estados Unidos / USA</span>
+        <span style="font-size:11px;color:#25d366;font-weight:700">WhatsApp →</span>
+      </button>
+      <button onclick="goWa('INTL')" style="padding:15px 20px;border-radius:13px;border:1px solid rgba(37,211,102,.3);background:rgba(37,211,102,.05);cursor:pointer;font-size:15px;font-weight:800;color:#eeebff;display:flex;align-items:center;gap:12px;transition:background .2s" onmouseover="this.style.background='rgba(37,211,102,.12)'" onmouseout="this.style.background='rgba(37,211,102,.05)'">
+        <span style="font-size:22px">🌎</span>
+        <span style="flex:1;text-align:left">Resto del mundo</span>
+        <span style="font-size:11px;color:#25d366;font-weight:700">WhatsApp →</span>
+      </button>
+    </div>
+    <button onclick="closeWaModal()" style="margin-top:22px;background:none;border:none;color:#8070b0;cursor:pointer;font-size:13px;padding:8px 16px">Cancelar</button>
+  </div>
+</div>
+
 </body>
 </html>
