@@ -1002,6 +1002,15 @@
       pointer-events:none;
     }
     .pc-icon{font-size:24px;margin:18px 0 10px;display:block}
+    /* ── Flip icon en pricing cards ── */
+    .pc-flip-wrap{width:100%;perspective:700px;margin:16px 0 12px}
+    .pc-flip-inner{position:relative;width:100%;height:118px;transition:transform .55s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+    .pc-flip-wrap:hover .pc-flip-inner{transform:rotateY(180deg)}
+    .pc-flip-front,.pc-flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+    .pc-flip-front{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);font-size:42px}
+    .pc-flip-back{transform:rotateY(180deg);background:rgba(181,0,94,.07);border:1px solid rgba(181,0,94,.25);padding:14px 16px;align-items:flex-start;justify-content:flex-start}
+    .pc-flip-back-title{font-size:10px;font-weight:800;color:var(--pink);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;width:100%}
+    .pc-flip-back-step{font-size:11px;color:var(--muted);line-height:1.75;width:100%}
     .pricing-card h3{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px;line-height:1.3}
     .pc-niche{font-size:10.5px;color:var(--muted);margin-bottom:16px}
     .pc-divider{height:1px;background:rgba(181,0,94,.1);margin-bottom:14px}
@@ -2340,16 +2349,20 @@
     <div class="pricing-grid">
       <div class="pricing-card featured fade-up">
         <div class="feat-badge" id="feat-badge">MÁS POPULAR</div>
-        <span class="pc-icon">📅</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">📅</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Sofia responde al instante cuando llega un cliente</div>
+              <div class="pc-flip-back-step">2. Hace seguimiento automático por WhatsApp hasta el cierre</div>
+              <div class="pc-flip-back-step">3. Si no regresó, lo reactiva con el mensaje correcto</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p1-name">Sistema de Atención y Seguimiento 24/7</h3>
         <p class="pc-niche" id="p1-niche">Para cualquier negocio que pierde clientes por falta de respuesta o seguimiento oportuno.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Sofia atiende a cada cliente en el momento en que llega, hace seguimiento automático y reactiva los que dejaron de responder — sin que tu equipo haga nada, las 24 horas.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Sofia responde al instante cuando llega un cliente</div>
-          <div>2. Hace seguimiento automático por WhatsApp hasta el cierre</div>
-          <div>3. Si no regresó, lo reactiva con el mensaje correcto</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl">Setup único</div>
         <div class="pc-setup-price" id="p1-setup">$1.425.000 COP</div>
@@ -2367,16 +2380,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge" style="background:linear-gradient(135deg,#1a6b3a,#27a85c)">🚀 <span id="content-badge">CONTENIDO</span></div>
-        <span class="pc-icon">📸</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">📸</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. El equipo produce 4 Reels + 20 carruseles mensuales</div>
+              <div class="pc-flip-back-step">2. Sofia responde comentarios y DMs automáticamente</div>
+              <div class="pc-flip-back-step">3. Cada interacción se convierte en un cliente agendado</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p2-name">Crecimiento en Instagram + ManyChat</h3>
         <p class="pc-niche" id="p2-niche">Para negocios que quieren convertir seguidores de Instagram en clientes reales.</p>
-        <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Producción de contenido mensual + automatización de DMs. Cada comentario o mensaje se convierte en una cita agendada, sin que tu equipo responda uno a uno.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. El equipo produce 4 Reels + 20 carruseles mensuales</div>
-          <div>2. Sofia responde comentarios y DMs automáticamente</div>
-          <div>3. Cada interacción se convierte en una cita agendada</div>
-        </div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Producción de contenido mensual + automatización de DMs. Cada comentario o mensaje se convierte en un cliente atendido, sin que tu equipo responda uno a uno.</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl2">Setup único</div>
         <div class="pc-setup-price" id="p2-setup">$1.500.000 COP</div>
@@ -2395,16 +2412,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge feat-badge-empty"></div>
-        <span class="pc-icon">🏢</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">🏢</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Diseñamos y publicamos tu web con SEO local</div>
+              <div class="pc-flip-back-step">2. Sofia responde WhatsApp e Instagram 24/7</div>
+              <div class="pc-flip-back-step">3. Seguimiento automático a cada lead hasta el cierre</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p3-name">Presencia Digital para PYMES</h3>
         <p class="pc-niche" id="p3-niche">Para PYMES y comercios que aún no tienen presencia digital sólida o quieren mejorarla.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Construimos tu página web profesional con SEO local y activamos a Sofia para responder WhatsApp 24/7 y darle seguimiento a cada lead hasta el cierre.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Diseñamos y publicamos tu web con SEO local</div>
-          <div>2. Sofia responde WhatsApp e Instagram 24/7</div>
-          <div>3. Seguimiento automático a cada lead hasta el cierre</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl3">Setup único</div>
         <div class="pc-setup-price" id="p3-setup">$1.125.000 COP</div>
@@ -2422,16 +2443,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge feat-badge-empty"></div>
-        <span class="pc-icon">💤</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">💤</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Cargamos tu base de datos de clientes</div>
+              <div class="pc-flip-back-step">2. Sofia segmenta por tiempo sin visita y les escribe</div>
+              <div class="pc-flip-back-step">3. Mide cuántos regresaron y cuánto recuperaste</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p4-name">Reactivación de Clientes Dormidos</h3>
         <p class="pc-niche" id="p4-niche">Para negocios con una base de datos de clientes que dejaron de regresar.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Sofia analiza tu base, identifica quién no ha vuelto y les escribe con el mensaje correcto en el momento correcto — recuperando ingresos sin anuncios ni costos adicionales.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Cargamos tu base de datos de clientes</div>
-          <div>2. Sofia segmenta por tiempo sin visita y les escribe</div>
-          <div>3. Mide cuántos regresaron y cuánto recuperaste</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl4">Setup único</div>
         <div class="pc-setup-price" id="p4-setup">$585.000 COP</div>
@@ -2448,16 +2473,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge feat-badge-empty"></div>
-        <span class="pc-icon">⭐</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">⭐</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Sofia pide reseña a cada cliente después de su visita</div>
+              <div class="pc-flip-back-step">2. Responde automáticamente todas las reseñas de Google</div>
+              <div class="pc-flip-back-step">3. Reportes mensuales de reputación y posición en Maps</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p5-name">Sistema de Reputación en Google</h3>
         <p class="pc-niche" id="p5-niche">Para cualquier negocio local que quiera aparecer primero en Google Maps sin pagar publicidad.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Sofia solicita reseñas automáticamente a clientes satisfechos, responde todas las reseñas en Google y monitorea tu reputación. Más reseñas = mejor posición = más clientes.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Sofia pide reseña a cada cliente después de su visita</div>
-          <div>2. Responde automáticamente todas las reseñas de Google</div>
-          <div>3. Reportes mensuales de reputación y posición en Maps</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl5">Setup único</div>
         <div class="pc-setup-price" id="p5-setup">$375.000 COP</div>
@@ -2534,16 +2563,20 @@
     <div class="pricing-grid">
       <div class="pricing-card featured fade-up">
         <div class="feat-badge" id="feat-badge">MÁS POPULAR</div>
-        <span class="pc-icon">📅</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">📅</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Sofia responde al instante cuando llega un cliente</div>
+              <div class="pc-flip-back-step">2. Hace seguimiento automático por WhatsApp hasta el cierre</div>
+              <div class="pc-flip-back-step">3. Si no regresó, lo reactiva con el mensaje correcto</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p1-name">Sistema de Atención y Seguimiento 24/7</h3>
         <p class="pc-niche" id="p1-niche">Para cualquier negocio que pierde clientes por falta de respuesta o seguimiento oportuno.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Sofia atiende a cada cliente en el momento en que llega, hace seguimiento automático y reactiva los que dejaron de responder — sin que tu equipo haga nada, las 24 horas.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Sofia responde al instante cuando llega un cliente</div>
-          <div>2. Hace seguimiento automático por WhatsApp hasta el cierre</div>
-          <div>3. Si no regresó, lo reactiva con el mensaje correcto</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl">Setup único</div>
         <div class="pc-setup-price" id="p1-setup">$1.425.000 COP</div>
@@ -2560,16 +2593,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge" style="background:linear-gradient(135deg,#1a6b3a,#27a85c)">🚀 <span id="content-badge">CONTENIDO</span></div>
-        <span class="pc-icon">📸</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">📸</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. El equipo produce 4 Reels + 20 carruseles mensuales</div>
+              <div class="pc-flip-back-step">2. Sofia responde comentarios y DMs automáticamente</div>
+              <div class="pc-flip-back-step">3. Cada interacción se convierte en un cliente agendado</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p2-name">Crecimiento en Instagram + ManyChat</h3>
         <p class="pc-niche" id="p2-niche">Para negocios que quieren convertir seguidores de Instagram en clientes reales.</p>
-        <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Producción de contenido mensual + automatización de DMs. Cada comentario o mensaje se convierte en una cita agendada, sin que tu equipo responda uno a uno.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. El equipo produce 4 Reels + 20 carruseles mensuales</div>
-          <div>2. Sofia responde comentarios y DMs automáticamente</div>
-          <div>3. Cada interacción se convierte en una cita agendada</div>
-        </div>
+        <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Producción de contenido mensual + automatización de DMs. Cada comentario o mensaje se convierte en un cliente atendido, sin que tu equipo responda uno a uno.</p>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl2">Setup único</div>
         <div class="pc-setup-price" id="p2-setup">$1.500.000 COP</div>
@@ -2587,16 +2624,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge feat-badge-empty"></div>
-        <span class="pc-icon">🏢</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">🏢</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Diseñamos y publicamos tu web con SEO local</div>
+              <div class="pc-flip-back-step">2. Sofia responde WhatsApp e Instagram 24/7</div>
+              <div class="pc-flip-back-step">3. Seguimiento automático a cada lead hasta el cierre</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p3-name">Presencia Digital para PYMES</h3>
         <p class="pc-niche" id="p3-niche">Para PYMES y comercios que aún no tienen presencia digital sólida o quieren mejorarla.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Construimos tu página web profesional con SEO local y activamos a Sofia para responder WhatsApp 24/7 y darle seguimiento a cada lead hasta el cierre.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Diseñamos y publicamos tu web con SEO local</div>
-          <div>2. Sofia responde WhatsApp e Instagram 24/7</div>
-          <div>3. Seguimiento automático a cada lead hasta el cierre</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl3">Setup único</div>
         <div class="pc-setup-price" id="p3-setup">$1.125.000 COP</div>
@@ -2613,16 +2654,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge feat-badge-empty"></div>
-        <span class="pc-icon">💤</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">💤</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Cargamos tu base de datos de clientes</div>
+              <div class="pc-flip-back-step">2. Sofia segmenta por tiempo sin visita y les escribe</div>
+              <div class="pc-flip-back-step">3. Mide cuántos regresaron y cuánto recuperaste</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p4-name">Reactivación de Clientes Dormidos</h3>
         <p class="pc-niche" id="p4-niche">Para negocios con una base de datos de clientes que dejaron de regresar.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Sofia analiza tu base, identifica quién no ha vuelto y les escribe con el mensaje correcto en el momento correcto — recuperando ingresos sin anuncios ni costos adicionales.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Cargamos tu base de datos de clientes</div>
-          <div>2. Sofia segmenta por tiempo sin visita y les escribe</div>
-          <div>3. Mide cuántos regresaron y cuánto recuperaste</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl4">Setup único</div>
         <div class="pc-setup-price" id="p4-setup">$585.000 COP</div>
@@ -2638,16 +2683,20 @@
       </div>
       <div class="pricing-card fade-up card-shine">
         <div class="feat-badge feat-badge-empty"></div>
-        <span class="pc-icon">⭐</span>
+        <div class="pc-flip-wrap">
+          <div class="pc-flip-inner">
+            <div class="pc-flip-front">⭐</div>
+            <div class="pc-flip-back">
+              <div class="pc-flip-back-title">¿Cómo funciona?</div>
+              <div class="pc-flip-back-step">1. Sofia pide reseña a cada cliente después de su visita</div>
+              <div class="pc-flip-back-step">2. Responde automáticamente todas las reseñas de Google</div>
+              <div class="pc-flip-back-step">3. Reportes mensuales de reputación y posición en Maps</div>
+            </div>
+          </div>
+        </div>
         <h3 id="p5-name">Sistema de Reputación en Google</h3>
         <p class="pc-niche" id="p5-niche">Para cualquier negocio local que quiera aparecer primero en Google Maps sin pagar publicidad.</p>
         <p style="font-size:12px;color:var(--muted);line-height:1.65;margin:6px 0 10px">Sofia solicita reseñas automáticamente a clientes satisfechos, responde todas las reseñas en Google y monitorea tu reputación. Más reseñas = mejor posición = más clientes.</p>
-        <div style="background:rgba(255,255,255,.03);border-radius:10px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:var(--muted);line-height:1.75">
-          <div style="font-weight:700;color:var(--text);margin-bottom:6px;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase">¿Cómo funciona?</div>
-          <div>1. Sofia pide reseña a cada cliente después de su visita</div>
-          <div>2. Responde automáticamente todas las reseñas de Google</div>
-          <div>3. Reportes mensuales de reputación y posición en Maps</div>
-        </div>
         <div class="pc-divider"></div>
         <div class="pc-setup-lbl" id="setup-lbl5">Setup único</div>
         <div class="pc-setup-price" id="p5-setup">$375.000 COP</div>
