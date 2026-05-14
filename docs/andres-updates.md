@@ -65,6 +65,31 @@ Instrucciones completas en: `docs/INSTRUCCION-PARA-ANDRES-CLAUDE.md`
 
 ---
 
+## 2026-05-14 — Sesión Andrés (tarde)
+
+**Repos tocados:**
+- `aj-business-advisory` → `landing/demo.html`, `status/clients/natalia-dentalia.md`, `brain/session-logs/2026-05-14.md`
+
+**Cambios realizados:**
+
+### Sitio ajbusinessadvisory.com — actualizado con diseño de Valentina ✅
+- `landing/demo.html` reemplazado con el archivo index.html que Valentina mandó por WhatsApp
+- Formulario "Sofia te llama" reparado: apuntaba a `/.netlify/functions/start-call` (incorrecto en Render) → corregido a `/demo/call`
+- Logo reparado: el archivo referenciado (`ULTIMO_LOGO_SIN_LUZ.png`) era una tarjeta de presentación de otra persona → corregido a `/assets/logo.png` (logo real de AJ)
+- 3 commits pusheados → Render desplegó automáticamente
+
+### Meta WABA Natalia — verificación del negocio iniciada ✅
+- WABA lleva +72h en PENDING → raíz del problema: BM "DENTALIA Portfolio comercial" no tenía verificación de negocio
+- Verificación iniciada desde BM Security Center: nombre registrado "DENTALIA ODONTOLOGIA SAS"
+- Meta confirmó: **"En revisión"** → aprobación esperada ~2026-05-16 (2 días hábiles)
+- **Cuando Meta apruebe:** número pasa a CONNECTED automáticamente → Sofia responde sin tocar nada
+
+**Pendientes Valentina:**
+- [ ] Página Natalia (dranataliabarrantes.com en Netlify) — sigue pendiente de la sesión anterior
+- El sitio USA (ajbusinessadvisory.com) ya tiene tu nuevo diseño publicado ✅
+
+---
+
 ## 2026-05-14 — Sesión Andrés
 
 **Repos tocados:**
