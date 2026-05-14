@@ -1003,14 +1003,34 @@
     }
     .pc-icon{font-size:24px;margin:18px 0 10px;display:block}
     /* ── Flip icon en pricing cards ── */
-    .pc-flip-wrap{width:100%;perspective:700px;margin:16px 0 12px}
-    .pc-flip-inner{position:relative;width:100%;height:118px;transition:transform .55s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+    .pc-flip-wrap{width:100%;perspective:700px;margin:16px 0 12px;cursor:pointer}
+    .pc-flip-inner{position:relative;width:100%;height:136px;transition:transform .55s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
     .pc-flip-wrap:hover .pc-flip-inner{transform:rotateY(180deg)}
-    .pc-flip-front,.pc-flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-    .pc-flip-front{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);font-size:42px}
-    .pc-flip-back{transform:rotateY(180deg);background:rgba(181,0,94,.07);border:1px solid rgba(181,0,94,.25);padding:14px 16px;align-items:flex-start;justify-content:flex-start}
+    .pc-flip-front,.pc-flip-back{
+      position:absolute;inset:0;
+      -webkit-backface-visibility:hidden;backface-visibility:hidden;
+      border-radius:12px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+    }
+    .pc-flip-front{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+      font-size:40px;gap:6px;
+    }
+    .pc-flip-front::after{
+      content:'¿Cómo funciona? →';
+      font-size:9.5px;color:rgba(255,255,255,.28);
+      font-weight:600;letter-spacing:.4px;
+    }
+    .pc-flip-back{
+      transform:rotateY(180deg);
+      background:#18000d;
+      border:1px solid rgba(181,0,94,.35);
+      padding:14px 16px;
+      align-items:flex-start;justify-content:flex-start;
+      overflow:hidden;
+    }
     .pc-flip-back-title{font-size:10px;font-weight:800;color:var(--pink);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;width:100%}
-    .pc-flip-back-step{font-size:11px;color:var(--muted);line-height:1.75;width:100%}
+    .pc-flip-back-step{font-size:11px;color:#b8a8cc;line-height:1.8;width:100%}
     .pricing-card h3{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px;line-height:1.3}
     .pc-niche{font-size:10.5px;color:var(--muted);margin-bottom:16px}
     .pc-divider{height:1px;background:rgba(181,0,94,.1);margin-bottom:14px}
