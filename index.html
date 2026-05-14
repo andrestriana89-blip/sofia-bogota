@@ -1004,7 +1004,7 @@
     .pc-icon{font-size:24px;margin:18px 0 10px;display:block}
     /* ── Flip icon en pricing cards ── */
     .pc-flip-wrap{width:100%;perspective:700px;margin:16px 0 12px;cursor:pointer}
-    .pc-flip-inner{position:relative;width:100%;height:136px;transition:transform .55s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
+    .pc-flip-inner{position:relative;width:100%;height:196px;transition:transform .55s cubic-bezier(.4,0,.2,1);transform-style:preserve-3d}
     .pc-flip-wrap:hover .pc-flip-inner{transform:rotateY(180deg)}
     .pc-flip-front,.pc-flip-back{
       position:absolute;inset:0;
@@ -1031,6 +1031,11 @@
     }
     .pc-flip-back-title{font-size:10px;font-weight:800;color:var(--pink);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;width:100%}
     .pc-flip-back-step{font-size:11px;color:#b8a8cc;line-height:1.8;width:100%}
+    .pc-flip-back-ctas{display:flex;gap:7px;margin-top:10px;width:100%}
+    .pc-flip-back-ctas a,.pc-flip-back-ctas button{flex:1;text-align:center;padding:7px 4px;border-radius:8px;font-size:9.5px;font-weight:800;border:none;cursor:pointer;font-family:inherit;text-decoration:none;line-height:1.2}
+    .pc-flip-back-ctas a{background:var(--pink);color:#fff;display:flex;align-items:center;justify-content:center}
+    .pc-flip-back-ctas button{background:#25d366;color:#fff}
+    .btn-wa{background:#25d366!important;color:#fff!important;border:none!important;cursor:pointer;font-family:inherit;font-size:inherit}
     .pricing-card h3{font-size:13px;font-weight:800;color:var(--text);margin-bottom:5px;line-height:1.3}
     .pc-niche{font-size:10.5px;color:var(--muted);margin-bottom:16px}
     .pc-divider{height:1px;background:rgba(181,0,94,.1);margin-bottom:14px}
@@ -1934,7 +1939,7 @@
 
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px">
       <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">📅 Agendar Consultoría</a>
-      <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit">💬 Hablar por WhatsApp</button>
+      <button class="btn-wa" onclick="openWaModal()">💬 Hablar por WhatsApp</button>
     </div>
   </div>
 </section>
@@ -2030,7 +2035,7 @@
         <div class="roi-result-sub" id="roi-res-sub">al mes — antes de contar el tiempo de tu equipo y el costo de adquisición de esos leads.</div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 auto">
           <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="roi-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit">💬 Hablar por WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 Hablar por WhatsApp</button>
         </div>
       </div>
     </div>
@@ -2059,7 +2064,7 @@
         <p id="clinic-p">Citas sin confirmar, agenda con huecos, pacientes que no responden. Sofia confirma cada cita automáticamente, reactiva pacientes dormidos y llena los espacios vacíos — sin que tu equipo haga nada.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="clinic-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 WhatsApp</button>
         </div>
       </div>
       <div class="mock-carousel" data-carousel="clinic">
@@ -2113,7 +2118,7 @@
         <p id="salon-p">Clientes que reservan y no llegan, agenda con huecos de última hora. Sofia envía recordatorios por WhatsApp, confirma automáticamente y reactiva clientes que no han regresado en 30+ días.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="salon-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 WhatsApp</button>
         </div>
       </div>
       <div class="mock-carousel" data-carousel="salon">
@@ -2163,7 +2168,7 @@
         <p id="rest-p">Llamadas perdidas en horas pico, reservas que no llegan. Sofia toma reservas por WhatsApp e Instagram a cualquier hora, confirma automáticamente y reduce no-shows con recordatorios el día antes.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="rest-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 WhatsApp</button>
         </div>
       </div>
       <div class="mock-carousel" data-carousel="restaurant">
@@ -2213,7 +2218,7 @@
         <p id="smb-p">Leads que preguntan por Instagram y desaparecen, WhatsApps sin responder, cotizaciones que nunca se cierran. Sofia responde en segundos, califica al lead y agenda una llamada con tu equipo.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="smb-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 WhatsApp</button>
         </div>
       </div>
       <div class="mock-carousel" data-carousel="smb">
@@ -2263,7 +2268,7 @@
         <p id="any-p">Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema para ti. Empieza con la consultoría gratuita y te decimos exactamente cuánto puedes recuperar.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="any-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 WhatsApp</button>
         </div>
       </div>
       <div class="mock-carousel" data-carousel="any">
@@ -2313,7 +2318,7 @@
         <p id="fit-p">Clientes que preguntan horarios y precios y nunca regresan. Sofia hace el seguimiento automático, agenda clases de prueba y reactiva a quienes dejaron de venir — sin que tu equipo levante un dedo.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a class="btn-outline" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" id="fit-cta">📅 Agendar Consultoría</a>
-          <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:inherit;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 WhatsApp</button>
+          <button class="btn-wa" onclick="openWaModal()">💬 WhatsApp</button>
         </div>
       </div>
       <div class="mock-carousel" data-carousel="fitness">
@@ -2377,6 +2382,10 @@
               <div class="pc-flip-back-step">1. Sofia responde al instante cuando llega un cliente</div>
               <div class="pc-flip-back-step">2. Hace seguimiento automático por WhatsApp hasta el cierre</div>
               <div class="pc-flip-back-step">3. Si no regresó, lo reactiva con el mensaje correcto</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2408,6 +2417,10 @@
               <div class="pc-flip-back-step">1. El equipo produce 4 Reels + 20 carruseles mensuales</div>
               <div class="pc-flip-back-step">2. Sofia responde comentarios y DMs automáticamente</div>
               <div class="pc-flip-back-step">3. Cada interacción se convierte en un cliente agendado</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2440,6 +2453,10 @@
               <div class="pc-flip-back-step">1. Diseñamos y publicamos tu web con SEO local</div>
               <div class="pc-flip-back-step">2. Sofia responde WhatsApp e Instagram 24/7</div>
               <div class="pc-flip-back-step">3. Seguimiento automático a cada lead hasta el cierre</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2471,6 +2488,10 @@
               <div class="pc-flip-back-step">1. Cargamos tu base de datos de clientes</div>
               <div class="pc-flip-back-step">2. Sofia segmenta por tiempo sin visita y les escribe</div>
               <div class="pc-flip-back-step">3. Mide cuántos regresaron y cuánto recuperaste</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2501,6 +2522,10 @@
               <div class="pc-flip-back-step">1. Sofia pide reseña a cada cliente después de su visita</div>
               <div class="pc-flip-back-step">2. Responde automáticamente todas las reseñas de Google</div>
               <div class="pc-flip-back-step">3. Reportes mensuales de reputación y posición en Maps</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2541,7 +2566,7 @@
       </ul>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px" id="audit-cta">📅 Agendar Consultoría Gratuita</a>
-        <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:13px;padding:13px 28px;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 Hablar por WhatsApp</button>
+        <button class="btn-wa" onclick="openWaModal()" style="font-size:13px;padding:13px 28px">💬 Hablar por WhatsApp</button>
       </div>
       <p class="audit-note" id="audit-note">Sin costo. Sin compromiso. Solo claridad.</p>
     </div>
@@ -2591,6 +2616,10 @@
               <div class="pc-flip-back-step">1. Sofia responde al instante cuando llega un cliente</div>
               <div class="pc-flip-back-step">2. Hace seguimiento automático por WhatsApp hasta el cierre</div>
               <div class="pc-flip-back-step">3. Si no regresó, lo reactiva con el mensaje correcto</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2621,6 +2650,10 @@
               <div class="pc-flip-back-step">1. El equipo produce 4 Reels + 20 carruseles mensuales</div>
               <div class="pc-flip-back-step">2. Sofia responde comentarios y DMs automáticamente</div>
               <div class="pc-flip-back-step">3. Cada interacción se convierte en un cliente agendado</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2652,6 +2685,10 @@
               <div class="pc-flip-back-step">1. Diseñamos y publicamos tu web con SEO local</div>
               <div class="pc-flip-back-step">2. Sofia responde WhatsApp e Instagram 24/7</div>
               <div class="pc-flip-back-step">3. Seguimiento automático a cada lead hasta el cierre</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2682,6 +2719,10 @@
               <div class="pc-flip-back-step">1. Cargamos tu base de datos de clientes</div>
               <div class="pc-flip-back-step">2. Sofia segmenta por tiempo sin visita y les escribe</div>
               <div class="pc-flip-back-step">3. Mide cuántos regresaron y cuánto recuperaste</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2711,6 +2752,10 @@
               <div class="pc-flip-back-step">1. Sofia pide reseña a cada cliente después de su visita</div>
               <div class="pc-flip-back-step">2. Responde automáticamente todas las reseñas de Google</div>
               <div class="pc-flip-back-step">3. Reportes mensuales de reputación y posición en Maps</div>
+              <div class="pc-flip-back-ctas">
+                <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">📅 Consultoría</a>
+                <button onclick="openWaModal()">💬 WhatsApp</button>
+              </div>
             </div>
           </div>
         </div>
@@ -2750,7 +2795,7 @@
       </ul>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
         <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:13px;padding:13px 28px" id="audit-cta">📅 Agendar Consultoría Gratuita</a>
-        <button class="btn-outline" onclick="openWaModal()" style="cursor:pointer;font-size:13px;padding:13px 28px;font-family:inherit;border-color:rgba(37,211,102,.4);color:#25d366">💬 Hablar por WhatsApp</button>
+        <button class="btn-wa" onclick="openWaModal()" style="font-size:13px;padding:13px 28px">💬 Hablar por WhatsApp</button>
       </div>
       <p class="audit-note" id="audit-note">Sin costo. Sin compromiso. Solo claridad.</p>
     </div>
