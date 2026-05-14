@@ -5,6 +5,38 @@
 
 ---
 
+## 2026-05-14 — Sesión Valentina (globos + hero fotorealista)
+
+**Repos tocados:**
+- `sofia-bogota` → `index.html` (commits `2e87c4b`, `e174fce`)
+
+**Cambios realizados:**
+
+### Globos de los planes de precios — colores y animaciones únicas
+- ✅ **Plan 1 — Appointment Recovery:** violeta/púrpura · órbita suave estándar
+- ✅ **Plan 2 — Instagram Growth + ManyChat:** naranja + rosado fuerte (colores Instagram) · giro rápido con eje oscilante
+- ✅ **Plan 3 — SMB Digital Presence:** azul + teal/verde · wobble lento
+- ✅ **Plan 4 — Dormant Client Reactivation:** amarillo/gold + verde · pulso rítmico (surge)
+- ✅ **Plan 5 — Google Reputation:** indigo/navy + cian · rotación inversa + tilt dramático
+
+### Hero globe — tierra fotorealista
+- ✅ Océano muy oscuro (#040c1e → #010308) — igual a la imagen de referencia
+- ✅ Continentes con colores oscuros reales (selva, templado, árido, boreal, hielo polar)
+- ✅ Parches de nubes sobre la superficie con iluminación solar
+- ✅ Terminador día/noche — lado nocturno oscurecido con gradiente
+- ✅ Luces de ciudad cálidas (amarillo-naranja) visibles solo en el lado nocturno
+- ✅ Resplandor solar fijo en espacio superior derecho
+- ✅ Arcos y partículas animadas (líneas azul-cian entre ciudades)
+
+**Pendientes para Andrés:**
+- [ ] **Netlify está devolviendo 503** — verificar en dashboard si el deploy está caído o pausado
+- [ ] Si Netlify sigue sin funcionar: conectar repo `sofia-bogota` en Render como Static Site (sin build command, publish path `.`)
+- [ ] Una vez en Render: actualizar CNAME de `sofia.ajbusinessadvisory.com` en Namecheap apuntando al dominio de Render
+- [ ] Revisar `submitSofiaCall` — actualmente llama a `/.netlify/functions/start-call` — si pasa a Render este endpoint cambia
+- [ ] Verificar que los textos en inglés estén correctos (cambiar selector a `us EN` en la barra superior)
+
+---
+
 ## 2026-05-14 — Sesión Andrés
 
 **Repos tocados:**
