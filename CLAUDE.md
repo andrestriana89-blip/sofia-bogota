@@ -11,9 +11,10 @@
 
 Antes de cualquier `git push` que dispare un deploy en Netlify o Render, Claude debe:
 
-1. **Preguntar:** *"¿Tienes algo más para este sitio hoy? Solo podemos subir UNA vez al día."*
-2. **Sugerir:** *"Revisa los cambios en el archivo HTML local antes de publicar para confirmar que todo está bien."*
-3. **Solo entonces** hacer el commit + push.
+1. **Preguntar:** *"¿Tienes algo más para este sitio hoy? Solo podemos subir UNA vez al día — todo en un solo paquete."*
+2. **Sugerir:** *"Revisa los cambios en el HTML local antes de publicar para confirmar que todo está bien."*
+3. **Acumular** todos los cambios de la sesión en el archivo antes de hacer commit.
+4. **1 solo commit que incluya TODO** + 1 push. Nunca varios pushes pequeños.
 
 ### Por qué
 - Los créditos de build se agotan rápido si se hace push por cada cambio pequeño
