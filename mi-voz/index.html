@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mi Voz">
+<meta name="theme-color" content="#1a4a7a">
+<title>Mi Voz</title>
+<style>
+:root{
+  --navy:#1a4a7a;--navy2:#143d66;--gold:#c9963a;--gold-lt:#f7e9d0;
+  --bg:#f5f2ed;--white:#fff;--green:#14a35c;--green-lt:#e6f8ef;
+  --text:#1a2c3d;--text-2:#4a6278;--text-3:#8aa0b2;
+  --shadow-m:0 4px 18px rgba(26,74,122,0.13);--r:18px;--r-sm:12px;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+html{height:100%;-webkit-text-size-adjust:100%;}
+body{font-family:-apple-system,'SF Pro Rounded','Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);height:100dvh;display:flex;flex-direction:column;overflow:hidden;user-select:none;-webkit-user-select:none;}
+
+/* ── UTILS ── */
+.hidden{display:none!important;}
+
+/* ── SETUP SCREEN ── */
+#screenSetup{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);}
+.step{flex:1;display:flex;flex-direction:column;overflow-y:auto;padding:24px 20px 160px;animation:fadeUp .35s var(--ease);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.step-hero{text-align:center;margin-bottom:28px;}
+.step-hero .ico{font-size:52px;margin-bottom:12px;}
+.step-hero h2{font-size:1.5rem;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.step-hero p{font-size:.9rem;color:var(--text-2);line-height:1.55;max-width:300px;margin:0 auto;}
+
+/* Language grid */
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.lang-card{background:var(--white);border:2.5px solid #e0ddd8;border-radius:var(--r);padding:20px 14px;text-align:center;cursor:pointer;transition:border-color .2s,transform .15s,box-shadow .2s;}
+.lang-card:active{transform:scale(.97);}
+.lang-card.selected{border-color:var(--navy);box-shadow:0 0 0 3px rgba(26,74,122,0.12);}
+.lang-card .flag{font-size:32px;margin-bottom:8px;}
+.lang-card .lname{font-size:1rem;font-weight:700;color:var(--text);}
+.lang-card .lsub{font-size:.75rem;color:var(--text-3);margin-top:2px;}
+
+/* Name input */
+.name-input{width:100%;border:2px solid #e0ddd8;border-radius:var(--r-sm);padding:16px;font-size:1.1rem;font-family:inherit;background:var(--white);color:var(--text);outline:none;transition:border-color .2s;}
+.name-input:focus{border-color:var(--navy);}
+
+/* Voice list */
+.voice-list{display:flex;flex-direction:column;gap:10px;}
+.voice-item{background:var(--white);border:2px solid #e0ddd8;border-radius:var(--r-sm);padding:14px 16px;display:flex;align-items:center;gap:12px;cursor:pointer;transition:border-color .2s;}
+.voice-item.selected{border-color:var(--navy);background:#f0f5fb;}
+.voice-name{flex:1;font-size:.95rem;font-weight:600;color:var(--text);}
+.voice-tag{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--gold-lt);color:var(--gold);}
+.voice-preview{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:.75rem;font-weight:700;cursor:pointer;}
+
+/* Install steps */
+.install-steps{display:flex;flex-direction:column;gap:12px;}
+.install-step{background:var(--white);border-radius:var(--r-sm);padding:14px 16px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-m);}
+.install-num{width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.install-txt{font-size:.9rem;color:var(--text-2);line-height:1.5;}
+.install-txt strong{color:var(--text);}
+.device-tabs{display:flex;gap:8px;margin-bottom:16px;}
+.device-tab{flex:1;padding:8px;border-radius:8px;border:2px solid #e0ddd8;text-align:center;font-size:.8rem;font-weight:700;cursor:pointer;background:var(--white);}
+.device-tab.active{border-color:var(--navy);background:#f0f5fb;color:var(--navy);}
+
+/* Caregiver setup */
+.room-code-box{background:var(--white);border:2px solid var(--gold);border-radius:var(--r);padding:20px;text-align:center;margin-bottom:16px;}
+.room-code{font-size:1.6rem;font-weight:800;letter-spacing:4px;color:var(--navy);font-family:'Courier New',monospace;margin-bottom:6px;}
+.room-sub{font-size:.8rem;color:var(--text-2);}
+.share-btn{width:100%;background:var(--navy);color:#fff;border:none;border-radius:var(--r-sm);padding:14px;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;}
+.ntfy-note{background:var(--green-lt);border:1px solid rgba(20,163,92,.3);border-radius:var(--r-sm);padding:12px 14px;font-size:.8rem;color:#0d6e3d;line-height:1.55;}
+
+/* ── WISPR FLOATING CARD ── */
+#wisprCard{
+  position:fixed;bottom:0;left:0;right:0;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);
+  border-radius:24px 24px 0 0;
+  padding:20px 20px 32px;
+  box-shadow:0 -8px 40px rgba(26,74,122,.35);
+  z-index:100;
+  animation:slideUp .4s var(--ease);
+  transition:transform .35s var(--ease);
+}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.wispr-steps{display:flex;gap:5px;justify-content:center;margin-bottom:16px;}
+.wispr-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .3s,width .3s;}
+.wispr-dot.active{background:#fff;width:18px;border-radius:3px;}
+.wispr-body{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.wispr-ico{font-size:28px;flex-shrink:0;}
+.wispr-title{font-size:1rem;font-weight:800;color:#fff;margin-bottom:3px;}
+.wispr-desc{font-size:.82rem;color:rgba(255,255,255,.72);line-height:1.5;}
+.wispr-actions{display:flex;gap:8px;}
+.wispr-next{flex:1;background:#fff;color:var(--navy);border:none;border-radius:12px;padding:13px;font-size:.9rem;font-weight:800;cursor:pointer;transition:opacity .15s;}
+.wispr-next:active{opacity:.8;}
+.wispr-skip{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8);border:none;border-radius:12px;padding:13px 16px;font-size:.85rem;font-weight:600;cursor:pointer;}
+
+/* ── MAIN APP SCREEN ── */
+#screenApp{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+
+/* Header */
+.app-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);padding:12px 16px 11px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 12px rgba(26,74,122,.35);}
+.app-header-left{display:flex;align-items:center;gap:10px;}
+.app-avatar{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),#e8a840);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.app-name{font-size:clamp(14px,4vw,18px);font-weight:700;color:#fff;}
+.app-sub{font-size:11px;color:rgba(255,255,255,.55);margin-top:1px;}
+.settings-btn{background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.2);color:#fff;font-size:18px;width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+
+/* Phrase bar */
+.phrase-section{padding:12px 14px 0;flex-shrink:0;}
+.phrase-bar{background:var(--white);border-radius:var(--r);padding:12px 12px 12px 16px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow-m);border:2px solid transparent;transition:border-color .3s;min-height:64px;}
+.phrase-bar.speaking{border-color:var(--gold);animation:barPulse .7s ease-in-out infinite alternate;}
+@keyframes barPulse{to{box-shadow:0 0 0 4px rgba(201,150,58,.2);}}
+.phrase-text{flex:1;font-size:clamp(14px,4vw,18px);font-weight:600;color:var(--text);line-height:1.3;}
+.phrase-text.empty{color:var(--text-3);font-weight:400;font-style:italic;}
+.speak-btn{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;border:none;border-radius:12px;width:48px;height:48px;font-size:22px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 3px 12px rgba(26,74,122,.35);flex-shrink:0;transition:transform .1s;}
+.speak-btn:active{transform:scale(.93);}
+
+/* Category tabs */
+.tabs-wrap{padding:14px 14px 0;flex-shrink:0;}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{background:var(--white);border:1.5px solid #e0ddd8;border-radius:20px;padding:7px 14px;font-size:.78rem;font-weight:700;color:var(--text-2);white-space:nowrap;cursor:pointer;flex-shrink:0;transition:all .2s;}
+.tab.active{background:var(--navy);border-color:var(--navy);color:#fff;}
+
+/* Phrase grid */
+.phrase-grid-wrap{flex:1;overflow-y:auto;padding:12px 14px 24px;}
+.phrase-grid{display:flex;flex-wrap:wrap;gap:10px;}
+.bubble{background:var(--white);border:1.5px solid #e8e4dc;border-radius:14px;padding:11px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;transition:transform .12s,box-shadow .15s;box-shadow:var(--shadow-m);}
+.bubble:active{transform:scale(.95);box-shadow:none;}
+.b-ico{font-size:20px;flex-shrink:0;}
+.b-txt{font-size:.85rem;font-weight:600;color:var(--text);line-height:1.25;}
+.bubble.custom-bubble{border-color:var(--gold-lt);background:#fffdf8;position:relative;}
+.custom-del{position:absolute;top:5px;right:5px;background:none;border:none;font-size:11px;color:var(--text-3);cursor:pointer;padding:2px;line-height:1;}
+.custom-add-bar{width:100%;background:var(--gold-lt);border:1.5px dashed var(--gold);border-radius:14px;padding:14px;font-size:.85rem;font-weight:700;color:var(--gold);cursor:pointer;margin-bottom:10px;text-align:center;}
+.custom-empty{text-align:center;padding:32px 20px;color:var(--text-3);}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(4px);z-index:200;display:flex;align-items:flex-end;}
+.modal-sheet{background:var(--white);border-radius:24px 24px 0 0;padding:24px 20px 40px;width:100%;animation:slideUp .3s var(--ease);}
+.modal-handle{width:36px;height:4px;background:#e0ddd8;border-radius:2px;margin:0 auto 20px;}
+.modal-title{font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:16px;}
+.modal-input{width:100%;border:2px solid #e0ddd8;border-radius:var(--r-sm);padding:14px;font-size:1rem;font-family:inherit;background:var(--bg);color:var(--text);outline:none;margin-bottom:12px;}
+.modal-input:focus{border-color:var(--navy);}
+.emoji-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.emoji-opt{width:38px;height:38px;border-radius:10px;border:2px solid transparent;font-size:20px;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.emoji-opt.selected{border-color:var(--navy);background:#f0f5fb;}
+.modal-save{width:100%;background:var(--navy);color:#fff;border:none;border-radius:12px;padding:14px;font-size:.95rem;font-weight:800;cursor:pointer;}
+
+/* ── SETTINGS DRAWER ── */
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:150;display:flex;justify-content:flex-end;}
+.drawer-panel{background:var(--white);width:min(320px,90vw);height:100%;overflow-y:auto;padding:24px 20px;animation:slideRight .3s var(--ease);}
+@keyframes slideRight{from{transform:translateX(100%);}to{transform:translateX(0);}}
+.drawer-title{font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:20px;}
+.drawer-section{margin-bottom:24px;}
+.drawer-label{font-size:.7rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);margin-bottom:10px;}
+.drawer-voice-list{display:flex;flex-direction:column;gap:8px;max-height:200px;overflow-y:auto;}
+.drawer-close{background:none;border:none;font-size:22px;color:var(--text-3);cursor:pointer;float:right;padding:0;}
+.drawer-item{background:var(--bg);border:2px solid #e0ddd8;border-radius:10px;padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;font-size:.88rem;font-weight:600;}
+.drawer-item.selected{border-color:var(--navy);background:#f0f5fb;color:var(--navy);}
+.caregiver-link-box{background:var(--bg);border:1.5px solid #e0ddd8;border-radius:10px;padding:12px;font-size:.78rem;color:var(--text-2);word-break:break-all;margin-bottom:8px;}
+</style>
+</head>
+<body>
+
+<!-- ══ SETUP SCREEN ══════════════════════════════════════════════ -->
+<div id="screenSetup">
+
+  <!-- Step 1: Language -->
+  <div class="step" id="stepLang">
+    <div class="step-hero">
+      <div class="ico">🌍</div>
+      <h2 id="s1title">¿Qué idioma?</h2>
+      <p id="s1sub">Elige el idioma en que la persona quiere comunicarse</p>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card selected" data-lang="es" onclick="selectLang(this)">
+        <div class="flag">🇨🇴</div>
+        <div class="lname">Español</div>
+        <div class="lsub">Spanish</div>
+      </div>
+      <div class="lang-card" data-lang="en" onclick="selectLang(this)">
+        <div class="flag">🇺🇸</div>
+        <div class="lname">English</div>
+        <div class="lsub">Inglés</div>
+      </div>
+      <div class="lang-card" data-lang="fr" onclick="selectLang(this)">
+        <div class="flag">🇫🇷</div>
+        <div class="lname">Français</div>
+        <div class="lsub">Francés</div>
+      </div>
+      <div class="lang-card" data-lang="pt" onclick="selectLang(this)">
+        <div class="flag">🇧🇷</div>
+        <div class="lname">Português</div>
+        <div class="lsub">Portugués</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Name -->
+  <div class="step hidden" id="stepName">
+    <div class="step-hero">
+      <div class="ico">👤</div>
+      <h2 id="s2title">¿Cómo se llama?</h2>
+      <p id="s2sub">El nombre aparecerá en la app y en las notificaciones al cuidador</p>
+    </div>
+    <input class="name-input" id="nameInput" type="text" placeholder="Nombre de la persona..." maxlength="30">
+  </div>
+
+  <!-- Step 3: Voice -->
+  <div class="step hidden" id="stepVoice">
+    <div class="step-hero">
+      <div class="ico">🎙️</div>
+      <h2 id="s3title">Elige una voz</h2>
+      <p id="s3sub">Toca ▶ para escuchar cada opción</p>
+    </div>
+    <div class="voice-list" id="voiceList">
+      <p style="color:var(--text-3);font-size:.9rem;text-align:center;padding:20px">Cargando voces…</p>
+    </div>
+  </div>
+
+  <!-- Step 4: Install -->
+  <div class="step hidden" id="stepInstall">
+    <div class="step-hero">
+      <div class="ico">📱</div>
+      <h2 id="s4title">Instala la app</h2>
+      <p id="s4sub">Agrégala a la pantalla de inicio para que funcione como app nativa</p>
+    </div>
+    <div class="device-tabs">
+      <div class="device-tab active" id="tabIOS" onclick="showDevice('ios')">iPhone / iPad</div>
+      <div class="device-tab" id="tabAndroid" onclick="showDevice('android')">Android</div>
+    </div>
+    <div class="install-steps" id="installSteps">
+      <div class="install-step">
+        <div class="install-num">1</div>
+        <div class="install-txt">Abre esta página en <strong>Safari</strong> (no Chrome)</div>
+      </div>
+      <div class="install-step">
+        <div class="install-num">2</div>
+        <div class="install-txt">Toca el ícono <strong>📤 Compartir</strong> en la barra inferior</div>
+      </div>
+      <div class="install-step">
+        <div class="install-num">3</div>
+        <div class="install-txt">Desplázate y toca <strong>"Agregar a pantalla de inicio"</strong></div>
+      </div>
+      <div class="install-step">
+        <div class="install-num">4</div>
+        <div class="install-txt">Toca <strong>"Agregar"</strong> arriba a la derecha</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 5: Caregiver -->
+  <div class="step hidden" id="stepCaregiver">
+    <div class="step-hero">
+      <div class="ico">🔔</div>
+      <h2 id="s5title">Conecta al cuidador</h2>
+      <p id="s5sub">El cuidador recibirá una notificación cada vez que se pida algo</p>
+    </div>
+    <div class="room-code-box">
+      <div id="displayRoomCode" class="room-code">——</div>
+      <div class="room-sub" id="roomSub">Código único de esta persona</div>
+    </div>
+    <button class="share-btn" onclick="shareCaregiverLink()">📤 Compartir link del cuidador</button>
+    <div class="ntfy-note">
+      💡 <strong>Opción extra:</strong> El cuidador puede descargar la app <strong>ntfy</strong> (gratis, iOS y Android) y suscribirse al código de arriba para recibir notificaciones incluso con la pantalla apagada — y en el <strong>Apple Watch</strong> automáticamente.
+    </div>
+  </div>
+
+</div><!-- /screenSetup -->
+
+<!-- ══ MAIN APP SCREEN ═════════════════════════════════════════ -->
+<div id="screenApp" class="hidden">
+  <header class="app-header">
+    <div class="app-header-left">
+      <div class="app-avatar" id="appAvatar">👤</div>
+      <div>
+        <div class="app-name" id="appName">Mi Voz</div>
+        <div class="app-sub" id="appSub">Toca una frase para hablar</div>
+      </div>
+    </div>
+    <div class="settings-btn" onclick="openDrawer()">⚙️</div>
+  </header>
+
+  <div class="phrase-section">
+    <div class="phrase-bar" id="phraseBar">
+      <span class="phrase-text empty" id="phraseText" id="phraseText">Selecciona una frase…</span>
+      <button class="speak-btn" onclick="speakPhrase()" aria-label="Hablar">🔊</button>
+    </div>
+  </div>
+
+  <div class="tabs-wrap">
+    <div class="tabs" id="tabsRow"></div>
+  </div>
+
+  <div class="phrase-grid-wrap">
+    <div class="phrase-grid" id="phraseGrid"></div>
+  </div>
+</div>
+
+<!-- ══ WISPR FLOATING CARD ═════════════════════════════════════ -->
+<div id="wisprCard">
+  <div class="wispr-steps" id="wisprDots"></div>
+  <div class="wispr-body">
+    <div class="wispr-ico" id="wisprIco">🌍</div>
+    <div>
+      <div class="wispr-title" id="wisprTitle">Elige el idioma</div>
+      <div class="wispr-desc" id="wisprDesc">Toca el idioma en el que la persona quiere comunicarse</div>
+    </div>
+  </div>
+  <div class="wispr-actions">
+    <button class="wispr-next" id="wisprNext" onclick="nextStep()">Continuar →</button>
+    <button class="wispr-skip" onclick="skipStep()">Saltar</button>
+  </div>
+</div>
+
+<!-- ══ CUSTOM PHRASE MODAL ═════════════════════════════════════ -->
+<div class="modal-overlay hidden" id="modal" onclick="modalBgClick(event)">
+  <div class="modal-sheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title" id="modalTitle">Agregar frase</div>
+    <input class="modal-input" id="modalInput" type="text" maxlength="80">
+    <div class="emoji-row" id="emojiRow"></div>
+    <button class="modal-save" onclick="savePhrase()" id="modalSave">Guardar frase</button>
+  </div>
+</div>
+
+<!-- ══ SETTINGS DRAWER ════════════════════════════════════════ -->
+<div class="drawer-overlay hidden" id="drawer" onclick="drawerBgClick(event)">
+  <div class="drawer-panel">
+    <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <div class="drawer-title" id="drawerTitle">Ajustes</div>
+
+    <div class="drawer-section">
+      <div class="drawer-label" id="dLangLabel">Idioma</div>
+      <div class="lang-grid" style="gap:8px" id="drawerLangs">
+        <div class="drawer-item" data-lang="es" onclick="changeLang(this)">🇨🇴 Español</div>
+        <div class="drawer-item" data-lang="en" onclick="changeLang(this)">🇺🇸 English</div>
+        <div class="drawer-item" data-lang="fr" onclick="changeLang(this)">🇫🇷 Français</div>
+        <div class="drawer-item" data-lang="pt" onclick="changeLang(this)">🇧🇷 Português</div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="drawer-label" id="dVoiceLabel">Voz</div>
+      <div class="drawer-voice-list" id="drawerVoiceList"></div>
+    </div>
+
+    <div class="drawer-section">
+      <div class="drawer-label" id="dCaregiverLabel">Cuidador</div>
+      <div class="caregiver-link-box" id="drawerCaregiverLink">—</div>
+      <button class="share-btn" style="margin-top:0" onclick="shareCaregiverLink()">📤 Compartir link</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   TRANSLATIONS
+═══════════════════════════════════════════════════════════════ */
+const T = {
+  es: {
+    appSub:'Toca una frase para hablar', phraseEmpty:'Selecciona una frase…',
+    cats:['Necesidades','Emociones','Preguntas','Comida','Mis frases'],
+    phrases:[
+      [{e:'💧',t:'Quiero agua'},{e:'🍽️',t:'Tengo hambre'},{e:'🚿',t:'Necesito ir al baño'},
+       {e:'😴',t:'Quiero dormir'},{e:'🥶',t:'Tengo frío'},{e:'🥵',t:'Tengo calor'},
+       {e:'💊',t:'Necesito mi medicina'},{e:'🆘',t:'Necesito ayuda'}],
+      [{e:'😊',t:'Me siento bien'},{e:'😣',t:'Me duele'},{e:'😔',t:'Estoy triste'},
+       {e:'😌',t:'Estoy tranquilo'},{e:'🥱',t:'Estoy cansado'},{e:'🤗',t:'Necesito compañía'},
+       {e:'❤️',t:'Te quiero'},{e:'🙏',t:'Gracias'}],
+      [{e:'🕐',t:'¿Qué hora es?'},{e:'📍',t:'¿Dónde estás?'},{e:'📅',t:'¿Cuándo vienen?'},
+       {e:'👋',t:'¿Puedes acercarte?'},{e:'📞',t:'¿Puedes llamar a alguien?'},{e:'🍛',t:'¿Qué hay de comer?'},
+       {e:'📺',t:'¿Puedes poner la televisión?'},{e:'🔇',t:'¿Puedes bajar el volumen?'}],
+      [{e:'☕',t:'Quiero café'},{e:'🍵',t:'Quiero sopa'},{e:'🍞',t:'Quiero pan'},
+       {e:'🍎',t:'Quiero fruta'},{e:'🥤',t:'Quiero jugo'},{e:'🥛',t:'Quiero leche'},
+       {e:'🚫',t:'No tengo hambre'},{e:'🍬',t:'Quiero algo dulce'}],
+    ],
+    addPhrase:'＋  Agregar mi frase', addModal:'Agregar frase', save:'Guardar frase',
+    inputPlaceholder:'Escribe la frase…', customEmpty:'Escribe lo que más pides y aparecerá aquí como botón.',
+    settingsTitle:'Ajustes', langLabel:'IDIOMA', voiceLabel:'VOZ', caregiverLabel:'CUIDADOR',
+    caregiverLinkLabel:'Link del cuidador', noVoices:'No hay voces en este idioma.',
+    shareMsg:'Link del panel del cuidador para',
+  },
+  en: {
+    appSub:'Tap a phrase to speak', phraseEmpty:'Select a phrase…',
+    cats:['Needs','Feelings','Questions','Food','My phrases'],
+    phrases:[
+      [{e:'💧',t:'I want water'},{e:'🍽️',t:"I'm hungry"},{e:'🚿',t:'I need the bathroom'},
+       {e:'😴',t:'I want to sleep'},{e:'🥶',t:"I'm cold"},{e:'🥵',t:"I'm hot"},
+       {e:'💊',t:'I need my medicine'},{e:'🆘',t:'I need help'}],
+      [{e:'😊',t:'I feel good'},{e:'😣',t:"I'm in pain"},{e:'😔',t:'I feel sad'},
+       {e:'😌',t:'I feel calm'},{e:'🥱',t:"I'm tired"},{e:'🤗',t:'I need company'},
+       {e:'❤️',t:'I love you'},{e:'🙏',t:'Thank you'}],
+      [{e:'🕐',t:'What time is it?'},{e:'📍',t:'Where are you?'},{e:'📅',t:'When are you coming?'},
+       {e:'👋',t:'Can you come closer?'},{e:'📞',t:'Can you call someone?'},{e:'🍛',t:"What's for lunch?"},
+       {e:'📺',t:'Can you turn on the TV?'},{e:'🔇',t:'Can you lower the volume?'}],
+      [{e:'☕',t:'I want coffee'},{e:'🍵',t:'I want soup'},{e:'🍞',t:'I want bread'},
+       {e:'🍎',t:'I want fruit'},{e:'🥤',t:'I want juice'},{e:'🥛',t:'I want milk'},
+       {e:'🚫',t:"I'm not hungry"},{e:'🍬',t:'I want something sweet'}],
+    ],
+    addPhrase:'＋  Add my phrase', addModal:'Add phrase', save:'Save phrase',
+    inputPlaceholder:'Type the phrase…', customEmpty:'Write your most-used phrases and they will appear here.',
+    settingsTitle:'Settings', langLabel:'LANGUAGE', voiceLabel:'VOICE', caregiverLabel:'CAREGIVER',
+    caregiverLinkLabel:'Caregiver link', noVoices:'No voices for this language.',
+    shareMsg:'Caregiver panel link for',
+  },
+  fr: {
+    appSub:'Touchez une phrase pour parler', phraseEmpty:'Sélectionnez une phrase…',
+    cats:['Besoins','Émotions','Questions','Nourriture','Mes phrases'],
+    phrases:[
+      [{e:'💧',t:"Je veux de l'eau"},{e:'🍽️',t:"J'ai faim"},{e:'🚿',t:'J\'ai besoin d\'aller aux toilettes'},
+       {e:'😴',t:'Je veux dormir'},{e:'🥶',t:"J'ai froid"},{e:'🥵',t:"J'ai chaud"},
+       {e:'💊',t:'J\'ai besoin de mon médicament'},{e:'🆘',t:"J'ai besoin d'aide"}],
+      [{e:'😊',t:'Je me sens bien'},{e:'😣',t:"J'ai mal"},{e:'😔',t:'Je suis triste'},
+       {e:'😌',t:'Je suis calme'},{e:'🥱',t:'Je suis fatigué'},{e:'🤗',t:"J'ai besoin de compagnie"},
+       {e:'❤️',t:'Je vous aime'},{e:'🙏',t:'Merci'}],
+      [{e:'🕐',t:'Quelle heure est-il?'},{e:'📍',t:'Où êtes-vous?'},{e:'📅',t:'Quand venez-vous?'},
+       {e:'👋',t:'Pouvez-vous vous approcher?'},{e:'📞',t:'Pouvez-vous appeler quelqu\'un?'},
+       {e:'🍛',t:"Qu'est-ce qu'il y a à manger?"},{e:'📺',t:'Pouvez-vous allumer la télé?'},{e:'🔇',t:'Pouvez-vous baisser le volume?'}],
+      [{e:'☕',t:'Je veux du café'},{e:'🍵',t:'Je veux de la soupe'},{e:'🍞',t:'Je veux du pain'},
+       {e:'🍎',t:'Je veux des fruits'},{e:'🥤',t:'Je veux du jus'},{e:'🥛',t:'Je veux du lait'},
+       {e:'🚫',t:"Je n'ai pas faim"},{e:'🍬',t:'Je veux quelque chose de sucré'}],
+    ],
+    addPhrase:'＋  Ajouter ma phrase', addModal:'Ajouter une phrase', save:'Enregistrer',
+    inputPlaceholder:'Écrivez la phrase…', customEmpty:'Écrivez vos phrases les plus utilisées.',
+    settingsTitle:'Paramètres', langLabel:'LANGUE', voiceLabel:'VOIX', caregiverLabel:'AIDANT',
+    caregiverLinkLabel:'Lien aidant', noVoices:'Aucune voix pour cette langue.',
+    shareMsg:'Lien du panneau aidant pour',
+  },
+  pt: {
+    appSub:'Toque em uma frase para falar', phraseEmpty:'Selecione uma frase…',
+    cats:['Necessidades','Emoções','Perguntas','Comida','Minhas frases'],
+    phrases:[
+      [{e:'💧',t:'Quero água'},{e:'🍽️',t:'Estou com fome'},{e:'🚿',t:'Preciso ir ao banheiro'},
+       {e:'😴',t:'Quero dormir'},{e:'🥶',t:'Estou com frio'},{e:'🥵',t:'Estou com calor'},
+       {e:'💊',t:'Preciso do meu remédio'},{e:'🆘',t:'Preciso de ajuda'}],
+      [{e:'😊',t:'Estou bem'},{e:'😣',t:'Estou com dor'},{e:'😔',t:'Estou triste'},
+       {e:'😌',t:'Estou calmo'},{e:'🥱',t:'Estou cansado'},{e:'🤗',t:'Preciso de companhia'},
+       {e:'❤️',t:'Te amo'},{e:'🙏',t:'Obrigado'}],
+      [{e:'🕐',t:'Que horas são?'},{e:'📍',t:'Onde você está?'},{e:'📅',t:'Quando você vem?'},
+       {e:'👋',t:'Pode se aproximar?'},{e:'📞',t:'Pode chamar alguém?'},{e:'🍛',t:'O que tem para comer?'},
+       {e:'📺',t:'Pode ligar a televisão?'},{e:'🔇',t:'Pode baixar o volume?'}],
+      [{e:'☕',t:'Quero café'},{e:'🍵',t:'Quero sopa'},{e:'🍞',t:'Quero pão'},
+       {e:'🍎',t:'Quero fruta'},{e:'🥤',t:'Quero suco'},{e:'🥛',t:'Quero leite'},
+       {e:'🚫',t:'Não estou com fome'},{e:'🍬',t:'Quero algo doce'}],
+    ],
+    addPhrase:'＋  Adicionar frase', addModal:'Adicionar frase', save:'Salvar frase',
+    inputPlaceholder:'Escreva a frase…', customEmpty:'Escreva as frases que mais usa.',
+    settingsTitle:'Configurações', langLabel:'IDIOMA', voiceLabel:'VOZ', caregiverLabel:'CUIDADOR',
+    caregiverLinkLabel:'Link do cuidador', noVoices:'Nenhuma voz para este idioma.',
+    shareMsg:'Link do painel do cuidador para',
+  },
+};
+
+const EMOJIS = ['💬','❤️','👋','🙏','😊','🍽️','💧','🌟','🎵','🌸'];
+const AVATARS = ['👴','👵','🧓','👨','👩','🧑'];
+const CUSTOM_KEY = 'mv_custom';
+const STATE_KEY  = 'mv_state';
+
+/* ═══════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════ */
+let state = {
+  setup: false,        // setup complete?
+  lang: 'es',
+  name: '',
+  voiceName: '',
+  roomCode: '',
+  activeTab: 0,
+  step: 0,             // onboarding step 0-4
+};
+let currentPhrase = '';
+let selectedVoice = null;
+let selectedEmoji = EMOJIS[0];
+let speaking = false;
+
+function loadState() {
+  try { const s = JSON.parse(localStorage.getItem(STATE_KEY)); if (s) state = {...state, ...s}; } catch(e) {}
+}
+function saveState() {
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ONBOARDING (Wispr Flow style)
+═══════════════════════════════════════════════════════════════ */
+const STEPS = [
+  { ico:'🌍', step:'stepLang',      wisprTitleKey:'Elige el idioma',         wisprDescKey:'Toca el idioma en el que la persona quiere comunicarse', nextLabel:'Continuar →' },
+  { ico:'👤', step:'stepName',      wisprTitleKey:'¿Cómo se llama?',         wisprDescKey:'Escribe el nombre de la persona', nextLabel:'Continuar →' },
+  { ico:'🎙️', step:'stepVoice',    wisprTitleKey:'Elige una voz',            wisprDescKey:'Escucha cada opción y elige la que más se parezca a cómo quiere sonar', nextLabel:'Continuar →' },
+  { ico:'📱', step:'stepInstall',   wisprTitleKey:'Instala la app',           wisprDescKey:'Agrégala a tu pantalla de inicio para usarla como app nativa sin internet', nextLabel:'Ya la instalé →' },
+  { ico:'🔔', step:'stepCaregiver', wisprTitleKey:'Conecta al cuidador',      wisprDescKey:'Comparte el link con el cuidador para que reciba alertas en su celular', nextLabel:'¡Listo! Empezar →' },
+];
+
+function initSetup() {
+  renderDots();
+  showStep(0);
+  generateRoomCode();
+}
+
+function renderDots() {
+  const container = document.getElementById('wisprDots');
+  container.innerHTML = STEPS.map((_,i) =>
+    `<div class="wispr-dot${i === state.step ? ' active' : ''}" id="dot-${i}"></div>`
+  ).join('');
+}
+
+function updateDots() {
+  STEPS.forEach((_,i) => {
+    const d = document.getElementById('dot-'+i);
+    if (d) d.className = 'wispr-dot' + (i === state.step ? ' active' : '');
+  });
+}
+
+function showStep(n) {
+  state.step = n;
+  STEPS.forEach((s,i) => {
+    document.getElementById(s.step).classList.toggle('hidden', i !== n);
+  });
+  const s = STEPS[n];
+  document.getElementById('wisprIco').textContent   = s.ico;
+  document.getElementById('wisprTitle').textContent = s.wisprTitleKey;
+  document.getElementById('wisprDesc').textContent  = s.wisprDescKey;
+  document.getElementById('wisprNext').textContent  = s.nextLabel;
+  updateDots();
+
+  if (n === 2) loadVoiceList();  // voice step
+  if (n === 4) setupCaregiverStep();
+}
+
+function nextStep() {
+  // Validate current step
+  if (state.step === 1) {
+    const name = document.getElementById('nameInput').value.trim();
+    if (!name) { document.getElementById('nameInput').focus(); return; }
+    state.name = name;
+    saveState();
+  }
+  if (state.step === 4) {
+    // Done — launch app
+    state.setup = true;
+    saveState();
+    launchApp();
+    return;
+  }
+  showStep(state.step + 1);
+}
+
+function skipStep() {
+  if (state.step === 4) { state.setup = true; saveState(); launchApp(); return; }
+  if (state.step < STEPS.length - 1) showStep(state.step + 1);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LANGUAGE
+═══════════════════════════════════════════════════════════════ */
+function selectLang(el) {
+  document.querySelectorAll('#stepLang .lang-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  state.lang = el.dataset.lang;
+  state.voiceName = '';
+  saveState();
+  if (el.closest('#drawer')) syncDrawerLangSelection();
+}
+
+function changeLang(el) {
+  state.lang = el.dataset.lang;
+  state.voiceName = '';
+  saveState();
+  syncDrawerLangSelection();
+  renderDrawerVoices();
+  renderApp();
+}
+
+function syncDrawerLangSelection() {
+  document.querySelectorAll('#drawerLangs .drawer-item').forEach(el => {
+    el.classList.toggle('selected', el.dataset.lang === state.lang);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   VOICE
+═══════════════════════════════════════════════════════════════ */
+function getVoicesForLang() {
+  return speechSynthesis.getVoices()
+    .filter(v => v.lang.toLowerCase().startsWith(state.lang))
+    .sort((a,b) => (b.localService ? 1 : 0) - (a.localService ? 1 : 0));
+}
+
+function pickBestVoice(voices) {
+  if (!voices.length) return null;
+  // Prefer local (high quality) voice
+  const local = voices.find(v => v.localService);
+  return local || voices[0];
+}
+
+function loadVoiceList() {
+  const list = document.getElementById('voiceList');
+  const voices = getVoicesForLang();
+  const t = T[state.lang] || T.es;
+
+  if (!voices.length) {
+    list.innerHTML = `<p style="color:var(--text-3);font-size:.9rem;text-align:center;padding:20px">${t.noVoices}</p>`;
+    return;
+  }
+
+  // Auto-select best if none chosen
+  if (!state.voiceName) {
+    const best = pickBestVoice(voices);
+    if (best) { state.voiceName = best.name; saveState(); }
+  }
+
+  list.innerHTML = voices.map(v => {
+    const gender = /female|woman|mujer|femme|feminino|femenino|ina$|ona$|ette$|elle$/i.test(v.name) ? '♀' : '♂';
+    const quality = v.localService ? '⭐ Alta calidad' : 'Red';
+    return `
+      <div class="voice-item${v.name === state.voiceName ? ' selected' : ''}" onclick="selectVoice(this,'${escJ(v.name)}')">
+        <div>
+          <div class="voice-name">${escH(v.name.replace(/\(.*?\)/g,'').trim())}</div>
+          <div style="font-size:.7rem;color:var(--text-3);margin-top:2px">${v.lang} · ${quality}</div>
+        </div>
+        <span class="voice-tag">${gender}</span>
+        <button class="voice-preview" onclick="event.stopPropagation();previewVoice('${escJ(v.name)}')">▶</button>
+      </div>`;
+  }).join('');
+}
+
+function selectVoice(el, name) {
+  document.querySelectorAll('.voice-item').forEach(v => v.classList.remove('selected'));
+  el.classList.add('selected');
+  state.voiceName = name;
+  saveState();
+}
+
+function previewVoice(name) {
+  const voices = speechSynthesis.getVoices();
+  const voice = voices.find(v => v.name === name);
+  if (!voice) return;
+  speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(getSampleText());
+  utter.voice = voice;
+  utter.rate = 0.9;
+  speechSynthesis.speak(utter);
+}
+
+function getSampleText() {
+  const samples = { es:'¡Hola! Esta es mi voz.', en:'Hello! This is my voice.', fr:'Bonjour! Voici ma voix.', pt:'Olá! Esta é minha voz.' };
+  return samples[state.lang] || samples.es;
+}
+
+function getActiveVoice() {
+  if (!state.voiceName) return null;
+  return speechSynthesis.getVoices().find(v => v.name === state.voiceName) || null;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   INSTALL GUIDE
+═══════════════════════════════════════════════════════════════ */
+function showDevice(type) {
+  document.getElementById('tabIOS').classList.toggle('active', type === 'ios');
+  document.getElementById('tabAndroid').classList.toggle('active', type === 'android');
+  const steps = document.getElementById('installSteps');
+  if (type === 'ios') {
+    steps.innerHTML = `
+      <div class="install-step"><div class="install-num">1</div><div class="install-txt">Abre esta página en <strong>Safari</strong> (no Chrome ni otro navegador)</div></div>
+      <div class="install-step"><div class="install-num">2</div><div class="install-txt">Toca el ícono <strong>📤 Compartir</strong> en la barra de Safari</div></div>
+      <div class="install-step"><div class="install-num">3</div><div class="install-txt">Busca y toca <strong>"Agregar a pantalla de inicio"</strong></div></div>
+      <div class="install-step"><div class="install-num">4</div><div class="install-txt">Toca <strong>"Agregar"</strong> en la esquina superior derecha</div></div>
+    `;
+  } else {
+    steps.innerHTML = `
+      <div class="install-step"><div class="install-num">1</div><div class="install-txt">Abre esta página en <strong>Chrome</strong></div></div>
+      <div class="install-step"><div class="install-num">2</div><div class="install-txt">Toca el menú <strong>⋮</strong> (tres puntos) arriba a la derecha</div></div>
+      <div class="install-step"><div class="install-num">3</div><div class="install-txt">Toca <strong>"Instalar aplicación"</strong> o <strong>"Agregar a pantalla de inicio"</strong></div></div>
+      <div class="install-step"><div class="install-num">4</div><div class="install-txt">Toca <strong>"Instalar"</strong> para confirmar</div></div>
+    `;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAREGIVER / ROOM CODE
+═══════════════════════════════════════════════════════════════ */
+function generateRoomCode() {
+  if (!state.roomCode) {
+    const chars = 'abcdefghjkmnpqrstuvwxyz23456789';
+    state.roomCode = 'mivoz-' + Array.from({length:8}, () => chars[Math.floor(Math.random()*chars.length)]).join('');
+    saveState();
+  }
+}
+
+function setupCaregiverStep() {
+  document.getElementById('displayRoomCode').textContent = state.roomCode;
+  updateCaregiverLinks();
+}
+
+function caregiverURL() {
+  const base = window.location.href.replace(/\/[^/]*$/, '');
+  return `${base}/cuidador.html?room=${state.roomCode}&name=${encodeURIComponent(state.name)}`;
+}
+
+function updateCaregiverLinks() {
+  const url = caregiverURL();
+  const el = document.getElementById('drawerCaregiverLink');
+  if (el) el.textContent = url;
+}
+
+function shareCaregiverLink() {
+  const t = T[state.lang] || T.es;
+  const url = caregiverURL();
+  const text = `${t.shareMsg} ${state.name || 'la persona'}:\n${url}`;
+  if (navigator.share) {
+    navigator.share({ title: 'Mi Voz — Cuidador', text: text, url: url }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(url).then(() => alert('Link copiado ✓')).catch(() => alert(url));
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAIN APP
+═══════════════════════════════════════════════════════════════ */
+function launchApp() {
+  document.getElementById('screenSetup').classList.add('hidden');
+  document.getElementById('wisprCard').classList.add('hidden');
+  document.getElementById('screenApp').classList.remove('hidden');
+
+  // Load voices (might need a moment)
+  if (speechSynthesis.getVoices().length === 0) {
+    speechSynthesis.addEventListener('voiceschanged', () => renderApp(), {once:true});
+  }
+  renderApp();
+}
+
+function renderApp() {
+  const t = T[state.lang] || T.es;
+
+  // Update header
+  document.getElementById('appName').textContent = state.name || 'Mi Voz';
+  document.getElementById('appSub').textContent  = t.appSub;
+
+  // Update tabs
+  const tabsRow = document.getElementById('tabsRow');
+  tabsRow.innerHTML = t.cats.map((c,i) =>
+    `<div class="tab${i === state.activeTab ? ' active' : ''}" onclick="setTab(${i})">${c}</div>`
+  ).join('');
+
+  renderPhrases();
+  updateCaregiverLinks();
+}
+
+function setTab(i) {
+  state.activeTab = i;
+  document.querySelectorAll('.tab').forEach((t,idx) => t.classList.toggle('active', idx === i));
+  renderPhrases();
+}
+
+function renderPhrases() {
+  const t = T[state.lang] || T.es;
+  const grid = document.getElementById('phraseGrid');
+  const tabIdx = state.activeTab;
+
+  if (tabIdx === 4) {
+    // Custom phrases tab
+    renderCustomPhrases();
+    return;
+  }
+
+  const phrases = (t.phrases[tabIdx] || []);
+  grid.innerHTML = phrases.map(p =>
+    `<div class="bubble" onclick="speakNow('${escJ(p.t)}')">
+       <span class="b-ico">${p.e}</span>
+       <span class="b-txt">${escH(p.t)}</span>
+     </div>`
+  ).join('');
+}
+
+function renderCustomPhrases() {
+  const t = T[state.lang] || T.es;
+  const grid = document.getElementById('phraseGrid');
+  const phrases = getCustomPhrases();
+
+  let html = `<button class="custom-add-bar" onclick="openModal()">${t.addPhrase}</button>`;
+  if (!phrases.length) {
+    html += `<div class="custom-empty"><div style="font-size:36px;margin-bottom:10px">💬</div><div style="font-size:.85rem">${t.customEmpty}</div></div>`;
+  } else {
+    phrases.forEach((p,i) => {
+      html += `<div class="bubble custom-bubble" onclick="speakNow('${escJ(p.t)}')">
+        <span class="b-ico">${p.e}</span><span class="b-txt">${escH(p.t)}</span>
+        <button class="custom-del" onclick="delPhrase(event,${i})">✕</button>
+      </div>`;
+    });
+  }
+  grid.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SPEECH
+═══════════════════════════════════════════════════════════════ */
+function speakNow(text) {
+  currentPhrase = text;
+  const el = document.getElementById('phraseText');
+  el.textContent = text;
+  el.classList.remove('empty');
+  speak(text);
+  notifyCuidador(text);
+}
+
+function speakPhrase() {
+  if (currentPhrase) { speak(currentPhrase); notifyCuidador(currentPhrase); }
+}
+
+function speak(text) {
+  speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  const voice = getActiveVoice();
+  if (voice) utter.voice = voice;
+  utter.rate = 0.88;
+  utter.pitch = 1;
+
+  const bar = document.getElementById('phraseBar');
+  bar.classList.add('speaking');
+  utter.onend = () => bar.classList.remove('speaking');
+  utter.onerror = () => bar.classList.remove('speaking');
+
+  speechSynthesis.speak(utter);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CAREGIVER NOTIFICATION (ntfy.sh — free, no account needed)
+═══════════════════════════════════════════════════════════════ */
+function notifyCuidador(phrase) {
+  if (!state.roomCode) return;
+  fetch('https://ntfy.sh/' + state.roomCode, {
+    method: 'POST',
+    headers: {
+      'Title': (state.name || 'Mi Voz') + ' pidió algo 💬',
+      'Priority': 'high',
+      'Tags': 'speech_balloon',
+    },
+    body: phrase,
+  }).catch(() => {});
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CUSTOM PHRASES
+═══════════════════════════════════════════════════════════════ */
+function getCustomPhrases() {
+  try { return JSON.parse(localStorage.getItem(CUSTOM_KEY) || '[]'); } catch(e) { return []; }
+}
+function saveCustomPhrases(arr) { localStorage.setItem(CUSTOM_KEY, JSON.stringify(arr)); }
+
+function openModal() {
+  const t = T[state.lang] || T.es;
+  document.getElementById('modalTitle').textContent = t.addModal;
+  document.getElementById('modalInput').placeholder = t.inputPlaceholder;
+  document.getElementById('modalSave').textContent = t.save;
+  selectedEmoji = EMOJIS[0];
+  document.getElementById('emojiRow').innerHTML = EMOJIS.map((e,i) =>
+    `<div class="emoji-opt${i===0?' selected':''}" onclick="pickEmoji(this,'${e}')">${e}</div>`
+  ).join('');
+  document.getElementById('modalInput').value = '';
+  document.getElementById('modal').classList.remove('hidden');
+  setTimeout(() => document.getElementById('modalInput').focus(), 100);
+}
+
+function closeModal() { document.getElementById('modal').classList.add('hidden'); }
+
+function modalBgClick(e) { if (e.target.id === 'modal') closeModal(); }
+
+function pickEmoji(el, e) {
+  document.querySelectorAll('.emoji-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedEmoji = e;
+}
+
+function savePhrase() {
+  const input = document.getElementById('modalInput');
+  const text = input.value.trim();
+  if (!text) { input.style.borderColor='var(--gold)'; setTimeout(()=>input.style.borderColor='',800); input.focus(); return; }
+  const phrases = getCustomPhrases();
+  phrases.unshift({e: selectedEmoji, t: text});
+  saveCustomPhrases(phrases);
+  closeModal();
+  renderPhrases();
+}
+
+function delPhrase(ev, i) {
+  ev.stopPropagation();
+  const phrases = getCustomPhrases();
+  phrases.splice(i,1);
+  saveCustomPhrases(phrases);
+  renderPhrases();
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SETTINGS DRAWER
+═══════════════════════════════════════════════════════════════ */
+function openDrawer() {
+  syncDrawerLangSelection();
+  renderDrawerVoices();
+  updateCaregiverLinks();
+  document.getElementById('drawer').classList.remove('hidden');
+}
+function closeDrawer() { document.getElementById('drawer').classList.add('hidden'); }
+function drawerBgClick(e) { if (e.target.id === 'drawer') closeDrawer(); }
+
+function renderDrawerVoices() {
+  const voices = getVoicesForLang();
+  const t = T[state.lang] || T.es;
+  const list = document.getElementById('drawerVoiceList');
+  if (!voices.length) { list.innerHTML = `<p style="color:var(--text-3);font-size:.82rem">${t.noVoices}</p>`; return; }
+  list.innerHTML = voices.map(v =>
+    `<div class="drawer-item${v.name === state.voiceName ? ' selected' : ''}" onclick="setVoiceFromDrawer('${escJ(v.name)}',this)">
+       <span style="flex:1;font-size:.82rem">${escH(v.name.replace(/\(.*?\)/g,'').trim())}</span>
+       <button style="background:var(--navy);color:#fff;border:none;border-radius:6px;padding:4px 8px;font-size:.7rem;cursor:pointer" onclick="event.stopPropagation();previewVoice('${escJ(v.name)}')">▶</button>
+     </div>`
+  ).join('');
+}
+
+function setVoiceFromDrawer(name, el) {
+  state.voiceName = name;
+  saveState();
+  document.querySelectorAll('#drawerVoiceList .drawer-item').forEach(e => e.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════════════════════════ */
+function escH(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function escJ(s) { return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'"); }
+
+/* ═══════════════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════════════ */
+loadState();
+
+// Wait for voices to load (required on many browsers)
+speechSynthesis.getVoices();
+if (speechSynthesis.onvoiceschanged !== undefined) {
+  speechSynthesis.onvoiceschanged = () => {
+    if (document.getElementById('voiceList') && !document.getElementById('stepVoice').classList.contains('hidden')) {
+      loadVoiceList();
+    }
+  };
+}
+
+if (state.setup) {
+  document.getElementById('screenSetup').classList.add('hidden');
+  document.getElementById('wisprCard').classList.add('hidden');
+  document.getElementById('screenApp').classList.remove('hidden');
+  renderApp();
+} else {
+  initSetup();
+}
+
+// Wake lock — keep screen on
+if ('wakeLock' in navigator) {
+  navigator.wakeLock.request('screen').catch(()=>{});
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') navigator.wakeLock.request('screen').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>

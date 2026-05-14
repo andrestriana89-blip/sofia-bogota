@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Cuidador">
+<meta name="theme-color" content="#1a4a7a">
+<title>Mi Voz — Cuidador</title>
+<style>
+:root{
+  --navy:#1a4a7a;--navy2:#143d66;--gold:#c9963a;--gold-lt:#f7e9d0;
+  --bg:#f5f2ed;--white:#fff;--green:#14a35c;--green-lt:#e6f8ef;
+  --text:#1a2c3d;--text-2:#4a6278;--text-3:#8aa0b2;
+  --shadow-m:0 4px 18px rgba(26,74,122,.13);--r:18px;--r-sm:12px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{height:100%;-webkit-text-size-adjust:100%;}
+body{font-family:-apple-system,'SF Pro Rounded','Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100dvh;display:flex;flex-direction:column;}
+
+/* HEADER */
+.header{background:linear-gradient(135deg,var(--navy),var(--navy2));padding:14px 16px 13px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;box-shadow:0 2px 12px rgba(26,74,122,.35);}
+.header-left{display:flex;align-items:center;gap:11px;}
+.avatar{width:42px;height:42px;background:linear-gradient(135deg,var(--gold),#e8a840);border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 3px 10px rgba(0,0,0,.25);flex-shrink:0;}
+.hname{font-size:clamp(16px,4.8vw,20px);font-weight:700;color:#fff;letter-spacing:-.2px;}
+.hsub{font-size:clamp(10px,2.8vw,12px);color:rgba(255,255,255,.6);margin-top:1px;}
+.status-pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.22);border-radius:20px;padding:6px 12px;font-size:12px;font-weight:600;color:#fff;white-space:nowrap;}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#aaa;transition:background .3s;}
+.status-pill.online .status-dot{background:#4ade80;}
+
+/* NOTIFICATION BANNER */
+.notif-banner{margin:16px 16px 0;background:var(--white);border:2px solid var(--gold);border-radius:var(--r);padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow-m);}
+.notif-banner.granted{border-color:var(--green);background:var(--green-lt);}
+.notif-text{font-size:14px;font-weight:600;line-height:1.35;}
+.notif-sub{font-size:12px;color:var(--text-2);margin-top:2px;font-weight:400;}
+.notif-btn{background:var(--gold);color:#fff;font-size:13px;font-weight:700;padding:9px 16px;border-radius:10px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.notif-btn.granted{background:var(--green);}
+
+/* NTFY PROMO */
+.ntfy-box{margin:12px 16px 0;background:var(--navy);border-radius:var(--r-sm);padding:14px 16px;display:flex;align-items:flex-start;gap:12px;}
+.ntfy-ico{font-size:24px;flex-shrink:0;}
+.ntfy-txt{font-size:.8rem;color:rgba(255,255,255,.85);line-height:1.55;}
+.ntfy-txt strong{color:#fff;}
+.ntfy-btn{display:inline-block;background:var(--gold);color:#000;font-size:.78rem;font-weight:800;padding:6px 12px;border-radius:8px;text-decoration:none;margin-top:8px;}
+
+/* LIVE HEADER */
+.live-header{margin:18px 16px 10px;display:flex;align-items:center;justify-content:space-between;}
+.live-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-3);}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.3);}}
+.count-badge{background:var(--navy);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;}
+
+/* FEED */
+.feed{margin:0 16px;display:flex;flex-direction:column;gap:10px;flex:1;padding-bottom:32px;}
+.feed-empty{text-align:center;padding:48px 24px;color:var(--text-3);}
+.feed-empty .ico{font-size:48px;margin-bottom:16px;}
+.feed-empty .title{font-size:16px;font-weight:700;color:var(--text-2);margin-bottom:6px;}
+.feed-item{background:var(--white);border-radius:var(--r-sm);padding:14px 16px;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-m);animation:slideIn .3s cubic-bezier(0.22,1,0.36,1);border-left:4px solid var(--gold);}
+.feed-item.fresh{border-left-color:var(--green);}
+@keyframes slideIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+.feed-time{font-size:11px;font-weight:700;color:var(--text-3);white-space:nowrap;padding-top:2px;min-width:52px;}
+.feed-phrase{font-size:16px;font-weight:600;color:var(--text);line-height:1.35;flex:1;}
+
+/* FOOTER */
+.footer-note{text-align:center;font-size:11px;color:var(--text-3);padding:0 24px 24px;line-height:1.6;}
+.footer-note a{color:var(--navy);font-weight:600;text-decoration:none;}
+
+/* NO ROOM */
+.no-room{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:32px;text-align:center;}
+.no-room .ico{font-size:52px;margin-bottom:16px;}
+.no-room h2{font-size:1.2rem;font-weight:800;color:var(--text);margin-bottom:8px;}
+.no-room p{font-size:.9rem;color:var(--text-2);line-height:1.55;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="avatar">🔔</div>
+    <div>
+      <div class="hname" id="headerName">Panel del cuidador</div>
+      <div class="hsub" id="headerSub">Esperando conexión…</div>
+    </div>
+  </div>
+  <div class="status-pill" id="statusPill">
+    <span class="status-dot"></span>
+    <span id="statusText">Conectando</span>
+  </div>
+</header>
+
+<div id="mainContent">
+
+  <!-- NOTIFICATION PERMISSION -->
+  <div class="notif-banner" id="notifBanner">
+    <div>
+      <div class="notif-text">🔔 Activa las alertas del celular</div>
+      <div class="notif-sub">Cada solicitud llega aunque la pantalla esté bloqueada</div>
+    </div>
+    <button class="notif-btn" id="notifBtn" onclick="requestNotif()">Activar</button>
+  </div>
+
+  <!-- NTFY PROMO (native push even when browser closed) -->
+  <div class="ntfy-box">
+    <span class="ntfy-ico">⌚</span>
+    <div class="ntfy-txt">
+      <strong>¿Quieres alertas en el reloj inteligente?</strong><br>
+      Descarga la app gratuita <strong>ntfy</strong> y suscríbete al código <strong id="ntfyCode">—</strong> para recibir notificaciones nativas incluso con el navegador cerrado.
+      <br><a class="ntfy-btn" href="https://ntfy.sh" target="_blank">Descargar ntfy gratis</a>
+    </div>
+  </div>
+
+  <!-- LIVE HEADER -->
+  <div class="live-header">
+    <div class="live-label"><span class="live-dot"></span>En vivo</div>
+    <div class="count-badge" id="countBadge">0 solicitudes</div>
+  </div>
+
+  <!-- FEED -->
+  <div class="feed" id="feed">
+    <div class="feed-empty">
+      <div class="ico">💬</div>
+      <div class="title" id="feedEmptyTitle">Esperando solicitudes</div>
+      <div id="feedEmptyDesc">Cuando toque una frase, aparecerá aquí al instante.</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <p class="footer-note">
+    Panel activo · <a href="index.html" id="footerLink">Abrir app</a>
+    <br>Mantén esta página abierta para recibir alertas en tiempo real.
+  </p>
+
+</div>
+
+<!-- NO ROOM STATE -->
+<div id="noRoom" style="display:none;flex:1;flex-direction:column;">
+  <div class="no-room">
+    <div class="ico">🔗</div>
+    <h2>Link inválido</h2>
+    <p>Este link no tiene un código de sala. Pídele a la persona que use Mi Voz que comparta el link del cuidador desde su app.</p>
+  </div>
+</div>
+
+<script>
+// ── Parse URL params ─────────────────────────────────────────────
+const params = new URLSearchParams(window.location.search);
+const room   = params.get('room') || '';
+const name   = params.get('name') || '';
+
+if (!room) {
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('noRoom').style.display     = 'flex';
+} else {
+  init();
+}
+
+function init() {
+  // Header
+  if (name) {
+    document.getElementById('headerName').textContent = name;
+    document.getElementById('headerSub').textContent  = 'Panel del cuidador';
+    document.title = `Cuidador — ${name}`;
+    document.getElementById('feedEmptyTitle').textContent = `Esperando solicitudes de ${name}`;
+    document.getElementById('feedEmptyDesc').textContent  = `Cuando ${name} toque una frase, aparecerá aquí al instante.`;
+    document.getElementById('footerLink').href = `index.html`;
+  }
+
+  // ntfy code
+  document.getElementById('ntfyCode').textContent = room;
+
+  checkNotifPermission();
+  connectSSE();
+}
+
+// ── SSE via ntfy.sh ──────────────────────────────────────────────
+let es = null;
+let totalCount = 0;
+let emptyShown = true;
+
+function connectSSE() {
+  if (es) es.close();
+  es = new EventSource(`https://ntfy.sh/${room}/sse`);
+
+  es.onopen = () => setStatus(true);
+
+  es.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      // ntfy sends keepalive "open" events and "message" events
+      if (data.event === 'message' && data.message) {
+        addFeedItem(data.message, formatTime(data.time));
+      }
+    } catch(e) {}
+  };
+
+  es.onerror = () => {
+    setStatus(false);
+    setTimeout(connectSSE, 5000);
+  };
+}
+
+function formatTime(unixTs) {
+  if (!unixTs) return new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+  return new Date(unixTs * 1000).toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+
+// ── Status UI ─────────────────────────────────────────────────────
+function setStatus(online) {
+  const pill = document.getElementById('statusPill');
+  const txt  = document.getElementById('statusText');
+  pill.className = 'status-pill' + (online ? ' online' : '');
+  txt.textContent = online ? 'Conectado' : 'Reconectando…';
+}
+
+// ── Feed ──────────────────────────────────────────────────────────
+function addFeedItem(phrase, time) {
+  const feed = document.getElementById('feed');
+
+  // Remove empty state
+  const empty = feed.querySelector('.feed-empty');
+  if (empty) empty.remove();
+
+  totalCount++;
+  document.getElementById('countBadge').textContent =
+    totalCount === 1 ? '1 solicitud' : `${totalCount} solicitudes`;
+
+  const item = document.createElement('div');
+  item.className = 'feed-item fresh';
+  item.innerHTML =
+    `<span class="feed-time">${time}</span>` +
+    `<span class="feed-phrase">${escHtml(phrase)}</span>`;
+
+  feed.insertBefore(item, feed.firstChild);
+  setTimeout(() => item.classList.remove('fresh'), 4000);
+
+  sendBrowserNotif(phrase, time);
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ── Browser Notifications ─────────────────────────────────────────
+function checkNotifPermission() {
+  if (!('Notification' in window)) return;
+  if (Notification.permission === 'granted') setBannerGranted();
+  if (Notification.permission === 'denied') setBannerDenied();
+}
+
+function requestNotif() {
+  if (!('Notification' in window)) return;
+  Notification.requestPermission().then(p => {
+    if (p === 'granted') setBannerGranted();
+    else setBannerDenied();
+  });
+}
+
+function setBannerGranted() {
+  const banner = document.getElementById('notifBanner');
+  const btn    = document.getElementById('notifBtn');
+  banner.classList.add('granted');
+  btn.classList.add('granted');
+  btn.textContent = '✓ Activado';
+  btn.disabled = true;
+  banner.querySelector('.notif-text').textContent = '✅ Notificaciones activas';
+  banner.querySelector('.notif-sub').textContent  = 'Recibirás alertas incluso con la pantalla apagada';
+}
+
+function setBannerDenied() {
+  document.getElementById('notifBtn').textContent = 'Bloqueadas';
+  document.getElementById('notifBtn').disabled = true;
+}
+
+function sendBrowserNotif(phrase, time) {
+  if (!('Notification' in window) || Notification.permission !== 'granted') return;
+  try {
+    new Notification(`${name || 'Mi Voz'} pidió algo 💬`, {
+      body: `"${phrase}" · ${time}`,
+      tag: 'mivoz',
+      renotify: true,
+      vibrate: [200, 100, 200],
+    });
+  } catch(e) {}
+}
+</script>
+</body>
+</html>
