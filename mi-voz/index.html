@@ -694,7 +694,11 @@ function setupCaregiverStep() {
 }
 
 function caregiverURL() {
-  const base = window.location.href.replace(/\/[^/]*$/, '');
+  // Strip query/hash, strip any trailing .html filename, strip trailing slash
+  const base = window.location.href
+    .replace(/[?#].*$/, '')
+    .replace(/\/[^/]*\.html$/, '')
+    .replace(/\/$/, '');
   return `${base}/cuidador.html?room=${state.roomCode}&name=${encodeURIComponent(state.name)}`;
 }
 
@@ -837,7 +841,11 @@ function notifyCuidador(phrase) {
       'Tags': 'speech_balloon',
     },
     body: phrase,
-  }).catch(() => {});
+  }).then(r => {
+    if (!r.ok) console.warn('[Mi Voz] ntfy error:', r.status);
+  }).catch(err => {
+    console.error('[Mi Voz] notifyCuidador failed:', err);
+  });
 }
 
 /* ═══════════════════════════════════════════════════════════════
