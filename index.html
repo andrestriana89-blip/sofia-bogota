@@ -4511,19 +4511,12 @@ function setAcademiaTab(tab, btn){
   closeLeadOverlay();
 }
 
-/* ── GHL CRM ──
-   Andrés: reemplaza GHL_WEBHOOK_URL con el webhook real de tu location en GHL
-   Dashboard GHL → Settings → Integrations → Webhooks → Crear webhook → copiar URL
-*/
-var GHL_WEBHOOK_URL = 'GHL_WEBHOOK_URL';
-
 function sendToGHL(data){
-  if(GHL_WEBHOOK_URL === 'GHL_WEBHOOK_URL'){ console.log('[Academia → GHL]', data); return; }
-  fetch(GHL_WEBHOOK_URL, {
+  fetch('/.netlify/functions/ghl-contact', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body: JSON.stringify(Object.assign({source:'Academia AJ Business Advisory', fecha: new Date().toISOString()}, data))
-  }).catch(function(e){ console.warn('GHL webhook error:', e); });
+  }).catch(function(e){ console.warn('[GHL] error:', e); });
 }
 
 function openLeadOverlay(btn, agentName, icon){
