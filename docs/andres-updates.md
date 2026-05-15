@@ -5,6 +5,33 @@
 
 ---
 
+## 2026-05-14 — Sesión Andrés (tarde — tareas Valentina + infra)
+
+**Repos tocados:**
+- `aj-business-advisory` → `CLAUDE.md` (regla deploy 1/día agregada)
+- `sofia-bogota` → `index.html`, `netlify/functions/ghl-contact.js` (nuevo)
+
+**Cambios realizados:**
+- ✅ **CLAUDE.md aj-business-advisory** — protocolo de publicación (1 deploy/día) agregado al inicio del archivo
+- ✅ **Netlify function `ghl-contact.js`** creada — reemplaza el webhook placeholder de GHL. Los formularios de Academia (Mentoría, Cursos Waitlist, Cuéntanos, Preview Agente) ahora envían leads directo a GHL API v2 sin necesitar URL del dashboard
+- ✅ **`index.html`** — `GHL_WEBHOOK_URL` placeholder eliminado. `sendToGHL()` ahora llama `/.netlify/functions/ghl-contact`
+- ✅ **Netlify env vars** — `GHL_API_KEY` agregada (`pit-8bce0e4f-...`). `VAPI_API_KEY` ya existía
+
+**Estado sitios Colombia:**
+- `sofia.ajbusinessadvisory.com` → ✅ 200 OK
+- `sofiabogota.netlify.app` → ✅ 200 OK (el 503 de Valentina se resolvió solo)
+
+**Pendientes para Valentina (de tu sesión de hoy):**
+- [ ] Reescribir propuesta Bunny Burger → SOLO Sofia DMs (sin producción de contenido). El pitch: Sofia responde DMs de Instagram y/o WhatsApp mientras el local está cerrado lunes-miércoles
+- [ ] Propuesta Ruztik: agregar argumento SEO ("Google puede encontrarte aunque no te busquen por nombre")
+- [ ] Propuesta Ruztik: agregar ROI en 1 cliente B2B (si un cliente vale $5M–$20M COP, un solo proyecto extra paga todo el Plan C)
+- [ ] Propuesta Ruztik Plan A: agregar mantenimiento $150.000 COP/mes como add-on
+- [ ] Propuesta Ruztik: agregar bloque "Sofia como siguiente paso" con precio $300.000 COP/mes
+- [ ] Editar Video 1 del abuelo (VIDEO-2026-05-13-13-18-27.mp4 — "quiero roscón") según brief en `sofiabogota.netlify.app/docs/brief-videos-abuelo.html`
+- [ ] Subir video editado a YouTube (puede ser no listado) → mandar link a Andrés por WhatsApp
+
+---
+
 ## 2026-05-14 — Protocolo de publicación (Valentina → Andrés)
 
 **⚠️ ANDRÉS — ACCIÓN REQUERIDA: agregar a tu CLAUDE.md**
