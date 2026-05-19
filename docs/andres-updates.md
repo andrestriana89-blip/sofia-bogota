@@ -5,6 +5,56 @@
 
 ---
 
+## 2026-05-18 — Sesión Andrés (noche, Sesión 2) — Mi Voz: Voces ElevenLabs + Multi-idioma + Sales Pages
+
+**Repos tocados:**
+- `aj-business-advisory` → `clients/mi-voz/app/` — Voces, multi-idioma, landing pages
+
+**LO QUE SE CONSTRUYÓ (sesión 2 de hoy):**
+
+### 1. Voces ElevenLabs pre-generadas
+- 64 archivos MP3 en español: `public/audio/male/` (Don Gilberto) y `public/audio/female/` (Norah)
+- La app ya NO usa Web Speech API — usa ElevenLabs. Mucho mejor calidad.
+- Voz masculina: **George** (`JBFqnCBsd6RMkjVDRZzb`) — misma voz de Don Gilberto
+- Voz femenina: **Norah** (`kcQkGnn0HAT2JRDQ4Ljp`) — cálida, latinoamericana
+- Script para regenerar: `scripts/generate-mi-voz-audio.js`
+
+### 2. Pantalla de bienvenida nueva — Selector de voz
+- Primera vez que se abre la app: el usuario elige voz masculina 👴 o femenina 👵
+- Se guarda en localStorage. El cuidador puede cambiarlo desde el panel (con PIN).
+
+### 3. Multi-idioma Español / Inglés completo
+- `src/i18n.js` — sistema de traducciones (todas las frases, UI, categorías)
+- Auto-detección por `navigator.language` del celular
+- Toggle ES|EN en la pantalla de bienvenida y en el panel del cuidador
+- 64 audios adicionales en inglés: `en-male/` + `en-female/`
+- **Total: 128 audios ElevenLabs en la app**
+- Toda la UI traducida: tabs, botones, frases, pantalla de PIN
+
+### 4. Estrategia de producto acordada
+- **Precio:** $19 USD pago único — TODO incluido (se cambia de $10 en Gumroad)
+- **Canal clínico nuevo:** Licencia Clínica $99 — para fonoaudiólogos que la usan con sus pacientes
+- Los dos canales coexisten: consumidor ($19) + institucional ($99)
+
+### 5. Páginas de ventas creadas
+- `landing/mi-voz-sales.html` — Español (para familias + fonoaudiólogos)
+- `landing/mi-voz-sales-en.html` — Inglés (families + clinicians)
+- 9 secciones: hero, historia Don Gilberto, problema, 4 pilares, cómo funciona, voces, planes, FAQ, CTA final
+- Todos los CTAs apuntan a Gumroad
+
+**Commits:**
+- `7cdac56` — feat: voces ElevenLabs con selector masculina/femenina
+- `cd4c61b` — feat: multi-idioma ES/EN completo
+- `ae7e91d` — feat: sales pages ES + EN con canal clínico
+
+**Pendientes para Valentina — Mi Voz:**
+- [ ] Logo y paleta de colores de marca para Mi Voz (esto sigue pendiente)
+- [ ] Dominio `mivozcuida.com` — hablar con Andres cuando esté en Colombia
+- [ ] Video demo de la app para insertar en las páginas de ventas (reemplazar sección placeholder)
+- [ ] Buscar 1 fonoaudiólogo(a) beta para validación clínica antes de escalar el canal $99
+
+---
+
 ## 2026-05-18 — Sesión Andrés — App Mi Voz COMPLETA y en producción
 
 **Repos tocados:**
