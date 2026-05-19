@@ -5,6 +5,44 @@
 
 ---
 
+## 2026-05-18 — Sesión Andrés — App Mi Voz COMPLETA y en producción
+
+**Repos tocados:**
+- `aj-business-advisory` → `clients/mi-voz/app/` — PWA completa construida desde cero y desplegada
+
+**LO QUE SE CONSTRUYÓ HOY (importante leer todo):**
+
+Construimos la app completa "Mi Voz" — una Progressive Web App para el abuelito de Andres (y para adultos mayores en general). La app ya está LIVE en producción.
+
+**URL en producción:** https://mi-voz-app.onrender.com
+
+### Las 5 pantallas de la app:
+
+1. **Pantalla de Inicio** — Contactos con fotos grandes. El adulto mayor toca una foto y llama.
+2. **Pantalla de Llamada** — Dos opciones: videollamada por Jitsi Meet (gratis, sin descargar nada) o WhatsApp.
+3. **Panel del Cuidador** — Protegido con PIN **1234**. Aquí se agregan/borran contactos con foto, nombre y WhatsApp.
+4. **Hub de Juegos** — Sopa de Letras (12x12, 10 palabras en español) + Juego de Memoria (16 cartas, 8 pares de emojis).
+5. **Signos Vitales** — Dashboard con SpO2, frecuencia cardíaca, pasos y temperatura. Los datos son simulados por ahora (para la presentación en Colombia está perfecto así).
+
+### Datos técnicos:
+- React 18 + Vite + PWA (instalable en celular como app nativa en Android)
+- Sin backend, sin base de datos — todo en localStorage del celular
+- Código en: `clients/mi-voz/app/` del repo principal
+- Deploy automático en Render (cada push al repo actualiza la app en 2 minutos)
+- Commit: `87b9112`
+
+**Pendientes para Valentina:**
+- [ ] Crear logo y paleta de colores de marca para Mi Voz
+- [ ] Definir un contacto demo pre-cargado para las presentaciones (para que no aparezca vacío)
+- [ ] Registrar dominio `mivozcuida.com` (hablar con Andres)
+- [ ] Verificar con el profesor de la universidad si la propiedad intelectual es de Valentina (no de la universidad)
+- [ ] PIN 1234 hay que cambiarlo antes de dársela a usuarios reales — está en `CuidadorSetup.jsx` línea donde dice `'1234'`
+
+**Documentación completa en Notion:**
+https://www.notion.so/3656fc7b0fb681e78e0ce8a3ee8e06a5
+
+---
+
 ## 2026-05-14 — Sesión Andrés (tarde — tareas Valentina + infra)
 
 **Repos tocados:**
