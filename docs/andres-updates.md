@@ -5,6 +5,73 @@
 
 ---
 
+## 2026-05-21 — Solicitud de acceso — Valentina necesita permisos en 2 plataformas
+
+**Andrés, acción requerida — dos pasos rápidos:**
+
+### 1. GitHub — Colaboradora en `aj-business-advisory`
+Para que Valentina pueda editar y hacer push directamente al repo del sitio USA sin depender de ti.
+
+**Pasos:**
+1. Ir a: `https://github.com/andrestriana89-blip/aj-business-advisory`
+2. Settings → Collaborators → Add people
+3. Buscar: `valentina` (preguntarle a Valentina su usuario de GitHub)
+4. Rol: **Write** (puede hacer push, no puede borrar el repo)
+
+### 2. Render — Acceso al dashboard del sitio `ajbusinessadvisory.com`
+Para que Valentina pueda ver el estado de los deploys, logs de errores y variables de entorno del sitio USA.
+
+**Pasos:**
+1. Ir a: `https://dashboard.render.com`
+2. Settings del equipo → Members → Invite member
+3. Email de Valentina → Rol: **Member** (puede ver y hacer deploys, no puede borrar servicios)
+
+### Por qué es importante
+Hoy Valentina necesitó actualizar `landing/demo.html` y `webhook/main.py` para agregar la sección "Nuestras Marcas" con Academia + Mi Voz, y actualizar las rutas `/voz`, `/mivoz`, `/mi-voz` para la nueva landing de Mi Voz (necesaria para MinTIC el 23 mayo). Lo hizo clonando el repo localmente — funciona, pero sin acceso colaborador no puede hacer push directo.
+
+**Los cambios están listos en la máquina de Valentina** — una vez que le des acceso, ella hace el push y Render despliega automáticamente.
+
+---
+
+---
+
+## 2026-05-19 — Mensaje de Valentina para Andrés — Mi Voz: demo interactivo + perfil propio
+
+**Para Andrés:**
+
+### 1. Demo interactivo con frases pre-diseñadas y selector de voz
+
+Cuando alguien abre el demo en `mi-voz-app.onrender.com` por primera vez, necesita poder **escuchar cómo suena la app** antes de decidir si la compra. Hoy la pantalla queda vacía y no se entiende qué hace.
+
+**Lo que se necesita:**
+- En la pantalla de **VoiceSetup** (la primera que ve el usuario), agregar un bloque de "Escucha cómo suena":
+  - Botón voz masculina 👴 → reproduce una frase de ejemplo con la voz de George
+  - Botón voz femenina 👵 → reproduce una frase de ejemplo con la voz de Norah
+- **Frases sugeridas para el demo** (usar los MP3 que ya existen):
+  - *"Buenos días. ¿A quién quieres llamar hoy?"*
+  - *"Tu familia está aquí. Solo toca su foto."*
+  - *"Muy bien. Conectándote con María..."*
+- El usuario escucha → elige la voz que prefiere → entra a la app
+- Esto convierte el VoiceSetup en una experiencia de venta, no solo configuración
+
+**Por qué es importante:** Sin esto, quien abre el demo no entiende el propósito. Con esto, en 10 segundos ya escuchó la app y quiere comprarla.
+
+**Implementación sugerida:** En `VoiceSetup.jsx`, agregar dos botones de reproducción de audio antes del botón "Confirmar". Los archivos MP3 ya están en `public/audio/male/` y `public/audio/female/`.
+
+---
+
+### 2. Perfil propio del adulto mayor
+
+En la app Mi Voz, agregar la posibilidad de que el adulto mayor pueda tener **su propio perfil** dentro de la app:
+- **Su nombre** — para que la app lo salude por su nombre personalizado (hoy el nombre lo pone el cuidador, pero el adulto mayor debería poder verlo/confirmarlo o que aparezca en la pantalla de inicio como "Hola, [Nombre]")
+- **Su foto** — una foto de perfil del adulto mayor, que aparezca en la app (por ejemplo en el panel del cuidador o en la pantalla de inicio como identificación visual)
+
+**Por qué:** Personaliza la experiencia y hace que el adulto mayor sienta que la app es suya, no solo una herramienta del cuidador. También es útil si hay varios dispositivos en una familia o clínica.
+
+**Sugerencia de implementación:** En `CuidadorSetup.jsx`, agregar campo "Foto del usuario" (igual que se agregan fotos de contactos, desde galería) y campo "Nombre del usuario" ya existe pero revisar si es editable visualmente. Guardar en localStorage junto con los contactos.
+
+---
+
 ## 2026-05-18 — Sesión Andrés (noche, Sesión 2) — Mi Voz: Voces ElevenLabs + Multi-idioma + Sales Pages
 
 **Repos tocados:**

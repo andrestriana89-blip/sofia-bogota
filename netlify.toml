@@ -44,3 +44,18 @@
   from = "/rep/cristian"
   to = "/representantes/cristian-becerra/"
   status = 301
+
+[[redirects]]
+  from = "/mivoz"
+  to = "/mi-voz-landing.html"
+  status = 200
+
+[[redirects]]
+  from = "/mi-voz"
+  to = "/mi-voz-landing.html"
+  status = 200
+
+[[redirects]]
+  from = "/voz"
+  to = "/mi-voz-landing.html"
+  status = 200
