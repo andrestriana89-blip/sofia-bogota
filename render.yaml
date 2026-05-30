@@ -1,0 +1,33 @@
+services:
+  # ── Sitio principal — AJ Business Advisory Sofia ──────────────────────────
+  - type: web
+    name: sofia-bogota
+    env: static
+    buildCommand: ""
+    staticPublishPath: .
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # ── Dentalia — Dra. Natalia Barrantes ─────────────────────────────────────
+  - type: web
+    name: dentalia-natalia
+    env: static
+    buildCommand: ""
+    staticPublishPath: Dentalia
+    routes:
+      - type: rewrite
+        source: /
+        destination: /dentalia.html
+
+  # ── Parrilla de Contenido — @dentaliaodontologia ──────────────────────────
+  - type: web
+    name: parrilla-dentalia
+    env: static
+    buildCommand: ""
+    staticPublishPath: "FREELANCE/PAULA/Parrila Contenido_Dentalia"
+    routes:
+      - type: rewrite
+        source: /
+        destination: /parrilla-dentalia-mayo-2026.html
