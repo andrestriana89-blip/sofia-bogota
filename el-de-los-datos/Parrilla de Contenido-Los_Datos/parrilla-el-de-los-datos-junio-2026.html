@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="robots" content="noindex,nofollow"/>
+<title>Parrilla de Contenido — @eldelosdatos · Junio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --blue:#2563EB;--blue-light:#60A5FA;--blue-bg:rgba(37,99,235,.10);--blue-pale:#EFF6FF;
+  --amber:#D97706;--amber-bright:#F59E0B;--amber-bg:rgba(245,158,11,.10);--amber-pale:#FFFBEB;
+  --dark:#0F172A;--dark2:#1E293B;--dark3:#060D1A;
+  --white:#FFFFFF;--cream:#F8FAFC;
+  --green:#059669;--green-bright:#10B981;--green-bg:rgba(16,185,129,.10);
+  --red:#DC2626;--red-bg:rgba(220,38,38,.10);
+  --purple:#7C3AED;--purple-bg:rgba(124,58,237,.10);
+  --text:#1E293B;--muted:#64748B;--border:rgba(0,0,0,.09);--border-light:rgba(0,0,0,.05);
+  --reel:#DC2626;--reel-bg:rgba(220,38,38,.10);
+  --carrusel:#2563EB;--carrusel-bg:rgba(37,99,235,.10);
+  --stories:#059669;--stories-bg:rgba(5,150,105,.10);
+  --radius:12px;--shadow:0 2px 14px rgba(0,0,0,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--text);font-size:13px;line-height:1.65;user-select:none}
+input,textarea,select{user-select:auto}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer;font-family:'Montserrat',sans-serif}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:2px solid var(--blue);height:52px;display:flex;align-items:center;padding:0 24px;gap:16px}
+.nav-brand{font-size:15px;font-weight:900;color:var(--dark);border-right:1px solid var(--border);padding-right:16px;flex-shrink:0;letter-spacing:-.3px}
+.nav-brand span{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:block;margin-top:-2px}
+.nav-tabs{display:flex;gap:2px;overflow-x:auto;flex:1}
+.ntab{padding:0 14px;height:52px;display:flex;align-items:center;font-size:11px;font-weight:700;color:var(--muted);border:none;background:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;letter-spacing:.3px}
+.ntab:hover{color:var(--dark)}
+.ntab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.nav-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+
+.btn{padding:7px 16px;border-radius:8px;font-size:11px;font-weight:700;border:none;transition:all .15s;letter-spacing:.3px}
+.btn-dark{background:var(--dark);color:var(--amber-bright)}
+.btn-dark:hover{background:var(--dark2)}
+
+.page{margin-top:52px;min-height:100vh}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px}
+.page-section{display:none}.page-section.active{display:block}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--dark3) 0%,#0A1628 50%,#0F172A 100%);padding:44px 32px 32px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'DATOS';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:130px;font-weight:900;color:rgba(37,99,235,.06);white-space:nowrap;pointer-events:none;letter-spacing:-4px}
+.hero-eyebrow{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-light);font-weight:800;margin-bottom:10px}
+.hero-title{font-size:34px;font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-1px}
+.hero-title em{color:var(--amber-bright);font-style:normal}
+.hero-sub{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:8px}
+.hero-chips{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.chip{padding:5px 14px;border-radius:20px;font-size:10px;font-weight:700;border:1px solid rgba(37,99,235,.35);color:var(--blue-light);background:rgba(37,99,235,.08);letter-spacing:.5px}
+.chip.amber{border-color:rgba(245,158,11,.35);color:var(--amber-bright);background:rgba(245,158,11,.08)}
+.chip.green{border-color:rgba(16,185,129,.35);color:var(--green-bright);background:rgba(16,185,129,.08)}
+.chip.red{border-color:rgba(220,38,38,.35);color:#FCA5A5;background:rgba(220,38,38,.08)}
+
+/* SELECTOR PANEL */
+.selector-panel{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:52px;z-index:100;padding:10px 24px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.selector-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.selector-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);min-width:40px}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid var(--border);background:var(--white);color:var(--muted);transition:all .15s;letter-spacing:.3px}
+.pill:hover{border-color:var(--blue);color:var(--blue)}
+.pill.active{background:var(--dark);border-color:var(--dark);color:var(--amber-bright)}
+.selector-divider{width:1px;height:24px;background:var(--border);flex-shrink:0}
+
+/* STATS */
+.stats-banner{background:linear-gradient(135deg,rgba(37,99,235,.07),rgba(124,58,237,.05));border:1.5px dashed rgba(37,99,235,.3);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
+.stats-icon{font-size:22px;flex-shrink:0}
+.stats-text h4{font-size:12px;font-weight:800;color:var(--blue);margin-bottom:2px}
+.stats-text p{font-size:11px;color:var(--muted);line-height:1.5}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-bottom:20px}
+.stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow)}
+.stat-card.pending{border-style:dashed;opacity:.6}
+.stat-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.stat-value{font-size:20px;font-weight:900;color:var(--dark);letter-spacing:-1px}
+.stat-value.pending{font-size:14px;color:var(--muted);font-weight:600;letter-spacing:0}
+
+/* RESUMEN VOLUMEN */
+.vol-strip{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.vol-card{flex:1;min-width:130px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;box-shadow:var(--shadow);text-align:center}
+.vol-num{font-size:28px;font-weight:900;letter-spacing:-1px}
+.vol-num.reel{color:var(--reel)}
+.vol-num.carrusel{color:var(--carrusel)}
+.vol-num.stories{color:var(--stories)}
+.vol-num.total{color:var(--dark)}
+.vol-label{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:2px}
+.vol-sub{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* DISTRIBUCIÓN */
+.dist-bar{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow)}
+.dist-bar h4{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.dist-track{height:10px;border-radius:5px;overflow:hidden;display:flex;gap:2px;margin-bottom:8px}
+.dist-seg{height:100%;border-radius:3px}
+.dist-seg.crecimiento{background:var(--blue);width:41%}
+.dist-seg.autoridad{background:var(--amber-bright);width:41%}
+.dist-seg.venta{background:var(--green-bright);width:18%}
+.dist-legend{display:flex;gap:16px;flex-wrap:wrap}
+.dist-leg-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)}
+.dist-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
+
+/* SECCIÓN */
+.sec{padding:28px 0 16px}
+.sec-header{margin-bottom:18px}
+.sec-ey{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:4px}
+.sec-title{font-size:20px;font-weight:900;color:var(--dark);letter-spacing:-.5px}
+
+/* LEYENDA */
+.leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:10px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius)}
+.ley-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)}
+.ley-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+/* SEMANA BLOCK */
+.week-block{margin-bottom:28px}
+.week-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding:7px 14px;background:var(--blue-pale);border-radius:8px;display:inline-flex;align-items:center;gap:8px}
+.week-label .vol-tag{font-size:9px;font-weight:700;background:var(--blue);color:#fff;padding:2px 8px;border-radius:10px;letter-spacing:.3px}
+
+/* CALENDARIO */
+.cal-grid{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px}
+.cal-head{display:grid;grid-template-columns:repeat(7,1fr);background:var(--dark)}
+.cal-head-cell{padding:8px 6px;text-align:center;font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35);border-right:1px solid rgba(255,255,255,.06)}
+.cal-head-cell:last-child{border-right:none}
+.cal-head-cell.pub{color:var(--amber-bright)}
+.cal-body{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-cell{min-height:88px;padding:8px 7px;border-right:1px solid var(--border-light);border-bottom:1px solid var(--border-light);position:relative}
+.cal-cell:nth-child(7n){border-right:none}
+.cal-cell.pub-day{background:rgba(37,99,235,.02)}
+.cal-cell.rest-day{background:rgba(107,114,128,.02)}
+.cal-cell.past-day{background:rgba(107,114,128,.04);opacity:.5}
+.cal-cell.empty{background:rgba(107,114,128,.02);min-height:60px}
+.cal-cell.today-cell{background:rgba(37,99,235,.04);border-left:2px solid var(--blue)}
+.cal-date{font-size:11px;font-weight:800;color:var(--muted);margin-bottom:5px}
+.cal-cell.pub-day .cal-date{color:var(--dark)}
+.cal-cell.today-cell .cal-date{color:var(--blue)}
+.today-tag{font-size:7px;font-weight:800;background:var(--blue);color:#fff;padding:1px 5px;border-radius:3px;margin-left:4px;letter-spacing:.5px;text-transform:uppercase}
+.past-tag{font-size:7px;color:var(--muted);margin-left:4px}
+.cal-badge{display:flex;align-items:center;gap:4px;padding:4px 6px;border-radius:6px;margin-bottom:4px;font-size:8.5px;font-weight:700;line-height:1.3;cursor:pointer;transition:opacity .15s}
+.cal-badge:hover{opacity:.75}
+.cal-badge.reel{background:var(--reel-bg);color:var(--reel)}
+.cal-badge.carrusel{background:var(--carrusel-bg);color:var(--carrusel)}
+.cal-badge.stories{background:var(--stories-bg);color:var(--stories)}
+.cal-icon{font-size:10px;flex-shrink:0}
+.cal-text{font-size:8px;font-weight:700;line-height:1.25}
+.cal-obj{font-size:7px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;margin-top:2px;padding:1px 4px;border-radius:3px;display:inline-block}
+.cal-obj.alcance{background:var(--blue-bg);color:var(--blue)}
+.cal-obj.autoridad{background:var(--amber-bg);color:var(--amber)}
+.cal-obj.venta{background:var(--green-bg);color:var(--green)}
+.cal-obj.conexion{background:var(--purple-bg);color:var(--purple)}
+.cal-obj.investigacion{background:rgba(107,114,128,.10);color:var(--muted)}
+.rest-label{font-size:8px;color:var(--muted);font-style:italic;opacity:.6;margin-top:4px}
+
+/* CARDS */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:8px}
+.day-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s}
+.day-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,.10)}
+.day-card.expanded{border-color:var(--blue)}
+.dc-header{padding:12px 14px;display:flex;align-items:flex-start;gap:10px;border-bottom:1px solid var(--border-light)}
+.dc-type{padding:4px 10px;border-radius:6px;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;flex-shrink:0;margin-top:1px}
+.dc-type.reel{background:var(--reel-bg);color:var(--reel)}
+.dc-type.carrusel{background:var(--carrusel-bg);color:var(--carrusel)}
+.dc-type.stories{background:var(--stories-bg);color:var(--stories)}
+.dc-head-info{flex:1}
+.dc-day{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+.dc-title{font-size:12.5px;font-weight:800;color:var(--dark);line-height:1.3;margin-top:2px}
+.dc-pilar{font-size:9px;font-weight:700;color:var(--blue);margin-top:4px}
+.dc-obj-badge{display:inline-block;font-size:8px;font-weight:800;padding:2px 8px;border-radius:4px;margin-top:4px}
+.dc-obj-badge.alcance{background:var(--blue-bg);color:var(--blue)}
+.dc-obj-badge.autoridad{background:var(--amber-bg);color:var(--amber)}
+.dc-obj-badge.venta{background:var(--green-bg);color:var(--green)}
+.dc-obj-badge.conexion{background:var(--purple-bg);color:var(--purple)}
+.dc-obj-badge.investigacion{background:rgba(107,114,128,.10);color:var(--muted)}
+.dc-body{padding:12px 14px;display:none;border-top:1px solid var(--border-light)}
+.dc-body.open{display:block}
+.dc-sec{margin-bottom:10px}
+.dc-sec:last-child{margin-bottom:0}
+.dc-sec-label{font-size:8px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.dc-text{font-size:11px;color:var(--text);line-height:1.6}
+.dc-hook{font-size:11.5px;color:var(--dark);line-height:1.65;background:var(--blue-pale);padding:10px 12px;border-radius:8px;border-left:3px solid var(--blue);user-select:text;font-style:italic}
+.dc-cta{font-size:11.5px;color:var(--dark);line-height:1.65;background:var(--amber-pale);padding:10px 12px;border-radius:8px;border-left:3px solid var(--amber-bright);user-select:text;font-weight:700}
+.dc-expand-btn{width:100%;padding:7px;border:none;background:var(--blue-pale);color:var(--blue);font-size:10px;font-weight:800;letter-spacing:.5px;text-transform:uppercase;transition:background .15s;cursor:pointer}
+.dc-expand-btn:hover{background:#DBEAFE}
+.tip-box{background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:9px 12px;margin-top:10px}
+.tip-box p{font-size:10.5px;color:var(--amber);line-height:1.55;font-weight:600}
+
+/* PROD BADGE */
+.prod-time{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;color:var(--muted);margin-top:4px}
+.prod-dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}
+.prod-dot.reel-col{background:var(--reel)}
+.prod-dot.carrusel-col{background:var(--carrusel)}
+.prod-dot.stories-col{background:var(--stories)}
+
+/* HOOKS */
+.hooks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:28px}
+.hook-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.hook-num{font-size:26px;font-weight:900;color:rgba(37,99,235,.12);margin-bottom:-4px;letter-spacing:-2px}
+.hook-text{font-size:12.5px;font-weight:700;color:var(--dark);line-height:1.5;user-select:text}
+.hook-why{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.55}
+.copy-btn{display:inline-block;margin-top:8px;padding:4px 12px;background:var(--blue-pale);color:var(--blue);border:none;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;transition:all .15s;font-family:'Montserrat',sans-serif}
+.copy-btn:hover{background:var(--blue);color:#fff}
+.copy-btn.copied{background:var(--green-bg);color:var(--green)}
+
+/* CTAs */
+.ctas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:28px}
+.cta-card{background:linear-gradient(135deg,rgba(245,158,11,.05),rgba(217,119,6,.03));border:1px solid rgba(245,158,11,.2);border-radius:var(--radius);padding:14px 16px}
+.cta-num{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.cta-text{font-size:12.5px;font-weight:700;color:var(--dark);line-height:1.5;user-select:text;font-style:italic}
+.cta-when{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5}
+.cta-why{font-size:10px;color:var(--green);font-weight:700;margin-top:4px}
+
+/* ESTRATEGIA */
+.estrategia-box{background:linear-gradient(135deg,rgba(37,99,235,.06),rgba(124,58,237,.04));border:1px solid rgba(37,99,235,.2);border-radius:var(--radius);padding:14px 18px;margin-bottom:18px}
+.estrategia-box h4{font-size:11px;font-weight:800;color:var(--blue);letter-spacing:.5px;margin-bottom:8px}
+.estrategia-box ul{padding-left:16px}
+.estrategia-box li{font-size:11.5px;color:var(--text);line-height:1.7;margin-bottom:3px}
+.week-structure{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:12px;margin-bottom:24px}
+.ws-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px;box-shadow:var(--shadow)}
+.ws-day{font-size:11px;font-weight:900;color:var(--dark);margin-bottom:3px}
+.ws-format{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
+.ws-format.reel{color:var(--reel)}
+.ws-format.carrusel{color:var(--carrusel)}
+.ws-format.stories{color:var(--stories)}
+.ws-format.descanso{color:var(--muted)}
+.ws-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.roadmap{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:var(--shadow)}
+.rm-step{flex:1;padding:14px 16px;border-right:1px solid var(--border)}
+.rm-step:last-child{border-right:none}
+.rm-week{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:3px}
+.rm-title{font-size:12px;font-weight:800;color:var(--dark);margin-bottom:4px}
+.rm-desc{font-size:10px;color:var(--muted);line-height:1.5}
+.rm-step:nth-child(2) .rm-week{color:var(--amber)}
+.rm-step:nth-child(3) .rm-week{color:var(--green)}
+.rm-step:nth-child(4) .rm-week{color:var(--purple)}
+
+/* PERFIL */
+.perfil-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
+.perfil-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.perfil-card h3{font-size:12.5px;font-weight:800;color:var(--dark);margin-bottom:10px}
+.perfil-card ul{padding-left:16px}
+.perfil-card li{font-size:11px;color:var(--text);line-height:1.7;margin-bottom:3px}
+.bio-box{background:var(--dark);border-radius:var(--radius);padding:16px 20px;margin-bottom:16px}
+.bio-box h4{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-light);margin-bottom:8px}
+.bio-text{font-size:13px;color:var(--white);line-height:1.7;user-select:text}
+.bio-text em{color:var(--amber-bright);font-style:normal;font-weight:700}
+.highlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:18px}
+.hl-card{background:var(--dark);border-radius:10px;padding:10px 12px;text-align:center}
+.hl-icon{font-size:18px;margin-bottom:3px}
+.hl-name{font-size:10px;font-weight:800;color:var(--amber-bright);letter-spacing:.5px;margin-bottom:2px}
+.hl-desc{font-size:9px;color:rgba(255,255,255,.4);line-height:1.4}
+.frase-ancla{background:linear-gradient(135deg,var(--dark) 0%,#0A1628 100%);border-radius:var(--radius);padding:22px 28px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
+.frase-ancla::before{content:'""';position:absolute;top:-10px;left:20px;font-size:100px;color:rgba(37,99,235,.08);font-weight:900;line-height:1;pointer-events:none}
+.frase-ancla-text{font-size:18px;font-weight:900;color:var(--white);line-height:1.3;letter-spacing:-.5px}
+.frase-ancla-text em{color:var(--amber-bright);font-style:normal}
+.frase-ancla-sub{font-size:9px;color:rgba(255,255,255,.35);letter-spacing:2px;text-transform:uppercase;margin-top:8px}
+
+/* UTILS */
+.mt8{margin-top:8px}.mt16{margin-top:16px}.mb8{margin-bottom:8px}.mb16{margin-bottom:16px}
+.badge-caso{background:rgba(124,58,237,.08);color:var(--purple);border:1px solid rgba(124,58,237,.2);font-size:8px;font-weight:800;padding:2px 7px;border-radius:4px}
+.badge-ia{background:rgba(37,99,235,.08);color:var(--blue);border:1px solid rgba(37,99,235,.2);font-size:8px;font-weight:800;padding:2px 7px;border-radius:4px}
+.badge-error{background:rgba(220,38,38,.08);color:var(--red);border:1px solid rgba(220,38,38,.2);font-size:8px;font-weight:800;padding:2px 7px;border-radius:4px}
+.badge-story{background:rgba(245,158,11,.08);color:var(--amber);border:1px solid rgba(245,158,11,.2);font-size:8px;font-weight:800;padding:2px 7px;border-radius:4px}
+.badge-venta{background:var(--green-bg);color:var(--green);border:1px solid rgba(5,150,105,.2);font-size:8px;font-weight:800;padding:2px 7px;border-radius:4px}
+
+/* PROMPT BOX */
+.dc-divider{height:1px;background:var(--border-light);margin:12px 0}
+.prompt-box{background:#0F172A;border-radius:8px;padding:12px 14px;position:relative}
+.prompt-label{color:var(--purple) !important}
+.prompt-text{font-size:10.5px;color:rgba(255,255,255,.75);line-height:1.65;white-space:pre-wrap;user-select:text;font-family:monospace;max-height:180px;overflow-y:auto}
+.prompt-text::-webkit-scrollbar{width:4px}
+.prompt-text::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15);border-radius:2px}
+.prompt-actions{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.btn-copy-prompt{padding:5px 14px;background:var(--purple);color:#fff;border:none;border-radius:6px;font-size:10px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s;letter-spacing:.3px}
+.btn-copy-prompt:hover{background:#6D28D9}
+.btn-copy-prompt.copied{background:var(--green)}
+.btn-expand-prompt{padding:5px 14px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);border:none;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s}
+.btn-expand-prompt:hover{background:rgba(255,255,255,.14);color:#fff}
+.prompt-collapsed{max-height:80px;overflow:hidden}
+
+/* NOTAS Y AJUSTES */
+.notes-section{margin-top:12px;padding:12px 14px;background:rgba(245,158,11,.04);border:1.5px dashed rgba(245,158,11,.25);border-radius:8px}
+.notes-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.notes-label-top{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber)}
+.notes-status{font-size:9px;color:var(--green);font-weight:700;display:none}
+.notes-area{width:100%;min-height:72px;max-height:200px;border:1.5px solid rgba(245,158,11,.2);border-radius:7px;padding:9px 11px;font-size:11.5px;font-family:'Montserrat',sans-serif;color:var(--text);background:var(--white);resize:vertical;outline:none;transition:border-color .15s;line-height:1.6}
+.notes-area:focus{border-color:var(--amber-bright)}
+.notes-area::placeholder{color:var(--muted);font-style:italic}
+.edit-fields{margin-top:10px;display:grid;grid-template-columns:1fr;gap:8px}
+.edit-field-label{font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.edit-input{width:100%;border:1.5px solid var(--border);border-radius:7px;padding:7px 10px;font-size:11.5px;font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--white);outline:none;transition:border-color .15s}
+.edit-input:focus{border-color:var(--blue)}
+.edit-input::placeholder{color:var(--muted);font-style:italic}
+.notes-save-row{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.btn-save-notes{padding:6px 16px;background:var(--dark);color:var(--amber-bright);border:none;border-radius:7px;font-size:10px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s}
+.btn-save-notes:hover{background:var(--dark2)}
+.btn-clear-notes{padding:6px 12px;background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:7px;font-size:10px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s}
+.btn-clear-notes:hover{border-color:var(--red);color:var(--red)}
+
+/* AÑADIR CONTENIDO */
+.add-hero{background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:20px}
+.add-hero-icon{font-size:36px;flex-shrink:0}
+.add-hero h3{font-size:16px;font-weight:900;color:var(--white);margin-bottom:4px;letter-spacing:-.3px}
+.add-hero p{font-size:11px;color:rgba(255,255,255,.45);line-height:1.5}
+.add-form{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:24px}
+.add-form h4{font-size:12px;font-weight:800;color:var(--dark);margin-bottom:18px;letter-spacing:-.2px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+.form-input{border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--white);outline:none;transition:border-color .15s;width:100%}
+.form-input:focus{border-color:var(--blue)}
+.form-select{border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--white);outline:none;transition:border-color .15s;width:100%;cursor:pointer}
+.form-select:focus{border-color:var(--blue)}
+.form-textarea{border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-size:12px;font-family:'Montserrat',sans-serif;color:var(--dark);background:var(--white);outline:none;transition:border-color .15s;width:100%;resize:vertical;min-height:72px;line-height:1.6}
+.form-textarea:focus{border-color:var(--blue)}
+.form-textarea::placeholder,.form-input::placeholder{color:var(--muted)}
+.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:8px}
+.btn-add-submit{padding:10px 24px;background:var(--blue);color:#fff;border:none;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s;letter-spacing:.3px}
+.btn-add-submit:hover{background:#1D4ED8}
+.btn-add-reset{padding:10px 18px;background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .15s}
+.btn-add-reset:hover{border-color:var(--red);color:var(--red)}
+.custom-cards-section{margin-top:8px}
+.custom-cards-section h4{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.custom-card{background:var(--white);border:1.5px solid var(--blue);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:12px;position:relative}
+.custom-card-header{padding:12px 14px;display:flex;align-items:flex-start;gap:10px}
+.custom-card-badge{font-size:9px;font-weight:800;text-transform:uppercase;padding:3px 8px;border-radius:5px;flex-shrink:0}
+.custom-badge-new{background:var(--blue-bg);color:var(--blue);border:1px solid rgba(37,99,235,.2)}
+.custom-card-info{flex:1}
+.custom-card-date{font-size:9px;color:var(--muted);font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.custom-card-title{font-size:12.5px;font-weight:800;color:var(--dark);line-height:1.3;margin-top:2px}
+.custom-card-pilar{font-size:9px;color:var(--blue);font-weight:700;margin-top:3px}
+.btn-delete-card{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .15s}
+.btn-delete-card:hover{background:var(--red-bg);color:var(--red)}
+.custom-card-body{padding:0 14px 12px;font-size:11px;color:var(--text);line-height:1.6}
+.no-custom{text-align:center;padding:32px;color:var(--muted);font-size:11.5px;background:var(--white);border:2px dashed var(--border);border-radius:var(--radius)}
+.no-custom strong{display:block;font-size:14px;color:var(--dark);margin-bottom:6px;font-weight:800}
+
+@media(max-width:640px){
+  .perfil-grid{grid-template-columns:1fr}
+  .roadmap{flex-direction:column}
+  .rm-step{border-right:none;border-bottom:1px solid var(--border)}
+  .rm-step:last-child{border-bottom:none}
+  .form-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">El de los Datos<span>Parrilla Junio 2026</span></div>
+  <div class="nav-tabs">
+    <button class="ntab active" onclick="showSection('parrilla',this)">📅 Parrilla</button>
+    <button class="ntab" onclick="showSection('hooks',this)">🎯 Hooks &amp; CTAs</button>
+    <button class="ntab" onclick="showSection('estrategia',this)">🧠 Estrategia</button>
+    <button class="ntab" onclick="showSection('perfil',this)">📱 Perfil &amp; Bio</button>
+    <button class="ntab" onclick="showSection('agregar',this)">➕ Añadir / Editar</button>
+  </div>
+  <div class="nav-actions">
+    <span style="font-size:10px;color:var(--muted);font-weight:700">@eldelosdatos</span>
+  </div>
+</nav>
+
+<div class="page">
+
+<div class="hero">
+  <div class="hero-eyebrow">Estrategia de Contenido · Junio 3–30, 2026</div>
+  <div class="hero-title">El de los <em>Datos</em></div>
+  <div class="hero-sub">Marca Personal B2B · Posicionamiento Digital · IA + Negocio</div>
+  <div class="hero-chips">
+    <span class="chip red">8 Reels</span>
+    <span class="chip">4 Carruseles</span>
+    <span class="chip green">5 Stories</span>
+    <span class="chip amber">17 piezas totales</span>
+    <span class="chip">~4 por semana</span>
+  </div>
+</div>
+
+<!-- ============================================================ PARRILLA ============================================================ -->
+<div id="sec-parrilla" class="page-section active">
+
+  <div class="selector-panel">
+    <div class="selector-row">
+      <span class="selector-label">Semana</span>
+      <div class="pills" id="week-pills">
+        <button class="pill active" onclick="showWeek(0,this)">Todas</button>
+        <button class="pill" onclick="showWeek(1,this)">Sem 1 · Jun 3–7</button>
+        <button class="pill" onclick="showWeek(2,this)">Sem 2 · Jun 8–14</button>
+        <button class="pill" onclick="showWeek(3,this)">Sem 3 · Jun 15–21</button>
+        <button class="pill" onclick="showWeek(4,this)">Sem 4 · Jun 22–28</button>
+        <button class="pill" onclick="showWeek(5,this)">Sem 5 · Jun 29–30</button>
+      </div>
+      <div class="selector-divider"></div>
+      <span class="selector-label">Formato</span>
+      <div class="pills" id="format-pills">
+        <button class="pill active" onclick="filterFormat('todos',this)">Todos</button>
+        <button class="pill" onclick="filterFormat('reel',this)">🎬 Reels</button>
+        <button class="pill" onclick="filterFormat('carrusel',this)">📖 Carruseles</button>
+        <button class="pill" onclick="filterFormat('stories',this)">📱 Stories</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="sec">
+
+      <!-- STATS PENDING -->
+      <div class="stats-banner">
+        <div class="stats-icon">📊</div>
+        <div class="stats-text">
+          <h4>Estadísticas de cuenta — pendientes</h4>
+          <p>Cuando compartas las métricas actuales, las integro aquí para calibrar qué formatos priorizar según tu punto de partida real.</p>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card pending"><div class="stat-label">Seguidores</div><div class="stat-value pending">Pendiente</div></div>
+        <div class="stat-card pending"><div class="stat-label">Alcance semanal</div><div class="stat-value pending">Pendiente</div></div>
+        <div class="stat-card pending"><div class="stat-label">Tasa interacción</div><div class="stat-value pending">Pendiente</div></div>
+        <div class="stat-card pending"><div class="stat-label">Impresiones / mes</div><div class="stat-value pending">Pendiente</div></div>
+        <div class="stat-card pending"><div class="stat-label">Mejor formato</div><div class="stat-value pending">Pendiente</div></div>
+        <div class="stat-card pending"><div class="stat-label">Leads DM / mes</div><div class="stat-value pending">Pendiente</div></div>
+      </div>
+
+      <!-- VOLUMEN -->
+      <div class="vol-strip">
+        <div class="vol-card"><div class="vol-num reel">8</div><div class="vol-label">Reels</div><div class="vol-sub">~2–3h producción c/u</div></div>
+        <div class="vol-card"><div class="vol-num carrusel">4</div><div class="vol-label">Carruseles</div><div class="vol-sub">~1h diseño c/u</div></div>
+        <div class="vol-card"><div class="vol-num stories">5</div><div class="vol-label">Stories</div><div class="vol-sub">~20 min c/u</div></div>
+        <div class="vol-card"><div class="vol-num total">17</div><div class="vol-label">Total mes</div><div class="vol-sub">~4 piezas / semana</div></div>
+      </div>
+
+      <!-- DISTRIBUCIÓN -->
+      <div class="dist-bar">
+        <h4>Distribución estratégica</h4>
+        <div class="dist-track">
+          <div class="dist-seg crecimiento"></div>
+          <div class="dist-seg autoridad"></div>
+          <div class="dist-seg venta"></div>
+        </div>
+        <div class="dist-legend">
+          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--blue)"></div>41% Crecimiento · atraer audiencia nueva</div>
+          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--amber-bright)"></div>41% Autoridad · construir credibilidad B2B</div>
+          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--green-bright)"></div>18% Conversión · activar leads</div>
+        </div>
+      </div>
+
+      <!-- LEYENDA -->
+      <div class="leyenda">
+        <div class="ley-item"><div class="ley-dot" style="background:var(--reel)"></div>Reel</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--carrusel)"></div>Carrusel</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--stories)"></div>Stories</div>
+        <div style="width:1px;height:14px;background:var(--border);margin:0 4px"></div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--blue)"></div>Alcance</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--amber-bright)"></div>Autoridad</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--green-bright)"></div>Venta</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--purple)"></div>Conexión</div>
+        <div style="width:1px;height:14px;background:var(--border);margin:0 4px"></div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--muted);opacity:.4"></div>Pasado / Descanso</div>
+      </div>
+
+      <!-- ═══ SEMANA 1 ═══ Jun 3–7 -->
+      <div class="week-block" data-week="1">
+        <div class="week-label">📅 Semana 1 · Jun 3–7 <span class="vol-tag">3 piezas</span></div>
+        <div class="cal-grid">
+          <div class="cal-head">
+            <div class="cal-head-cell">Lun</div>
+            <div class="cal-head-cell">Mar</div>
+            <div class="cal-head-cell pub">Mié</div>
+            <div class="cal-head-cell">Jue</div>
+            <div class="cal-head-cell pub">Vie</div>
+            <div class="cal-head-cell">Sáb</div>
+            <div class="cal-head-cell pub">Dom</div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-cell past-day"><div class="cal-date">1 <span class="past-tag">pasado</span></div></div>
+            <div class="cal-cell past-day"><div class="cal-date">2 <span class="past-tag">pasado</span></div></div>
+            <div class="cal-cell today-cell pub-day"><div class="cal-date">3 <span class="today-tag">hoy</span></div>
+              <div class="cal-badge stories" onclick="scrollToCard('s1')"><span class="cal-icon">📱</span><div><div class="cal-text">Lo que construyo</div><div class="cal-obj conexion">Conexión</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">4</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">5</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r1')"><span class="cal-icon">🎬</span><div><div class="cal-text">Posicionamiento vs. contenido</div><div class="cal-obj alcance">Alcance</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">6</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">7</div>
+              <div class="cal-badge stories" onclick="scrollToCard('s2')"><span class="cal-icon">📱</span><div><div class="cal-text">Q&amp;A abierta</div><div class="cal-obj conexion">Conexión</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="cards-grid" id="cards-week-1"></div>
+      </div>
+
+      <!-- ═══ SEMANA 2 ═══ Jun 8–14 -->
+      <div class="week-block" data-week="2">
+        <div class="week-label">📅 Semana 2 · Jun 8–14 <span class="vol-tag">4 piezas</span></div>
+        <div class="cal-grid">
+          <div class="cal-head">
+            <div class="cal-head-cell pub">Lun</div>
+            <div class="cal-head-cell">Mar</div>
+            <div class="cal-head-cell pub">Mié</div>
+            <div class="cal-head-cell">Jue</div>
+            <div class="cal-head-cell pub">Vie</div>
+            <div class="cal-head-cell">Sáb</div>
+            <div class="cal-head-cell pub">Dom</div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-cell pub-day"><div class="cal-date">8</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r2')"><span class="cal-icon">🎬</span><div><div class="cal-text">IA ayuda a vender</div><div class="cal-obj alcance">Alcance</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">9</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">10</div>
+              <div class="cal-badge carrusel" onclick="scrollToCard('c1')"><span class="cal-icon">📖</span><div><div class="cal-text">5 señales improvisada</div><div class="cal-obj autoridad">Autoridad</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">11</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">12</div>
+              <div class="cal-badge stories" onclick="scrollToCard('s3')"><span class="cal-icon">📱</span><div><div class="cal-text">Behind the scenes</div><div class="cal-obj conexion">Conexión</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">13</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">14</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r3')"><span class="cal-icon">🎬</span><div><div class="cal-text">Dato IA al empresario</div><div class="cal-obj alcance">Alcance</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="cards-grid" id="cards-week-2"></div>
+      </div>
+
+      <!-- ═══ SEMANA 3 ═══ Jun 15–21 -->
+      <div class="week-block" data-week="3">
+        <div class="week-label">📅 Semana 3 · Jun 15–21 <span class="vol-tag">5 piezas</span></div>
+        <div class="cal-grid">
+          <div class="cal-head">
+            <div class="cal-head-cell pub">Lun</div>
+            <div class="cal-head-cell">Mar</div>
+            <div class="cal-head-cell pub">Mié</div>
+            <div class="cal-head-cell">Jue</div>
+            <div class="cal-head-cell pub">Vie</div>
+            <div class="cal-head-cell pub">Sáb</div>
+            <div class="cal-head-cell">Dom</div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-cell pub-day"><div class="cal-date">15</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r4')"><span class="cal-icon">🎬</span><div><div class="cal-text">3 errores empresa pequeña</div><div class="cal-obj alcance">Alcance</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">16</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">17</div>
+              <div class="cal-badge carrusel" onclick="scrollToCard('c2')"><span class="cal-icon">📖</span><div><div class="cal-text">Caso Dra. Natalia</div><div class="cal-obj autoridad">Autoridad</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">18</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">19</div>
+              <div class="cal-badge stories" onclick="scrollToCard('s4')"><span class="cal-icon">📱</span><div><div class="cal-text">Encuesta — tu mayor dolor</div><div class="cal-obj investigacion">Investigación</div></div></div>
+            </div>
+            <div class="cal-cell pub-day"><div class="cal-date">20</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r5')"><span class="cal-icon">🎬</span><div><div class="cal-text">Responder tarde = perder plata</div><div class="cal-obj venta">Venta</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">21</div><div class="rest-label">descanso</div></div>
+          </div>
+        </div>
+        <div class="cards-grid" id="cards-week-3"></div>
+      </div>
+
+      <!-- ═══ SEMANA 4 ═══ Jun 22–28 -->
+      <div class="week-block" data-week="4">
+        <div class="week-label">📅 Semana 4 · Jun 22–28 <span class="vol-tag">4 piezas</span></div>
+        <div class="cal-grid">
+          <div class="cal-head">
+            <div class="cal-head-cell pub">Lun</div>
+            <div class="cal-head-cell">Mar</div>
+            <div class="cal-head-cell pub">Mié</div>
+            <div class="cal-head-cell">Jue</div>
+            <div class="cal-head-cell">Vie</div>
+            <div class="cal-head-cell pub">Sáb</div>
+            <div class="cal-head-cell">Dom</div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-cell pub-day"><div class="cal-date">22</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r6')"><span class="cal-icon">🎬</span><div><div class="cal-text">Lo que aprendí emprendiendo</div><div class="cal-obj conexion">Conexión</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">23</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">24</div>
+              <div class="cal-badge carrusel" onclick="scrollToCard('c3')"><span class="cal-icon">📖</span><div><div class="cal-text">Mini auditoría en vivo</div><div class="cal-obj autoridad">Autoridad</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">25</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell rest-day"><div class="cal-date">26</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">27</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r7')"><span class="cal-icon">🎬</span><div><div class="cal-text">Contenido + estrategia + sistema</div><div class="cal-obj venta">Venta</div></div></div>
+            </div>
+            <div class="cal-cell rest-day"><div class="cal-date">28</div><div class="rest-label">descanso</div></div>
+          </div>
+        </div>
+        <div class="cards-grid" id="cards-week-4"></div>
+      </div>
+
+      <!-- ═══ SEMANA 5 ═══ Jun 29–30 -->
+      <div class="week-block" data-week="5">
+        <div class="week-label">📅 Semana 5 · Jun 29–30 <span class="vol-tag">2 piezas · cierre de mes</span></div>
+        <div class="cal-grid">
+          <div class="cal-head">
+            <div class="cal-head-cell pub">Lun</div>
+            <div class="cal-head-cell pub">Mar</div>
+            <div class="cal-head-cell">Mié</div>
+            <div class="cal-head-cell">Jue</div>
+            <div class="cal-head-cell">Vie</div>
+            <div class="cal-head-cell">Sáb</div>
+            <div class="cal-head-cell">Dom</div>
+          </div>
+          <div class="cal-body">
+            <div class="cal-cell pub-day"><div class="cal-date">29</div>
+              <div class="cal-badge stories" onclick="scrollToCard('s5')"><span class="cal-icon">📱</span><div><div class="cal-text">Cierre del mes + teaser</div><div class="cal-obj conexion">Conexión</div></div></div>
+            </div>
+            <div class="cal-cell pub-day"><div class="cal-date">30</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r8')"><span class="cal-icon">🎬</span><div><div class="cal-text">A quién ayudo y qué hago</div><div class="cal-obj venta">Venta</div></div></div>
+            </div>
+            <div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div>
+          </div>
+        </div>
+        <div class="cards-grid" id="cards-week-5"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ HOOKS & CTAs ============================================================ -->
+<div id="sec-hooks" class="page-section">
+  <div class="wrap"><div class="sec">
+    <div class="sec-header"><div class="sec-ey">Banco de Recursos</div><div class="sec-title">Hooks y CTAs de Alto Impacto</div></div>
+    <div class="estrategia-box">
+      <h4>Por qué estos hooks funcionan para El de los Datos</h4>
+      <ul>
+        <li>Hablan directamente al dolor del empresario latinoamericano: publicar sin crecer ni convertir.</li>
+        <li>Rompen creencias comunes (contrarian) o nombran un miedo concreto — ambos detienen el scroll.</li>
+        <li>Siempre hay un "dato" implícito que refuerza la marca: estadística, observación, porcentaje.</li>
+        <li>Suenan a persona real. Eso genera confianza en el cliente B2B de Latam antes de cualquier DM.</li>
+      </ul>
+    </div>
+    <div class="sec-ey" style="margin-bottom:12px">Los 10 mejores hooks</div>
+    <div class="hooks-grid" id="hooks-container"></div>
+    <div class="sec-ey" style="margin-bottom:12px;margin-top:8px">Los 5 CTAs más naturales</div>
+    <div class="ctas-grid" id="ctas-container"></div>
+  </div></div>
+</div>
+
+<!-- ============================================================ ESTRATEGIA ============================================================ -->
+<div id="sec-estrategia" class="page-section">
+  <div class="wrap"><div class="sec">
+    <div class="sec-header"><div class="sec-ey">Plan de Contenido</div><div class="sec-title">Estructura Semanal y Roadmap</div></div>
+
+    <div class="week-structure">
+      <div class="ws-card"><div class="ws-day">Lunes</div><div class="ws-format reel">🎬 Reel · Alcance</div><div class="ws-desc">Pilar Datos+IA o Errores. Grabar el fin de semana anterior. Publicar 6–9am para capturar el lunes activo.</div></div>
+      <div class="ws-card"><div class="ws-day">Miércoles</div><div class="ws-format carrusel">📖 Carrusel · Autoridad</div><div class="ws-desc">Caso real o análisis. Diseñar el martes. 4–7 slides. El miércoles la audiencia tiene más tiempo para leer.</div></div>
+      <div class="ws-card"><div class="ws-day">Viernes o Sábado</div><div class="ws-format reel">🎬 Reel · Conversión</div><div class="ws-desc">Storytelling o CTA. Audiencia más relajada = más dispuesta a escribir DMs o guardar.</div></div>
+      <div class="ws-card"><div class="ws-day">Domingo (opcional)</div><div class="ws-format stories">📱 Stories · Cercanía</div><div class="ws-desc">Q&A, encuesta, opinión rápida. Sin edición. Cara a cámara. Máximo 20 minutos de producción.</div></div>
+      <div class="ws-card"><div class="ws-day">Martes, Jueves</div><div class="ws-format descanso">⏸ Descanso de producción</div><div class="ws-desc">Responder DMs y comentarios. Planificar el siguiente contenido. Grabar si el Reel lo requiere.</div></div>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:12px">Roadmap del mes — 4 fases</div>
+    <div class="roadmap">
+      <div class="rm-step"><div class="rm-week">Sem 1 · Jun 3–7</div><div class="rm-title">Arrancar el nuevo tono</div><div class="rm-desc">3 piezas. Primer Reel que declara la evolución: ya no solo datos, también implementas. Stories de presentación.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 2 · Jun 8–14</div><div class="rm-title">Mostrar criterio</div><div class="rm-desc">4 piezas. Primer carrusel de errores. Primer Reel de IA práctica. Primera venta directa al final.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 3 · Jun 15–21</div><div class="rm-title">Probar el caso real</div><div class="rm-desc">5 piezas. El carrusel de Dra. Natalia es el contenido de mayor conversión del mes. Encuesta para detectar leads.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 4–5 · Jun 22–30</div><div class="rm-title">Cerrar con conversión</div><div class="rm-desc">6 piezas. Mini auditoría en vivo. Reel de oferta clara. Cierre del mes con quién eres y qué vendes.</div></div>
+    </div>
+
+    <div class="estrategia-box">
+      <h4>Regla de oro — 3 antes de vender</h4>
+      <ul>
+        <li>Nunca publicar 2 contenidos de conversión seguidos — siempre intercalar con educación o conexión.</li>
+        <li>Los Reels del lunes son para crecer. Los del viernes/sábado son para convertir. No mezclarlos.</li>
+        <li>El carrusel del caso real (Jun 17) es el pivote del mes — si funciona, determina el enfoque de julio.</li>
+        <li>Las Stories del domingo no son obligación: si no tienes algo real que mostrar, no publiques.</li>
+        <li>Días de descanso = responder cada DM y comentario. Ahí está la venta, no en el próximo post.</li>
+      </ul>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ============================================================ PERFIL ============================================================ -->
+<div id="sec-perfil" class="page-section">
+  <div class="wrap"><div class="sec">
+    <div class="sec-header"><div class="sec-ey">Identidad Digital</div><div class="sec-title">Perfil como Autoridad B2B</div></div>
+
+    <div class="frase-ancla">
+      <div class="frase-ancla-text">"Porque siempre les voy a <em>tirar el dato</em>."</div>
+      <div class="frase-ancla-sub">Firma de marca · bio · cierre de reels · captions</div>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:10px">Bio recomendada</div>
+    <div class="bio-box">
+      <h4>📱 Versión optimizada para Instagram</h4>
+      <div class="bio-text">
+        Posiciono marcas con <em>datos + estrategia</em><br>
+        📊 IA aplicada a negocios reales<br>
+        🏢 Para empresas que quieren crecer en serio<br>
+        ↓ Diagnóstico gratis — escríbeme <em>"marca"</em>
+      </div>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:10px">Highlights recomendadas</div>
+    <div class="highlight-grid">
+      <div class="hl-card"><div class="hl-icon">📁</div><div class="hl-name">Casos</div><div class="hl-desc">Proceso con clientes reales</div></div>
+      <div class="hl-card"><div class="hl-icon">💼</div><div class="hl-name">Servicios</div><div class="hl-desc">Qué hago y cómo empezar</div></div>
+      <div class="hl-card"><div class="hl-icon">🤖</div><div class="hl-name">IA Práctica</div><div class="hl-desc">Reels de IA para negocios</div></div>
+      <div class="hl-card"><div class="hl-icon">🔍</div><div class="hl-name">Auditorías</div><div class="hl-desc">Análisis de marcas en vivo</div></div>
+      <div class="hl-card"><div class="hl-icon">👤</div><div class="hl-name">Yo</div><div class="hl-desc">Quién soy y qué construyo</div></div>
+    </div>
+
+    <div class="perfil-grid">
+      <div class="perfil-card">
+        <h3>✅ Hacer para verse como autoridad B2B</h3>
+        <ul>
+          <li>Cara visible desde el thumbnail de cada Reel</li>
+          <li>Paleta de colores fija en todos los carruseles</li>
+          <li>Slide 1 de carrusel: título + contexto + tu nombre</li>
+          <li>Responder TODOS los comentarios en las primeras 2h</li>
+          <li>Stories mínimo 2 veces por semana — cercanía activa</li>
+          <li>Publicar resultados aunque sean pequeños — prueba real</li>
+          <li>Nombrar casos reales en captions cuando puedas</li>
+        </ul>
+      </div>
+      <div class="perfil-card">
+        <h3>❌ Evitar para no quedarse como cuenta de curiosidades</h3>
+        <ul>
+          <li>Publicar datos sin conectarlos con negocio</li>
+          <li>Posts genéricos que cualquiera podría firmar</li>
+          <li>Logo como foto de perfil — siempre foto real tuya</li>
+          <li>Más de 2 contenidos sin CTA en la semana</li>
+          <li>Hablar de IA en abstracto — siempre aplicado a empresa</li>
+          <li>Cambiar paleta visual entre semanas</li>
+          <li>Publicar sin responder DMs del día anterior</li>
+        </ul>
+      </div>
+    </div>
+
+  </div></div>
+</div>
+
+<!-- ============================================================ AÑADIR / EDITAR ============================================================ -->
+<div id="sec-agregar" class="page-section">
+  <div class="wrap"><div class="sec">
+    <div class="sec-header"><div class="sec-ey">Gestión de Contenido</div><div class="sec-title">Añadir o Editar Piezas</div></div>
+
+    <div class="add-hero">
+      <div class="add-hero-icon">✏️</div>
+      <div>
+        <h3>Tu espacio de creación libre</h3>
+        <p>Agrega piezas nuevas que no estaban en la parrilla, cambia una fecha, o documenta una idea espontánea. Todo se guarda en tu navegador automáticamente.</p>
+      </div>
+    </div>
+
+    <div class="add-form">
+      <h4>Nueva pieza de contenido</h4>
+      <div class="form-grid">
+        <div class="form-group">
+          <div class="form-label">Fecha de publicación</div>
+          <input type="text" class="form-input" id="new-fecha" placeholder="Ej: Lun 15 Jun"/>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Semana</div>
+          <select class="form-select" id="new-semana">
+            <option value="1">Semana 1 · Jun 3–7</option>
+            <option value="2">Semana 2 · Jun 8–14</option>
+            <option value="3" selected>Semana 3 · Jun 15–21</option>
+            <option value="4">Semana 4 · Jun 22–28</option>
+            <option value="5">Semana 5 · Jun 29–30</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Formato</div>
+          <select class="form-select" id="new-formato">
+            <option value="reel">🎬 Reel</option>
+            <option value="carrusel">📖 Carrusel</option>
+            <option value="stories">📱 Stories</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Pilar</div>
+          <select class="form-select" id="new-pilar">
+            <option>Datos + IA Aplicados</option>
+            <option>Errores de Marca</option>
+            <option>Empresario en Construcción</option>
+            <option>Casos y Auditorías</option>
+            <option>Conversión</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Objetivo</div>
+          <select class="form-select" id="new-objetivo">
+            <option value="alcance">Alcance</option>
+            <option value="autoridad">Autoridad</option>
+            <option value="conexion">Conexión</option>
+            <option value="venta">Venta</option>
+            <option value="investigacion">Investigación</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Tiempo de producción estimado</div>
+          <input type="text" class="form-input" id="new-prod" placeholder="Ej: ~2h · grabación + edición"/>
+        </div>
+        <div class="form-group full">
+          <div class="form-label">Título / tema del contenido</div>
+          <input type="text" class="form-input" id="new-titulo" placeholder="Escribe el tema o título gancho de esta pieza"/>
+        </div>
+        <div class="form-group full">
+          <div class="form-label">Idea central (1–2 líneas)</div>
+          <textarea class="form-textarea" id="new-idea" placeholder="Qué quieres comunicar, cuál es el argumento principal, qué problema resuelve..."></textarea>
+        </div>
+        <div class="form-group full">
+          <div class="form-label">Hook de apertura</div>
+          <textarea class="form-textarea" id="new-hook" placeholder="Las primeras palabras que dirás o pondrás en pantalla..." style="min-height:56px"></textarea>
+        </div>
+        <div class="form-group full">
+          <div class="form-label">CTA final</div>
+          <input type="text" class="form-input" id="new-cta" placeholder='Ej: "Comenta \'auditoría\' y reviso tu perfil."'/>
+        </div>
+        <div class="form-group full">
+          <div class="form-label">Notas de producción / contexto extra</div>
+          <textarea class="form-textarea" id="new-notas" placeholder="Tips de grabación, referencias, ideas de edición, datos que quieres incluir..."></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn-add-reset" onclick="resetForm()">Limpiar</button>
+        <button class="btn-add-submit" onclick="addCustomCard()">➕ Añadir a la parrilla</button>
+      </div>
+    </div>
+
+    <div class="custom-cards-section">
+      <h4>Piezas añadidas por ti (<span id="custom-count">0</span>)</h4>
+      <div id="custom-cards-list"></div>
+    </div>
+
+  </div></div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+// ============================================================
+// DATOS — 17 piezas · Jun 3–30, 2026
+// ============================================================
+const DAYS = [
+  // ─── SEMANA 1 ───
+  {id:'s1',week:1,date:'Mié 3 Jun · HOY',format:'stories',pilar:'Empresario en Construcción',
+   title:'Lo que estoy construyendo detrás de El de los Datos',
+   objetivo:'conexion',objLabel:'Conexión',
+   tags:['badge-story'],tagLabels:['Storytelling'],
+   prod:'~20 min · cara a cámara, sin edición',
+   idea:'Arrancar la semana con cercanía. Mostrar que detrás hay un emprendedor que implementa servicios reales. La cuenta evoluciona: ya no solo datos, ahora también resultados de negocio.',
+   hook:'"Te cuento algo que casi no comparto: por qué arranqué esto y hacia dónde va."',
+   cta:'"Responde \'marca\' si quieres que revise tu perfil gratis."',
+   tip:'4–5 slides. Cara a cámara en el primero. Texto corto en los siguientes. Sin sobreproducción — lo auténtico funciona mejor que lo editado.'},
+
+  {id:'r1',week:1,date:'Vie 5 Jun',format:'reel',pilar:'Datos + IA Aplicados',
+   title:'Tu empresa no tiene problema de contenido. Tiene problema de posicionamiento.',
+   objetivo:'alcance',objLabel:'Alcance',
+   tags:['badge-ia'],tagLabels:['IA + Negocio'],
+   prod:'~2–3h · grabación + edición CapCut',
+   idea:'Primer Reel del nuevo enfoque. Muchas marcas publican sin saber para qué. El resultado: ruido digital sin clientes. Diferenciar "publicar" de "posicionarse" en 40 segundos.',
+   hook:'"Te voy a tirar un dato: la mayoría de empresas no necesitan más posts, necesitan saber para qué están publicando."',
+   cta:'"Sígueme que te tiro el dato."',
+   tip:'El Reel más importante del mes — declara el nuevo tono de la cuenta. Energía alta, directo, sin rodeos. Grabar jueves para publicar viernes 6–9am.'},
+
+  {id:'s2',week:1,date:'Dom 7 Jun',format:'stories',pilar:'Cercanía',
+   title:'Pregunta abierta: ¿qué le está costando más a tu negocio en digital?',
+   objetivo:'conexion',objLabel:'Conexión',
+   tags:[],tagLabels:[],
+   prod:'~15 min · herramienta de pregunta Instagram',
+   idea:'Caja de preguntas para detectar dolores reales. Cada respuesta es un lead calificado. Alimenta los temas de las semanas 2 y 3.',
+   hook:'"Una pregunta rápida para mis emprendedores: ¿cuál es tu mayor dolor en digital hoy?"',
+   cta:'"Déjame tu respuesta y te doy mi opinión sin filtro."',
+   tip:'Usar la herramienta nativa de "Pregunta" de Instagram. Responder a todos individualmente por DM — ahí está la venta.'},
+
+  // ─── SEMANA 2 ───
+  {id:'r2',week:2,date:'Lun 8 Jun',format:'reel',pilar:'Datos + IA Aplicados',
+   title:'3 formas en que la IA ya está ayudando a vender servicios (y no lo sabes)',
+   objetivo:'alcance',objLabel:'Alcance',
+   tags:['badge-ia'],tagLabels:['IA + Negocio'],
+   prod:'~2–3h · grabar el fin de semana',
+   idea:'IA para responder leads, agendar citas automático, hacer seguimiento sin staff adicional. Casos prácticos para negocios de servicios. Sin tecnicismos.',
+   hook:'"La IA no te va a quitar el trabajo. Te va a hacer la competencia si no la usas ya."',
+   cta:'"Quédate que te tiro el dato."',
+   tip:'Lista de 3 con ejemplo concreto por punto. Máximo 45 seg. Grabar el domingo para publicar lunes temprano.'},
+
+  {id:'c1',week:2,date:'Mié 10 Jun',format:'carrusel',pilar:'Errores de Marca',
+   title:'5 señales de que tu empresa se ve improvisada en Instagram',
+   objetivo:'autoridad',objLabel:'Autoridad',
+   tags:['badge-error'],tagLabels:['Error de marca'],
+   prod:'~1h · diseño en Canva con plantilla fija',
+   idea:'Portada genérica, bio sin propuesta, contenido desconectado, sin CTA, sin sistema. Cada señal equivale a un cliente que se va sin contactarte.',
+   hook:'"Si tu cuenta hace alguna de estas 5 cosas, estás perdiendo clientes sin saberlo."',
+   cta:'"Guárdalo para auditar tu marca hoy."',
+   tip:'8 slides: portada + 1 slide por señal + CTA final. Este carrusel genera muchos guardados — es tu primer contenido de alta retención.'},
+
+  {id:'s3',week:2,date:'Vie 12 Jun',format:'stories',pilar:'Empresario en Construcción',
+   title:'Detrás de cámara: cómo planificamos contenido para una marca real',
+   objetivo:'conexion',objLabel:'Conexión',
+   tags:['badge-story'],tagLabels:['Behind the scenes'],
+   prod:'~20 min · pantallazos + cara a cámara',
+   idea:'Mostrar pantallas de planificación, decisiones de formato, conversación con cliente. Probar con realidad. Sin glamour innecesario.',
+   hook:'"Te muestro cómo se ve la planificación de contenido de verdad, sin el cuento bonito."',
+   cta:'"Sígueme para ver más del proceso."',
+   tip:'5 stories: pantalla del doc + selección de temas + reflexión final. Muy auténtico, sin edición perfecta — eso es parte del atractivo.'},
+
+  {id:'r3',week:2,date:'Dom 14 Jun',format:'reel',pilar:'Datos + IA Aplicados',
+   title:'Este dato de IA le debería importar más a un empresario que a un creador de contenido',
+   objetivo:'alcance',objLabel:'Alcance',
+   tags:['badge-ia'],tagLabels:['Datos + Negocio'],
+   prod:'~2h · grabación + edición',
+   idea:'Conectar tendencia o estadística de IA con impacto concreto en ventas y productividad. Lenguaje de negocio, no de tecnología. El dato como razón para actuar.',
+   hook:'"Hay un dato de IA que todos están ignorando… y es el que más plata te puede hacer."',
+   cta:'"Sígueme que aquí tiramos datos que sirven."',
+   tip:'Dato con fuente reconocida si es posible. Lo que importa es la aplicación práctica, no el dato solo. Grabar sábado, publicar domingo.'},
+
+  // ─── SEMANA 3 ───
+  {id:'r4',week:3,date:'Lun 15 Jun',format:'reel',pilar:'Errores de Marca',
+   title:'3 errores por los que una empresa se ve pequeña en digital aunque sea grande',
+   objetivo:'alcance',objLabel:'Alcance',
+   tags:['badge-error'],tagLabels:['Error de marca'],
+   prod:'~2–3h · grabación + edición',
+   idea:'Branding visual inconsistente entre plataformas, mensaje genérico que no diferencia, ausencia de autoridad en el contenido. Directo y sin filtro. Muy compartible.',
+   hook:'"Muchas empresas con millones en ventas se ven pequeñas en digital. Y es por esto."',
+   cta:'"Mándaselo a alguien que lo necesite."',
+   tip:'Alto potencial viral — invitar a compartir explícitamente funciona cuando el contenido duele de identificación. Uno de los Reels más fuertes del mes.'},
+
+  {id:'c2',week:3,date:'Mié 17 Jun',format:'carrusel',pilar:'Casos y Auditorías',
+   title:'Qué aprendimos en el primer mes posicionando una clínica dental en Bogotá',
+   objetivo:'autoridad',objLabel:'Autoridad',
+   tags:['badge-caso','badge-story'],tagLabels:['Caso Real','Aprendizaje'],
+   prod:'~1.5h · diseño + redacción con detalles reales',
+   idea:'Dra. Natalia Barrantes: qué cambió en comunicación, enfoque del servicio estrella (Diseño de Sonrisa), claridad de propuesta. Proceso real, sin prometer resultados mágicos.',
+   hook:'"Te muestro lo que pasa cuando una clínica deja de vender procedimientos y empieza a vender confianza."',
+   cta:'"Si tienes marca de servicios, este carrusel es para ti. Guárdalo."',
+   tip:'El contenido de mayor conversión del mes. 7–8 slides: contexto + 3–4 cambios implementados + observación de mercado + CTA. Con permiso de Natalia para usar su nombre.'},
+
+  {id:'s4',week:3,date:'Vie 19 Jun',format:'stories',pilar:'Cercanía',
+   title:'Encuesta: ¿qué le cuesta más a tu negocio — atraer, cerrar o hacer seguimiento?',
+   objetivo:'investigacion',objLabel:'Investigación',
+   tags:[],tagLabels:[],
+   prod:'~15 min · encuesta nativa Instagram',
+   idea:'Detectar dolores activos del mercado. Cada respuesta = perfil de cliente potencial. Responder todos por DM con perspectiva personalizada.',
+   hook:'"Una encuesta rápida — vota y escríbeme qué está pasando en tu negocio."',
+   cta:'"Vota y cuéntame tu situación. Te respondo con mi perspectiva."',
+   tip:'Usar 3 opciones de encuesta. Responder a TODOS los que voten con un mensaje corto personalizado. Ahí están los leads de julio.'},
+
+  {id:'r5',week:3,date:'Sáb 20 Jun',format:'reel',pilar:'Conversión',
+   title:'Si tu negocio depende de responder tarde, estás perdiendo plata todos los días',
+   objetivo:'venta',objLabel:'Venta Directa',
+   tags:['badge-ia','badge-venta'],tagLabels:['IA + Negocio','Venta Directa'],
+   prod:'~2h · grabación + edición',
+   idea:'El 78% de las ventas van para quien responde primero. Automatización de respuesta como ventaja comercial directa. Introducir sistemas con IA sin sonar vendedor.',
+   hook:'"El 78% de las ventas van para quien responde primero. ¿Cuánto estás perdiendo por responder después?"',
+   cta:'"Escríbeme \'respuesta\' y te muestro cómo lo solucionamos."',
+   tip:'Primera venta directa del mes. Viene después de 7 piezas de valor puro — la audiencia está lista. CTA específico y concreto.'},
+
+  // ─── SEMANA 4 ───
+  {id:'r6',week:4,date:'Lun 22 Jun',format:'reel',pilar:'Empresario en Construcción',
+   title:'Lo que aprendí construyendo servicios mientras crecía como creador de contenido',
+   objetivo:'conexion',objLabel:'Conexión',
+   tags:['badge-story'],tagLabels:['Storytelling'],
+   prod:'~2h · cara a cámara, storytelling personal',
+   idea:'La tensión real entre crear contenido para crecer y ejecutar servicios para clientes. Qué tuve que priorizar, qué sacrifiqué, qué aprendí. Humanizar sin perder autoridad.',
+   hook:'"Hubo un mes donde casi me rindo. No por falta de clientes, sino por falta de sistema. Te lo cuento."',
+   cta:'"Comenta si te ha pasado algo parecido."',
+   tip:'El Reel más personal del mes. Cara a cámara, sin mucho texto en pantalla. Cuanto más específico el aprendizaje, más identificación genera.'},
+
+  {id:'c3',week:4,date:'Mié 24 Jun',format:'carrusel',pilar:'Casos y Auditorías',
+   title:'Mini auditoría en vivo: por qué esta cuenta no está convirtiendo',
+   objetivo:'autoridad',objLabel:'Autoridad',
+   tags:['badge-caso','badge-error'],tagLabels:['Auditoría','Análisis'],
+   prod:'~1.5h · diseño + análisis de cuenta ejemplo',
+   idea:'Analizar una cuenta tipo (sin atacar a nadie real) explicando bio, oferta confusa, contenido sin sistema, frecuencia irregular y ausencia de CTA.',
+   hook:'"Voy a analizar esta cuenta en vivo y te explico exactamente por qué no le está llegando a sus clientes."',
+   cta:'"Comenta \'auditoría\' si quieres que revise la tuya."',
+   tip:'El carrusel de mayor conversión directa. Preparar cuenta ejemplo con detalle real. El CTA genera respuestas de leads calificados.'},
+
+  {id:'r7',week:4,date:'Sáb 27 Jun',format:'reel',pilar:'Conversión',
+   title:'Lo que pasa cuando una marca une contenido + estrategia + sistema de captación',
+   objetivo:'venta',objLabel:'Venta Directa',
+   tags:['badge-venta'],tagLabels:['Venta Directa'],
+   prod:'~2h · grabación + edición',
+   idea:'No solo publicaciones: resultado medible, sistema real de captación, seguimiento de leads, posicionamiento progresivo. La transformación completa del servicio.',
+   hook:'"Si tu empresa solo tiene contenido sin sistema, estás trabajando el doble para la mitad de resultados."',
+   cta:'"Escríbeme \'sistema\' y te mando cómo lo armamos para tu empresa."',
+   tip:'Segunda venta directa del mes. Viene después de 4 semanas de valor — la audiencia nueva ya tiene contexto. CTA directo y sin disculpas.'},
+
+  // ─── SEMANA 5 ───
+  {id:'s5',week:5,date:'Lun 29 Jun',format:'stories',pilar:'Cercanía',
+   title:'Cierre del mes: lo que aprendimos juntos + teaser de julio',
+   objetivo:'conexion',objLabel:'Conexión',
+   tags:[],tagLabels:[],
+   prod:'~20 min · cara a cámara + texto',
+   idea:'Recap del mes: temas que funcionaron, preguntas frecuentes recibidas, hacia dónde va el contenido en julio. Fideliza seguidores activos y crea anticipación.',
+   hook:'"Terminamos junio. Te cuento qué pasó este mes y qué viene en julio."',
+   cta:'"Activa las notificaciones para no perderte lo que viene."',
+   tip:'3–4 slides. Puede incluir estadística de alcance si fue positivo. El teaser de julio puede ser vago pero debe generar curiosidad.'},
+
+  {id:'r8',week:5,date:'Mar 30 Jun',format:'reel',pilar:'Conversión',
+   title:'A quién ayudo, qué hago exactamente y qué resultado puedes esperar',
+   objetivo:'venta',objLabel:'Venta Directa',
+   tags:['badge-venta'],tagLabels:['Venta Directa'],
+   prod:'~2h · grabación + edición',
+   idea:'Cierre del mes. Oferta clara, directa, sin rodeos. Cliente ideal, problema que resuelves, cómo se trabaja juntos, cómo empezar. La claridad es respeto.',
+   hook:'"Llevo casi 30 días tirándote datos. Hoy te cuento exactamente qué hago y para quién lo hago."',
+   cta:'"Escríbeme por DM con la palabra \'marca\' y arrancamos."',
+   tip:'El único Reel del mes donde vendes sin contexto previo de valor — ese contexto ya está dado por los días anteriores. No disculparse por vender.'}
+];
+
+const HOOKS = [
+  {text:'"Tu empresa no tiene problema de contenido. Tiene problema de posicionamiento."',why:'Contrarian. Rompe la creencia de que publicar más es la solución. El empresario ya lo sospecha.'},
+  {text:'"El 78% de las ventas van para quien responde primero. ¿Cuánto estás perdiendo?"',why:'Dato + dolor + pregunta directa. El número da credibilidad. La pregunta activa culpa productiva.'},
+  {text:'"Muchas empresas con millones en ventas se ven pequeñas en digital. Y es por esto."',why:'Disonancia. El empresario grande quiere saber si es su caso. El pequeño quiere evitarlo.'},
+  {text:'"Si tienes que explicar mucho lo que haces para que te entiendan, el problema no es el cliente."',why:'Incomodidad directa sin atacar. El viewer se reconoce sin sentirse señalado.'},
+  {text:'"La IA no te va a quitar el trabajo. Te va a hacer la competencia si no la usas ya."',why:'Reformulación del miedo más común sobre IA. Urgencia sin alarmismo. Muy compartible en B2B Latam.'},
+  {text:'"Posicionamiento no es que te vean. Es que te elijan."',why:'Definición que reencuadra. Simple, memorable. Diferencia alcance de conversión en 9 palabras.'},
+  {text:'"Mi primer cliente me enseñó más sobre posicionamiento que dos años estudiando el tema."',why:'Vulnerabilidad + autoridad al mismo tiempo. Genera conexión real. Raro en cuentas de "expertos".'},
+  {text:'"Las cuentas que no convierten no tienen problema de estética. Tienen problema de comunicación."',why:'Contrarian. Desmonta la ilusión del diseño bonito. Muy doloroso para quien ya invirtió en eso.'},
+  {text:'"Hay un dato que muy pocos empresarios conocen y que explica por qué pierden clientes todos los días."',why:'Curiosidad + exclusividad + dolor específico. "Todos los días" hace el miedo más presente.'},
+  {text:'"Tuve que dejar de ser el que explica cosas interesantes para ser el que resuelve problemas reales."',why:'Storytelling personal que humaniza la marca. Crea expectativa. Funciona como tráiler de evolución.'}
+];
+
+const CTAS = [
+  {text:'"Comenta \'auditoría\' y reviso tu perfil."',when:'Contenido de análisis o mini auditoría',why:'Bajo riesgo, alta intención. El lead levanta la mano. Fácil de hacer, fácil de responder.'},
+  {text:'"Escríbeme \'sistema\' y te cuento cómo lo armamos para empresas como la tuya."',when:'Contenido de conversión o caso real',why:'La palabra específica filtra: solo responden quienes tienen interés real.'},
+  {text:'"Guárdalo. Lo vas a necesitar cuando quieras empezar en serio."',when:'Contenido educativo — carruseles y Reels de valor',why:'Genera guardados (señal de alcance orgánico) y marca intención futura sin pedir acción inmediata.'},
+  {text:'"Responde este story con tu mayor dolor en digital y te doy mi perspectiva sin costo."',when:'Stories de investigación o encuesta',why:'Detecta clientes potenciales activos con cero fricción. Cada respuesta = lead calificado.'},
+  {text:'"Escríbeme \'marca\' por DM si quieres que hablemos de lo que está frenando a tu empresa."',when:'Reels de conversión directa y cierre de mes',why:'Directo, simple, sin link ni formulario. La conversación es el inicio del proceso de venta.'}
+];
+
+// ============================================================
+// RENDER
+// ============================================================
+function formatLabels(tags,labels){
+  return tags.map((t,i)=>`<span class="${t}">${labels[i]}</span>`).join(' ');
+}
+
+// ── GENERATE PROMPT ──────────────────────────────────────────
+function generatePrompt(d){
+  const fmtName={reel:'Reel de Instagram (30–45 segundos, vertical 9:16)',carrusel:'Carrusel de Instagram (6–8 slides)',stories:'Secuencia de Stories (4–5 slides)'};
+  const fmtOut={
+    reel:`1. Script completo con timing: [0:00–0:05] hook · [0:05–0:20] desarrollo · [0:20–0:35] solución · [0:35–0:45] CTA
+2. Texto en pantalla para cada momento (máx 5 palabras por frame)
+3. 3 versiones alternativas del hook de apertura
+4. Caption completo: gancho + desarrollo + CTA + 10 hashtags relevantes
+5. 3 estadísticas reales con fuente que respalden el argumento
+6. 2 opciones de música o sonido trending para el reel`,
+    carrusel:`1. Texto exacto de cada slide: portada + slides de desarrollo + slide CTA
+2. Máximo 15 palabras por slide — legible en 2 segundos
+3. Instrucción visual para cada slide (color, ícono, estilo sugerido)
+4. Caption completo: gancho + desarrollo + CTA + 10 hashtags
+5. 3–5 estadísticas reales con fuente que respalden el tema
+6. 3 versiones alternativas del título de portada`,
+    stories:`1. Secuencia de 4–5 stories con texto exacto y tipo por cada una
+   (cara a cámara / texto / encuesta / pregunta / boomerang)
+2. Guión para las stories de cara a cámara (máx 20 segundos total)
+3. Diseño de encuesta o pregunta interactiva si aplica
+4. CTA de cierre con acción específica
+5. 3 variaciones del mensaje de respuesta a DMs tras la interacción`
+  };
+  return `Actúa como estratega de contenido B2B para Instagram en Latinoamérica. Desarrolla una pieza completa lista para producir hoy.
+
+━━━ PIEZA ━━━
+Cuenta: @eldelosdatos
+Formato: ${fmtName[d.format]}
+Pilar: ${d.pilar}
+Objetivo: ${d.objLabel}
+Tema: ${d.title}
+Audiencia: Empresarios y fundadores de medianas empresas en Colombia y Latam que buscan posicionarse digitalmente o implementar IA en su negocio.
+
+━━━ CONTEXTO DE MARCA ━━━
+El de los Datos es una marca personal B2B. Explica datos, IA y posicionamiento digital de forma simple, desde la experiencia real de alguien que también construye y vende servicios para empresas.
+Tono: directo, práctico, sin lenguaje corporativo, claro y con autoridad.
+Frase ancla de cierre: "Porque siempre les voy a tirar el dato."
+
+━━━ IDEA BASE ━━━
+${d.idea}
+
+━━━ HOOK SUGERIDO (puedes mejorarlo) ━━━
+${d.hook}
+
+━━━ CTA SUGERIDO ━━━
+${d.cta}
+
+━━━ DESARROLLA LO SIGUIENTE ━━━
+${fmtOut[d.format]}
+
+REGLAS: lenguaje natural colombiano, nada corporativo, sin anglicismos innecesarios, sin promesas exageradas. El contenido debe sonar a persona real hablando, no a IA escribiendo.`;
+}
+
+// ── RENDER CARDS ─────────────────────────────────────────────
+function renderCards(){
+  const map={1:'cards-week-1',2:'cards-week-2',3:'cards-week-3',4:'cards-week-4',5:'cards-week-5'};
+  DAYS.forEach(d=>{
+    const cont=document.getElementById(map[d.week]);
+    if(!cont)return;
+    const card=document.createElement('div');
+    card.className='day-card';
+    card.dataset.week=d.week;
+    card.dataset.format=d.format;
+    card.id='card-'+d.id;
+    const fLabel=d.format==='stories'?'Stories':d.format==='reel'?'Reel':'Carrusel';
+    const prompt=generatePrompt(d);
+    const savedNotes=localStorage.getItem('eldd_notes_'+d.id)||'';
+    const savedTitle=localStorage.getItem('eldd_title_'+d.id)||'';
+    const savedHook=localStorage.getItem('eldd_hook_'+d.id)||'';
+    card.innerHTML=`
+      <div class="dc-header">
+        <div class="dc-type ${d.format}">${fLabel}</div>
+        <div class="dc-head-info">
+          <div class="dc-day">${d.date}</div>
+          <div class="dc-title" id="display-title-${d.id}">${savedTitle||d.title}</div>
+          <div class="dc-pilar">${d.pilar}</div>
+          <div style="margin-top:4px">${formatLabels(d.tags,d.tagLabels)}</div>
+          <span class="dc-obj-badge ${d.objetivo}">${d.objLabel}</span>
+          <div class="prod-time"><span class="prod-dot ${d.format}-col"></span>${d.prod}</div>
+        </div>
+      </div>
+      <button class="dc-expand-btn" onclick="toggleCard('${d.id}',this)">▼ Ver detalle, prompt y notas</button>
+      <div class="dc-body" id="body-${d.id}">
+        <div class="dc-sec"><div class="dc-sec-label">Idea central</div><div class="dc-text">${d.idea}</div></div>
+        <div class="dc-sec"><div class="dc-sec-label">Hook de apertura</div><div class="dc-hook" id="display-hook-${d.id}">${savedHook||d.hook}</div></div>
+        <div class="dc-sec"><div class="dc-sec-label">CTA final</div><div class="dc-cta">${d.cta}</div></div>
+        ${d.tip?`<div class="tip-box"><p>💡 ${d.tip}</p></div>`:''}
+
+        <div class="dc-divider"></div>
+
+        <div class="dc-sec">
+          <div class="dc-sec-label prompt-label">🤖 Prompt para Perplexity / ChatGPT</div>
+          <div class="prompt-box">
+            <div class="prompt-text prompt-collapsed" id="prompt-text-${d.id}">${escHtml(prompt)}</div>
+            <div class="prompt-actions">
+              <button class="btn-copy-prompt" onclick="copyPrompt('${d.id}')">Copiar prompt completo</button>
+              <button class="btn-expand-prompt" onclick="togglePrompt('${d.id}',this)">Ver completo</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="notes-section" id="notes-section-${d.id}">
+          <div class="notes-header">
+            <div class="notes-label-top">📝 Mis ajustes y notas</div>
+            <div class="notes-status" id="notes-status-${d.id}">✓ Guardado</div>
+          </div>
+          <textarea class="notes-area" id="notes-${d.id}" placeholder="Anota cambios al tema, fecha real de grabación, ideas propias, resultados después de publicar, observaciones del mercado...">${escHtml(savedNotes)}</textarea>
+          <div class="edit-fields">
+            <div>
+              <div class="edit-field-label">Modificar título (deja vacío para usar el original)</div>
+              <input type="text" class="edit-input" id="edit-title-${d.id}" value="${escHtml(savedTitle)}" placeholder="${escHtml(d.title)}"/>
+            </div>
+            <div>
+              <div class="edit-field-label">Modificar hook (deja vacío para usar el original)</div>
+              <input type="text" class="edit-input" id="edit-hook-${d.id}" value="${escHtml(savedHook)}" placeholder="${escHtml(d.hook)}"/>
+            </div>
+          </div>
+          <div class="notes-save-row">
+            <button class="btn-clear-notes" onclick="clearNotes('${d.id}','${escHtml(d.title)}','${escHtml(d.hook)}')">Borrar mis cambios</button>
+            <button class="btn-save-notes" onclick="saveNotes('${d.id}')">Guardar cambios</button>
+          </div>
+        </div>
+      </div>`;
+    cont.appendChild(card);
+  });
+}
+
+function renderHooks(){
+  const hc=document.getElementById('hooks-container');
+  HOOKS.forEach((h,i)=>{
+    const card=document.createElement('div');
+    card.className='hook-card';
+    card.innerHTML=`<div class="hook-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="hook-text">${h.text}</div>
+      <div class="hook-why">${h.why}</div>
+      <button class="copy-btn" onclick="copyText(this,\`${h.text.replace(/`/g,'\\`')}\`)">Copiar hook</button>`;
+    hc.appendChild(card);
+  });
+  const cc=document.getElementById('ctas-container');
+  CTAS.forEach((c,i)=>{
+    const card=document.createElement('div');
+    card.className='cta-card';
+    card.innerHTML=`<div class="cta-num">CTA ${String(i+1).padStart(2,'0')}</div>
+      <div class="cta-text">${c.text}</div>
+      <div class="cta-when">📌 Usar en: ${c.when}</div>
+      <div class="cta-why">✓ ${c.why}</div>
+      <button class="copy-btn mt8" onclick="copyText(this,\`${c.text.replace(/`/g,'\\`')}\`)">Copiar CTA</button>`;
+    cc.appendChild(card);
+  });
+}
+
+function toggleCard(id,btn){
+  const body=document.getElementById('body-'+id);
+  const card=document.getElementById('card-'+id);
+  const open=body.classList.toggle('open');
+  card.classList.toggle('expanded',open);
+  btn.textContent=open?'▲ Cerrar':'▼ Ver hook, CTA e idea completa';
+}
+
+function scrollToCard(id){
+  const el=document.getElementById('card-'+id);
+  if(el){el.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+
+function copyText(btn,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const orig=btn.textContent;
+    btn.textContent='✓ Copiado';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent=orig;btn.classList.remove('copied');},2000);
+  }).catch(()=>{btn.textContent='✓';setTimeout(()=>{btn.textContent='Copiar';},1500);});
+}
+
+function showSection(id,btn){
+  document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('sec-'+id).classList.add('active');
+  document.querySelectorAll('.ntab').forEach(t=>t.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+}
+
+function showWeek(num,btn){
+  document.querySelectorAll('#week-pills .pill').forEach(p=>p.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.querySelectorAll('.week-block').forEach(b=>{
+    b.style.display=(num===0||parseInt(b.dataset.week)===num)?'block':'none';
+  });
+}
+
+function filterFormat(fmt,btn){
+  document.querySelectorAll('#format-pills .pill').forEach(p=>p.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  document.querySelectorAll('.day-card').forEach(c=>{
+    c.style.display=(fmt==='todos'||c.dataset.format===fmt)?'block':'none';
+  });
+}
+
+// ── HELPERS ──────────────────────────────────────────────────
+function escHtml(s){
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ── PROMPT ───────────────────────────────────────────────────
+function togglePrompt(id,btn){
+  const el=document.getElementById('prompt-text-'+id);
+  const collapsed=el.classList.toggle('prompt-collapsed');
+  btn.textContent=collapsed?'Ver completo':'Colapsar';
+}
+
+function copyPrompt(id){
+  const d=DAYS.find(x=>x.id===id);
+  if(!d)return;
+  const text=generatePrompt(d);
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.querySelector(`#body-${id} .btn-copy-prompt`);
+    if(btn){btn.textContent='✓ Copiado';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copiar prompt completo';btn.classList.remove('copied');},2500);}
+  });
+}
+
+// ── NOTAS ────────────────────────────────────────────────────
+function saveNotes(id){
+  const notes=document.getElementById('notes-'+id)?.value||'';
+  const title=document.getElementById('edit-title-'+id)?.value||'';
+  const hook=document.getElementById('edit-hook-'+id)?.value||'';
+  localStorage.setItem('eldd_notes_'+id,notes);
+  localStorage.setItem('eldd_title_'+id,title);
+  localStorage.setItem('eldd_hook_'+id,hook);
+  const orig=DAYS.find(x=>x.id===id);
+  const displayTitle=document.getElementById('display-title-'+id);
+  const displayHook=document.getElementById('display-hook-'+id);
+  if(displayTitle)displayTitle.textContent=title||orig?.title||'';
+  if(displayHook)displayHook.textContent=hook||orig?.hook||'';
+  const st=document.getElementById('notes-status-'+id);
+  if(st){st.style.display='block';setTimeout(()=>st.style.display='none',2000);}
+}
+
+function clearNotes(id,origTitle,origHook){
+  if(!confirm('¿Borrar todos tus cambios para esta pieza?'))return;
+  localStorage.removeItem('eldd_notes_'+id);
+  localStorage.removeItem('eldd_title_'+id);
+  localStorage.removeItem('eldd_hook_'+id);
+  const na=document.getElementById('notes-'+id);
+  const et=document.getElementById('edit-title-'+id);
+  const eh=document.getElementById('edit-hook-'+id);
+  if(na)na.value='';
+  if(et)et.value='';
+  if(eh)eh.value='';
+  const dt=document.getElementById('display-title-'+id);
+  const dh=document.getElementById('display-hook-'+id);
+  if(dt)dt.textContent=origTitle;
+  if(dh)dh.textContent=origHook;
+}
+
+// ── CUSTOM CARDS ─────────────────────────────────────────────
+function getCustomCards(){
+  try{return JSON.parse(localStorage.getItem('eldd_custom')||'[]');}catch{return [];}
+}
+function saveCustomCards(arr){
+  localStorage.setItem('eldd_custom',JSON.stringify(arr));
+}
+
+function addCustomCard(){
+  const fecha=document.getElementById('new-fecha').value.trim();
+  const semana=document.getElementById('new-semana').value;
+  const formato=document.getElementById('new-formato').value;
+  const pilar=document.getElementById('new-pilar').value;
+  const objetivo=document.getElementById('new-objetivo').value;
+  const prod=document.getElementById('new-prod').value.trim();
+  const titulo=document.getElementById('new-titulo').value.trim();
+  const idea=document.getElementById('new-idea').value.trim();
+  const hook=document.getElementById('new-hook').value.trim();
+  const cta=document.getElementById('new-cta').value.trim();
+  const notas=document.getElementById('new-notas').value.trim();
+  if(!titulo){alert('Agrega al menos un título para la pieza.');return;}
+  const card={id:'c'+Date.now(),fecha,semana,formato,pilar,objetivo,prod,titulo,idea,hook,cta,notas,ts:Date.now()};
+  const all=getCustomCards();
+  all.unshift(card);
+  saveCustomCards(all);
+  renderCustomCards();
+  resetForm();
+  document.getElementById('custom-cards-list').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function deleteCustomCard(id){
+  if(!confirm('¿Eliminar esta pieza?'))return;
+  const all=getCustomCards().filter(c=>c.id!==id);
+  saveCustomCards(all);
+  renderCustomCards();
+}
+
+function renderCustomCards(){
+  const list=document.getElementById('custom-cards-list');
+  const countEl=document.getElementById('custom-count');
+  const all=getCustomCards();
+  if(countEl)countEl.textContent=all.length;
+  if(!list)return;
+  if(all.length===0){
+    list.innerHTML='<div class="no-custom"><strong>Sin piezas añadidas</strong>Las piezas que agregues desde el formulario aparecerán aquí guardadas en tu navegador.</div>';
+    return;
+  }
+  const fmtIcon={reel:'🎬',carrusel:'📖',stories:'📱'};
+  const objColors={alcance:'var(--blue)',autoridad:'var(--amber)',venta:'var(--green)',conexion:'var(--purple)',investigacion:'var(--muted)'};
+  list.innerHTML=all.map(c=>{
+    const prompt=generatePrompt({format:c.formato,pilar:c.pilar,objLabel:c.objetivo,title:c.titulo,idea:c.idea||'Sin idea definida',hook:c.hook||'Sin hook definido',cta:c.cta||'Sin CTA definido'});
+    return `<div class="custom-card" id="ccard-${c.id}">
+      <button class="btn-delete-card" onclick="deleteCustomCard('${c.id}')" title="Eliminar">✕</button>
+      <div class="custom-card-header">
+        <div class="custom-card-badge custom-badge-new">${fmtIcon[c.formato]||'📄'} ${c.formato}</div>
+        <div class="custom-card-info">
+          <div class="custom-card-date">${c.fecha||'Sin fecha'} · Semana ${c.semana}</div>
+          <div class="custom-card-title">${escHtml(c.titulo)}</div>
+          <div class="custom-card-pilar">${escHtml(c.pilar)} · <span style="color:${objColors[c.objetivo]||'var(--muted)'}; font-weight:800">${c.objetivo}</span></div>
+        </div>
+      </div>
+      <div class="custom-card-body">
+        ${c.idea?`<div style="margin-bottom:8px"><strong style="font-size:8px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)">Idea</strong><br>${escHtml(c.idea)}</div>`:''}
+        ${c.hook?`<div style="margin-bottom:8px;background:var(--blue-pale);padding:8px 10px;border-radius:6px;border-left:3px solid var(--blue);font-style:italic">${escHtml(c.hook)}</div>`:''}
+        ${c.cta?`<div style="margin-bottom:8px;background:var(--amber-pale);padding:8px 10px;border-radius:6px;border-left:3px solid var(--amber-bright);font-weight:700">${escHtml(c.cta)}</div>`:''}
+        ${c.prod?`<div style="font-size:9px;color:var(--muted);margin-bottom:8px">⏱ ${escHtml(c.prod)}</div>`:''}
+        ${c.notas?`<div style="background:rgba(245,158,11,.06);border:1px dashed rgba(245,158,11,.25);border-radius:6px;padding:8px 10px;font-size:10.5px;color:var(--amber);margin-bottom:8px"><strong>Notas:</strong> ${escHtml(c.notas)}</div>`:''}
+        <div style="margin-top:8px">
+          <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:6px">🤖 Prompt para IA</div>
+          <div style="background:#0F172A;border-radius:7px;padding:10px 12px">
+            <div style="font-size:10px;color:rgba(255,255,255,.65);font-family:monospace;white-space:pre-wrap;max-height:100px;overflow:hidden" id="cprompt-${c.id}">${escHtml(prompt.slice(0,400))}...</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <button class="btn-copy-prompt" onclick="copyCustomPrompt('${c.id}',\`${prompt.replace(/`/g,'\\`')}\`)">Copiar prompt</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function copyCustomPrompt(id,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn=document.querySelector(`#ccard-${id} .btn-copy-prompt`);
+    if(btn){btn.textContent='✓ Copiado';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copiar prompt';btn.classList.remove('copied');},2500);}
+  });
+}
+
+function resetForm(){
+  ['new-fecha','new-prod','new-titulo','new-idea','new-hook','new-cta','new-notas'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.value='';
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{renderCards();renderHooks();renderCustomCards();});
+</script>
+</body>
+</html>

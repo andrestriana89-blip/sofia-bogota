@@ -1,0 +1,23 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "barberia-ganster",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3006", "--directory", "Propuesta-Barberia"],
+      "port": 3006
+    },
+    {
+      "name": "clara-puentes",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3007", "--directory", "Propuesta-clara-puentes"],
+      "port": 3007
+    },
+    {
+      "name": "vanessa-herrera",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3008", "--directory", "Propuesta-Vanessa-Herrera"],
+      "port": 3008
+    }
+  ]
+}

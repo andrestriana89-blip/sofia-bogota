@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AJ Business Advisory — Recuperación de Ingresos para Negocios en Colombia</title>
+  <meta name="description" content="Encontramos la fuga. Los ingresos son tuyos. Sistemas de IA para recuperar $2M–$8M COP al mes perdidos en llamadas perdidas, citas sin confirmar y leads fríos."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg2:      #111111;
+      --bg3:      #1a1a1a;
+      --card:     rgba(255,255,255,0.04);
+      --border:   rgba(181,0,94,0.22);
+      --pink:     #b5005e;
+      --yellow:   #ffd400;
+      --accent:   #b5005e;
+      --text:     #f5f5f5;
+      --muted:    #888888;
+      --danger:   #ff7b88;
+      --gold:     #ffd400;
+      --radius:   14px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #b5005e; border-radius: 3px; }
+
+    /* ── COOKIE BANNER ── */
+    #cookieBanner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(17,17,17,0.97);
+      border-top: 1px solid rgba(181,0,94,0.25);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      font-size: 12px; color: #aaa; line-height: 1.6;
+    }
+    #cookieBanner a { color: var(--pink); text-decoration: none; }
+    #cookieBanner a:hover { text-decoration: underline; }
+    .cookie-btn {
+      padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 12px; font-weight: 700; white-space: nowrap; font-family: inherit;
+    }
+    .cookie-accept { background: var(--pink); color: #fff; }
+    .cookie-decline { background: rgba(255,255,255,0.08); color: #aaa; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,10,10,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(181,0,94,0.2);
+      padding: 0 32px; min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-badge {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 13px; color: #fff;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-name { font-weight: 700; font-size: 14px; color: var(--text); }
+    .logo-sub  { font-size: 11px; color: var(--muted); font-weight: 400; }
+    .nav-links {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-link {
+      padding: 6px 14px; border-radius: 8px;
+      color: #aaa; font-size: 13px; font-weight: 500;
+      text-decoration: none; transition: color 0.2s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-right { display: flex; align-items: center; gap: 12px; }
+    .nav-pill {
+      padding: 8px 20px; border-radius: 20px;
+      background: var(--pink);
+      color: #fff; font-size: 13px; font-weight: 700;
+      text-decoration: none; transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-pill:hover { background: #cc006b; }
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+    }
+
+    /* ── TICKER TAPE ── */
+    .ticker {
+      background: rgba(181,0,94,0.06);
+      border-bottom: 1px solid rgba(181,0,94,0.15);
+      overflow: hidden; padding: 10px 0;
+    }
+    .ticker-track {
+      display: flex; gap: 0;
+      animation: ticker 40s linear infinite;
+      width: max-content;
+    }
+    .ticker-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: #aaa; padding: 0 32px;
+      border-right: 1px solid rgba(181,0,94,0.15);
+      white-space: nowrap;
+    }
+    .ticker-item:last-child { border-right: none; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      text-align: center; padding: 80px 24px 64px;
+      position: relative;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(181,0,94,0.08) 0%, transparent 70%);
+    }
+    .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(181,0,94,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,0,94,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner { max-width: 720px; position: relative; z-index: 2; animation: fadeUp 0.6s ease; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 16px; border-radius: 20px;
+      border: 1px solid rgba(181,0,94,0.35);
+      background: rgba(181,0,94,0.07);
+      font-size: 11px; color: var(--pink);
+      letter-spacing: 1.5px; font-weight: 700;
+      margin-bottom: 24px; text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(32px, 5.5vw, 54px);
+      font-weight: 900; line-height: 1.1;
+      color: #f5f5f5;
+      margin-bottom: 20px;
+    }
+    h1 span { color: var(--pink); }
+    .hero-sub {
+      font-size: 17px; color: #aaaaaa; line-height: 1.75;
+      max-width: 600px; margin: 0 auto 36px;
+    }
+    .hero-ctas {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 34px; border-radius: 12px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 15px; font-weight: 800;
+      cursor: pointer; font-family: inherit;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #cc006b; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      border: 1.5px solid rgba(181,0,94,0.45);
+      background: transparent;
+      color: #f5f5f5; font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--pink); background: rgba(181,0,94,0.07); }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      padding: 18px 32px;
+      border-top: 1px solid rgba(181,0,94,0.12);
+      border-bottom: 1px solid rgba(181,0,94,0.12);
+      background: rgba(181,0,94,0.02);
+      display: flex; align-items: center; justify-content: center;
+      gap: 28px; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #999999; }
+    .trust-icon { font-size: 15px; }
+    @media (max-width: 640px) { .trust-bar { gap: 14px; } }
+
+    /* ── SECTIONS COMMON ── */
+    .section { padding: 80px 20px; }
+    .section-dark { background: var(--bg2); }
+    .section-inner { max-width: 900px; margin: 0 auto; }
+    .section-title {
+      text-align: center; font-size: clamp(24px, 3.5vw, 36px);
+      font-weight: 900; color: var(--text); margin-bottom: 10px; line-height: 1.2;
+    }
+    .section-sub {
+      text-align: center; font-size: 15px; color: var(--muted);
+      margin-bottom: 48px; line-height: 1.7; max-width: 600px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── PROBLEMA CARDS ── */
+    .problem-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .problem-card {
+      padding: 28px 24px; border-radius: var(--radius);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(181,0,94,0.18);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .problem-card:hover { transform: translateY(-3px); border-color: rgba(181,0,94,0.4); }
+    .problem-card .prob-number {
+      font-size: 36px; font-weight: 900; color: var(--pink);
+      margin-bottom: 10px; line-height: 1;
+    }
+    .problem-card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .problem-card p  { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .problem-card .prob-icon { font-size: 28px; margin-bottom: 14px; display: block; }
+
+    /* ── PASOS ── */
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px; position: relative;
+    }
+    .step-card {
+      padding: 28px 24px; border-radius: var(--radius);
+      background: var(--card); border: 1px solid var(--border);
+      position: relative; transition: transform 0.2s;
+    }
+    .step-card:hover { transform: translateY(-3px); }
+    .step-num-badge {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(181,0,94,0.12);
+      border: 1.5px solid rgba(181,0,94,0.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 800; color: var(--pink);
+      margin-bottom: 16px;
+    }
+    .step-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+    .step-card h3 { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .step-card p  { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ── NICHOS ── */
+    .nichos-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    .nicho-card {
+      padding: 26px 22px; border-radius: var(--radius);
+      background: var(--card); border: 1px solid var(--border);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .nicho-card:hover { transform: translateY(-3px); border-color: rgba(181,0,94,0.45); }
+    .nicho-card .nicho-icon { font-size: 30px; margin-bottom: 12px; display: block; }
+    .nicho-card h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+    .nicho-card p  { font-size: 13px; color: var(--muted); line-height: 1.7; }
+
+    /* ── PRECIOS ── */
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px; margin-bottom: 48px;
+    }
+    .pricing-card {
+      padding: 28px 22px; border-radius: var(--radius);
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 0;
+      transition: transform 0.2s, border-color 0.2s;
+      position: relative;
+    }
+    .pricing-card:hover { transform: translateY(-4px); border-color: rgba(181,0,94,0.5); }
+    .pricing-card.featured {
+      border-color: rgba(181,0,94,0.55);
+      background: rgba(181,0,94,0.06);
+    }
+    .feat-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #b5005e, #cc006b);
+      color: #fff; font-size: 10px; font-weight: 700;
+      padding: 3px 12px; border-radius: 10px; white-space: nowrap; letter-spacing: 0.5px;
+    }
+    .pricing-card .pc-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+    .pricing-card h3 {
+      font-size: 14px; font-weight: 800; color: var(--text);
+      margin-bottom: 6px; line-height: 1.3;
+    }
+    .pricing-card .pc-niche {
+      font-size: 11px; color: var(--muted); margin-bottom: 18px;
+      font-weight: 500;
+    }
+    .pricing-divider { height: 1px; background: rgba(181,0,94,0.12); margin-bottom: 16px; }
+    .pc-setup {
+      font-size: 11px; color: var(--muted); margin-bottom: 4px; font-weight: 500;
+    }
+    .pc-setup-price {
+      font-size: 22px; font-weight: 900; color: var(--text); margin-bottom: 2px;
+    }
+    .pc-monthly {
+      font-size: 11px; color: var(--muted); margin-bottom: 4px; font-weight: 500; margin-top: 12px;
+    }
+    .pc-monthly-price {
+      font-size: 26px; font-weight: 900; color: var(--pink); margin-bottom: 16px;
+    }
+    .pc-monthly-price span { font-size: 13px; font-weight: 500; color: var(--muted); }
+    .pc-features {
+      list-style: none; display: flex; flex-direction: column; gap: 7px;
+      margin-bottom: 20px; flex: 1;
+    }
+    .pc-features li {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 12.5px; color: #aaa; line-height: 1.5;
+    }
+    .pc-features li::before {
+      content: '✓'; color: var(--pink); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .pc-cta {
+      width: 100%; padding: 12px;
+      border-radius: 10px; border: 1.5px solid rgba(181,0,94,0.4);
+      background: transparent;
+      color: var(--pink); font-size: 13px; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+      text-align: center; text-decoration: none; display: block;
+    }
+    .pc-cta:hover { background: rgba(181,0,94,0.1); border-color: var(--pink); }
+    .featured .pc-cta {
+      background: var(--pink); color: #fff; border-color: var(--pink);
+    }
+    .featured .pc-cta:hover { background: #cc006b; }
+
+    /* ── AUDIT CTA SECTION ── */
+    .audit-wrap {
+      max-width: 640px; margin: 0 auto;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(181,0,94,0.22);
+      border-radius: 20px; padding: 40px 36px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .audit-wrap::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+      opacity: 0.6;
+    }
+    .audit-avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, #b5005e, #ffd400);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; margin: 0 auto 16px;
+      box-shadow: 0 0 24px rgba(181,0,94,0.3);
+    }
+    .audit-wrap h3 { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 10px; }
+    .audit-wrap p  { font-size: 14px; color: var(--muted); margin-bottom: 24px; line-height: 1.7; }
+    .audit-checklist {
+      list-style: none; display: flex; flex-direction: column; gap: 10px;
+      margin-bottom: 28px; text-align: left; max-width: 380px; margin-left: auto; margin-right: auto;
+    }
+    .audit-checklist li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; color: #ccc; line-height: 1.5;
+    }
+    .audit-checklist li .check { color: var(--yellow); font-weight: 700; font-size: 16px; flex-shrink: 0; }
+    .audit-note {
+      font-size: 12px; color: #666; margin-top: 12px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 56px 32px 40px;
+      border-top: 1px solid rgba(181,0,94,0.1);
+      font-size: 12px; color: #444;
+      line-height: 1.8;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 40px; max-width: 860px; margin: 0 auto 40px;
+    }
+    @media(max-width:640px){ .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+    .footer-col h4 { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .footer-col a, .footer-col span {
+      display: block; font-size: 13px; color: #555;
+      text-decoration: none; margin-bottom: 7px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--pink); }
+    .footer-bottom { text-align: center; color: #555; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; max-width: 860px; margin: 0 auto; }
+    footer a { color: #888; text-decoration: none; }
+    footer a:hover { color: var(--pink); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MOBILE ADJUSTMENTS ── */
+    @media (max-width: 640px) {
+      .hero { padding: 60px 18px 50px; }
+      .section { padding: 60px 18px; }
+      .audit-wrap { padding: 28px 20px; }
+      .audit-checklist { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── COOKIE BANNER ── -->
+<div id="cookieBanner">
+  <span>Usamos cookies para mejorar tu experiencia. Al continuar, aceptas nuestra <a href="/privacy">Política de Privacidad</a>.</span>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button class="cookie-btn cookie-decline" onclick="hideCookie()">Rechazar</button>
+    <button class="cookie-btn cookie-accept" onclick="hideCookie()">Aceptar</button>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="logo" href="#hero">
+    <div class="logo-badge">AJ</div>
+    <div class="logo-text">
+      <span class="logo-name">AJ Business Advisory</span>
+      <span class="logo-sub">Recuperación de Ingresos · Colombia</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a class="nav-link" href="#como-funciona">Cómo funciona</a>
+    <a class="nav-link" href="#precios">Sistemas</a>
+    <a class="nav-link" href="#precios">Precios</a>
+    <a class="nav-link" href="#contacto">Contacto</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-pill" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Auditoría Gratuita &rarr;</a>
+  </div>
+</nav>
+
+<!-- ── TICKER TAPE ── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="tickerTrack">
+    <div class="ticker-item">⚡ Encontramos exactamente cuánto pierdes cada mes</div>
+    <div class="ticker-item">📞 Llamadas perdidas recuperadas automáticamente 24/7</div>
+    <div class="ticker-item">💰 La mayoría recupera el costo en los primeros 30 días</div>
+    <div class="ticker-item">🗓️ Citas agendadas mientras duermes</div>
+    <div class="ticker-item">📊 Revisión mensual de crecimiento con Andres</div>
+    <div class="ticker-item">🚀 En funcionamiento en 5 días hábiles</div>
+    <div class="ticker-item">💬 WhatsApp, llamadas e Instagram — todo automatizado</div>
+    <div class="ticker-item">🇨🇴 Especialistas en el mercado colombiano</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item">⚡ Encontramos exactamente cuánto pierdes cada mes</div>
+    <div class="ticker-item">📞 Llamadas perdidas recuperadas automáticamente 24/7</div>
+    <div class="ticker-item">💰 La mayoría recupera el costo en los primeros 30 días</div>
+    <div class="ticker-item">🗓️ Citas agendadas mientras duermes</div>
+    <div class="ticker-item">📊 Revisión mensual de crecimiento con Andres</div>
+    <div class="ticker-item">🚀 En funcionamiento en 5 días hábiles</div>
+    <div class="ticker-item">💬 WhatsApp, llamadas e Instagram — todo automatizado</div>
+    <div class="ticker-item">🇨🇴 Especialistas en el mercado colombiano</div>
+  </div>
+</div>
+
+<!-- ── HERO ── -->
+<section class="hero" id="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span>&#9679;</span> Recuperación de Ingresos para Negocios Locales
+    </div>
+    <h1>Tu negocio está perdiendo dinero ahora mismo.<br><span>Nosotros construimos el sistema que lo recupera.</span></h1>
+    <p class="hero-sub">La mayoría de nuestros clientes pierde entre $2M y $8M COP al mes por llamadas perdidas, citas sin confirmar y leads que nunca contestaron. Construimos sistemas de IA que recuperan eso, 24/7.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">
+        Obtén tu Auditoría Gratuita &rarr;
+      </a>
+      <a class="btn-outline" href="#como-funciona">
+        Ver cómo funciona
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="trust-icon">🔒</span> Sin contratos de permanencia forzosa</div>
+  <div class="trust-item"><span class="trust-icon">⚡</span> Listo en 5 días hábiles</div>
+  <div class="trust-item"><span class="trust-icon">📊</span> Reportes mensuales en pesos</div>
+  <div class="trust-item"><span class="trust-icon">🇨🇴</span> Especialistas Colombia</div>
+</div>
+
+<!-- ── PROBLEMA ── -->
+<section class="section section-dark" id="problema">
+  <div class="section-inner">
+    <h2 class="section-title">¿Cuánto te está costando no tener un sistema?</h2>
+    <p class="section-sub">Cada día sin un sistema de recuperación es dinero que ya se fue. Aquí están los números reales.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="prob-icon">📞</span>
+        <div class="prob-number">$500K</div>
+        <h3>Una llamada perdida de un cliente nuevo</h3>
+        <p>Un cliente nuevo representa entre $80.000 y $500.000 COP en ingresos. Si no contestas, llama a la competencia — y no regresa.</p>
+      </div>
+      <div class="problem-card">
+        <span class="prob-icon">⏱️</span>
+        <div class="prob-number">80%</div>
+        <h3>Un lead sin respuesta en 5 minutos</h3>
+        <p>El 80% de los leads que no reciben respuesta en los primeros 5 minutos se van con la competencia. Cada formulario ignorado es dinero evaporado.</p>
+      </div>
+      <div class="problem-card">
+        <span class="prob-icon">🗓️</span>
+        <div class="prob-number">$600K</div>
+        <h3>Una cita sin confirmar = no-show</h3>
+        <p>Cada cita sin confirmar tiene hasta un 40% de probabilidad de convertirse en no-show. Eso es entre $150.000 y $600.000 COP de ingreso evaporado — más el costo del tiempo perdido.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CÓMO FUNCIONA ── -->
+<section class="section" id="como-funciona">
+  <div class="section-inner">
+    <h2 class="section-title">Encontramos la fuga. La tapamos. Los ingresos son tuyos.</h2>
+    <p class="section-sub">En funcionamiento en 5 días hábiles. La mayoría recupera el costo en 30.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <span class="step-icon">🔍</span>
+        <div class="step-num-badge">1</div>
+        <h3>Auditoría gratuita de ingresos</h3>
+        <p>Analizamos llamadas perdidas, leads fríos y citas sin confirmar. Te decimos en pesos exactamente cuánto estás perdiendo cada mes — antes de que pagues cualquier cosa.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">⚙️</span>
+        <div class="step-num-badge">2</div>
+        <h3>Construimos el sistema de recuperación</h3>
+        <p>IA entrenada en tu negocio: responde WhatsApp, agenda citas, hace seguimiento a leads, 24/7. Integrado con tu agenda y tus canales actuales. Listo en 5 días hábiles.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-icon">💰</span>
+        <div class="step-num-badge">3</div>
+        <h3>Tú te quedas con los ingresos</h3>
+        <p>El sistema corre solo. Reportes mensuales mostrando exactamente qué se recuperó, en pesos. Sin más fugas. Sin más leads perdidos. Sin más citas que no llegan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NICHOS ── -->
+<section class="section section-dark" id="sistemas">
+  <div class="section-inner">
+    <h2 class="section-title">Cada negocio tiene una fuga diferente. Nosotros ya la conocemos.</h2>
+    <p class="section-sub">Hemos construido sistemas específicos para cada industria. No es una solución genérica — es la solución para tu negocio.</p>
+    <div class="nichos-grid">
+      <div class="nicho-card">
+        <span class="nicho-icon">🦷</span>
+        <h3>Clínicas y Consultorios</h3>
+        <p>Citas sin confirmar, clientes que no responden, agenda con huecos. El <strong style="color:var(--text)">Appointment Recovery System</strong> llena esos huecos automáticamente y reactiva clientes dormidos.</p>
+      </div>
+      <div class="nicho-card">
+        <span class="nicho-icon">💇</span>
+        <h3>Barberías y Salones</h3>
+        <p>Citas que no se confirman, clientes que no regresan. El <strong style="color:var(--text)">No-Show Elimination System</strong> reduce cancelaciones hasta un 60% con recordatorios automáticos por WhatsApp.</p>
+      </div>
+      <div class="nicho-card">
+        <span class="nicho-icon">🍽️</span>
+        <h3>Restaurantes</h3>
+        <p>Llamadas perdidas en horas pico, reservas que no llegan. Capturamos cada reserva 24/7 por WhatsApp e Instagram, y confirmamos automáticamente para reducir no-shows.</p>
+      </div>
+      <div class="nicho-card">
+        <span class="nicho-icon">🏢</span>
+        <h3>PYMES y Comercio</h3>
+        <p>Leads que entran pero no se cierran, clientes que preguntan y desaparecen. El <strong style="color:var(--text)">Colombia SMB Digital Presence System</strong> automatiza el seguimiento y convierte consultas en clientes.</p>
+      </div>
+      <div class="nicho-card">
+        <span class="nicho-icon">📱</span>
+        <h3>Cualquier negocio local</h3>
+        <p>Si tienes clientes que llaman, escriben por WhatsApp o piden cita — tenemos un sistema para ti. Empieza con la auditoría gratuita y te decimos exactamente cuánto puedes recuperar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRECIOS ── -->
+<section class="section" id="precios">
+  <div class="section-inner">
+    <h2 class="section-title">Sistemas de recuperación. Precio de inversión, no de costo.</h2>
+    <p class="section-sub">La mayoría de nuestros clientes recupera el costo mensual en los primeros 30 días. El sistema no es un gasto — es la máquina que trae de vuelta el dinero que ya se estaba perdiendo.</p>
+
+    <div class="pricing-grid">
+
+      <!-- Appointment Recovery -->
+      <div class="pricing-card featured">
+        <div class="feat-badge">MAS POPULAR</div>
+        <span class="pc-icon">📅</span>
+        <h3>Appointment Recovery System</h3>
+        <p class="pc-niche">Clínicas, consultorios, spas, barberías y servicios por cita</p>
+        <div class="pricing-divider"></div>
+        <div class="pc-setup">Setup único</div>
+        <div class="pc-setup-price">$1.800.000 COP</div>
+        <div class="pc-monthly">Mensual</div>
+        <div class="pc-monthly-price">$950.000 <span>COP/mes</span></div>
+        <ul class="pc-features">
+          <li>Sofia WhatsApp 24/7 — responde, agenda y confirma citas</li>
+          <li>Recordatorios automáticos de cita (reduce no-shows)</li>
+          <li>Reactivación de clientes dormidos</li>
+          <li>Integración con tu sistema de agenda actual</li>
+          <li>Reporte mensual de ingresos recuperados</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Agendar Auditoría &rarr;</a>
+      </div>
+
+      <!-- Instagram Growth + ManyChat -->
+      <div class="pricing-card">
+        <div class="feat-badge" style="background: linear-gradient(135deg, #1a6b3a, #27a85c);">🚀 CONTENIDO</div>
+        <span class="pc-icon">📸</span>
+        <h3>Instagram Growth + ManyChat</h3>
+        <p class="pc-niche">Para cualquier negocio que quiera crecer en Instagram</p>
+        <div class="pricing-divider"></div>
+        <div class="pc-setup">Setup único</div>
+        <div class="pc-setup-price">$500.000 COP</div>
+        <div class="pc-monthly">Mensual</div>
+        <div class="pc-monthly-price">$1.500.000 <span>COP/mes</span></div>
+        <div style="margin-bottom:16px;font-size:11px;color:#27a85c;font-weight:600;">Precios Founding Members disponibles — cupos limitados, consultar.</div>
+        <ul class="pc-features">
+          <li>4 Reels mensuales con enfoque comercial</li>
+          <li>20 Carruseles educativos y de venta</li>
+          <li>Automatización de comentarios a DM (comentarios → cita automática)</li>
+          <li>Producción semanal en tu negocio</li>
+          <li>Reporte mensual de crecimiento y engagement</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Agendar Auditoría &rarr;</a>
+      </div>
+
+      <!-- Colombia SMB Digital Presence -->
+      <div class="pricing-card">
+        <span class="pc-icon">🏢</span>
+        <h3>Colombia SMB Digital Presence System</h3>
+        <p class="pc-niche">PYMES y comercio local</p>
+        <div class="pricing-divider"></div>
+        <div class="pc-setup">Setup único</div>
+        <div class="pc-setup-price">$1.200.000 COP</div>
+        <div class="pc-monthly">Mensual</div>
+        <div class="pc-monthly-price">$750.000 <span>COP/mes</span></div>
+        <ul class="pc-features">
+          <li>Página web profesional con SEO local</li>
+          <li>Sofia WhatsApp 24/7 — responde y captura leads automáticamente</li>
+          <li>Automatización de comentarios a DM en redes sociales</li>
+          <li>Automatización de seguimiento de leads por WhatsApp</li>
+          <li>Reporte mensual de métricas y crecimiento</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Agendar Auditoría &rarr;</a>
+      </div>
+
+      <!-- Dormant Client Reactivation -->
+      <div class="pricing-card">
+        <span class="pc-icon">💤</span>
+        <h3>Dormant Client Reactivation System</h3>
+        <p class="pc-niche">Negocios con base de datos de clientes inactivos</p>
+        <div class="pricing-divider"></div>
+        <div class="pc-setup">Setup único</div>
+        <div class="pc-setup-price">$900.000 COP</div>
+        <div class="pc-monthly">Mensual</div>
+        <div class="pc-monthly-price">$390.000 <span>COP/mes</span></div>
+        <ul class="pc-features">
+          <li>Campañas de reactivación por WhatsApp</li>
+          <li>Segmentación de clientes por última visita o compra</li>
+          <li>Mensajes personalizados y seguimiento automático</li>
+          <li>Medición de clientes reactivados vs costo</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Agendar Auditoría &rarr;</a>
+      </div>
+
+      <!-- Google Reputation Compounding -->
+      <div class="pricing-card">
+        <span class="pc-icon">⭐</span>
+        <h3>Google Reputation Compounding System</h3>
+        <p class="pc-niche">Cualquier negocio local</p>
+        <div class="pricing-divider"></div>
+        <div class="pc-setup">Setup único</div>
+        <div class="pc-setup-price">$500.000 COP</div>
+        <div class="pc-monthly">Mensual</div>
+        <div class="pc-monthly-price">$250.000 <span>COP/mes</span></div>
+        <div style="margin:12px 0;padding:10px 14px;border-radius:10px;background:rgba(255,212,0,0.07);border:1px solid rgba(255,212,0,0.25);">
+          <div style="font-size:10px;font-weight:700;color:#ffd400;letter-spacing:0.8px;margin-bottom:4px;">💡 AGREGA A CUALQUIER PLAN ACTIVO</div>
+          <div style="font-size:13px;color:#f5f5f5;">$150.000<span style="color:#888;font-size:11px;">/mes</span> + $300.000 setup</div>
+          <div style="font-size:11px;color:#888;margin-top:2px;">Ahorra $100.000/mes vs. contratarlo solo</div>
+        </div>
+        <ul class="pc-features">
+          <li>Automatización de solicitud de reseñas Google</li>
+          <li>Respuesta automática a reseñas (positivas y negativas)</li>
+          <li>Monitoreo de reputación online mensual</li>
+          <li>Estrategia de posicionamiento local Google Maps</li>
+        </ul>
+        <a class="pc-cta" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Agendar Auditoría &rarr;</a>
+      </div>
+
+    </div>
+
+    <!-- ── AUDIT CTA ── -->
+    <div class="audit-wrap" id="contacto">
+      <div class="audit-avatar">👤</div>
+      <h3>Empieza con una Auditoría de Ingresos gratuita.</h3>
+      <p>Encontramos la fuga antes de que pagues cualquier cosa. Ves el ROI en pesos antes de comprometerte con nada.</p>
+      <ul class="audit-checklist">
+        <li><span class="check">✓</span> Calculamos tu fuga mensual en pesos exactos</li>
+        <li><span class="check">✓</span> Ves el ROI antes de comprometerte con nada</li>
+        <li><span class="check">✓</span> Llamada de 30 minutos — sin pitch, sin presión</li>
+      </ul>
+      <a class="btn-primary" href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener" style="font-size:14px;padding:14px 32px;">
+        Agendar Auditoría Gratuita &rarr;
+      </a>
+      <p class="audit-note">Sin costo. Sin compromiso. Solo claridad sobre cuánto estás perdiendo.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>AJ Business Advisory</h4>
+      <span>Revenue Recovery Operation</span>
+      <span>Especialistas Colombia 🇨🇴</span>
+      <a href="mailto:andres@ajbusinessadvisory.com">andres@ajbusinessadvisory.com</a>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <a href="#precios">Appointment Recovery</a>
+      <a href="#precios">Colombia SMB Digital Presence</a>
+      <a href="#precios">Dormant Patient Reactivation</a>
+      <a href="#precios">Google Reputation Compounding</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/terms">Términos de Servicio</a>
+      <a href="/privacy">Política de Privacidad</a>
+      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" rel="noopener">Agendar Auditoría</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>AJ Business Advisory LLC &middot; Wyoming &middot; <a href="mailto:andres@ajbusinessadvisory.com">andres@ajbusinessadvisory.com</a></p>
+    <p style="margin-top:6px;">&copy; 2026 AJ Business Advisory LLC. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Cookie banner
+  function hideCookie() {
+    document.getElementById('cookieBanner').style.display = 'none';
+    try { localStorage.setItem('cookie_consent', '1'); } catch(e) {}
+  }
+  try {
+    if (localStorage.getItem('cookie_consent')) {
+      document.getElementById('cookieBanner').style.display = 'none';
+    }
+  } catch(e) {}
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Parrilla de Contenido Mayo 2026 — Dra. Natalia Barrantes</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Great+Vibes&display=swap');
+
+:root {
+  --gold:#C09A55; --gold-deep:#9B7A30; --gold-pale:#F8F2E8;
+  --cream:#FDFAF5; --dark:#1C1710; --text:#2A2018;
+  --muted:#7A6A55; --border:rgba(192,154,85,0.22);
+  --reel:#C09A55; --carousel:#7A6A55; --story:#B8936A;
+  --green:#2E7D32; --blue:#1565C0; --purple:#6A1B9A;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+
+/* ── TOP BAR ── */
+.topbar{
+  position:sticky;top:0;z-index:200;
+  background:rgba(253,250,245,.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:12px 32px;display:flex;align-items:center;justify-content:space-between;
+}
+.topbar-brand{font-size:14px;font-weight:700;color:var(--dark)}
+.topbar-sub{font-size:11px;color:var(--muted);margin-top:1px}
+.topbar-pills{display:flex;gap:8px}
+.pill{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
+.pill-reel{background:rgba(192,154,85,.12);color:var(--gold-deep);border-color:rgba(192,154,85,.3)}
+.pill-car{background:rgba(122,106,85,.10);color:var(--muted);border-color:rgba(122,106,85,.3)}
+.pill-story{background:rgba(184,147,106,.12);color:#8B5E3C;border-color:rgba(184,147,106,.3)}
+.btn-print{padding:7px 16px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:var(--dark);color:var(--gold);transition:all .2s}
+.btn-print:hover{background:#2d2318}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,var(--dark) 0%,#2d2318 100%);
+  padding:60px 48px;text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-40%;left:-20%;width:140%;height:200%;
+  background:radial-gradient(ellipse 60% 50% at 80% 20%,rgba(192,154,85,.18) 0%,transparent 60%);
+  pointer-events:none;
+}
+.hero-script{
+  font-family:'Great Vibes',cursive;font-size:52px;color:var(--gold);
+  display:block;margin-bottom:8px;position:relative;z-index:1;
+}
+.hero-title{
+  font-size:26px;font-weight:900;color:#fff;letter-spacing:-0.5px;
+  position:relative;z-index:1;line-height:1.2;
+}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.55);margin-top:12px;position:relative;z-index:1}
+.hero-stats{
+  display:flex;justify-content:center;gap:32px;margin-top:32px;
+  position:relative;z-index:1;flex-wrap:wrap;
+}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:28px;font-weight:900;color:var(--gold)}
+.hero-stat-label{font-size:11px;color:rgba(255,255,255,.5);margin-top:2px;text-transform:uppercase;letter-spacing:.8px}
+
+/* ── LAYOUT ── */
+.container{max-width:1100px;margin:0 auto;padding:48px 32px}
+
+/* ── SECTION HEADERS ── */
+.sec-header{
+  display:flex;align-items:center;gap:14px;
+  margin-bottom:28px;padding-bottom:16px;border-bottom:2px solid var(--border);
+}
+.sec-icon{
+  width:40px;height:40px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;
+}
+.sec-icon.reel{background:rgba(192,154,85,.15)}
+.sec-icon.car{background:rgba(122,106,85,.12)}
+.sec-icon.story{background:rgba(184,147,106,.12)}
+.sec-icon.cal{background:rgba(28,23,16,.08)}
+.sec-title{font-size:18px;font-weight:800;color:var(--dark);letter-spacing:-.3px}
+.sec-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ── WEEK BAND ── */
+.week-band{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--dark);color:var(--gold);
+  padding:6px 16px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:20px;margin-top:36px;
+}
+.week-band:first-of-type{margin-top:0}
+
+/* ── CONTENT CARD ── */
+.content-block{
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  margin-bottom:20px;overflow:hidden;
+  box-shadow:0 2px 12px rgba(192,154,85,.06);
+}
+.cb-header{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 24px;border-bottom:1px solid var(--border);
+}
+.cb-type{
+  padding:4px 12px;border-radius:20px;font-size:10px;font-weight:700;
+  letter-spacing:.8px;text-transform:uppercase;flex-shrink:0;
+}
+.type-reel{background:rgba(192,154,85,.15);color:var(--gold-deep)}
+.type-car{background:rgba(122,106,85,.10);color:var(--muted)}
+.type-story{background:rgba(184,147,106,.12);color:#8B5E3C}
+.cb-num{font-size:11px;color:var(--muted);font-weight:600}
+.cb-title{font-size:15px;font-weight:700;color:var(--dark)}
+.cb-objective{font-size:12px;color:var(--muted);margin-top:2px}
+.cb-body{padding:20px 24px;display:grid;gap:20px}
+
+/* ── HOOKS ── */
+.hooks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hook-card{
+  background:var(--gold-pale);border:1px solid var(--border);
+  border-radius:10px;padding:14px;
+}
+.hook-label{
+  font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  color:var(--gold-deep);margin-bottom:6px;
+}
+.hook-text{font-size:13px;font-weight:600;color:var(--dark);line-height:1.4}
+.hook-sub{font-size:11px;color:var(--muted);margin-top:4px;font-style:italic}
+
+/* ── SCRIPT ── */
+.script-block{
+  background:rgba(28,23,16,.03);border:1px solid var(--border);
+  border-radius:10px;overflow:hidden;
+}
+.script-label{
+  background:var(--dark);color:var(--gold);
+  font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:8px 16px;
+}
+.script-line{
+  display:grid;grid-template-columns:110px 1fr;gap:0;
+  border-bottom:1px solid var(--border);
+}
+.script-line:last-child{border-bottom:none}
+.script-time{
+  padding:10px 14px;font-size:11px;font-weight:700;color:var(--gold-deep);
+  background:rgba(192,154,85,.06);border-right:1px solid var(--border);
+  display:flex;align-items:flex-start;white-space:nowrap;
+}
+.script-copy{padding:10px 16px;font-size:13px;color:var(--text);line-height:1.5}
+
+/* ── SHOT LIST ── */
+.shot-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.shot-card{
+  background:var(--gold-pale);border:1px solid var(--border);
+  border-radius:8px;padding:12px 14px;
+}
+.shot-title{font-size:11px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.shot-detail{font-size:11.5px;color:var(--muted);line-height:1.4}
+
+/* ── CAROUSEL SLIDES ── */
+.slides-wrap{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px}
+.slide-card{
+  flex-shrink:0;width:160px;
+  background:var(--gold-pale);border:1px solid var(--border);
+  border-radius:10px;padding:14px;
+}
+.slide-num{
+  width:22px;height:22px;border-radius:50%;
+  background:var(--dark);color:var(--gold);
+  font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:8px;
+}
+.slide-type{font-size:9px;font-weight:700;color:var(--gold-deep);letter-spacing:.8px;text-transform:uppercase;margin-bottom:4px}
+.slide-copy{font-size:11.5px;color:var(--text);line-height:1.4}
+.slide-cta{
+  margin-top:8px;font-size:10px;font-weight:600;
+  color:var(--muted);font-style:italic;
+}
+
+/* ── CAPTION ── */
+.caption-box{
+  background:rgba(28,23,16,.03);border-radius:10px;
+  padding:14px 16px;font-size:13px;color:var(--text);line-height:1.7;
+  border:1px solid var(--border);white-space:pre-wrap;font-family:inherit;
+}
+.hashtags{font-size:12px;color:var(--gold-deep);font-weight:500;margin-top:8px}
+
+/* ── STORIES ── */
+.stories-week{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:24px}
+.story-card{
+  background:#fff;border:1px solid var(--border);
+  border-radius:14px;padding:16px 12px;text-align:center;
+  box-shadow:0 2px 8px rgba(192,154,85,.05);
+}
+.story-day{font-size:10px;font-weight:700;color:var(--gold-deep);text-transform:uppercase;letter-spacing:.8px}
+.story-icon{font-size:24px;margin:10px 0}
+.story-format{
+  font-size:9px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  padding:3px 8px;border-radius:10px;display:inline-block;margin-bottom:8px;
+}
+.sf-enc{background:rgba(192,154,85,.15);color:var(--gold-deep)}
+.sf-vid{background:rgba(28,23,16,.08);color:var(--dark)}
+.sf-img{background:rgba(184,147,106,.15);color:#8B5E3C}
+.sf-preg{background:rgba(21,101,192,.10);color:#1565C0}
+.sf-cta{background:rgba(46,125,50,.10);color:#2E7D32}
+.story-title{font-size:12px;font-weight:600;color:var(--dark);line-height:1.3}
+.story-note{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.3}
+
+/* ── CALENDAR VIEW ── */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:8px}
+.cal-day-header{
+  text-align:center;font-size:10px;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.6px;padding:8px 0;
+}
+.cal-cell{
+  min-height:72px;background:#fff;border:1px solid var(--border);
+  border-radius:8px;padding:6px;font-size:10px;
+}
+.cal-cell.empty{background:transparent;border-color:transparent}
+.cal-date{font-weight:700;color:var(--muted);margin-bottom:4px;font-size:11px}
+.cal-item{
+  display:block;padding:2px 5px;border-radius:4px;
+  font-size:9px;font-weight:600;margin-bottom:2px;line-height:1.3;
+}
+.ci-reel{background:rgba(192,154,85,.2);color:var(--gold-deep)}
+.ci-car{background:rgba(122,106,85,.15);color:var(--muted)}
+.ci-story{background:rgba(184,147,106,.2);color:#8B5E3C}
+.ci-visit{background:rgba(28,23,16,.1);color:var(--dark)}
+
+/* ── SECTION SPACING ── */
+.section-block{margin-bottom:64px}
+
+/* ── NOTES ── */
+.note-box{
+  background:var(--gold-pale);border:1px solid var(--border);
+  border-left:3px solid var(--gold);border-radius:0 10px 10px 0;
+  padding:14px 18px;font-size:12.5px;color:var(--text);line-height:1.6;
+  margin-top:16px;
+}
+.note-box strong{color:var(--gold-deep)}
+
+/* ── FOOTER ── */
+.doc-footer{
+  text-align:center;padding:32px;
+  border-top:1px solid var(--border);
+  font-size:11px;color:var(--muted);margin-top:40px;
+}
+
+@media(max-width:700px){
+  .hooks-grid{grid-template-columns:1fr}
+  .shot-grid{grid-template-columns:1fr}
+  .stories-week{grid-template-columns:repeat(3,1fr)}
+  .hero{padding:40px 24px}
+  .container{padding:32px 16px}
+  .topbar{padding:10px 16px}
+  .topbar-pills{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div>
+    <div class="topbar-brand">Dra. Natalia Barrantes · Parrilla Mayo 2026</div>
+    <div class="topbar-sub">Producida por AJ Business Advisory · Para: Paula (Freelance)</div>
+  </div>
+  <div class="topbar-pills">
+    <span class="pill pill-reel">🎬 4 Reels</span>
+    <span class="pill pill-car">📋 8 Carruseles</span>
+    <span class="pill pill-story">⭕ 20 Stories</span>
+  </div>
+  <button class="btn-print" onclick="window.print()">⬇️ Guardar PDF</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-script">Mayo 2026</span>
+  <div class="hero-title">"Tu sonrisa, rediseñada. Tu tiempo, respetado."</div>
+  <div class="hero-sub">Dra. Natalia Barrantes · Odontología Integral · Bogotá D.C. · @dentaliaodontologia</div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Reels</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">8</div><div class="hero-stat-label">Carruseles</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">20</div><div class="hero-stat-label">Stories</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Visitas</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">32</div><div class="hero-stat-label">Piezas totales</div></div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ══════════════════════════════════
+     SECCIÓN 1 — REELS
+══════════════════════════════════ -->
+<div class="section-block">
+  <div class="sec-header">
+    <div class="sec-icon reel">🎬</div>
+    <div>
+      <div class="sec-title">Reels del Mes — Guiones y Producción</div>
+      <div class="sec-sub">4 videos · Semana 1, 2, 3 y 4 · Grabación en visita semanal al consultorio</div>
+    </div>
+  </div>
+
+  <!-- ─── REEL 1 ─── -->
+  <span class="week-band">📅 Semana 1 — Lunes 12 de mayo</span>
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-reel">🎬 Reel</span>
+      <div>
+        <div class="cb-title">La verdad sobre pedir una cita dental en Bogotá (y cómo lo cambiamos)</div>
+        <div class="cb-objective">Objetivo: Presentar el nuevo sistema Sofia AI. Generar curiosidad + resolver frustración común.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+
+      <!-- HOOKS -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px">⚡ Hooks (elige uno)</div>
+        <div class="hooks-grid">
+          <div class="hook-card">
+            <div class="hook-label">A — Contrarian</div>
+            <div class="hook-text">"Llamar a una clínica dental en 2026 es una pérdida de tiempo."</div>
+            <div class="hook-sub">Texto pantalla: ❌ LLAMAR = PERDER TIEMPO</div>
+          </div>
+          <div class="hook-card">
+            <div class="hook-label">B — Dolor</div>
+            <div class="hook-text">"¿Cuántas veces intentaste agendar una cita y nadie contestó?"</div>
+            <div class="hook-sub">Texto pantalla: 📵 Nadie contestó... otra vez.</div>
+          </div>
+          <div class="hook-card">
+            <div class="hook-label">C — Pregunta directa</div>
+            <div class="hook-text">"¿Y si pudieras agendar tu cita dental a las 11pm desde WhatsApp?"</div>
+            <div class="hook-sub">Texto pantalla: 🕚 ¿A las 11pm? Sí.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCRIPT -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px">🎙️ Script (35 segundos)</div>
+        <div class="script-block">
+          <div class="script-label">GUIÓN PALABRA POR PALABRA</div>
+          <div class="script-line">
+            <div class="script-time">[0:00–0:02]<br/>HOOK</div>
+            <div class="script-copy"><em>Dra. Natalia habla directo a cámara, consultorio detrás:</em><br/>"¿Cuántas veces llamaste a una clínica dental y nadie te contestó?"</div>
+          </div>
+          <div class="script-line">
+            <div class="script-time">[0:02–0:10]<br/>DOLOR</div>
+            <div class="script-copy">"Eso se acabó aquí. Desde hoy, nuestros pacientes agendan su cita directo por WhatsApp — a cualquier hora, sin esperar, sin llamadas perdidas."</div>
+          </div>
+          <div class="script-line">
+            <div class="script-time">[0:10–0:22]<br/>SOLUCIÓN</div>
+            <div class="script-copy"><em>Muestra el teléfono con la conversación de WhatsApp:</em><br/>"Le escribes a nuestro sistema a cualquier hora. Él te pregunta qué necesitas, te muestra los horarios disponibles, y confirma tu cita en menos de 2 minutos. Así de simple."</div>
+          </div>
+          <div class="script-line">
+            <div class="script-time">[0:22–0:30]<br/>PRUEBA</div>
+            <div class="script-copy">"Soy la Dra. Natalia Barrantes, y esto no es el futuro — es lo que ya vivimos nuestros pacientes todos los días."</div>
+          </div>
+          <div class="script-line">
+            <div class="script-time">[0:30–0:35]<br/>CTA</div>
+            <div class="script-copy">"Comenta <strong>CITA</strong> y nuestro sistema te agenda ahora mismo. 👇"<br/><em>Texto en pantalla: COMENTA "CITA" ↓</em></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHOT LIST -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px">🎥 Shot List (Paula graba en visita)</div>
+        <div class="shot-grid">
+          <div class="shot-card">
+            <div class="shot-title">Toma 1 — Hook a cámara</div>
+            <div class="shot-detail">Dra. Natalia de pie frente al consultorio. Encuadre: busto. Ropa: bata blanca o crema. Fondo: área limpia del consultorio con luz cálida. Grabar 3 versiones del hook.</div>
+          </div>
+          <div class="shot-card">
+            <div class="shot-title">Toma 2 — Demo WhatsApp</div>
+            <div class="shot-detail">Mano sosteniendo teléfono (pantalla visible). Mostrar conversación con Sofia AI. Grabar en horizontal y vertical. Fondo: escritorio clínica.</div>
+          </div>
+          <div class="shot-card">
+            <div class="shot-title">Toma 3 — Ambiente</div>
+            <div class="shot-detail">B-roll: recepción, silla dental, equipos modernos. Movimiento suave de cámara (paneo). Luz natural si hay ventana disponible.</div>
+          </div>
+          <div class="shot-card">
+            <div class="shot-title">Toma 4 — CTA final</div>
+            <div class="shot-detail">Dra. Natalia señalando hacia abajo (hacia el caption). Sonrisa cálida. Fondo blanco o pared limpia. Añadir texto en edición: COMENTA "CITA"</div>
+          </div>
+        </div>
+        <div class="note-box"><strong>Vestimenta recomendada:</strong> Bata blanca o crema (NO morada). Cabello recogido. Aretes discretos dorados si es posible. Maquillaje natural.<br/><strong>Iluminación:</strong> Luz LED cálida o ventana lateral. Evitar luz de techo directa.</div>
+      </div>
+
+      <!-- CAPTION -->
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:10px;text-transform:uppercase;letter-spacing:.6px">📝 Caption Instagram</div>
+        <div class="caption-box">Se acabó llamar y que nadie conteste. 📵
+
+Desde hoy en nuestra clínica, agendas tu cita por WhatsApp — a cualquier hora, en menos de 2 minutos, sin esperar.
+
+Así cuidamos tu tiempo, antes de que llegues a nuestro consultorio. 🦷✨
+
+💬 Comenta CITA y nuestro sistema te escribe ahora mismo.</div>
+        <div class="hashtags">#DentistaBogota #DiseñoDeSonrisa #NataliaBarrantes #OdontologiaIntegral #SonrisaPerfecta #DentalBogota #CitaDental #AgendeAhora</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── REEL 2 ─── -->
+  <span class="week-band">📅 Semana 2 — Martes 20 de mayo</span>
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-reel">🎬 Reel</span>
+      <div>
+        <div class="cb-title">Antes y después: La transformación que cambió su vida (caso real)</div>
+        <div class="cb-objective">Objetivo: Prueba social visual. Generar deseo + confianza. El contenido más viral del mes.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div>
+        <div class="hooks-grid">
+          <div class="hook-card">
+            <div class="hook-label">A — Contrarian</div>
+            <div class="hook-text">"No vendemos sonrisas. Devolvemos seguridad."</div>
+            <div class="hook-sub">Texto pantalla: ESTO NO ES ESTÉTICA. ES CONFIANZA.</div>
+          </div>
+          <div class="hook-card">
+            <div class="hook-label">B — Dolor</div>
+            <div class="hook-text">"Ella llevaba 8 años sin sonreír en fotos. Mira lo que pasó en 3 semanas."</div>
+            <div class="hook-sub">Texto pantalla: 8 AÑOS → 3 SEMANAS</div>
+          </div>
+          <div class="hook-card">
+            <div class="hook-label">C — Curiosidad</div>
+            <div class="hook-text">"¿Qué tan diferente puede verse una sonrisa sin cirugía?"</div>
+            <div class="hook-sub">Texto pantalla: SIN CIRUGÍA. MIRA ESTO 👇</div>
+          </div>
+        </div>
+      </div>
+      <div class="script-block">
+        <div class="script-label">GUIÓN</div>
+        <div class="script-line">
+          <div class="script-time">[0:00–0:02]<br/>HOOK</div>
+          <div class="script-copy">"Ella llevaba años ocultando su sonrisa. Esto es lo que pasó."<br/><em>Mostrar foto ANTES de frente, congelada 2 segundos.</em></div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:02–0:12]<br/>PROCESO</div>
+          <div class="script-copy"><em>Dra. Natalia en voz en off mientras se muestran imágenes del proceso:</em><br/>"Cuando llegó, su prioridad era recuperar la confianza para hablar en público. Hicimos un diseño de sonrisa a su medida — proporciones, tono, forma — todo pensado para ella, no para una plantilla."</div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:12–0:28]<br/>REVEAL</div>
+          <div class="script-copy"><em>Transición antes → después (zoom out dramático o flip):</em><br/>"El resultado habla solo." <em>Pausa 3 segundos en el DESPUÉS.</em><br/>Voz en off: "Hoy se toma fotos ella sola."</div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:28–0:35]<br/>CTA</div>
+          <div class="script-copy">"¿Tienes una sonrisa que quieres transformar? Comenta <strong>SONRISA</strong> y te cuento cómo empezamos."</div>
+        </div>
+      </div>
+      <div class="shot-grid">
+        <div class="shot-card">
+          <div class="shot-title">Fotos ANTES / DESPUÉS</div>
+          <div class="shot-detail">Usar fotos del archivo de la clínica. Resolución mínima 1080px. Fondo neutro blanco o crema. Misma posición y luz en ambas fotos para comparación real.</div>
+        </div>
+        <div class="shot-card">
+          <div class="shot-title">Toma Dra. Natalia — narración</div>
+          <div class="shot-detail">Voz en off grabada por la Dra. en consultorio o en zona silenciosa. No tiene que aparecer en cámara — puede ser solo voz sobre imágenes.</div>
+        </div>
+        <div class="shot-card">
+          <div class="shot-title">B-roll proceso</div>
+          <div class="shot-detail">Manos trabajando en silla dental (detalles). Instrumental. Close-up de trabajo dental sin mostrar partes invasivas. Luz cálida.</div>
+        </div>
+        <div class="shot-card">
+          <div class="shot-title">Edición — Transición reveal</div>
+          <div class="shot-detail">En CapCut: usar efecto "Zoom Out" + música que sube en el reveal. Texto overlay: ANTES → DESPUÉS con tipografía limpia. Color dorado/crema en textos.</div>
+        </div>
+      </div>
+      <div class="caption-box">Esto no se llama estética. Se llama recuperar la confianza. ✨
+
+Ella llevaba años sin sonreír en fotos. En 3 semanas, eso cambió.
+
+En nuestra clínica, cada diseño de sonrisa se hace a tu medida — tus proporciones, tu tono, tu personalidad.
+
+💬 Comenta SONRISA y te cuento por dónde empezamos tu caso.</div>
+      <div class="hashtags">#AntesYDespues #DiseñoDeSonrisa #TransformacionDental #Carillas #BogotaDental #SonrisaNueva #NataliaBarrantes #OdontologiaBogota</div>
+    </div>
+  </div>
+
+  <!-- ─── REEL 3 ─── -->
+  <span class="week-band">📅 Semana 3 — Miércoles 28 de mayo</span>
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-reel">🎬 Reel</span>
+      <div>
+        <div class="cb-title">Un día en el consultorio — Detrás de cámaras con la Dra. Natalia</div>
+        <div class="cb-objective">Objetivo: Humanizar la marca. Generar confianza y cercanía. El video más guardado del mes.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="hooks-grid">
+        <div class="hook-card">
+          <div class="hook-label">A — Curioso</div>
+          <div class="hook-text">"Te muestro lo que pasa antes de que llegues a mi consultorio."</div>
+          <div class="hook-sub">Texto pantalla: LO QUE NO VES 👀</div>
+        </div>
+        <div class="hook-card">
+          <div class="hook-label">B — Humanizador</div>
+          <div class="hook-text">"Soy dentista pero primero soy persona. Esto es mi día a día."</div>
+          <div class="hook-sub">Texto pantalla: MI DÍA REAL ☀️</div>
+        </div>
+        <div class="hook-card">
+          <div class="hook-label">C — Dato</div>
+          <div class="hook-text">"Atendemos hasta 12 pacientes al día — así mantenemos la calidad en cada uno."</div>
+          <div class="hook-sub">Texto pantalla: 12 PACIENTES. 1 ESTÁNDAR.</div>
+        </div>
+      </div>
+      <div class="script-block">
+        <div class="script-label">GUIÓN — Formato "Day in my life"</div>
+        <div class="script-line">
+          <div class="script-time">[0:00–0:02]<br/>HOOK</div>
+          <div class="script-copy">"Te muestro lo que pasa antes de que llegues a mi consultorio." <em>(Dra. sosteniendo café, caminando al consultorio por la mañana)</em></div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:02–0:15]<br/>DETRÁS</div>
+          <div class="script-copy"><em>Secuencia rápida con música:</em> Preparación del consultorio · Revisión de agenda · Primer paciente entrando · Equipo saludando · Detalle de instrumental listo · Dra. revisando caso en pantalla.</div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:15–0:28]<br/>CONEXIÓN</div>
+          <div class="script-copy">Dra. a cámara: "Lo que más me importa no es el procedimiento — es que cuando te vayas, sientas que te cuidaron de verdad. Eso es lo que preparamos cada mañana."</div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:28–0:35]<br/>CTA</div>
+          <div class="script-copy">"¿Quieres ser parte de esto? Comenta <strong>VISITA</strong> y te cuento cómo agendar tu primera cita."</div>
+        </div>
+      </div>
+      <div class="shot-grid">
+        <div class="shot-card"><div class="shot-title">Secuencia mañana</div><div class="shot-detail">Llegada al consultorio, café, preparación del espacio. Natural, cálido. No ensayado.</div></div>
+        <div class="shot-card"><div class="shot-title">Tomas del equipo</div><div class="shot-detail">Asistentes saludando, revisión de instrumental, ambiente de trabajo en equipo. Sonrisas naturales.</div></div>
+        <div class="shot-card"><div class="shot-title">Close-ups premium</div><div class="shot-detail">Instrumental nuevo, equipos modernos, silla dental elegante. Mostrar calidad sin ser frío.</div></div>
+        <div class="shot-card"><div class="shot-title">Dra. hablando a cámara</div><div class="shot-detail">En consultorio o en área cálida. Luz natural. Hablar sin libreto — que fluya natural.</div></div>
+      </div>
+      <div class="caption-box">Esto pasa antes de que llegues. ✨
+
+Cada mañana preparamos el espacio, revisamos cada caso, y nos aseguramos de que cuando llegues, todo esté listo para ti.
+
+No solo tratamos dientes — cuidamos personas.
+
+💬 Comenta VISITA si quieres conocer nuestra clínica.</div>
+      <div class="hashtags">#DentistaBogota #DíaADía #DetrásDelEscenario #OdontologíaIntegral #SpasDental #ConfianzaDental #NataliaBarrantes</div>
+    </div>
+  </div>
+
+  <!-- ─── REEL 4 ─── -->
+  <span class="week-band">📅 Semana 4 — Viernes 30 de mayo</span>
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-reel">🎬 Reel</span>
+      <div>
+        <div class="cb-title">¿Qué pasa cuando le escribes a nuestra clínica a las 11pm?</div>
+        <div class="cb-objective">Objetivo: Demo en vivo de Sofia AI. Conversión directa. El video más viral y diferenciador.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="hooks-grid">
+        <div class="hook-card">
+          <div class="hook-label">A — Sorpresa</div>
+          <div class="hook-text">"Te voy a mostrar lo que pasa cuando le escribes a nuestra clínica a las 11 de la noche."</div>
+          <div class="hook-sub">Texto pantalla: 🕚 11:00 PM — Prueba real</div>
+        </div>
+        <div class="hook-card">
+          <div class="hook-label">B — Reto</div>
+          <div class="hook-text">"Escríbenos ahora — a la hora que sea. Te responderemos en menos de 1 minuto."</div>
+          <div class="hook-sub">Texto pantalla: ¿NOS ESCRIBES? PRUÉBALO.</div>
+        </div>
+        <div class="hook-card">
+          <div class="hook-label">C — Promesa</div>
+          <div class="hook-text">"Esto es lo que significa tener una clínica dental que sí te responde."</div>
+          <div class="hook-sub">Texto pantalla: UNA CLÍNICA QUE SÍ RESPONDE ✅</div>
+        </div>
+      </div>
+      <div class="script-block">
+        <div class="script-label">GUIÓN — Demo en pantalla</div>
+        <div class="script-line">
+          <div class="script-time">[0:00–0:03]<br/>HOOK</div>
+          <div class="script-copy">Dra. Natalia: "Son las 11 de la noche. Voy a escribirle a mi propia clínica." <em>(Pantalla del teléfono visible)</em></div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:03–0:20]<br/>DEMO</div>
+          <div class="script-copy"><em>Screen recording de WhatsApp:</em> Escribe "Hola, quiero agendar una cita" → Sofia responde al instante → muestra opciones de horario → paciente elige → confirmación automática. Voz en off: "Mira — sin esperar. En menos de 2 minutos tienes tu cita confirmada."</div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:20–0:30]<br/>CREDIBILIDAD</div>
+          <div class="script-copy">"Esto no es un bot genérico. Es nuestro sistema, configurado para responder con la información exacta de nuestra clínica, nuestros tratamientos y nuestros horarios reales."</div>
+        </div>
+        <div class="script-line">
+          <div class="script-time">[0:30–0:35]<br/>CTA</div>
+          <div class="script-copy">"Pruébalo ahora. Comenta <strong>DEMO</strong> y te mandamos el link de WhatsApp."</div>
+        </div>
+      </div>
+      <div class="shot-grid">
+        <div class="shot-card"><div class="shot-title">Screen recording</div><div class="shot-detail">Grabar la pantalla del teléfono (usar función nativa de iOS/Android). Mostrar conversación completa con Sofia. Editar para que se vea fluido y rápido.</div></div>
+        <div class="shot-card"><div class="shot-title">Dra. sosteniendo teléfono</div><div class="shot-detail">Reacción auténtica mirando el teléfono. Luz cálida, fondo oscuro o neutro para que el teléfono destaque. Expresión: impresionada / satisfecha.</div></div>
+      </div>
+      <div class="caption-box">¿Qué pasa cuando le escribes a nuestra clínica a las 11pm? 🕚
+
+Esto: respuesta inmediata, opciones de cita, confirmación automática. Sin esperar al día siguiente. Sin llamadas perdidas.
+
+Así es como cuidamos tu tiempo — antes de que llegues.
+
+💬 Comenta DEMO y te mandamos el WhatsApp para que lo pruebes tú mismo.</div>
+      <div class="hashtags">#SofiaAI #AgendarCita #DentistaBogota #TecnologíaDental #WhatsApp #NataliaBarrantes #CitaDental #Automatización</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECCIÓN 2 — CARRUSELES
+══════════════════════════════════ -->
+<div class="section-block">
+  <div class="sec-header">
+    <div class="sec-icon car">📋</div>
+    <div>
+      <div class="sec-title">Carruseles del Mes — Educativos y de Conversión</div>
+      <div class="sec-sub">8 carruseles · 2 por semana · Diseño en Canva · Tonos ocre/dorado/crema</div>
+    </div>
+  </div>
+
+  <span class="week-band">📅 Semana 1</span>
+
+  <!-- CAR 1 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 1</span>
+      <div>
+        <div class="cb-title">5 razones por las que tu sonrisa SÍ puede cambiar (aunque creas que no)</div>
+        <div class="cb-objective">Objetivo: Romper objeciones. Inspirar acción. Guardados y compartidos.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"5 razones por las que tu sonrisa SÍ puede cambiar" + foto Dra. Natalia sonriendo</div><div class="slide-cta">Desliza →</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Razón 1</div><div class="slide-copy">"No importa tu edad — los tratamientos modernos funcionan desde los 18 hasta los 65+"</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Razón 2</div><div class="slide-copy">"No necesitas cirugía — carillas, resinas y blanqueamiento cambian todo sin bisturí"</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Razón 3</div><div class="slide-copy">"El tiempo es menor de lo que crees — algunos diseños de sonrisa: 2 sesiones"</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Razón 4</div><div class="slide-copy">"Tenemos planes de pago — tu sonrisa no tiene que esperar a que 'tengas el dinero'"</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">Razón 5</div><div class="slide-copy">"El impacto va más allá de lo físico — pacientes reportan más seguridad, mejores oportunidades laborales y más bienestar"</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA Final</div><div class="slide-copy">"¿Por cuál empezamos? 👇 Comenta SONRISA"</div><div class="slide-cta">+ Link en bio</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAR 2 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 2</span>
+      <div>
+        <div class="cb-title">¿Cuánto cuesta realmente un diseño de sonrisa en Bogotá? (La guía honesta)</div>
+        <div class="cb-objective">Objetivo: Educar sobre precios. Eliminar miedo al costo. Más guardados del mes.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"¿Cuánto cuesta un diseño de sonrisa en Bogotá?" + fondo dorado elegante</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Contexto</div><div class="slide-copy">"Depende del tratamiento. Te explicamos los 4 más solicitados y sus rangos reales."</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Opción 1</div><div class="slide-copy">💎 Carillas de cerámica: desde $X hasta $Y COP por diente. Resultado: 10-15 años. Ideal para: cambio de color, forma y tamaño.</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Opción 2</div><div class="slide-copy">✨ Resinas directas: desde $X COP. Resultado: 5-7 años. Ideal para: correcciones menores, presupuesto moderado.</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Opción 3</div><div class="slide-copy">🦷 Blanqueamiento profesional: desde $X COP. Resultados en 1-2 sesiones. Ideal para: punto de partida de cualquier tratamiento.</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">La verdad</div><div class="slide-copy">"El precio exacto lo defines TÚ — depende de cuántas piezas, el estado actual y lo que quieres lograr. Por eso hacemos una valoración antes."</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"Valoración: $15.000 COP (va al costo del tratamiento). Comenta VALORACIÓN 👇"</div></div>
+      </div>
+      <div class="note-box"><strong>Nota para Paula:</strong> Preguntar a la Dra. Natalia los rangos de precios reales antes de publicar este carrusel. Reemplazar los $X e $Y con los valores actuales de la clínica.</div>
+    </div>
+  </div>
+
+  <span class="week-band">📅 Semana 2</span>
+
+  <!-- CAR 3 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 3</span>
+      <div>
+        <div class="cb-title">3 transformaciones reales de nuestra clínica (Antes → Después)</div>
+        <div class="cb-objective">Objetivo: Prueba social visual. El carrusel con más shares del mes.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"3 sonrisas que transformamos este mes" + logo NB dorado</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Caso 1 — Antes</div><div class="slide-copy">Foto ANTES + contexto breve: "Diana, 34 años. Insegura con su sonrisa por 6 años."</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Caso 1 — Después</div><div class="slide-copy">Foto DESPUÉS + tratamiento: "Carillas de cerámica superior. 2 sesiones."</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Caso 2 — Antes</div><div class="slide-copy">Foto ANTES + contexto: segundo caso real de la clínica</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Caso 2 — Después</div><div class="slide-copy">Foto DESPUÉS + tratamiento realizado</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">Caso 3</div><div class="slide-copy">Tercer caso real con su antes/después</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"¿Cuál se parece más a lo que tú quieres? Comenta el número 1, 2 o 3 👇"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAR 4 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 4</span>
+      <div>
+        <div class="cb-title">¿Ortodoncia o carillas? La diferencia que nadie te explica</div>
+        <div class="cb-objective">Objetivo: Educativo viral. Alta tasa de guardados. Posiciona a la Dra. como experta.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"¿Ortodoncia o carillas? La diferencia real (que nadie te cuenta)" + fondo crema</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Mito</div><div class="slide-copy">"Muchos creen que son lo mismo. No lo son. Y elegir mal puede costarte tiempo y dinero."</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Ortodoncia</div><div class="slide-copy">✅ Para: dientes torcidos, mordida incorrecta, espacio entre dientes. ⏱️ Tiempo: 12-36 meses.</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Carillas</div><div class="slide-copy">✅ Para: cambiar color, forma, tamaño. No mueven dientes. ⏱️ Tiempo: 2-4 sesiones.</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Combinación</div><div class="slide-copy">"A veces la respuesta es AMBAS — ortodoncia primero, carillas después. Por eso la valoración es clave."</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">Dra. opina</div><div class="slide-copy">"En nuestra primera cita, analizamos tu caso completo antes de recomendarte cualquier tratamiento. Sin presión, con información." — Dra. Natalia</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"¿Cuál crees que necesitas tú? Comenta abajo y te oriento 👇"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <span class="week-band">📅 Semana 3</span>
+
+  <!-- CAR 5 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 5</span>
+      <div>
+        <div class="cb-title">Así funciona nuestro nuevo sistema de citas (paso a paso)</div>
+        <div class="cb-objective">Objetivo: Presentar Sofia AI. Eliminar fricción. CTA de conversión directa.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"Agendar tu cita dental nunca fue tan fácil 📱" + ícono WhatsApp dorado</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Paso 1</div><div class="slide-copy">📩 Escribes "Hola" al WhatsApp de la clínica — a cualquier hora del día o la noche.</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Paso 2</div><div class="slide-copy">🤖 Sofia (nuestra asistente IA) te pregunta qué necesitas y te muestra los horarios disponibles.</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Paso 3</div><div class="slide-copy">✅ Eliges tu horario y queda confirmado al instante. Recibes un recordatorio 24h antes.</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Paso 4</div><div class="slide-copy">📍 Llegas al consultorio. Todo está listo. No hay esperas innecesarias.</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">Por qué</div><div class="slide-copy">"Porque tu tiempo vale. Y queríamos que agendar una cita fuera lo más fácil de tu día."</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"Comenta CITA y te enviamos el link de WhatsApp directo 👇"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAR 6 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 6</span>
+      <div>
+        <div class="cb-title">Los 4 tratamientos más pedidos en Bogotá este año (y cuál es para ti)</div>
+        <div class="cb-objective">Objetivo: Educativo con intención de compra. Mucho guardado + preguntas en comentarios.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"Los 4 tratamientos dentales más pedidos en Bogotá en 2026 🏆"</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">#1 Diseño de sonrisa</div><div class="slide-copy">El más solicitado. Combina múltiples procedimientos para una transformación completa. Ideal si quieres el cambio más visible.</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">#2 Blanqueamiento</div><div class="slide-copy">El punto de entrada perfecto. Rápido, sin dolor, resultados inmediatos. Punto de partida para cualquier otro tratamiento.</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">#3 Ortodoncia estética</div><div class="slide-copy">Brackets de cerámica o alineadores transparentes. Para quienes quieren corregir sin que se note.</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">#4 Implantes</div><div class="slide-copy">La solución definitiva para dientes faltantes. Se ve y se siente como un diente natural. Para toda la vida.</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">¿Cuál es tuyo?</div><div class="slide-copy">"En nuestra valoración te ayudamos a encontrar el tratamiento que se adapta a tu caso y tu presupuesto."</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"Comenta el número del que más te interesa 1, 2, 3 o 4 👇"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <span class="week-band">📅 Semana 4</span>
+
+  <!-- CAR 7 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 7</span>
+      <div>
+        <div class="cb-title">¿Qué pasa en tu PRIMERA visita con nosotros? (Sin sorpresas)</div>
+        <div class="cb-objective">Objetivo: Eliminar el miedo a la primera cita. Genera confianza y calidad de paciente.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"Tu primera cita con nosotros — lo que pasa, paso a paso 🦷" + fondo crema cálido</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Llegada</div><div class="slide-copy">Te recibimos en un ambiente cálido. Sin esperas. Tu cita empieza a la hora exacta que agendaste.</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Escucha</div><div class="slide-copy">La Dra. Natalia te pregunta qué te preocupa, qué no te gusta y qué quieres lograr. Sin apresurar.</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Diagnóstico</div><div class="slide-copy">Revisión completa con diagnóstico digital. Te mostramos exactamente lo que vemos — sin tecnicismos.</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Plan</div><div class="slide-copy">Te presentamos opciones de tratamiento con tiempos y costos. Tú decides — sin presión.</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">Garantía</div><div class="slide-copy">"Saldrás con un plan claro, no con dudas." — Dra. Natalia Barrantes</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"Valoración: $15.000 COP · Comenta QUIERO IR 👇"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAR 8 -->
+  <div class="content-block">
+    <div class="cb-header">
+      <span class="cb-type type-car">📋 Carrusel 8</span>
+      <div>
+        <div class="cb-title">Mitos del blanqueamiento dental — Lo que nadie te dice (pero deberías saber)</div>
+        <div class="cb-objective">Objetivo: Viral educativo. Alta probabilidad de shares y guardados. Posiciona autoridad.</div>
+      </div>
+    </div>
+    <div class="cb-body">
+      <div class="slides-wrap">
+        <div class="slide-card"><div class="slide-num">1</div><div class="slide-type">Portada</div><div class="slide-copy">"5 mitos del blanqueamiento dental que te están confundiendo ⚡" + tipografía bold</div></div>
+        <div class="slide-card"><div class="slide-num">2</div><div class="slide-type">Mito 1</div><div class="slide-copy">❌ "El blanqueamiento daña el esmalte." ✅ Realidad: Con supervisión profesional, es completamente seguro.</div></div>
+        <div class="slide-card"><div class="slide-num">3</div><div class="slide-type">Mito 2</div><div class="slide-copy">❌ "Las pastas blanqueadoras funcionan igual." ✅ Realidad: Blanquean superficialmente — el cambio real es mínimo.</div></div>
+        <div class="slide-card"><div class="slide-num">4</div><div class="slide-type">Mito 3</div><div class="slide-copy">❌ "Es para siempre." ✅ Realidad: Dura 1-3 años según tus hábitos. Café, vino y cigarrillo aceleran el cambio de color.</div></div>
+        <div class="slide-card"><div class="slide-num">5</div><div class="slide-type">Mito 4</div><div class="slide-copy">❌ "Duele mucho." ✅ Realidad: Puede haber sensibilidad temporal (1-2 días). Manejable con el protocolo correcto.</div></div>
+        <div class="slide-card"><div class="slide-num">6</div><div class="slide-type">Mito 5</div><div class="slide-copy">❌ "Funciona en todos los dientes igual." ✅ Realidad: Solo funciona en dientes naturales — no en coronas ni carillas.</div></div>
+        <div class="slide-card"><div class="slide-num">7</div><div class="slide-type">CTA</div><div class="slide-copy">"¿Con cuál mito te sorprendiste más? Comenta abajo 👇 Guarda esto para compartirlo."</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECCIÓN 3 — STORIES
+══════════════════════════════════ -->
+<div class="section-block">
+  <div class="sec-header">
+    <div class="sec-icon story">⭕</div>
+    <div>
+      <div class="sec-title">Stories del Mes — 20 en 4 Semanas</div>
+      <div class="sec-sub">5 stories por semana · Lunes a viernes · Mix de formatos: encuestas, vídeos, tips, CTAs</div>
+    </div>
+  </div>
+
+  <!-- SEMANA 1 -->
+  <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;margin-top:8px">📅 Semana 1 — Presentación del nuevo sistema</div>
+  <div class="stories-week">
+    <div class="story-card">
+      <div class="story-day">Lunes</div>
+      <div class="story-icon">👋</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">Dra. Natalia saluda y presenta la novedad del mes</div>
+      <div class="story-note">30 seg · Cámara frontal · Texto: "Esto cambió en nuestra clínica 👇"</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Martes</div>
+      <div class="story-icon">📱</div>
+      <span class="story-format sf-img">Imagen</span>
+      <div class="story-title">Screenshot de conversación con Sofia AI + texto explicativo</div>
+      <div class="story-note">Texto: "Así agendas tu cita ahora 🤩" + link al WhatsApp</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Miércoles</div>
+      <div class="story-icon">🗳️</div>
+      <span class="story-format sf-enc">Encuesta</span>
+      <div class="story-title">"¿Cuánto tardas normalmente en agendar una cita dental?"</div>
+      <div class="story-note">Opciones: "Más de 1 día" / "Mismo día" · Enganche para el Reel del lunes</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Jueves</div>
+      <div class="story-icon">💎</div>
+      <span class="story-format sf-img">Imagen</span>
+      <div class="story-title">Tip dental del día: "Esto sí debes hacer después de cepillarte"</div>
+      <div class="story-note">Diseño Canva · Paleta ocre · Texto informativo · Sin CTA de venta</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Viernes</div>
+      <div class="story-icon">🎯</div>
+      <span class="story-format sf-cta">CTA</span>
+      <div class="story-title">"Últimos cupos disponibles esta semana — Agenda hoy"</div>
+      <div class="story-note">Texto + botón de link al WhatsApp · Crear urgencia suave</div>
+    </div>
+  </div>
+
+  <!-- SEMANA 2 -->
+  <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;margin-top:24px">📅 Semana 2 — Prueba social y proceso</div>
+  <div class="stories-week">
+    <div class="story-card">
+      <div class="story-day">Lunes</div>
+      <div class="story-icon">✨</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">Teaser del Reel de antes/después — "El martes publicamos algo que no van a creer"</div>
+      <div class="story-note">10-15 seg · Clip corto del proceso · Genera expectativa</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Martes</div>
+      <div class="story-icon">🦷</div>
+      <span class="story-format sf-img">Imagen</span>
+      <div class="story-title">Antes/después estático de un caso — invitar a ver el Reel</div>
+      <div class="story-note">"Desliza para ver el video completo" + flecha al Reel del feed</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Miércoles</div>
+      <div class="story-icon">❓</div>
+      <span class="story-format sf-preg">Pregunta</span>
+      <div class="story-title">"¿Qué te gustaría cambiar de tu sonrisa?" — Caja de respuestas</div>
+      <div class="story-note">Respuestas → usarlas como contenido futuro + conectar con cada persona</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Jueves</div>
+      <div class="story-icon">🎬</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">B-roll del consultorio con música cálida — ambiente del spa dental</div>
+      <div class="story-note">Sin narración · Solo música + texto: "Aquí te esperamos 🤍"</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Viernes</div>
+      <div class="story-icon">💬</div>
+      <span class="story-format sf-cta">CTA</span>
+      <div class="story-title">Testimonio de paciente en texto + foto (con permiso)</div>
+      <div class="story-note">"Esto dijo [Nombre] después de su diseño de sonrisa 🥹"</div>
+    </div>
+  </div>
+
+  <!-- SEMANA 3 -->
+  <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;margin-top:24px">📅 Semana 3 — Humanización y autoridad</div>
+  <div class="stories-week">
+    <div class="story-card">
+      <div class="story-day">Lunes</div>
+      <div class="story-icon">☀️</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">Buenos días desde el consultorio — Dra. Natalia de mañana</div>
+      <div class="story-note">Muy humano, natural · "Empezamos otra semana cuidando sonrisas 🦷"</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Martes</div>
+      <div class="story-icon">🔬</div>
+      <span class="story-format sf-img">Imagen</span>
+      <div class="story-title">Dato dental curioso: "¿Sabías que el esmalte es el tejido más duro del cuerpo?"</div>
+      <div class="story-note">Diseño Canva educativo · Sin CTA de venta · Pura educación</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Miércoles</div>
+      <div class="story-icon">🗳️</div>
+      <span class="story-format sf-enc">Encuesta</span>
+      <div class="story-title">"¿Cada cuánto vas al dentista?"</div>
+      <div class="story-note">Opciones: "Cada 6 meses ✅" / "Solo cuando duele 😬" · Engagement altísimo</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Jueves</div>
+      <div class="story-icon">🎤</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">Dra. Natalia responde 1 pregunta frecuente de pacientes</div>
+      <div class="story-note">30 seg · Sin libreto · Pregunta real de los comentarios de la semana anterior</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Viernes</div>
+      <div class="story-icon">📅</div>
+      <span class="story-format sf-cta">CTA</span>
+      <div class="story-title">"Esta semana tenemos 3 espacios disponibles para valoración"</div>
+      <div class="story-note">Urgencia real · Botón WhatsApp · "Solo $15.000 COP con plan incluido"</div>
+    </div>
+  </div>
+
+  <!-- SEMANA 4 -->
+  <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:14px;margin-top:24px">📅 Semana 4 — Conversión y cierre del mes</div>
+  <div class="stories-week">
+    <div class="story-card">
+      <div class="story-day">Lunes</div>
+      <div class="story-icon">🎯</div>
+      <span class="story-format sf-enc">Encuesta</span>
+      <div class="story-title">"¿Estás listo para transformar tu sonrisa este mes?"</div>
+      <div class="story-note">Opciones: "¡Sí, ya quiero! 🔥" / "Aún tengo dudas 🤔" · DM a quien diga dudas</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Martes</div>
+      <div class="story-icon">📱</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">Demo de Sofia AI en vivo — "Mira lo fácil que es agendar ahora"</div>
+      <div class="story-note">Screen recording del chat · 20 seg · CTA al WhatsApp</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Miércoles</div>
+      <div class="story-icon">🏆</div>
+      <span class="story-format sf-img">Imagen</span>
+      <div class="story-title">Resumen del mes: "Este mes transformamos X sonrisas" + collage</div>
+      <div class="story-note">Número real de pacientes del mes · Celebración · Agradecimiento</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Jueves</div>
+      <div class="story-icon">💛</div>
+      <span class="story-format sf-vid">Video</span>
+      <div class="story-title">Dra. Natalia da gracias por el mes y anticipa lo que viene en junio</div>
+      <div class="story-note">Cálido, genuino · Sin venta · Solo conexión humana</div>
+    </div>
+    <div class="story-card">
+      <div class="story-day">Viernes</div>
+      <div class="story-icon">🚀</div>
+      <span class="story-format sf-cta">CTA Final</span>
+      <div class="story-title">"Junio ya tiene agenda abierta — ¿Reservas tu espacio?"</div>
+      <div class="story-note">Botón directo a WhatsApp · "Comenta JUNIO en el feed" · Cierre fuerte</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECCIÓN 4 — CALENDARIO VISUAL
+══════════════════════════════════ -->
+<div class="section-block">
+  <div class="sec-header">
+    <div class="sec-icon cal">📅</div>
+    <div>
+      <div class="sec-title">Calendario de Publicación — Mayo 2026</div>
+      <div class="sec-sub">Vista mensual · 32 piezas totales · Distribución semanal equilibrada</div>
+    </div>
+  </div>
+
+  <div class="cal-grid">
+    <div class="cal-day-header">Lun</div><div class="cal-day-header">Mar</div><div class="cal-day-header">Mié</div>
+    <div class="cal-day-header">Jue</div><div class="cal-day-header">Vie</div><div class="cal-day-header">Sáb</div><div class="cal-day-header">Dom</div>
+
+    <!-- Semana 1: May 5-11 -->
+    <div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div>
+    <div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div>
+
+    <!-- Semana 2: May 12-18 -->
+    <div class="cal-cell">
+      <div class="cal-date">12</div>
+      <span class="cal-item ci-reel">🎬 Reel 1</span>
+      <span class="cal-item ci-car">📋 Carrusel 1</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+      <span class="cal-item ci-visit">📍 Visita</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">13</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">14</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">15</div>
+      <span class="cal-item ci-car">📋 Carrusel 2</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">16</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell"><div class="cal-date">17</div></div>
+    <div class="cal-cell"><div class="cal-date">18</div></div>
+
+    <!-- Semana 3: May 19-25 -->
+    <div class="cal-cell">
+      <div class="cal-date">19</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+      <span class="cal-item ci-visit">📍 Visita</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">20</div>
+      <span class="cal-item ci-reel">🎬 Reel 2</span>
+      <span class="cal-item ci-car">📋 Carrusel 3</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">21</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">22</div>
+      <span class="cal-item ci-car">📋 Carrusel 4</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">23</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell"><div class="cal-date">24</div></div>
+    <div class="cal-cell"><div class="cal-date">25</div></div>
+
+    <!-- Semana 4: May 26-Jun 1 -->
+    <div class="cal-cell">
+      <div class="cal-date">26</div>
+      <span class="cal-item ci-story">⭕ Story</span>
+      <span class="cal-item ci-visit">📍 Visita</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">27</div>
+      <span class="cal-item ci-car">📋 Carrusel 5</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">28</div>
+      <span class="cal-item ci-reel">🎬 Reel 3</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">29</div>
+      <span class="cal-item ci-car">📋 Carrusel 6</span>
+      <span class="cal-item ci-story">⭕ Story</span>
+    </div>
+    <div class="cal-cell">
+      <div class="cal-date">30</div>
+      <span class="cal-item ci-reel">🎬 Reel 4</span>
+      <span class="cal-item ci-car">📋 Carruseles 7-8</span>
+      <span class="cal-item ci-story">⭕ Stories x2</span>
+      <span class="cal-item ci-visit">📍 Visita</span>
+    </div>
+    <div class="cal-cell"><div class="cal-date">31</div></div>
+    <div class="cal-cell empty"></div>
+  </div>
+
+  <div class="note-box" style="margin-top:16px">
+    <strong>🟡 Leyenda:</strong> &nbsp;
+    🎬 Reel (4) &nbsp;·&nbsp; 📋 Carrusel (8) &nbsp;·&nbsp; ⭕ Story (20) &nbsp;·&nbsp; 📍 Visita presencial al consultorio (4 visitas — 1 por semana) <br/>
+    <strong>⏰ Horarios sugeridos de publicación:</strong> Lunes–Viernes entre 11am–12pm o 6pm–8pm (horas pico en Instagram Bogotá)<br/>
+    <strong>📍 Visitas de grabación:</strong> Se coordinan con 48h de anticipación entre Paula y la Dra. Natalia. Duración: 2-3 horas máximo.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECCIÓN 5 — DRIVE DE CONTENIDO
+══════════════════════════════════ -->
+<div class="section-block">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(26,115,232,.10)">📁</div>
+    <div>
+      <div class="sec-title">Drive de Contenido — Paula sube aquí todo</div>
+      <div class="sec-sub">Carpeta compartida · Se actualiza semanalmente · Organizada por semana → Posts y Videos</div>
+    </div>
+  </div>
+
+  <!-- BOTÓN DRIVE -->
+  <div style="text-align:center;margin-bottom:32px">
+    <a href="REEMPLAZAR_CON_LINK_DE_DRIVE" target="_blank" rel="noopener"
+       style="display:inline-flex;align-items:center;gap:10px;
+              background:#1a73e8;color:#fff;text-decoration:none;
+              padding:14px 28px;border-radius:12px;font-weight:700;font-size:15px;
+              box-shadow:0 4px 16px rgba(26,115,232,.3);transition:all .2s">
+      <svg width="22" height="22" viewBox="0 0 87.3 78" fill="white">
+        <path d="m6.6 66.85 3.85 6.65c.8 1.4 1.95 2.5 3.3 3.3l13.75-23.8h-27.5c0 1.55.4 3.1 1.2 4.5z" fill="#0066da"/>
+        <path d="m43.65 25-13.75-23.8c-1.35.8-2.5 1.9-3.3 3.3l-25.4 44a9.06 9.06 0 0 0 -1.2 4.5h27.5z" fill="#00ac47"/>
+        <path d="m73.55 76.8c1.35-.8 2.5-1.9 3.3-3.3l1.6-2.75 7.65-13.25c.8-1.4 1.2-2.95 1.2-4.5h-27.502l5.852 11.5z" fill="#ea4335"/>
+        <path d="m43.65 25 13.75-23.8c-1.35-.8-2.9-1.2-4.5-1.2h-18.5c-1.6 0-3.15.45-4.5 1.2z" fill="#00832d"/>
+        <path d="m59.8 53h-32.3l-13.75 23.8c1.35.8 2.9 1.2 4.5 1.2h50.8c1.6 0 3.15-.45 4.5-1.2z" fill="#2684fc"/>
+        <path d="m73.4 26.5-12.7-22c-.8-1.4-1.95-2.5-3.3-3.3l-13.75 23.8 16.15 27h27.45c0-1.55-.4-3.1-1.2-4.5z" fill="#ffba00"/>
+      </svg>
+      Abrir carpeta de Drive — Dentalia Mayo 2026
+    </a>
+    <div style="font-size:11px;color:var(--muted);margin-top:10px">
+      ⚠️ El link del Drive debe ser configurado por AJ Business Advisory y compartido con Paula como <strong>Editora</strong>
+    </div>
+  </div>
+
+  <!-- ESTRUCTURA DE CARPETAS -->
+  <div style="background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px;box-shadow:0 2px 12px rgba(192,154,85,.06)">
+    <div style="font-size:13px;font-weight:700;color:var(--dark);margin-bottom:20px;display:flex;align-items:center;gap:8px">
+      📂 Estructura de carpetas — Paula NO puede cambiar esta organización
+    </div>
+
+    <div style="font-family:monospace;font-size:13px;line-height:2;color:var(--text)">
+
+      <!-- ROOT -->
+      <div style="color:var(--gold-deep);font-weight:700;font-size:14px;margin-bottom:4px">
+        📁 Dentalia - Natalia Barrantes / Contenido Mayo 2026
+      </div>
+
+      <!-- SEMANA 1 -->
+      <div style="padding-left:20px">
+        <div style="color:var(--dark);font-weight:600">📂 Semana 1 — 12 al 16 de mayo</div>
+        <div style="padding-left:24px;color:var(--muted)">
+          <div>📂 Posts</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>📸 Carrusel-1_5-razones-sonrisa.png (todas las slides)</div>
+            <div>📸 Carrusel-2_precio-diseno-sonrisa.png</div>
+            <div>📄 Captions-semana1.txt</div>
+          </div>
+          <div>📂 Videos</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>🎬 Reel-1_sistema-citas_FINAL.mp4</div>
+            <div>🎬 Reel-1_BRUTO (carpeta con tomas sin editar)</div>
+          </div>
+          <div>📂 Stories</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>⭕ Story-Lun.mp4 / Story-Mar.png / Story-Mie.png / Story-Jue.png / Story-Vie.png</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 2 -->
+      <div style="padding-left:20px;margin-top:10px">
+        <div style="color:var(--dark);font-weight:600">📂 Semana 2 — 19 al 23 de mayo</div>
+        <div style="padding-left:24px;color:var(--muted)">
+          <div>📂 Posts</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>📸 Carrusel-3_antes-despues-casos.png</div>
+            <div>📸 Carrusel-4_ortodoncia-vs-carillas.png</div>
+            <div>📄 Captions-semana2.txt</div>
+          </div>
+          <div>📂 Videos</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>🎬 Reel-2_antes-despues_FINAL.mp4</div>
+            <div>🎬 Reel-2_BRUTO</div>
+          </div>
+          <div>📂 Stories</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>⭕ Story-Lun.mp4 / Story-Mar.png / Story-Mie.png / Story-Jue.mp4 / Story-Vie.png</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 3 -->
+      <div style="padding-left:20px;margin-top:10px">
+        <div style="color:var(--dark);font-weight:600">📂 Semana 3 — 26 al 30 de mayo</div>
+        <div style="padding-left:24px;color:var(--muted)">
+          <div>📂 Posts</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>📸 Carrusel-5_como-funciona-sistema.png</div>
+            <div>📸 Carrusel-6_top-4-tratamientos.png</div>
+            <div>📄 Captions-semana3.txt</div>
+          </div>
+          <div>📂 Videos</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>🎬 Reel-3_detras-camaras_FINAL.mp4</div>
+            <div>🎬 Reel-3_BRUTO</div>
+          </div>
+          <div>📂 Stories</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>⭕ Story-Lun.mp4 / Story-Mar.png / Story-Mie.png / Story-Jue.mp4 / Story-Vie.png</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 4 -->
+      <div style="padding-left:20px;margin-top:10px">
+        <div style="color:var(--dark);font-weight:600">📂 Semana 4 — Cierre de mayo</div>
+        <div style="padding-left:24px;color:var(--muted)">
+          <div>📂 Posts</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>📸 Carrusel-7_primera-visita.png</div>
+            <div>📸 Carrusel-8_mitos-blanqueamiento.png</div>
+            <div>📄 Captions-semana4.txt</div>
+          </div>
+          <div>📂 Videos</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>🎬 Reel-4_demo-whatsapp_FINAL.mp4</div>
+            <div>🎬 Reel-4_BRUTO</div>
+          </div>
+          <div>📂 Stories</div>
+          <div style="padding-left:20px;font-size:12px">
+            <div>⭕ Story-Lun.png / Story-Mar.mp4 / Story-Mie.png / Story-Jue.mp4 / Story-Vie.png</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEMANA 5 -->
+      <div style="padding-left:20px;margin-top:10px">
+        <div style="color:#8B5E3C;font-weight:600">📂 Semana 5 — Buffer / Contenido extra</div>
+        <div style="padding-left:24px;color:var(--muted);font-size:12px">
+          <div>📂 Posts extra (si se produce contenido adicional)</div>
+          <div>📂 Videos extra</div>
+          <div>📂 Testimonios recibidos</div>
+          <div>📂 Fotos del consultorio (banco de imágenes)</div>
+        </div>
+      </div>
+
+      <!-- ARCHIVOS GENERALES -->
+      <div style="padding-left:20px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--border)">
+        <div style="color:var(--dark);font-weight:600">📂 _Recursos generales</div>
+        <div style="padding-left:24px;color:var(--muted);font-size:12px">
+          <div>🎨 Paleta de colores Dentalia (Canva link)</div>
+          <div>🅰️ Fuentes aprobadas (Inter + Great Vibes)</div>
+          <div>🖼️ Logos (logo-nb.png / logo-dentalia.png)</div>
+          <div>📸 Fotos de la Dra. Natalia (aprobadas)</div>
+          <div>📸 Banco de fotos antes/después</div>
+          <div>📄 Parrilla-Mayo-2026.pdf (este documento)</div>
+        </div>
+      </div>
+
+    </div><!-- /monospace -->
+  </div><!-- /card -->
+
+  <div class="note-box" style="margin-top:16px">
+    <strong>📌 Reglas de nombramiento de archivos:</strong><br/>
+    Usar siempre: <code style="background:rgba(192,154,85,.15);padding:1px 6px;border-radius:4px">Tipo-Numero_descripcion-corta_ESTADO.extension</code><br/>
+    Ejemplos: <code style="background:rgba(192,154,85,.15);padding:1px 6px;border-radius:4px">Reel-1_sistema-citas_FINAL.mp4</code> · <code style="background:rgba(192,154,85,.15);padding:1px 6px;border-radius:4px">Carrusel-3_antes-despues_REVISIÓN.png</code><br/>
+    <strong>⚠️ NO subir archivos sin nombre claro</strong> (tipo "Untitled", "imagen (1)", "video_nuevo", etc.)
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SECCIÓN 6 — AUTOMATIZACIÓN MANYCHAT
+══════════════════════════════════ -->
+<div class="section-block">
+  <div class="sec-header">
+    <div class="sec-icon" style="background:rgba(106,27,154,.10)">🤖</div>
+    <div>
+      <div class="sec-title">Automatización ManyChat — @dentaliaodontologia</div>
+      <div class="sec-sub">Triggers por keyword en comentarios → DM automático · Configura AJ Business Advisory en Meta Business Suite</div>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-bottom:24px;border-left-color:#6A1B9A;background:rgba(106,27,154,.05)">
+    <strong style="color:#6A1B9A">⚠️ Importante:</strong> Esta automatización la configura <strong>AJ Business Advisory</strong> en ManyChat — no Paula. Paula solo necesita saber qué palabra clave poner en cada caption (ya están marcadas en la parrilla). Una vez configuradas, los DMs salen solos sin intervención manual.
+  </div>
+
+  <!-- TABLA DE TRIGGERS -->
+  <div style="background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:20px;box-shadow:0 2px 12px rgba(192,154,85,.06)">
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+      <thead>
+        <tr style="background:var(--dark)">
+          <th style="padding:12px 16px;text-align:left;color:var(--gold);font-size:11px;letter-spacing:.5px">KEYWORD TRIGGER</th>
+          <th style="padding:12px 16px;text-align:left;color:var(--gold);font-size:11px;letter-spacing:.5px">ACTIVA EN</th>
+          <th style="padding:12px 16px;text-align:left;color:var(--gold);font-size:11px;letter-spacing:.5px">MENSAJE DM AUTOMÁTICO</th>
+          <th style="padding:12px 16px;text-align:left;color:var(--gold);font-size:11px;letter-spacing:.5px">CTA FINAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:14px 16px"><strong style="background:rgba(192,154,85,.15);color:var(--gold-deep);padding:3px 10px;border-radius:20px;font-size:12px">CITA</strong></td>
+          <td style="padding:14px 16px;color:var(--muted)">Reel 1 + Carrusel 5</td>
+          <td style="padding:14px 16px;color:var(--text)">
+            "¡Hola! 😊 Vi que quieres agendar tu cita con la Dra. Natalia.<br/>
+            <br/>Te comparto el link directo a nuestro WhatsApp donde puedes agendar ahora mismo — a la hora que quieras:<br/>
+            👉 [LINK WHATSAPP]<br/>
+            <br/>O si prefieres, dime aquí qué tratamiento te interesa y te ayudo 🦷"
+          </td>
+          <td style="padding:14px 16px;color:var(--muted);font-size:12px">Botón: "Agendar por WhatsApp"</td>
+        </tr>
+        <tr style="background:var(--gold-pale);border-bottom:1px solid var(--border)">
+          <td style="padding:14px 16px"><strong style="background:rgba(192,154,85,.15);color:var(--gold-deep);padding:3px 10px;border-radius:20px;font-size:12px">SONRISA</strong></td>
+          <td style="padding:14px 16px;color:var(--muted)">Reel 2 + Carrusel 1</td>
+          <td style="padding:14px 16px;color:var(--text)">
+            "¡Hola! ✨ Me alegra que quieras transformar tu sonrisa.<br/>
+            <br/>La Dra. Natalia hace una valoración personalizada por solo $15.000 COP — donde te explica exactamente qué tratamiento necesitas y cuánto costaría tu caso.<br/>
+            <br/>¿Te gustaría agendar esa valoración? 🦷"
+          </td>
+          <td style="padding:14px 16px;color:var(--muted);font-size:12px">Botón: "Quiero mi valoración"</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:14px 16px"><strong style="background:rgba(192,154,85,.15);color:var(--gold-deep);padding:3px 10px;border-radius:20px;font-size:12px">VISITA</strong></td>
+          <td style="padding:14px 16px;color:var(--muted)">Reel 3</td>
+          <td style="padding:14px 16px;color:var(--text)">
+            "¡Hola! 🏡 Nos encantaría recibirte en nuestra clínica.<br/>
+            <br/>Estamos en [DIRECCIÓN], Bogotá. Atendemos de lunes a viernes.<br/>
+            <br/>Puedes agendar tu cita directamente por aquí:<br/>
+            👉 [LINK WHATSAPP]<br/>
+            <br/>¡Te esperamos! 🤍"
+          </td>
+          <td style="padding:14px 16px;color:var(--muted);font-size:12px">Botón: "Ver cómo llegar"</td>
+        </tr>
+        <tr style="background:var(--gold-pale);border-bottom:1px solid var(--border)">
+          <td style="padding:14px 16px"><strong style="background:rgba(192,154,85,.15);color:var(--gold-deep);padding:3px 10px;border-radius:20px;font-size:12px">DEMO</strong></td>
+          <td style="padding:14px 16px;color:var(--muted)">Reel 4</td>
+          <td style="padding:14px 16px;color:var(--text)">
+            "¡Hola! 📱 Te mando el link para que pruebes nuestro sistema de citas ahora mismo:<br/>
+            <br/>👉 [LINK WHATSAPP CLÍNICA]<br/>
+            <br/>Escribe 'Hola' y verás cómo responde solo. A cualquier hora del día 🕐<br/>
+            <br/>Si tienes alguna duda, aquí te atiendo yo también 😊"
+          </td>
+          <td style="padding:14px 16px;color:var(--muted);font-size:12px">Botón: "Probar ahora"</td>
+        </tr>
+        <tr>
+          <td style="padding:14px 16px"><strong style="background:rgba(192,154,85,.15);color:var(--gold-deep);padding:3px 10px;border-radius:20px;font-size:12px">VALORACIÓN</strong></td>
+          <td style="padding:14px 16px;color:var(--muted)">Carrusel 2</td>
+          <td style="padding:14px 16px;color:var(--text)">
+            "¡Hola! 🦷 La valoración con la Dra. Natalia tiene un costo de $15.000 COP e incluye:<br/>
+            ✅ Diagnóstico completo<br/>
+            ✅ Plan de tratamiento personalizado<br/>
+            ✅ Opciones de precio y tiempo<br/>
+            <br/>Y ese valor se descuenta del tratamiento si decides continuar 😊<br/>
+            <br/>¿Agendamos ahora? 👉 [LINK WHATSAPP]"
+          </td>
+          <td style="padding:14px 16px;color:var(--muted);font-size:12px">Botón: "Agendar valoración"</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONFIGURACIÓN TÉCNICA -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div style="background:var(--gold-pale);border:1px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:14px;text-transform:uppercase;letter-spacing:.6px">⚙️ Configuración en ManyChat</div>
+      <div style="font-size:12.5px;color:var(--text);line-height:1.8">
+        1. Automation → Comment DM<br/>
+        2. Trigger: "Comment contains keyword"<br/>
+        3. Agregar cada keyword (CITA, SONRISA, etc.)<br/>
+        4. Acción: Send Private Reply (DM)<br/>
+        5. Activar en: Instagram · All posts<br/>
+        6. O activar por post específico (recomendado)<br/>
+        7. Testear antes de publicar cada Reel
+      </div>
+    </div>
+    <div style="background:var(--gold-pale);border:1px solid var(--border);border-radius:12px;padding:20px">
+      <div style="font-size:12px;font-weight:700;color:var(--dark);margin-bottom:14px;text-transform:uppercase;letter-spacing:.6px">📋 Checklist antes de publicar</div>
+      <div style="font-size:12.5px;color:var(--text);line-height:1.8">
+        ☐ Keyword configurada en ManyChat<br/>
+        ☐ Mensaje DM escrito y testeado<br/>
+        ☐ Link de WhatsApp funcional<br/>
+        ☐ Dirección del consultorio actualizada<br/>
+        ☐ Respuesta llega en menos de 60 seg<br/>
+        ☐ Paula conoce la keyword del caption<br/>
+        ☐ Post aprobado por AJ Business Advisory
+      </div>
+    </div>
+  </div>
+
+  <div class="note-box" style="margin-top:16px;border-left-color:#6A1B9A;background:rgba(106,27,154,.05)">
+    <strong style="color:#6A1B9A">🔌 Campos por completar antes de activar:</strong><br/>
+    • <strong>[LINK WHATSAPP]</strong> → número real de la clínica: <code style="background:rgba(106,27,154,.1);padding:1px 6px;border-radius:4px">wa.me/57__________?text=Hola</code><br/>
+    • <strong>[DIRECCIÓN]</strong> → dirección exacta del consultorio en Bogotá<br/>
+    • Configura AJ Business Advisory como <strong>admin de ManyChat</strong> con acceso al Instagram de @dentaliaodontologia
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  Parrilla de contenido creada por AJ Business Advisory · Mayo 2026<br/>
+  Para uso exclusivo del equipo: Paula (Freelance) + Dra. Natalia Barrantes + AJ Business Advisory<br/>
+  Prohibida su reproducción o distribución a terceros sin autorización escrita.
+</div>
+
+</div><!-- /container -->
+</body>
+</html>

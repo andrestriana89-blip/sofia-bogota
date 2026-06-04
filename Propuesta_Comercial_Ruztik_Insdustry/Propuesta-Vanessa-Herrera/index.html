@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Comercial — Vanessa Herrera × AJ Business Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07090f;--bg2:#0b0e17;--bg3:#0f1320;--card:#0f1320;
+  --border:rgba(255,255,255,0.07);--border2:rgba(45,212,191,0.2);
+  --teal:#2dd4bf;--teal2:#5eead4;--tealp:rgba(45,212,191,0.08);--tealg:rgba(45,212,191,0.14);
+  --tealdark:#0f766e;--text:#e8f4f8;--text2:#94adb8;--muted:#4a6070;
+  --radius:12px;--radius-lg:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.65;overflow-x:hidden}
+::selection{background:var(--teal);color:#000}
+a{color:inherit;text-decoration:none}
+p{max-width:64ch}
+
+/* ── TYPOGRAPHY ── */
+.syne{font-family:'Syne',sans-serif}
+h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,7vw,6rem);font-weight:800;line-height:.95;letter-spacing:-.02em}
+h2{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:700;line-height:1.05}
+h3{font-family:'Inter',sans-serif;font-weight:700;font-size:1.05rem}
+.label{font-size:.62rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--teal)}
+.muted{color:var(--muted)}
+em{font-style:normal;color:var(--teal2)}
+
+/* ── LAYOUT ── */
+.container{max-width:1060px;margin:0 auto;padding:0 2rem}
+.section{padding:96px 0}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+@media(max-width:768px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+/* ── TOP BAR ── */
+.pbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(7,9,15,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:10px 2rem;display:flex;align-items:center;justify-content:space-between;
+}
+.pbar-brand{font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.pbar-sep{width:1px;height:16px;background:var(--border);margin:0 14px}
+.pbar-info{font-size:.68rem;color:var(--muted)}
+.pbar-l{display:flex;align-items:center}
+.pbar-r{display:flex;gap:.6rem}
+.btn-sm{font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:5px;cursor:pointer;transition:all .2s;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:5px}
+.btn-primary{background:var(--teal);color:#07090f;border:none}
+.btn-primary:hover{background:var(--teal2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:120px 0 80px;border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 70% at 20% 60%,rgba(45,212,191,.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(45,212,191,.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:1.75rem}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:heroPulse 2s ease-in-out infinite}
+@keyframes heroPulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(45,212,191,.4)}50%{opacity:.7;box-shadow:0 0 0 6px rgba(45,212,191,0)}}
+.hero-eyebrow-text{font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+.hero-h1-line2{color:var(--teal2)}
+.hero-tagline{font-size:clamp(.95rem,1.7vw,1.1rem);color:var(--text2);margin-top:1.5rem;max-width:50ch;line-height:1.75}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:2rem}
+.badge{font-size:.67rem;font-weight:600;padding:5px 13px;border-radius:20px;background:var(--tealp);border:1px solid var(--border2);color:var(--teal2)}
+.hero-validity{margin-top:2.5rem;font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+.hero-validity::before{content:'';display:block;width:20px;height:1px;background:var(--muted)}
+.hero-btns{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap}
+.btn-wa-hero{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#07090f;font-weight:700;font-size:.85rem;padding:13px 28px;border-radius:8px;transition:all .2s}
+.btn-wa-hero:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 10px 30px rgba(45,212,191,.25)}
+.btn-planes{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text2);font-weight:600;font-size:.85rem;padding:13px 24px;border-radius:8px;border:1px solid var(--border);transition:all .2s}
+.btn-planes:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── STATS ── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-top:3rem}
+.stat-item{background:var(--bg);padding:1.5rem 1.75rem;text-align:center}
+.stat-num{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--teal);line-height:1}
+.stat-label{font-size:.75rem;color:var(--muted);margin-top:.3rem;line-height:1.4}
+@media(max-width:600px){.stats-row{grid-template-columns:1fr}}
+
+/* ── SECTION HEADER ── */
+.sh{margin-bottom:3rem}
+.sh .label{display:block;margin-bottom:.75rem}
+.sh h2{margin-bottom:1rem}
+.sh p{color:var(--text2);font-size:.95rem}
+
+/* ── PAIN CARDS ── */
+.pain-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:border-color .25s}
+.pain-card:hover{border-color:var(--border2)}
+.pain-icon{font-size:1.5rem;flex-shrink:0;margin-top:.1rem}
+.pain-card h3{font-size:.95rem;margin-bottom:.35rem}
+.pain-card p{font-size:.85rem;color:var(--text2);max-width:none}
+
+/* ── SERVICE CARD ── */
+.svc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;transition:border-color .25s}
+.svc-card:hover{border-color:var(--border2)}
+.svc-icon{font-size:2rem;margin-bottom:1.25rem}
+.svc-card h3{margin-bottom:.6rem;font-size:1.1rem}
+.svc-card p{font-size:.9rem;color:var(--text2);line-height:1.65}
+.svc-feats{margin-top:1.25rem;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.svc-feats li{font-size:.85rem;color:var(--text2);display:flex;gap:.6rem;align-items:flex-start}
+.svc-feats li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0}
+
+/* ── TIKTOK MOCKUP ── */
+.tt-mock{border-radius:12px;overflow:hidden;border:1px solid rgba(45,212,191,.15);background:#000;margin-bottom:1.5rem;position:relative}
+.tt-mock-header{background:#111;padding:8px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)}
+.tt-mock-logo{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#fff;letter-spacing:.02em}
+.tt-mock-logo span{color:var(--teal)}
+.tt-mock-screen{background:#0a0a0a;display:grid;grid-template-columns:1fr auto;gap:0;min-height:140px}
+.tt-feed{padding:10px}
+.tt-post{background:linear-gradient(160deg,#111,#0d1a18);border:1px solid rgba(45,212,191,.1);border-radius:8px;padding:8px;margin-bottom:6px}
+.tt-post-tag{font-size:6px;letter-spacing:.14em;text-transform:uppercase;color:rgba(45,212,191,.7);margin-bottom:3px}
+.tt-post-title{font-size:8px;font-weight:600;color:#e8f4f8;line-height:1.3;margin-bottom:4px}
+.tt-post-bar{height:2px;background:rgba(45,212,191,.15);border-radius:1px;overflow:hidden}
+.tt-post-bar-fill{height:100%;background:var(--teal);border-radius:1px;animation:ttBar 3s ease-in-out infinite alternate}
+@keyframes ttBar{from{width:30%}to{width:90%}}
+.tt-sidebar{background:#0f0f0f;border-left:1px solid rgba(255,255,255,.05);padding:8px 6px;display:flex;flex-direction:column;align-items:center;gap:10px;justify-content:center}
+.tt-side-btn{display:flex;flex-direction:column;align-items:center;gap:2px}
+.tt-side-icon{font-size:14px}
+.tt-side-num{font-size:5px;color:rgba(255,255,255,.5)}
+.tt-metrics{display:flex;gap:6px;padding:6px 10px;background:rgba(45,212,191,.04);border-top:1px solid rgba(45,212,191,.08)}
+.tt-metric{text-align:center;flex:1}
+.tt-metric-num{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;color:var(--teal)}
+.tt-metric-label{font-size:5.5px;color:rgba(255,255,255,.3);margin-top:1px}
+
+/* ── PLAN CARDS ── */
+.plans-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+@media(max-width:768px){.plans-grid{grid-template-columns:1fr}}
+.plan-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;display:flex;flex-direction:column;gap:1.25rem;position:relative;transition:border-color .25s,transform .25s}
+.plan-card:hover{border-color:var(--border2);transform:translateY(-3px)}
+.plan-card.featured{border-color:var(--teal);background:linear-gradient(160deg,rgba(45,212,191,.07) 0%,var(--card) 55%)}
+.plan-card.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--teal),rgba(45,212,191,.3),transparent);border-radius:var(--radius-lg) var(--radius-lg) 0 0}
+.plan-tier{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.plan-tier.feat{color:var(--teal)}
+.plan-name{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:700;line-height:1.1;color:var(--text)}
+.plan-badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--teal);color:#07090f;padding:3px 9px;border-radius:4px;margin-bottom:.25rem}
+.plan-price-block{display:flex;flex-direction:column;gap:.2rem}
+.plan-price-setup{font-size:.78rem;color:var(--muted)}
+.plan-price-main{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--text);line-height:1}
+.plan-price-main span{font-size:.85rem;font-weight:400;color:var(--muted)}
+.plan-price-note{font-size:.72rem;color:var(--muted)}
+.plan-free{font-size:.72rem;font-weight:600;color:var(--teal)}
+.plan-divider{height:1px;background:var(--border)}
+.plan-feats{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.plan-feats li{font-size:.85rem;color:var(--text2);display:flex;gap:.6rem;align-items:flex-start}
+.plan-feats li::before{content:'✓';color:var(--teal);font-weight:700;flex-shrink:0;margin-top:.05rem}
+.plan-feats li.no{color:rgba(74,96,112,.5)}
+.plan-feats li.no::before{content:'—';color:rgba(74,96,112,.3)}
+.plan-cta{margin-top:auto;display:block;text-align:center;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:13px 18px;border-radius:8px;cursor:pointer;transition:all .2s;text-decoration:none}
+.plan-cta-a{background:var(--tealp);border:1px solid var(--border2);color:var(--teal2)}
+.plan-cta-a:hover{background:var(--tealg);color:var(--text)}
+.plan-cta-b{background:var(--teal);color:#07090f;border:1px solid var(--teal)}
+.plan-cta-b:hover{background:var(--teal2);box-shadow:0 6px 24px rgba(45,212,191,.25)}
+.plan-no-setup{font-size:.7rem;color:var(--muted);text-align:center;margin-top:-.5rem}
+
+/* ── CHANNEL NOTE ── */
+.channel-note{background:rgba(45,212,191,.05);border:1px solid rgba(45,212,191,.15);border-radius:var(--radius);padding:1.25rem 1.5rem;display:flex;gap:12px;align-items:flex-start;margin-top:2rem}
+.channel-note-icon{font-size:1.25rem;flex-shrink:0}
+.channel-note p{font-size:.85rem;color:var(--text2);max-width:none;line-height:1.6}
+.channel-note strong{color:var(--teal2)}
+
+/* ── PROCESO ── */
+.process-row{display:flex;flex-direction:column;gap:0;max-width:580px}
+.proc-item{display:flex;gap:1.5rem;padding-bottom:2.5rem;position:relative}
+.proc-item:not(:last-child)::after{content:'';position:absolute;left:17px;top:38px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--border2),transparent)}
+.proc-num{width:36px;height:36px;border-radius:50%;background:var(--tealp);border:1px solid var(--border2);color:var(--teal);font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.proc-body h3{margin-bottom:.3rem;font-size:1rem}
+.proc-body p{font-size:.87rem;color:var(--text2);max-width:none}
+.proc-time{font-size:.68rem;color:var(--teal);font-weight:600;margin-top:.3rem}
+
+/* ── PROTECCION ── */
+.protect-box{background:linear-gradient(135deg,rgba(45,212,191,.06),rgba(45,212,191,.02));border:1px solid rgba(45,212,191,.15);border-radius:var(--radius-lg);padding:2.5rem;margin-top:2rem}
+
+/* ── CTA FINAL ── */
+.cta-section{background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(45,212,191,.08) 0%,transparent 65%);border-top:1px solid var(--border);text-align:center;padding:100px 0}
+.btn-wa-final{display:inline-flex;align-items:center;gap:10px;background:var(--teal);color:#07090f;font-weight:700;font-size:.9rem;letter-spacing:.03em;padding:16px 36px;border-radius:10px;transition:all .2s;margin-top:2rem}
+.btn-wa-final:hover{background:var(--teal2);transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,212,191,.3)}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text2);font-weight:600;font-size:.85rem;padding:15px 24px;border-radius:10px;border:1px solid var(--border);transition:all .2s;margin-top:2rem;margin-left:1rem}
+.btn-sec:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── FOOTER ── */
+footer{padding:2.5rem 0;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:.75rem;color:var(--muted)}
+
+/* ── DIVIDER ── */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="pbar">
+  <div class="pbar-l">
+    <span class="pbar-brand">AJ Business Advisory</span>
+    <div class="pbar-sep"></div>
+    <span class="pbar-info">Propuesta para Vanessa Herrera · Ortodoncista · Bogotá</span>
+  </div>
+  <div class="pbar-r">
+    <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20hablar%20sobre%20la%20propuesta%20para%20Vanessa%20Herrera" target="_blank" class="btn-sm btn-ghost">💬 WhatsApp</a>
+    <a href="#planes" class="btn-sm btn-primary">Ver planes ↓</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow reveal">
+      <div class="hero-dot"></div>
+      <span class="hero-eyebrow-text">Propuesta exclusiva · Mayo 2026</span>
+    </div>
+    <h1 class="reveal d1">Tus pacientes<br>te están <em>buscando</em><br>en TikTok.</h1>
+    <p class="hero-tagline reveal d2">Tu trabajo habla solo, Vanessa — las transformaciones ortodónticas son de los contenidos más vistos en Colombia. Solo falta que estén en el lugar correcto, con la estrategia correcta.</p>
+    <div class="hero-badges reveal d3">
+      <span class="badge">🦷 Ortodoncia</span>
+      <span class="badge">📍 Bogotá</span>
+      <span class="badge">🎬 TikTok Estratégico</span>
+      <span class="badge">🤖 Sofia AI — WhatsApp 24/7</span>
+    </div>
+    <div class="hero-btns reveal d3">
+      <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20hablar%20sobre%20la%20propuesta%20para%20Vanessa%20Herrera" target="_blank" class="btn-wa-hero">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Hablemos ahora
+      </a>
+      <a href="#planes" class="btn-planes">Ver planes ↓</a>
+    </div>
+    <div class="stats-row reveal d4">
+      <div class="stat-item">
+        <div class="stat-num">83%</div>
+        <div class="stat-label">de pacientes busca su ortodoncista en redes antes de llamar</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">4.2M</div>
+        <div class="stat-label">vistas promedio tienen los videos de transformación dental en TikTok Colombia</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">más consultas generan los ortodoncistas activos en TikTok vs los que no están</div>
+      </div>
+    </div>
+    <p class="hero-validity reveal d4">Propuesta válida por 15 días · Preparada exclusivamente para Vanessa Herrera</p>
+  </div>
+</section>
+
+<!-- EL PROBLEMA -->
+<section class="section" style="background:var(--bg2)">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Lo que está pasando hoy</span>
+      <h2>Pacientes que podrían<br>ser tuyos — y no lo son.</h2>
+      <p>En Bogotá hay miles de personas buscando ortodoncista en este momento. La mayoría toma la decisión por lo que ve en redes. Si no apareces, el paciente ya eligió a otro.</p>
+    </div>
+    <div class="grid-2 reveal d1">
+      <div class="pain-card">
+        <div class="pain-icon">📵</div>
+        <div>
+          <h3>Consultas que llegan fuera de horario</h3>
+          <p>Alguien pregunta por el precio de los brackets a las 10pm. Sin respuesta inmediata, mañana ya tiene cita en otro consultorio.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🎬</div>
+        <div>
+          <h3>Transformaciones que nadie ve</h3>
+          <p>Tienes casos increíbles que generarían cientos de consultas — pero están guardados en tu celular en lugar de en TikTok.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">🔍</div>
+        <div>
+          <h3>Competencia que ya está en TikTok</h3>
+          <p>Otros ortodoncistas en Bogotá ya están publicando y atrayendo pacientes nuevos cada semana. Cada día que pasa es terreno perdido.</p>
+        </div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-icon">😩</div>
+        <div>
+          <h3>No hay tiempo para todo</h3>
+          <p>Grabar, editar, publicar, responder mensajes, crear estrategia — y además atender pacientes. No se puede hacer todo sola.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LA SOLUCIÓN -->
+<section class="section">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Nuestra propuesta</span>
+      <h2>Contenido real.<br><em>Pacientes reales.</em></h2>
+      <p>Un día a la semana grabamos juntas en tu consultorio. Nosotros guionamos, editamos, publicamos y medimos. Tú solo apareces y atiendes.</p>
+    </div>
+    <div class="grid-2 reveal d1" style="margin-top:2.5rem">
+
+      <!-- TIKTOK -->
+      <div class="svc-card">
+        <div class="tt-mock">
+          <div class="tt-mock-header">
+            <span class="tt-mock-logo">Tik<span>Tok</span></span>
+            <span style="font-size:9px;color:rgba(255,255,255,.3)">@vanessaherreraortho</span>
+          </div>
+          <div class="tt-mock-screen">
+            <div class="tt-feed">
+              <div class="tt-post">
+                <div class="tt-post-tag">Transformación · semana 24</div>
+                <div class="tt-post-title">6 meses con brackets y este fue el resultado 🦷✨</div>
+                <div class="tt-post-bar"><div class="tt-post-bar-fill"></div></div>
+              </div>
+              <div class="tt-post">
+                <div class="tt-post-tag">FAQ · Ortodoncia Bogotá</div>
+                <div class="tt-post-title">¿Cuánto duele ponerse brackets? La verdad 👇</div>
+                <div class="tt-post-bar"><div class="tt-post-bar-fill" style="animation-delay:.8s"></div></div>
+              </div>
+              <div class="tt-post">
+                <div class="tt-post-tag">Tip del día</div>
+                <div class="tt-post-title">Esto que haces con tu retenedor está mal 😬</div>
+                <div class="tt-post-bar"><div class="tt-post-bar-fill" style="animation-delay:1.6s"></div></div>
+              </div>
+            </div>
+            <div class="tt-sidebar">
+              <div class="tt-side-btn"><span class="tt-side-icon">❤️</span><span class="tt-side-num">12.4K</span></div>
+              <div class="tt-side-btn"><span class="tt-side-icon">💬</span><span class="tt-side-num">847</span></div>
+              <div class="tt-side-btn"><span class="tt-side-icon">↗️</span><span class="tt-side-num">2.1K</span></div>
+            </div>
+          </div>
+          <div class="tt-metrics">
+            <div class="tt-metric"><div class="tt-metric-num">3 videos</div><div class="tt-metric-label">por semana</div></div>
+            <div class="tt-metric"><div class="tt-metric-num">1 día</div><div class="tt-metric-label">de grabación</div></div>
+            <div class="tt-metric"><div class="tt-metric-num">100%</div><div class="tt-metric-label">estratégico</div></div>
+          </div>
+        </div>
+        <div class="svc-icon">🎬</div>
+        <h3>TikTok Estratégico para Ortodoncia</h3>
+        <p>Contenido diseñado para el algoritmo de TikTok y para tu audiencia: personas en Bogotá que están considerando brackets o alineadores.</p>
+        <ul class="svc-feats">
+          <li>3 videos por semana (12 al mes)</li>
+          <li>1 día de grabación semanal en tu consultorio</li>
+          <li>Guiones + dirección de contenido</li>
+          <li>Edición profesional con audio trending</li>
+          <li>Portadas para feed organizado y estético</li>
+          <li>Publicación en días y horas de mayor alcance</li>
+          <li>Reporte mensual de métricas y crecimiento</li>
+        </ul>
+      </div>
+
+      <!-- SOFIA WHATSAPP -->
+      <div class="svc-card" style="border-color:var(--border2)">
+        <div class="svc-icon">🤖</div>
+        <h3>Sofia AI — WhatsApp Inteligente 24/7</h3>
+        <p>Una asistente entrenada en tus tratamientos, precios y disponibilidad. Responde WhatsApp de manera inteligente según el canal — sin confundir plataformas, sin respuestas genéricas.</p>
+        <ul class="svc-feats">
+          <li>Responde consultas sobre brackets, alineadores, precios</li>
+          <li>Agenda citas automáticamente en tu horario</li>
+          <li>Recordatorios 24h antes de cada cita</li>
+          <li>Reactiva pacientes que no han vuelto</li>
+          <li>Mensajes inteligentes por canal — WhatsApp responde en WhatsApp</li>
+          <li>Reporte mensual de conversaciones y citas agendadas</li>
+        </ul>
+        <div class="channel-note" style="margin-top:1.25rem;margin-bottom:0">
+          <span class="channel-note-icon">💡</span>
+          <p><strong>Mensajes por canal:</strong> Sofia responde en WhatsApp cuando la consulta llega por WhatsApp. Cada canal tiene su propia lógica — nada de respuestas automáticas dentro de TikTok.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CÓMO FUNCIONA -->
+<section class="section">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">El proceso</span>
+      <h2>De cero a contenido<br><em>en 7 días.</em></h2>
+    </div>
+    <div class="process-row reveal d1">
+      <div class="proc-item">
+        <div class="proc-num">1</div>
+        <div class="proc-body">
+          <h3>Kickoff de contenido</h3>
+          <p>Una llamada de 30 minutos para definir tu voz, los temas que más le interesan a tus pacientes y el calendario del primer mes.</p>
+          <div class="proc-time">Día 1</div>
+        </div>
+      </div>
+      <div class="proc-item">
+        <div class="proc-num">2</div>
+        <div class="proc-body">
+          <h3>Primer día de grabación</h3>
+          <p>Llegamos a tu consultorio con guiones listos. Grabamos los primeros videos de la semana. Tú solo hablas y sonríes — nosotros nos encargamos del resto.</p>
+          <div class="proc-time">Día 3–5</div>
+        </div>
+      </div>
+      <div class="proc-item">
+        <div class="proc-num">3</div>
+        <div class="proc-body">
+          <h3>Edición + portadas + publicación</h3>
+          <p>Editamos con audio trending, agregamos texto en pantalla y efectos nativos de TikTok. Publicamos en los horarios de mayor tráfico para tu audiencia.</p>
+          <div class="proc-time">Días 4–7</div>
+        </div>
+      </div>
+      <div class="proc-item" style="padding-bottom:0">
+        <div class="proc-num" style="background:var(--tealp);border-color:var(--teal);color:var(--teal)">✓</div>
+        <div class="proc-body">
+          <h3>Ciclo semanal activo</h3>
+          <p>Cada semana repetimos: grabación — edición — publicación — análisis. Al final de cada mes, reporte completo con métricas y ajustes de estrategia.</p>
+          <div class="proc-time">Semana tras semana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROTECCIÓN -->
+<section class="section" style="background:var(--bg2)">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Transparencia total</span>
+      <h2>Sin letras pequeñas.<br><em>Sin sorpresas.</em></h2>
+    </div>
+    <div class="protect-box reveal d1">
+      <div class="grid-2" style="gap:2.5rem">
+        <div>
+          <h3 style="margin-bottom:.75rem">🔐 El contenido es tuyo</h3>
+          <p style="font-size:.9rem;color:var(--text2)">Todos los videos, ediciones y materiales producidos son tuyos desde el primer día. Si en algún momento decides trabajar con alguien más, te entregamos todo sin preguntas.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom:.75rem">🤝 Mes a mes, sin ataduras</h3>
+          <p style="font-size:.9rem;color:var(--text2)">No te pedimos compromisos de 6 o 12 meses. Si sientes que no está funcionando, cancelas con 30 días de aviso — sin penalizaciones ni drama.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom:.75rem">📅 1 día semanal coordinado</h3>
+          <p style="font-size:.9rem;color:var(--text2)">El día de grabación se agenda con anticipación. Necesitamos que ese espacio esté disponible — 1–2 horas son suficientes para producir los 3 videos de la semana.</p>
+        </div>
+        <div>
+          <h3 style="margin-bottom:.75rem">📊 Métricas reales cada mes</h3>
+          <p style="font-size:.9rem;color:var(--text2)">Recibes un reporte mensual con vistas, alcance, seguidores ganados y — lo más importante — cuántas consultas llegaron desde TikTok.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="section" style="background:var(--bg2)" id="planes">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Inversión</span>
+      <h2>Elige tu punto<br><em>de partida.</em></h2>
+      <p>Sin contratos forzosos. Mes a mes. Puedes escalar cuando quieras.</p>
+    </div>
+
+    <div class="plans-grid reveal d1">
+
+      <!-- PLAN A -->
+      <div class="plan-card">
+        <div>
+          <div class="plan-tier">Plan A</div>
+          <div class="plan-name">Solo TikTok</div>
+        </div>
+        <div class="plan-price-block">
+          <div class="plan-price-main">$1.200.000 <span>COP / mes</span></div>
+          <div class="plan-price-note">Sin setup · Empezamos esta semana</div>
+        </div>
+        <div style="background:rgba(45,212,191,.06);border:1px solid rgba(45,212,191,.12);border-radius:8px;padding:10px 14px;font-size:.78rem;color:var(--teal2);font-weight:600">
+          🎬 Sin setup · Solo el mensual
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-feats">
+          <li>3 videos / semana (12 al mes)</li>
+          <li>1 día de grabación semanal</li>
+          <li>Guiones + dirección de contenido</li>
+          <li>Edición + audio trending</li>
+          <li>Portadas para feed organizado</li>
+          <li>Publicación estratégica</li>
+          <li>Reporte mensual de métricas</li>
+          <li class="no">Sofia WhatsApp no incluida</li>
+          <li class="no">Agendamiento automático no incluido</li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20el%20Plan%20A%20de%20TikTok%20para%20Vanessa%20Herrera" target="_blank" class="plan-cta plan-cta-a">Quiero este plan</a>
+      </div>
+
+      <!-- PLAN B -->
+      <div class="plan-card featured">
+        <div class="plan-badge">⭐ Recomendado</div>
+        <div>
+          <div class="plan-tier feat">Plan B</div>
+          <div class="plan-name">TikTok + Sofia WA</div>
+        </div>
+        <div class="plan-price-block">
+          <div class="plan-price-setup">Setup $400.000 COP · pago único al iniciar</div>
+          <div style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin:.3rem 0 .15rem">
+            <span style="font-size:.77rem;color:var(--text2)">TikTok $1.200.000</span>
+            <span style="color:var(--muted);font-size:.75rem">+</span>
+            <span style="font-size:.77rem;color:var(--teal2);font-weight:600">Sofia WA $300.000/mes</span>
+          </div>
+          <div class="plan-price-main">$1.500.000 <span>COP / mes</span></div>
+          <div class="plan-free">🎁 Primer mes sin el costo del setup</div>
+        </div>
+        <div class="plan-divider"></div>
+        <ul class="plan-feats">
+          <li>Todo el Plan A incluido</li>
+          <li>Sofia AI configurada en WhatsApp</li>
+          <li>Responde consultas 24/7</li>
+          <li>Agenda citas automáticamente</li>
+          <li>Recordatorios anti no-show</li>
+          <li>Reactivación de pacientes dormidos</li>
+          <li>Mensajes inteligentes por canal</li>
+          <li>Reporte mensual unificado (TikTok + WA)</li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20el%20Plan%20B%20TikTok%20%2B%20Sofia%20para%20Vanessa%20Herrera" target="_blank" class="plan-cta plan-cta-b">Quiero este plan</a>
+      </div>
+
+    </div>
+
+    <!-- PAGO -->
+    <div class="reveal" style="margin-top:2rem;background:var(--tealp);border:1px solid var(--border2);border-radius:var(--radius);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap">
+      <div>
+        <div class="label" style="margin-bottom:.3rem">Forma de pago</div>
+        <p style="font-size:.9rem;font-weight:600;color:var(--text);max-width:none">Mes a mes · Sin contratos largos · Cancela con 30 días de aviso</p>
+      </div>
+      <div style="text-align:right;flex-shrink:0">
+        <div style="font-size:.7rem;color:var(--muted);margin-bottom:.25rem">Aceptamos</div>
+        <div style="font-size:.85rem;font-weight:600">Transferencia · Nequi · Daviplata</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div class="container">
+    <div class="reveal">
+      <span class="label">El momento es ahora</span>
+      <h2 style="margin-top:.75rem">Vanessa, tus pacientes<br><em>ya te están buscando.</em></h2>
+      <p style="color:var(--text2);margin:1.25rem auto 0;text-align:center;max-width:46ch">Solo falta que te encuentren. Respondemos en menos de 2 horas — sin compromiso.</p>
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:.75rem">
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20vi%20la%20propuesta%20de%20Vanessa%20Herrera%20y%20quiero%20hablar" target="_blank" class="btn-wa-final">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Hablemos por WhatsApp
+        </a>
+        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" class="btn-sec">📅 Agendar llamada</a>
+      </div>
+      <p style="font-size:.75rem;color:var(--muted);margin-top:2rem">Propuesta válida por 15 días · Preparada el 27 de mayo de 2026</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>AJ Business Advisory LLC · Colombia & Global · <a href="mailto:valentina@ajbusinessadvisory.com" style="color:var(--teal)">valentina@ajbusinessadvisory.com</a></p>
+    <p style="margin-top:.4rem">© 2026 AJ Business Advisory. Propuesta confidencial preparada para Vanessa Herrera.</p>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on') });
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

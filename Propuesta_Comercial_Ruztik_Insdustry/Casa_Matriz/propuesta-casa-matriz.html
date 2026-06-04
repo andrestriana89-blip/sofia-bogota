@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Web — Casa Matriz × AJ Business Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8faff;--bg2:#f0f4fb;--bg3:#e8eef8;--card:#ffffff;
+  --border:rgba(26,111,196,0.10);--border2:rgba(26,111,196,0.20);
+  --blue:#1a6fc4;--blue-d:#1258a0;--blue-p:rgba(26,111,196,0.07);--blue-g:rgba(26,111,196,0.14);
+  --text:#0f1b2d;--muted:#5a6b82;--radius:12px;--radius-lg:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse 80% 80% at 50% 0%,rgba(26,111,196,.05) 0%,rgba(26,111,196,.02) 40%,transparent 70%);background-attachment:fixed;color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+a{color:inherit;text-decoration:none}
+p{max-width:66ch}
+p+p{margin-top:.9rem}
+
+/* ── TYPOGRAPHY ── */
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,8rem);line-height:.92;letter-spacing:.01em}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,4rem);line-height:.97;letter-spacing:.02em}
+h3{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(1.05rem,2vw,1.35rem)}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--blue)}
+.muted{color:var(--muted)}
+
+/* ── LAYOUT ── */
+.container{max-width:1180px;margin:0 auto;padding:0 2rem}
+.section{padding:100px 0}
+.section-light{background:var(--bg)}
+.section-mid{background:var(--bg2)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+
+/* ── PROPOSAL BAR ── */
+.pbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(255,255,255,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border2);
+  padding:11px 2rem;display:flex;align-items:center;justify-content:space-between;
+  box-shadow:0 2px 16px rgba(26,111,196,.06);
+}
+.pbar-l{display:flex;align-items:center;gap:14px}
+.pbar-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:var(--blue)}
+.pbar-sep{width:1px;height:18px;background:var(--border2)}
+.pbar-info{font-size:.7rem;color:var(--muted);letter-spacing:.04em}
+.pbar-date{font-size:.68rem;color:var(--muted)}
+.pbar-r{display:flex;align-items:center;gap:.75rem}
+.pbar-cta{
+  background:var(--blue);color:#fff;font-weight:700;font-size:.65rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:5px;
+  border:none;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s;
+}
+.pbar-cta:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,111,196,.3)}
+.pbar-cta-ghost{
+  background:transparent;color:var(--muted);font-weight:500;font-size:.65rem;
+  letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:5px;
+  border:1px solid var(--border2);cursor:pointer;white-space:nowrap;transition:all .2s;
+}
+.pbar-cta-ghost:hover{border-color:var(--blue);color:var(--blue)}
+
+/* ── NAV DOTS ── */
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:9px}
+.nd{width:7px;height:7px;border-radius:50%;background:var(--border2);border:1px solid rgba(26,111,196,.2);cursor:pointer;transition:all .25s;position:relative}
+.nd.active,.nd:hover{background:var(--blue);border-color:var(--blue);transform:scale(1.5)}
+.nd[data-tip]:hover::after{content:attr(data-tip);position:absolute;right:18px;top:50%;transform:translateY(-50%);background:#fff;border:1px solid var(--border2);padding:3px 9px;border-radius:4px;font-size:.68rem;white-space:nowrap;color:var(--text);pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── SECTION HEADER ── */
+.sh{margin-bottom:3.25rem}
+.sh .label{display:block;margin-bottom:.6rem}
+.sh h2{margin-bottom:.9rem}
+.sh p{color:var(--muted);font-size:1.02rem}
+.bline{width:44px;height:3px;background:var(--blue);margin-top:.9rem}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding-top:70px;padding-bottom:120px;
+  background:linear-gradient(160deg,#ffffff 0%,#eef4fd 50%,#ddeaf8 100%);
+}
+#hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%,rgba(26,111,196,.07) 0%,transparent 65%),
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(26,111,196,.03) 39px,rgba(26,111,196,.03) 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(26,111,196,.03) 39px,rgba(26,111,196,.03) 40px);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-p);border:1px solid rgba(26,111,196,.22);border-radius:100px;
+  padding:5px 14px;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--blue);margin-bottom:1.75rem;
+}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pdot 2s ease infinite}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+.hero-title{margin-bottom:1.75rem;color:var(--text)}
+.hero-title .acc{color:var(--blue)}
+.hero-sub{font-size:clamp(.95rem,2vw,1.2rem);color:var(--muted);max-width:54ch;margin-bottom:1.5rem;line-height:1.65}
+.hero-quote{
+  font-size:.95rem;color:var(--muted);max-width:50ch;line-height:1.72;
+  border-left:3px solid var(--blue);padding-left:1.25rem;margin-bottom:2.75rem;
+  background:rgba(26,111,196,.04);border-radius:0 8px 8px 0;padding:1rem 1.25rem;
+}
+.hero-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.btn-b{
+  background:var(--blue);color:#fff;font-weight:700;font-size:.82rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:14px 30px;border-radius:6px;
+  border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-b:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,111,196,.28)}
+.btn-ghost{
+  background:transparent;color:var(--text);font-weight:500;font-size:.82rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:14px 30px;border-radius:6px;
+  border:1px solid var(--border2);cursor:pointer;transition:all .2s;
+}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+.hero-stats{
+  position:absolute;bottom:2.5rem;left:0;right:0;padding:0 2rem;
+  display:flex;align-items:center;justify-content:center;gap:2rem;
+  flex-wrap:wrap;row-gap:.75rem;
+}
+.hstat{text-align:center;min-width:80px}
+.hstat .n{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--blue);display:block;line-height:1}
+.hstat .d{font-size:.63rem;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;display:block;margin-top:3px}
+.hstat-sep{width:1px;height:38px;background:var(--border2);flex-shrink:0}
+
+/* ── EXECUTIVE SUMMARY ── */
+.exec-box{
+  background:var(--card);border:1px solid var(--border2);border-radius:var(--radius-lg);
+  padding:3.5rem;position:relative;overflow:hidden;
+  box-shadow:0 4px 32px rgba(26,111,196,.06);
+}
+.exec-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),var(--blue-d),transparent);
+}
+.exec-quote{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--text);line-height:1.65;
+  max-width:72ch;margin-bottom:2rem;
+}
+.exec-detail{font-size:.96rem;color:var(--muted);max-width:68ch;line-height:1.72}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.85rem;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  box-shadow:0 2px 12px rgba(26,111,196,.04);
+}
+.card:hover{border-color:rgba(26,111,196,.3);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,111,196,.10)}
+.card-icon{
+  width:42px;height:42px;background:var(--blue-p);border:1px solid rgba(26,111,196,.14);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.1rem;font-size:1.2rem;
+}
+.card h3{margin-bottom:.65rem}
+.card p{color:var(--muted);font-size:.9rem}
+
+/* ── OBJECTIVES ── */
+.obj-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.obj-list li{
+  display:flex;align-items:flex-start;gap:.9rem;
+  padding:.95rem 1.2rem;background:var(--card);
+  border:1px solid var(--border);border-radius:8px;
+  font-size:.93rem;transition:border-color .2s,background .2s;
+  box-shadow:0 1px 6px rgba(26,111,196,.04);
+}
+.obj-list li:hover{border-color:rgba(26,111,196,.25);background:rgba(26,111,196,.03)}
+.obj-arrow{color:var(--blue);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ── PILLARS ── */
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.pillar{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:2rem;position:relative;overflow:hidden;transition:all .25s;
+  box-shadow:0 2px 12px rgba(26,111,196,.05);
+}
+.pillar:hover{border-color:rgba(26,111,196,.3);transform:translateY(-2px);box-shadow:0 8px 28px rgba(26,111,196,.10)}
+.pillar::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue),transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.pillar:hover::after{transform:scaleX(1)}
+.pillar-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(26,111,196,.08);position:absolute;top:-.25rem;right:1rem;line-height:1}
+.pillar h3{margin-bottom:.65rem}
+.pillar p{color:var(--muted);font-size:.9rem}
+
+/* ── SITEMAP ── */
+.sitemap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.smap-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.2rem;text-align:center;transition:all .22s;
+  box-shadow:0 1px 6px rgba(26,111,196,.04);
+}
+.smap-item:hover{border-color:var(--blue);background:var(--blue-p)}
+.smap-item .ico{font-size:1.4rem;margin-bottom:.45rem}
+.smap-item .nm{font-size:.82rem;font-weight:600;margin-bottom:.2rem}
+.smap-item .ds{font-size:.68rem;color:var(--muted)}
+.smap-core{border-color:rgba(26,111,196,.25);background:rgba(26,111,196,.03)}
+
+/* ── MOCKUP TABS ── */
+.mock-tabs{
+  display:flex;background:var(--card);border:1px solid var(--border2);
+  border-radius:10px;padding:4px;margin-bottom:2.5rem;max-width:580px;
+  box-shadow:0 2px 8px rgba(26,111,196,.06);
+}
+.mtab{
+  flex:1;padding:11px 18px;border:none;background:transparent;
+  color:var(--muted);font-family:'Inter',sans-serif;font-size:.8rem;
+  font-weight:600;letter-spacing:.04em;cursor:pointer;border-radius:7px;transition:all .2s;
+}
+.mtab.on{background:var(--blue);color:#fff;box-shadow:0 2px 10px rgba(26,111,196,.3)}
+.mtab:not(.on):hover{color:var(--blue);background:var(--blue-p)}
+
+/* ── MOCKUP ── */
+.mock-panel{display:none}
+.mock-panel.on{display:block}
+.mock-feat{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.5rem}
+.mock-feat li{font-size:.82rem;display:flex;gap:.6rem}
+.mock-feat li::before{content:'✓';color:var(--blue);flex-shrink:0}
+.v2-browser{background:#f0f4fa;border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 16px 48px rgba(26,111,196,.10);margin-bottom:2rem}
+.v2-bar{background:#e8eef8;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border2)}
+.mdots{display:flex;gap:5px}
+.mdots span{width:8px;height:8px;border-radius:50%}
+.dr{background:#ff5f57}.dy{background:#febc2e}.dg{background:#28c840}
+.murl{flex:1;background:#fff;border:1px solid var(--border2);border-radius:4px;padding:3px 10px;font-size:8px;color:#8a9ab5;letter-spacing:.02em}
+.mscreen-outer{overflow:hidden;position:relative;background:#f8faff}
+.msite-preview{width:1200px;transform-origin:top left;position:relative}
+.ps-outer{overflow:hidden;position:relative;background:#f8faff}
+.ps-preview{width:390px;transform-origin:top left;position:relative}
+.v2-bottom{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;margin-top:2rem}
+.v2-desc{flex:1;min-width:260px}
+.v2-phone-wrap{display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap}
+.v2-phone{background:#e8eef8;border:2px solid var(--border2);border-radius:24px;overflow:hidden;width:160px;box-shadow:0 8px 28px rgba(26,111,196,.12)}
+.v2-phone-top{background:#dde6f4;padding:8px 0 4px;display:flex;justify-content:center}
+.v2-phone-pill{width:48px;height:6px;background:#c8d4e8;border-radius:3px}
+.v2-phone-bottom{background:#dde6f4;padding:6px 0;display:flex;justify-content:center}
+.v2-phone-home{width:36px;height:4px;background:#c0cedf;border-radius:2px}
+
+/* ── DIFFERENTIALS ── */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.diff-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.5rem;position:relative;overflow:hidden;transition:all .25s;
+  box-shadow:0 1px 8px rgba(26,111,196,.04);
+}
+.diff-item:hover{border-color:rgba(26,111,196,.25);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,111,196,.10)}
+.diff-num{
+  font-family:'Bebas Neue',sans-serif;font-size:4rem;
+  color:rgba(26,111,196,.06);position:absolute;top:-.5rem;right:.75rem;line-height:1;
+}
+.diff-icon{font-size:1.3rem;margin-bottom:.8rem}
+.diff-item h4{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.diff-item p{font-size:.83rem;color:var(--muted)}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start}
+.pcard{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:2.5rem 2rem;display:flex;flex-direction:column;position:relative;transition:all .3s;
+  box-shadow:0 2px 14px rgba(26,111,196,.05);
+}
+.pcard:hover{border-color:rgba(26,111,196,.3);transform:translateY(-4px);box-shadow:0 16px 48px rgba(26,111,196,.14)}
+.pcard.feat{border-color:var(--blue);background:linear-gradient(160deg,#eef5ff 0%,#ffffff 55%);box-shadow:0 0 48px rgba(26,111,196,.12)}
+.pbadge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--blue);color:#fff;font-size:.62rem;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;padding:4px 14px;border-radius:100px;white-space:nowrap;
+}
+.ptier{font-size:.67rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:.4rem}
+.pname{font-family:'Inter',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:1.1rem}
+.pprice{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--blue);line-height:1;margin-bottom:.2rem}
+.pprice-u{font-size:.78rem;color:var(--muted);margin-bottom:1.6rem}
+.pdiv{height:1px;background:var(--border2);margin-bottom:1.6rem}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:.55rem;flex:1;margin-bottom:2rem}
+.pfeats li{display:flex;align-items:flex-start;gap:.7rem;font-size:.86rem}
+.pfeats li .ck{color:var(--blue);flex-shrink:0;margin-top:1px;font-size:.8rem}
+.pfeats li .ck-off{color:#c8d4e8}
+
+/* ── PROTECTION ── */
+.prot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.prot-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.5rem;position:relative;overflow:hidden;
+  box-shadow:0 1px 8px rgba(26,111,196,.04);
+}
+.prot-item::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),transparent)}
+.prot-n{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(26,111,196,.06);position:absolute;top:0;right:.75rem;line-height:1}
+.prot-icon{font-size:1.4rem;margin-bottom:.7rem}
+.prot-item h4{margin-bottom:.45rem}
+.prot-item p{font-size:.83rem;color:var(--muted)}
+.prot-note{
+  margin-top:1.5rem;padding:.95rem 1.25rem;background:var(--blue-p);
+  border:1px solid rgba(26,111,196,.14);border-radius:8px;font-size:.8rem;color:var(--muted);
+}
+.prot-note strong{color:var(--text)}
+
+/* ── TIMELINE ── */
+.tl{display:flex;position:relative}
+.tl::before{content:'';position:absolute;top:27px;left:27px;right:27px;height:2px;background:linear-gradient(90deg,var(--blue),var(--blue-d),rgba(26,111,196,.2))}
+.tl-step{flex:1;text-align:center;padding:0 1rem}
+.tl-dot{
+  width:54px;height:54px;border-radius:50%;background:var(--card);border:2px solid var(--blue);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;
+  font-size:1.2rem;position:relative;z-index:1;box-shadow:0 4px 14px rgba(26,111,196,.14);
+}
+.tl-step .days{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--blue);display:block;margin-bottom:.3rem}
+.tl-step h4{margin-bottom:.35rem}
+.tl-step p{font-size:.8rem;color:var(--muted);max-width:none}
+
+/* ── PAYMENT ── */
+.pay-split{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:660px;margin:0 auto}
+.pay-card{
+  background:var(--card);border:1px solid var(--border2);border-radius:var(--radius);
+  padding:2.5rem;text-align:center;position:relative;overflow:hidden;transition:all .25s;
+  box-shadow:0 2px 14px rgba(26,111,196,.06);
+}
+.pay-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,111,196,.14)}
+.pay-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--blue),transparent)}
+.pay-pct{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--blue);line-height:1;margin-bottom:.4rem}
+.pay-label{font-weight:700;margin-bottom:.4rem}
+.pay-sub{font-size:.83rem;color:var(--muted)}
+
+/* ── CTA FINAL ── */
+#cta-final{position:relative;overflow:hidden;text-align:center;background:linear-gradient(160deg,#eef5ff 0%,#ddeaf8 100%)}
+#cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 100%,rgba(26,111,196,.09),transparent 70%)}
+.cta-serif{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.1rem,2.5vw,1.55rem);color:var(--muted);
+  max-width:62ch;margin:0 auto 2.25rem;line-height:1.65;
+}
+.cta-serif strong{color:var(--text);font-style:normal}
+.cta-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,4.5rem);line-height:.94;margin-bottom:1.5rem;color:var(--text)}
+.cta-big .acc{color:var(--blue)}
+.cta-note{font-size:.8rem;color:var(--muted);margin-top:1.5rem}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--bg3);border-top:1px solid var(--border2);
+  padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer .brand{font-size:.73rem;color:var(--muted)}
+.footer .brand strong{color:var(--text)}
+.footer .conf{font-size:.67rem;color:var(--muted);border:1px solid var(--border2);border-radius:100px;padding:3px 11px}
+
+/* ── ANIMATIONS ── */
+@keyframes cm-pulse{0%,100%{box-shadow:0 0 0 0 rgba(26,111,196,.4)}60%{box-shadow:0 0 0 10px rgba(26,111,196,0)}}
+@keyframes cm-breathe{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes cm-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.cm-pulse{animation:cm-pulse 2s ease infinite}
+.cm-breathe{animation:cm-breathe 3s ease infinite}
+.cm-float{animation:cm-float 3s ease infinite}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .nav-dots{display:none}
+  .v2-bottom{flex-direction:column}
+}
+@media(max-width:900px){
+  .pbar-cta,.pbar-cta-ghost{display:none}
+  .grid-3,.pillar-grid,.diff-grid,.prot-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .tl{flex-direction:column;gap:2rem}
+  .tl::before{display:none}
+  .pay-split{grid-template-columns:1fr;max-width:340px}
+  .sitemap-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:640px){
+  .pbar{padding:7px 1.25rem}
+  .pbar-brand{font-size:.72rem;letter-spacing:.07em}
+  .pbar-sep,.pbar-info,.pbar-date{display:none}
+  .pbar-r{gap:.4rem}
+  .pbar-cta{display:inline-flex;font-size:.56rem;padding:5px 8px}
+  .pbar-cta-ghost{display:block;font-size:.56rem;padding:5px 7px}
+  .container{padding:0 1.25rem}
+  .section{padding:60px 0}
+  .sh{margin-bottom:2rem}
+  #hero{padding-top:52px;padding-bottom:230px;min-height:100vh;min-height:100svh}
+  .hero-tag{font-size:.58rem;letter-spacing:.1em;padding:4px 10px;margin-bottom:1rem}
+  .hero-title{font-size:clamp(2.7rem,9vw,8rem);margin-bottom:1rem}
+  .hero-sub{font-size:.9rem;line-height:1.6;margin-bottom:.85rem;max-width:none}
+  .hero-quote{font-size:.86rem;margin-bottom:1.25rem}
+  .hero-actions{flex-direction:column;gap:.5rem;align-items:stretch}
+  .hero-actions a,.hero-actions button{width:100%;justify-content:center;text-align:center}
+  .hero-stats{bottom:.9rem;flex-wrap:wrap;justify-content:space-between;gap:.5rem;padding:0 1.25rem}
+  .hstat-sep{display:none}
+  .hstat{flex:0 0 calc(50% - .25rem);background:rgba(26,111,196,.05);border:1px solid var(--border2);border-radius:8px;padding:.55rem .85rem;text-align:left}
+  .hstat .n{font-size:1.5rem}
+  .grid-2,.pillar-grid,.diff-grid,.prot-grid{grid-template-columns:1fr}
+  .sitemap-grid{grid-template-columns:repeat(2,1fr)}
+  .exec-box{padding:1.75rem}
+  .exec-quote{font-size:1.05rem}
+  .mock-tabs{flex-wrap:wrap}
+  .mtab{flex:none;width:calc(50% - 2px)}
+  .pcard{padding:2rem 1.5rem}
+  .pprice{font-size:2.5rem}
+  .pay-split{max-width:none}
+  .pay-card{padding:2rem 1.5rem}
+  .pay-pct{font-size:3.5rem}
+  .cta-big{font-size:clamp(2rem,10vw,3.5rem)}
+  .cta-serif{font-size:1rem}
+  .footer{flex-direction:column;align-items:flex-start;gap:.6rem;padding:1.25rem}
+}
+</style>
+</head>
+<body>
+
+<!-- PROPOSAL BAR -->
+<div class="pbar">
+  <div class="pbar-l">
+    <div class="pbar-brand">AJ Business Advisory</div>
+    <div class="pbar-sep"></div>
+    <div class="pbar-info">Propuesta para <strong style="color:var(--text)">Casa Matriz</strong></div>
+  </div>
+  <div class="pbar-r">
+    <a href="https://wa.me/573125158820?text=Hola%2C%20vi%20la%20propuesta%20de%20Casa%20Matriz%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="pbar-cta cm-pulse">Avancemos con esto →</a>
+    <button class="pbar-cta-ghost" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver planes</button>
+    <div class="pbar-date">Mayo 2026 · Confidencial</div>
+  </div>
+</div>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots">
+  <div class="nd active" data-sec="0" data-tip="Inicio"></div>
+  <div class="nd" data-sec="1" data-tip="Resumen"></div>
+  <div class="nd" data-sec="2" data-tip="Entendimiento"></div>
+  <div class="nd" data-sec="3" data-tip="Objetivos"></div>
+  <div class="nd" data-sec="4" data-tip="Solución"></div>
+  <div class="nd" data-sec="5" data-tip="Estructura"></div>
+  <div class="nd" data-sec="6" data-tip="Diferenciales"></div>
+  <div class="nd" data-sec="7" data-tip="Niveles"></div>
+  <div class="nd" data-sec="8" data-tip="Inversión"></div>
+  <div class="nd" data-sec="9" data-tip="Protección"></div>
+  <div class="nd" data-sec="10" data-tip="Entrega"></div>
+  <div class="nd" data-sec="11" data-tip="Instagram"></div>
+  <div class="nd" data-sec="12" data-tip="Cierre"></div>
+</nav>
+
+<!-- ─────────────────────── 1. HERO ─────────────────────── -->
+<section id="hero" data-section="0">
+  <div class="container">
+    <div class="reveal">
+      <div class="hero-tag">Propuesta Comercial · Diseño Web Personalizado</div>
+    </div>
+    <h1 class="hero-title reveal d1">
+      5 divisiones,<br>
+      un solo proveedor —<br>
+      <span class="acc">visible donde</span><br>
+      <span class="acc">te buscan</span>
+    </h1>
+    <p class="hero-sub reveal d2">
+      Casa Matriz lleva años siendo proveedor confiable para la industria farmacéutica, cosmética, veterinaria y de alimentos. Esta propuesta construye el canal digital que hace que los compradores correctos te encuentren antes de llamar a la competencia.
+    </p>
+    <p class="hero-quote reveal d3">
+      En B2B, el proveedor que aparece primero en Google y tiene una presencia profesional ya ganó la mitad de la negociación — antes de la primera llamada.
+    </p>
+    <div class="hero-actions reveal d4">
+      <a href="https://wa.me/573125158820?text=Hola%2C%20vi%20la%20propuesta%20web%20para%20Casa%20Matriz%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="btn-b cm-pulse">
+        Avancemos con esto <span>→</span>
+      </a>
+      <button class="btn-ghost" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">
+        Ver planes de inversión
+      </button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <span class="n">5</span>
+      <span class="d">Divisiones de producto</span>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <span class="n">4</span>
+      <span class="d">Industrias atendidas</span>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <span class="n">100%</span>
+      <span class="d">Personalizado</span>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <span class="n">50/50</span>
+      <span class="d">Forma de pago</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 2. RESUMEN EJECUTIVO ─────────────────────── -->
+<section class="section section-mid" data-section="1">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Resumen Ejecutivo</span>
+      <h2>Lo que esta propuesta<br>significa para tu marca</h2>
+      <div class="bline"></div>
+    </div>
+    <div class="exec-box reveal d1">
+      <p class="exec-quote">
+        "Casa Matriz ya tiene el portafolio, la trayectoria y la confianza de sus clientes. Lo que falta es que los compradores correctos de la industria farmacéutica, cosmética y de alimentos los encuentren en Google antes de llamar a otro proveedor."
+      </p>
+      <p class="exec-detail">
+        Esta propuesta construye el canal digital que Casa Matriz necesita: un sitio que presenta sus 5 divisiones con claridad técnica, facilita las solicitudes de cotización, genera confianza institucional y aparece en las búsquedas de quienes están comprando materias primas, reactivos y soluciones de higiene industrial en Colombia. No es una plantilla — es una herramienta comercial construida para su industria.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 3. ENTENDIMIENTO ─────────────────────── -->
+<section class="section section-light" data-section="2">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Entendimiento del Negocio</span>
+      <h2>Entendemos<br>quién eres</h2>
+      <div class="bline"></div>
+    </div>
+    <div class="grid-3" style="gap:1.5rem">
+      <div class="card reveal d1">
+        <div class="card-icon">🧪</div>
+        <h3>5 divisiones — un portafolio técnico completo</h3>
+        <p>Materia Prima · Reactivos · Higiene · Reactivos Controlados · Laboratorio. Ese portafolio necesita un catálogo digital que lo presente con la precisión técnica que exige la industria.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="card-icon">🏭</div>
+        <h3>Tus clientes te buscan en Google</h3>
+        <p>Los jefes de compras y directores técnicos de laboratorios, plantas farmacéuticas y cosméticas buscan proveedores en Google antes de pedir referencias. ¿Apareces?</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="card-icon">📋</div>
+        <h3>Las cotizaciones llegan por teléfono — deberían llegar solas</h3>
+        <p>Un portal de cotización online bien diseñado captura leads calificados 24/7, con la información técnica correcta, sin depender de que alguien atienda el teléfono.</p>
+      </div>
+      <div class="card reveal d1">
+        <div class="card-icon">🔬</div>
+        <h3>Industria regulada — presencia que da confianza</h3>
+        <p>Farmacéutica, cosmética, alimentos y veterinaria son industrias con altos estándares. Un sitio profesional, limpio y técnico es señal de que Casa Matriz también los cumple.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="card-icon">🌎</div>
+        <h3>Distribuidores autorizados — pero difícil de encontrar</h3>
+        <p>Casa Matriz es proveedor integral con distribución en Colombia. Una web optimizada hace que los compradores de todo el país lleguen a ustedes antes de ir a la competencia.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="card-icon">📊</div>
+        <h3>Instagram activo — sin estrategia de conversión</h3>
+        <p>Con el servicio de Instagram Growth + Sofia IA, cada interacción en redes se convierte en una solicitud de cotización automatizada. Sin esfuerzo adicional del equipo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 4. OBJETIVOS ─────────────────────── -->
+<section class="section section-mid" data-section="3">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;gap:4rem">
+      <div>
+        <div class="sh reveal">
+          <span class="label">Objetivos del Proyecto</span>
+          <h2>Qué vamos<br>a lograr juntos</h2>
+          <div class="bline"></div>
+        </div>
+        <p class="muted reveal d1" style="font-size:1rem;line-height:1.72">
+          Cada decisión de diseño, cada sección y cada texto dentro de tu nueva web va a estar orientado a cumplir estos objetivos. No decoramos — construimos con propósito y resultados medibles.
+        </p>
+      </div>
+      <div>
+        <ul class="obj-list">
+          <li class="reveal d1"><span class="obj-arrow">→</span> Posicionar a Casa Matriz como el proveedor de referencia en Google para materias primas farmacéuticas, cosméticas, veterinarias y de alimentos en Colombia.</li>
+          <li class="reveal d2"><span class="obj-arrow">→</span> Presentar las 5 divisiones con claridad técnica y comercial — que el jefe de compras entienda el portafolio completo sin hacer una llamada.</li>
+          <li class="reveal d3"><span class="obj-arrow">→</span> Capturar solicitudes de cotización de forma automatizada, con los datos técnicos correctos desde el primer contacto.</li>
+          <li class="reveal d4"><span class="obj-arrow">→</span> Generar confianza institucional ante laboratorios, plantas de producción y empresas reguladas que evalúan proveedores por su presencia digital.</li>
+          <li class="reveal d1"><span class="obj-arrow">→</span> Complementar el canal web con Instagram Growth + Sofia IA para convertir seguidores e interacciones en prospectos calificados automáticamente.</li>
+          <li class="reveal d2"><span class="obj-arrow">→</span> Construir una base digital escalable sobre la que se integren catálogos, fichas técnicas descargables y herramientas de automatización en el futuro.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 5. SOLUCIÓN ─────────────────────── -->
+<section class="section section-light" data-section="4">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:3.5rem">
+      <span class="label">La Solución</span>
+      <h2>Tres pilares.<br>Un solo sitio.</h2>
+      <div class="bline" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar reveal d1">
+        <div class="pillar-num">01</div>
+        <div class="card-icon" style="font-size:1.4rem">🎯</div>
+        <h3>Posicionamiento de Marca</h3>
+        <p>La web no solo muestra lo que haces — comunica quién eres. Cada elemento visual y textual está elegido para reforzar la identidad de Casa Matriz y diferenciarte con claridad en tu mercado.</p>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="pillar-num">02</div>
+        <div class="card-icon" style="font-size:1.4rem">🧭</div>
+        <h3>Experiencia de Usuario</h3>
+        <p>El visitante llega, entiende, se interesa y actúa. Diseñamos el recorrido con intención: guiamos al usuario desde el primer segundo hasta el momento en que decide contactarte o comprar.</p>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="pillar-num">03</div>
+        <div class="card-icon" style="font-size:1.4rem">💼</div>
+        <h3>Estructura Comercial</h3>
+        <p>Un sitio que vende anticipa las dudas del cliente, muestra los servicios con claridad, facilita el contacto y organiza el proceso. Es la base de una operación comercial más eficiente y escalable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 6. ARQUITECTURA ─────────────────────── -->
+<section class="section section-mid" data-section="5">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Arquitectura del Sitio</span>
+      <h2>Cada sección,<br>con propósito</h2>
+      <div class="bline"></div>
+      <p style="margin-top:1rem">El sitio está pensado como un recorrido, no como un catálogo. Cada sección tiene un objetivo claro dentro del proceso de convertir a un visitante en un cliente o aliado de Casa Matriz.</p>
+    </div>
+    <div class="sitemap-grid reveal">
+      <div class="smap-item smap-core">
+        <div class="ico">🏠</div>
+        <div class="nm">Inicio / Hero</div>
+        <div class="ds">Quiénes son, qué industrias atienden y propuesta de valor en 5 segundos.</div>
+      </div>
+      <div class="smap-item smap-core">
+        <div class="ico">🧪</div>
+        <div class="nm">Divisiones</div>
+        <div class="ds">Las 5 divisiones con descripción técnica: Mat. Prima, Reactivos, Higiene, Lab...</div>
+      </div>
+      <div class="smap-item smap-core">
+        <div class="ico">📋</div>
+        <div class="nm">Solicitar Cotización</div>
+        <div class="ds">Formulario técnico: producto, cantidad, industria. Llega la info correcta desde el inicio.</div>
+      </div>
+      <div class="smap-item smap-core">
+        <div class="ico">📬</div>
+        <div class="nm">Contacto</div>
+        <div class="ds">WhatsApp, teléfono, email y dirección. Fácil de encontrar, fácil de contactar.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">🏭</div>
+        <div class="nm">Quiénes Somos</div>
+        <div class="ds">Trayectoria, industrias, certificaciones y por qué confiar en Casa Matriz.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">📦</div>
+        <div class="nm">Catálogo / Productos</div>
+        <div class="ds">Fichas técnicas descargables por división. El comprador llega preparado.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">💬</div>
+        <div class="nm">Clientes &amp; Sectores</div>
+        <div class="ds">Industrias atendidas: farmacéutica, cosmética, alimentos, veterinaria.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">📰</div>
+        <div class="nm">Blog / Novedades</div>
+        <div class="ds">Contenido técnico que posiciona a Casa Matriz como referente del sector.</div>
+      </div>
+    </div>
+    <p class="muted reveal" style="margin-top:1.75rem;font-size:.88rem">
+      ★ Las secciones marcadas en azul son imprescindibles en todos los planes. Las demás se activan según el nivel de inversión elegido.
+    </p>
+  </div>
+</section>
+
+<!-- ─────────────────────── 7. DIFERENCIALES ─────────────────────── -->
+<section class="section section-light" data-section="6">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Por qué AJ Business Advisory</span>
+      <h2>Lo que nos hace<br>diferentes</h2>
+      <div class="bline"></div>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-item reveal d1">
+        <div class="diff-num">01</div>
+        <div class="diff-icon">🎨</div>
+        <h4>Diseño con intención estratégica</h4>
+        <p>No hacemos sitios bonitos por defecto. Cada decisión visual está conectada a un objetivo comercial. El diseño de Casa Matriz va a hablarle exactamente a los clientes que quieres atraer.</p>
+      </div>
+      <div class="diff-item reveal d2">
+        <div class="diff-num">02</div>
+        <div class="diff-icon">🧭</div>
+        <h4>Narrativa visual de marca</h4>
+        <p>Entendemos que Casa Matriz tiene una identidad que la diferencia. Construimos la narrativa visual que comunica eso con claridad desde el primer scroll, sin ambigüedad.</p>
+      </div>
+      <div class="diff-item reveal d3">
+        <div class="diff-num">03</div>
+        <div class="diff-icon">📱</div>
+        <h4>Responsive real, no adaptado</h4>
+        <p>Tu sitio va a verse igual de bien en móvil que en desktop. Diseñamos desde el principio para todos los dispositivos — no adaptamos después, lo construimos bien desde el inicio.</p>
+      </div>
+      <div class="diff-item reveal d1">
+        <div class="diff-num">04</div>
+        <div class="diff-icon">🔄</div>
+        <h4>Recorrido pensado para convertir</h4>
+        <p>El visitante no llega y se pierde. Hay una lógica detrás de cada sección que lo guía hacia el contacto, la consulta o la decisión de compra de manera natural.</p>
+      </div>
+      <div class="diff-item reveal d2">
+        <div class="diff-num">05</div>
+        <div class="diff-icon">🌱</div>
+        <h4>Base para crecer</h4>
+        <p>Lo que construimos hoy está pensado para evolucionar. Desde nuevas secciones hasta integraciones con asistentes virtuales, CRMs o herramientas de automatización en el futuro.</p>
+      </div>
+      <div class="diff-item reveal d3">
+        <div class="diff-num">06</div>
+        <div class="diff-icon">🤝</div>
+        <h4>Acompañamiento real</h4>
+        <p>No lanzamos y desaparecemos. Revisiones, ajustes y orientación forman parte del proceso. El resultado final debe ser tan tuyo como nuestro.</p>
+      </div>
+      <div class="diff-item reveal d1">
+        <div class="diff-num">07</div>
+        <div class="diff-icon">🔍</div>
+        <h4>Visibilidad en Google desde el inicio</h4>
+        <p>El sitio se construye con estructura SEO desde el día uno. Google puede encontrar a Casa Matriz aunque nadie la busque por nombre — apareces cuando buscan lo que tú ofreces.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 8. MOCKUPS ─────────────────────── -->
+<section class="section section-mid" data-section="7">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Visualización por Nivel de Inversión</span>
+      <h2>Así se vería<br>Casa Matriz online</h2>
+      <div class="bline"></div>
+      <p style="margin-top:1rem">No son wireframes genéricos. Son tres versiones reales de cómo luciría Casa Matriz en digital — cada una con tu identidad, tu estética y tu contenido real.</p>
+    </div>
+
+    <div class="mock-tabs reveal">
+      <button class="mtab on" onclick="switchMock('a',this)">Plan A · $1.000.000</button>
+      <button class="mtab" onclick="switchMock('b',this)">Plan B · $2.000.000</button>
+      <button class="mtab" onclick="switchMock('c',this)">Plan C · $3.000.000</button>
+    </div>
+    <p style="text-align:center;font-size:.78rem;color:var(--muted);margin-bottom:1.5rem;font-style:italic">⚠ Estas son referencias visuales. El sitio final se construye con tus fotografías, textos y contenido real de Casa Matriz.</p>
+
+    <!-- PANEL A -->
+    <div class="mock-panel on reveal" id="mp-a">
+      <div class="v2-browser">
+        <div class="v2-bar">
+          <div class="mdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <div class="murl">casamatrizltda.com.co &nbsp;·&nbsp; <span style="color:#8a9ab5">Presencia de Marca — Plan A</span></div>
+        </div>
+        <div class="mscreen-outer" id="mso-a">
+          <div class="msite-preview" id="ms-a" style="font-family:'Inter',sans-serif;background:#f8faff">
+            <nav style="background:#fff;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(26,111,196,.1);box-shadow:0 2px 8px rgba(26,111,196,.05)">
+              <div style="display:flex;flex-direction:column"><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:#1a6fc4">CASA MATRIZ</div><div style="font-size:8px;letter-spacing:3px;color:#5a6b82;text-transform:uppercase">Materias Primas · Reactivos · Higiene</div></div>
+              <div style="display:flex;gap:24px;align-items:center">
+                <span style="font-size:12px;color:#5a6b82;letter-spacing:.06em;text-transform:uppercase">Divisiones</span>
+                <span style="font-size:12px;color:#5a6b82;letter-spacing:.06em;text-transform:uppercase">Quiénes Somos</span>
+                <span style="font-size:12px;color:#5a6b82;letter-spacing:.06em;text-transform:uppercase">Contacto</span>
+                <div style="background:#1a6fc4;color:#fff;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px">Solicitar Cotización</div>
+              </div>
+            </nav>
+            <section style="background:linear-gradient(160deg,#f8faff,#ddeaf8);padding:80px 60px;text-align:center">
+              <div style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1a6fc4;margin-bottom:18px;border:1px solid rgba(26,111,196,.3);padding:6px 16px;border-radius:20px;background:rgba(26,111,196,.07)">Proveedor Integral · Industria Farmacéutica · Cosmética · Alimentos</div>
+              <h1 style="font-family:'Bebas Neue',sans-serif;font-size:62px;color:#0f1b2d;line-height:.9;letter-spacing:2px;margin-bottom:20px">MATERIAS PRIMAS<br>Y REACTIVOS<br><span style="color:#1a6fc4">PARA TU INDUSTRIA</span></h1>
+              <p style="font-size:15px;color:#5a6b82;line-height:1.7;max-width:520px;margin:0 auto 32px">5 divisiones especializadas · Distribuidores autorizados en Colombia · Productos grado USP para farmacéutica, cosmética, veterinaria y alimentos.</p>
+              <div style="display:flex;gap:14px;justify-content:center">
+                <div style="background:#1a6fc4;color:#fff;padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:5px">Ver Divisiones</div>
+                <div style="border:1px solid rgba(26,111,196,.3);color:#1a6fc4;padding:14px 32px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:5px">Solicitar Cotización</div>
+              </div>
+            </section>
+            <section style="background:#fff;padding:60px 60px">
+              <div style="margin-bottom:36px">
+                <div style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1a6fc4;margin-bottom:10px">Nuestras Divisiones</div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:#0f1b2d">PORTAFOLIO ESPECIALIZADO</div>
+                <div style="width:40px;height:3px;background:#1a6fc4;margin-top:10px"></div>
+              </div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+                <div style="background:#f8faff;border:1px solid rgba(26,111,196,.14);border-radius:12px;padding:24px 20px;border-top:3px solid #1a6fc4">
+                  <div style="font-size:24px;margin-bottom:10px">🧪</div>
+                  <div style="font-size:13px;font-weight:700;color:#0f1b2d;margin-bottom:6px">Div. Materia Prima</div>
+                  <div style="font-size:11px;color:#5a6b82;line-height:1.6">Excipientes y principios activos grado USP para farmacéutica, cosmética y alimentos.</div>
+                </div>
+                <div style="background:#f8faff;border:1px solid rgba(26,111,196,.14);border-radius:12px;padding:24px 20px;border-top:3px solid #1a6fc4">
+                  <div style="font-size:24px;margin-bottom:10px">⚗️</div>
+                  <div style="font-size:13px;font-weight:700;color:#0f1b2d;margin-bottom:6px">Div. Reactivos</div>
+                  <div style="font-size:11px;color:#5a6b82;line-height:1.6">Reactivos para análisis y control de calidad en laboratorios y plantas de producción.</div>
+                </div>
+                <div style="background:#f8faff;border:1px solid rgba(26,111,196,.14);border-radius:12px;padding:24px 20px;border-top:3px solid #1a6fc4">
+                  <div style="font-size:24px;margin-bottom:10px">🧴</div>
+                  <div style="font-size:13px;font-weight:700;color:#0f1b2d;margin-bottom:6px">Div. Higiene</div>
+                  <div style="font-size:11px;color:#5a6b82;line-height:1.6">Detergentes y desinfectantes biodegradables para plantas de producción y superficies.</div>
+                </div>
+              </div>
+            </section>
+            <section style="background:#eef5ff;padding:44px 60px;display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#1a6fc4;margin-bottom:10px">Solicite Cotización</div>
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#0f1b2d;line-height:.92;margin-bottom:14px">HABLEMOS DE<br>SU NECESIDAD</div>
+                <p style="font-size:13px;color:#5a6b82;line-height:1.7;max-width:360px">Tv 93 # 53-48 Bodega 98 · Bogotá · Cel: (+57) 312 515 8820</p>
+              </div>
+              <div style="background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:12px;padding:22px 28px;display:flex;align-items:center;gap:16px">
+                <div style="width:48px;height:48px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">💬</div>
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:#0f1b2d;margin-bottom:3px">WhatsApp · 312 515 8820</div>
+                  <div style="font-size:12px;color:#5a6b82">Respuesta inmediata · Cotizaciones técnicas</div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="v2-bottom">
+        <div class="v2-desc">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:.5rem">Plan A · Presencia de Marca</div>
+          <p>Sitio limpio y profesional con las 3 divisiones principales, formulario de cotización y contacto directo. Lo esencial para que laboratorios y plantas de producción te encuentren y confíen en Casa Matriz antes de llamar.</p>
+          <ul class="mock-feat" style="margin-top:1rem">
+            <li>One page responsive (móvil + desktop)</li>
+            <li>Hero + 3 Divisiones + Cotización + Contacto</li>
+            <li>Identidad visual Casa Matriz</li>
+            <li>SEO para búsquedas de industria</li>
+          </ul>
+        </div>
+        <div class="v2-phone">
+          <div class="v2-phone-top"><div class="v2-phone-pill"></div></div>
+          <div class="ps-outer" id="pso-a">
+            <div class="ps-preview" id="ps-a" style="font-family:'Inter',sans-serif;background:#f8faff;width:390px">
+              <nav style="background:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(26,111,196,.1)">
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#1a6fc4">CASA MATRIZ</div>
+                <div style="background:#1a6fc4;color:#fff;padding:8px 14px;font-size:10px;font-weight:700;border-radius:5px">Cotizar</div>
+              </nav>
+              <section style="background:linear-gradient(160deg,#f8faff,#ddeaf8);padding:40px 20px;text-align:center">
+                <h1 style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:#0f1b2d;line-height:.88;margin-bottom:14px">TU MARCA<br>EN EL CANAL<br><span style="color:#1a6fc4">QUE VENDE</span></h1>
+                <p style="font-size:11px;color:#5a6b82;line-height:1.7;margin-bottom:20px">Presencia digital profesional que genera confianza y convierte.</p>
+                <div style="background:#1a6fc4;color:#fff;padding:12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-align:center">Ver Servicios</div>
+              </section>
+              <section style="background:#fff;padding:24px 16px">
+                <div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#1a6fc4;margin-bottom:14px">Servicios</div>
+                <div style="display:flex;flex-direction:column;gap:10px">
+                  <div style="background:#f0f4fb;border:1px solid rgba(26,111,196,.1);border-radius:8px;padding:14px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">💼</span><span style="font-size:12px;font-weight:600;color:#0f1b2d">Consultoría</span></div>
+                  <div style="background:#f0f4fb;border:1px solid rgba(26,111,196,.1);border-radius:8px;padding:14px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">📊</span><span style="font-size:12px;font-weight:600;color:#0f1b2d">Proyectos</span></div>
+                  <div style="background:#f0f4fb;border:1px solid rgba(26,111,196,.1);border-radius:8px;padding:14px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🤝</span><span style="font-size:12px;font-weight:600;color:#0f1b2d">Alianzas</span></div>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="v2-phone-bottom"><div class="v2-phone-home"></div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.65;max-width:160px">Entrada sólida al mundo digital. Profesional, funcional, con identidad de Casa Matriz desde el primer día.</p>
+      </div>
+    </div>
+
+    <!-- PANEL B -->
+    <div class="mock-panel" id="mp-b">
+      <div class="v2-browser">
+        <div class="v2-bar">
+          <div class="mdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <div class="murl">casamatrizltda.com.co &nbsp;·&nbsp; <span style="color:#8a9ab5">Posicionamiento Comercial — Plan B</span></div>
+        </div>
+        <div class="mscreen-outer" id="mso-b">
+          <div class="msite-preview" id="ms-b" style="font-family:'Inter',sans-serif;background:#f8faff">
+            <nav style="background:#fff;padding:16px 56px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(26,111,196,.1);box-shadow:0 2px 8px rgba(26,111,196,.05)">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:#1a6fc4">CASA MATRIZ</div>
+              <div style="display:flex;gap:24px;align-items:center">
+                <span style="font-size:12px;color:#5a6b82;letter-spacing:.06em;text-transform:uppercase">Servicios</span>
+                <span style="font-size:12px;color:#5a6b82;letter-spacing:.06em;text-transform:uppercase">Proyectos</span>
+                <span style="font-size:12px;color:#5a6b82;letter-spacing:.06em;text-transform:uppercase">Nosotros</span>
+                <div style="background:#1a6fc4;color:#fff;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px" class="cm-pulse">Hablar con un asesor</div>
+              </div>
+            </nav>
+            <section style="display:grid;grid-template-columns:1fr 1fr;min-height:380px;background:linear-gradient(135deg,#f8faff,#eef5ff)">
+              <div style="padding:60px;display:flex;flex-direction:column;justify-content:center">
+                <div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#1a6fc4;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:24px;height:1px;background:#1a6fc4"></span>Estrategia · Ejecución · Resultados</div>
+                <h1 style="font-family:'Bebas Neue',sans-serif;font-size:56px;color:#0f1b2d;line-height:.88;margin-bottom:18px;letter-spacing:1px">CONSTRUIMOS<br>MARCAS QUE<br><span style="color:#1a6fc4">ESCALAN</span></h1>
+                <p style="font-size:13px;color:#5a6b82;line-height:1.72;margin-bottom:28px;max-width:340px">Consultoría, estrategia y ejecución para empresas que quieren crecer con claridad, sin improvisar y con resultados medibles.</p>
+                <div style="display:flex;gap:12px">
+                  <div style="background:#1a6fc4;color:#fff;padding:13px 28px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:5px" class="cm-pulse">Agendar llamada →</div>
+                  <div style="border:1px solid rgba(26,111,196,.25);color:#1a6fc4;padding:13px 22px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-radius:5px">Ver proyectos</div>
+                </div>
+              </div>
+              <div style="background:linear-gradient(145deg,#ddeaf8,#b8d4f0,#1a6fc4);position:relative;overflow:hidden">
+                <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+                  <div style="text-align:center;color:#fff">
+                    <div style="font-family:'Bebas Neue',sans-serif;font-size:80px;opacity:.15;line-height:1">CM</div>
+                    <div style="font-size:14px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-top:-20px">Casa Matriz</div>
+                  </div>
+                </div>
+                <div style="position:absolute;bottom:24px;left:24px">
+                  <div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:4px">Proyecto Destacado</div>
+                  <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:white;letter-spacing:2px">TRANSFORMACIÓN DIGITAL</div>
+                </div>
+              </div>
+            </section>
+            <section style="background:#fff;padding:16px 56px;display:flex;justify-content:space-around;align-items:center;border-top:1px solid rgba(26,111,196,.08);border-bottom:1px solid rgba(26,111,196,.08)">
+              <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#1a6fc4">50+</div><div style="font-size:10px;color:#5a6b82;letter-spacing:.12em;text-transform:uppercase">Proyectos</div></div>
+              <div style="width:1px;height:36px;background:rgba(26,111,196,.15)"></div>
+              <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#1a6fc4">100%</div><div style="font-size:10px;color:#5a6b82;letter-spacing:.12em;text-transform:uppercase">Personalizado</div></div>
+              <div style="width:1px;height:36px;background:rgba(26,111,196,.15)"></div>
+              <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#1a6fc4">5+</div><div style="font-size:10px;color:#5a6b82;letter-spacing:.12em;text-transform:uppercase">Años de experiencia</div></div>
+              <div style="width:1px;height:36px;background:rgba(26,111,196,.15)"></div>
+              <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#1a6fc4">3</div><div style="font-size:10px;color:#5a6b82;letter-spacing:.12em;text-transform:uppercase">Líneas de servicio</div></div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="v2-bottom">
+        <div class="v2-desc">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:.5rem">Plan B · Posicionamiento Comercial</div>
+          <p>Hero split con imagen de marca, prueba social con estadísticas, portafolio de proyectos con categorías y múltiples canales de contacto con animaciones en los CTAs.</p>
+          <ul class="mock-feat" style="margin-top:1rem">
+            <li>Todo lo del Plan A</li>
+            <li>Hero split · imagen de marca destacada</li>
+            <li>Stats de credibilidad (50+ proyectos)</li>
+            <li>Portafolio de proyectos con filtros</li>
+            <li>WhatsApp · Calendly · Redes sociales</li>
+            <li>Animación CTA (pulse)</li>
+          </ul>
+        </div>
+        <div class="v2-phone">
+          <div class="v2-phone-top"><div class="v2-phone-pill"></div></div>
+          <div class="ps-outer" id="pso-b">
+            <div class="ps-preview" id="ps-b" style="font-family:'Inter',sans-serif;background:#f8faff;width:390px">
+              <nav style="background:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(26,111,196,.1)">
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#1a6fc4">CASA MATRIZ</div>
+                <div style="background:#1a6fc4;color:#fff;padding:8px 12px;font-size:9px;font-weight:700;border-radius:5px" class="cm-pulse">Hablar →</div>
+              </nav>
+              <section style="background:linear-gradient(160deg,#f8faff,#ddeaf8);padding:32px 20px">
+                <div style="font-size:9px;font-weight:700;letter-spacing:.2em;color:#1a6fc4;margin-bottom:10px">Estrategia · Ejecución · Resultados</div>
+                <h1 style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:#0f1b2d;line-height:.86;margin-bottom:12px">MARCAS<br>QUE <span style="color:#1a6fc4">ESCALAN</span></h1>
+                <p style="font-size:10px;color:#5a6b82;line-height:1.65;margin-bottom:16px">Consultoría y ejecución para empresas que quieren crecer con claridad.</p>
+                <div style="height:120px;border-radius:8px;overflow:hidden;margin-bottom:16px;background:linear-gradient(145deg,#ddeaf8,#1a6fc4);display:flex;align-items:center;justify-content:center">
+                  <div style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:rgba(255,255,255,.2);letter-spacing:4px">CM</div>
+                </div>
+                <div style="background:#1a6fc4;color:#fff;padding:11px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-align:center" class="cm-pulse">Agendar llamada →</div>
+              </section>
+              <section style="background:#fff;padding:12px 18px;display:flex;justify-content:space-around;border-top:1px solid rgba(26,111,196,.08)">
+                <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a6fc4">50+</div><div style="font-size:8px;color:#5a6b82;text-transform:uppercase;letter-spacing:.1em">Proyectos</div></div>
+                <div style="width:1px;background:rgba(26,111,196,.1)"></div>
+                <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a6fc4">100%</div><div style="font-size:8px;color:#5a6b82;text-transform:uppercase;letter-spacing:.1em">Custom</div></div>
+                <div style="width:1px;background:rgba(26,111,196,.1)"></div>
+                <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#1a6fc4">5+</div><div style="font-size:8px;color:#5a6b82;text-transform:uppercase;letter-spacing:.1em">Años</div></div>
+              </section>
+            </div>
+          </div>
+          <div class="v2-phone-bottom"><div class="v2-phone-home"></div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.65;max-width:160px">El nivel que convierte visitas en clientes. Múltiples canales, identidad de marca reforzada y presencia profesional completa.</p>
+      </div>
+    </div>
+
+    <!-- PANEL C -->
+    <div class="mock-panel" id="mp-c">
+      <div class="v2-browser">
+        <div class="v2-bar">
+          <div class="mdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <div class="murl">casamatrizltda.com.co &nbsp;·&nbsp; <span style="color:#8a9ab5">Ecosistema Digital — Plan C</span></div>
+        </div>
+        <div class="mscreen-outer" id="mso-c">
+          <div class="msite-preview" id="ms-c" style="font-family:'Inter',sans-serif;background:#0d1421">
+            <nav style="background:#0d1421;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(26,111,196,.2)">
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:#fff">CASA <span style="color:#4a9eff">MATRIZ</span></div>
+              <div style="display:flex;gap:24px;align-items:center">
+                <span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Servicios</span>
+                <span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Proyectos</span>
+                <span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Nosotros</span>
+                <span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Blog</span>
+                <div style="background:#1a6fc4;color:#fff;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;box-shadow:0 0 20px rgba(26,111,196,.4)" class="cm-pulse">Agendar →</div>
+              </div>
+            </nav>
+            <section style="background:#0d1421;padding:88px 60px;position:relative;overflow:hidden">
+              <div style="position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(26,111,196,.15),transparent 70%);pointer-events:none"></div>
+              <div style="position:absolute;top:-50px;right:60px;font-family:'Bebas Neue',sans-serif;font-size:200px;color:rgba(26,111,196,.05);letter-spacing:10px;line-height:1;pointer-events:none">CM</div>
+              <div style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#4a9eff;margin-bottom:18px;border:1px solid rgba(74,158,255,.3);padding:6px 16px;border-radius:20px;background:rgba(74,158,255,.08)">Ecosistema Digital Completo</div>
+              <h1 style="font-family:'Bebas Neue',sans-serif;font-size:68px;color:#fff;line-height:.88;letter-spacing:2px;margin-bottom:20px;max-width:700px">CASA MATRIZ —<br>LA MARCA QUE<br><span style="color:#4a9eff">DEFINE EL ESTÁNDAR</span></h1>
+              <p style="font-size:15px;color:rgba(255,255,255,.5);line-height:1.7;max-width:480px;margin-bottom:32px">Plataforma digital completa: sitio multi-sección, blog, integración con Sofia AI, automatizaciones y presencia omnicanal que trabaja 24/7.</p>
+              <div style="display:flex;gap:14px">
+                <div style="background:#1a6fc4;color:#fff;padding:15px 36px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;box-shadow:0 8px 24px rgba(26,111,196,.35)" class="cm-pulse">Agendar llamada →</div>
+                <div style="border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:15px 28px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:6px">Ver proyectos</div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+      <div class="v2-bottom">
+        <div class="v2-desc">
+          <div style="font-weight:700;color:var(--blue);margin-bottom:.5rem">Plan C · Ecosistema Digital</div>
+          <p>La versión más completa: sitio multi-sección premium con modo oscuro/claro, blog, integración con Sofia AI (asistente virtual), automatizaciones, SEO avanzado y presencia omnicanal completa.</p>
+          <ul class="mock-feat" style="margin-top:1rem">
+            <li>Todo lo del Plan B</li>
+            <li>Modo dark/light premium</li>
+            <li>Blog / Contenido propio</li>
+            <li>Integración Sofia AI (chatbot + llamadas)</li>
+            <li>Automatización de contactos</li>
+            <li>SEO avanzado + Analytics</li>
+            <li>Manifiesto de marca + storytelling</li>
+          </ul>
+        </div>
+        <div class="v2-phone">
+          <div class="v2-phone-top"><div class="v2-phone-pill"></div></div>
+          <div class="ps-outer" id="pso-c">
+            <div class="ps-preview" id="ps-c" style="font-family:'Inter',sans-serif;background:#0d1421;width:390px">
+              <nav style="background:#0d1421;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(26,111,196,.2)">
+                <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:#fff">CASA <span style="color:#4a9eff">MATRIZ</span></div>
+                <div style="background:#1a6fc4;color:#fff;padding:8px 12px;font-size:9px;font-weight:700;border-radius:5px" class="cm-pulse">Agendar</div>
+              </nav>
+              <section style="background:#0d1421;padding:36px 20px">
+                <div style="font-size:9px;font-weight:700;letter-spacing:.2em;color:#4a9eff;margin-bottom:10px">Ecosistema Digital Completo</div>
+                <h1 style="font-family:'Bebas Neue',sans-serif;font-size:38px;color:#fff;line-height:.86;margin-bottom:12px">LA MARCA<br>QUE DEFINE<br><span style="color:#4a9eff">EL ESTÁNDAR</span></h1>
+                <p style="font-size:10px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:16px">Plataforma completa con Sofia AI integrada y automatizaciones 24/7.</p>
+                <div style="background:rgba(26,111,196,.15);border:1px solid rgba(26,111,196,.3);border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;gap:10px">
+                  <div style="width:32px;height:32px;background:#1a6fc4;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">🤖</div>
+                  <div><div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:2px">Sofia AI disponible</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Asistente 24/7 · Respuesta inmediata</div></div>
+                </div>
+                <div style="background:#1a6fc4;color:#fff;padding:11px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-align:center;box-shadow:0 4px 16px rgba(26,111,196,.4)" class="cm-pulse">Agendar llamada →</div>
+              </section>
+            </div>
+          </div>
+          <div class="v2-phone-bottom"><div class="v2-phone-home"></div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.65;max-width:160px">El ecosistema completo. La plataforma digital que posiciona a Casa Matriz como referente en su categoría.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 9. PRECIOS ─────────────────────── -->
+<section id="precios" class="section section-light" data-section="8">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:580px;margin-left:auto;margin-right:auto">
+      <span class="label">Planes de Inversión</span>
+      <h2>Elige el nivel<br>que necesitas hoy</h2>
+      <div class="bline" style="margin:1rem auto 0"></div>
+      <p style="margin-top:1rem">Cada plan está diseñado para un momento distinto del negocio. Empieza donde estés — siempre puedes escalar.</p>
+    </div>
+    <div class="pricing-grid reveal" style="margin-top:3rem">
+
+      <div class="pcard">
+        <div class="ptier">Plan A</div>
+        <div class="pname">Presencia de Marca</div>
+        <div class="pprice">$1.000.000</div>
+        <div class="pprice-u">COP · pago 50/50</div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li><span class="ck">✓</span> One page responsive (móvil + desktop)</li>
+          <li><span class="ck">✓</span> Hero + Servicios + Contacto</li>
+          <li><span class="ck">✓</span> Identidad visual de Casa Matriz</li>
+          <li><span class="ck">✓</span> WhatsApp directo integrado</li>
+          <li><span class="ck">✓</span> SEO básico + meta tags</li>
+          <li><span class="ck">✓</span> Entrega en 7 días</li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Portafolio / Proyectos</span></li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Animaciones premium</span></li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Integración Sofia AI</span></li>
+        </ul>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(26,111,196,.05);border:1px solid rgba(26,111,196,.14);border-radius:8px;padding:.7rem 1rem;margin-bottom:1.25rem">
+          <span style="font-size:.78rem;color:var(--muted)">🔧 Mantenimiento mensual</span>
+          <span style="font-size:.85rem;font-weight:700;color:var(--blue)">$150.000 COP</span>
+        </div>
+        <a href="https://wa.me/573125158820?text=Hola%2C%20quiero%20el%20Plan%20A%20de%20Casa%20Matriz" class="btn-b" style="text-align:center;justify-content:center">
+          Quiero el Plan A →
+        </a>
+      </div>
+
+      <div class="pcard feat">
+        <div class="pbadge">Más Popular</div>
+        <div class="ptier">Plan B</div>
+        <div class="pname">Posicionamiento Comercial</div>
+        <div class="pprice">$2.000.000</div>
+        <div class="pprice-u">COP · pago 50/50</div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li><span class="ck">✓</span> Todo lo del Plan A</li>
+          <li><span class="ck">✓</span> Hero split + imagen de marca</li>
+          <li><span class="ck">✓</span> Portafolio / Proyectos destacados</li>
+          <li><span class="ck">✓</span> Stats de credibilidad animados</li>
+          <li><span class="ck">✓</span> Testimonios de clientes</li>
+          <li><span class="ck">✓</span> WhatsApp + Redes + Calendly</li>
+          <li><span class="ck">✓</span> Animaciones de entrada (reveal)</li>
+          <li><span class="ck">✓</span> SEO avanzado + Schema</li>
+          <li><span class="ck">✓</span> Entrega en 10 días</li>
+        </ul>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(26,111,196,.08);border:1px solid rgba(26,111,196,.2);border-radius:8px;padding:.7rem 1rem;margin-bottom:1.25rem">
+          <span style="font-size:.78rem;color:var(--muted)">🔧 Mantenimiento mensual</span>
+          <span style="font-size:.85rem;font-weight:700;color:var(--blue)">$200.000 COP</span>
+        </div>
+        <a href="https://wa.me/573125158820?text=Hola%2C%20quiero%20el%20Plan%20B%20de%20Casa%20Matriz" class="btn-b cm-pulse" style="text-align:center;justify-content:center">
+          Quiero el Plan B →
+        </a>
+      </div>
+
+      <div class="pcard">
+        <div class="ptier">Plan C</div>
+        <div class="pname">Ecosistema Digital</div>
+        <div class="pprice">$3.000.000</div>
+        <div class="pprice-u">COP · pago 50/50</div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li><span class="ck">✓</span> Todo lo del Plan B</li>
+          <li><span class="ck">✓</span> Modo dark/light premium</li>
+          <li><span class="ck">✓</span> Blog / Artículos propios</li>
+          <li><span class="ck">✓</span> Integración Sofia AI (chatbot)</li>
+          <li><span class="ck">✓</span> Automatización de contactos</li>
+          <li><span class="ck">✓</span> FAQ interactivo</li>
+          <li><span class="ck">✓</span> Manifiesto de marca completo</li>
+          <li><span class="ck">✓</span> Analytics + heatmaps</li>
+          <li><span class="ck">✓</span> Entrega en 15 días</li>
+        </ul>
+        <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(26,111,196,.05);border:1px solid rgba(26,111,196,.14);border-radius:8px;padding:.7rem 1rem;margin-bottom:1.25rem">
+          <span style="font-size:.78rem;color:var(--muted)">🔧 Mantenimiento mensual</span>
+          <span style="font-size:.85rem;font-weight:700;color:var(--blue)">$250.000 COP</span>
+        </div>
+        <a href="https://wa.me/573125158820?text=Hola%2C%20quiero%20el%20Plan%20C%20de%20Casa%20Matriz" class="btn-b" style="text-align:center;justify-content:center">
+          Quiero el Plan C →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 10. PROTECCIÓN ─────────────────────── -->
+<section class="section section-mid" data-section="9">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Lo que está incluido siempre</span>
+      <h2>Tu inversión<br>está protegida</h2>
+      <div class="bline"></div>
+    </div>
+    <div class="prot-grid">
+      <div class="prot-item reveal d1">
+        <div class="prot-n">01</div>
+        <div class="prot-icon">🔄</div>
+        <h4>Revisiones ilimitadas</h4>
+        <p>Hasta que el resultado sea exactamente lo que necesitas. No cobramos revisión número uno ni número diez — trabajamos hasta que sea correcto.</p>
+      </div>
+      <div class="prot-item reveal d2">
+        <div class="prot-n">02</div>
+        <div class="prot-icon">📱</div>
+        <h4>Responsive garantizado</h4>
+        <p>El sitio se ve perfecto en todos los dispositivos. Revisamos en móvil, tablet y desktop antes de entregar. Sin excepciones.</p>
+      </div>
+      <div class="prot-item reveal d3">
+        <div class="prot-n">03</div>
+        <div class="prot-icon">🚀</div>
+        <h4>Deploy incluido</h4>
+        <p>Publicamos el sitio en la plataforma que prefieras (Netlify, Vercel, tu hosting). El lanzamiento está incluido en la propuesta.</p>
+      </div>
+      <div class="prot-item reveal d1">
+        <div class="prot-n">04</div>
+        <div class="prot-icon">🔍</div>
+        <h4>SEO desde el inicio</h4>
+        <p>El sitio sale optimizado para Google: meta tags, estructura semántica, velocidad y schema markup incluidos en todos los planes.</p>
+      </div>
+      <div class="prot-item reveal d2">
+        <div class="prot-n">05</div>
+        <div class="prot-icon">📦</div>
+        <h4>Código entregado</h4>
+        <p>Recibes el código fuente completo del sitio. Es tuyo — puedes modificarlo, alojarlo donde quieras o escalar con cualquier desarrollador.</p>
+      </div>
+      <div class="prot-item reveal d3">
+        <div class="prot-n">06</div>
+        <div class="prot-icon">🤝</div>
+        <h4>Soporte post-lanzamiento</h4>
+        <p>30 días de soporte incluidos después del lanzamiento para resolver cualquier ajuste, corrección o pregunta técnica sin costo adicional.</p>
+      </div>
+    </div>
+    <div class="prot-note reveal">
+      <strong>Forma de pago:</strong> 50% para iniciar el proyecto · 50% al momento de la entrega final. Sin sorpresas, sin costos ocultos. Si no quedas satisfecho en la primera revisión, exploramos soluciones antes de proceder al segundo pago.
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 11. ENTREGA ─────────────────────── -->
+<section class="section section-light" data-section="10">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:4rem">
+      <span class="label">Proceso de Entrega</span>
+      <h2>De cero a publicado<br>en días, no meses</h2>
+      <div class="bline" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="tl reveal">
+      <div class="tl-step">
+        <div class="tl-dot">🤝</div>
+        <span class="days">Día 1</span>
+        <h4>Kickoff</h4>
+        <p>Llamada de inicio: alineamos objetivos, estructura y contenidos. Primer 50% de pago.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">🎨</div>
+        <span class="days">Día 3</span>
+        <h4>Diseño</h4>
+        <p>Primera versión visual del sitio — hero, paleta, tipografía y estructura completa para tu aprobación.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">⚙️</div>
+        <span class="days">Día 5–10</span>
+        <h4>Desarrollo</h4>
+        <p>Construcción completa: todas las secciones, animaciones, responsive y contenidos integrados.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">✅</div>
+        <span class="days">Día 10–12</span>
+        <h4>Revisiones</h4>
+        <p>Ajustes finales, correcciones de contenido y aprobación. Segundo 50% de pago.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">🚀</div>
+        <span class="days">Día 15</span>
+        <h4>Lanzamiento</h4>
+        <p>Publicación en vivo, configuración de dominio y entrega del código fuente completo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 12. INSTAGRAM GROWTH ─────────────────────── -->
+<section class="section section-mid" data-section="11">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">
+      <span class="label">Servicio Adicional · Recomendado</span>
+      <h2>Instagram Growth<br>+ Sofia IA</h2>
+      <div class="bline" style="margin:1rem auto 0"></div>
+      <p style="margin-top:1rem">Mientras el sitio web captura clientes desde Google, Instagram captura los que ya los siguen. Con este servicio, cada comentario y DM se convierte en una cotización — sin que el equipo intervenga.</p>
+    </div>
+
+    <div style="background:#fff;border:1px solid var(--border2);border-radius:var(--radius-lg);padding:3rem;margin-top:2.5rem;position:relative;overflow:hidden;box-shadow:0 4px 32px rgba(26,111,196,.07)" class="reveal">
+      <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1a6fc4,#e1306c,#f77737,#1a6fc4)"></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center">
+        <div>
+          <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(225,48,108,.07);border:1px solid rgba(225,48,108,.2);border-radius:100px;padding:5px 14px;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#e1306c;margin-bottom:1.4rem">
+            📸 Crecimiento en Instagram + Sofia IA
+          </div>
+          <h3 style="font-size:1.5rem;font-weight:700;margin-bottom:1rem;line-height:1.3">Sus seguidores en Instagram pueden convertirse en clientes de Casa Matriz — automáticamente</h3>
+          <p style="color:var(--muted);font-size:.95rem;line-height:1.72;margin-bottom:1rem">El equipo no necesita responder manualmente cada DM. Sofia IA detecta comentarios e interacciones, envía información técnica de los productos y captura los datos del prospecto — todo sin intervención humana.</p>
+
+          <!-- Expertos en contenido -->
+          <div style="display:flex;align-items:center;gap:.75rem;background:rgba(26,111,196,.05);border:1px solid rgba(26,111,196,.16);border-radius:10px;padding:.9rem 1.1rem;margin-bottom:1.25rem">
+            <div style="width:38px;height:38px;border-radius:50%;background:var(--blue-p);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0">🎬</div>
+            <div>
+              <div style="font-size:.88rem;font-weight:700;color:var(--text);margin-bottom:2px">Equipo experto en creación de contenido</div>
+              <div style="font-size:.8rem;color:var(--muted);line-height:1.5">Contamos con creativos, diseñadores y productores especializados que construyen cada pieza pensada para la industria de Casa Matriz — sin que su equipo tenga que preocuparse por nada.</div>
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(26,111,196,.04);border:1px solid var(--border);border-radius:8px">
+              <span style="color:var(--blue);font-weight:700;font-size:1rem;flex-shrink:0">→</span>
+              <div><strong style="font-size:.9rem">4 Reels mensuales</strong> <span style="color:var(--muted);font-size:.85rem">con enfoque comercial — productos, divisiones, casos de uso en industria</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(26,111,196,.04);border:1px solid var(--border);border-radius:8px">
+              <span style="color:var(--blue);font-weight:700;font-size:1rem;flex-shrink:0">→</span>
+              <div><strong style="font-size:.9rem">20 Carruseles / mes</strong> <span style="color:var(--muted);font-size:.85rem">educativos y de venta — fichas técnicas, usos, diferencias entre divisiones</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(26,111,196,.04);border:1px solid var(--border);border-radius:8px">
+              <span style="color:var(--blue);font-weight:700;font-size:1rem;flex-shrink:0">→</span>
+              <div><strong style="font-size:.9rem">Automatización Sofia IA</strong> <span style="color:var(--muted);font-size:.85rem">comentario → DM → datos del prospecto → solicitud de cotización automática</span></div>
+            </div>
+            <div style="display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;background:rgba(26,111,196,.04);border:1px solid var(--border);border-radius:8px">
+              <span style="color:var(--blue);font-weight:700;font-size:1rem;flex-shrink:0">→</span>
+              <div><strong style="font-size:.9rem">Dashboard mensual</strong> <span style="color:var(--muted);font-size:.85rem">métricas de crecimiento, alcance y prospectos generados por canal</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:1.25rem">
+          <!-- Simulación del flujo Sofia IA -->
+          <div style="background:#f8faff;border:1px solid var(--border2);border-radius:14px;padding:1.5rem">
+            <div style="font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:1rem">Así funciona el flujo</div>
+            <div style="display:flex;flex-direction:column;gap:.6rem">
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">📸</div>
+                <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;font-size:.82rem;flex:1">Casa Matriz publica Reel sobre <strong>División Higiene</strong></div>
+              </div>
+              <div style="text-align:center;color:var(--blue);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <div style="width:36px;height:36px;border-radius:50%;background:#eef5ff;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">💬</div>
+                <div style="background:#fff;border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;font-size:.82rem;flex:1">Usuario comenta: <em>"¿tienen desinfectantes para planta?"</em></div>
+              </div>
+              <div style="text-align:center;color:var(--blue);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <div style="width:36px;height:36px;border-radius:50%;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">🤖</div>
+                <div style="background:#fff;border:1px solid rgba(37,211,102,.3);border-radius:8px;padding:.6rem .9rem;font-size:.82rem;flex:1">Sofia IA envía DM automático con catálogo + formulario de cotización</div>
+              </div>
+              <div style="text-align:center;color:var(--blue);font-size:1.2rem">↓</div>
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <div style="width:36px;height:36px;border-radius:50%;background:var(--blue-p);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0">✅</div>
+                <div style="background:rgba(26,111,196,.06);border:1px solid var(--border2);border-radius:8px;padding:.6rem .9rem;font-size:.82rem;flex:1"><strong>Prospecto calificado llega al equipo</strong> — producto, cantidad, empresa</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Precio -->
+          <div style="background:var(--blue);border-radius:12px;padding:1.5rem;color:#fff;text-align:center">
+            <div style="font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.8;margin-bottom:.5rem">Inversión mensual</div>
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;margin-bottom:.3rem">$1.500.000</div>
+            <div style="font-size:.82rem;opacity:.8;margin-bottom:1rem">COP/mes · Setup: $1.500.000 (una vez)</div>
+            <div style="background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:100px;padding:4px 14px;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;display:inline-block">Founding Member · Cupos limitados</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────── 13. CTA FINAL ─────────────────────── -->
+<section id="cta-final" class="section" data-section="12">
+  <div class="container" style="position:relative;z-index:1">
+    <p class="cta-serif reveal">
+      <strong>Casa Matriz ya tiene el portafolio, la trayectoria y los clientes.</strong><br>
+      Lo que falta es que los compradores correctos los encuentren en Google — antes de llamar a otro proveedor.
+    </p>
+    <h2 class="cta-big reveal d1">
+      ¿CUÁNDO<br>
+      <span class="acc">EMPEZAMOS</span>?
+    </h2>
+    <div class="reveal d2" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/573125158820?text=Hola%2C%20vi%20la%20propuesta%20de%20Casa%20Matriz%20y%20quiero%20avanzar" target="_blank" class="btn-b cm-pulse" style="font-size:.9rem;padding:16px 36px">
+        Avancemos → WhatsApp
+      </a>
+      <button class="btn-ghost" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})" style="font-size:.9rem;padding:16px 36px">
+        Revisar planes
+      </button>
+    </div>
+    <p class="cta-note reveal d3">Respuesta en menos de 2 horas · Sin compromiso · Confidencial</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="brand">
+    <strong>AJ Business Advisory</strong> · Propuesta para Casa Matriz · Mayo 2026
+  </div>
+  <div class="conf">Documento Confidencial</div>
+</footer>
+
+<script>
+// ── Scale mockups to fit container
+function scaleMockups(){
+  document.querySelectorAll('.mscreen-outer').forEach(outer=>{
+    const inner=outer.querySelector('.msite-preview');
+    if(!inner)return;
+    const w=outer.clientWidth||outer.offsetWidth;
+    if(!w)return;
+    const scale=w/1200;
+    inner.style.transform=`scale(${scale})`;
+    inner.style.width='1200px';
+    outer.style.height=(inner.scrollHeight*scale)+'px';
+  });
+  document.querySelectorAll('.ps-outer').forEach(outer=>{
+    const inner=outer.querySelector('.ps-preview');
+    if(!inner)return;
+    const w=outer.clientWidth||outer.offsetWidth;
+    if(!w)return;
+    const scale=w/390;
+    inner.style.transform=`scale(${scale})`;
+    inner.style.width='390px';
+    outer.style.height=(inner.scrollHeight*scale)+'px';
+  });
+}
+window.addEventListener('load',scaleMockups);
+window.addEventListener('resize',scaleMockups);
+
+// ── Switch mock panels
+function switchMock(id,btn){
+  document.querySelectorAll('.mock-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('mp-'+id).classList.add('on');
+  btn.classList.add('on');
+  setTimeout(scaleMockups,50);
+}
+
+// ── Reveal on scroll
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
+
+// ── Nav dots
+const sections=document.querySelectorAll('[data-section]');
+const dots=document.querySelectorAll('.nd');
+const sio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const i=e.target.dataset.section;
+      dots.forEach(d=>d.classList.remove('active'));
+      const dot=document.querySelector(`.nd[data-sec="${i}"]`);
+      if(dot)dot.classList.add('active');
+    }
+  });
+},{threshold:.4});
+sections.forEach(s=>sio.observe(s));
+dots.forEach(d=>{
+  d.addEventListener('click',()=>{
+    const sec=document.querySelector(`[data-section="${d.dataset.sec}"]`);
+    if(sec)sec.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

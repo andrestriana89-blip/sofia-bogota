@@ -1,0 +1,2157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AJ Business Advisory — AI Systems for Local Businesses</title>
+  <meta name="description" content="We find the revenue leak. You keep the money. AI systems that recover missed calls, cold leads & unconfirmed appointments — 24/7."/>
+
+  <!-- Open Graph / Instagram / WhatsApp preview -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://ajbusinessadvisory.com"/>
+  <meta property="og:title" content="AJ Business Advisory — AI Systems for Local Businesses"/>
+  <meta property="og:description" content="We find the revenue leak. You keep the money. AI systems that recover missed calls, cold leads & unconfirmed appointments — 24/7."/>
+  <meta property="og:image" content="https://ajbusinessadvisory.com/assets/logo.png"/>
+  <meta property="og:image:width" content="400"/>
+  <meta property="og:image:height" content="269"/>
+  <meta property="og:site_name" content="AJ Business Advisory"/>
+
+  <!-- Twitter/X card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="AJ Business Advisory — AI Systems for Local Businesses"/>
+  <meta name="twitter:description" content="We find the revenue leak. You keep the money."/>
+  <meta name="twitter:image" content="https://ajbusinessadvisory.com/assets/logo.png"/>
+  <link rel="canonical" href="https://ajbusinessadvisory.com"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <!-- GHL LeadConnector chat widget — A2P 10DLC compliant single opt-in source.
+       The Vapi phone-capture form was removed on 2026-04-11 to satisfy the
+       "one SMS opt-in per page" rule. Sofia now qualifies and triggers the
+       voice demo from inside the chat conversation. -->
+  <script src="https://widgets.leadconnectorhq.com/loader.js"
+    data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+    data-widget-id="69d334e30515dd19a13c80df"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #0a0a0a;
+      --bg2:      #111111;
+      --bg3:      #1a1a1a;
+      --card:     rgba(255,255,255,0.04);
+      --border:   rgba(181,0,94,0.22);
+      --pink:     #b5005e;
+      --yellow:   #ffd400;
+      --accent:   #b5005e;
+      --text:     #f5f5f5;
+      --muted:    #888888;
+      --danger:   #ff7b88;
+      --gold:     #ffd400;
+      --radius:   14px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #b5005e; border-radius: 3px; }
+
+    /* ── COOKIE BANNER ── */
+    #cookieBanner {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+      background: rgba(17,17,17,0.97);
+      border-top: 1px solid rgba(181,0,94,0.25);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+      font-size: 12px; color: #aaa; line-height: 1.6;
+    }
+    #cookieBanner a { color: var(--pink); text-decoration: none; }
+    #cookieBanner a:hover { text-decoration: underline; }
+    .cookie-btn {
+      padding: 8px 20px; border-radius: 8px; border: none; cursor: pointer;
+      font-size: 12px; font-weight: 700; white-space: nowrap; font-family: inherit;
+    }
+    .cookie-accept { background: var(--pink); color: #fff; }
+    .cookie-decline { background: rgba(255,255,255,0.08); color: #aaa; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(10,10,10,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(181,0,94,0.2);
+      padding: 0 32px; min-height: 60px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-badge {
+      width: 34px; height: 34px; border-radius: 8px;
+      background: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 13px; color: #fff;
+    }
+    .logo-name { font-weight: 700; font-size: 14px; color: var(--text); }
+    .logo-sub  { font-size: 11px; color: var(--muted); font-weight: 400; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-pill {
+      padding: 7px 18px; border-radius: 20px;
+      border: 1px solid rgba(181,0,94,0.4);
+      background: rgba(181,0,94,0.08);
+      color: var(--pink); font-size: 12px; font-weight: 600;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .nav-pill:hover { background: rgba(181,0,94,0.18); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: unset;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      text-align: center; padding: 80px 24px 56px;
+      position: relative;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(181,0,94,0.08) 0%, transparent 70%);
+    }
+    .grid-bg {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(181,0,94,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(181,0,94,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner { max-width: 680px; position: relative; z-index: 2; animation: fadeUp 0.6s ease; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 16px; border-radius: 20px;
+      border: 1px solid rgba(181,0,94,0.35);
+      background: rgba(181,0,94,0.07);
+      font-size: 11px; color: var(--pink);
+      letter-spacing: 1.5px; font-weight: 700;
+      margin-bottom: 24px; text-transform: uppercase;
+    }
+    h1 {
+      font-size: clamp(36px, 5.5vw, 52px);
+      font-weight: 900; line-height: 1.1;
+      color: #f5f5f5;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 17px; color: #aaaaaa; line-height: 1.7;
+      max-width: 560px; margin: 0 auto 32px;
+    }
+    .hero-note { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+    .hero-ctas {
+      display: flex; align-items: center; justify-content: center;
+      gap: 14px; flex-wrap: wrap; margin-bottom: 0;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 32px; border-radius: 12px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 15px; font-weight: 800;
+      cursor: pointer; font-family: inherit;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #cc006b; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 12px;
+      border: 1.5px solid rgba(181,0,94,0.45);
+      background: transparent;
+      color: #f5f5f5; font-size: 15px; font-weight: 700;
+      cursor: pointer; font-family: inherit;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--pink); background: rgba(181,0,94,0.07); }
+
+    /* ── TRUST BAR ── */
+    .trust-strip {
+      background: rgba(255,255,255,0.03);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap;
+    }
+    .trust-strip-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: #aaa; padding: 6px 20px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .trust-strip-item:last-child { border-right: none; }
+    .trust-strip-item span { color: var(--pink); font-weight: 700; }
+    @media (max-width: 640px) {
+      .trust-strip-item { border-right: none; padding: 5px 12px; font-size: 12px; }
+    }
+
+    /* ── STEP INDICATORS ── */
+    .steps-bar {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; margin-bottom: 48px; flex-wrap: wrap;
+    }
+    .step-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--muted); font-weight: 500;
+      padding: 0 4px;
+    }
+    .step-item.active { color: var(--pink); }
+    .step-item.done   { color: var(--yellow); }
+    .step-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      border: 1.5px solid currentColor;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .step-item.active .step-num { background: rgba(181,0,94,0.15); }
+    .step-item.done   .step-num { background: rgba(255,212,0,0.15); border-color: var(--yellow); }
+    .step-arrow { color: rgba(255,255,255,0.15); font-size: 14px; margin: 0 4px; }
+
+    /* ── MAIN CARD ── */
+    .demo-container { max-width: 780px; margin: 0 auto; padding: 0 20px 80px; }
+    .demo-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .demo-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+      opacity: 0.5;
+    }
+    .card-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid rgba(181,0,94,0.1);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sofia-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #b5005e, #ffd400);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+      box-shadow: 0 0 20px rgba(181,0,94,0.3);
+      position: relative;
+    }
+    .sofia-status {
+      position: absolute; bottom: 1px; right: 1px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--yellow);
+      border: 2px solid var(--bg);
+    }
+    .header-text h2 { font-size: 17px; font-weight: 700; color: var(--text); }
+    .header-text p  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ── FORM STEP ── */
+    .form-step { padding: 28px; }
+    .field-label {
+      display: block; font-size: 11px; font-weight: 600;
+      color: var(--muted); letter-spacing: 0.6px;
+      margin-bottom: 7px; text-transform: uppercase;
+    }
+    .field-input {
+      width: 100%; padding: 12px 14px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(181,0,94,0.2);
+      border-radius: 10px; color: var(--text);
+      font-size: 14px; font-family: inherit;
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .field-input::placeholder { color: #555555; }
+    .field-input:focus {
+      border-color: rgba(181,0,94,0.55);
+      box-shadow: 0 0 0 3px rgba(181,0,94,0.08);
+    }
+    .field-input.error { border-color: rgba(255,123,136,0.5); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field-group { display: flex; flex-direction: column; gap: 14px; }
+
+    .nicho-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 8px; margin-top: 4px;
+    }
+    .nicho-btn {
+      padding: 10px 8px; border-radius: 10px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      color: #bbbbbb; font-size: 12px; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; text-align: center;
+      font-family: inherit;
+    }
+    .nicho-btn:hover { border-color: rgba(181,0,94,0.4); color: var(--pink); background: rgba(181,0,94,0.07); }
+    .nicho-btn.selected { border-color: var(--pink); color: var(--pink); background: rgba(181,0,94,0.1); }
+    .nicho-icon { font-size: 18px; display: block; margin-bottom: 4px; }
+
+    /* ── TCPA CONSENT ── */
+    .consent-wrap {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 14px; border-radius: 10px;
+      background: rgba(255,212,0,0.04);
+      border: 1px solid rgba(255,212,0,0.18);
+      margin-top: 4px;
+    }
+    .consent-wrap input[type="checkbox"] {
+      width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; cursor: pointer;
+      accent-color: var(--pink);
+    }
+    .consent-wrap label {
+      font-size: 11px; color: #999; line-height: 1.65; cursor: pointer;
+    }
+    .consent-wrap label a { color: var(--pink); text-decoration: none; }
+    .consent-wrap label a:hover { text-decoration: underline; }
+
+    .start-btn {
+      width: 100%; padding: 15px;
+      border-radius: 12px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 15px; font-weight: 800;
+      cursor: pointer; font-family: inherit;
+      transition: all 0.2s; margin-top: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .start-btn:hover { transform: translateY(-1px); background: #cc006b; }
+    .start-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .start-btn-wrap { position: relative; display: inline-block; width: 100%; margin-top: 8px; }
+    .pulse-ring {
+      position: absolute; inset: -6px;
+      border-radius: 16px;
+      border: 2px solid rgba(181,0,94,0.6);
+      animation: pulseRing 1.6s ease-out infinite;
+      pointer-events: none;
+    }
+    .pulse-ring:nth-child(2) { animation-delay: 0.5s; }
+    @keyframes pulseRing {
+      0%   { transform: scale(1);    opacity: 0.8; }
+      100% { transform: scale(1.06); opacity: 0; }
+    }
+    .privacy-note {
+      text-align: center; font-size: 11px;
+      color: #777777; margin-top: 10px; line-height: 1.6;
+    }
+
+    /* ── CALLING STEP ── */
+    .call-step { padding: 32px 28px; display: none; }
+    .call-step.active { display: block; }
+    .call-center { text-align: center; }
+    .wave-wrap {
+      display: flex; align-items: center; justify-content: center;
+      gap: 4px; height: 48px; margin: 24px auto;
+    }
+    .wave-bar {
+      width: 4px; border-radius: 4px;
+      background: linear-gradient(to top, #b5005e, #ffd400);
+      animation: wave 1.2s ease-in-out infinite;
+      height: 8px;
+    }
+    @keyframes wave {
+      0%, 100% { height: 8px;  }
+      50%       { height: 42px; }
+    }
+    .wave-bar:nth-child(1) { animation-delay: 0s; }
+    .wave-bar:nth-child(2) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(3) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(4) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(5) { animation-delay: 0.4s; }
+    .wave-bar:nth-child(6) { animation-delay: 0.3s; }
+    .wave-bar:nth-child(7) { animation-delay: 0.2s; }
+    .wave-bar:nth-child(8) { animation-delay: 0.1s; }
+    .wave-bar:nth-child(9) { animation-delay: 0s; }
+    .wave-bar.paused { animation-play-state: paused; height: 8px !important; }
+
+    .call-label    { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+    .call-business { font-size: 20px; font-weight: 700; color: var(--pink); margin-bottom: 4px; }
+    .call-timer    { font-size: 13px; color: var(--yellow); font-variant-numeric: tabular-nums; }
+
+    .end-btn {
+      width: 100%; padding: 13px;
+      border-radius: 12px; border: 1px solid rgba(255,123,136,0.3);
+      background: rgba(255,123,136,0.15);
+      color: var(--danger); font-size: 14px; font-weight: 700;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .end-btn:hover { background: rgba(255,123,136,0.25); }
+
+    /* ── RESULT STEP ── */
+    .result-step { padding: 32px 28px; display: none; }
+    .result-step.active { display: block; animation: fadeUp 0.5s ease; }
+    .result-header { text-align: center; margin-bottom: 24px; }
+    .result-icon  { font-size: 40px; margin-bottom: 12px; }
+    .result-title { font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+    .result-sub   { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+    .packages-grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px; margin: 20px 0;
+    }
+    .pkg-card {
+      border-radius: 12px; padding: 16px 12px; text-align: center;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      transition: transform 0.2s;
+    }
+    .pkg-card:hover { transform: translateY(-2px); }
+    .pkg-card.featured {
+      border-color: rgba(181,0,94,0.5);
+      background: rgba(181,0,94,0.07);
+      position: relative;
+    }
+    .pkg-badge {
+      position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #b5005e, #ffd400);
+      color: #0a0a0a; font-size: 9px; font-weight: 700;
+      padding: 2px 10px; border-radius: 10px; white-space: nowrap; letter-spacing: 0.5px;
+    }
+    .pkg-name    { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; margin-bottom: 6px; }
+    .pkg-price   { font-size: 26px; font-weight: 900; color: var(--text); }
+    .pkg-period  { font-size: 10px; color: var(--muted); margin-bottom: 8px; }
+    .pkg-feature { font-size: 11px; color: #aaaaaa; line-height: 1.6; }
+
+    .contact-form { display: grid; gap: 12px; margin: 24px 0 16px; }
+    .cta-btn {
+      width: 100%; padding: 14px;
+      border-radius: 12px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 14px; font-weight: 800;
+      cursor: pointer; font-family: inherit; transition: all 0.2s;
+    }
+    .cta-btn:hover { transform: translateY(-1px); background: #cc006b; }
+    .restart-link {
+      display: block; text-align: center;
+      font-size: 12px; color: var(--muted);
+      margin-top: 12px; cursor: pointer; text-decoration: underline;
+    }
+    .restart-link:hover { color: var(--pink); }
+    .success-state {
+      display: none; text-align: center;
+      padding: 18px; border-radius: 12px;
+      background: rgba(255,212,0,0.07);
+      border: 1px solid rgba(255,212,0,0.25);
+      color: var(--yellow); font-size: 14px; font-weight: 600; line-height: 1.65;
+    }
+    .success-state.show { display: block; }
+
+    /* ── VALUE PROPS ── */
+    .value-section { padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+    .value-title { text-align: center; font-size: 26px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    .value-sub   { text-align: center; font-size: 14px; color: var(--muted); margin-bottom: 40px; }
+    .value-grid  { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .value-card  {
+      padding: 22px; border-radius: 14px;
+      background: var(--card); border: 1px solid var(--border);
+      transition: transform 0.2s;
+    }
+    .value-card:hover { transform: translateY(-3px); }
+    .value-icon  { font-size: 28px; margin-bottom: 10px; }
+    .value-card h3 { font-size: 14px; font-weight: 700; color: #f5f5f5; margin-bottom: 6px; }
+    .value-card p  { font-size: 12.5px; color: var(--muted); line-height: 1.65; }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      padding: 20px 32px;
+      border-top: 1px solid rgba(181,0,94,0.15);
+      border-bottom: 1px solid rgba(181,0,94,0.15);
+      background: rgba(181,0,94,0.02);
+      display: flex; align-items: center; justify-content: center;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .trust-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #999999; }
+    .trust-icon { font-size: 16px; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 56px 32px 40px;
+      border-top: 1px solid rgba(181,0,94,0.1);
+      font-size: 12px; color: #444;
+      line-height: 1.8;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 40px; max-width: 860px; margin: 0 auto 40px;
+    }
+    @media(max-width:640px){ .footer-grid { grid-template-columns: 1fr; gap: 28px; } }
+    .footer-col h4 { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
+    .footer-col a, .footer-col span {
+      display: block; font-size: 13px; color: #555;
+      text-decoration: none; margin-bottom: 7px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--pink); }
+    .footer-bottom { text-align: center; color: #555; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 24px; max-width: 860px; margin: 0 auto; }
+    footer a { color: #888; text-decoration: none; }
+    footer a:hover { color: var(--pink); }
+    .footer-disclaimer {
+      font-size: 11px; color: #555555; max-width: 700px;
+      margin: 12px auto 0; line-height: 1.7; text-align: center;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+    @keyframes speakPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(181,0,94,0); }
+      50%       { box-shadow: 0 0 16px 4px rgba(181,0,94,0.25); }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 560px) {
+      nav { padding: 0 16px; }
+      .packages-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .nicho-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-bar { gap: 16px; }
+    }
+
+    /* ── Ticker tape ── */
+    .ticker-wrap { overflow: hidden; margin: 28px 0 0; padding: 10px 0; border-top: 1px solid rgba(181,0,94,0.15); border-bottom: 1px solid rgba(181,0,94,0.15); }
+    .ticker-inner { display: flex; gap: 0; white-space: nowrap; animation: ticker 30s linear infinite; width: max-content; }
+    .ticker-item { display: inline-flex; align-items: center; gap: 8px; padding: 0 32px; font-size: 13px; color: #aaa; font-weight: 500; }
+    .ticker-item span { color: var(--pink); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── Niche Showcase ── */
+    .niche-section { padding: 64px 24px 40px; max-width: 900px; margin: 0 auto; }
+    .niche-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--pink); text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+    .niche-section h2 { font-size: clamp(22px,4vw,34px); font-weight: 900; text-align: center; margin-bottom: 8px; }
+    .niche-section .sub { font-size: 15px; color: #888; text-align: center; margin-bottom: 32px; }
+    .niche-tabs { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 28px; }
+    .niche-tab { padding: 10px 20px; border-radius: 30px; border: 1.5px solid rgba(181,0,94,0.2); background: transparent; color: #ccc; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+    .niche-tab:hover { border-color: var(--pink); color: #f5f5f5; }
+    .niche-tab.active { background: var(--pink); border-color: var(--pink); color: #fff; }
+    .niche-panel { display: none; animation: fadeUp 0.35s ease; }
+    .niche-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media(max-width:640px){ .niche-panel.active { grid-template-columns: 1fr; } }
+    .niche-info { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; }
+    .niche-info h3 { font-size: 17px; font-weight: 800; margin-bottom: 12px; color: #f5f5f5; }
+    .niche-info p { font-size: 13px; color: #999; line-height: 1.75; margin-bottom: 16px; }
+    .niche-result { display: flex; align-items: center; gap: 10px; background: rgba(255,212,0,0.07); border: 1px solid rgba(255,212,0,0.2); border-radius: 10px; padding: 12px 16px; font-size: 13px; color: #ffd400; font-weight: 600; }
+    /* WhatsApp chat mock */
+    .wa-mock { background: #111111; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .wa-header { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 4px; }
+    .wa-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg,#b5005e,#ffd400); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .wa-name { font-size: 13px; font-weight: 700; color: #f5f5f5; }
+    .wa-status { font-size: 11px; color: #4caf50; }
+    .wa-msg { max-width: 82%; font-size: 13px; line-height: 1.55; padding: 9px 13px; border-radius: 0 12px 12px 12px; background: rgba(255,255,255,0.08); color: #e0e0e0; position: relative; }
+    .wa-msg.out { align-self: flex-end; border-radius: 12px 0 12px 12px; background: rgba(181,0,94,0.18); color: #f5f5f5; }
+    .wa-msg .wa-time { font-size: 10px; color: #666; display: block; margin-top: 4px; text-align: right; }
+    .wa-speed { display: inline-block; margin-top: 6px; font-size: 11px; color: #4caf50; font-weight: 700; background: rgba(76,175,80,0.12); padding: 3px 10px; border-radius: 20px; }
+
+    /* ── ROI Chat Calculator ── */
+    .roi-section { padding: 56px 24px 64px; max-width: 680px; margin: 0 auto; }
+    .roi-section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--pink); text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+    .roi-section h2 { font-size: clamp(20px,3.5vw,30px); font-weight: 900; text-align: center; margin-bottom: 8px; }
+    .roi-section .sub { font-size: 14px; color: #888; text-align: center; margin-bottom: 28px; }
+    .roi-chat-box { background: #111; border: 1px solid rgba(181,0,94,0.18); border-radius: 20px; overflow: hidden; }
+    .roi-chat-header { background: rgba(181,0,94,0.08); border-bottom: 1px solid rgba(181,0,94,0.15); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+    .roi-chat-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#b5005e,#ffd400); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .roi-chat-name { font-size: 14px; font-weight: 700; color: #f5f5f5; }
+    .roi-chat-status { font-size: 11px; color: #4caf50; }
+    .roi-messages { padding: 20px; display: flex; flex-direction: column; gap: 12px; min-height: 200px; max-height: 420px; overflow-y: auto; }
+    .roi-msg { display: flex; flex-direction: column; max-width: 82%; animation: fadeUp 0.3s ease; }
+    .roi-msg.sofia { align-self: flex-start; }
+    .roi-msg.user { align-self: flex-end; }
+    .roi-bubble { padding: 11px 16px; border-radius: 0 14px 14px 14px; background: rgba(255,255,255,0.07); color: #e0e0e0; font-size: 14px; line-height: 1.6; }
+    .roi-msg.user .roi-bubble { border-radius: 14px 0 14px 14px; background: rgba(181,0,94,0.2); color: #f5f5f5; }
+    .roi-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .roi-chip { padding: 7px 16px; border-radius: 20px; border: 1.5px solid rgba(181,0,94,0.3); background: transparent; color: #ccc; font-size: 13px; cursor: pointer; transition: all 0.18s; }
+    .roi-chip:hover { border-color: var(--pink); color: #f5f5f5; background: rgba(181,0,94,0.08); }
+    .roi-result-card { margin: 4px 0; background: rgba(255,212,0,0.06); border: 1px solid rgba(255,212,0,0.25); border-radius: 14px; padding: 16px 20px; }
+    .roi-result-num { font-size: 28px; font-weight: 900; color: #ffd400; }
+    .roi-result-label { font-size: 13px; color: #888; margin-top: 2px; }
+    .roi-cta-btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 12px; background: linear-gradient(135deg,#b5005e,#ffd400); color: #0a0a0a; font-size: 15px; font-weight: 800; cursor: pointer; border: none; margin-top: 12px; transition: all 0.2s; }
+    .roi-cta-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .roi-typing { display: none; align-items: center; gap: 5px; padding: 11px 16px; background: rgba(255,255,255,0.07); border-radius: 0 14px 14px 14px; width: fit-content; }
+    .roi-typing.visible { display: flex; }
+    .roi-typing span { width: 7px; height: 7px; border-radius: 50%; background: #888; animation: typingDot 1.2s ease-in-out infinite; }
+    .roi-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .roi-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingDot { 0%,60%,100% { opacity: 0.3; transform: scale(0.8); } 30% { opacity: 1; transform: scale(1); } }
+
+    /* ── HERO CENTERED LAYOUT ── */
+    .hero-centered {
+      width: 100%;
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 0.6s ease;
+    }
+    .hero-quick-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(181,0,94,0.28);
+      border-radius: 18px;
+      padding: 28px 24px;
+      position: relative;
+      max-width: 420px;
+      margin: 32px auto 0;
+    }
+    .hero-quick-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--pink), transparent);
+      border-radius: 18px 18px 0 0;
+    }
+    .hero-trust-row {
+      display: flex; flex-wrap: wrap; justify-content: center;
+      gap: 6px 20px; margin-top: 20px;
+    }
+    .hero-trust-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #aaa; }
+    .hero-trust-item span { color: #ffd400; font-size: 12px; }
+    .quick-nicho-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 6px; margin-top: 4px;
+    }
+    .quick-nicho-btn {
+      padding: 8px 4px; border-radius: 8px;
+      border: 1px solid rgba(181,0,94,0.2);
+      background: rgba(255,255,255,0.02);
+      color: #bbb; font-size: 11px; font-weight: 500;
+      cursor: pointer; transition: all 0.2s; text-align: center;
+      font-family: inherit; line-height: 1.3;
+    }
+    .quick-nicho-btn:hover { border-color: rgba(181,0,94,0.4); color: var(--pink); }
+    .quick-nicho-btn.selected { border-color: var(--pink); color: var(--pink); background: rgba(181,0,94,0.1); }
+    .quick-start-btn {
+      width: 100%; padding: 14px;
+      border-radius: 12px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 14px; font-weight: 800;
+      cursor: pointer; font-family: inherit;
+      transition: all 0.2s; margin-top: 6px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .quick-start-btn:hover { background: #cc006b; transform: translateY(-1px); }
+
+    /* ── HOW IT WORKS ── */
+    .how-section { padding: 72px 24px; max-width: 900px; margin: 0 auto; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: var(--pink); text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+    .section-title { font-size: clamp(22px,4vw,32px); font-weight: 900; text-align: center; color: #f5f5f5; margin-bottom: 8px; }
+    .section-sub { font-size: 15px; color: #888; text-align: center; margin-bottom: 48px; }
+    .how-steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+    @media(max-width:640px){ .how-steps { grid-template-columns: 1fr; gap: 24px; } }
+    .how-step { text-align: center; }
+    .how-num { font-size: 36px; font-weight: 900; color: var(--pink); margin-bottom: 12px; }
+    .how-step h3 { font-size: 15px; font-weight: 800; color: #f5f5f5; margin-bottom: 8px; }
+    .how-step p { font-size: 13px; color: #aaa; line-height: 1.7; }
+
+    /* ── INDUSTRY CARDS ── */
+    .industry-section { padding: 0 24px 72px; max-width: 900px; margin: 0 auto; }
+    .industry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media(max-width:600px){ .industry-grid { grid-template-columns: 1fr; } }
+    .industry-card {
+      border: 1px solid rgba(181,0,94,0.2);
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px; padding: 20px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .industry-card:hover { border-color: rgba(181,0,94,0.45); transform: translateY(-2px); }
+    .industry-emoji { font-size: 28px; margin-bottom: 10px; display: block; }
+    .industry-card h3 { font-size: 14px; font-weight: 700; color: #f5f5f5; margin-bottom: 6px; }
+    .industry-card p { font-size: 13px; color: #aaa; line-height: 1.6; }
+
+    /* ── STICKY MOBILE CTA ── */
+    #stickyCta {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 888;
+      background: rgba(10,10,10,0.97);
+      border-top: 1px solid rgba(181,0,94,0.3);
+      padding: 12px 16px;
+    }
+    .sticky-cta-btn {
+      display: block; width: 100%; text-align: center;
+      padding: 14px; border-radius: 12px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 14px; font-weight: 800;
+      cursor: pointer; font-family: inherit;
+    }
+
+    @media (max-width: 780px) {
+      #stickyCta { display: block; }
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Individual Channel Plans ── */
+    .canal-card {
+      position: relative;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 22px 16px 20px;
+      text-align: center;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .canal-card:hover { transform: translateY(-8px) scale(1.02); }
+    .canal-icon-wrap {
+      width: 56px; height: 56px; border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; margin: 0 auto 14px;
+      border: 1px solid transparent;
+      transition: transform 0.3s ease;
+    }
+    .canal-card:hover .canal-icon-wrap { transform: scale(1.12) rotate(-4deg); }
+    .canal-name   { font-weight: 900; font-size: 0.92rem; color: #fff; margin-bottom: 2px; }
+    .canal-brand  { font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+    .canal-price  { font-size: 1.4rem; font-weight: 900; margin-bottom: 2px; }
+    .canal-period { font-size: 0.65rem; color: rgba(255,255,255,0.4); margin-bottom: 12px; }
+    .canal-features { list-style: none; padding: 0; margin: 0 0 14px; text-align: left; font-size: 0.7rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
+    .canal-features li::before { content: '✓ '; font-weight: 700; }
+    .canal-btn { display: block; width: 100%; padding: 8px 0; border-radius: 50px; font-size: 0.72rem; font-weight: 800; border: 1.5px solid transparent; transition: all 0.25s ease; text-decoration: none; background: transparent; }
+    @keyframes shimmerSlide {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #ffd400 0%, #b5005e 40%, #ffd400 80%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmerSlide 3s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── COOKIE BANNER ── -->
+<div id="cookieBanner" style="display:none;">
+  <span>We use cookies to improve your experience. By continuing you agree to our <a href="/privacy" target="_blank">Privacy Policy</a>.</span>
+  <div style="display:flex; gap:10px;">
+    <button class="cookie-btn cookie-decline" onclick="setCookieChoice(false)">Decline</button>
+    <button class="cookie-btn cookie-accept"  onclick="setCookieChoice(true)">Accept</button>
+  </div>
+</div>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="logo" href="#">
+    <img src="/assets/logo.png" alt="AJ Business Assistant" style="height:36px; width:auto; filter:drop-shadow(0 0 8px rgba(181,0,94,0.35));"/>
+    <div>
+      <div class="logo-sub" style="font-size:12px; color:#aaa;">AI agent · Bay Area</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="#advisor" style="font-size:12px; color:#888; text-decoration:none; padding:6px 4px; transition:color 0.2s;" onmouseover="this.style.color='#ccc'" onmouseout="this.style.color='#888'">
+      Book a Call
+    </a>
+    <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" style="
+      padding: 9px 20px; border-radius: 20px; border: none;
+      background: var(--pink);
+      color: #fff; font-size: 12px; font-weight: 800;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+    " onmouseover="this.style.filter='brightness(1.1)'; this.style.transform='translateY(-1px)'"
+       onmouseout="this.style.filter='none'; this.style.transform='none'">
+      Book a Demo
+    </a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="grid-bg"></div>
+  <div class="hero-centered">
+
+    <div class="hero-badge">Revenue Recovery for Local Businesses</div>
+
+    <h1 id="heroHeadline">Your business is losing money right now.<br>We build the system that gets it back.</h1>
+    <p class="hero-sub" id="heroSub">
+      Every missed call, unanswered message, and cold lead is revenue your business already earned — and never collected. We build AI-powered recovery systems that capture what you're losing, 24/7.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" class="btn-primary">Get Your Free Revenue Audit</a>
+      <button class="btn-outline" onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">See How It Works</button>
+    </div>
+
+  </div>
+
+  <!-- TICKER TAPE -->
+  <div class="ticker-wrap" style="max-width:1040px; width:100%; margin:48px auto 0;">
+    <div class="ticker-inner">
+      <div class="ticker-item"><span>⚡</span> Find where you're losing money — free audit</div>
+      <div class="ticker-item"><span>📞</span> Recover missed calls automatically 24/7</div>
+      <div class="ticker-item"><span>💰</span> Most clients recover cost within 30 days</div>
+      <div class="ticker-item"><span>🗓️</span> Books appointments while you sleep</div>
+      <div class="ticker-item"><span>📊</span> Monthly growth strategy with Andres</div>
+      <div class="ticker-item"><span>🚀</span> Live in 5 business days — guaranteed</div>
+      <div class="ticker-item"><span>💬</span> Calls, texts &amp; DMs — all automated</div>
+      <div class="ticker-item"><span>🌎</span> English &amp; Spanish 24/7</div>
+      <div class="ticker-item"><span>🛡️</span> 30-day money-back guarantee</div>
+      <div class="ticker-item"><span>⚡</span> Find where you're losing money — free audit</div>
+      <div class="ticker-item"><span>📞</span> Recover missed calls automatically 24/7</div>
+      <div class="ticker-item"><span>💰</span> Most clients recover cost within 30 days</div>
+      <div class="ticker-item"><span>🗓️</span> Books appointments while you sleep</div>
+      <div class="ticker-item"><span>📊</span> Monthly growth strategy with Andres</div>
+      <div class="ticker-item"><span>🚀</span> Live in 5 business days — guaranteed</div>
+      <div class="ticker-item"><span>💬</span> Calls, texts &amp; DMs — all automated</div>
+      <div class="ticker-item"><span>🌎</span> English &amp; Spanish 24/7</div>
+      <div class="ticker-item"><span>🛡️</span> 30-day money-back guarantee</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TRUST STRIP ── -->
+<div class="trust-strip">
+  <div class="trust-strip-item"><span>✓</span> Automate operations with AI</div>
+  <div class="trust-strip-item"><span>✓</span> Eliminate hidden costs</div>
+  <div class="trust-strip-item"><span>✓</span> Live in 5 business days</div>
+  <div class="trust-strip-item"><span>✓</span> Monthly growth strategy included</div>
+</div>
+
+<!-- ── STEPS BAR ── -->
+<div class="steps-bar" style="display:none;">
+  <div class="step-item active" id="step1indicator">
+    <div class="step-num">1</div>
+    Your Info
+  </div>
+  <div class="step-arrow">→</div>
+  <div class="step-item" id="step2indicator">
+    <div class="step-num">2</div>
+    Live Call
+  </div>
+  <div class="step-arrow">→</div>
+  <div class="step-item" id="step3indicator">
+    <div class="step-num">3</div>
+    Get Started
+  </div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<section class="how-section" id="how-it-works">
+  <div class="section-label">How it works</div>
+  <h2 class="section-title">Find the leak. Fix it. Keep the revenue.</h2>
+  <p class="section-sub">Live in 5 business days. Most clients recover the cost within 30.</p>
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="how-num">1</div>
+      <h3>🔍 Free Revenue Audit</h3>
+      <p>We analyze your missed calls, cold leads, and unconfirmed appointments — and put a dollar amount on what you're losing every month.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">2</div>
+      <h3>⚙️ We build the recovery system</h3>
+      <p>A custom AI system trained on your business — answers calls, books appointments, follows up on leads, 24/7. Live in 5 business days.</p>
+    </div>
+    <div class="how-step">
+      <div class="how-num">3</div>
+      <h3>💰 You keep the revenue</h3>
+      <p>The system runs automatically. You get monthly reports showing exactly what was recovered. No more leaks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── INDUSTRY CARDS ── -->
+<section class="industry-section">
+  <div class="section-label">Built for your industry</div>
+  <h2 class="section-title" style="margin-bottom:36px;">Every local business has a leak. We fix it.</h2>
+  <div class="industry-grid">
+    <div class="industry-card">
+      <span class="industry-emoji">💆</span>
+      <h3>Spas &amp; Med Spas</h3>
+      <p>Sofia books while your team is with clients.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-emoji">🍽️</span>
+      <h3>Restaurants</h3>
+      <p>Sofia captures calls when staff is busy or after hours.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-emoji">🦷</span>
+      <h3>Dental &amp; Medical</h3>
+      <p>Sofia answers FAQs and helps schedule faster.</p>
+    </div>
+    <div class="industry-card">
+      <span class="industry-emoji">🚗</span>
+      <h3>Auto Services</h3>
+      <p>Sofia captures missed leads and follow-ups.</p>
+    </div>
+    <div class="industry-card" style="grid-column: span 2;">
+      <span class="industry-emoji">💇</span>
+      <h3>Salons &amp; Beauty</h3>
+      <p>Sofia fills empty calendar spots automatically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── NICHE SHOWCASE (hidden tabs, kept for demo card logic) ── -->
+<section class="niche-section" style="display:none;">
+  <div class="niche-tabs" style="display:none;">
+    <button class="niche-tab active" onclick="showNiche('spa')">🧖 Med Spa / Skincare</button>
+    <button class="niche-tab" onclick="showNiche('restaurant')">🍽️ Restaurant</button>
+    <button class="niche-tab" onclick="showNiche('dental')">😁 Dental / Medical</button>
+    <button class="niche-tab" onclick="showNiche('auto')">🚗 Auto Services</button>
+    <button class="niche-tab" onclick="showNiche('salon')">💇 Salon / Beauty</button>
+  </div>
+
+  <!-- SPA -->
+  <div class="niche-panel active" id="niche-spa">
+    <div class="niche-info">
+      <h3>The problem every spa faces</h3>
+      <p>Your estheticians are in treatment rooms for 60–90 minutes at a time. Every call that comes in while they're working goes to voicemail — and most callers don't leave one. They book somewhere else.</p>
+      <p>Sofia answers every call instantly, books appointments, answers pricing questions, and follows up for reviews — without interrupting your team.</p>
+      <div class="niche-result">⚡ Serenity Spa went from 12 to 31 bookings/week in 45 days</div>
+    </div>
+    <div class="wa-mock">
+      <div class="wa-header">
+        <div class="wa-avatar">✨</div>
+        <div><div class="wa-name">Sofia — Glow Spa</div><div class="wa-status">● Online now</div></div>
+      </div>
+      <div class="wa-msg out">Hi! Do you have availability for a hydrafacial this Saturday?<span class="wa-time">10:47 PM</span></div>
+      <div class="wa-msg">Hi! Yes, we have openings this Saturday at 10am, 1pm, and 3pm 😊 The Deluxe Hydrafacial is 75 minutes and $180. Want me to book one of those for you?<span class="wa-time">10:47 PM</span><span class="wa-speed">⚡ Replied in 4 seconds</span></div>
+      <div class="wa-msg out">Yes please! The 1pm works great<span class="wa-time">10:48 PM</span></div>
+      <div class="wa-msg">Perfect! I've reserved Saturday at 1pm for your Deluxe Hydrafacial 🎉 You'll receive a confirmation text shortly. Is there anything else I can help with?<span class="wa-time">10:48 PM</span></div>
+    </div>
+  </div>
+
+  <!-- RESTAURANT -->
+  <div class="niche-panel" id="niche-restaurant">
+    <div class="niche-info">
+      <h3>The problem every restaurant faces</h3>
+      <p>Your team can't answer calls during the dinner rush. Private event inquiries — your highest-margin revenue — go unanswered. Every missed call after 9pm is a table that books somewhere else.</p>
+      <p>Sofia takes reservations at midnight on a Sunday, handles group bookings, and follows up with every guest asking for a Google review.</p>
+      <div class="niche-result">⚡ La Candelaria filled Friday tables a full week in advance</div>
+    </div>
+    <div class="wa-mock">
+      <div class="wa-header">
+        <div class="wa-avatar">🍽️</div>
+        <div><div class="wa-name">Sofia — The Table Restaurant</div><div class="wa-status">● Online now</div></div>
+      </div>
+      <div class="wa-msg out">Can I book a table for 6 people this Friday at 8pm?<span class="wa-time">9:52 PM</span></div>
+      <div class="wa-msg">Absolutely! Friday at 8pm for 6 — let me check availability... We have a great table available! May I get the name for the reservation and a contact number?<span class="wa-time">9:52 PM</span><span class="wa-speed">⚡ Replied in 3 seconds</span></div>
+      <div class="wa-msg out">James Hernandez, 415-555-0192<span class="wa-time">9:53 PM</span></div>
+      <div class="wa-msg">You're all set, James! Friday at 8pm, table for 6 🎉 We'll send a reminder the day before. If you need to modify the reservation, just message here anytime!<span class="wa-time">9:53 PM</span></div>
+    </div>
+  </div>
+
+  <!-- DENTAL -->
+  <div class="niche-panel" id="niche-dental">
+    <div class="niche-info">
+      <h3>The problem every clinic faces</h3>
+      <p>Patients call after hours to book appointments. No-shows cost $200–$400 per missed slot. Your front desk spends hours answering the same questions about insurance, hours, and services.</p>
+      <p>Sofia handles all of it automatically — reminders, FAQs, after-hours booking — so your team can focus on patient care.</p>
+      <div class="niche-result">⚡ Smile Dental brought in 15 new patients in their first month</div>
+    </div>
+    <div class="wa-mock">
+      <div class="wa-header">
+        <div class="wa-avatar">😁</div>
+        <div><div class="wa-name">Sofia — Bay Dental</div><div class="wa-status">● Online now</div></div>
+      </div>
+      <div class="wa-msg out">Do you accept Delta Dental insurance?<span class="wa-time">8:14 PM</span></div>
+      <div class="wa-msg">Yes! We accept Delta Dental, Aetna, Cigna, and most major PPO plans 😊 Would you like to schedule a cleaning or a consultation? We have openings this week!<span class="wa-time">8:14 PM</span><span class="wa-speed">⚡ Replied in 2 seconds</span></div>
+      <div class="wa-msg out">Yes, I need a cleaning. What's available?<span class="wa-time">8:15 PM</span></div>
+      <div class="wa-msg">We have Tuesday at 2pm or Thursday at 10am available this week. Which works best for you? I can confirm the appointment right now 🗓️<span class="wa-time">8:15 PM</span></div>
+    </div>
+  </div>
+
+  <!-- AUTO -->
+  <div class="niche-panel" id="niche-auto">
+    <div class="niche-info">
+      <h3>The problem every auto shop faces</h3>
+      <p>Customers call while your team is under a car. After-hours leads — especially for detailing packages — go cold in minutes. A customer who calls at 7pm and gets no answer calls the shop down the street.</p>
+      <p>Sofia captures every lead, qualifies them, and books the appointment — 24/7, no missed opportunities.</p>
+      <div class="niche-result">⚡ Bay Detail increased bookings by 40% in the first 30 days</div>
+    </div>
+    <div class="wa-mock">
+      <div class="wa-header">
+        <div class="wa-avatar">🚗</div>
+        <div><div class="wa-name">Sofia — Bay Auto Detail</div><div class="wa-status">● Online now</div></div>
+      </div>
+      <div class="wa-msg out">How much is a full detail for an SUV?<span class="wa-time">7:38 PM</span></div>
+      <div class="wa-msg">Great question! A full interior + exterior detail for an SUV is $249, which includes hand wash, clay bar, wax, full interior vacuum, leather conditioning, and window cleaning 🚗✨ Want to book it?<span class="wa-time">7:38 PM</span><span class="wa-speed">⚡ Replied in 3 seconds</span></div>
+      <div class="wa-msg out">Yes! Can you do this weekend?<span class="wa-time">7:39 PM</span></div>
+      <div class="wa-msg">We have Saturday at 9am or Sunday at 11am available. Drop-off takes about 10 minutes. Which works for you? 🗓️<span class="wa-time">7:39 PM</span></div>
+    </div>
+  </div>
+
+  <!-- SALON -->
+  <div class="niche-panel" id="niche-salon">
+    <div class="niche-info">
+      <h3>The problem every salon faces</h3>
+      <p>Stylists are with clients all day. New customers who call and can't get through book at a salon that answers. You're also losing repeat clients who want to rebook but can't reach anyone quickly.</p>
+      <p>Sofia books appointments, answers pricing questions, and sends reminders — turning every inquiry into a confirmed booking.</p>
+      <div class="niche-result">⚡ Luxe Salon reduced no-shows by 60% in 3 weeks</div>
+    </div>
+    <div class="wa-mock">
+      <div class="wa-header">
+        <div class="wa-avatar">💇</div>
+        <div><div class="wa-name">Sofia — Luxe Salon</div><div class="wa-status">● Online now</div></div>
+      </div>
+      <div class="wa-msg out">How much is a balayage with a cut?<span class="wa-time">11:02 PM</span></div>
+      <div class="wa-msg">Hi! Balayage + haircut starts at $180 for shoulder-length hair and $220 for longer hair 💇✨ The appointment is about 3 hours. Would you like to book with one of our stylists?<span class="wa-time">11:02 PM</span><span class="wa-speed">⚡ Replied in 4 seconds</span></div>
+      <div class="wa-msg out">Yes! I have long hair. What's available next week?<span class="wa-time">11:03 PM</span></div>
+      <div class="wa-msg">We have Tuesday at 10am and Thursday at 2pm available next week 🗓️ Both with Maria, our color specialist. Which day works better for you?<span class="wa-time">11:03 PM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROI CALCULATOR CHAT ── -->
+<section class="roi-section">
+  <div class="roi-section-label">See your numbers</div>
+  <h2>How much is the phone costing you?</h2>
+  <p class="sub">Answer 3 quick questions — Sofia will calculate your monthly loss in seconds</p>
+
+  <div class="roi-chat-box">
+    <div class="roi-chat-header">
+      <div class="roi-chat-avatar">🤖</div>
+      <div>
+        <div class="roi-chat-name">Sofia — AI agent</div>
+        <div class="roi-chat-status">● Online · Typically replies instantly</div>
+      </div>
+    </div>
+    <div class="roi-messages" id="roiMessages">
+      <div class="roi-msg sofia">
+        <div class="roi-bubble">Hi! I'm Sofia 👋 Let me show you how much you could be missing each month. First — what type of business do you run?</div>
+        <div class="roi-chips">
+          <button class="roi-chip" onclick="roiStep(1,'Med Spa / Skincare')">🧖 Med Spa</button>
+          <button class="roi-chip" onclick="roiStep(1,'Restaurant / Café')">🍽️ Restaurant</button>
+          <button class="roi-chip" onclick="roiStep(1,'Dental / Medical')">😁 Dental / Medical</button>
+          <button class="roi-chip" onclick="roiStep(1,'Auto Services')">🚗 Auto Services</button>
+          <button class="roi-chip" onclick="roiStep(1,'Salon / Beauty')">💇 Salon / Beauty</button>
+          <button class="roi-chip" onclick="roiStep(1,'Other Local Business')">🏪 Other</button>
+        </div>
+      </div>
+      <div class="roi-msg sofia roi-typing-row" style="display:none;">
+        <div class="roi-typing visible" id="roiTyping"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DEMO CARD ── -->
+<div class="demo-container">
+  <div class="demo-card">
+
+    <!-- CARD HEADER -->
+    <div class="card-header">
+      <div class="sofia-avatar">
+        🤖
+        <div class="sofia-status"></div>
+      </div>
+      <div class="header-text">
+        <h2>Sofia — AI agent</h2>
+        <p id="headerSubtitle">Powered by AJ Business Advisory · Ready for your demo</p>
+      </div>
+    </div>
+
+    <!-- CHAT-DRIVEN DEMO CTA
+         Previous version had a Vapi phone form. Removed 2026-04-11 for A2P
+         10DLC compliance: SMS opt-in must flow through ONE source (the GHL
+         chat widget). Sofia now qualifies visitors via chat, then triggers
+         the Vapi outbound call from the chat itself. -->
+    <div class="chat-cta-step">
+      <div style="font-size:56px; text-align:center; margin-bottom:12px;">💬</div>
+      <div style="text-align:center; font-size:22px; font-weight:800; color:#f5f5f5; margin-bottom:8px;">
+        Hear Sofia live in under 60 seconds
+      </div>
+      <div style="text-align:center; font-size:14px; color:#bbb; line-height:1.65; margin-bottom:22px; max-width:480px; margin-left:auto; margin-right:auto;">
+        Start a chat with Sofia right now. She'll ask a couple of quick questions
+        about your business, then call your phone so you can hear exactly how
+        she'd handle a real customer — in English or Spanish.
+      </div>
+
+      <div style="display:flex; justify-content:center;">
+        <a href="/chat" class="start-btn" style="
+          display:inline-flex; align-items:center; justify-content:center;
+          gap:10px; padding:18px 32px; border-radius:14px;
+          background:linear-gradient(135deg, #b5005e, #ff6ab0);
+          color:#fff; font-weight:800; font-size:16px; text-decoration:none;
+          box-shadow:0 8px 30px rgba(181,0,94,0.35);
+          transition:transform 0.15s, box-shadow 0.15s;
+          border:none; cursor:pointer;
+        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 12px 40px rgba(181,0,94,0.5)'"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 30px rgba(181,0,94,0.35)'">
+          💬 Chat with Sofia — Try a live demo →
+        </a>
+      </div>
+
+      <p style="text-align:center; font-size:11px; color:#888; margin-top:18px;">
+        🔒 No credit card · No commitment · Your info is never shared
+      </p>
+
+      <!-- Pricing teaser -->
+      <div class="packages-grid" style="margin-top:28px;">
+        <div class="pkg-card">
+          <div class="pkg-name">STOP THE BLEEDING</div>
+          <div class="pkg-price">$297</div>
+          <div class="pkg-period">/mo + $500 setup</div>
+          <div class="pkg-feature">Phone AI 24/7<br>Never miss a call again</div>
+        </div>
+        <div class="pkg-card featured">
+          <div class="pkg-badge">MOST POPULAR</div>
+          <div class="pkg-name">RECOVER EVERYTHING</div>
+          <div class="pkg-price">$697</div>
+          <div class="pkg-period">/mo + $1,200 setup</div>
+          <div class="pkg-feature">Phone + All Messaging<br>Every channel covered</div>
+        </div>
+        <div class="pkg-card">
+          <div class="pkg-name">FULL REVENUE COMMAND</div>
+          <div class="pkg-price">$997</div>
+          <div class="pkg-period">/mo + $1,500 setup</div>
+          <div class="pkg-feature">Everything + Strategy<br>Andres runs the numbers</div>
+        </div>
+      </div>
+    </div><!-- /chat-cta-step -->
+
+  </div><!-- /demo-card -->
+</div><!-- /demo-container -->
+
+<!-- ── VALUE PROPS ── -->
+<div class="value-section">
+  <div class="value-title">One Partner. Three Results.</div>
+  <div class="value-sub">We don't just answer calls — we grow your business.</div>
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-icon">⚡</div>
+      <h3>Automate your operations</h3>
+      <p>Sofia answers every call, books appointments, and follows up — 24/7, without extra staff.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">💰</div>
+      <h3>Eliminate hidden costs</h3>
+      <p>We identify where your business is leaking money and fix it — starting with payment processing fees.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">📊</div>
+      <h3>Real financial visibility</h3>
+      <p>Know exactly what's coming in, what's going out, and what's working — every month.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🎯</div>
+      <h3>Strategic growth advisory</h3>
+      <p>Monthly 1-on-1 with Andres to review metrics, set targets, and make smarter decisions.</p>
+    </div>
+    <div class="value-card">
+      <div class="value-icon">🌎</div>
+      <h3>Built for local businesses</h3>
+      <p>English &amp; Spanish, Bay Area roots, national reach — we speak your market.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ── ROI BRIDGE ── -->
+<div style="padding: 0 20px 20px; max-width: 960px; margin: 0 auto;">
+  <div style="background: rgba(255,212,0,0.05); border: 1px solid rgba(255,212,0,0.2); border-radius: 14px; padding: 22px 28px; display:flex; align-items:flex-start; gap:16px;">
+    <div style="font-size:28px; flex-shrink:0; margin-top:2px;">💡</div>
+    <div>
+      <div style="font-size:14px; font-weight:800; color:#f5f5f5; margin-bottom:6px;">Most businesses recover Sofia's cost in the first 2 weeks</div>
+      <div style="font-size:13px; color:#aaa; line-height:1.75;">
+        A single missed call from a party of 8 = $400–$600 in lost revenue. Sofia answers that call at 11pm on a Friday when your team has gone home.
+        At $297/month, that's <strong style="color:#ffd400;">$10 per day</strong> — less than a part-time employee works in a single hour.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── PRICING SECTION ── -->
+<div style="padding: 70px 20px; max-width: 960px; margin: 0 auto;" id="pricing">
+  <div style="text-align:center; margin-bottom: 48px;">
+    <div style="display:inline-block; padding:5px 16px; border-radius:20px; border:1px solid rgba(181,0,94,0.35); background:rgba(181,0,94,0.07); font-size:11px; color:var(--pink); letter-spacing:1.5px; font-weight:600; margin-bottom:16px;">TRANSPARENT PRICING</div>
+    <h2 style="font-size:clamp(24px,4vw,36px); font-weight:900; color:#f5f5f5; margin-bottom:10px;">Recovery systems priced as an investment, not a cost.</h2>
+    <p style="font-size:15px; font-weight:700; color:#f5f5f5; margin-bottom:8px;">One-time setup. Monthly plan. Cancel anytime.</p>
+    <p style="font-size:14px; color:#888888; max-width:520px; margin:0 auto; line-height:1.8;">Most clients recover the full monthly cost within 30 days of going live.</p>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:20px; align-items:stretch;">
+
+    <!-- TIER 1: STOP THE BLEEDING -->
+    <div style="border-radius:18px; border:1px solid rgba(181,0,94,0.18); background:rgba(255,255,255,0.03); padding:28px; position:relative;">
+      <div style="font-size:11px; font-weight:700; color:#888888; letter-spacing:1px; margin-bottom:4px;">TIER 1</div>
+      <div style="font-size:17px; font-weight:900; color:#f5f5f5; margin-bottom:6px;">Stop the Bleeding</div>
+      <div style="font-size:11px; color:#888888; margin-bottom:12px; font-style:italic;">You're losing $3K–$8K/month to missed calls. This stops it.</div>
+      <div style="font-size:38px; font-weight:900; color:#f5f5f5;">$297<span style="font-size:14px; font-weight:400; color:#888888;">/mo</span></div>
+      <div style="font-size:12px; color:#888888; margin-bottom:4px;">+ $500 one-time setup fee</div>
+      <div style="width:100%; height:1px; background:rgba(181,0,94,0.12); margin:16px 0;"></div>
+      <div style="display:grid; gap:9px; margin-bottom:24px;">
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Sofia Phone — AI receptionist 24/7</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Books appointments automatically</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Answers FAQs in your voice, your brand</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Up to 500 min/month included</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Monthly leads recovered report</div>
+      </div>
+      <button onclick="getStarted('stop-the-bleeding')" style="display:block; width:100%; text-align:center; padding:13px; border-radius:10px; border:1px solid rgba(181,0,94,0.35); color:var(--pink); font-size:13px; font-weight:700; cursor:pointer; background:transparent; transition:all 0.2s;" onmouseover="this.style.background='rgba(181,0,94,0.1)'" onmouseout="this.style.background='transparent'">Start Recovery →</button>
+    </div>
+
+    <!-- TIER 2: SEAL THE LEAKS -->
+    <div style="border-radius:18px; border:1px solid rgba(181,0,94,0.22); background:rgba(255,255,255,0.03); padding:28px; position:relative;">
+      <div style="font-size:11px; font-weight:700; color:#888888; letter-spacing:1px; margin-bottom:4px;">TIER 2</div>
+      <div style="font-size:17px; font-weight:900; color:#f5f5f5; margin-bottom:6px;">Seal the Leaks</div>
+      <div style="font-size:11px; color:#888888; margin-bottom:12px; font-style:italic;">Phone catches callers. Your second channel catches everyone else.</div>
+      <div style="font-size:38px; font-weight:900; color:#f5f5f5;">$447<span style="font-size:14px; font-weight:400; color:#888888;">/mo</span></div>
+      <div style="font-size:12px; color:#888888; margin-bottom:2px;">+ $750 one-time setup fee</div>
+      <div style="font-size:11px; color:#25d366; font-weight:700; margin-bottom:12px;">Save $564/year vs. buying separately</div>
+      <div style="width:100%; height:1px; background:rgba(181,0,94,0.12); margin:16px 0;"></div>
+      <div style="display:grid; gap:9px; margin-bottom:24px;">
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Everything in Stop the Bleeding</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>+ 1 messaging channel of choice</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>WhatsApp, Instagram, or Facebook</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>AI DMs answered in under 60 seconds</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Full lead pipeline dashboard</div>
+      </div>
+      <button onclick="getStarted('seal-the-leaks')" style="display:block; width:100%; text-align:center; padding:13px; border-radius:10px; border:1px solid rgba(181,0,94,0.35); color:var(--pink); font-size:13px; font-weight:700; cursor:pointer; background:transparent; transition:all 0.2s;" onmouseover="this.style.background='rgba(181,0,94,0.1)'" onmouseout="this.style.background='transparent'">Start Recovery →</button>
+    </div>
+
+    <!-- TIER 3: RECOVER EVERYTHING — MOST POPULAR -->
+    <div style="border-radius:18px; border:1px solid rgba(181,0,94,0.55); background:rgba(181,0,94,0.06); padding:28px; position:relative;">
+      <div style="position:absolute; top:-13px; left:50%; transform:translateX(-50%); background:var(--pink); color:#fff; font-size:10px; font-weight:700; padding:4px 16px; border-radius:12px; white-space:nowrap; letter-spacing:0.5px;">⭐ Most Popular — Best Value</div>
+      <div style="font-size:11px; font-weight:700; color:var(--pink); letter-spacing:1px; margin-bottom:4px;">TIER 3</div>
+      <div style="font-size:17px; font-weight:900; color:#f5f5f5; margin-bottom:6px;">Recover Everything</div>
+      <div style="font-size:11px; color:#888888; margin-bottom:12px; font-style:italic;">Your customers are everywhere. Sofia answers all of them, 24/7.</div>
+      <div style="font-size:38px; font-weight:900; color:#f5f5f5;">$697<span style="font-size:14px; font-weight:400; color:#888888;">/mo</span></div>
+      <div style="font-size:12px; color:#888888; margin-bottom:2px;">+ $1,200 one-time setup fee</div>
+      <div style="font-size:11px; color:#25d366; font-weight:700; margin-bottom:12px;">Save $2,292/year vs. buying separately</div>
+      <div style="width:100%; height:1px; background:rgba(181,0,94,0.2); margin:16px 0;"></div>
+      <div style="display:grid; gap:9px; margin-bottom:24px;">
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Everything in Seal the Leaks</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>WhatsApp + Instagram + Facebook covered</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Every DM, comment, and call — nothing falls through</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Smart scheduling across all channels</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Automated follow-up sequences</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:var(--pink); flex-shrink:0;">✓</span>Weekly performance report</div>
+      </div>
+      <button onclick="getStarted('recover-everything')" style="display:block; width:100%; text-align:center; padding:13px; border-radius:10px; background:var(--pink); color:#fff; font-size:13px; font-weight:700; cursor:pointer; border:none; transition:all 0.2s;" onmouseover="this.style.background='#cc006b'" onmouseout="this.style.background='#b5005e'">Start Recovery →</button>
+    </div>
+
+    <!-- TIER 4: FULL REVENUE COMMAND -->
+    <div style="border-radius:18px; border:1px solid rgba(240,192,96,0.3); background:rgba(240,192,96,0.03); padding:28px; position:relative;">
+      <div style="font-size:11px; font-weight:700; color:#ffd400; letter-spacing:1px; margin-bottom:4px;">TIER 4</div>
+      <div style="font-size:17px; font-weight:900; color:#f5f5f5; margin-bottom:6px;">Full Revenue Command</div>
+      <div style="font-size:11px; color:#888888; margin-bottom:12px; font-style:italic;">Sofia runs communications. Andres runs strategy. You run the business.</div>
+      <div style="font-size:38px; font-weight:900; color:#f5f5f5;">$997<span style="font-size:14px; font-weight:400; color:#888888;">/mo</span></div>
+      <div style="font-size:12px; color:#888888; margin-bottom:2px;">+ $1,500 one-time setup fee</div>
+      <div style="font-size:11px; color:#ffd400; font-weight:700; margin-bottom:12px;">Full operator model — not just software</div>
+      <div style="width:100%; height:1px; background:rgba(240,192,96,0.15); margin:16px 0;"></div>
+      <div style="display:grid; gap:9px; margin-bottom:24px;">
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:#ffd400; flex-shrink:0;">✓</span>Everything in Recover Everything</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:#ffd400; flex-shrink:0;">✓</span>Monthly Revenue Review with Andres (30 min)</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:#ffd400; flex-shrink:0;">✓</span>KPI dashboard — calls, DMs, bookings, revenue recovered</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:#ffd400; flex-shrink:0;">✓</span>Custom AI training on your menu, services &amp; FAQs</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:#ffd400; flex-shrink:0;">✓</span>Priority support — max 2hr response guaranteed</div>
+        <div style="display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#f0f0f0;"><span style="color:#ffd400; flex-shrink:0;">✓</span>Proactive outbound campaigns &amp; review generation</div>
+      </div>
+      <button onclick="getStarted('full-revenue-command')" style="display:block; width:100%; text-align:center; padding:13px; border-radius:10px; border:1px solid rgba(255,212,0,0.4); color:#ffd400; font-size:13px; font-weight:700; cursor:pointer; background:transparent; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,212,0,0.07)'" onmouseout="this.style.background='transparent'">Start Recovery →</button>
+    </div>
+
+  </div>
+
+  <!-- MEET ANDRES -->
+  <div id="advisor" style="margin-top:56px; padding:36px; border-radius:18px; border:1px solid rgba(255,212,0,0.2); background:rgba(255,212,0,0.04); display:flex; gap:32px; align-items:flex-start; flex-wrap:wrap;">
+
+    <!-- Photo column -->
+    <div style="flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:12px; width:110px;">
+      <div style="width:96px; height:96px; border-radius:50%; background:linear-gradient(135deg,#b5005e,#ffd400); padding:2.5px; box-shadow:0 0 28px rgba(181,0,94,0.35); flex-shrink:0;">
+        <div style="width:100%; height:100%; border-radius:50%; overflow:hidden; background:#1a1a1a;">
+          <img src="/assets/andres.jpeg" alt="Andres Triana" width="91" height="91"
+               style="width:91px; height:91px; object-fit:cover; border-radius:50%; display:block;"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'width:100%;height:100%;border-radius:50%;background:linear-gradient(135deg,#1a0a12,#0d0d1a);display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:900;color:#b5005e;\'>AT</div>'"/>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:13px; font-weight:800; color:#f5f5f5; line-height:1.3;">Andres Triana</div>
+        <div style="font-size:10px; color:#888; margin-top:2px; letter-spacing:0.3px;">Founder &amp; AI Advisor</div>
+      </div>
+      <div style="display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:12px; background:rgba(255,212,0,0.1); border:1px solid rgba(255,212,0,0.25); font-size:10px; color:#ffd400; font-weight:700; white-space:nowrap;">
+        📍 Bay Area, CA
+      </div>
+    </div>
+
+    <!-- Text column -->
+    <div style="flex:1; min-width:260px;">
+      <div style="font-size:17px; font-weight:800; color:#f5f5f5; margin-bottom:10px; line-height:1.4;">Start with a free Revenue Audit.<br>We find the leak before you pay anything.</div>
+      <div style="font-size:13px; color:#aaa; line-height:1.8; max-width:540px; margin-bottom:20px;">
+        I work directly with each business owner to quantify exactly what's slipping through the cracks — missed calls, cold leads, no-shows. Then we build the system that stops it.
+      </div>
+      <div style="display:grid; gap:8px; margin-bottom:20px;">
+        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#ccc;"><span style="color:var(--pink);">✓</span> We calculate your monthly revenue leak in dollars</div>
+        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#ccc;"><span style="color:var(--pink);">✓</span> You see the ROI before committing to anything</div>
+        <div style="display:flex; align-items:center; gap:8px; font-size:13px; color:#ccc;"><span style="color:var(--pink);">✓</span> 30-minute call — no pitch, no pressure</div>
+      </div>
+      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" style="
+        display:inline-flex; align-items:center; gap:8px;
+        padding:13px 28px; border-radius:12px;
+        background:var(--pink);
+        color:#fff; font-size:14px; font-weight:800;
+        text-decoration:none; transition:all 0.2s;
+      " onmouseover="this.style.background='#cc006b'; this.style.transform='translateY(-1px)'"
+         onmouseout="this.style.background='#b5005e'; this.style.transform='none'">
+        Get Your Free Revenue Audit →
+      </a>
+    </div>
+
+  </div>
+
+</div><!-- /pricing section -->
+
+<!-- ── INDIVIDUAL CHANNEL PLANS ── -->
+<section id="channels" style="padding:96px 24px;position:relative;overflow:hidden;background:linear-gradient(180deg,#0d0d0d 0%,#110812 60%,#0d0d0d 100%);">
+
+  <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:700px;height:1px;background:linear-gradient(90deg,transparent,#b5005e,transparent);opacity:0.5;"></div>
+
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:10;">
+
+    <div style="text-align:center;margin-bottom:64px;">
+      <p style="display:inline-flex;align-items:center;gap:8px;color:#ffd400;font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:16px;background:rgba(255,212,0,0.1);border:1px solid rgba(255,212,0,0.2);padding:6px 16px;border-radius:50px;">
+        ⚡ No long-term contracts · Cancel anytime
+      </p>
+      <h2 style="font-size:clamp(2rem,5vw,3.2rem);font-weight:900;color:#fff;line-height:1.15;margin-bottom:20px;">
+        You don't need the full package<br>
+        <span class="shimmer-text">to start winning customers today</span>
+      </h2>
+      <p style="color:#9ca3af;font-size:1.05rem;max-width:600px;margin:0 auto;line-height:1.7;">
+        Activate <strong style="color:#fff;">just the channel where you're losing customers right now</strong>. Pay only for what you use. Scale whenever you're ready.
+      </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:16px;margin-bottom:32px;">
+
+      <!-- Phone Calls -->
+      <div class="canal-card" style="border-color:rgba(181,0,94,0.25);"
+        onmouseover="this.style.boxShadow='0 20px 48px rgba(181,0,94,0.2)';this.style.borderColor='rgba(181,0,94,0.55)'"
+        onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(181,0,94,0.25)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#b5005e,transparent);border-radius:0 0 22px 22px;"></div>
+        <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#b5005e;filter:blur(30px);opacity:0.15;pointer-events:none;"></div>
+        <div class="canal-icon-wrap" style="background:rgba(181,0,94,0.12);border-color:rgba(181,0,94,0.3);">📞</div>
+        <p class="canal-name">Phone Calls</p>
+        <p class="canal-brand" style="color:rgba(181,0,94,0.9);">Sofia IA</p>
+        <p class="canal-price" style="background:linear-gradient(90deg,#b5005e,#e0558a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$297</p>
+        <p class="canal-period">USD / month · $500 setup</p>
+        <ul class="canal-features">
+          <li>Answers 24/7 in real voice</li>
+          <li>Books appointments automatically</li>
+          <li>Custom FAQ by voice</li>
+          <li>Up to 500 min/month</li>
+          <li>Overage: $0.50 USD/min</li>
+        </ul>
+        <a href="#demo" class="canal-btn" style="border-color:rgba(181,0,94,0.5);color:#b5005e;"
+          onmouseover="this.style.background='rgba(181,0,94,0.12)'"
+          onmouseout="this.style.background='transparent'">Activate →</a>
+      </div>
+
+      <!-- WhatsApp -->
+      <div class="canal-card" style="border-color:rgba(37,211,102,0.2);"
+        onmouseover="this.style.boxShadow='0 20px 48px rgba(37,211,102,0.15)';this.style.borderColor='rgba(37,211,102,0.5)'"
+        onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(37,211,102,0.2)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#25d366,transparent);border-radius:0 0 22px 22px;"></div>
+        <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#25d366;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+        <div class="canal-icon-wrap" style="background:rgba(37,211,102,0.1);border-color:rgba(37,211,102,0.3);">💬</div>
+        <p class="canal-name">WhatsApp</p>
+        <p class="canal-brand" style="color:rgba(37,211,102,0.8);">Sofia IA</p>
+        <p class="canal-price" style="background:linear-gradient(90deg,#25d366,#7affc2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$197</p>
+        <p class="canal-period">USD / month · $300 setup</p>
+        <ul class="canal-features">
+          <li>Instant message replies</li>
+          <li>Auto lead qualification</li>
+          <li>Confirmations & reminders</li>
+          <li>Custom conversation flows</li>
+        </ul>
+        <a href="#demo" class="canal-btn" style="border-color:rgba(37,211,102,0.4);color:#25d366;"
+          onmouseover="this.style.background='rgba(37,211,102,0.08)'"
+          onmouseout="this.style.background='transparent'">Activate →</a>
+      </div>
+
+      <!-- Instagram -->
+      <div class="canal-card" style="border-color:rgba(228,64,95,0.2);"
+        onmouseover="this.style.boxShadow='0 20px 48px rgba(228,64,95,0.15)';this.style.borderColor='rgba(228,64,95,0.5)'"
+        onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(228,64,95,0.2)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#e4405f,#f77737,transparent);border-radius:0 0 22px 22px;"></div>
+        <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#e4405f;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+        <div class="canal-icon-wrap" style="background:linear-gradient(135deg,rgba(228,64,95,0.12),rgba(247,119,55,0.08));border-color:rgba(228,64,95,0.3);">📸</div>
+        <p class="canal-name">Instagram</p>
+        <p class="canal-brand" style="color:rgba(228,64,95,0.8);">Sofia IA</p>
+        <p class="canal-price" style="background:linear-gradient(90deg,#e4405f,#f77737);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$197</p>
+        <p class="canal-period">USD / month · $300 setup</p>
+        <ul class="canal-features">
+          <li>Instant DM replies</li>
+          <li>Auto comment responses</li>
+          <li>Turn followers into clients</li>
+          <li>Welcome message flows</li>
+        </ul>
+        <a href="#demo" class="canal-btn" style="border-color:rgba(228,64,95,0.4);color:#e4405f;"
+          onmouseover="this.style.background='rgba(228,64,95,0.08)'"
+          onmouseout="this.style.background='transparent'">Activate →</a>
+      </div>
+
+      <!-- Facebook -->
+      <div class="canal-card" style="border-color:rgba(24,119,242,0.2);"
+        onmouseover="this.style.boxShadow='0 20px 48px rgba(24,119,242,0.15)';this.style.borderColor='rgba(24,119,242,0.5)'"
+        onmouseout="this.style.boxShadow='none';this.style.borderColor='rgba(24,119,242,0.2)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#1877f2,transparent);border-radius:0 0 22px 22px;"></div>
+        <div style="position:absolute;top:-50px;left:50%;transform:translateX(-50%);width:90px;height:90px;border-radius:50%;background:#1877f2;filter:blur(30px);opacity:0.1;pointer-events:none;"></div>
+        <div class="canal-icon-wrap" style="background:rgba(24,119,242,0.1);border-color:rgba(24,119,242,0.3);">👥</div>
+        <p class="canal-name">Facebook</p>
+        <p class="canal-brand" style="color:rgba(24,119,242,0.8);">Sofia IA</p>
+        <p class="canal-price" style="background:linear-gradient(90deg,#1877f2,#66b0ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">$197</p>
+        <p class="canal-period">USD / month · $300 setup</p>
+        <ul class="canal-features">
+          <li>Automated Messenger</li>
+          <li>Comment replies</li>
+          <li>Leads from ad campaigns</li>
+          <li>Auto follow-up sequences</li>
+        </ul>
+        <a href="#demo" class="canal-btn" style="border-color:rgba(24,119,242,0.4);color:#1877f2;"
+          onmouseover="this.style.background='rgba(24,119,242,0.08)'"
+          onmouseout="this.style.background='transparent'">Activate →</a>
+      </div>
+
+      <!-- TikTok -->
+      <div class="canal-card" style="border-color:rgba(105,201,208,0.12);opacity:0.65;">
+        <div style="position:absolute;top:14px;right:14px;background:rgba(105,201,208,0.15);color:#69c9d0;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:100px;border:1px solid rgba(105,201,208,0.3);">COMING SOON</div>
+        <div class="canal-icon-wrap" style="background:linear-gradient(135deg,rgba(105,201,208,0.08),rgba(238,29,82,0.05));border-color:rgba(105,201,208,0.2);">🎵</div>
+        <p class="canal-name">TikTok</p>
+        <p class="canal-brand" style="color:rgba(105,201,208,0.6);">Sofia IA</p>
+        <p class="canal-price" style="color:#555;font-size:18px;font-weight:700;">Próximamente</p>
+        <ul class="canal-features" style="opacity:0.5;">
+          <li>AI comment replies</li>
+          <li>Automated DMs</li>
+          <li>Turn viral → paying client</li>
+          <li>On-brand responses</li>
+        </ul>
+        <span class="canal-btn" style="border-color:rgba(105,201,208,0.2);color:#555;cursor:not-allowed;display:block;text-align:center;padding:10px;border-radius:8px;border:1px solid;margin-top:16px;">Notify me</span>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:#6b7280;font-size:0.875rem;">
+      💡 <strong style="color:#d1d5db;">Need multiple channels?</strong> The <em>Recover Everything</em> package covers Phone + WhatsApp + Instagram + Facebook — and saves you $2,292/year vs. buying separately.
+      <a href="#pricing" style="color:#b5005e;font-weight:700;margin-left:4px;text-decoration:none;">See full packages →</a>
+    </p>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:andres@ajbusinessadvisory.com">andres@ajbusinessadvisory.com</a>
+      <span>Bay Area, CA</span>
+      <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank">Book a Call</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="/terms" target="_blank">Terms of Service</a>
+      <a href="/privacy" target="_blank">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div style="margin-bottom:10px;">© 2025 AJ Business Advisory LLC · Bay Area, California</div>
+    <div class="footer-disclaimer">
+      By submitting this form you agree to receive automated AI-generated phone calls and SMS messages
+      from AJ Business Advisory LLC for demo and business purposes. Message and data rates may apply.
+      You may opt out at any time by replying STOP or contacting us directly.
+      AI voice calls are generated using Vapi AI technology and may not sound like a human.
+      All services are subject to our <a href="/terms" target="_blank" style="color:#666;">Terms of Service</a>.
+    </div>
+  </div>
+</footer>
+
+<!-- ── STICKY MOBILE CTA ── -->
+<div id="stickyCta">
+  <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" class="sticky-cta-btn" style="display:block; width:100%; text-align:center; padding:14px; border-radius:12px; border:none; background:var(--pink); color:#fff; font-size:14px; font-weight:800; cursor:pointer; font-family:inherit; text-decoration:none;">
+    Book a Demo — Free
+  </a>
+</div>
+
+<!-- Floating chat widget removed 2026-04-11 — replaced by GHL LeadConnector
+     widget (A2P 10DLC compliant). See <script> in <head>. -->
+
+
+<script>
+// Custom chat widget removed 2026-04-11 — replaced by GHL LeadConnector
+// widget (A2P 10DLC compliant). See loader <script> in <head>.
+
+
+// ─────────────────────────────────────────────
+//  CONFIG
+// ─────────────────────────────────────────────
+const API_BASE = 'https://aj-business-advisory.onrender.com';
+
+// ─────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────
+let callActive    = false;
+let callSeconds   = 0;
+let timerInterval = null;
+let selectedNicho = "Med Spa / Skincare";
+let selectedLang  = 'en';
+
+// ─────────────────────────────────────────────
+//  COOKIE BANNER
+// ─────────────────────────────────────────────
+(function initCookieBanner() {
+  if (!localStorage.getItem('cookieChoice')) {
+    document.getElementById('cookieBanner').style.display = 'flex';
+  }
+})();
+function setCookieChoice(accepted) {
+  localStorage.setItem('cookieChoice', accepted ? 'accepted' : 'declined');
+  document.getElementById('cookieBanner').style.display = 'none';
+}
+
+// ─────────────────────────────────────────────
+//  LANGUAGE SELECTOR
+// ─────────────────────────────────────────────
+function selectLang(lang) {
+  selectedLang = lang;
+  const btnEN = document.getElementById('langEN');
+  const btnES = document.getElementById('langES');
+  const hint  = document.getElementById('langHint');
+  if (lang === 'en') {
+    btnEN.style.border      = '1.5px solid rgba(181,0,94,0.5)';
+    btnEN.style.background  = 'rgba(181,0,94,0.12)';
+    btnEN.style.color       = '#f5f5f5';
+    btnES.style.border      = '1.5px solid rgba(255,255,255,0.1)';
+    btnES.style.background  = 'rgba(255,255,255,0.04)';
+    btnES.style.color       = '#888';
+    hint.innerHTML = '🇺🇸 Sofia will greet you in <strong style="color:var(--pink)">English</strong> — respond in English';
+  } else {
+    btnEN.style.border      = '1.5px solid rgba(255,255,255,0.1)';
+    btnEN.style.background  = 'rgba(255,255,255,0.04)';
+    btnEN.style.color       = '#888';
+    btnES.style.border      = '1.5px solid rgba(181,0,94,0.5)';
+    btnES.style.background  = 'rgba(181,0,94,0.12)';
+    btnES.style.color       = '#f5f5f5';
+    hint.innerHTML = '🇲🇽 Sofia te saludará en <strong style="color:var(--pink)">Español</strong> — responde en español';
+  }
+}
+
+// ─────────────────────────────────────────────
+//  NICHO SELECTOR
+// ─────────────────────────────────────────────
+function selectNicho(btn) {
+    document.querySelectorAll('.nicho-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const nicho = btn.dataset.nicho;
+    selectedNicho = nicho;
+    // Sync back to quick card
+    document.querySelectorAll('.quick-nicho-btn').forEach(b => {
+      b.classList.remove('selected');
+      if (b.dataset.nicho === nicho) b.classList.add('selected');
+    });
+    // Update hero copy
+    updateHeroCopy(nicho);
+    // Handle "Other" field
+    const otherWrap = document.getElementById('otherNichoWrap');
+    if (otherWrap) otherWrap.style.display = nicho === 'Other Local Business' ? 'block' : 'none';
+  }
+
+// ─────────────────────────────────────────────
+//  FORM ERROR
+// ─────────────────────────────────────────────
+function showFormError(msg) {
+  const el = document.getElementById('formError');
+  el.textContent = msg;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+function clearFormError() {
+  document.getElementById('formError').style.display = 'none';
+}
+
+// ─────────────────────────────────────────────
+//  START DEMO — Calls our Render backend
+// ─────────────────────────────────────────────
+async function startDemo() {
+  clearFormError();
+
+  const bizName       = document.getElementById('bizName').value.trim();
+  const ownerName     = document.getElementById('ownerName').value.trim();
+  const customerPhone = document.getElementById('bizPhone').value.trim();
+  const email         = document.getElementById('bizEmail').value.trim();
+  const website       = document.getElementById('bizWebsite').value.trim();
+  const tcpaChecked   = document.getElementById('tcpaConsent').checked;
+
+  if (!bizName)       { showFormError("Please enter your business name to personalize Sofia's demo."); return; }
+  if (!ownerName)     { showFormError("Please enter your name so Sofia can greet you properly."); return; }
+  if (!customerPhone) { showFormError("Please enter your phone number — Sofia will call you directly."); return; }
+  // Normalize to E.164 (+1XXXXXXXXXX) — Vapi requires this format
+  const digitsOnly = customerPhone.replace(/\D/g, '');
+  let e164Phone = '';
+  if (digitsOnly.length === 10) {
+    e164Phone = '+1' + digitsOnly;
+  } else if (digitsOnly.length === 11 && digitsOnly[0] === '1') {
+    e164Phone = '+' + digitsOnly;
+  } else {
+    showFormError("Please enter a valid US phone number — e.g. (415) 555-0100");
+    document.getElementById('bizPhone').focus();
+    return;
+  }
+  if (!email)         { showFormError("Email is required so we can send you your demo summary."); document.getElementById('bizEmail').focus(); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showFormError("Please enter a valid email address."); document.getElementById('bizEmail').focus(); return; }
+  if (!tcpaChecked) {
+    showFormError("☝️ Please check the consent box above — required to make the AI call.");
+    const cb = document.getElementById('tcpaConsent');
+    cb.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    cb.closest('.consent-wrap').style.outline = '2px solid #b5005e';
+    cb.closest('.consent-wrap').style.borderRadius = '8px';
+    cb.closest('.consent-wrap').style.padding = '10px';
+    setTimeout(() => { cb.closest('.consent-wrap').style.outline = ''; }, 3000);
+    return;
+  }
+
+  const otherNichoVal  = document.getElementById('otherNichoInput').value.trim();
+  const effectiveNicho = (selectedNicho === 'Other Local Business' && otherNichoVal)
+    ? otherNichoVal
+    : selectedNicho;
+
+  // Show call UI immediately
+  transitionToCallStep(bizName, e164Phone);
+
+  // Hit our FastAPI backend — with retry to handle Render cold starts
+  const callPayload = JSON.stringify({
+    phone:     e164Phone,
+    bizName:   bizName,
+    ownerName: ownerName,
+    nicho:     effectiveNicho,
+    lang:      selectedLang,
+    email:     email,
+    website:   website,
+  });
+
+  let callSuccess = false;
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 25000); // 25s timeout per attempt
+      const resp = await fetch(`${API_BASE}/demo/call`, {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    callPayload,
+        signal:  controller.signal,
+      });
+      clearTimeout(timeout);
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        if (attempt < 3) { await new Promise(r => setTimeout(r, 3000)); continue; }
+        showCallError(err.error || 'Could not connect to Sofia. Please try again.');
+        return;
+      }
+
+      const data = await resp.json();
+      console.log(`[Sofia] Call initiated (attempt ${attempt}):`, data.callId);
+      callSuccess = true;
+      break;
+
+    } catch (err) {
+      console.warn(`[Sofia] Attempt ${attempt} failed:`, err.name);
+      if (attempt < 3) { await new Promise(r => setTimeout(r, 3000)); continue; }
+      showCallError('Network error. Please check your connection and try again.');
+      return;
+    }
+  }
+
+  if (!callSuccess) return;
+
+  // Transition to "active" state after 15s
+  setTimeout(() => activateCallState(bizName), 15000);
+  // Timer starts after 5s
+  setTimeout(() => startCallTimer(), 5000);
+  // Hard cap: auto-end after 3:30
+  setTimeout(() => { if (callActive) endCall(); }, 210000);
+}
+
+// ─────────────────────────────────────────────
+//  ERROR INSIDE CALL SCREEN
+// ─────────────────────────────────────────────
+function showCallError(msg) {
+  callActive = false;
+  clearInterval(timerInterval);
+  pauseWaves(true);
+  document.getElementById('dialingState').innerHTML = `
+    <div style="font-size:42px; margin-bottom:16px;">⚠️</div>
+    <div style="font-size:16px; font-weight:700; color:#f5f5f5; margin-bottom:8px;">Connection failed</div>
+    <div style="font-size:13px; color:#aaa; margin-bottom:24px; max-width:280px; margin-left:auto; margin-right:auto;">${msg}</div>
+    <button onclick="restartDemo()" style="background:var(--pink); color:#fff; border:none; padding:12px 28px; border-radius:12px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit;">Try Again</button>
+  `;
+}
+
+// ─────────────────────────────────────────────
+//  UI TRANSITIONS
+// ─────────────────────────────────────────────
+function transitionToCallStep(bizName, customerPhone) {
+  callActive = true;
+  document.getElementById('formStep').style.display = 'none';
+  document.getElementById('callStep').classList.add('active');
+  document.getElementById('callBizName').textContent = bizName;
+  document.getElementById('headerSubtitle').textContent = `Calling you now · ${bizName}`;
+  const phoneDisplay = document.getElementById('callPhoneDisplay');
+  if (phoneDisplay && customerPhone) phoneDisplay.textContent = customerPhone;
+  document.getElementById('dialingState').style.display = 'block';
+  document.getElementById('activeCallState').style.display = 'none';
+  document.getElementById('callTimer').textContent = '⏱ 0:00';
+  document.getElementById('step1indicator').className = 'step-item done';
+  document.getElementById('step2indicator').className = 'step-item active';
+  pauseWaves(false);
+}
+
+function activateCallState(bizName) {
+  if (!callActive) return;
+  document.getElementById('dialingState').style.display = 'none';
+  const active = document.getElementById('activeCallState');
+  active.style.display = 'block';
+  document.getElementById('callBizName2').textContent = bizName;
+}
+
+function pauseWaves(paused) {
+  document.querySelectorAll('.wave-bar').forEach(b => b.classList.toggle('paused', paused));
+}
+
+function startCallTimer() {
+  if (timerInterval) clearInterval(timerInterval);
+  callSeconds = 0;
+  document.getElementById('callTimer').textContent = '⏱ 0:00';
+  timerInterval = setInterval(() => {
+    callSeconds++;
+    const m = Math.floor(callSeconds / 60);
+    const s = callSeconds % 60;
+    document.getElementById('callTimer').textContent = `⏱ ${m}:${s.toString().padStart(2,'0')}`;
+  }, 1000);
+}
+
+// ─────────────────────────────────────────────
+//  END CALL
+// ─────────────────────────────────────────────
+function endCall() {
+  if (!callActive) return;
+  callActive = false;
+  clearInterval(timerInterval);
+  pauseWaves(true);
+
+  const bizName = document.getElementById('callBizName').textContent;
+  document.getElementById('callStep').classList.remove('active');
+  document.getElementById('resultStep').classList.add('active');
+  document.getElementById('resultBizName').textContent  = bizName;
+  document.getElementById('resultBizName2').textContent = bizName;
+  document.getElementById('headerSubtitle').textContent = `Demo complete · ${bizName}`;
+
+  // Pre-fill lead form
+  const ownerName = document.getElementById('ownerName').value.trim();
+  const phone     = document.getElementById('bizPhone').value.trim();
+  const email     = document.getElementById('bizEmail').value.trim();
+  if (ownerName) document.getElementById('leadName').value  = ownerName;
+  if (phone)     document.getElementById('leadPhone').value = phone;
+  if (email)     document.getElementById('leadEmail').value = email;
+
+  document.getElementById('step2indicator').className = 'step-item done';
+  document.getElementById('step3indicator').className = 'step-item active';
+}
+
+// ─────────────────────────────────────────────
+//  SUBMIT LEAD → our /lead endpoint
+// ─────────────────────────────────────────────
+async function submitLead() {
+  const name  = document.getElementById('leadName').value.trim();
+  const phone = document.getElementById('leadPhone').value.trim();
+  const email = document.getElementById('leadEmail').value.trim();
+  const biz   = document.getElementById('callBizName').textContent;
+  const errEl = document.getElementById('leadFormError');
+
+  errEl.style.display = 'none';
+  errEl.textContent   = '';
+
+  if (!name) {
+    errEl.textContent = 'Please enter your name.';
+    errEl.style.display = 'block'; return;
+  }
+  if (!email) {
+    errEl.textContent = 'Email is required to receive your follow-up.';
+    errEl.style.display = 'block';
+    document.getElementById('leadEmail').focus(); return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errEl.textContent = 'Please enter a valid email address.';
+    errEl.style.display = 'block';
+    document.getElementById('leadEmail').focus(); return;
+  }
+
+  const formData = new URLSearchParams();
+  formData.append('name',     name);
+  formData.append('email',    email);
+  formData.append('phone',    phone);
+  formData.append('business', biz);
+
+  try {
+    await fetch(`${API_BASE}/lead`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString()
+    });
+  } catch(e) {
+    // Silently fail — still show success
+  }
+
+  document.getElementById('leadForm').style.display = 'none';
+  document.getElementById('leadSuccess').classList.add('show');
+}
+
+// ─────────────────────────────────────────────
+//  RESTART
+// ─────────────────────────────────────────────
+function restartDemo() {
+  document.getElementById('bizName').value   = '';
+  document.getElementById('ownerName').value = '';
+  document.getElementById('bizPhone').value  = '';
+  document.getElementById('bizEmail').value  = '';
+  document.getElementById('tcpaConsent').checked = false;
+
+  document.getElementById('formStep').style.display = 'block';
+  document.getElementById('callStep').classList.remove('active');
+  document.getElementById('resultStep').classList.remove('active');
+  document.getElementById('leadForm').style.display = 'grid';
+  document.getElementById('leadSuccess').classList.remove('show');
+  document.getElementById('callTimer').textContent = '⏱ 0:00';
+
+  // Restore dialing state HTML
+  document.getElementById('dialingState').innerHTML = `
+    <div style="font-size:48px; margin-bottom:16px;">📞</div>
+    <div class="call-label">Sofia is calling</div>
+    <div class="call-business" id="callBizName">—</div>
+    <div style="font-size:13px; color:#888; margin-top:8px;" id="callPhoneDisplay"></div>
+    <div class="wave-wrap" id="waveWrap" style="margin:20px auto;">
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+      <div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div>
+    </div>
+    <div style="display:inline-flex; align-items:center; gap:10px; padding:14px 24px; border-radius:14px; background:rgba(181,0,94,0.08); border:1.5px solid rgba(181,0,94,0.35); animation: speakPulse 2s ease-in-out infinite; margin: 8px 0 20px;">
+      <div style="width:12px; height:12px; border-radius:50%; background:#b5005e; animation: pulse 1.2s ease-in-out infinite;"></div>
+      <span style="font-size:14px; font-weight:700; color:#f5f5f5;" id="dialingMsg">📲 Answer your phone — Sofia is calling now!</span>
+    </div>
+    <div style="font-size:12px; color:#888; line-height:1.7;">
+      From: <strong style="color:#ffd400;">+1 (276) 259-3233</strong> · AJ Business Advisory<br>
+      <span id="dialingSubMsg">Pick up within the next few seconds</span>
+    </div>
+  `;
+  document.getElementById('dialingState').style.display = 'block';
+  document.getElementById('activeCallState').style.display = 'none';
+
+  document.getElementById('step1indicator').className = 'step-item active';
+  document.getElementById('step2indicator').className = 'step-item';
+  document.getElementById('step3indicator').className = 'step-item';
+  document.getElementById('headerSubtitle').textContent = 'Powered by AJ Business Advisory · Ready for your demo';
+  clearFormError();
+}
+
+// ─────────────────────────────────────────────
+//  SCROLL TO DEMO (from pricing CTAs)
+// ─────────────────────────────────────────────
+function scrollToDemo() {
+  document.querySelector('.demo-container').scrollIntoView({ behavior: 'smooth' });
+}
+
+  // Niche-specific hero copy
+  const NICHE_COPY = {
+    'Med Spa / Skincare': {
+      h1: 'Every Missed Call at Your Spa<br>Is a Booking Gone Forever',
+      sub: 'Sofia answers while you\'re in a treatment room — books appointments, answers pricing questions, 24/7.',
+      card: 'She\'ll call your number and demo a spa booking in 60 seconds'
+    },
+    'Restaurant / Café': {
+      h1: 'Every Unanswered Call During<br>Dinner Rush Costs You a Table',
+      sub: 'Sofia takes reservations at midnight on a Sunday — so you never lose a party-of-6 to voicemail again.',
+      card: 'She\'ll call your number and demo a reservation in 60 seconds'
+    },
+    'Automotive / Auto Detailing': {
+      h1: 'Every Call You Miss Under a Car<br>Goes to Your Competitor',
+      sub: 'Sofia captures every lead and books the appointment — even at 7pm when your team is off.',
+      card: 'She\'ll call your number and demo a detailing booking in 60 seconds'
+    },
+    'Beauty Salon / Hair Salon': {
+      h1: 'Every Call You Miss While With<br>a Client Books at Another Salon',
+      sub: 'Sofia answers, books, and sends reminders — so no new client slips away while you\'re working.',
+      card: 'She\'ll call your number and demo a salon booking in 60 seconds'
+    },
+    'Dental / Medical Clinic': {
+      h1: 'Every After-Hours Call You Miss<br>Is a New Patient Lost',
+      sub: 'Sofia handles after-hours booking, insurance FAQs, and appointment reminders — so your front desk can focus on care.',
+      card: 'She\'ll call your number and demo a patient intake in 60 seconds'
+    },
+    'Other Local Business': {
+      h1: 'Never miss a call,<br>booking, or lead again',
+      sub: 'Sofia answers calls, texts, and DMs 24/7 in English and Spanish — and can be live for your business in 5 days.',
+      card: 'Enter your info — she\'ll call your phone in 60 seconds'
+    }
+  };
+
+  function updateHeroCopy(nicho) {
+    const copy = NICHE_COPY[nicho] || NICHE_COPY['Other Local Business'];
+    const h1 = document.getElementById('heroHeadline');
+    const sub = document.getElementById('heroSub');
+    const cardSub = document.getElementById('quickCardSub');
+    if (h1) h1.innerHTML = copy.h1;
+    if (sub) sub.textContent = copy.sub;
+    if (cardSub) cardSub.textContent = copy.card;
+  }
+
+  function selectQuickNicho(btn) {
+    document.querySelectorAll('.quick-nicho-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    const nicho = btn.dataset.nicho;
+    // Sync to main form nicho grid
+    document.querySelectorAll('.nicho-btn').forEach(b => {
+      b.classList.remove('selected');
+      if (b.dataset.nicho === nicho) b.classList.add('selected');
+    });
+    // Update hero copy
+    updateHeroCopy(nicho);
+  }
+
+  function quickStartDemo() {
+    const phone = document.getElementById('quickPhone').value.trim();
+    const selectedNicho = document.querySelector('.quick-nicho-btn.selected');
+    const nicho = selectedNicho ? selectedNicho.dataset.nicho : 'Med Spa / Skincare';
+
+    // Pre-fill the full form
+    if (phone) document.getElementById('bizPhone').value = phone;
+
+    // Select matching nicho in full form
+    document.querySelectorAll('.nicho-btn').forEach(btn => {
+      btn.classList.remove('selected');
+      if (btn.dataset.nicho === nicho) btn.classList.add('selected');
+    });
+
+    // Scroll to demo form and focus on business name
+    scrollToDemo();
+    setTimeout(() => {
+      const bizName = document.getElementById('bizName');
+      if (bizName) bizName.focus();
+    }, 600);
+  }
+
+// ─────────────────────────────────────────────
+//  STRIPE CHECKOUT
+// ─────────────────────────────────────────────
+const PLAN_LABELS = { starter: 'Get Started — Starter →', pro: 'Get Started — Pro →', elite: 'Get Started — Elite →' };
+
+async function getStarted(plan) {
+  const btn = document.getElementById('btn-' + plan);
+  const original = btn.textContent;
+  btn.textContent = 'Loading…';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'plan=' + encodeURIComponent(plan),
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again or contact us.');
+      btn.textContent = original;
+      btn.disabled = false;
+    }
+  } catch (e) {
+    alert('Connection error. Please try again.');
+    btn.textContent = original;
+    btn.disabled = false;
+  }
+}
+
+// ── Niche showcase ──
+function showNiche(id) {
+  document.querySelectorAll('.niche-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.niche-panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('niche-' + id).classList.add('active');
+}
+
+// ── ROI Calculator Chat ──
+let roiData = { industry: '', ticket: 0, missedCalls: 0 };
+
+function roiStep(step, value) {
+  const msgs = document.getElementById('roiMessages');
+
+  // Disable all chips in previous message
+  msgs.querySelectorAll('.roi-chip').forEach(c => { c.disabled = true; c.style.opacity = '0.5'; c.style.cursor = 'default'; });
+
+  // Add user reply bubble
+  const userMsg = document.createElement('div');
+  userMsg.className = 'roi-msg user';
+  userMsg.innerHTML = `<div class="roi-bubble">${value}</div>`;
+  msgs.appendChild(userMsg);
+
+  // Show typing indicator
+  const typingRow = document.createElement('div');
+  typingRow.className = 'roi-msg sofia';
+  typingRow.innerHTML = '<div class="roi-typing visible"><span></span><span></span><span></span></div>';
+  msgs.appendChild(typingRow);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    msgs.removeChild(typingRow);
+
+    if (step === 1) {
+      roiData.industry = value;
+      const sofiaMsg = document.createElement('div');
+      sofiaMsg.className = 'roi-msg sofia';
+      sofiaMsg.innerHTML = `<div class="roi-bubble">Got it — <strong>${value}</strong>! 💼 Now, what's your average transaction or appointment value?</div>
+        <div class="roi-chips">
+          <button class="roi-chip" onclick="roiStep(2,'$50–$100',75)">$50–$100</button>
+          <button class="roi-chip" onclick="roiStep(2,'$100–$200',150)">$100–$200</button>
+          <button class="roi-chip" onclick="roiStep(2,'$200–$500',350)">$200–$500</button>
+          <button class="roi-chip" onclick="roiStep(2,'$500+',750)">$500+</button>
+        </div>`;
+      msgs.appendChild(sofiaMsg);
+
+    } else if (step === 2) {
+      roiData.ticket = arguments[2];
+      const sofiaMsg = document.createElement('div');
+      sofiaMsg.className = 'roi-msg sofia';
+      sofiaMsg.innerHTML = `<div class="roi-bubble">Understood — <strong>${value}</strong> per visit. Last question: roughly how many calls or messages do you miss per week (after hours, during busy times)?</div>
+        <div class="roi-chips">
+          <button class="roi-chip" onclick="roiStep(3,'5–10 calls',7)">5–10 calls</button>
+          <button class="roi-chip" onclick="roiStep(3,'10–20 calls',15)">10–20 calls</button>
+          <button class="roi-chip" onclick="roiStep(3,'20–30 calls',25)">20–30 calls</button>
+          <button class="roi-chip" onclick="roiStep(3,'30+ calls',35)">30+ calls</button>
+        </div>`;
+      msgs.appendChild(sofiaMsg);
+
+    } else if (step === 3) {
+      roiData.missedCalls = arguments[2];
+      const monthly = roiData.ticket * roiData.missedCalls * 4;
+      const monthlyFormatted = monthly.toLocaleString('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+      const plan = monthly > 3000 ? 'Pro' : 'Starter';
+      const planPrice = plan === 'Pro' ? '$597' : '$397';
+
+      const sofiaMsg = document.createElement('div');
+      sofiaMsg.className = 'roi-msg sofia';
+      sofiaMsg.innerHTML = `<div class="roi-bubble">Based on your numbers — <strong>${roiData.ticket} avg ticket × ${roiData.missedCalls} missed contacts/week × 4 weeks</strong> — here's what I calculated:</div>
+        <div class="roi-result-card">
+          <div class="roi-result-num">${monthlyFormatted}/mo</div>
+          <div class="roi-result-label">in potential revenue slipping away each month without Sofia</div>
+        </div>
+        <div class="roi-bubble" style="margin-top:10px;">For a ${roiData.industry} at your volume, I'd recommend the <strong>${plan} Plan at ${planPrice}/mo</strong>. That's a fraction of what you're leaving on the table. Want to hear Sofia answer a real call for your business?</div>
+        <a href="https://calendly.com/andres-ajbusinessadvisory/30min" target="_blank" class="roi-cta-btn" style="text-decoration:none; display:block; width:100%; text-align:center; padding:14px; border-radius:12px; background:var(--pink); color:#fff; font-size:15px; font-weight:800; cursor:pointer; border:none; margin-top:12px;">Book a Strategy Call →</a>`;
+      msgs.appendChild(sofiaMsg);
+    }
+
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1200);
+}
+
+// ─────────────────────────────────────────────
+//  GHL WIDGET — Auto-call trigger
+//  When someone submits the LeadConnector widget,
+//  capture their info and fire a Sofia demo call.
+//  This listens for the "Thank You" confirmation
+//  that appears after successful submission.
+// ─────────────────────────────────────────────
+(function watchGHLWidget() {
+  let callFired = false;
+
+  function extractAndCall() {
+    if (callFired) return;
+
+    // Try to find the widget iframe
+    const iframes = document.querySelectorAll('iframe');
+    for (const iframe of iframes) {
+      try {
+        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        if (!doc) continue;
+
+        // Look for phone input in the widget
+        const phoneInput = doc.querySelector('input[type="tel"], input[name="phone"], input[placeholder*="phone"], input[placeholder*="Phone"]');
+        const nameInput  = doc.querySelector('input[type="text"], input[name="name"], input[name="firstName"], input[placeholder*="name"], input[placeholder*="Name"]');
+
+        if (phoneInput && phoneInput.value) {
+          const phone = phoneInput.value.trim();
+          const name  = nameInput ? nameInput.value.trim() : 'there';
+          if (phone.replace(/\D/g, '').length >= 10) {
+            callFired = true;
+            fireCall(phone, name);
+          }
+        }
+      } catch(e) { /* cross-origin iframe — skip */ }
+    }
+  }
+
+  function fireCall(phone, name) {
+    fetch(API_BASE + '/demo/call', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: phone,
+        ownerName: name || 'there',
+        bizName: 'your business',
+        nicho: 'Other Local Business'
+      })
+    }).catch(function(){});
+  }
+
+  // Watch for the "Thank You" confirmation message appearing in the DOM
+  const observer = new MutationObserver(function(mutations) {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType !== 1) continue;
+        const text = node.textContent || '';
+        if (text.includes('Thank You') || text.includes('thank you') ||
+            text.includes('representative will contact')) {
+          extractAndCall();
+        }
+      }
+      // Also check if shadow DOM or iframe content changed
+      if (!callFired) extractAndCall();
+    }
+  });
+
+  // Also listen for postMessage from the GHL widget iframe
+  window.addEventListener('message', function(e) {
+    // Log ALL messages so we can see what the widget sends
+    console.log('[GHL widget message]', e.origin, JSON.stringify(e.data));
+    if (callFired) return;
+    const d = e.data;
+    if (!d) return;
+    const str = typeof d === 'string' ? d : JSON.stringify(d);
+    if (str.includes('form_submitted') || str.includes('formSubmitted') ||
+        str.includes('lead_submitted') || str.includes('Thank You') ||
+        str.includes('submitted') || str.includes('success')) {
+      // Try to extract phone from message data
+      const data = typeof d === 'object' ? d : {};
+      const phone = data.phone || data.phoneNumber || data.phone_number || '';
+      const name  = data.name || data.firstName || data.first_name || 'there';
+      if (phone && phone.replace(/\D/g, '').length >= 10) {
+        callFired = true;
+        fireCall(phone, name);
+      } else {
+        // No phone in message — try reading from DOM
+        extractAndCall();
+      }
+    }
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Ganster Style Barber — AJ Business Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=UnifrakturMaguntia&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080808;
+  --bg2:#0d0d0d;
+  --bg3:#111111;
+  --card:#111;
+  --card2:#161616;
+  --border:rgba(180,0,0,0.18);
+  --border2:rgba(180,0,0,0.32);
+  --red:#cc0000;
+  --red-dark:#8b0000;
+  --red-glow:rgba(180,0,0,0.12);
+  --gold:#c49900;
+  --gold-lt:#f5c400;
+  --text:#ede9da;
+  --text2:#b8b0a0;
+  --muted:#6a6258;
+  --radius:10px;
+  --radius-lg:16px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  overflow-x:hidden;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(140,0,0,0.09) 0%, transparent 65%),
+    repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(180,0,0,0.025) 59px, rgba(180,0,0,0.025) 60px),
+    repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(180,0,0,0.025) 59px, rgba(180,0,0,0.025) 60px);
+  background-attachment:fixed;
+}
+
+::selection{background:var(--red);color:#fff}
+a{color:inherit;text-decoration:none}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:#080808}
+::-webkit-scrollbar-thumb{background:var(--red-dark);border-radius:3px}
+
+/* ── TOP BAR ── */
+#pbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(6,6,6,0.97);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;height:54px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+#pbar .brand{
+  display:flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--muted);
+}
+#pbar .brand .slash{color:var(--border2);margin:0 2px;}
+#pbar .brand .hl{color:var(--red)}
+#pbar .cta-bar{
+  background:var(--red);color:#fff;
+  font-weight:700;font-size:11px;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:8px 18px;border-radius:6px;
+  transition:all 0.2s;white-space:nowrap;
+}
+#pbar .cta-bar:hover{background:#e00000;transform:translateY(-1px)}
+
+body{padding-top:54px}
+
+/* ── NAV DOTS ── */
+.nav-dots{
+  position:fixed;right:20px;top:50%;transform:translateY(-50%);
+  z-index:100;display:flex;flex-direction:column;gap:8px;
+}
+.nd{
+  width:6px;height:6px;border-radius:50%;
+  background:rgba(180,0,0,0.2);border:1px solid rgba(180,0,0,0.3);
+  cursor:pointer;transition:all 0.25s;position:relative;
+}
+.nd.active,.nd:hover{background:var(--red);border-color:var(--red);transform:scale(1.6)}
+.nd[data-tip]:hover::after{
+  content:attr(data-tip);position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  background:var(--card);border:1px solid var(--border);
+  padding:3px 9px;border-radius:4px;font-size:10px;white-space:nowrap;
+  color:var(--text);pointer-events:none;
+}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:0.1s}.d2{transition-delay:0.2s}.d3{transition-delay:0.3s}.d4{transition-delay:0.4s}
+
+/* ── LAYOUT ── */
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.section{padding:90px 0}
+
+/* ── HERO ── */
+#hero{
+  min-height:calc(100vh - 54px);
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;
+  padding:60px 24px 160px;
+  position:relative;
+  overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 55% at 50% 45%, rgba(140,0,0,0.12) 0%, transparent 70%);
+}
+
+/* Gothic ornament lines */
+#hero::after{
+  content:'';position:absolute;
+  left:50%;bottom:0;transform:translateX(-50%);
+  width:1px;height:120px;
+  background:linear-gradient(to bottom, rgba(180,0,0,0.5), transparent);
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(140,0,0,0.12);
+  border:1px solid rgba(180,0,0,0.3);
+  border-radius:4px;
+  padding:6px 18px;
+  font-size:10px;font-weight:700;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:32px;
+}
+
+.hero-ornament{
+  font-size:11px;color:rgba(180,0,0,0.4);
+  letter-spacing:0.3em;text-transform:uppercase;
+  margin-bottom:8px;
+  display:block;
+}
+
+#hero h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,13vw,10rem);
+  line-height:0.88;
+  letter-spacing:0.03em;
+  margin-bottom:12px;
+  position:relative;
+  z-index:1;
+}
+#hero h1 .name{
+  display:block;
+  background:linear-gradient(135deg, #fff 0%, #ede9da 40%, #c49900 70%, #8b0000 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+#hero h1 .sub{
+  display:block;
+  font-size:clamp(1.6rem,5vw,4rem);
+  color:var(--red);
+  letter-spacing:0.25em;
+  -webkit-text-fill-color:var(--red);
+}
+
+.hero-tagline{
+  font-family:'Cinzel',serif;
+  font-size:clamp(0.75rem,1.5vw,0.9rem);
+  color:var(--muted);
+  letter-spacing:0.15em;
+  max-width:500px;margin:0 auto 36px;
+  line-height:1.6;
+}
+.hero-tagline .acc{color:var(--red)}
+
+.hero-divider{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:36px;
+  width:100%;max-width:400px;
+}
+.hero-divider .line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(180,0,0,0.4))}
+.hero-divider .line.r{background:linear-gradient(to left,transparent,rgba(180,0,0,0.4))}
+.hero-divider .sym{font-size:14px;color:var(--red);opacity:0.7}
+
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:60px}
+.btn-primary{
+  background:var(--red);color:#fff;
+  font-weight:700;font-size:12px;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:13px 28px;border-radius:6px;
+  transition:all 0.2s;
+}
+.btn-primary:hover{background:#e00000;transform:translateY(-2px)}
+.btn-secondary{
+  background:transparent;color:var(--text2);
+  font-weight:600;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:13px 28px;border-radius:6px;
+  border:1px solid rgba(255,255,255,0.1);
+  transition:all 0.2s;
+}
+.btn-secondary:hover{border-color:rgba(180,0,0,0.4);color:var(--text)}
+
+/* HERO STATS */
+.hero-stats{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:10px;max-width:460px;width:100%;
+  position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);
+  padding:0 24px;
+}
+.stat{
+  background:rgba(17,17,17,0.9);
+  border:1px solid var(--border);
+  border-top:2px solid var(--red-dark);
+  border-radius:var(--radius);
+  padding:14px 16px;text-align:left;
+}
+.stat .num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.9rem;color:var(--red);
+  line-height:1;margin-bottom:3px;
+}
+.stat .label{font-size:10px;color:var(--muted);line-height:1.4}
+
+/* ── SECTION TITLES ── */
+.sec-label{
+  font-size:10px;font-weight:700;
+  letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--red);margin-bottom:8px;display:block;
+}
+.sec-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  line-height:0.95;margin-bottom:8px;
+}
+.sec-sub{
+  font-size:14px;color:var(--muted);line-height:1.7;
+  max-width:600px;margin-bottom:44px;
+}
+.y-line{width:36px;height:2px;background:var(--red-dark);margin:12px 0 40px}
+
+/* ── INTRO / EXEC ── */
+.exec-box{
+  border-left:3px solid var(--red-dark);
+  padding:20px 28px;
+  background:rgba(140,0,0,0.05);
+  border-radius:0 var(--radius) var(--radius) 0;
+  margin-bottom:28px;
+}
+.exec-box .quote{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1rem,2vw,1.25rem);
+  color:var(--text);
+  line-height:1.5;
+  margin-bottom:0;
+}
+.exec-body{color:var(--muted);font-size:14px;line-height:1.85;max-width:680px}
+.exec-body strong{color:var(--text)}
+
+/* ── DIAGNÓSTICO ── */
+.diag-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:12px;
+}
+.diag-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  transition:border-color 0.2s,transform 0.2s;
+  position:relative;overflow:hidden;
+}
+.diag-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;
+  height:2px;background:linear-gradient(to right,var(--red-dark),transparent);
+}
+.diag-card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.diag-icon{font-size:1.4rem;margin-bottom:10px}
+.diag-card h4{font-size:13px;font-weight:700;margin-bottom:6px;letter-spacing:0.02em}
+.diag-card p{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* ── OBJETIVOS ── */
+.obj-list{display:flex;flex-direction:column;gap:10px}
+.obj-item{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:15px 18px;
+  transition:border-color 0.2s;
+}
+.obj-item:hover{border-color:var(--border2)}
+.obj-arrow{
+  width:26px;height:26px;flex-shrink:0;
+  background:rgba(140,0,0,0.12);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);font-weight:800;font-size:13px;margin-top:2px;
+}
+.obj-text{font-size:13px;font-weight:600}
+.obj-sub{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ── PILARES ── */
+.pilares-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:14px;
+}
+.pilar{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-top:3px solid var(--red-dark);
+  border-radius:var(--radius);padding:24px 20px;
+  transition:border-color 0.2s;
+}
+.pilar:hover{border-color:var(--border2)}
+.pilar .pilar-icon{font-size:1.8rem;margin-bottom:14px}
+.pilar h3{font-size:14px;font-weight:700;margin-bottom:8px;letter-spacing:0.02em}
+.pilar p{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* ── SITEMAP ── */
+.sitemap{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.site-item{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:13px 16px;
+  display:flex;align-items:center;gap:10px;
+  transition:border-color 0.2s;
+}
+.site-item:hover{border-color:var(--border2)}
+.site-num{
+  width:22px;height:22px;flex-shrink:0;
+  background:rgba(140,0,0,0.1);border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:700;color:var(--red);
+}
+.site-name{font-size:12px;font-weight:600}
+.site-purpose{font-size:10px;color:var(--muted)}
+
+/* ── DIFERENCIALES ── */
+.dif-list{display:flex;flex-direction:column;gap:7px}
+.dif-item{
+  display:flex;align-items:center;gap:16px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:14px 18px;
+  transition:border-color 0.2s,background 0.2s;
+}
+.dif-item:hover{border-color:var(--border2);background:var(--card2)}
+.dif-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;color:var(--red);opacity:0.5;
+  flex-shrink:0;width:26px;
+}
+.dif-text{font-size:13px;font-weight:500}
+
+/* ── MOCKUPS ── */
+.mock-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.mtab{
+  padding:10px 22px;border-radius:8px;
+  cursor:pointer;border:1px solid var(--border);
+  background:transparent;color:var(--muted);transition:all 0.2s;
+  display:flex;flex-direction:column;align-items:center;gap:1px;
+  min-width:120px;
+}
+.mtab .mtab-label{font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase}
+.mtab .mtab-sub{font-size:10px;font-weight:500;letter-spacing:0.04em;opacity:0.7}
+.mtab.active{background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 4px 18px rgba(180,0,0,0.3)}
+
+.mock-panel{display:none;animation:mockFade 0.3s ease}
+.mock-panel.active{display:block}
+@keyframes mockFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* new layout */
+.mock-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start}
+@media(max-width:900px){.mock-layout{grid-template-columns:1fr}}
+
+.mock-devices{display:flex;gap:14px;align-items:flex-start}
+
+.mock-desktop{
+  flex:1;max-width:280px;background:#050505;
+  border:1px solid rgba(180,0,0,0.18);border-radius:10px;
+  overflow:hidden;
+}
+.mock-bar{
+  background:#0f0f0f;padding:7px 10px;
+  display:flex;gap:5px;align-items:center;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.mock-dot{width:7px;height:7px;border-radius:50%}
+.mock-url{
+  flex:1;margin-left:8px;background:#1a1a1a;
+  border-radius:3px;padding:2px 8px;
+  font-size:8px;color:var(--muted);letter-spacing:0.02em;
+}
+
+.mock-phone{
+  width:110px;flex-shrink:0;background:#050505;
+  border:2px solid rgba(180,0,0,0.18);
+  border-radius:18px;overflow:hidden;
+}
+.mock-phone-bar{
+  background:#0f0f0f;height:16px;
+  display:flex;align-items:center;justify-content:center;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.mock-phone-notch{width:32px;height:4px;background:#222;border-radius:3px}
+
+/* GSB branded screen */
+.mock-screen-gsb{background:#080808;font-family:'Inter',sans-serif}
+.msgsb-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:8px 12px;background:#0d0d0d;
+  border-bottom:1px solid rgba(180,0,0,0.1);
+}
+.msgsb-logo{font-family:'Bebas Neue',sans-serif;font-size:11px;color:#cc0000;letter-spacing:0.12em}
+.msgsb-cta{background:#cc0000;color:#fff;font-size:7px;font-weight:700;padding:3px 8px;border-radius:3px;letter-spacing:0.06em}
+
+.msgsb-hero{background:linear-gradient(160deg,#0d0000,#080808);padding:16px 12px;text-align:center;border-bottom:1px solid rgba(180,0,0,0.1)}
+.msgsb-hero-tag{font-size:7px;color:rgba(204,0,0,0.7);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:4px}
+.msgsb-hero-h{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;line-height:0.95;color:#ede9da;margin-bottom:8px;letter-spacing:0.03em}
+.msgsb-hero-btn{display:inline-block;background:#cc0000;color:#fff;font-size:8px;font-weight:700;padding:5px 12px;border-radius:4px;letter-spacing:0.06em;text-transform:uppercase}
+
+.msgsb-services{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.msgsb-serv-label{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#cc0000;margin-bottom:6px}
+.msgsb-serv-row{display:flex;gap:4px;flex-wrap:wrap}
+.msgsb-chip{background:#141414;border:1px solid rgba(180,0,0,0.15);border-radius:3px;padding:3px 7px;font-size:7px;color:#ede9da;display:flex;align-items:center;gap:4px}
+.msgsb-chip span{color:#cc0000;font-weight:700}
+
+.msgsb-gallery{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.msgsb-gal-label{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:#cc0000;margin-bottom:6px}
+.msgsb-gal-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+.msgsb-gal-item{aspect-ratio:1;background:#141414;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:10px}
+
+.msgsb-wa{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#0d0d0d;border-top:1px solid rgba(180,0,0,0.08)}
+.msgsb-wa span{font-size:13px}
+.msgsb-wa div{display:flex;flex-direction:column;gap:1px}
+.msgsb-wa strong{font-size:8px;color:#25d366;font-weight:700}
+.msgsb-wa small{font-size:7px;color:var(--muted)}
+
+.msgsb-insta-strip{display:flex;align-items:center;gap:8px;padding:8px 12px;border-top:1px solid rgba(255,255,255,0.04)}
+.msgsb-insta-av{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#8b0000,#cc0000,#c49900);flex-shrink:0}
+.msgsb-insta-info{flex:1}
+.msgsb-insta-name{font-size:8px;font-weight:700}
+.msgsb-insta-bio{font-size:7px;color:var(--muted)}
+.msgsb-insta-grid-sm{display:flex;gap:3px}
+.msgsb-ig-post{width:26px;height:26px;background:#1a1a1a;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:11px}
+
+/* info panel */
+.mock-info{background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px;display:flex;flex-direction:column;gap:16px}
+.mock-plan-tag{display:inline-block;border:1px solid;border-radius:4px;padding:3px 10px;font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;width:fit-content}
+.mock-info-title{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;line-height:1;letter-spacing:0.02em}
+.mock-info-sub{font-size:13px;color:var(--muted);line-height:1.65}
+.mock-feat-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.mock-feat-list li{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:10px}
+.mfl-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.mock-cta-btn{
+  display:block;font-weight:700;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;
+  padding:12px 20px;border-radius:7px;text-align:center;
+  border:1px solid transparent;transition:all 0.2s;margin-top:4px;
+}
+.mock-cta-btn:hover{transform:translateY(-1px);opacity:0.9}
+
+/* ── ROI ── */
+.roi-box{
+  background:rgba(140,0,0,0.05);
+  border:1px solid rgba(180,0,0,0.22);
+  border-radius:var(--radius-lg);
+  padding:44px;text-align:center;
+  max-width:680px;margin:0 auto;
+  position:relative;overflow:hidden;
+}
+.roi-box::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:200px;height:1px;background:linear-gradient(to right,transparent,var(--red),transparent);
+}
+.roi-box .roi-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3.5rem,9vw,5.5rem);
+  color:var(--red);line-height:1;margin-bottom:6px;
+}
+.roi-box .roi-label{font-size:1rem;font-weight:700;margin-bottom:16px}
+.roi-box .roi-detail{font-size:13px;color:var(--muted);line-height:1.7}
+.roi-box .roi-detail strong{color:var(--text)}
+
+/* ── PLANES ── */
+.founder-banner{
+  background:rgba(140,0,0,0.08);
+  border:1px solid rgba(180,0,0,0.28);
+  border-radius:var(--radius);
+  padding:16px 24px;
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:28px;
+  flex-wrap:wrap;
+}
+.founder-banner .fb-badge{
+  background:var(--red);color:#fff;
+  font-size:9px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;
+  padding:4px 12px;border-radius:4px;flex-shrink:0;
+}
+.founder-banner .fb-text{font-size:12px;color:var(--text2);line-height:1.4}
+.founder-banner .fb-text strong{color:var(--text)}
+
+.planes-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;align-items:start;
+}
+
+/* ── Plan base ── */
+.plan{
+  border-radius:var(--radius-lg);padding:28px 24px;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+  transition:transform 0.25s;
+}
+.plan:hover{transform:translateY(-4px)}
+
+/* Plan A — Plata / Entry */
+.plan-a{
+  background:#111;
+  border:1px solid rgba(255,255,255,0.09);
+}
+.plan-a::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,#555,#888,transparent);
+}
+.plan-a .plan-letter{color:#888}
+.plan-a .plan-price{color:#aaa}
+.plan-a .plan-savings{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.1);color:#888}
+.plan-a .plan-features li::before{color:#888}
+.plan-a .plan-cta-a{
+  display:block;background:transparent;color:#aaa;
+  font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:12px 20px;border-radius:6px;text-align:center;
+  border:1px solid rgba(255,255,255,0.14);transition:all 0.2s;
+}
+.plan-a .plan-cta-a:hover{border-color:#888;color:#fff}
+
+/* Plan B — Rojo / Featured */
+.plan-b{
+  background:linear-gradient(160deg,#180000 0%,#111 60%);
+  border:1px solid rgba(180,0,0,0.45);
+  box-shadow:0 0 40px rgba(140,0,0,0.18),inset 0 0 30px rgba(140,0,0,0.05);
+}
+.plan-b::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(to right,var(--red-dark),var(--red),#ff4444,transparent);
+}
+.plan-b::after{
+  content:'MÁS POPULAR';
+  position:absolute;top:16px;right:-30px;
+  background:var(--red);color:#fff;
+  font-size:8px;font-weight:800;letter-spacing:0.12em;
+  padding:5px 40px;transform:rotate(45deg);
+}
+.plan-b .plan-letter{color:var(--red);opacity:0.35}
+.plan-b .plan-price{color:var(--red)}
+.plan-b .plan-savings{background:rgba(140,0,0,0.15);border-color:rgba(180,0,0,0.3);color:#ff6666}
+.plan-b .plan-features li{color:var(--text2)}
+.plan-b .plan-features li::before{color:var(--red)}
+.plan-b .plan-cta-b{
+  display:block;background:var(--red);color:#fff;
+  font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:14px 20px;border-radius:6px;text-align:center;
+  box-shadow:0 4px 20px rgba(180,0,0,0.35);transition:all 0.2s;
+}
+.plan-b .plan-cta-b:hover{background:#e00000;box-shadow:0 6px 28px rgba(180,0,0,0.5)}
+
+/* Plan C — Dorado / Premium */
+.plan-c{
+  background:linear-gradient(160deg,#0e0b00 0%,#111 60%);
+  border:1px solid rgba(196,153,0,0.35);
+  box-shadow:0 0 40px rgba(196,153,0,0.07);
+}
+.plan-c::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,var(--gold),var(--gold-lt),rgba(245,196,0,0.2),transparent);
+}
+.plan-c .plan-badge{background:rgba(196,153,0,0.12);border-color:rgba(196,153,0,0.3);color:var(--gold-lt)}
+.plan-c .plan-letter{color:var(--gold);opacity:0.35}
+.plan-c .plan-price{color:var(--gold-lt)}
+.plan-c .plan-savings{background:rgba(196,153,0,0.1);border-color:rgba(196,153,0,0.25);color:var(--gold-lt)}
+.plan-c .plan-features li{color:var(--text2)}
+.plan-c .plan-features li::before{color:var(--gold-lt)}
+.plan-c .plan-cta-c{
+  display:block;background:linear-gradient(135deg,var(--gold-dark,#a07800),var(--gold));
+  color:#000;font-weight:800;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:12px 20px;border-radius:6px;text-align:center;transition:all 0.2s;
+}
+.plan-c .plan-cta-c:hover{opacity:0.88;transform:translateY(-1px)}
+
+.plan-badge{
+  display:inline-block;
+  background:rgba(140,0,0,0.12);border:1px solid rgba(180,0,0,0.25);
+  border-radius:4px;padding:3px 10px;
+  font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--red);margin-bottom:10px;width:fit-content;
+}
+.plan-letter{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:3rem;opacity:0.2;
+  line-height:1;margin-bottom:2px;
+}
+.plan-name{font-size:14px;font-weight:700;margin-bottom:8px;letter-spacing:0.02em}
+
+.plan-price-block{margin-bottom:6px}
+.plan-price-original{
+  font-size:13px;color:var(--muted);
+  text-decoration:line-through;margin-bottom:2px;
+}
+.plan-price{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2.4rem;line-height:1;
+}
+.plan-mant{font-size:11px;color:var(--muted);margin-bottom:20px}
+.plan-savings{
+  display:inline-block;
+  border-radius:4px;padding:2px 8px;
+  font-size:10px;font-weight:700;
+  margin-bottom:16px;
+}
+
+.plan-divider{height:1px;background:rgba(255,255,255,0.06);margin-bottom:16px}
+.plan-features{
+  list-style:none;display:flex;flex-direction:column;
+  gap:8px;margin-bottom:24px;flex:1;
+}
+.plan-features li{
+  font-size:12px;color:var(--muted);
+  padding-left:18px;position:relative;
+}
+.plan-features li::before{content:'✓';position:absolute;left:0;font-weight:700}
+
+.plan-cta{
+  display:block;background:var(--red);color:#fff;
+  font-weight:700;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  padding:12px 20px;border-radius:6px;text-align:center;
+  transition:all 0.2s;
+}
+.plan-cta:hover{background:#e00000;transform:translateY(-1px)}
+.plan-cta.sec{
+  background:transparent;color:var(--text2);
+  border:1px solid rgba(255,255,255,0.12);
+}
+.plan-cta.sec:hover{border-color:rgba(180,0,0,0.4);color:var(--text)}
+
+/* ── INSTAGRAM GROWTH ── */
+.ig-section{
+  background:rgba(20,0,0,0.4);
+  border:1px solid rgba(180,0,0,0.2);
+  border-radius:var(--radius-lg);padding:40px;
+}
+.ig-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.ig-icon{
+  width:52px;height:52px;border-radius:12px;
+  background:linear-gradient(135deg,#8b0000,#cc0000,#c49900);
+  display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;
+}
+.ig-header h3{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;line-height:1}
+.ig-header p{font-size:12px;color:var(--muted)}
+.ig-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:24px}
+.ig-item{
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(180,0,0,0.12);
+  border-radius:var(--radius);padding:14px;
+}
+.ig-item .ig-item-icon{font-size:1.1rem;margin-bottom:6px}
+.ig-item h5{font-size:12px;font-weight:700;margin-bottom:4px}
+.ig-item p{font-size:11px;color:var(--muted);line-height:1.45}
+
+.ig-founder-row{
+  background:rgba(140,0,0,0.07);
+  border:1px solid rgba(180,0,0,0.22);
+  border-radius:var(--radius);
+  padding:20px 24px;margin-bottom:16px;
+}
+.ig-founder-row .fb-badge{
+  display:inline-block;
+  background:var(--red);color:#fff;
+  font-size:9px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;
+  padding:3px 10px;border-radius:4px;margin-bottom:10px;
+}
+.ig-price-block{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:6px}
+.ig-price-original{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--muted);text-decoration:line-through}
+.ig-price{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;color:var(--red)}
+.ig-price small{font-family:'Inter',sans-serif;font-size:11px;color:var(--muted);display:block;font-weight:400}
+.ig-saving-note{font-size:11px;color:var(--muted);margin-top:4px}
+.ig-saving-note strong{color:var(--text)}
+
+/* ── IG WEEKS ── */
+.ig-weeks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
+@media(max-width:640px){.ig-weeks{grid-template-columns:repeat(2,1fr)}}
+.ig-week{background:rgba(0,0,0,0.35);border:1px solid rgba(180,0,0,0.1);border-radius:var(--radius);padding:12px}
+.ig-week-label{font-size:9px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:8px}
+.ig-week-items{display:flex;flex-direction:column;gap:4px}
+.ig-week-chip{font-size:10px;font-weight:600;padding:4px 8px;border-radius:4px;display:inline-block;width:fit-content}
+.ig-week-chip.reel{background:rgba(204,0,0,0.15);color:#ff6666;border:1px solid rgba(180,0,0,0.2)}
+.ig-week-chip.carr{background:rgba(196,153,0,0.12);color:var(--gold-lt);border:1px solid rgba(196,153,0,0.2)}
+.ig-week-chip.post{background:rgba(255,255,255,0.05);color:var(--text2);border:1px solid rgba(255,255,255,0.08)}
+.ig-week-chip.hist{background:rgba(131,58,180,0.1);color:#b07fff;border:1px solid rgba(131,58,180,0.18)}
+
+.ig-totals{display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:8px;background:rgba(0,0,0,0.3);border:1px solid rgba(180,0,0,0.12);border-radius:var(--radius);padding:16px 20px;margin-bottom:20px}
+.ig-total-item{text-align:center}
+.ig-total-num{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--red);line-height:1}
+.ig-total-label{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.3}
+.ig-total-sep{width:1px;height:36px;background:rgba(180,0,0,0.15)}
+
+.ig-cta-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:16px}
+
+/* ── SOFIA IA ── */
+.sofia-box{
+  background:rgba(5,5,20,0.7);
+  border:1px solid rgba(60,80,200,0.2);
+  border-radius:var(--radius-lg);padding:36px;
+  display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;
+}
+.sofia-avatar{
+  width:54px;height:54px;border-radius:14px;
+  background:linear-gradient(135deg,#8b0000,#5500cc);
+  display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;
+}
+.sofia-content{flex:1;min-width:200px}
+.sofia-content .sofia-tag{font-size:10px;color:#7fa0ff;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:6px}
+.sofia-content h3{font-size:1rem;font-weight:700;margin-bottom:10px}
+.sofia-content p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+.sofia-chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.sofia-chip{
+  background:rgba(60,80,200,0.08);border:1px solid rgba(60,80,200,0.18);
+  border-radius:20px;padding:4px 12px;font-size:10px;color:#7fa0ff;
+}
+.sofia-price{font-size:13px;color:var(--muted)}
+.sofia-price strong{color:var(--text)}
+
+/* ── FASES ── */
+.fases{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.fase{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;
+  position:relative;overflow:hidden;
+}
+.fase::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;background:linear-gradient(to bottom,var(--red-dark),transparent);
+}
+.fase .fase-tag{font-size:10px;color:var(--red);font-weight:700;text-transform:uppercase;letter-spacing:0.14em;margin-bottom:8px}
+.fase h4{font-size:14px;font-weight:700;margin-bottom:10px}
+.fase ul{list-style:none;display:flex;flex-direction:column;gap:5px}
+.fase li{font-size:11px;color:var(--muted);padding-left:12px;position:relative}
+.fase li::before{content:'·';position:absolute;left:0;color:var(--red);font-weight:800}
+
+/* ── PAGO ── */
+.pago-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.pago-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;text-align:center;
+  transition:border-color 0.2s;
+}
+.pago-card:hover{border-color:var(--border2)}
+.pago-card .pago-icon{font-size:1.7rem;margin-bottom:10px}
+.pago-card h4{font-size:13px;font-weight:700;margin-bottom:6px}
+.pago-card p{font-size:11px;color:var(--muted);line-height:1.5}
+
+/* ── CTA FINAL ── */
+#cta-final{
+  text-align:center;padding:90px 24px;
+  max-width:700px;margin:0 auto;
+  position:relative;
+}
+.cta-ornament{
+  display:block;font-size:10px;letter-spacing:0.35em;
+  text-transform:uppercase;color:rgba(180,0,0,0.4);
+  margin-bottom:20px;
+}
+#cta-final .final-quote{
+  font-family:'Cinzel',serif;
+  font-size:clamp(1rem,2.5vw,1.3rem);
+  color:var(--text);line-height:1.55;margin-bottom:12px;
+}
+#cta-final .final-quote .acc{color:var(--red)}
+#cta-final .final-sub{font-size:13px;color:var(--muted);margin-bottom:40px}
+.btn-wa-final{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25d366;color:#000;
+  font-weight:700;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;
+  padding:16px 36px;border-radius:8px;transition:all 0.2s;
+}
+.btn-wa-final:hover{opacity:0.88;transform:translateY(-2px)}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:28px 24px;text-align:center;
+  font-size:11px;color:var(--muted);
+}
+footer strong{color:var(--text2)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:640px){
+  .hero-stats{position:static;transform:none;padding:0;margin:0 auto}
+  #hero{padding:40px 20px 40px}
+  .planes-grid{grid-template-columns:1fr}
+  .roi-box{padding:28px 20px}
+  .ig-section{padding:24px}
+  .sofia-box{padding:24px}
+  .mock-panel.active{flex-direction:column}
+  .mock-desktop{width:100%}
+  .nav-dots{display:none}
+  .ig-price-block{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots">
+  <div class="nd active" data-tip="Inicio" onclick="scrollTo(0,0)"></div>
+  <div class="nd" data-tip="Diagnóstico" onclick="document.getElementById('diag').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nd" data-tip="Objetivos" onclick="document.getElementById('obj').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nd" data-tip="Planes" onclick="document.getElementById('planes').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nd" data-tip="Instagram" onclick="document.getElementById('instagram').scrollIntoView({behavior:'smooth'})"></div>
+  <div class="nd" data-tip="Cronograma" onclick="document.getElementById('fases').scrollIntoView({behavior:'smooth'})"></div>
+</nav>
+
+<!-- TOP BAR -->
+<div id="pbar">
+  <div class="brand">
+    AJ Business<span class="slash"> / </span><span class="hl">Ganster Style Barber</span>
+  </div>
+  <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20vi%20la%20propuesta%20de%20Ganster%20Style%20Barber%20y%20quiero%20hablar" class="cta-bar" target="_blank">Quiero esto para mi marca →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <span class="hero-ornament reveal">✦ &nbsp; propuesta exclusiva &nbsp; ✦</span>
+  <div class="hero-badge reveal d1">✂️ &nbsp; Bogotá · 2026 · Edición Fundadora</div>
+  <h1 class="reveal d2">
+    <span class="name">GANSTER<br>STYLE</span>
+    <span class="sub">BARBER</span>
+  </h1>
+
+  <div class="hero-divider reveal d2">
+    <div class="line"></div>
+    <span class="sym">✦</span>
+    <div class="line r"></div>
+  </div>
+
+  <p class="hero-tagline reveal d3">
+    Los mejores cortes de Bogotá ya existen. El problema:<br>
+    <span class="acc">nadie los está buscando a ellos</span> — te están buscando a ti.
+  </p>
+
+  <div class="hero-btns reveal d3">
+    <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20hablar%20sobre%20la%20propuesta%20para%20Ganster%20Style%20Barber" class="btn-primary" target="_blank">Empecemos 💬</a>
+    <a href="#mockups" class="btn-secondary">Ver planes ↓</a>
+  </div>
+
+  <div class="hero-stats reveal d4">
+    <div class="stat">
+      <div class="num">78%</div>
+      <div class="label">de clientes buscan barberías en Google antes de ir</div>
+    </div>
+    <div class="stat">
+      <div class="num">3×</div>
+      <div class="label">más citas generan barberías con web activa</div>
+    </div>
+    <div class="stat">
+      <div class="num">0→∞</div>
+      <div class="label">seguidores reales desde estrategia, no suerte</div>
+    </div>
+    <div class="stat">
+      <div class="num">15d</div>
+      <div class="label">de implementación — listos antes de abrir las puertas</div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUMEN EJECUTIVO -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="exec-box">
+        <p class="quote">"En Bogotá, el primer lugar donde alguien decide si entra o no a una barbería es Google — no la fachada, no el letrero. Si no apareces ahí, no existes."</p>
+      </div>
+    </div>
+    <p class="exec-body reveal d1">
+      Ganster Style Barber llega al mercado de Bogotá con algo que la mayoría de barberías no tiene: <strong>identidad</strong>. Un nombre con carácter, una estética que comunica, y un equipo detrás con ganas de construir algo real. Lo único que falta es el canal digital que le cuente al barrio — y a toda la ciudad — quiénes son.<br><br>
+      Eso es exactamente lo que construimos. Desde el día uno, con intención y sin atajos.
+    </p>
+  </div>
+</section>
+
+<!-- DIAGNÓSTICO -->
+<section class="section" id="diag" style="background:rgba(255,255,255,0.013)">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Diagnóstico</span></div>
+    <div class="reveal d1"><div class="sec-title">ENTENDEMOS<br>QUIÉNES SON</div></div>
+    <div class="diag-grid">
+      <div class="diag-card reveal d1">
+        <div class="diag-icon">🚀</div>
+        <h4>Empiezan desde cero</h4>
+        <p>No hay historial digital que limpiar. Todo se construye con intención desde el principio — la ventaja más grande que existe.</p>
+      </div>
+      <div class="diag-card reveal d2">
+        <div class="diag-icon">💈</div>
+        <h4>Nombre que vende solo</h4>
+        <p>"Ganster Style" ya tiene carácter. Un nombre así en Instagram y Google Maps genera curiosidad antes de que alguien entre al local.</p>
+      </div>
+      <div class="diag-card reveal d3">
+        <div class="diag-icon">📍</div>
+        <h4>Bogotá — ciudad de barrios</h4>
+        <p>El cliente de barbería busca cerca. Google Maps y el SEO local son los canales que más convierten en este nicho.</p>
+      </div>
+      <div class="diag-card reveal d1">
+        <div class="diag-icon">📱</div>
+        <h4>Sin presencia digital aún</h4>
+        <p>El perfil y la web no existen todavía. Eso es una ventaja: lo armamos bien desde el inicio, sin vicios ni reputación que corregir.</p>
+      </div>
+      <div class="diag-card reveal d2">
+        <div class="diag-icon">🔍</div>
+        <h4>Sus clientes ya los buscan</h4>
+        <p>"Barbería cerca de mí" — miles de búsquedas mensuales en Bogotá. Sin web ni Maps, Ganster Style Barber no existe para esa gente.</p>
+      </div>
+      <div class="diag-card reveal d3">
+        <div class="diag-icon">⚡</div>
+        <h4>Momento perfecto</h4>
+        <p>Construir la presencia digital antes de abrir significa que el día del lanzamiento, Ganster Style Barber ya existe en internet.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJETIVOS -->
+<section class="section" id="obj">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Objetivos del proyecto</span></div>
+    <div class="reveal d1"><div class="sec-title">PARA QUÉ<br>SIRVE ESTO</div></div>
+    <div class="obj-list">
+      <div class="obj-item reveal d1">
+        <div class="obj-arrow">→</div>
+        <div>
+          <div class="obj-text">Aparecer en Google Maps cuando alguien busque "barbería en [barrio]"</div>
+          <div class="obj-sub">La web se configura para que Google los muestre — desde el día 1, sin esperar meses</div>
+        </div>
+      </div>
+      <div class="obj-item reveal d2">
+        <div class="obj-arrow">→</div>
+        <div>
+          <div class="obj-text">Una web que convierte visitas en citas agendadas por WhatsApp</div>
+          <div class="obj-sub">Servicios, precios, galería de cortes, reserva directa, ubicación y horarios</div>
+        </div>
+      </div>
+      <div class="obj-item reveal d1">
+        <div class="obj-arrow">→</div>
+        <div>
+          <div class="obj-text">Construir un Instagram real con seguidores del barrio desde la semana 1</div>
+          <div class="obj-sub">Estrategia de contenido, hashtags locales, reels que muestran el trabajo</div>
+        </div>
+      </div>
+      <div class="obj-item reveal d2">
+        <div class="obj-arrow">→</div>
+        <div>
+          <div class="obj-text">Posicionar a Ganster Style Barber como LA barbería de referencia en su zona</div>
+          <div class="obj-sub">Identidad visual coherente: web + redes + Google Maps</div>
+        </div>
+      </div>
+      <div class="obj-item reveal d1">
+        <div class="obj-arrow">→</div>
+        <div>
+          <div class="obj-text">Canal directo de comunicación con clientes sin app adicional</div>
+          <div class="obj-sub">WhatsApp como punto de contacto central — citas, preguntas, confirmaciones</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES -->
+<section class="section" style="background:rgba(255,255,255,0.013)">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">La solución</span></div>
+    <div class="reveal d1"><div class="sec-title">3 PILARES<br>DEL PROYECTO</div></div>
+    <div class="pilares-grid">
+      <div class="pilar reveal d1">
+        <div class="pilar-icon">🌐</div>
+        <h3>Sitio Web Profesional</h3>
+        <p>Landing diseñada para barberías con estética y carácter. Mobile-first, rápida, y lista para que Google los encuentre desde el día 1. Convierte visitas en citas.</p>
+      </div>
+      <div class="pilar reveal d2">
+        <div class="pilar-icon">📱</div>
+        <h3>Instagram Growth</h3>
+        <p>Perfil desde cero: bio optimizada, highlights, estrategia mensual, reels guionados y crecimiento orgánico con seguidores reales del barrio.</p>
+      </div>
+      <div class="pilar reveal d3">
+        <div class="pilar-icon">⚡</div>
+        <h3>Automatización</h3>
+        <p>Flujos que trabajan solos: confirmación de citas por WhatsApp, respuestas automáticas a preguntas frecuentes, direcciones y horarios.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARQUITECTURA WEB -->
+<section class="section">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Arquitectura del sitio</span></div>
+    <div class="reveal d1"><div class="sec-title">LO QUE TIENE<br>LA WEB</div></div>
+    <div class="sitemap">
+      <div class="site-item reveal d1"><div class="site-num">01</div><div><div class="site-name">Hero / Portada</div><div class="site-purpose">Primera impresión + CTA</div></div></div>
+      <div class="site-item reveal d2"><div class="site-num">02</div><div><div class="site-name">Servicios y Precios</div><div class="site-purpose">Qué ofrecen y cuánto cuesta</div></div></div>
+      <div class="site-item reveal d1"><div class="site-num">03</div><div><div class="site-name">Galería de Cortes</div><div class="site-purpose">Antes/después — el trabajo habla</div></div></div>
+      <div class="site-item reveal d2"><div class="site-num">04</div><div><div class="site-name">Reservar Cita</div><div class="site-purpose">Botón WhatsApp directo</div></div></div>
+      <div class="site-item reveal d1"><div class="site-num">05</div><div><div class="site-name">Testimonios</div><div class="site-purpose">Reseñas reales de clientes</div></div></div>
+      <div class="site-item reveal d2"><div class="site-num">06</div><div><div class="site-name">Ubicación y Horarios</div><div class="site-purpose">Mapa + horarios de atención</div></div></div>
+      <div class="site-item reveal d1"><div class="site-num">07</div><div><div class="site-name">Footer + Redes</div><div class="site-purpose">Instagram, WhatsApp, links</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIALES -->
+<section class="section" style="background:rgba(255,255,255,0.013)">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Por qué con nosotros</span></div>
+    <div class="reveal d1"><div class="sec-title">7 RAZONES<br>QUE NOS<br>DIFERENCIAN</div></div>
+    <div class="dif-list">
+      <div class="dif-item reveal d1"><div class="dif-num">01</div><div class="dif-text">Diseño pensado para barberías con identidad — no una plantilla genérica de Wix</div></div>
+      <div class="dif-item reveal d2"><div class="dif-num">02</div><div class="dif-text">Aparecen en Google Maps desde el día 1 — antes de abrir ya los encuentran</div></div>
+      <div class="dif-item reveal d1"><div class="dif-num">03</div><div class="dif-text">Mobile-first — el 96% de los clientes de barbería entran desde el celular</div></div>
+      <div class="dif-item reveal d2"><div class="dif-num">04</div><div class="dif-text">WhatsApp integrado — reserva en 2 mensajes, sin apps ni formularios lentos</div></div>
+      <div class="dif-item reveal d1"><div class="dif-num">05</div><div class="dif-text">Instagram conectado — link en bio funcional + estrategia desde el día del lanzamiento</div></div>
+      <div class="dif-item reveal d2"><div class="dif-num">06</div><div class="dif-text">Velocidad real — carga en menos de 2 segundos (Google premia sitios rápidos)</div></div>
+      <div class="dif-item reveal d1"><div class="dif-num">07</div><div class="dif-text">Entregado con manual — pueden actualizar fotos y precios solos, sin depender de nadie</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS -->
+<section class="section" id="mockups">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Vista previa</span></div>
+    <div class="reveal d1"><div class="sec-title">ASÍ SE VE<br>GANSTER STYLE<br>BARBER</div></div>
+    <p class="sec-sub reveal d2" style="margin-bottom:32px">Seleccioná el plan para ver qué páginas y funcionalidades incluye.</p>
+    <div class="mock-tabs reveal d2">
+      <button class="mtab active" onclick="switchMock('a',this)"><span class="mtab-label">Plan A</span><span class="mtab-sub">Presencia</span></button>
+      <button class="mtab" onclick="switchMock('b',this)"><span class="mtab-label">Plan B</span><span class="mtab-sub">Posicionamiento</span></button>
+      <button class="mtab" onclick="switchMock('c',this)"><span class="mtab-label">Plan C</span><span class="mtab-sub">Combo Especial</span></button>
+    </div>
+
+    <!-- MOCKUP A -->
+    <div class="mock-panel active" id="mock-a">
+      <div class="mock-layout">
+        <div class="mock-devices">
+          <div class="mock-desktop">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#ffbd2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">gansterstylebarber.com</div>
+            </div>
+            <div class="mock-screen-gsb">
+              <div class="msgsb-nav"><span class="msgsb-logo">&#9986;&#65039; GANSTER</span><span class="msgsb-cta">Agendar</span></div>
+              <div class="msgsb-hero">
+                <div class="msgsb-hero-tag">BARBERIA &middot; BOGOTA</div>
+                <div class="msgsb-hero-h">CORTES<br>QUE<br>MANDAN</div>
+                <div class="msgsb-hero-btn">Reservar cita &rarr;</div>
+              </div>
+              <div class="msgsb-services">
+                <div class="msgsb-serv-label">SERVICIOS</div>
+                <div class="msgsb-serv-row">
+                  <div class="msgsb-chip">Corte clasico<span>$20k</span></div>
+                  <div class="msgsb-chip">Degradado<span>$25k</span></div>
+                  <div class="msgsb-chip">Barba<span>$15k</span></div>
+                </div>
+              </div>
+              <div class="msgsb-wa"><span>&#128172;</span><div><strong>Reservar por WhatsApp</strong><small>Cita en 2 mensajes</small></div></div>
+            </div>
+          </div>
+          <div class="mock-phone">
+            <div class="mock-phone-bar"><div class="mock-phone-notch"></div></div>
+            <div class="mock-screen-gsb" style="font-size:0.55em">
+              <div class="msgsb-nav" style="padding:5px 8px"><span class="msgsb-logo">&#9986;&#65039; GSB</span></div>
+              <div class="msgsb-hero" style="padding:10px 8px">
+                <div class="msgsb-hero-h" style="font-size:1.6rem">CORTES<br>QUE<br>MANDAN</div>
+                <div class="msgsb-hero-btn" style="font-size:8px;padding:4px 10px;margin-top:6px">Reservar &rarr;</div>
+              </div>
+              <div class="msgsb-services" style="padding:6px 8px">
+                <div class="msgsb-serv-row" style="gap:3px;flex-wrap:nowrap">
+                  <div class="msgsb-chip" style="font-size:7px;padding:3px 5px">Corte</div>
+                  <div class="msgsb-chip" style="font-size:7px;padding:3px 5px">Barba</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-info">
+          <div class="mock-plan-tag" style="background:rgba(100,100,100,0.1);border-color:rgba(255,255,255,0.1);color:#888">Plan A &middot; Presencia</div>
+          <h4 class="mock-info-title">Una sola pagina.<br>Todo lo que necesitan.</h4>
+          <p class="mock-info-sub">El cliente entra, ve los servicios, los precios y reserva en 2 mensajes por WhatsApp.</p>
+          <ul class="mock-feat-list">
+            <li><span class="mfl-dot" style="background:#888"></span>Landing de 1 pagina completa</li>
+            <li><span class="mfl-dot" style="background:#888"></span>Servicios + precios + boton WhatsApp</li>
+            <li><span class="mfl-dot" style="background:#888"></span>Google los encuentra desde el dia 1</li>
+            <li><span class="mfl-dot" style="background:#888"></span>Diseno 100% para celular</li>
+            <li><span class="mfl-dot" style="background:#888"></span>Dominio .com + hosting 1 anio</li>
+          </ul>
+          <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20el%20Plan%20A%20para%20Ganster%20Style%20Barber" class="mock-cta-btn" style="border:1px solid rgba(255,255,255,0.14);color:#aaa" target="_blank">Quiero ser parte de fundador &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOCKUP B -->
+    <div class="mock-panel" id="mock-b">
+      <div class="mock-layout">
+        <div class="mock-devices">
+          <div class="mock-desktop">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#ffbd2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">gansterstylebarber.com</div>
+            </div>
+            <div class="mock-screen-gsb">
+              <div class="msgsb-nav"><span class="msgsb-logo">&#9986;&#65039; GANSTER</span><span class="msgsb-cta">Agendar</span></div>
+              <div class="msgsb-hero">
+                <div class="msgsb-hero-tag">EST. 2026 &middot; BOGOTA</div>
+                <div class="msgsb-hero-h">VISTO.<br>BUSCADO.<br>ELEGIDO.</div>
+                <div class="msgsb-hero-btn">Ver Galeria &rarr;</div>
+              </div>
+              <div class="msgsb-gallery">
+                <div class="msgsb-gal-label">GALERIA DE CORTES</div>
+                <div class="msgsb-gal-grid">
+                  <div class="msgsb-gal-item" style="background:linear-gradient(135deg,#1a0000,#2a0000)">&#9986;&#65039;</div>
+                  <div class="msgsb-gal-item" style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a)">&#128136;</div>
+                  <div class="msgsb-gal-item" style="background:linear-gradient(135deg,#1a0000,#0d0000)">&#128293;</div>
+                  <div class="msgsb-gal-item" style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a)">&#11088;</div>
+                  <div class="msgsb-gal-item" style="background:linear-gradient(135deg,#1a0000,#2a0000)">&#128135;</div>
+                  <div class="msgsb-gal-item" style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a)">&#10024;</div>
+                </div>
+              </div>
+              <div class="msgsb-wa"><span>&#128205;</span><div><strong style="color:var(--text)">Bogota &middot; Colombia</strong><small>Lun&ndash;Sab &middot; 9am&ndash;7pm</small></div></div>
+            </div>
+          </div>
+          <div class="mock-phone">
+            <div class="mock-phone-bar"><div class="mock-phone-notch"></div></div>
+            <div class="mock-screen-gsb" style="font-size:0.55em">
+              <div class="msgsb-nav" style="padding:5px 8px"><span class="msgsb-logo">&#9986;&#65039; GSB</span></div>
+              <div class="msgsb-hero" style="padding:8px">
+                <div class="msgsb-hero-h" style="font-size:1.4rem">VISTO.<br>BUSCADO.<br>ELEGIDO.</div>
+                <div class="msgsb-hero-btn" style="font-size:7px;padding:3px 8px;margin-top:5px">Galeria &rarr;</div>
+              </div>
+              <div class="msgsb-gallery" style="padding:5px 8px">
+                <div class="msgsb-gal-grid" style="grid-template-columns:repeat(3,1fr);gap:2px">
+                  <div class="msgsb-gal-item" style="font-size:10px;background:#1a0000">&#9986;&#65039;</div>
+                  <div class="msgsb-gal-item" style="font-size:10px">&#128136;</div>
+                  <div class="msgsb-gal-item" style="font-size:10px;background:#1a0000">&#128293;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-info">
+          <div class="mock-plan-tag" style="background:rgba(140,0,0,0.12);border-color:rgba(180,0,0,0.3);color:#ff6666">Plan B &middot; Posicionamiento</div>
+          <h4 class="mock-info-title">El barrio los ve.<br>Google los encuentra.</h4>
+          <p class="mock-info-sub">Galeria real de cortes, resenas de clientes, mapa y horarios. Todo en una web que posiciona.</p>
+          <ul class="mock-feat-list">
+            <li><span class="mfl-dot" style="background:var(--red)"></span>Galeria de cortes antes/despues</li>
+            <li><span class="mfl-dot" style="background:var(--red)"></span>Resenas reales de clientes</li>
+            <li><span class="mfl-dot" style="background:var(--red)"></span>Mapa + horarios de atencion</li>
+            <li><span class="mfl-dot" style="background:var(--red)"></span>Aparecer primero en Google Maps</li>
+            <li><span class="mfl-dot" style="background:var(--red)"></span>Velocidad ultra-rapida</li>
+          </ul>
+          <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20el%20Plan%20B%20para%20Ganster%20Style%20Barber" class="mock-cta-btn" style="background:var(--red);color:#fff;border-color:var(--red);box-shadow:0 4px 20px rgba(180,0,0,0.3)" target="_blank">Quiero ser parte de fundador &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOCKUP C -->
+    <div class="mock-panel" id="mock-c">
+      <div class="mock-layout">
+        <div class="mock-devices">
+          <div class="mock-desktop">
+            <div class="mock-bar">
+              <div class="mock-dot" style="background:#ff5f57"></div>
+              <div class="mock-dot" style="background:#ffbd2e"></div>
+              <div class="mock-dot" style="background:#28c840"></div>
+              <div class="mock-url">gansterstylebarber.com</div>
+            </div>
+            <div class="mock-screen-gsb">
+              <div class="msgsb-nav"><span class="msgsb-logo" style="color:var(--gold-lt)">&#9986;&#65039; GANSTER</span><span class="msgsb-cta" style="background:var(--gold);color:#000">Agendar</span></div>
+              <div class="msgsb-hero" style="background:linear-gradient(160deg,#0e0b00,#080808)">
+                <div class="msgsb-hero-tag" style="color:var(--gold-lt)">EST. 2026 &middot; BOGOTA</div>
+                <div class="msgsb-hero-h" style="background:linear-gradient(135deg,#fff,#f5c400,#c49900);-webkit-background-clip:text;-webkit-text-fill-color:transparent">AUTORIDAD.<br>ESTILO.<br>MARCA.</div>
+                <div class="msgsb-hero-btn" style="background:var(--gold);color:#000">Ver todo &rarr;</div>
+              </div>
+              <div class="msgsb-insta-strip">
+                <div class="msgsb-insta-av"></div>
+                <div class="msgsb-insta-info"><div class="msgsb-insta-name">@gansterstylebarber</div><div class="msgsb-insta-bio">Barberia Bogota &#128136; DM para citas</div></div>
+                <div class="msgsb-insta-grid-sm">
+                  <div class="msgsb-ig-post">&#9986;&#65039;</div>
+                  <div class="msgsb-ig-post">&#128136;</div>
+                  <div class="msgsb-ig-post">&#128293;</div>
+                </div>
+              </div>
+              <div class="msgsb-wa"><span>&#129302;</span><div><strong style="color:var(--gold-lt)">Sofia AI atiende 24/7</strong><small>Responde, agenda y confirma sola</small></div></div>
+            </div>
+          </div>
+          <div class="mock-phone">
+            <div class="mock-phone-bar"><div class="mock-phone-notch"></div></div>
+            <div class="mock-screen-gsb" style="font-size:0.55em;background:linear-gradient(160deg,#0e0b00,#080808)">
+              <div class="msgsb-nav" style="padding:5px 8px"><span class="msgsb-logo" style="color:var(--gold-lt)">&#9986;&#65039; GSB</span></div>
+              <div class="msgsb-hero" style="padding:8px;background:transparent">
+                <div class="msgsb-hero-h" style="font-size:1.3rem;background:linear-gradient(135deg,#fff,#f5c400);-webkit-background-clip:text;-webkit-text-fill-color:transparent">AUTORIDAD.<br>ESTILO.</div>
+                <div class="msgsb-hero-btn" style="font-size:7px;padding:3px 8px;margin-top:5px;background:var(--gold);color:#000">Ver todo &rarr;</div>
+              </div>
+              <div class="msgsb-insta-strip" style="padding:5px 8px;gap:4px">
+                <div class="msgsb-insta-av" style="width:18px;height:18px"></div>
+                <div class="msgsb-insta-grid-sm">
+                  <div class="msgsb-ig-post" style="font-size:9px;width:20px;height:20px">&#9986;&#65039;</div>
+                  <div class="msgsb-ig-post" style="font-size:9px;width:20px;height:20px">&#128136;</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mock-info">
+          <div class="mock-plan-tag" style="background:rgba(196,153,0,0.1);border-color:rgba(196,153,0,0.3);color:var(--gold-lt)">Plan C &middot; Combo Especial</div>
+          <h4 class="mock-info-title">Web + Instagram<br>Primeros Pasos.</h4>
+          <p class="mock-info-sub">Paquete combo: tu sitio web completo más los primeros pasos en Instagram con contenido real desde el mes 1.</p>
+          <ul class="mock-feat-list">
+            <li><span class="mfl-dot" style="background:var(--gold-lt)"></span>Todo del Plan B incluido</li>
+            <li><span class="mfl-dot" style="background:var(--gold-lt)"></span>Instagram Growth — primeros pasos</li>
+            <li><span class="mfl-dot" style="background:var(--gold-lt)"></span>3 Reels + 5 posts mensuales</li>
+            <li><span class="mfl-dot" style="background:var(--gold-lt)"></span>Mantenimiento mensual $100.000</li>
+            <li><span class="mfl-dot" style="background:var(--gold-lt)"></span>Soporte prioritario mensual</li>
+          </ul>
+          <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20el%20Plan%20C%20para%20Ganster%20Style%20Barber" class="mock-cta-btn" style="background:linear-gradient(135deg,#a07800,#f5c400);color:#000;border-color:#c49900" target="_blank">Quiero ser parte de fundador &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADDON GOOGLE BUSINESS -->
+<section class="section" style="padding:24px 0 0">
+  <div class="container">
+    <div class="reveal" style="background:rgba(196,153,0,0.06);border:1px solid rgba(196,153,0,0.2);border-radius:var(--radius);padding:20px 28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+      <div style="font-size:2rem;line-height:1">📍</div>
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:11px;font-weight:800;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:4px">Add-on · AJ Business Advisory</div>
+        <div style="font-weight:700;color:var(--text);font-size:1rem;margin-bottom:3px">Google Business Profile — Gestión y posicionamiento local</div>
+        <div style="font-size:13px;color:var(--text2)">Creación, optimización y gestión mensual del perfil de Google Business. El negocio puede manejarlo solo — o delegar todo en AJ para aparecer primero en Google Maps.</div>
+      </div>
+      <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20quiero%20info%20sobre%20Google%20Business%20para%20Ganster%20Style%20Barber" target="_blank" style="white-space:nowrap;background:rgba(196,153,0,0.12);border:1px solid rgba(196,153,0,0.3);color:var(--gold-lt);padding:10px 20px;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none">Consultar precio →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ROI -->
+<section class="section" style="background:rgba(255,255,255,0.013);text-align:center">
+  <div class="container">
+    <div class="roi-box reveal">
+      <div class="roi-num">$800.000</div>
+      <div class="roi-label">vale un solo cliente fiel al año</div>
+      <div class="roi-detail">
+        A $40.000 el corte, viniendo cada 2–3 semanas: <strong>1 cliente = $800.000/año.</strong><br>
+        Con 10 clientes nuevos desde la web: <strong>$8.000.000 en ingresos anuales.</strong><br><br>
+        La web se paga con el primer cliente del primer mes.<br>
+        Y los clientes que llegan por Google siguen llegando solos.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANES -->
+<section class="section" id="planes">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Inversión</span></div>
+    <div class="reveal d1"><div class="sec-title">ELIGE EL PLAN<br>DE GANSTER<br>STYLE BARBER</div></div>
+
+    <div class="founder-banner reveal d2">
+      <span class="fb-badge">🔒 Precio Fundadora</span>
+      <div class="fb-text">
+        <strong>Oferta exclusiva para clientes que arrancan antes del lanzamiento oficial.</strong><br>
+        Precios con descuento especial · disponibles solo mientras dure la disponibilidad de Johanna como cliente fundadora.
+      </div>
+    </div>
+
+    <div class="planes-grid">
+
+      <!-- PLAN A -->
+      <div class="plan plan-a reveal d1">
+        <span class="plan-badge">Plan A</span>
+        <div class="plan-letter">A</div>
+        <div class="plan-name">Presencia de Marca</div>
+        <div class="plan-price-block">
+          <div class="plan-price-original">$1.000.000 COP</div>
+          <div class="plan-price">$800.000</div>
+        </div>
+        <div class="plan-savings">Ahorras $200.000 💀</div>
+        <div class="plan-mant">COP · + $150.000/mes mantenimiento</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Landing page 1 página completa</li>
+          <li>Servicios, precios y galería básica</li>
+          <li>Botón de reserva por WhatsApp</li>
+          <li>Aparecer en Google cuando te buscan</li>
+          <li>Diseño adaptado al celular (96% del tráfico)</li>
+          <li>Link en bio de Instagram</li>
+          <li>Dominio .com (1 año incluido)</li>
+          <li>Hosting 1 año incluido</li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20me%20interesa%20el%20Plan%20A%20para%20Ganster%20Style%20Barber" class="plan-cta-a" target="_blank">Quiero ser parte de fundador</a>
+      </div>
+
+      <!-- PLAN B -->
+      <div class="plan plan-b reveal d2">
+        <span class="plan-badge">Plan B</span>
+        <div class="plan-letter">B</div>
+        <div class="plan-name">Posicionamiento Comercial</div>
+        <div class="plan-price-block">
+          <div class="plan-price-original">$2.000.000 COP</div>
+          <div class="plan-price">$1.600.000</div>
+        </div>
+        <div class="plan-savings">Ahorras $400.000 💀</div>
+        <div class="plan-mant">COP · + $200.000/mes mantenimiento</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Todo lo del Plan A</li>
+          <li>Multi-sección con galería real de cortes</li>
+          <li>Sección antes/después</li>
+          <li>Reseñas de clientes integradas</li>
+          <li>Mapa + horarios de atención</li>
+          <li>Aparecer primero en búsquedas de Google Maps</li>
+          <li>Formulario de cita básico</li>
+          <li>Velocidad optimizada (carga en menos de 2 seg.)</li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20me%20interesa%20el%20Plan%20B%20para%20Ganster%20Style%20Barber" class="plan-cta-b" target="_blank">Quiero ser parte de fundador</a>
+      </div>
+
+      <!-- PLAN C -->
+      <div class="plan plan-c reveal d3">
+        <span class="plan-badge" style="background:rgba(196,153,0,0.15);border:1px solid rgba(196,153,0,0.35);color:var(--gold-lt)">⭐ Combo Especial</span>
+        <div class="plan-letter">C</div>
+        <div class="plan-name">Web + Instagram<br>Primeros Pasos.</div>
+        <div style="font-size:12px;color:var(--text2);line-height:1.5;margin-bottom:12px">Paquete combo: tu sitio web completo más los primeros pasos en Instagram con contenido real desde el mes 1.</div>
+        <div class="plan-price-block">
+          <div class="plan-price-original">$3.000.000 COP</div>
+          <div class="plan-price">$2.500.000</div>
+        </div>
+        <div class="plan-savings">Ahorras $500.000 💀</div>
+        <div class="plan-mant">COP · + $900.000/mes · primeros 3 meses</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Todo lo del Plan B incluido</li>
+          <li>Instagram Growth — primeros pasos</li>
+          <li>3 Reels + 5 posts mensuales</li>
+          <li>Posicionamiento de marca en redes desde el mes 1</li>
+          <li style="margin-top:4px;border-top:1px solid rgba(180,0,0,0.15);padding-top:8px;color:var(--gold-lt)">Recomendado: pasar a IG Growth completo desde el mes 4 para máximo crecimiento</li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20me%20interesa%20el%20Combo%20Especial%20Plan%20C%20para%20Ganster%20Style%20Barber" class="plan-cta-c" target="_blank">Quiero ser parte de fundador</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM GROWTH -->
+<section class="section" id="instagram" style="background:rgba(255,255,255,0.013)">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Add-on disponible</span></div>
+    <div class="reveal d1"><div class="sec-title">INSTAGRAM<br>GROWTH</div></div>
+    <div class="ig-section reveal d2">
+      <div class="ig-header">
+        <div class="ig-icon">📱</div>
+        <div>
+          <h3>De cero a comunidad real</h3>
+          <p>Construimos la presencia en Instagram de Ganster Style Barber desde el primer post</p>
+        </div>
+      </div>
+      <!-- PLAN SEMANAL -->
+      <div class="ig-weeks">
+        <div class="ig-week">
+          <div class="ig-week-label">Semana 1</div>
+          <div class="ig-week-items">
+            <span class="ig-week-chip reel">🎬 1 Reel</span>
+            <span class="ig-week-chip carr">🖼️ 3 Carruseles</span>
+            <span class="ig-week-chip post">📸 Posts</span>
+            <span class="ig-week-chip hist">📱 Historias</span>
+          </div>
+        </div>
+        <div class="ig-week">
+          <div class="ig-week-label">Semana 2</div>
+          <div class="ig-week-items">
+            <span class="ig-week-chip reel">🎬 2 Reels</span>
+            <span class="ig-week-chip carr">🖼️ 3 Carruseles</span>
+            <span class="ig-week-chip post">📸 Posts</span>
+            <span class="ig-week-chip hist">📱 Historias</span>
+          </div>
+        </div>
+        <div class="ig-week">
+          <div class="ig-week-label">Semana 3</div>
+          <div class="ig-week-items">
+            <span class="ig-week-chip reel">🎬 1 Reel</span>
+            <span class="ig-week-chip carr">🖼️ 3 Carruseles</span>
+            <span class="ig-week-chip post">📸 Posts</span>
+            <span class="ig-week-chip hist">📱 Historias</span>
+          </div>
+        </div>
+        <div class="ig-week">
+          <div class="ig-week-label">Semana 4</div>
+          <div class="ig-week-items">
+            <span class="ig-week-chip reel">🎬 2 Reels</span>
+            <span class="ig-week-chip carr">🖼️ 3 Carruseles</span>
+            <span class="ig-week-chip post">📸 Posts</span>
+            <span class="ig-week-chip hist">📱 Historias</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOTALES -->
+      <div class="ig-totals">
+        <div class="ig-total-item">
+          <div class="ig-total-num">6</div>
+          <div class="ig-total-label">Reels / mes</div>
+        </div>
+        <div class="ig-total-sep"></div>
+        <div class="ig-total-item">
+          <div class="ig-total-num">12</div>
+          <div class="ig-total-label">Carruseles / mes</div>
+        </div>
+        <div class="ig-total-sep"></div>
+        <div class="ig-total-item">
+          <div class="ig-total-num">4</div>
+          <div class="ig-total-label">Semanas con historias</div>
+        </div>
+        <div class="ig-total-sep"></div>
+        <div class="ig-total-item">
+          <div class="ig-total-num">📅</div>
+          <div class="ig-total-label">Días estratégicos programados</div>
+        </div>
+      </div>
+
+      <div class="ig-grid">
+        <div class="ig-item">
+          <div class="ig-item-icon">🎯</div>
+          <h5>Perfil optimizado</h5>
+          <p>Bio, foto de perfil, highlights y link en bio — todo listo para convertir visitantes en clientes.</p>
+        </div>
+        <div class="ig-item">
+          <div class="ig-item-icon">🎬</div>
+          <h5>6 Reels / mes guionados</h5>
+          <p>Graban, nosotros guionamos. S1: ×1 · S2: ×2 · S3: ×1 · S4: ×2. Publicados en días de mayor alcance.</p>
+        </div>
+        <div class="ig-item">
+          <div class="ig-item-icon">🖼️</div>
+          <h5>12 Carruseles / mes</h5>
+          <p>3 por semana, las 4 semanas. Contenido de valor que genera guardados, compartidos y nuevos seguidores.</p>
+        </div>
+        <div class="ig-item">
+          <div class="ig-item-icon">📸</div>
+          <h5>Posts + Portadas semanales</h5>
+          <p>Plantillas con la identidad de Ganster Style Barber. Listas para publicar cada semana.</p>
+        </div>
+        <div class="ig-item">
+          <div class="ig-item-icon">📱</div>
+          <h5>Historias las 4 semanas</h5>
+          <p>Encuestas, detrás de cámaras, promociones y contenido interactivo activo toda la semana.</p>
+        </div>
+        <div class="ig-item">
+          <div class="ig-item-icon">📅</div>
+          <h5>Publicación estratégica</h5>
+          <p>Todo programado en los días y horas de mayor tráfico para barberías en Bogotá.</p>
+        </div>
+        <div class="ig-item">
+          <div class="ig-item-icon">🤝</div>
+          <h5>Reunión mensual de contenido</h5>
+          <p>Una vez al mes unificamos ideas: lo que propone AJ Business + lo que quiere el negocio. El contenido sale alineado con la marca y los objetivos del mes.</p>
+        </div>
+      </div>
+
+      <!-- FOUNDER OFFER -->
+      <div class="ig-founder-row">
+        <span class="fb-badge">🔒 Oferta Fundadora — 3 primeros meses</span>
+        <div class="ig-price-block">
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:2px">Precio regular</div>
+            <div class="ig-price-original">$1.500.000</div>
+          </div>
+          <div style="font-size:1.4rem;color:rgba(180,0,0,0.3)">→</div>
+          <div>
+            <div style="font-size:11px;color:var(--red);font-weight:700;margin-bottom:2px">Precio fundadora</div>
+            <div class="ig-price">$1.000.000 <small>COP / mes · primeros 3 meses</small></div>
+          </div>
+        </div>
+        <div class="ig-saving-note">Ahorras <strong>$1.500.000 COP</strong> en los primeros 3 meses · Desde el mes 4 aplica precio regular · Disponible en cualquier plan</div>
+      </div>
+
+      <div class="ig-cta-row">
+        <div style="font-size:12px;color:var(--muted)">Compatible con Plan A, B o C. Se puede agregar ahora o después del lanzamiento.</div>
+        <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20me%20interesa%20el%20Instagram%20Growth%20para%20Ganster%20Style%20Barber" class="btn-primary" target="_blank" style="white-space:nowrap">Agregar Instagram Growth →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOFIA IA -->
+<section class="section">
+  <div class="container">
+    <div class="sofia-box reveal">
+      <div class="sofia-avatar">🤖</div>
+      <div class="sofia-content">
+        <div class="sofia-tag">Add-on opcional</div>
+        <h3>¿Y si Ganster Style Barber atendiera sola en WhatsApp?</h3>
+        <p>Sofia AI es un asistente que responde preguntas frecuentes, confirma citas, envía la dirección y toma datos del cliente — incluso cuando están cortando y no pueden revisar el celular.</p>
+        <div class="sofia-chips">
+          <span class="sofia-chip">Responde "¿cuánto cuesta?"</span>
+          <span class="sofia-chip">Envía la dirección</span>
+          <span class="sofia-chip">Toma datos para cita</span>
+          <span class="sofia-chip">Funciona 24/7</span>
+        </div>
+        <div class="sofia-price"><strong>$450.000 COP</strong> setup · <strong>$300.000/mes</strong> · compatible con cualquier plan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="section" id="fases" style="background:rgba(255,255,255,0.013)">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Cronograma</span></div>
+    <div class="reveal d1"><div class="sec-title">LISTOS EN<br>15 DÍAS</div></div>
+    <div class="fases">
+      <div class="fase reveal d1">
+        <div class="fase-tag">Días 1–4</div>
+        <h4>Brief y Diseño</h4>
+        <ul>
+          <li>Reunión de alineación</li>
+          <li>Brief del negocio y estilo</li>
+          <li>Wireframe del sitio</li>
+          <li>Paleta de colores y tipografía</li>
+        </ul>
+      </div>
+      <div class="fase reveal d2">
+        <div class="fase-tag">Días 5–10</div>
+        <h4>Desarrollo</h4>
+        <ul>
+          <li>Construcción del sitio</li>
+          <li>Fotos, textos, galería</li>
+          <li>SEO e integración WhatsApp</li>
+          <li>Subida a dominio propio</li>
+        </ul>
+      </div>
+      <div class="fase reveal d3">
+        <div class="fase-tag">Días 11–15</div>
+        <h4>Revisión y Lanzamiento</h4>
+        <ul>
+          <li>Revisión con el cliente</li>
+          <li>Ajustes finales</li>
+          <li>¡Go live! 🚀</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMA DE PAGO -->
+<section class="section">
+  <div class="container">
+    <div class="reveal"><span class="sec-label">Forma de pago</span></div>
+    <div class="reveal d1"><div class="sec-title">SIN SORPRESAS,<br>SIN LETRAS PEQUEÑAS</div></div>
+    <div class="pago-grid">
+      <div class="pago-card reveal d1">
+        <div class="pago-icon">📋</div>
+        <h4>50% para iniciar</h4>
+        <p>Se firma el contrato, se paga el 50% y arrancamos en 24 horas.</p>
+      </div>
+      <div class="pago-card reveal d2">
+        <div class="pago-icon">🚀</div>
+        <h4>50% contra entrega</h4>
+        <p>El resto se paga cuando el sitio está listo y aprobado por ustedes.</p>
+      </div>
+      <div class="pago-card reveal d1">
+        <div class="pago-icon">📱</div>
+        <h4>Nequi o transferencia</h4>
+        <p>Sin complicaciones. Transferencia bancaria o Nequi a nombre de Valentina Triana.</p>
+      </div>
+      <div class="pago-card reveal d2">
+        <div class="pago-icon">📄</div>
+        <h4>Contrato incluido</h4>
+        <p>Todo por escrito. Acuerdo de servicio que protege a ambas partes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <span class="cta-ornament">✦ &nbsp; el momento es ahora &nbsp; ✦</span>
+  <p class="final-quote">
+    Ganster Style Barber tiene el talento. Solo falta que<br><span class="acc">Bogotá los encuentre primero.</span>
+  </p>
+  <p class="final-sub">Respondemos en menos de 2 horas. Sin compromiso.</p>
+  <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20vi%20la%20propuesta%20de%20Ganster%20Style%20Barber%20y%20quiero%20hablar" class="btn-wa-final" target="_blank">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Hablemos por WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>AJ Business Advisory</strong> — Propuesta confidencial para Johanna · Ganster Style Barber · Bogotá 2026<br>
+  <span style="font-size:10px;margin-top:4px;display:block">Valentina Triana · +57 322 781 5811 · ajbusinessadvisory.com</span>
+</footer>
+
+<script>
+function switchMock(plan,btn){
+  document.querySelectorAll('.mock-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.mtab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('mock-'+plan).classList.add('active');
+  btn.classList.add('active');
+}
+
+// Reveal on scroll
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');observer.unobserve(e.target)}});
+},{threshold:0.1});
+reveals.forEach(r=>observer.observe(r));
+
+// Nav dots active state
+const sections=[document.getElementById('hero'),document.getElementById('diag'),document.getElementById('obj'),document.getElementById('planes'),document.getElementById('instagram'),document.getElementById('fases')];
+const dots=document.querySelectorAll('.nd');
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const i=sections.indexOf(e.target);
+      if(i>=0){dots.forEach(d=>d.classList.remove('active'));if(dots[i])dots[i].classList.add('active');}
+    }
+  });
+},{threshold:0.3});
+sections.forEach(s=>{if(s)io.observe(s)});
+</script>
+</body>
+</html>

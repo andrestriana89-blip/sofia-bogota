@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta Web — Ruztik Industry × AJ Business Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#111;--bg2:#141414;--bg3:#181818;--card:#1a1a1a;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --yellow:#f5c400;--yd:#c49900;--yp:rgba(245,196,0,0.07);--yg:rgba(245,196,0,0.18);
+  --text:#ede9da;--muted:#7a7060;--radius:12px;--radius-lg:20px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);background-image:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(245,196,0,.06) 0%,rgba(245,196,0,.018) 38%,transparent 68%);background-attachment:fixed;color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--yellow);color:#000}
+a{color:inherit;text-decoration:none}
+p{max-width:66ch}
+p+p{margin-top:.9rem}
+
+/* ── TYPOGRAPHY ── */
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,8rem);line-height:.92;letter-spacing:.01em}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,4rem);line-height:.97;letter-spacing:.02em}
+h3{font-family:'Inter',sans-serif;font-weight:700;font-size:clamp(1.05rem,2vw,1.35rem)}
+.label{font-size:.68rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--yellow)}
+.muted{color:var(--muted)}
+
+/* ── LAYOUT ── */
+.container{max-width:1180px;margin:0 auto;padding:0 2rem}
+.section{padding:100px 0}
+.section-dark{background:var(--bg)}
+.section-mid{background:var(--bg)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+
+/* ── PROPOSAL BAR ── */
+.pbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(11,11,11,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+  padding:11px 2rem;display:flex;align-items:center;justify-content:space-between;
+}
+.pbar-l{display:flex;align-items:center;gap:14px}
+.pbar-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.12em;color:var(--yellow)}
+.pbar-sep{width:1px;height:18px;background:var(--border)}
+.pbar-info{font-size:.7rem;color:var(--muted);letter-spacing:.04em}
+.pbar-date{font-size:.68rem;color:var(--muted)}
+.pbar-r{display:flex;align-items:center;gap:.75rem}
+.pbar-cta{
+  background:var(--yellow);color:#000;font-weight:700;font-size:.65rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:5px;
+  border:none;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-flex;align-items:center;gap:5px;transition:all .2s;
+}
+.pbar-cta:hover{background:#ffe040;transform:translateY(-1px)}
+.pbar-cta-ghost{
+  background:transparent;color:var(--muted);font-weight:500;font-size:.65rem;
+  letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:5px;
+  border:1px solid var(--border);cursor:pointer;white-space:nowrap;transition:all .2s;
+}
+.pbar-cta-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+
+/* ── NAV DOTS ── */
+.nav-dots{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:100;display:flex;flex-direction:column;gap:9px}
+.nd{width:7px;height:7px;border-radius:50%;background:var(--border);border:1px solid #3a3a3a;cursor:pointer;transition:all .25s;position:relative}
+.nd.active,.nd:hover{background:var(--yellow);border-color:var(--yellow);transform:scale(1.5)}
+.nd[data-tip]:hover::after{content:attr(data-tip);position:absolute;right:18px;top:50%;transform:translateY(-50%);background:var(--card);border:1px solid var(--border);padding:3px 9px;border-radius:4px;font-size:.68rem;white-space:nowrap;color:var(--text);pointer-events:none}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── SECTION HEADER ── */
+.sh{margin-bottom:3.25rem}
+.sh .label{display:block;margin-bottom:.6rem}
+.sh h2{margin-bottom:.9rem}
+.sh p{color:var(--muted);font-size:1.02rem}
+.yline{width:44px;height:3px;background:var(--yellow);margin-top:.9rem}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;padding-top:70px;padding-bottom:120px;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 65% 50%,rgba(245,196,0,.055) 0%,transparent 68%),
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.012) 39px,rgba(255,255,255,.012) 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.012) 39px,rgba(255,255,255,.012) 40px);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--yp);border:1px solid rgba(245,196,0,.22);border-radius:100px;
+  padding:5px 14px;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--yellow);margin-bottom:1.75rem;
+}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--yellow);border-radius:50%;animation:pdot 2s ease infinite}
+@keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+.hero-title{margin-bottom:1.75rem}
+.hero-title .acc{color:var(--yellow)}
+.hero-sub{font-size:clamp(.95rem,2vw,1.2rem);color:var(--muted);max-width:54ch;margin-bottom:1.5rem;line-height:1.65}
+.hero-quote{
+  font-size:.95rem;color:var(--muted);max-width:50ch;line-height:1.72;
+  border-left:2px solid var(--yellow);padding-left:1.25rem;margin-bottom:2.75rem;
+}
+.hero-actions{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.btn-y{
+  background:var(--yellow);color:#000;font-weight:700;font-size:.82rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:14px 30px;border-radius:6px;
+  border:none;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-y:hover{background:#ffe040;transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,196,0,.28)}
+.btn-ghost{
+  background:transparent;color:var(--text);font-weight:500;font-size:.82rem;
+  letter-spacing:.08em;text-transform:uppercase;padding:14px 30px;border-radius:6px;
+  border:1px solid var(--border2);cursor:pointer;transition:all .2s;
+}
+.btn-ghost:hover{border-color:var(--yellow);color:var(--yellow)}
+.hero-stats{
+  position:absolute;bottom:2.5rem;left:0;right:0;padding:0 2rem;
+  display:flex;align-items:center;justify-content:center;gap:2rem;
+  flex-wrap:wrap;row-gap:.75rem;
+}
+.hstat{text-align:center;min-width:80px}
+.hstat .n{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--yellow);display:block;line-height:1}
+.hstat .d{font-size:.63rem;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;display:block;margin-top:3px}
+.hstat-sep{width:1px;height:38px;background:var(--border);flex-shrink:0}
+
+/* ── EXECUTIVE SUMMARY ── */
+.exec-box{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:3.5rem;position:relative;overflow:hidden;
+}
+.exec-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--yellow),var(--yd),transparent);
+}
+.exec-quote{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.1rem,2.5vw,1.5rem);color:var(--text);line-height:1.65;
+  max-width:72ch;margin-bottom:2rem;
+}
+.exec-detail{font-size:.96rem;color:var(--muted);max-width:68ch;line-height:1.72}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1.85rem;
+  transition:border-color .25s,transform .25s;
+}
+.card:hover{border-color:rgba(245,196,0,.22);transform:translateY(-2px)}
+.card-icon{
+  width:42px;height:42px;background:var(--yp);border:1px solid rgba(245,196,0,.14);
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.1rem;font-size:1.2rem;
+}
+.card h3{margin-bottom:.65rem}
+.card p{color:var(--muted);font-size:.9rem}
+
+/* ── OBJECTIVES ── */
+.obj-list{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.obj-list li{
+  display:flex;align-items:flex-start;gap:.9rem;
+  padding:.95rem 1.2rem;background:var(--card);
+  border:1px solid var(--border);border-radius:8px;
+  font-size:.93rem;transition:border-color .2s,background .2s;
+}
+.obj-list li:hover{border-color:rgba(245,196,0,.2);background:rgba(245,196,0,.03)}
+.obj-arrow{color:var(--yellow);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ── PILLARS ── */
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.pillar{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:2rem;position:relative;overflow:hidden;transition:all .25s;
+}
+.pillar:hover{border-color:rgba(245,196,0,.3);transform:translateY(-2px)}
+.pillar::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--yellow),transparent);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.pillar:hover::after{transform:scaleX(1)}
+.pillar-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(245,196,0,.1);position:absolute;top:-.25rem;right:1rem;line-height:1}
+.pillar h3{margin-bottom:.65rem}
+.pillar p{color:var(--muted);font-size:.9rem}
+
+/* ── SITEMAP ── */
+.sitemap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.smap-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.2rem;text-align:center;transition:all .22s;
+}
+.smap-item:hover{border-color:var(--yellow);background:var(--yp)}
+.smap-item .ico{font-size:1.4rem;margin-bottom:.45rem}
+.smap-item .nm{font-size:.82rem;font-weight:600;margin-bottom:.2rem}
+.smap-item .ds{font-size:.68rem;color:var(--muted)}
+.smap-core{border-color:rgba(245,196,0,.25)}
+
+/* ── MOCKUP TABS ── */
+.mock-tabs{
+  display:flex;background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:4px;margin-bottom:2.5rem;max-width:580px;
+}
+.mtab{
+  flex:1;padding:11px 18px;border:none;background:transparent;
+  color:var(--muted);font-family:'Inter',sans-serif;font-size:.8rem;
+  font-weight:600;letter-spacing:.04em;cursor:pointer;border-radius:7px;transition:all .2s;
+}
+.mtab.on{background:var(--yellow);color:#000}
+.mtab:not(.on):hover{color:var(--text);background:var(--bg2)}
+
+/* ── MOCKUP V2 — Real website previews at scale ── */
+.mock-panel{display:none}
+.mock-panel.on{display:block}
+.mock-feat{list-style:none;display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.5rem}
+.mock-feat li{font-size:.82rem;display:flex;gap:.6rem}
+.mock-feat li::before{content:'✓';color:var(--yellow);flex-shrink:0}
+/* Browser frame V2 */
+.v2-browser{background:#1c1c1c;border:1px solid #2a2a2a;border-radius:12px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);margin-bottom:2rem}
+.v2-bar{background:#222;padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #2a2a2a}
+.mdots{display:flex;gap:5px}
+.mdots span{width:8px;height:8px;border-radius:50%}
+.dr{background:#ff5f57}.dy{background:#febc2e}.dg{background:#28c840}
+.murl{flex:1;background:#1a1a1a;border:1px solid #333;border-radius:4px;padding:3px 10px;font-size:8px;color:#555;letter-spacing:.02em}
+/* Scale wrappers */
+.mscreen-outer{overflow:hidden;position:relative;background:#0a0a0a}
+.msite-preview{width:1200px;transform-origin:top left;position:relative}
+.ps-outer{overflow:hidden;position:relative;background:#0a0a0a}
+.ps-preview{width:390px;transform-origin:top left;position:relative}
+/* Bottom row */
+.v2-bottom{display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;margin-top:2rem}
+.v2-desc{flex:1;min-width:260px}
+.v2-phone-wrap{display:flex;gap:1.5rem;align-items:flex-start;flex-wrap:wrap}
+/* Phone V2 */
+.v2-phone{background:#1a1a1a;border:2px solid #2a2a2a;border-radius:24px;overflow:hidden;width:160px;box-shadow:0 12px 36px rgba(0,0,0,.4)}
+.v2-phone-top{background:#111;padding:8px 0 4px;display:flex;justify-content:center}
+.v2-phone-pill{width:48px;height:6px;background:#222;border-radius:3px}
+.v2-phone-bottom{background:#111;padding:6px 0;display:flex;justify-content:center}
+.v2-phone-home{width:36px;height:4px;background:#2a2a2a;border-radius:2px}
+
+/* Differentials */
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.diff-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.5rem;position:relative;overflow:hidden;transition:all .25s;
+}
+.diff-item:hover{border-color:rgba(245,196,0,.22);transform:translateY(-2px)}
+.diff-num{
+  font-family:'Bebas Neue',sans-serif;font-size:4rem;
+  color:rgba(245,196,0,.07);position:absolute;top:-.5rem;right:.75rem;line-height:1;
+}
+.diff-icon{font-size:1.3rem;margin-bottom:.8rem}
+.diff-item h4{font-size:.95rem;font-weight:700;margin-bottom:.5rem}
+.diff-item p{font-size:.83rem;color:var(--muted)}
+
+/* ── PRICING ── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;align-items:start}
+.pcard{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-lg);
+  padding:2.5rem 2rem;display:flex;flex-direction:column;position:relative;transition:all .3s;
+}
+.pcard:hover{border-color:rgba(245,196,0,.25);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.pcard.feat{border-color:var(--yellow);background:linear-gradient(160deg,#1a1800 0%,var(--card) 55%);box-shadow:0 0 48px rgba(245,196,0,.09)}
+.pbadge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--yellow);color:#000;font-size:.62rem;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;padding:4px 14px;border-radius:100px;white-space:nowrap;
+}
+.ptier{font-size:.67rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:.4rem}
+.pname{font-family:'Inter',sans-serif;font-size:1.25rem;font-weight:700;margin-bottom:1.1rem}
+.pprice{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--yellow);line-height:1;margin-bottom:.2rem}
+.pprice-u{font-size:.78rem;color:var(--muted);margin-bottom:1.6rem}
+.pdiv{height:1px;background:var(--border);margin-bottom:1.6rem}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:.55rem;flex:1;margin-bottom:2rem}
+.pfeats li{display:flex;align-items:flex-start;gap:.7rem;font-size:.86rem}
+.pfeats li .ck{color:var(--yellow);flex-shrink:0;margin-top:1px;font-size:.8rem}
+.pfeats li .ck-off{color:#333}
+
+/* ── PROTECTION ── */
+.prot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.prot-item{
+  background:var(--card);border:1px solid var(--border);border-radius:10px;
+  padding:1.5rem;position:relative;overflow:hidden;
+}
+.prot-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--yellow),transparent)}
+.prot-n{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(245,196,0,.08);position:absolute;top:0;right:.75rem;line-height:1}
+.prot-icon{font-size:1.4rem;margin-bottom:.7rem}
+.prot-item h4{margin-bottom:.45rem}
+.prot-item p{font-size:.83rem;color:var(--muted)}
+.prot-note{
+  margin-top:1.5rem;padding:.95rem 1.25rem;background:var(--yp);
+  border:1px solid rgba(245,196,0,.14);border-radius:8px;font-size:.8rem;color:var(--muted);
+}
+.prot-note strong{color:var(--text)}
+
+/* ── SOFIA ── */
+.sofia-wrap{
+  background:linear-gradient(135deg,#0d0d0d 0%,#141408 100%);
+  border:1px solid rgba(245,196,0,.22);border-radius:var(--radius-lg);
+  padding:3.5rem;display:flex;align-items:center;gap:3rem;
+  position:relative;overflow:hidden;
+}
+.sofia-wrap::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(245,196,0,.07),transparent 70%)}
+.sofia-badge{
+  background:var(--yp);border:1px solid rgba(245,196,0,.22);border-radius:6px;
+  padding:4px 10px;font-size:.67rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--yellow);display:inline-block;margin-bottom:.85rem;
+}
+.sofia-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.4rem}
+.sofia-tag{background:var(--card);border:1px solid var(--border);border-radius:100px;padding:5px 13px;font-size:.76rem;color:var(--muted)}
+.sofia-visual{
+  flex-shrink:0;width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,196,0,.13) 0%,rgba(245,196,0,.03) 55%,transparent 100%);
+  border:1px solid rgba(245,196,0,.18);display:flex;align-items:center;justify-content:center;font-size:4rem;
+}
+
+/* ── TIMELINE ── */
+.tl{display:flex;position:relative}
+.tl::before{content:'';position:absolute;top:27px;left:27px;right:27px;height:2px;background:linear-gradient(90deg,var(--yellow),var(--yd),rgba(245,196,0,.25))}
+.tl-step{flex:1;text-align:center;padding:0 1rem}
+.tl-dot{
+  width:54px;height:54px;border-radius:50%;background:var(--card);border:2px solid var(--yellow);
+  display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;
+  font-size:1.2rem;position:relative;z-index:1;
+}
+.tl-step .days{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--yellow);display:block;margin-bottom:.3rem}
+.tl-step h4{margin-bottom:.35rem}
+.tl-step p{font-size:.8rem;color:var(--muted);max-width:none}
+
+/* ── PAYMENT ── */
+.pay-split{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:660px;margin:0 auto}
+.pay-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:2.5rem;text-align:center;position:relative;overflow:hidden;transition:all .25s;
+}
+.pay-card:hover{border-color:rgba(245,196,0,.25);transform:translateY(-2px)}
+.pay-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--yellow),transparent)}
+.pay-pct{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--yellow);line-height:1;margin-bottom:.4rem}
+.pay-label{font-weight:700;margin-bottom:.4rem}
+.pay-sub{font-size:.83rem;color:var(--muted)}
+
+/* ── CTA FINAL ── */
+#cta-final{position:relative;overflow:hidden;text-align:center}
+#cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 50% 100%,rgba(245,196,0,.08),transparent 70%)}
+.cta-serif{
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.1rem,2.5vw,1.55rem);color:var(--muted);
+  max-width:62ch;margin:0 auto 2.25rem;line-height:1.65;
+}
+.cta-serif strong{color:var(--text);font-style:normal}
+.cta-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,4.5rem);line-height:.94;margin-bottom:1.5rem}
+.cta-big .acc{color:var(--yellow)}
+.cta-note{font-size:.8rem;color:var(--muted);margin-top:1.5rem}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--bg3);border-top:1px solid var(--border);
+  padding:1.6rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer .brand{font-size:.73rem;color:var(--muted)}
+.footer .brand strong{color:var(--text)}
+.footer .conf{font-size:.67rem;color:var(--muted);border:1px solid var(--border);border-radius:100px;padding:3px 11px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .nav-dots{display:none}
+  .v2-bottom{flex-direction:column}
+}
+@media(max-width:640px){
+  .v2-phone-wrap{flex-direction:column}
+  .v2-phone{width:140px}
+}
+@media(max-width:900px){
+  .pbar-cta,.pbar-cta-ghost{display:none}
+  .grid-3,.pillar-grid,.diff-grid,.prot-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}
+  .tl{flex-direction:column;gap:2rem}
+  .tl::before{display:none}
+  .pay-split{grid-template-columns:1fr;max-width:340px}
+  .sofia-wrap{flex-direction:column;gap:2rem;padding:2.5rem}
+  .sofia-visual{width:120px;height:120px;font-size:2.5rem}
+  .sitemap-grid{grid-template-columns:repeat(4,1fr)}
+}
+@media(max-width:640px){
+  /* ── Layout base ── */
+  .pbar{padding:7px 1.25rem}
+  .pbar-brand{font-size:.72rem;letter-spacing:.07em;white-space:nowrap}
+  .pbar-sep,.pbar-info,.pbar-date{display:none}
+  .pbar-r{gap:.4rem}
+  .pbar-cta{display:inline-flex;font-size:.56rem;padding:5px 8px;letter-spacing:.03em;white-space:nowrap}
+  .pbar-cta-ghost{display:block;font-size:.56rem;padding:5px 7px;letter-spacing:.03em;white-space:nowrap}
+  .container{padding:0 1.25rem}
+  .section{padding:60px 0}
+  .sh{margin-bottom:2rem}
+
+  /* ── Hero ── */
+  #hero{padding-top:52px;padding-bottom:230px;min-height:100vh;min-height:100svh}
+  #hero::before{
+    background:
+      radial-gradient(ellipse 120% 50% at 50% 30%,rgba(245,196,0,.065) 0%,transparent 65%),
+      repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(255,255,255,.012) 39px,rgba(255,255,255,.012) 40px),
+      repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(255,255,255,.012) 39px,rgba(255,255,255,.012) 40px)
+  }
+  .hero-tag{font-size:.58rem;letter-spacing:.1em;padding:4px 10px;margin-bottom:1rem}
+  .hero-title{font-size:clamp(2.7rem,9vw,8rem);margin-bottom:1rem}
+  .hero-sub{font-size:.9rem;line-height:1.6;margin-bottom:.85rem;max-width:none}
+  .hero-quote{font-size:.86rem;margin-bottom:1.25rem;padding-left:1rem}
+  .hero-actions{flex-direction:column;gap:.5rem;align-items:stretch}
+  .hero-actions a,.hero-actions button{width:100%;justify-content:center;text-align:center}
+
+  /* ── Hero stats — 2×2 card grid ── */
+  .hero-stats{
+    bottom:.9rem;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:.5rem;
+    padding:0 1.25rem;
+  }
+  .hstat-sep{display:none}
+  .hstat{
+    flex:0 0 calc(50% - .25rem);
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:.55rem .85rem;
+    text-align:left;
+  }
+  .hstat .n{font-size:1.5rem}
+  .hstat .d{margin-top:1px}
+
+  /* ── Grids ── */
+  .grid-2,.pillar-grid,.diff-grid,.prot-grid{grid-template-columns:1fr}
+  .sitemap-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* ── Exec box ── */
+  .exec-box{padding:1.75rem}
+  .exec-quote{font-size:1.05rem}
+
+  /* ── Mock tabs ── */
+  .mock-tabs{flex-wrap:wrap}
+  .mtab{flex:none;width:calc(50% - 2px)}
+
+  /* ── Pricing ── */
+  .pcard{padding:2rem 1.5rem}
+  .pprice{font-size:2.5rem}
+
+  /* ── Payment section ── */
+  .pay-split{max-width:none}
+  .pay-card{padding:2rem 1.5rem}
+  .pay-pct{font-size:3.5rem}
+  .nego-block{padding:1.75rem 1.5rem}
+
+  /* ── CTA final ── */
+  .cta-big{font-size:clamp(2rem,10vw,3.5rem)}
+  .cta-serif{font-size:1rem}
+  #cta-final [style*="display:flex"]{flex-direction:column;align-items:stretch}
+  #cta-final a.btn-y,#cta-final .btn-ghost{width:100%;justify-content:center}
+
+  /* ── Footer ── */
+  .footer{flex-direction:column;align-items:flex-start;gap:.6rem;padding:1.25rem}
+}
+
+/* ── Ruztik mockup animations ── */
+@keyframes rk-pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,196,0,.5)}60%{box-shadow:0 0 0 10px rgba(245,196,0,0)}}
+@keyframes rk-shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes rk-breathe{0%,100%{opacity:.75}50%{opacity:1}}
+@keyframes rk-ping{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.6);opacity:0}}
+@keyframes rk-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.rk-btn-pulse{animation:rk-pulse 2s ease infinite}
+.rk-btn-shimmer{background:linear-gradient(90deg,#c49900 0%,#f5c400 30%,#ffe566 50%,#f5c400 70%,#c49900 100%);background-size:200% auto;animation:rk-shimmer 2.4s linear infinite;color:#000;font-weight:700}
+.rk-breathe{animation:rk-breathe 3s ease infinite}
+.rk-float{animation:rk-float 3s ease infinite}
+</style>
+</head>
+<body>
+
+<!-- PROPOSAL BAR -->
+<div class="pbar">
+  <div class="pbar-l">
+    <div class="pbar-brand">AJ Business Advisory</div>
+    <div class="pbar-sep"></div>
+    <div class="pbar-info">Propuesta para <strong style="color:var(--text)">Ruztik Industry</strong></div>
+  </div>
+  <div class="pbar-r">
+    <a href="https://wa.me/573227815811?text=Hola%2C%20vi%20la%20propuesta%20de%20Ruztik%20Industry%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="pbar-cta rk-btn-pulse">Quiero esto para mi marca →</a>
+    <button class="pbar-cta-ghost" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">Ver planes</button>
+    <div class="pbar-date">Mayo 2026 · Confidencial</div>
+  </div>
+</div>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots">
+  <div class="nd active" data-sec="0" data-tip="Inicio"></div>
+  <div class="nd" data-sec="1" data-tip="Resumen"></div>
+  <div class="nd" data-sec="2" data-tip="Entendimiento"></div>
+  <div class="nd" data-sec="3" data-tip="Objetivos"></div>
+  <div class="nd" data-sec="4" data-tip="Solución"></div>
+  <div class="nd" data-sec="5" data-tip="Estructura"></div>
+  <div class="nd" data-sec="6" data-tip="Diferenciales"></div>
+  <div class="nd" data-sec="7" data-tip="Niveles"></div>
+  <div class="nd" data-sec="8" data-tip="Inversión"></div>
+  <div class="nd" data-sec="9" data-tip="Protección"></div>
+  <div class="nd" data-sec="10" data-tip="Sofía"></div>
+  <div class="nd" data-sec="11" data-tip="Entrega"></div>
+  <div class="nd" data-sec="12" data-tip="Cierre"></div>
+</nav>
+
+<!-- ────────────────────── 1. HERO ────────────────────── -->
+<section id="hero" data-section="0">
+  <div class="container">
+    <div class="reveal">
+      <div class="hero-tag">Propuesta Comercial · Diseño Web Personalizado</div>
+    </div>
+    <h1 class="hero-title reveal d1">
+      Más que<br>
+      una vitrina —<br>
+      <span class="acc">un canal digital</span><br>
+      <span class="acc">que vende</span>
+    </h1>
+    <p class="hero-sub reveal d2">
+      Cada pieza que Ruztik Industry crea tiene un valor que el mundo no puede ver si no te encuentra en línea. Esta propuesta fue construida exclusivamente para tu marca — no es una plantilla, es tu siguiente movimiento comercial.
+    </p>
+    <p class="hero-quote reveal d3">
+      Una página web bien construida no es un gasto. Es la herramienta comercial más rentable que puede tener una marca de diseño y fabricación artesanal.
+    </p>
+    <div class="hero-actions reveal d4">
+      <a href="https://wa.me/573227815811?text=Hola%2C%20vi%20la%20propuesta%20de%20Ruztik%20Industry%20y%20quiero%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="btn-y rk-btn-pulse">
+        Quiero esto para mi marca <span>→</span>
+      </a>
+      <button class="btn-ghost" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">
+        Ver planes de inversión
+      </button>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <span class="n">7–15</span>
+      <span class="d">Días de entrega</span>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <span class="n">3</span>
+      <span class="d">Planes disponibles</span>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <span class="n">100%</span>
+      <span class="d">Personalizado</span>
+    </div>
+    <div class="hstat-sep"></div>
+    <div class="hstat">
+      <span class="n">50/50</span>
+      <span class="d">Forma de pago</span>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 2. RESUMEN EJECUTIVO ────────────────────── -->
+<section class="section section-dark" data-section="1">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Resumen Ejecutivo</span>
+      <h2>Lo que esta propuesta<br>significa para tu marca</h2>
+      <div class="yline"></div>
+    </div>
+    <div class="exec-box reveal d1">
+      <p class="exec-quote">
+        "Ruztik Industry tiene algo que pocas marcas tienen: un producto con alma. Lo que falta es el canal para que esa historia llegue a quienes toman decisiones."
+      </p>
+      <p class="exec-detail">
+        Esta propuesta fue diseñada para construir una herramienta visual y comercial que posicione tu marca, muestre el valor real de tu trabajo y abra oportunidades de venta que hoy se están perdiendo por falta de presencia digital. No es una plantilla — es un sitio construido desde el entendimiento de tu negocio.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 3. ENTENDIMIENTO ────────────────────── -->
+<section class="section" data-section="2">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Entendimiento del Negocio</span>
+      <h2>Entendemos<br>quién eres</h2>
+      <div class="yline"></div>
+    </div>
+    <div class="grid-3" style="gap:1.5rem">
+      <div class="card reveal d1">
+        <div class="card-icon">🏭</div>
+        <h3>Diseño con identidad propia</h3>
+        <p>Fabricación artesanal rústico-industrial con carácter real — un trabajo diferenciado que muy pocas marcas ofrecen.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="card-icon">📸</div>
+        <h3>Tienes el portafolio. Te falta el canal.</h3>
+        <p>Ese activo visual solo necesita un espacio profesional que lo presente como merece y lo lleve a las personas correctas.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="card-icon">📈</div>
+        <h3>Clientes más grandes te esperan</h3>
+        <p>Empresas y proyectos de escala evalúan a sus proveedores por su presencia digital antes de hacer una llamada.</p>
+      </div>
+      <div class="card reveal d1">
+        <div class="card-icon">⏰</div>
+        <h3>Hoy todo depende de ti</h3>
+        <p>Consultas, cotizaciones y gestión de forma manual. Una web organiza el proceso y libera tu tiempo.</p>
+      </div>
+      <div class="card reveal d2">
+        <div class="card-icon">💬</div>
+        <h3>Sin claridad, el cliente se va</h3>
+        <p>Una web bien estructurada es tu vendedor 24/7 — responde preguntas, muestra valor y filtra prospectos.</p>
+      </div>
+      <div class="card reveal d3">
+        <div class="card-icon">🌐</div>
+        <h3>Más canales, más ventas</h3>
+        <p>Instagram no es escalable. Una web te permite aparecer en búsquedas y llegar a quien aún no te conoce.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 4. OBJETIVOS ────────────────────── -->
+<section class="section section-dark" data-section="3">
+  <div class="container">
+    <div class="grid-2" style="align-items:center;gap:4rem">
+      <div>
+        <div class="sh reveal">
+          <span class="label">Objetivos del Proyecto</span>
+          <h2>Qué vamos<br>a lograr juntos</h2>
+          <div class="yline"></div>
+        </div>
+        <p class="muted reveal d1" style="font-size:1rem;line-height:1.72">
+          Cada decisión de diseño, cada sección y cada texto dentro de tu nueva web va a estar orientado a cumplir estos objetivos. No decoramos — construimos con propósito.
+        </p>
+      </div>
+      <div>
+        <ul class="obj-list">
+          <li class="reveal d1"><span class="obj-arrow">→</span> Posicionar la marca Ruztik Industry digitalmente con una presencia que transmita autoridad y diferenciación en el mercado del diseño y la fabricación artesanal.</li>
+          <li class="reveal d2"><span class="obj-arrow">→</span> Mostrar el portafolio de manera que comunique valor real — que quien lo vea entienda que está frente a trabajo de categoría.</li>
+          <li class="reveal d3"><span class="obj-arrow">→</span> Generar confianza en clientes empresariales y proyectos de escala mayor, proyectando una imagen profesional y organizada.</li>
+          <li class="reveal d4"><span class="obj-arrow">→</span> Facilitar el contacto y la solicitud de cotización, reduciendo la dependencia de tu gestión manual y ordenando el proceso comercial.</li>
+          <li class="reveal d1"><span class="obj-arrow">→</span> Ampliar los canales de difusión — que la marca pueda ser encontrada, compartida y recomendada más allá de los canales actuales.</li>
+          <li class="reveal d2"><span class="obj-arrow">→</span> Preparar la marca para crecer comercialmente, con una base digital sólida sobre la que se puedan integrar más herramientas en el futuro.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 5. SOLUCIÓN ────────────────────── -->
+<section class="section" data-section="4">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:3.5rem">
+      <span class="label">La Solución</span>
+      <h2>Tres pilares.<br>Un solo sitio.</h2>
+      <div class="yline" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="pillar-grid">
+      <div class="pillar reveal d1">
+        <div class="pillar-num">01</div>
+        <div class="card-icon" style="font-size:1.4rem">🎯</div>
+        <h3>Posicionamiento de Marca</h3>
+        <p>La web no solo muestra lo que haces — comunica quién eres. Cada color, tipografía, imagen y palabra está elegida para reforzar la identidad de Ruztik y diferenciarte en un mercado donde la estética lo es todo.</p>
+      </div>
+      <div class="pillar reveal d2">
+        <div class="pillar-num">02</div>
+        <div class="card-icon" style="font-size:1.4rem">🧭</div>
+        <h3>Experiencia de Usuario</h3>
+        <p>El visitante llega, entiende, se interesa y actúa. Así funciona un sitio bien construido. Diseñamos el recorrido con intención: guiamos al usuario desde el primer segundo hasta el momento en que decide contactarte.</p>
+      </div>
+      <div class="pillar reveal d3">
+        <div class="pillar-num">03</div>
+        <div class="card-icon" style="font-size:1.4rem">💼</div>
+        <h3>Estructura Comercial</h3>
+        <p>Un sitio que vende no espera a que el cliente pregunte todo. Anticipa sus dudas, muestra los servicios con claridad, facilita el contacto y te organiza a ti. Es el primer paso hacia una operación comercial más eficiente.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 6. ESTRUCTURA ────────────────────── -->
+<section class="section section-dark" data-section="5">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Arquitectura del Sitio</span>
+      <h2>Cada sección,<br>con propósito</h2>
+      <div class="yline"></div>
+      <p style="margin-top:1rem">El sitio está pensado como un recorrido, no como un catálogo. Cada sección tiene un objetivo claro dentro del proceso de convencer a un visitante para que se convierta en cliente.</p>
+    </div>
+    <div class="sitemap-grid reveal">
+      <div class="smap-item smap-core">
+        <div class="ico">🏠</div>
+        <div class="nm">Inicio / Hero</div>
+        <div class="ds">Primera impresión. Identidad y propuesta de valor en 5 segundos.</div>
+      </div>
+      <div class="smap-item smap-core">
+        <div class="ico">🗂️</div>
+        <div class="nm">Portafolio</div>
+        <div class="ds">El trabajo habla. Galería curada que muestra el nivel real de la marca.</div>
+      </div>
+      <div class="smap-item smap-core">
+        <div class="ico">⚙️</div>
+        <div class="nm">Servicios</div>
+        <div class="ds">Qué ofrece Ruztik, cómo trabaja y qué esperar del proceso.</div>
+      </div>
+      <div class="smap-item smap-core">
+        <div class="ico">📬</div>
+        <div class="nm">Contacto</div>
+        <div class="ds">Puerta de entrada clara. WhatsApp, formulario y call to action directo.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">✨</div>
+        <div class="nm">Sobre la Marca</div>
+        <div class="ds">Historia, filosofía y por qué Ruztik Industry es diferente.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">🔨</div>
+        <div class="nm">Proceso de Trabajo</div>
+        <div class="ds">Cómo se construye cada pieza. Genera confianza y eleva el valor percibido.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">🏆</div>
+        <div class="nm">Proyectos Destacados</div>
+        <div class="ds">Los mejores trabajos con contexto: cliente, reto y resultado.</div>
+      </div>
+      <div class="smap-item">
+        <div class="ico">💬</div>
+        <div class="nm">Preguntas Frecuentes</div>
+        <div class="ds">Responde antes de que pregunten. Ordena y filtra clientes potenciales.</div>
+      </div>
+    </div>
+    <p class="muted reveal" style="margin-top:1.75rem;font-size:.88rem">
+      ★ Las secciones marcadas en amarillo son imprescindibles en todos los planes. Las demás se activan según el nivel de inversión.
+    </p>
+  </div>
+</section>
+
+<!-- ────────────────────── 7. DIFERENCIALES ────────────────────── -->
+<section class="section" data-section="6">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Por qué AJ Business Advisory</span>
+      <h2>Lo que nos hace<br>diferentes</h2>
+      <div class="yline"></div>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-item reveal d1">
+        <div class="diff-num">01</div>
+        <div class="diff-icon">🎨</div>
+        <h4>Diseño con intención estratégica</h4>
+        <p>No hacemos sitios bonitos por defecto. Cada decisión visual está conectada a un objetivo comercial. El diseño de Ruztik va a hablarle exactamente a los clientes que quieres atraer.</p>
+      </div>
+      <div class="diff-item reveal d2">
+        <div class="diff-num">02</div>
+        <div class="diff-icon">🧭</div>
+        <h4>Narrativa visual de marca</h4>
+        <p>Entendemos que Ruztik es más que un taller — es una marca con carácter. Construimos la narrativa visual que comunica eso desde el primer scroll.</p>
+      </div>
+      <div class="diff-item reveal d3">
+        <div class="diff-num">03</div>
+        <div class="diff-icon">📱</div>
+        <h4>Responsive real, no adaptado</h4>
+        <p>Tu sitio va a verse igual de bien en móvil que en desktop. Diseñamos desde el principio para todos los dispositivos, no adaptamos después.</p>
+      </div>
+      <div class="diff-item reveal d1">
+        <div class="diff-num">04</div>
+        <div class="diff-icon">🔄</div>
+        <h4>Recorrido pensado para convertir</h4>
+        <p>El visitante no llega y se pierde. Hay una lógica detrás de cada sección que lo guía hacia el contacto, la cotización o la decisión de compra.</p>
+      </div>
+      <div class="diff-item reveal d2">
+        <div class="diff-num">05</div>
+        <div class="diff-icon">🌱</div>
+        <h4>Base para crecer</h4>
+        <p>Lo que construimos hoy está pensado para evolucionar. Desde integrar más secciones hasta conectar una asistente virtual o herramientas de automatización en el futuro.</p>
+      </div>
+      <div class="diff-item reveal d3">
+        <div class="diff-num">06</div>
+        <div class="diff-icon">🤝</div>
+        <h4>Acompañamiento real</h4>
+        <p>No lanzamos y desaparecemos. Revisiones, ajustes y orientación forman parte del proceso. Queremos que el resultado final sea tan tuyo como nuestro.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 8. MOCKUPS ────────────────────── -->
+<section class="section section-dark" data-section="7">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Visualización por Nivel de Inversión</span>
+      <h2>Así se vería<br>tu marca online</h2>
+      <div class="yline"></div>
+      <p style="margin-top:1rem">No estás viendo wireframes genéricos. Estás viendo tres versiones reales de Ruztik Industry en digital — cada una con tu identidad, tu estética y tu contenido.</p>
+    </div>
+
+    <div class="mock-tabs reveal">
+      <button class="mtab on" onclick="switchMock('a',this)">Plan A · $1.000.000</button>
+      <button class="mtab" onclick="switchMock('b',this)">Plan B · $2.000.000</button>
+      <button class="mtab" onclick="switchMock('c',this)">Plan C · $3.000.000</button>
+    </div>
+    <p style="text-align:center;font-size:.78rem;color:var(--muted);margin-bottom:1.5rem;font-style:italic">⚠ Estas son imágenes y contenido de referencia visual. Este no sería el resultado final — el sitio se construye con tus fotografías, textos y productos reales.</p>
+
+    <!-- ═══════════ PANEL A ═══════════ -->
+    <div class="mock-panel on reveal" id="mp-a">
+      <div class="v2-browser">
+        <div class="v2-bar">
+          <div class="mdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <div class="murl">ruztik-industry.com &nbsp;·&nbsp; <span style="color:#888">Presencia de Marca — Plan A</span></div>
+        </div>
+        <div class="mscreen-outer" id="mso-a">
+          <div class="msite-preview" id="ms-a" style="font-family:'Inter',sans-serif;background:#0a0a0a"><nav style="background:#0a0a0a;padding:18px 60px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06)"><div style="display:flex;flex-direction:column;align-items:center;line-height:1"><div style="width:100%;height:1px;background:rgba(255,255,255,.35);margin-bottom:2px"></div><div style="width:100%;height:1px;background:white;margin-bottom:3px"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:3px;color:white">RUZT<span style="color:#f5c400">&#9889;</span>K</div><div style="width:100%;height:1px;background:white;margin-top:3px"></div><div style="width:100%;height:1px;background:rgba(255,255,255,.35);margin-top:2px"></div><div style="font-size:6px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px">/INDUSTRY</div></div><div style="display:flex;gap:28px;align-items:center"><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Servicios</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Portafolio</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Contacto</span><div style="background:#f5c400;color:#000;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px">Cotizar</div></div></nav><section style="background:#0a0a0a;padding:88px 60px;text-align:center;border-bottom:1px solid rgba(255,255,255,.04)"><div style="display:inline-block;font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:18px;border:1px solid rgba(245,196,0,.3);padding:6px 16px;border-radius:20px">Arte · Dise&#241;o · Bogot&#225;</div><h1 style="font-family:'Bebas Neue',sans-serif;font-size:68px;color:white;line-height:.9;letter-spacing:2px;margin-bottom:20px">ESPACIOS QUE<br><span style="color:#f5c400">INSPIRAN,</span><br>PIEZAS ÚNICAS</h1><p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.7;max-width:480px;margin:0 auto 32px">Mobiliario artesanal, lámparas de dise&#241;o y piezas únicas — cada una fabricada a mano en Bogotá para transformar tu espacio.</p><div style="display:flex;gap:14px;justify-content:center"><div style="background:#f5c400;color:#000;padding:14px 32px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:5px">Ver Portafolio</div><div style="border:1px solid rgba(255,255,255,.25);color:white;padding:14px 32px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;border-radius:5px">Cotizar por WhatsApp</div></div></section><section style="background:#0f0f0f;padding:64px 60px"><div style="margin-bottom:36px"><div style="font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:10px">Portafolio</div><div style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:white">NUESTROS TRABAJOS</div><div style="width:40px;height:2px;background:#f5c400;margin-top:10px"></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:14px"><div style="height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#1c1814"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f0e8c8 0%,#ddd0a0 30%,#c8b878 55%,rgba(28,24,20,.9) 100%)"></div><div style="position:absolute;bottom:5%;left:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:5%;right:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:58%;left:10%;right:10%;height:8%;background:linear-gradient(180deg,#d8c070,#b89840);border-radius:4px"></div><div style="position:absolute;bottom:60%;left:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:60%;right:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">COMEDERO MASCOTAS</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Maple · Acero Inoxidable</div></div></div><div style="height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#c8c0a0"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#ede6cc,#d4c890,#b8a860,rgba(25,20,10,.55))"></div><div style="position:absolute;top:5%;left:9%;width:5%;height:65%;background:rgba(200,170,60,.55);border-radius:2px"></div><div style="position:absolute;top:5%;right:9%;width:5%;height:65%;background:rgba(200,170,60,.55);border-radius:2px"></div><div style="position:absolute;top:5%;left:8%;right:8%;height:7%;background:linear-gradient(180deg,rgba(220,190,70,.8),rgba(180,148,45,.6));border-radius:3px"></div><div style="position:absolute;top:20%;left:8%;right:8%;height:45%;background:rgba(0,0,0,.12);border:1px solid rgba(180,150,40,.3);border-radius:3px"></div><div style="position:absolute;bottom:0;left:6%;right:6%;height:18%;background:rgba(18,18,18,.7);border-radius:3px 3px 0 0"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">MESA DE BA&#209;O</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Pino · Estructura Industrial</div></div></div><div style="height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative"><div style="position:absolute;inset:0;background:linear-gradient(105deg,#f0ede4 0%,#e8e0d0 22%,#d4b070 36%,#b8874c 50%,#9a6e30 62%,rgba(14,10,4,.92) 82%)"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">BAR INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Roble · Hierro · Vidrio</div></div></div><div style="height:200px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#f5f0e6"><div style="position:absolute;inset:0;background:linear-gradient(155deg,#f5f0e6,#d4b870,#c09040,#1a1510)"></div><div style="position:absolute;top:0;bottom:0;left:24%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;top:0;bottom:0;left:76%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;left:0;right:0;top:22%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:46%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:70%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.82),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">CLOSET INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Tuber&#237;a · Madera Natural</div></div></div></div></section><section style="background:#111;padding:56px 60px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center"><div><div style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#f5c400;margin-bottom:12px">Contacto</div><div style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:white;line-height:.92;margin-bottom:16px">HABLEMOS<br>DE TU PROYECTO</div><p style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.7">Cada pieza es única. Cuéntanos qué tienes en mente y te damos una cotización personalizada.</p></div><div style="display:flex;flex-direction:column;gap:14px"><div style="background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);border-radius:10px;padding:20px 24px;display:flex;align-items:center;gap:16px"><div style="width:44px;height:44px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">&#128172;</div><div><div style="font-size:13px;font-weight:700;color:white;margin-bottom:2px">WhatsApp</div><div style="font-size:11px;color:rgba(255,255,255,.45)">Respuesta inmediata · Cotizaciones</div></div></div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:16px 20px;font-size:12px;color:rgba(255,255,255,.4)">&#128205; Bogotá, Colombia &nbsp;·&nbsp; Proyectos en toda Colombia</div></div></div></section></div>
+        </div>
+      </div>
+      <div class="v2-bottom">
+        <div class="v2-desc">
+<div class="ptag" style="color:var(--yellow)">Plan A · Presencia de Marca</div><p>Presencia digital limpia y profesional. Hero centrado con tu identidad visual, portafolio categorizado y contacto directo por WhatsApp. Lo esencial para que clientes y empresas te encuentren online.</p><ul class="pfeats" style="margin-top:1rem"><li><span class="ck">&#10003;</span> One page responsive</li><li><span class="ck">&#10003;</span> Hero + Portafolio + Contacto</li><li><span class="ck">&#10003;</span> Identidad visual Ruztik</li><li><span class="ck ck-off">&#8212;</span> <span style="color:var(--muted)">Social media icons</span></li><li><span class="ck ck-off">&#8212;</span> <span style="color:var(--muted)">Animaciones y split hero</span></li><li><span class="ck ck-off">&#8212;</span> <span style="color:var(--muted)">Proof social y stats</span></li></ul>        </div>
+        <div class="v2-phone">
+          <div class="v2-phone-top"></div>
+          <div class="ps-outer" id="pso-a">
+<div class="ps-preview" id="ps-a" style="font-family:'Inter',sans-serif;background:#0a0a0a;width:390px"><nav style="background:#0a0a0a;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06)"><div style="display:flex;flex-direction:column;align-items:center;line-height:1"><div style="width:100%;height:1px;background:rgba(255,255,255,.3)"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:white;margin:2px 0">RUZT<span style="color:#f5c400">&#9889;</span>K</div><div style="width:100%;height:1px;background:rgba(255,255,255,.3)"></div><div style="font-size:5px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-top:1px">/INDUSTRY</div></div><div style="display:flex;gap:8px;align-items:center"><div style="background:#f5c400;color:#000;padding:7px 14px;font-size:9px;font-weight:700;letter-spacing:.08em;border-radius:4px">Cotizar</div></div></nav><section style="background:#0a0a0a;padding:40px 20px;text-align:center"><h1 style="font-family:'Bebas Neue',sans-serif;font-size:44px;color:white;line-height:.88;letter-spacing:1px;margin-bottom:14px">ESPACIOS<br>QUE INSPIRAN,<br><span style="color:#f5c400">PIEZAS ÚNICAS</span></h1><p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:20px">Mobiliario artesanal y lámparas de diseño — fabricadas a mano en Bogotá.</p><div style="background:#f5c400;color:#000;padding:12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-align:center">Ver Portafolio</div></section><section style="background:#0f0f0f;padding:24px 16px"><div style="font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f5c400;margin-bottom:14px">Trabajos Recientes</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="height:100px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#1c1814"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f0e8c8 0%,#ddd0a0 30%,#c8b878 55%,rgba(28,24,20,.9) 100%)"></div><div style="position:absolute;bottom:5%;left:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:5%;right:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:58%;left:10%;right:10%;height:8%;background:linear-gradient(180deg,#d8c070,#b89840);border-radius:4px"></div><div style="position:absolute;bottom:60%;left:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:60%;right:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">COMEDERO MASCOTAS</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Maple · Acero Inoxidable</div></div></div><div style="height:100px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative"><div style="position:absolute;inset:0;background:linear-gradient(105deg,#f0ede4 0%,#e8e0d0 22%,#d4b070 36%,#b8874c 50%,#9a6e30 62%,rgba(14,10,4,.92) 82%)"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">BAR INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Roble · Hierro · Vidrio</div></div></div><div style="height:100px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#160e08"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(255,190,60,.18),transparent 55%),linear-gradient(160deg,#2a1c0e,#160e08,#0a0604)"></div><div style="position:absolute;top:12%;left:30%;width:40%;height:52%;border:6px solid #3a2a18;border-radius:3px"></div><div style="position:absolute;top:10%;left:28%;width:44%;height:56%;border:3px dashed rgba(150,130,90,.38);border-radius:3px"></div><div style="position:absolute;top:34%;left:47%;width:6%;padding-bottom:9%;background:radial-gradient(circle,#fff9e0 10%,rgba(255,200,60,.85) 40%,rgba(255,140,10,.4) 70%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:20%;left:38%;width:24%;height:9%;background:radial-gradient(ellipse,rgba(130,110,70,.7),rgba(80,66,40,.4));border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">L&#193;MPARA INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Cadena Bici · Engranaje · Edison</div></div></div><div style="height:100px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#f5f0e6"><div style="position:absolute;inset:0;background:linear-gradient(155deg,#f5f0e6,#d4b870,#c09040,#1a1510)"></div><div style="position:absolute;top:0;bottom:0;left:24%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;top:0;bottom:0;left:76%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;left:0;right:0;top:22%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:46%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:70%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.82),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">CLOSET INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Tuber&#237;a · Madera Natural</div></div></div></div></section><section style="background:#111;padding:20px 16px"><div style="background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.3);border-radius:10px;padding:16px;display:flex;align-items:center;gap:12px"><div style="width:38px;height:38px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0">&#128172;</div><div><div style="font-size:11px;font-weight:700;color:white;margin-bottom:2px">&#161;Cotiza ahora!</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Respuesta inmediata</div></div></div></section></div>          </div>
+          <div class="v2-phone-bottom"><div class="v2-phone-home"></div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.65;max-width:160px">Entrada sólida al mundo digital. Profesional, funcional, y con tu identidad desde el primer día.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════ PANEL B ═══════════ -->
+    <div class="mock-panel" id="mp-b">
+      <div class="v2-browser">
+        <div class="v2-bar">
+          <div class="mdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <div class="murl">ruztik-industry.com &nbsp;·&nbsp; <span style="color:#888">Posicionamiento Comercial — Plan B</span></div>
+        </div>
+        <div class="mscreen-outer" id="mso-b">
+          <div class="msite-preview" id="ms-b" style="font-family:'Inter',sans-serif;background:#0a0a0a"><nav style="background:#0a0a0a;padding:16px 56px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)"><div style="display:flex;flex-direction:column;align-items:center;line-height:1"><div style="width:100%;height:1px;background:rgba(255,255,255,.35);margin-bottom:2px"></div><div style="width:100%;height:1px;background:white;margin-bottom:3px"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:white">RUZT<span style="color:#f5c400">&#9889;</span>K</div><div style="width:100%;height:1px;background:white;margin-top:3px"></div><div style="width:100%;height:1px;background:rgba(255,255,255,.35);margin-top:2px"></div><div style="font-size:6px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px">/INDUSTRY</div></div><div style="display:flex;gap:24px;align-items:center"><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Servicios</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Portafolio</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Nosotros</span><div style="display:flex;gap:10px;align-items:center;margin-left:4px"><div style="width:32px;height:32px;border-radius:50%;background:rgba(37,211,102,.15);border:1px solid rgba(37,211,102,.35);display:flex;align-items:center;justify-content:center;font-size:14px">&#128172;</div><div style="width:32px;height:32px;border-radius:50%;background:rgba(225,48,108,.12);border:1px solid rgba(225,48,108,.3);display:flex;align-items:center;justify-content:center;font-size:13px">&#128247;</div></div><div style="background:#f5c400;color:#000;padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px" class="rk-btn-pulse">Cotizar</div></div></nav><section style="display:grid;grid-template-columns:1fr 1fr;min-height:380px;background:#0a0a0a"><div style="padding:60px;display:flex;flex-direction:column;justify-content:center"><div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:14px;display:flex;align-items:center;gap:8px"><span style="display:inline-block;width:24px;height:1px;background:#f5c400"></span>Bogot&#225; · Dise&#241;o Propio</div><h1 style="font-family:'Bebas Neue',sans-serif;font-size:58px;color:white;line-height:.88;margin-bottom:18px;letter-spacing:1px">ARTE<br>EN CADA<br><span style="color:#f5c400">PIEZA</span></h1><p style="font-size:13px;color:rgba(255,255,255,.5);line-height:1.72;margin-bottom:28px;max-width:340px">Muebles únicos, lámparas artesanales y piezas de dise&#241;o y montajes para espacios de arte — dise&#241;ados y fabricados con carácter propio en Colombia.</p><div style="display:flex;gap:12px"><div style="background:#f5c400;color:#000;padding:13px 28px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:5px" class="rk-btn-pulse">Ver Portafolio &#8594;</div><div style="border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:13px 22px;font-size:11px;letter-spacing:.06em;text-transform:uppercase;border-radius:5px">Cotizar</div></div></div><div style="position:relative;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f5f0e6 0%,#d4b870 30%,#c09040 50%,#1a1510 80%)"></div><div style="position:absolute;top:0;bottom:0;left:22%;width:5px;background:rgba(10,10,10,.8)"></div><div style="position:absolute;top:0;bottom:0;left:55%;width:5px;background:rgba(10,10,10,.8)"></div><div style="position:absolute;left:0;right:0;top:14%;height:12px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:32%;height:12px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:50%;height:12px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:68%;height:12px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.7) 0%,transparent 40%)"></div><div style="position:absolute;bottom:24px;left:24px"><div style="font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#f5c400;margin-bottom:4px">Proyecto Destacado</div><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:white;letter-spacing:2px">CLOSET INDUSTRIAL</div></div></div></section><section style="background:#111;padding:18px 56px;display:flex;justify-content:space-around;align-items:center;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06)"><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#f5c400;letter-spacing:1px">30+</div><div style="font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase">Proyectos</div></div><div style="width:1px;height:36px;background:rgba(255,255,255,.1)"></div><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#f5c400;letter-spacing:1px">100%</div><div style="font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase">Personalizado</div></div><div style="width:1px;height:36px;background:rgba(255,255,255,.1)"></div><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#f5c400;letter-spacing:1px">5&#9889;</div><div style="font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase">A&#241;os de oficio</div></div><div style="width:1px;height:36px;background:rgba(255,255,255,.1)"></div><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:#f5c400;letter-spacing:1px">3</div><div style="font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase">Categor&#237;as</div></div></section><section style="background:#0f0f0f;padding:56px 56px"><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px"><div><div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:8px">Portafolio</div><div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:white">TODO EL TRABAJO</div></div><div style="border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.45);padding:8px 18px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:5px">Ver Todos</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px"><div style="background:rgba(245,196,0,.12);border:1px solid rgba(245,196,0,.38);color:#f5c400;border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">Todo</div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">&#x1F43E; Mascotas</div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">&#x1F3E0; Hogar</div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">&#x2699;&#xFE0F; Personalizado</div></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px"><div style="height:168px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#1c1814"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f0e8c8 0%,#ddd0a0 30%,#c8b878 55%,rgba(28,24,20,.9) 100%)"></div><div style="position:absolute;bottom:5%;left:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:5%;right:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:58%;left:10%;right:10%;height:8%;background:linear-gradient(180deg,#d8c070,#b89840);border-radius:4px"></div><div style="position:absolute;bottom:60%;left:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:60%;right:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">COMEDERO MASCOTAS</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Maple · Acero Inoxidable</div></div></div><div style="height:168px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#c8c0a0"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#ede6cc,#d4c890,#b8a860,rgba(25,20,10,.55))"></div><div style="position:absolute;top:5%;left:9%;width:5%;height:65%;background:rgba(200,170,60,.55);border-radius:2px"></div><div style="position:absolute;top:5%;right:9%;width:5%;height:65%;background:rgba(200,170,60,.55);border-radius:2px"></div><div style="position:absolute;top:5%;left:8%;right:8%;height:7%;background:linear-gradient(180deg,rgba(220,190,70,.8),rgba(180,148,45,.6));border-radius:3px"></div><div style="position:absolute;top:20%;left:8%;right:8%;height:45%;background:rgba(0,0,0,.12);border:1px solid rgba(180,150,40,.3);border-radius:3px"></div><div style="position:absolute;bottom:0;left:6%;right:6%;height:18%;background:rgba(18,18,18,.7);border-radius:3px 3px 0 0"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">MESA DE BA&#209;O</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Pino · Estructura Industrial</div></div></div><div style="height:168px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative"><div style="position:absolute;inset:0;background:linear-gradient(105deg,#f0ede4 0%,#e8e0d0 22%,#d4b070 36%,#b8874c 50%,#9a6e30 62%,rgba(14,10,4,.92) 82%)"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">BAR INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Roble · Hierro · Vidrio</div></div></div><div style="height:168px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#f5f0e6"><div style="position:absolute;inset:0;background:linear-gradient(155deg,#f5f0e6,#d4b870,#c09040,#1a1510)"></div><div style="position:absolute;top:0;bottom:0;left:24%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;top:0;bottom:0;left:50%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;top:0;bottom:0;left:76%;width:4px;background:rgba(12,12,12,.78)"></div><div style="position:absolute;left:0;right:0;top:22%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:46%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;left:0;right:0;top:70%;height:10px;background:linear-gradient(180deg,#dfc070,#c09040);opacity:.9"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.82),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">CLOSET INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Tuber&#237;a · Madera Natural</div></div></div><div style="height:168px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#160e08"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(255,190,60,.18),transparent 55%),linear-gradient(160deg,#2a1c0e,#160e08,#0a0604)"></div><div style="position:absolute;top:12%;left:30%;width:40%;height:52%;border:6px solid #3a2a18;border-radius:3px"></div><div style="position:absolute;top:10%;left:28%;width:44%;height:56%;border:3px dashed rgba(150,130,90,.38);border-radius:3px"></div><div style="position:absolute;top:34%;left:47%;width:6%;padding-bottom:9%;background:radial-gradient(circle,#fff9e0 10%,rgba(255,200,60,.85) 40%,rgba(255,140,10,.4) 70%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:20%;left:38%;width:24%;height:9%;background:radial-gradient(ellipse,rgba(130,110,70,.7),rgba(80,66,40,.4));border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">L&#193;MPARA INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Cadena Bici · Engranaje · Edison</div></div></div><div style="height:168px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#111"><div style="position:absolute;inset:0;background:linear-gradient(170deg,#1e1e1e,#111,#080808)"></div><div style="position:absolute;bottom:0;left:24%;right:24%;height:20%;background:linear-gradient(180deg,#b4acA0,#a09488);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:16%;left:48%;width:5%;height:55%;background:linear-gradient(90deg,#222,#333);border-radius:2px 2px 0 0"></div><div style="position:absolute;bottom:34%;left:37%;width:26%;height:30%;background:linear-gradient(135deg,rgba(45,90,45,.85),rgba(30,70,30,.9));border-radius:6px 6px 3px 3px"></div><div style="position:absolute;bottom:62%;left:47%;width:7%;height:9%;background:rgba(20,20,20,.9);border-radius:1px"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">DISPENSADOR BOTELLA</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Metal Negro · Madera · Custom</div></div></div></div></section><section style="background:#0a0a0a;padding:52px 56px;border-top:1px solid rgba(255,255,255,.05)"><div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:10px">Enc&#250;entranos</div><div style="font-family:'Bebas Neue',sans-serif;font-size:38px;color:white;margin-bottom:28px">HABLEMOS DONDE<br>T&#218; PREFIERAS</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px"><div style="background:rgba(37,211,102,.07);border:1px solid rgba(37,211,102,.28);border-radius:12px;padding:24px 20px;position:relative;overflow:hidden"><div style="position:absolute;top:14px;right:14px;width:10px;height:10px;border-radius:50%;background:#25d366" class="rk-breathe"></div><div style="width:52px;height:52px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px" class="rk-btn-pulse">&#128172;</div><div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px">WhatsApp</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:14px">Cotizaciones y consultas en tiempo real</div><div style="background:#25d366;color:#000;padding:9px 18px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;display:inline-block">Escribir Ahora</div></div><div style="background:rgba(225,48,108,.06);border:1px solid rgba(225,48,108,.22);border-radius:12px;padding:24px 20px"><div style="width:52px;height:52px;border-radius:50%;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px">&#128247;</div><div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px">Instagram</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:14px">Portafolio visual y proceso de trabajo</div><div style="border:1px solid rgba(225,48,108,.4);color:rgba(225,48,108,.8);padding:9px 18px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;display:inline-block">@ruztik</div></div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:24px 20px"><div style="width:52px;height:52px;border-radius:50%;background:rgba(245,196,0,.15);border:1px solid rgba(245,196,0,.3);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px">&#128205;</div><div style="font-size:14px;font-weight:700;color:white;margin-bottom:4px">Bogot&#225;</div><div style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.6;margin-bottom:14px">Proyectos en toda Colombia y envíos a pedido</div><div style="border:1px solid rgba(245,196,0,.35);color:#f5c400;padding:9px 18px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;display:inline-block">Ver Ubicaci&#243;n</div></div></div></section></div>
+        </div>
+      </div>
+      <div class="v2-bottom">
+        <div class="v2-desc">
+<div class="ptag" style="color:var(--yellow)">Plan B · Posicionamiento Comercial</div><p>Hero split con producto destacado, prueba social con estadísticas, portafolio completo con filtros de categoría, y sección de redes sociales (WhatsApp + Instagram + Ubicación) con animaciones en los CTAs.</p><ul class="pfeats" style="margin-top:1rem"><li><span class="ck">&#10003;</span> Todo lo del Plan A</li><li><span class="ck">&#10003;</span> Hero split · producto destacado</li><li><span class="ck">&#10003;</span> Stats de marca (30+ proyectos)</li><li><span class="ck">&#10003;</span> Portafolio 3x2 con filtros</li><li><span class="ck">&#10003;</span> WhatsApp · Instagram · Maps</li><li><span class="ck">&#10003;</span> Animaci&#243;n CTA (pulse)</li><li><span class="ck ck-off">&#8212;</span> <span style="color:var(--muted)">Hero cinematogr&#225;fico</span></li><li><span class="ck ck-off">&#8212;</span> <span style="color:var(--muted)">Categor&#237;as interactivas</span></li><li><span class="ck ck-off">&#8212;</span> <span style="color:var(--muted)">Manifiesto de marca</span></li></ul>        </div>
+        <div class="v2-phone">
+          <div class="v2-phone-top"></div>
+          <div class="ps-outer" id="pso-b">
+<div class="ps-preview" id="ps-b" style="font-family:'Inter',sans-serif;background:#0a0a0a;width:390px"><nav style="background:#0a0a0a;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)"><div style="display:flex;flex-direction:column;align-items:center;line-height:1"><div style="width:100%;height:1px;background:rgba(255,255,255,.3)"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:white;margin:2px 0">RUZT<span style="color:#f5c400">&#9889;</span>K</div><div style="width:100%;height:1px;background:rgba(255,255,255,.3)"></div><div style="font-size:5px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-top:1px">/INDUSTRY</div></div><div style="display:flex;gap:7px;align-items:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center;font-size:13px" class="rk-breathe">&#128172;</div><div style="width:28px;height:28px;border-radius:50%;background:rgba(225,48,108,.1);border:1px solid rgba(225,48,108,.25);display:flex;align-items:center;justify-content:center;font-size:11px">&#128247;</div><div style="background:#f5c400;color:#000;padding:7px 12px;font-size:9px;font-weight:700;letter-spacing:.07em;border-radius:4px" class="rk-btn-pulse">Cotizar</div></div></nav><section style="background:#0a0a0a;padding:32px 20px"><div style="font-size:9px;font-weight:700;letter-spacing:.2em;color:#f5c400;margin-bottom:10px">Bogot&#225; · Dise&#241;o Propio</div><h1 style="font-family:'Bebas Neue',sans-serif;font-size:42px;color:white;line-height:.86;margin-bottom:12px">ARTE<br>EN CADA<br><span style="color:#f5c400">PIEZA</span></h1><p style="font-size:10px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:18px">Muebles únicos con madera, hierro y materiales reciclados fabricados a mano.</p><div style="height:120px;border-radius:8px;overflow:hidden;margin-bottom:18px;position:relative"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f5f0e6,#d4b870,#c09040,#1a1510)"></div><div style="position:absolute;top:0;bottom:0;left:25%;width:3px;background:rgba(10,10,10,.8)"></div><div style="position:absolute;top:0;bottom:0;left:65%;width:3px;background:rgba(10,10,10,.8)"></div><div style="position:absolute;left:0;right:0;top:30%;height:8px;background:linear-gradient(180deg,#dfc070,#c09040)"></div><div style="position:absolute;left:0;right:0;top:62%;height:8px;background:linear-gradient(180deg,#dfc070,#c09040)"></div><div style="position:absolute;bottom:0;left:0;right:0;padding:8px 12px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"><div style="font-size:10px;font-weight:700;color:white">CLOSET INDUSTRIAL</div></div></div><div style="background:#f5c400;color:#000;padding:12px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;text-align:center" class="rk-btn-pulse">Ver Portafolio &#8594;</div></section><section style="background:#111;padding:12px 20px;display:flex;justify-content:space-around;border-top:1px solid rgba(255,255,255,.06)"><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#f5c400">30+</div><div style="font-size:8px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase">Proyectos</div></div><div style="width:1px;background:rgba(255,255,255,.1)"></div><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#f5c400">100%</div><div style="font-size:8px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase">Custom</div></div><div style="width:1px;background:rgba(255,255,255,.1)"></div><div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#f5c400">3</div><div style="font-size:8px;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase">Categor&#237;as</div></div></section><section style="background:#0a0a0a;padding:18px 16px"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><div style="background:rgba(37,211,102,.08);border:1px solid rgba(37,211,102,.25);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:20px;margin-bottom:6px" class="rk-btn-pulse">&#128172;</div><div style="font-size:9px;font-weight:700;color:#25d366">WhatsApp</div></div><div style="background:rgba(225,48,108,.06);border:1px solid rgba(225,48,108,.22);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:20px;margin-bottom:6px">&#128247;</div><div style="font-size:9px;font-weight:700;color:rgba(225,48,108,.8)">Instagram</div></div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:20px;margin-bottom:6px">&#128205;</div><div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.55)">Bogot&#225;</div></div></div></section></div>          </div>
+          <div class="v2-phone-bottom"><div class="v2-phone-home"></div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.65;max-width:160px">El nivel que convierte visitas en clientes. Múltiples canales de contacto, identidad de marca reforzada y presencia profesional en redes.</p>
+      </div>
+    </div>
+
+    <!-- ═══════════ PANEL C ═══════════ -->
+    <div class="mock-panel" id="mp-c">
+      <div class="v2-browser">
+        <div class="v2-bar">
+          <div class="mdots"><span class="dr"></span><span class="dy"></span><span class="dg"></span></div>
+          <div class="murl">ruztik-industry.com &nbsp;·&nbsp; <span style="color:#888">Autoridad + Automatización — Plan C</span></div>
+        </div>
+        <div class="mscreen-outer" id="mso-c">
+          <div class="msite-preview" id="ms-c" style="font-family:'Inter',sans-serif;background:#0a0a0a"><nav style="background:rgba(10,10,10,.96);padding:16px 56px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07);position:sticky;top:0;z-index:10"><div style="display:flex;flex-direction:column;align-items:center;line-height:1"><div style="width:100%;height:1px;background:rgba(255,255,255,.35);margin-bottom:2px"></div><div style="width:100%;height:1px;background:white;margin-bottom:3px"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;color:white">RUZT<span style="color:#f5c400">&#9889;</span>K</div><div style="width:100%;height:1px;background:white;margin-top:3px"></div><div style="width:100%;height:1px;background:rgba(255,255,255,.35);margin-top:2px"></div><div style="font-size:6px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:2px">/INDUSTRY</div></div><div style="display:flex;gap:22px;align-items:center"><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Servicios</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Portafolio</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">Nosotros</span><span style="font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase">FAQ</span><div style="display:flex;gap:8px;align-items:center"><div style="width:30px;height:30px;border-radius:50%;background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.32);display:flex;align-items:center;justify-content:center;font-size:13px" class="rk-breathe">&#128172;</div><div style="width:30px;height:30px;border-radius:50%;background:rgba(225,48,108,.1);border:1px solid rgba(225,48,108,.28);display:flex;align-items:center;justify-content:center;font-size:12px">&#128247;</div></div><div style="padding:10px 22px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px" class="rk-btn-shimmer">Cotizar Ahora</div></div></nav><section style="position:relative;min-height:420px;overflow:hidden;display:flex;align-items:center"><div style="position:absolute;inset:0;background:linear-gradient(160deg,#2a1c0e 0%,#160e08 40%,#0a0604 100%)"></div><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 68% 38%,rgba(255,180,50,.22) 0%,rgba(255,120,10,.08) 30%,transparent 60%)"></div><div style="position:absolute;top:10%;right:12%;width:28%;height:70%;border:4px solid rgba(58,42,24,.6);border-radius:3px"></div><div style="position:absolute;top:8%;right:10.5%;width:31%;height:74%;border:2px dashed rgba(140,120,80,.2);border-radius:3px"></div><div style="position:absolute;top:33%;right:24%;width:5%;padding-bottom:7%;background:radial-gradient(circle,#fffae0 10%,rgba(255,195,55,.7) 40%,rgba(255,130,10,.25) 70%,transparent 100%);border-radius:50%"></div><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,6,4,.95) 0%,rgba(10,6,4,.7) 50%,transparent 100%)"></div><div style="position:relative;z-index:2;padding:0 64px;max-width:660px"><div style="font-size:9px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:#f5c400;margin-bottom:16px;display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:28px;height:1px;background:#f5c400"></span>Dise&#241;o Colombiano · Fabricaci&#243;n Propia · Bogot&#225;</div><h1 style="font-family:'Bebas Neue',sans-serif;font-size:76px;line-height:.85;letter-spacing:2px;margin-bottom:20px"><span style="color:white">HACEMOS<br></span><span style="color:#f5c400">REALIDAD</span><span style="color:white"><br>TUS IDEAS</span></h1><p style="font-size:14px;color:rgba(255,255,255,.55);line-height:1.72;margin-bottom:32px;max-width:460px">Empresa colombiana que dise&#241;a, fabrica y distribuye mobiliarios &#250;nicos. Cada proyecto nace de tu idea — y se convierte en una pieza que nadie m&#225;s tiene.</p><div style="display:flex;gap:14px;align-items:center"><div style="padding:15px 34px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border-radius:5px" class="rk-btn-shimmer">Ver Colección &#8594;</div><div style="display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.5);font-size:12px"><div style="width:32px;height:32px;border-radius:50%;background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center" class="rk-btn-pulse">&#128172;</div>Cotizar por WhatsApp</div></div></div></section><section style="background:#0f0f0f;padding:52px 56px;border-top:1px solid rgba(255,255,255,.05)"><div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:8px">Lo que hacemos</div><div style="font-family:'Bebas Neue',sans-serif;font-size:38px;color:white;margin-bottom:28px">NUESTRAS CATEGOR&#205;AS</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px"><div style="background:rgba(136,216,176,.06);border:1px solid rgba(136,216,176,.2);border-radius:12px;padding:26px 22px;transition:transform .2s"><div style="font-size:32px;margin-bottom:12px">&#x1F43E;</div><div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#88d8b0;margin-bottom:8px">Mascotas</div><div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:14px">Comederos, mesas de ba&#241;o y accesorios únicos fabricados en madera con dise&#241;o artesanal.</div><div style="font-size:10px;color:#88d8b0;letter-spacing:.1em;text-transform:uppercase">Ver Productos &#8594;</div></div><div style="background:rgba(232,200,122,.06);border:1px solid rgba(232,200,122,.2);border-radius:12px;padding:26px 22px"><div style="font-size:32px;margin-bottom:12px">&#x1F3E0;</div><div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#e8c87a;margin-bottom:8px">Hogar</div><div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:14px">Barras de bar, closets industriales, repisas y muebles a medida con madera y hierro.</div><div style="font-size:10px;color:#e8c87a;letter-spacing:.1em;text-transform:uppercase">Ver Proyectos &#8594;</div></div><div style="background:rgba(200,192,168,.05);border:1px solid rgba(200,192,168,.18);border-radius:12px;padding:26px 22px"><div style="font-size:32px;margin-bottom:12px">&#x2699;&#xFE0F;</div><div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#c8c0a8;margin-bottom:8px">Personalizado</div><div style="font-size:12px;color:rgba(255,255,255,.45);line-height:1.65;margin-bottom:14px">L&#225;mparas Edison, dispensadores, piezas &#250;nicas y proyectos completamente a medida — exactamente como lo imaginaste.</div><div style="font-size:10px;color:#c8c0a8;letter-spacing:.1em;text-transform:uppercase">Ver Piezas &#8594;</div></div></div></section><section style="background:#0a0a0a;padding:56px 56px"><div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px"><div><div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:8px">Portafolio</div><div style="font-family:'Bebas Neue',sans-serif;font-size:40px;color:white">CADA PIEZA, UNA HISTORIA</div></div><div style="border:1px solid rgba(245,196,0,.3);color:#f5c400;padding:8px 18px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px">Ver Portafolio Completo &#8594;</div></div><div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px"><div style="background:rgba(245,196,0,.12);border:1px solid rgba(245,196,0,.38);color:#f5c400;border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">Todo</div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">&#x1F43E; Mascotas</div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">&#x1F3E0; Hogar</div><div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.38);border-radius:20px;padding:6px 14px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer">&#x2699;&#xFE0F; Personalizado</div></div><div style="display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-template-rows:200px 190px;gap:13px"><div style="grid-row:span 2;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#f5f0e6"><div style="position:absolute;inset:0;background:linear-gradient(155deg,#f5f0e6,#d4b870,#c09040,#1a1510)"></div><div style="position:absolute;top:0;bottom:0;left:22%;width:5px;background:rgba(10,10,10,.78)"></div><div style="position:absolute;top:0;bottom:0;left:55%;width:5px;background:rgba(10,10,10,.78)"></div><div style="position:absolute;top:0;bottom:0;left:87%;width:5px;background:rgba(10,10,10,.78)"></div><div style="position:absolute;left:0;right:0;top:11%;height:13px;background:linear-gradient(180deg,#e0c070,#d4b060)"></div><div style="position:absolute;left:0;right:0;top:29%;height:13px;background:linear-gradient(180deg,#e0c070,#d4b060)"></div><div style="position:absolute;left:0;right:0;top:47%;height:13px;background:linear-gradient(180deg,#e0c070,#d4b060)"></div><div style="position:absolute;left:0;right:0;top:65%;height:13px;background:linear-gradient(180deg,#e0c070,#d4b060)"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(0deg,rgba(0,0,0,.9),transparent)"><div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:white;letter-spacing:2px">CLOSET INDUSTRIAL</div><div style="font-size:10px;color:rgba(255,255,255,.5)">Proyecto destacado · Tuber&#237;a · Madera natural</div></div></div><div style="height:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#1c1814"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f0e8c8 0%,#ddd0a0 30%,#c8b878 55%,rgba(28,24,20,.9) 100%)"></div><div style="position:absolute;bottom:5%;left:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:5%;right:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:58%;left:10%;right:10%;height:8%;background:linear-gradient(180deg,#d8c070,#b89840);border-radius:4px"></div><div style="position:absolute;bottom:60%;left:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:60%;right:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">COMEDERO MASCOTAS</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Maple · Acero Inoxidable</div></div></div><div style="height:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#160e08"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(255,190,60,.18),transparent 55%),linear-gradient(160deg,#2a1c0e,#160e08,#0a0604)"></div><div style="position:absolute;top:12%;left:30%;width:40%;height:52%;border:6px solid #3a2a18;border-radius:3px"></div><div style="position:absolute;top:10%;left:28%;width:44%;height:56%;border:3px dashed rgba(150,130,90,.38);border-radius:3px"></div><div style="position:absolute;top:34%;left:47%;width:6%;padding-bottom:9%;background:radial-gradient(circle,#fff9e0 10%,rgba(255,200,60,.85) 40%,rgba(255,140,10,.4) 70%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:20%;left:38%;width:24%;height:9%;background:radial-gradient(ellipse,rgba(130,110,70,.7),rgba(80,66,40,.4));border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">L&#193;MPARA INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Cadena Bici · Engranaje · Edison</div></div></div><div style="height:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#c8c0a0"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#ede6cc,#d4c890,#b8a860,rgba(25,20,10,.55))"></div><div style="position:absolute;top:5%;left:9%;width:5%;height:65%;background:rgba(200,170,60,.55);border-radius:2px"></div><div style="position:absolute;top:5%;right:9%;width:5%;height:65%;background:rgba(200,170,60,.55);border-radius:2px"></div><div style="position:absolute;top:5%;left:8%;right:8%;height:7%;background:linear-gradient(180deg,rgba(220,190,70,.8),rgba(180,148,45,.6));border-radius:3px"></div><div style="position:absolute;top:20%;left:8%;right:8%;height:45%;background:rgba(0,0,0,.12);border:1px solid rgba(180,150,40,.3);border-radius:3px"></div><div style="position:absolute;bottom:0;left:6%;right:6%;height:18%;background:rgba(18,18,18,.7);border-radius:3px 3px 0 0"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">MESA DE BA&#209;O</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Pino · Estructura Industrial</div></div></div><div style="height:100%;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#111"><div style="position:absolute;inset:0;background:linear-gradient(170deg,#1e1e1e,#111,#080808)"></div><div style="position:absolute;bottom:0;left:24%;right:24%;height:20%;background:linear-gradient(180deg,#b4acA0,#a09488);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:16%;left:48%;width:5%;height:55%;background:linear-gradient(90deg,#222,#333);border-radius:2px 2px 0 0"></div><div style="position:absolute;bottom:34%;left:37%;width:26%;height:30%;background:linear-gradient(135deg,rgba(45,90,45,.85),rgba(30,70,30,.9));border-radius:6px 6px 3px 3px"></div><div style="position:absolute;bottom:62%;left:47%;width:7%;height:9%;background:rgba(20,20,20,.9);border-radius:1px"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">DISPENSADOR BOTELLA</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Metal Negro · Madera · Custom</div></div></div></div></section><section style="background:#111;padding:60px 56px;position:relative;overflow:hidden"><div style="position:absolute;right:-40px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:120px;color:rgba(245,196,0,.04);letter-spacing:8px;line-height:1;white-space:nowrap">RUZTIK</div><div style="position:relative;z-index:1;max-width:640px"><div style="font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#f5c400;margin-bottom:16px">Nuestra identidad</div><blockquote style="font-family:'Playfair Display',serif;font-size:28px;color:white;line-height:1.42;font-style:italic;margin:0 0 20px;border-left:3px solid #f5c400;padding-left:24px">"Cada idea merece convertirse en algo que nadie m&#225;s tiene."</blockquote><p style="font-size:13px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:24px">En Ruztik Industry dise&#241;amos y fabricamos mobiliarios a medida que no existen en ninguna otra parte. Somos una empresa colombiana que convierte tu idea en una pieza con car&#225;cter — combinando madera, hierro y oficio para crear algo &#250;nico que dure y cuente tu historia.</p><div style="padding:14px 30px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;display:inline-block" class="rk-btn-shimmer">Conoce Nuestra Historia &#8594;</div></div></section><section style="background:#0a0a0a;padding:48px 56px;border-top:1px solid rgba(255,255,255,.06)"><div style="display:flex;align-items:center;gap:32px"><div style="position:relative;width:72px;height:72px;flex-shrink:0"><div style="position:absolute;inset:0;border-radius:50%;background:rgba(245,196,0,.08);border:1px solid rgba(245,196,0,.2)"></div><div style="position:absolute;inset:4px;border-radius:50%;background:rgba(245,196,0,.12);display:flex;align-items:center;justify-content:center;font-size:26px" class="rk-float">&#10022;</div><div style="position:absolute;bottom:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#f5c400;border:2px solid #0a0a0a" class="rk-breathe"></div></div><div><div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f5c400;margin-bottom:6px">Incluido en este plan</div><div style="font-size:16px;font-weight:700;color:white;margin-bottom:6px">Preparaci&#243;n para Sof&#237;a IA</div><p style="font-size:12px;color:rgba(255,255,255,.42);line-height:1.65;max-width:500px">El Plan C deja el sitio listo para integrar Sof&#237;a — la asistente virtual que atiende a tus clientes en tiempo real por WhatsApp y web, captura prospectos y organiza tu flujo comercial 24/7.</p></div><div style="margin-left:auto;padding:12px 24px;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:5px;white-space:nowrap;flex-shrink:0" class="rk-btn-shimmer">Saber m&#225;s &#8594;</div></div></section></div>
+        </div>
+      </div>
+      <div class="v2-bottom">
+        <div class="v2-desc">
+<div class="ptag" style="color:var(--yellow)">Plan C · Autoridad + Automatización</div><p>Experiencia de marca premium. Hero "Hacemos realidad tus ideas", categorías interactivas (Mascotas / Hogar / Personalizado), portafolio masonry, manifiesto de identidad como empresa colombiana de diseño y fabricación propia, y preparación para Sofía IA. Animaciones shimmer en todos los CTAs.</p><ul class="pfeats" style="margin-top:1rem"><li><span class="ck">&#10003;</span> Todo lo del Plan B</li><li><span class="ck">&#10003;</span> Hero cinematogr&#225;fico full-bleed</li><li><span class="ck">&#10003;</span> Categor&#237;as interactivas (3 tarjetas)</li><li><span class="ck">&#10003;</span> Portafolio masonry destacado</li><li><span class="ck">&#10003;</span> Manifiesto de marca</li><li><span class="ck">&#10003;</span> Animaci&#243;n shimmer en CTAs</li><li><span class="ck">&#10003;</span> Preparaci&#243;n para Sof&#237;a IA</li></ul>        </div>
+        <div class="v2-phone">
+          <div class="v2-phone-top"></div>
+          <div class="ps-outer" id="pso-c">
+<div class="ps-preview" id="ps-c" style="font-family:'Inter',sans-serif;background:#0a0a0a;width:390px"><nav style="background:rgba(10,10,10,.96);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.07)"><div style="display:flex;flex-direction:column;align-items:center;line-height:1"><div style="width:100%;height:1px;background:rgba(255,255,255,.3)"></div><div style="font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:white;margin:2px 0">RUZT<span style="color:#f5c400">&#9889;</span>K</div><div style="width:100%;height:1px;background:rgba(255,255,255,.3)"></div><div style="font-size:5px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-top:1px">/INDUSTRY</div></div><div style="display:flex;gap:6px;align-items:center"><div style="width:28px;height:28px;border-radius:50%;background:rgba(37,211,102,.14);border:1px solid rgba(37,211,102,.3);display:flex;align-items:center;justify-content:center;font-size:12px" class="rk-breathe">&#128172;</div><div style="width:28px;height:28px;border-radius:50%;background:rgba(225,48,108,.1);border:1px solid rgba(225,48,108,.25);display:flex;align-items:center;justify-content:center;font-size:11px">&#128247;</div><div style="padding:7px 13px;font-size:9px;font-weight:700;letter-spacing:.08em;border-radius:4px" class="rk-btn-shimmer">Cotizar</div></div></nav><section style="position:relative;min-height:260px;display:flex;align-items:center;overflow:hidden"><div style="position:absolute;inset:0;background:linear-gradient(160deg,#2a1c0e 0%,#160e08 50%,#0a0604 100%)"></div><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(255,175,45,.2),transparent 55%)"></div><div style="position:absolute;top:8%;right:5%;width:30%;height:60%;border:3px solid rgba(58,42,24,.5);border-radius:3px"></div><div style="position:absolute;top:36%;right:18%;width:4%;padding-bottom:6%;background:radial-gradient(circle,#fff8d0 15%,rgba(255,185,45,.6) 50%,transparent 100%);border-radius:50%"></div><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,6,4,.9),rgba(10,6,4,.5) 60%,transparent 100%)"></div><div style="position:relative;z-index:2;padding:32px 20px"><div style="font-size:8px;font-weight:700;letter-spacing:.2em;color:#f5c400;margin-bottom:10px">Dise&#241;o Colombiano · Bogot&#225;</div><h1 style="font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:.84;letter-spacing:1px;margin-bottom:14px"><span style="color:white">HACEMOS<br>REALIDAD<br></span><span style="color:#f5c400">TUS IDEAS</span></h1><div style="padding:12px 24px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border-radius:5px;display:inline-block" class="rk-btn-shimmer">Ver Colecci&#243;n &#8594;</div></div></section><section style="background:#0f0f0f;padding:20px 16px;border-top:1px solid rgba(255,255,255,.05)"><div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f5c400;margin-bottom:12px">Nuestras Categor&#237;as</div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><div style="background:rgba(136,216,176,.06);border:1px solid rgba(136,216,176,.2);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;margin-bottom:4px">&#x1F43E;</div><div style="font-size:8px;font-weight:700;color:#88d8b0;text-transform:uppercase">Mascotas</div></div><div style="background:rgba(232,200,122,.06);border:1px solid rgba(232,200,122,.2);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;margin-bottom:4px">&#x1F3E0;</div><div style="font-size:8px;font-weight:700;color:#e8c87a;text-transform:uppercase">Hogar</div></div><div style="background:rgba(200,192,168,.05);border:1px solid rgba(200,192,168,.18);border-radius:8px;padding:12px 8px;text-align:center"><div style="font-size:18px;margin-bottom:4px">&#x2699;&#xFE0F;</div><div style="font-size:8px;font-weight:700;color:#c8c0a8;text-transform:uppercase">Custom</div></div></div></section><section style="background:#0a0a0a;padding:18px 16px"><div style="font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:#f5c400;margin-bottom:10px">Portafolio</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div style="height:90px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#1c1814"><div style="position:absolute;inset:0;background:linear-gradient(145deg,#f0e8c8 0%,#ddd0a0 30%,#c8b878 55%,rgba(28,24,20,.9) 100%)"></div><div style="position:absolute;bottom:5%;left:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:5%;right:18%;width:6%;height:62%;background:rgba(160,130,60,.55);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:58%;left:10%;right:10%;height:8%;background:linear-gradient(180deg,#d8c070,#b89840);border-radius:4px"></div><div style="position:absolute;bottom:60%;left:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:60%;right:27%;width:19%;padding-bottom:10%;background:radial-gradient(ellipse,#e8e8e8,#b0b0b0 60%,transparent 100%);border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(136,216,176,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#88d8b0;z-index:2">&#x1F43E; MASCOTAS</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.85),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">COMEDERO MASCOTAS</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Maple · Acero Inoxidable</div></div></div><div style="height:90px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#160e08"><div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(255,190,60,.18),transparent 55%),linear-gradient(160deg,#2a1c0e,#160e08,#0a0604)"></div><div style="position:absolute;top:12%;left:30%;width:40%;height:52%;border:6px solid #3a2a18;border-radius:3px"></div><div style="position:absolute;top:10%;left:28%;width:44%;height:56%;border:3px dashed rgba(150,130,90,.38);border-radius:3px"></div><div style="position:absolute;top:34%;left:47%;width:6%;padding-bottom:9%;background:radial-gradient(circle,#fff9e0 10%,rgba(255,200,60,.85) 40%,rgba(255,140,10,.4) 70%,transparent 100%);border-radius:50%"></div><div style="position:absolute;bottom:20%;left:38%;width:24%;height:9%;background:radial-gradient(ellipse,rgba(130,110,70,.7),rgba(80,66,40,.4));border-radius:50%"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">L&#193;MPARA INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Cadena Bici · Engranaje · Edison</div></div></div><div style="height:90px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative"><div style="position:absolute;inset:0;background:linear-gradient(105deg,#f0ede4 0%,#e8e0d0 22%,#d4b070 36%,#b8874c 50%,#9a6e30 62%,rgba(14,10,4,.92) 82%)"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(232,200,122,.5);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#e8c87a;z-index:2">&#x1F3E0; HOGAR</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.86),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">BAR INDUSTRIAL</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Roble · Hierro · Vidrio</div></div></div><div style="height:90px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08);position:relative;background:#111"><div style="position:absolute;inset:0;background:linear-gradient(170deg,#1e1e1e,#111,#080808)"></div><div style="position:absolute;bottom:0;left:24%;right:24%;height:20%;background:linear-gradient(180deg,#b4acA0,#a09488);border-radius:3px 3px 0 0"></div><div style="position:absolute;bottom:16%;left:48%;width:5%;height:55%;background:linear-gradient(90deg,#222,#333);border-radius:2px 2px 0 0"></div><div style="position:absolute;bottom:34%;left:37%;width:26%;height:30%;background:linear-gradient(135deg,rgba(45,90,45,.85),rgba(30,70,30,.9));border-radius:6px 6px 3px 3px"></div><div style="position:absolute;bottom:62%;left:47%;width:7%;height:9%;background:rgba(20,20,20,.9);border-radius:1px"></div><div style="position:absolute;top:10px;left:10px;background:rgba(0,0,0,.65);border:1px solid rgba(200,192,168,.45);border-radius:20px;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:.08em;color:#c8c0a8;z-index:2">&#x2699;&#xFE0F; PERSONALIZADO</div><div style="position:absolute;bottom:0;left:0;right:0;padding:12px;background:linear-gradient(0deg,rgba(0,0,0,.88),transparent)"><div style="font-size:11px;font-weight:700;color:white;letter-spacing:.06em">DISPENSADOR BOTELLA</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Metal Negro · Madera · Custom</div></div></div></div></section><section style="background:#111;padding:18px 16px;border-top:1px solid rgba(255,255,255,.06)"><div style="display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;border-radius:50%;background:rgba(245,196,0,.1);border:1px solid rgba(245,196,0,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0" class="rk-float">&#10022;</div><div><div style="font-size:10px;font-weight:700;color:white;margin-bottom:2px">Sof&#237;a IA · Integrado</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Asistente 24/7 para tus clientes</div></div><div style="margin-left:auto;width:10px;height:10px;border-radius:50%;background:#f5c400;flex-shrink:0" class="rk-breathe"></div></div></section></div>          </div>
+          <div class="v2-phone-bottom"><div class="v2-phone-home"></div></div>
+        </div>
+        <p style="font-size:.78rem;color:var(--muted);line-height:1.65;max-width:160px">La versión más aspiracional. Una plataforma que posiciona la identidad única de Ruztik — diseño propio, personalización total y escala con Sofía IA.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ────────────────────── 9. PRECIOS ────────────────────── -->
+<section class="section" id="precios" data-section="8">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:3.5rem">
+      <span class="label">Planes e Inversión</span>
+      <h2>Elige el nivel<br>de tu marca</h2>
+      <div class="yline" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="pricing-grid reveal">
+      <div class="pcard">
+        <div class="ptier">Plan A</div>
+        <div class="pname">Presencia de Marca</div>
+        <div class="pprice">$1.000.000</div>
+        <div class="pprice-u">COP · pago único 50/50</div>
+        <div style="margin-top:.5rem;padding:.5rem .75rem;background:rgba(245,196,0,.07);border:1px solid rgba(245,196,0,.18);border-radius:8px;font-size:.78rem;color:var(--muted)">🔧 Mantenimiento mensual <strong style="color:var(--yellow)">$100.000 COP/mes</strong></div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li><span class="ck">✓</span> One page completa y responsive</li>
+          <li><span class="ck">✓</span> Diseño personalizado Ruztik</li>
+          <li><span class="ck">✓</span> Hero + Portafolio + Servicios</li>
+          <li><span class="ck">✓</span> Contacto con WhatsApp o formulario</li>
+          <li><span class="ck">✓</span> Optimización básica para móvil</li>
+          <li><span class="ck">✓</span> 2 capas preventivas de protección</li>
+          <li><span class="ck">✓</span> Entrega en 7–10 días hábiles</li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Sección proceso/metodología</span></li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Proyectos destacados</span></li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">FAQs / filtros de contacto</span></li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Preparación Sofía IA</span></li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%2C%20me%20interesa%20el%20Plan%20A%20de%20la%20propuesta%20de%20Ruztik%20Industry" target="_blank" class="btn-ghost" style="width:100%;text-align:center;justify-content:center;display:flex">Quiero este plan → WhatsApp</a>
+      </div>
+
+      <div class="pcard feat">
+        <div class="pbadge">Más elegido</div>
+        <div class="ptier">Plan B</div>
+        <div class="pname">Posicionamiento Comercial</div>
+        <div class="pprice">$2.000.000</div>
+        <div class="pprice-u">COP · pago único 50/50</div>
+        <div style="margin-top:.5rem;padding:.5rem .75rem;background:rgba(245,196,0,.07);border:1px solid rgba(245,196,0,.18);border-radius:8px;font-size:.78rem;color:var(--muted)">🔧 Mantenimiento mensual <strong style="color:var(--yellow)">$200.000 COP/mes</strong></div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li><span class="ck">✓</span> Todo lo del Plan A</li>
+          <li><span class="ck">✓</span> Mayor desarrollo visual y jerarquía</li>
+          <li><span class="ck">✓</span> Recorrido del usuario más estratégico</li>
+          <li><span class="ck">✓</span> Galería de proyectos destacados</li>
+          <li><span class="ck">✓</span> Sección de proceso de trabajo</li>
+          <li><span class="ck">✓</span> Formularios con campos específicos</li>
+          <li><span class="ck">✓</span> 3 capas preventivas de protección</li>
+          <li><span class="ck">✓</span> Entrega en 10–12 días hábiles</li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">FAQs / filtros de contacto</span></li>
+          <li><span class="ck ck-off">—</span> <span style="color:var(--muted)">Preparación Sofía IA</span></li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%2C%20me%20interesa%20el%20Plan%20B%20de%20la%20propuesta%20de%20Ruztik%20Industry" target="_blank" class="btn-y rk-btn-pulse" style="width:100%;text-align:center;justify-content:center;display:flex">Quiero este plan → WhatsApp</a>
+      </div>
+
+      <div class="pcard">
+        <div class="ptier">Plan C</div>
+        <div class="pname">Autoridad + Automatización</div>
+        <div class="pprice">$3.000.000</div>
+        <div class="pprice-u">COP · pago único 50/50</div>
+        <div style="margin-top:.5rem;padding:.5rem .75rem;background:rgba(245,196,0,.07);border:1px solid rgba(245,196,0,.18);border-radius:8px;font-size:.78rem;color:var(--muted)">🔧 Mantenimiento mensual <strong style="color:var(--yellow)">$200.000 COP/mes</strong></div>
+        <div class="pdiv"></div>
+        <ul class="pfeats">
+          <li><span class="ck">✓</span> Todo lo del Plan B</li>
+          <li><span class="ck">✓</span> Arquitectura comercial completa</li>
+          <li><span class="ck">✓</span> FAQs y filtros de contacto</li>
+          <li><span class="ck">✓</span> Case studies / proyectos en profundidad</li>
+          <li><span class="ck">✓</span> Sección "Sobre la marca" elaborada</li>
+          <li><span class="ck">✓</span> 5 capas preventivas de protección</li>
+          <li><span class="ck">✓</span> Preparación para integrar Sofía IA</li>
+          <li><span class="ck">✓</span> Entrega en 12–15 días hábiles</li>
+          <li><span class="ck">✓</span> 1 revisión adicional incluida</li>
+        </ul>
+        <a href="https://wa.me/573227815811?text=Hola%2C%20me%20interesa%20el%20Plan%20C%20de%20la%20propuesta%20de%20Ruztik%20Industry" target="_blank" class="btn-ghost" style="width:100%;text-align:center;justify-content:center;display:flex">Quiero este plan → WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 10. PROTECCIÓN ────────────────────── -->
+<section class="section section-dark" data-section="9">
+  <div class="container">
+    <div class="sh reveal">
+      <span class="label">Protección de Contenido</span>
+      <h2>Capas preventivas<br>de protección digital</h2>
+      <div class="yline"></div>
+      <p style="margin-top:1rem">Tu portafolio y contenido visual son activos de marca. Implementamos barreras técnicas que dificultan la copia o extracción directa del contenido, imágenes y elementos del sitio.</p>
+    </div>
+    <div class="prot-grid reveal">
+      <div class="prot-item">
+        <div class="prot-n">01</div>
+        <div class="prot-icon">🚫</div>
+        <h4>Deshabilitación de clic derecho</h4>
+        <p>Barrera de primera línea que dificulta la descarga directa de imágenes y la inspección de código por parte de usuarios no técnicos.</p>
+      </div>
+      <div class="prot-item">
+        <div class="prot-n">02</div>
+        <div class="prot-icon">🔒</div>
+        <h4>Protección de selección de texto</h4>
+        <p>Los textos de marca, descripciones de servicios y contenido editorial están protegidos contra copia directa desde la interfaz del sitio.</p>
+      </div>
+      <div class="prot-item">
+        <div class="prot-n">03</div>
+        <div class="prot-icon">🖼️</div>
+        <h4>Protección de arrastre de imágenes</h4>
+        <p>Se deshabilita la función de drag-and-drop sobre las imágenes del portafolio, reduciendo el acceso fácil a los archivos visuales.</p>
+      </div>
+      <div class="prot-item">
+        <div class="prot-n">04</div>
+        <div class="prot-icon">🔍</div>
+        <h4>Ofuscación de atributos de imagen</h4>
+        <p>Las rutas y atributos de las imágenes están estructurados de forma que dificultan la localización y descarga directa de los archivos fuente.</p>
+      </div>
+      <div class="prot-item">
+        <div class="prot-n">05</div>
+        <div class="prot-icon">🛡️</div>
+        <h4>Marca de agua digital (Plan C)</h4>
+        <p>Las imágenes del portafolio pueden llevar una marca de agua sutil que identifica la propiedad del contenido visual sin afectar la estética.</p>
+      </div>
+      <div class="prot-item">
+        <div class="prot-n">—</div>
+        <div class="prot-icon">📋</div>
+        <h4>Bloqueo de atajos de descarga</h4>
+        <p>Ciertos atajos de teclado comúnmente usados para guardar o copiar elementos del sitio son desactivados en la experiencia de usuario.</p>
+      </div>
+    </div>
+    <div class="prot-note reveal">
+      <strong>Nota importante:</strong> Estas capas son barreras preventivas orientadas a dificultar la copia casual o accidental de contenido. No constituyen protección absoluta contra usuarios técnicos avanzados. Para una protección legal de tu contenido, se recomienda registrar tus obras y documentar la autoría de cada pieza.
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 11. SOFÍA ────────────────────── -->
+<section class="section" data-section="10">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:640px;margin-left:auto;margin-right:auto">
+      <span class="label">Para entender el ecosistema completo</span>
+      <h2>¿Qué es Sofía<br>y qué hace?</h2>
+      <div class="yline" style="margin:1rem auto 0"></div>
+    </div>
+
+    <div class="sofia-wrap reveal" style="margin-top:3rem">
+      <div style="flex:1;position:relative;z-index:1">
+        <div class="sofia-badge" style="margin-bottom:1.5rem">Módulo independiente · No incluido en esta propuesta</div>
+
+        <p style="color:var(--text);font-size:1.05rem;line-height:1.78;max-width:60ch;margin-bottom:1.5rem">
+          Sofía es la asistente virtual de inteligencia artificial de AJ Business Advisory. Vive dentro del sitio web y en WhatsApp al mismo tiempo — y su trabajo es atender a tus clientes cuando tú no puedes.
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;max-width:60ch">
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem">
+            <div style="font-size:1.4rem;margin-bottom:.5rem">💬</div>
+            <h4 style="font-size:.9rem;margin-bottom:.4rem;color:var(--text)">Atiende consultas en tiempo real</h4>
+            <p style="font-size:.82rem;color:var(--muted);line-height:1.6">Responde preguntas sobre tus servicios, materiales, tiempos y precios — a cualquier hora, sin que tú estés presente.</p>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem">
+            <div style="font-size:1.4rem;margin-bottom:.5rem">📋</div>
+            <h4 style="font-size:.9rem;margin-bottom:.4rem;color:var(--text)">Captura datos de prospectos</h4>
+            <p style="font-size:.82rem;color:var(--muted);line-height:1.6">Antes de que un interesado se vaya, Sofía recopila su nombre, qué necesita y cómo contactarlo — sin formularios fríos.</p>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem">
+            <div style="font-size:1.4rem;margin-bottom:.5rem">🔍</div>
+            <h4 style="font-size:.9rem;margin-bottom:.4rem;color:var(--text)">Filtra y califica clientes</h4>
+            <p style="font-size:.82rem;color:var(--muted);line-height:1.6">Distingue entre quien está cotizando en serio y quien solo está explorando. Tú solo recibes los contactos que ya tienen intención de compra.</p>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem">
+            <div style="font-size:1.4rem;margin-bottom:.5rem">📱</div>
+            <h4 style="font-size:.9rem;margin-bottom:.4rem;color:var(--text)">Vive en WhatsApp y en tu web</h4>
+            <p style="font-size:.82rem;color:var(--muted);line-height:1.6">Se integra directamente al canal donde ya está tu cliente. No necesita apps nuevas ni cambios de hábito por parte del usuario.</p>
+          </div>
+        </div>
+
+        <div style="background:rgba(245,196,0,.05);border:1px solid rgba(245,196,0,.15);border-radius:var(--radius);padding:1.25rem 1.5rem;max-width:60ch">
+          <p style="font-size:.9rem;color:var(--muted);line-height:1.7;margin:0">
+            <strong style="color:var(--text)">¿Cuándo tiene sentido para Ruztik Industry?</strong><br>
+            Cuando el sitio web esté activo y empezando a recibir visitas, Sofía se convierte en el siguiente paso natural. No antes — primero hay que tener la vitrina lista. El Plan C ya incluye la preparación técnica para activarla cuando llegue ese momento, sin rediseños ni costos adicionales de integración.
+          </p>
+        </div>
+      </div>
+
+      <div class="sofia-visual" style="font-size:3rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;min-width:180px">
+        <div style="font-size:3.5rem">✦</div>
+        <div style="font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center">Sofía IA<br>AJ Business Advisory</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 12. ENTREGA ────────────────────── -->
+<section class="section section-dark" data-section="11">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;margin-bottom:3.5rem">
+      <span class="label">Tiempo de Entrega</span>
+      <h2>De la aprobación<br>al lanzamiento</h2>
+      <div class="yline" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="tl reveal">
+      <div class="tl-step">
+        <div class="tl-dot">🗺️</div>
+        <span class="days">Días 1–4</span>
+        <h4>Fase 1 · Dirección Visual</h4>
+        <p>Definición de estructura, paleta, tipografías y recorrido. Primer entregable visual para validar antes de construir.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">⚙️</div>
+        <span class="days">Días 5–10</span>
+        <h4>Fase 2 · Desarrollo</h4>
+        <p>Construcción del sitio con el contenido real. Ajustes según feedback. Incorporación de portafolio e imágenes.</p>
+      </div>
+      <div class="tl-step">
+        <div class="tl-dot">🚀</div>
+        <span class="days">Días 11–15</span>
+        <h4>Fase 3 · Publicación</h4>
+        <p>Revisión final, pruebas responsive, publicación y entrega. El sitio queda activo y en tus manos.</p>
+      </div>
+    </div>
+    <p class="muted reveal" style="text-align:center;margin-top:2.5rem;font-size:.88rem">
+      Los tiempos son estimados en días hábiles desde la aprobación y el primer pago. El proceso incluye hasta dos rondas de revisión.
+    </p>
+  </div>
+</section>
+
+<!-- ────────────────────── 13. PAGO ────────────────────── -->
+<section class="section section-mid" data-section="11">
+  <div class="container">
+    <div class="sh reveal" style="text-align:center;max-width:500px;margin-left:auto;margin-right:auto;margin-bottom:3rem">
+      <span class="label">Forma de Pago</span>
+      <h2>Simple y<br>sin sorpresas</h2>
+      <div class="yline" style="margin:1rem auto 0"></div>
+    </div>
+    <div class="pay-split reveal">
+      <div class="pay-card">
+        <div class="pay-pct">50%</div>
+        <div class="pay-label">Para iniciar</div>
+        <p class="pay-sub">Se paga al aprobar la propuesta. Con esto arrancamos el proceso y garantizamos tu fecha en el calendario.</p>
+      </div>
+      <div class="pay-card">
+        <div class="pay-pct">50%</div>
+        <div class="pay-label">Contra entrega</div>
+        <p class="pay-sub">Se paga cuando el sitio está terminado, revisado y listo para publicar. Primero ves el resultado, luego completas el pago.</p>
+      </div>
+    </div>
+    <p class="muted reveal" style="text-align:center;margin-top:2rem;font-size:.83rem">
+      Transferencia bancaria o Nequi. Se genera recibo de cada pago. Contrato de servicio incluido.
+    </p>
+
+    <!-- OPEN NEGOTIATION -->
+    <div class="nego-block reveal d2" style="margin-top:3rem;background:var(--card);border:1px solid rgba(245,196,0,.2);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;max-width:600px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--yellow),transparent)"></div>
+      <div style="font-size:1.5rem;margin-bottom:.75rem">🤝</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.04em;margin-bottom:.6rem;color:var(--text)">¿Tienes una propuesta diferente?</h3>
+      <p style="color:var(--muted);font-size:.9rem;max-width:44ch;margin:0 auto 1.5rem;line-height:1.65">
+        La estructura 50/50 es nuestra base — pero si tienes una forma diferente de hacer que esto funcione para los dos, cuéntanos. Estamos abiertos a escuchar.
+      </p>
+      <a href="https://wa.me/573227815811?text=Hola%2C%20vi%20la%20propuesta%20de%20Ruztik%20Industry%20y%20quisiera%20hablar%20sobre%20una%20forma%20de%20pago%20diferente" target="_blank" class="btn-y" style="font-size:.82rem;padding:13px 28px">
+        Hagamos una propuesta juntos →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ────────────────────── 14. CTA FINAL ────────────────────── -->
+<section class="section" id="cta-final" data-section="12">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="reveal">
+      <span class="label" style="display:block;text-align:center;margin-bottom:1.5rem">El siguiente paso es tuyo</span>
+    </div>
+    <div class="cta-big reveal d1">
+      <span class="acc">Una plataforma visual</span><br>para posicionar<br>tu marca.
+    </div>
+    <p class="cta-serif reveal d2">
+      <strong>Ruztik Industry tiene el trabajo, la identidad y el portafolio.</strong><br>
+      Lo que sigue es darle el canal que merece — y hacer que los clientes que hoy no te conocen, empiecen a buscarte.
+    </p>
+    <div class="reveal d3" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="https://wa.me/573227815811?text=Hola%2C%20quiero%20aprobar%20la%20propuesta%20web%20de%20Ruztik%20Industry" target="_blank" class="btn-y rk-btn-pulse" style="font-size:.9rem;padding:16px 36px">
+        Quiero esto para mi marca → WhatsApp
+      </a>
+      <button class="btn-ghost" style="font-size:.9rem;padding:16px 36px" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'})">
+        Revisar planes
+      </button>
+    </div>
+    <p class="cta-note reveal d4">
+      Esta propuesta tiene validez de 15 días calendario desde su fecha de emisión. · Mayo 2026
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="brand">
+    <strong>AJ Business Advisory</strong> · Propuesta para Ruztik Industry · Mayo 2026
+  </div>
+  <div class="conf">Documento confidencial · No distribuir</div>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on') });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── NAV DOTS ──
+const sections = document.querySelectorAll('[data-section]');
+const dots = document.querySelectorAll('.nd');
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const idx = e.target.dataset.section;
+      dots.forEach(d => d.classList.remove('active'));
+      const target = document.querySelector(`.nd[data-sec="${idx}"]`);
+      if (target) target.classList.add('active');
+    }
+  });
+}, { threshold: 0.4 });
+sections.forEach(s => sectionObserver.observe(s));
+
+dots.forEach(d => {
+  d.addEventListener('click', () => {
+    const idx = d.dataset.sec;
+    const target = document.querySelectorAll('[data-section]')[idx];
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// ── MOCKUP SCALE ──
+function scaleScreens() {
+  [['ms-a','mso-a'],['ms-b','mso-b'],['ms-c','mso-c']].forEach(([sId,oId]) => {
+    const site = document.getElementById(sId);
+    const outer = document.getElementById(oId);
+    if (!site || !outer) return;
+    const scale = outer.offsetWidth / 1200;
+    site.style.transform = 'scale(' + scale + ')';
+    outer.style.height = Math.round(720 * scale) + 'px';
+  });
+  [['ps-a','pso-a'],['ps-b','pso-b'],['ps-c','pso-c']].forEach(([sId,oId]) => {
+    const site = document.getElementById(sId);
+    const outer = document.getElementById(oId);
+    if (!site || !outer) return;
+    const scale = outer.offsetWidth / 390;
+    site.style.transform = 'scale(' + scale + ')';
+    outer.style.height = Math.round(520 * scale) + 'px';
+  });
+}
+window.addEventListener('resize', scaleScreens);
+window.addEventListener('load', scaleScreens);
+setTimeout(scaleScreens, 300);
+setTimeout(scaleScreens, 800);
+
+// ── MOCKUP TABS ──
+function switchMock(id, btn) {
+  document.querySelectorAll('.mock-panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.mtab').forEach(b => b.classList.remove('on'));
+  document.getElementById('mp-' + id).classList.add('on');
+  btn.classList.add('on');
+
+  // Re-trigger reveals inside newly shown panel
+  document.querySelectorAll('#mp-' + id + ' .reveal').forEach(el => {
+    el.classList.remove('on');
+    setTimeout(() => el.classList.add('on'), 50);
+  });
+  setTimeout(scaleScreens, 50);
+}
+</script>
+</body>
+</html>

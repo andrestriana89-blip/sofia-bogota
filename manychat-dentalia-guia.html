@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía ManyChat Agency × Dentalia</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0a;
+    --card: #111;
+    --card2: #161616;
+    --border: rgba(255,255,255,0.08);
+    --green: #00c04b;
+    --green2: #00e65a;
+    --pink: #d6006e;
+    --yellow: #f5c400;
+    --text: #ededff;
+    --muted: #6b6b8a;
+    --radius: 12px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-top: 60px;
+  }
+
+  /* HEADER FIJO */
+  #topbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 56px;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    z-index: 100;
+  }
+  #topbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text);
+  }
+  #topbar .logo .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green);
+  }
+  #topbar .progress-text {
+    font-size: 12px;
+    color: var(--muted);
+  }
+  #topbar .progress-text span {
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* PROGRESO */
+  #progress-bar-wrap {
+    position: fixed;
+    top: 56px; left: 0; right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.06);
+    z-index: 99;
+  }
+  #progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--green2));
+    width: 0%;
+    transition: width 0.4s ease;
+  }
+
+  /* HERO */
+  #hero {
+    text-align: center;
+    padding: 64px 24px 48px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  #hero .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(0,192,75,0.12);
+    border: 1px solid rgba(0,192,75,0.3);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green);
+    margin-bottom: 20px;
+  }
+  #hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  #hero h1 .hl { color: var(--green); }
+  #hero p {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* CONTENEDOR PRINCIPAL */
+  main {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* PARTE / SECCIÓN */
+  .parte {
+    margin-bottom: 40px;
+  }
+
+  .parte-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .parte-num {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .parte-num.verde { background: rgba(0,192,75,0.15); color: var(--green); border: 1px solid rgba(0,192,75,0.3); }
+  .parte-num.rosa  { background: rgba(214,0,110,0.15); color: var(--pink);  border: 1px solid rgba(214,0,110,0.3); }
+  .parte-num.azul  { background: rgba(80,120,255,0.15); color: #7fa0ff;      border: 1px solid rgba(80,120,255,0.3); }
+  .parte-num.amarillo { background: rgba(245,196,0,0.12); color: var(--yellow); border: 1px solid rgba(245,196,0,0.3); }
+
+  .parte-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .parte-subtitle {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* STEPS */
+  .steps { display: flex; flex-direction: column; gap: 10px; }
+
+  .step {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+  .step:hover { border-color: rgba(0,192,75,0.3); }
+  .step.done {
+    background: rgba(0,192,75,0.05);
+    border-color: rgba(0,192,75,0.25);
+  }
+  .step.done .step-text { text-decoration: line-through; color: var(--muted); }
+
+  .step-check {
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    border: 2px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background: transparent;
+  }
+  .step.done .step-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .step.done .step-check::after {
+    content: '✓';
+    color: #000;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .step-content { flex: 1; }
+  .step-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 3px;
+  }
+  .step-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 0.2s;
+  }
+  .step-detail {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* ALERT */
+  .alert {
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin: 12px 0;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert.warn {
+    background: rgba(245,196,0,0.08);
+    border: 1px solid rgba(245,196,0,0.25);
+    color: #d4a800;
+  }
+  .alert.info {
+    background: rgba(80,120,255,0.08);
+    border: 1px solid rgba(80,120,255,0.25);
+    color: #7fa0ff;
+  }
+  .alert.ok {
+    background: rgba(0,192,75,0.08);
+    border: 1px solid rgba(0,192,75,0.25);
+    color: var(--green);
+  }
+  .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  /* DM PREVIEW */
+  .dm-preview {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin: 16px 0;
+  }
+  .dm-preview .dm-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  .dm-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .dm-name { font-size: 13px; font-weight: 600; }
+  .dm-ig { font-size: 11px; color: var(--muted); }
+  .dm-bubble {
+    background: #262626;
+    border-radius: 18px 18px 18px 4px;
+    padding: 12px 16px;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 85%;
+    margin-bottom: 12px;
+  }
+  .dm-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .dm-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: var(--text);
+    text-align: left;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* COPY BOX */
+  .copy-box {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 12px 0;
+    position: relative;
+  }
+  .copy-box code {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #7fa0ff;
+    word-break: break-all;
+    display: block;
+    line-height: 1.6;
+  }
+  .copy-box .copy-btn {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: rgba(255,255,255,0.08);
+    border: none;
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-box .copy-btn:hover { background: rgba(255,255,255,0.14); color: var(--text); }
+  .copy-box .copy-btn.copied { color: var(--green); }
+
+  /* TABLA */
+  .wa-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 13px;
+  }
+  .wa-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.04);
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  .wa-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    vertical-align: top;
+  }
+  .wa-table td:first-child { font-weight: 600; white-space: nowrap; }
+  .wa-table td code {
+    font-size: 11px;
+    color: #7fa0ff;
+    background: rgba(127,160,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    word-break: break-all;
+  }
+
+  /* CHECKLIST FINAL */
+  .final-check {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .final-check h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item .cb {
+    width: 20px; height: 20px;
+    border-radius: 5px;
+    border: 2px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
+    margin-top: 2px;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .check-item.done .cb {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-item.done .cb::after { content: '✓'; color: #000; font-size: 11px; font-weight: 800; }
+  .check-item.done .ci-text { text-decoration: line-through; color: var(--muted); }
+  .ci-text { font-size: 13px; }
+
+  /* CTA FINAL */
+  .cta-final {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+  }
+  .cta-final p { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  .btn-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25d366;
+    color: #000;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-wa:hover { opacity: 0.88; }
+
+  /* COMPLETADO */
+  .congrats {
+    display: none;
+    text-align: center;
+    padding: 32px 24px;
+    background: rgba(0,192,75,0.06);
+    border: 1px solid rgba(0,192,75,0.25);
+    border-radius: 14px;
+    margin: 24px 0;
+  }
+  .congrats.visible { display: block; }
+  .congrats h3 { color: var(--green); font-size: 1.3rem; margin-bottom: 8px; }
+  .congrats p { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div id="topbar">
+  <div class="logo">
+    <div class="dot"></div>
+    ManyChat Agency × Dentalia
+  </div>
+  <div class="progress-text">
+    Pasos completados: <span id="prog-count">0</span> / <span id="prog-total">0</span>
+  </div>
+</div>
+<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="badge">✅ Instagram conectado · Cuenta Dentalia activa</div>
+  <h1>Guía completa:<br><span class="hl">ManyChat Agency</span> × Dentalia</h1>
+  <p>Sigue estos pasos en orden para configurar las automatizaciones de comentarios → DM → WhatsApp para @dentaliaodontologia.</p>
+</div>
+
+<main>
+
+  <!-- ESTADO ACTUAL -->
+  <div class="alert ok" style="margin-bottom:24px;">
+    <span class="alert-icon">🎉</span>
+    <div><strong>¡Ya tienes lo importante!</strong> Dentalia Odontologia está agregada como cliente FREE y los permisos de Instagram están actualizados. Solo falta configurar los flujos de automatización.</div>
+  </div>
+
+  <!-- PARTE 1 -->
+  <div class="parte" id="parte1">
+    <div class="parte-header">
+      <div class="parte-num verde">1</div>
+      <div>
+        <div class="parte-title">Entrar al workspace de Dentalia</div>
+        <div class="parte-subtitle">Asegúrate de estar dentro de la cuenta correcta</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggleStep(this)" data-id="s1">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 01</div>
+          <div class="step-text">Clic en el selector de cuentas (esquina superior izquierda) → seleccionar "Dentalia Odontologia"</div>
+          <div class="step-detail">Debes ver el nombre "Dentalia Odontologia" en la barra superior. Si ves "new WhatsApp account", no estás en la cuenta correcta.</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s2">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 02</div>
+          <div class="step-text">Ir a Configuración → Canales conectados → verificar que Instagram aparece en verde</div>
+          <div class="step-detail">Menú lateral izquierdo → ícono de engranaje (Settings) → "Connected Channels" o "Canales". Debe aparecer @dentaliaodontologia con estado "Connected".</div>
+        </div>
+      </div>
+    </div>
+    <div class="alert warn" style="margin-top:12px;">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Cuenta Business obligatoria:</strong> Si Instagram muestra error o no aparece, la cuenta de @dentaliaodontologia puede estar en modo Personal. Ir a Instagram → Configuración → Cuenta → Cambiar a cuenta profesional → Empresa.</div>
+    </div>
+  </div>
+
+  <!-- PARTE 2 -->
+  <div class="parte" id="parte2">
+    <div class="parte-header">
+      <div class="parte-num rosa">2</div>
+      <div>
+        <div class="parte-title">Crear el flujo: Comentarios → DM automático</div>
+        <div class="parte-subtitle">La automatización principal de Dentalia</div>
+      </div>
+    </div>
+
+    <div class="alert info" style="margin-bottom:16px;">
+      <span class="alert-icon">💡</span>
+      <div>En la pantalla de inicio de Dentalia ya te aparece la sugerencia <strong>"DM automáticos desde comentarios" (POPULAR)</strong>. Haz clic ahí para usar la plantilla — es más rápido que desde cero.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step" onclick="toggleStep(this)" data-id="s3">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 03</div>
+          <div class="step-text">En el Inicio de Dentalia → clic en "DM automáticos desde comentarios" (POPULAR)</div>
+          <div class="step-detail">O desde el menú lateral: Automatizaciones → Nueva automatización → elegir plantilla de comentarios IG.</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s4">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 04</div>
+          <div class="step-text">Configurar el trigger: seleccionar "Todos los posts" (o posts específicos si prefieres)</div>
+          <div class="step-detail">Si seleccionas posts específicos, puedes activarlo post a post. "Todos los posts" es más fácil para empezar.</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s5">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 05</div>
+          <div class="step-text">Editar el mensaje del DM con el texto oficial de Dentalia</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DM PREVIEW -->
+    <div class="dm-preview">
+      <div class="dm-header">
+        <div class="dm-avatar">🦷</div>
+        <div>
+          <div class="dm-name">Dentalia Odontología</div>
+          <div class="dm-ig">@dentaliaodontologia · Instagram DM</div>
+        </div>
+      </div>
+      <div class="dm-bubble">
+        ¡Hola! 😊 Gracias por tu interés en Dentalia.<br>
+        Soy el asistente de la Dra. Natalia Barrantes.<br><br>
+        ¿En qué podemos ayudarte hoy?
+      </div>
+      <div class="dm-buttons">
+        <div class="dm-btn">📅 Quiero agendar una cita</div>
+        <div class="dm-btn">💰 Ver precios y tratamientos</div>
+        <div class="dm-btn">📍 ¿Cómo llegar?</div>
+        <div class="dm-btn">🌐 Ver el sitio web</div>
+      </div>
+    </div>
+
+    <div class="steps">
+      <div class="step" onclick="toggleStep(this)" data-id="s6">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 06</div>
+          <div class="step-text">Agregar 4 botones de respuesta rápida (Quick Replies) al DM</div>
+          <div class="step-detail">En el editor del DM → "Add Button" o "Agregar botón" → tipo "URL" para cada uno.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLA DE URLS -->
+    <table class="wa-table">
+      <thead>
+        <tr>
+          <th>Botón</th>
+          <th>URL a pegar en ManyChat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>📅 Agendar cita</td>
+          <td><code>https://wa.me/573118490623?text=Hola,%20quiero%20agendar%20una%20cita</code></td>
+        </tr>
+        <tr>
+          <td>💰 Ver precios</td>
+          <td><code>https://wa.me/573118490623?text=Hola,%20quisiera%20informaci%C3%B3n%20de%20precios</code></td>
+        </tr>
+        <tr>
+          <td>📍 ¿Cómo llegar?</td>
+          <td><code>https://wa.me/573118490623?text=Hola,%20quiero%20saber%20la%20direcci%C3%B3n</code></td>
+        </tr>
+        <tr>
+          <td>🌐 Ver sitio web</td>
+          <td><code>https://dranataliabarrantes.com</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="steps">
+      <div class="step" onclick="toggleStep(this)" data-id="s7">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 07</div>
+          <div class="step-text">Guardar el flujo y activarlo (toggle → ON / Publicar)</div>
+          <div class="step-detail">Busca el botón "Publicar" o "Activar" en la esquina superior del editor. El flujo debe quedar con estado activo (verde).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE 3 -->
+  <div class="parte" id="parte3">
+    <div class="parte-header">
+      <div class="parte-num azul">3</div>
+      <div>
+        <div class="parte-title">Flujo adicional: Responder Stories (opcional pero recomendado)</div>
+        <div class="parte-subtitle">Captura leads de quienes responden Stories de @dentaliaodontologia</div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step" onclick="toggleStep(this)" data-id="s8">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 08</div>
+          <div class="step-text">En inicio de Dentalia → clic en "Generar leads con historias"</div>
+          <div class="step-detail">Este flujo se activa cuando alguien responde una Story. Útil cuando Natalia publique Stories de promociones o servicios.</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s9">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 09</div>
+          <div class="step-text">Usar el mismo mensaje DM + botones de WhatsApp (copiar del flujo anterior)</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s10">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 10</div>
+          <div class="step-text">Guardar y activar este flujo también</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARTE 4 -->
+  <div class="parte" id="parte4">
+    <div class="parte-header">
+      <div class="parte-num amarillo">4</div>
+      <div>
+        <div class="parte-title">Meta Business Suite — Programar contenido con ManyChat activo</div>
+        <div class="parte-subtitle">Publicaciones programadas que sí activan los flujos de ManyChat</div>
+      </div>
+    </div>
+
+    <div class="alert warn" style="margin-bottom:16px;">
+      <span class="alert-icon">⚠️</span>
+      <div><strong>Importante:</strong> Las publicaciones programadas desde apps de terceros (Buffer, Later, Hootsuite) <strong>pueden NO activar</strong> ManyChat. Siempre programar desde <strong>Meta Business Suite</strong> o directamente desde Instagram para garantizar que los flows funcionen.</div>
+    </div>
+
+    <div class="steps">
+      <div class="step" onclick="toggleStep(this)" data-id="s11">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 11</div>
+          <div class="step-text">Abrir business.facebook.com (Meta Business Suite)</div>
+          <div class="step-detail">Asegúrate de entrar con la cuenta que administra @dentaliaodontologia (cuenta de Natalia o la tuya como administradora).</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s12">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 12</div>
+          <div class="step-text">Verificar que @dentaliaodontologia aparece como página conectada en Meta BS</div>
+          <div class="step-detail">Menú lateral → selector de cuenta → debe aparecer "Dentalia Odontología" o "@dentaliaodontologia". Si no aparece, ir a Configuración → Cuentas de Instagram → Agregar.</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s13">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 13</div>
+          <div class="step-text">Ir a "Planner" o "Planificador" → crear la primera publicación programada</div>
+          <div class="step-detail">Menú lateral → Planner (o Publicaciones → Programadas). Clic en el día → agregar post con imagen/video + caption.</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s14">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 14</div>
+          <div class="step-text">En el caption del post, incluir una palabra clave que active el flujo de ManyChat</div>
+          <div class="step-detail">Ejemplo: "Comenta INFO y te enviamos toda la información 😊" → en ManyChat puedes configurar que quien comente "INFO" reciba el DM automáticamente. Más efectivo que "cualquier comentario".</div>
+        </div>
+      </div>
+      <div class="step" onclick="toggleStep(this)" data-id="s15">
+        <div class="step-check"></div>
+        <div class="step-content">
+          <div class="step-num">Paso 15</div>
+          <div class="step-text">Programar al menos 3 posts para los próximos 7 días</div>
+          <div class="step-detail">Sugerencia horarios para Bogotá: martes y jueves 6–7pm, sábados 10–11am. Son los horarios de mayor actividad para clínicas/salud en Colombia.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert info" style="margin-top:12px;">
+      <span class="alert-icon">💡</span>
+      <div><strong>Tip:</strong> En ManyChat puedes también usar <strong>palabras clave específicas</strong> como trigger (ej: "cita", "precio", "info"). Así el flow solo se activa cuando alguien comenta esas palabras, no con cualquier emoji o "😍". Reduce ruido y aumenta calidad de leads.</div>
+    </div>
+  </div>
+
+  <!-- PARTE 5 — CHECKLIST FINAL -->
+  <div class="parte" id="parte5">
+    <div class="parte-header">
+      <div class="parte-num verde">✓</div>
+      <div>
+        <div class="parte-title">Checklist de verificación final</div>
+        <div class="parte-subtitle">Marca todo antes de considerar la configuración lista</div>
+      </div>
+    </div>
+
+    <div class="final-check">
+      <h3>🔍 Todo debe quedar en verde</h3>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f1">
+        <div class="cb"></div>
+        <div class="ci-text">Agency Dashboard muestra a "Dentalia Odontologia" como cliente</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f2">
+        <div class="cb"></div>
+        <div class="ci-text">Instagram @dentaliaodontologia aparece "Connected" en Settings → Canales</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f3">
+        <div class="cb"></div>
+        <div class="ci-text">Flujo "Comentarios Principal" está ACTIVO (ícono verde)</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f4">
+        <div class="cb"></div>
+        <div class="ci-text">El DM tiene los 4 botones con las URLs de WhatsApp correctas</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f5">
+        <div class="cb"></div>
+        <div class="ci-text">Prueba real: comentar en un post → DM llegó en menos de 60 segundos</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f6">
+        <div class="cb"></div>
+        <div class="ci-text">Los botones del DM redirigen al WhatsApp correcto (573118490623)</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f7">
+        <div class="cb"></div>
+        <div class="ci-text">@dentaliaodontologia conectada en Meta Business Suite</div>
+      </div>
+      <div class="check-item" onclick="toggleFinal(this)" data-fid="f8">
+        <div class="cb"></div>
+        <div class="ci-text">Al menos 3 posts programados para los próximos 7 días desde Meta BS</div>
+      </div>
+    </div>
+
+    <div class="congrats" id="congrats">
+      <h3>🎉 ¡Configuración completa!</h3>
+      <p>Dentalia está automatizada. Cada comentario en un post activa el flujo → DM → WhatsApp.<br>La Dra. Natalia ya no pierde leads por no responder comentarios a tiempo.</p>
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="cta-final">
+    <p>¿Algo no funcionó o necesitas ayuda con la configuración?</p>
+    <a href="https://wa.me/573227815811?text=Hola%20Valentina,%20necesito%20ayuda%20con%20la%20configuración%20de%20ManyChat%20para%20Dentalia" class="btn-wa" target="_blank">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Hablar con Valentina
+    </a>
+  </div>
+
+</main>
+
+<script>
+  // Restaurar estado desde localStorage
+  function getKey(id) { return 'mc_dentalia_' + id; }
+
+  function toggleStep(el) {
+    const id = el.dataset.id;
+    const done = !el.classList.contains('done');
+    el.classList.toggle('done', done);
+    localStorage.setItem(getKey(id), done ? '1' : '0');
+    updateProgress();
+  }
+
+  function toggleFinal(el) {
+    const id = el.dataset.fid;
+    const done = !el.classList.contains('done');
+    el.classList.toggle('done', done);
+    localStorage.setItem(getKey(id), done ? '1' : '0');
+    checkCongrats();
+  }
+
+  function restoreState() {
+    document.querySelectorAll('.step[data-id]').forEach(el => {
+      if (localStorage.getItem(getKey(el.dataset.id)) === '1') el.classList.add('done');
+    });
+    document.querySelectorAll('.check-item[data-fid]').forEach(el => {
+      if (localStorage.getItem(getKey(el.dataset.fid)) === '1') el.classList.add('done');
+    });
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.step[data-id]');
+    const done = document.querySelectorAll('.step[data-id].done');
+    const total = all.length;
+    const count = done.length;
+    document.getElementById('prog-count').textContent = count;
+    document.getElementById('prog-total').textContent = total;
+    document.getElementById('progress-bar').style.width = (count / total * 100) + '%';
+  }
+
+  function checkCongrats() {
+    const all = document.querySelectorAll('.check-item[data-fid]');
+    const done = document.querySelectorAll('.check-item[data-fid].done');
+    if (all.length === done.length) {
+      document.getElementById('congrats').classList.add('visible');
+    } else {
+      document.getElementById('congrats').classList.remove('visible');
+    }
+  }
+
+  // Copy buttons
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const code = btn.parentElement.querySelector('code').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        btn.textContent = '¡Copiado!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 2000);
+      });
+    });
+  });
+
+  // Init
+  restoreState();
+  updateProgress();
+  checkCongrats();
+</script>
+</body>
+</html>

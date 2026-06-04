@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sofia AI — Propuesta Clara Puentes · AJ Business Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ───────────────── TOKENS ───────────────── */
+:root{
+  --bg:    #080806;
+  --bg2:   #0d0d0a;
+  --bg3:   #111108;
+  --card:  rgba(255,255,255,0.038);
+  --card2: rgba(255,255,255,0.055);
+  --b:     rgba(255,255,255,0.07);
+  --b2:    rgba(255,255,255,0.12);
+  --gold:  #c9a063;
+  --gold2: #e8c97a;
+  --gc:    rgba(201,160,99,0.12);
+  --gb:    rgba(201,160,99,0.22);
+  --text:  #f0ebe0;
+  --muted: #7a7260;
+  --muted2:#a09080;
+  --r:     8px;
+  --r2:    16px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  line-height:1.65;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(201,160,99,.055) 0%,transparent 65%);
+  z-index:0;
+}
+::selection{background:var(--gold);color:#000}
+a{color:inherit;text-decoration:none}
+p{max-width:62ch;color:var(--muted2);font-size:.95rem;line-height:1.75}
+p+p{margin-top:.85rem}
+img{display:block;max-width:100%}
+
+/* ── TYPE ── */
+.serif{font-family:'Cormorant Garamond',serif}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.9;letter-spacing:-.01em}
+h2{font-family:'Cormorant Garamond',serif;font-weight:300;line-height:.95;letter-spacing:-.005em}
+h3{font-family:'DM Sans',sans-serif;font-weight:500;font-size:1rem;letter-spacing:.01em}
+.eyebrow{
+  font-family:'DM Sans',sans-serif;font-weight:500;
+  font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;
+  color:var(--gold);display:block;margin-bottom:1.25rem;
+}
+.gold{color:var(--gold2)}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1140px;margin:0 auto;padding:0 2.5rem;position:relative;z-index:1}
+.sec{padding:110px 0}
+.sec-alt{background:var(--bg2)}
+.rule{width:40px;height:1px;background:var(--gold);margin-top:1.25rem;opacity:.6}
+.rule-c{margin-left:auto;margin-right:auto}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+
+/* ── TOPBAR ── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 2.5rem;
+  background:rgba(8,8,6,.88);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b);
+}
+.topbar-logo{
+  font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--gold);
+}
+.topbar-mid{font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.topbar-r{display:flex;align-items:center;gap:.75rem}
+.tb-btn{
+  background:var(--gold);color:#000;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:.65rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:7px 18px;border-radius:3px;border:none;cursor:pointer;
+  transition:background .2s,transform .15s;white-space:nowrap;
+  text-decoration:none;display:inline-flex;align-items:center;gap:5px;
+}
+.tb-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.tb-ghost{
+  font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--b);border-radius:3px;
+  padding:7px 14px;cursor:pointer;transition:all .2s;
+  text-decoration:none;display:inline-flex;align-items:center;
+}
+.tb-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.topbar-date{font-size:.62rem;color:var(--muted);letter-spacing:.04em}
+
+/* ── NAV DOTS ── */
+.nav-dots{
+  position:fixed;right:28px;top:50%;transform:translateY(-50%);
+  z-index:200;display:flex;flex-direction:column;gap:10px;
+}
+.nd{
+  width:5px;height:5px;border-radius:50%;
+  background:rgba(255,255,255,.18);cursor:pointer;
+  transition:all .25s;position:relative;
+}
+.nd.active,.nd:hover{background:var(--gold);transform:scale(1.8)}
+.nd[data-tip]:hover::after{
+  content:attr(data-tip);position:absolute;right:16px;top:50%;
+  transform:translateY(-50%);background:var(--bg2);
+  border:1px solid var(--b);padding:3px 10px;border-radius:3px;
+  font-size:.64rem;white-space:nowrap;color:var(--text);pointer-events:none;
+  font-family:'DM Sans',sans-serif;letter-spacing:.04em;
+}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+.d4{transition-delay:.32s}.d5{transition-delay:.40s}
+
+/* ─────────────── HERO ─────────────── */
+#hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding-top:80px;padding-bottom:120px;
+  position:relative;overflow:hidden;
+}
+#hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  opacity:.3;
+}
+.hero-inner{display:grid;grid-template-columns:1fr 420px;gap:5rem;align-items:center}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:2.25rem;
+}
+.hero-eyebrow span{
+  font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);font-family:'DM Sans',sans-serif;font-weight:500;
+}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold);opacity:.7}
+.hero-h1{
+  font-size:clamp(4rem,8vw,7.5rem);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;line-height:.88;
+  letter-spacing:-.02em;margin-bottom:2rem;
+}
+.hero-h1 em{font-style:italic;color:var(--gold2)}
+.hero-sub{
+  font-size:1rem;color:var(--muted2);line-height:1.8;
+  max-width:46ch;margin-bottom:2.5rem;
+}
+.hero-actions{display:flex;align-items:center;gap:1rem}
+.btn-gold{
+  background:var(--gold);color:#000;
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 32px;border-radius:3px;border:none;cursor:pointer;
+  transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,160,99,.25)}
+.btn-outline{
+  background:transparent;color:var(--text);
+  font-family:'DM Sans',sans-serif;font-weight:500;font-size:.78rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 28px;border-radius:3px;border:1px solid var(--b2);
+  cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* Hero sidebar card */
+.hero-card{
+  background:var(--card2);border:1px solid var(--b);border-radius:var(--r2);
+  padding:2.5rem;position:relative;overflow:hidden;
+}
+.hero-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.hero-card-label{
+  font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);font-family:'DM Sans',sans-serif;font-weight:500;
+  margin-bottom:1.75rem;display:block;
+}
+.hc-stat{margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--b)}
+.hc-stat:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.hc-n{
+  font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;
+  color:var(--gold2);line-height:1;display:block;margin-bottom:.15rem;
+}
+.hc-d{font-size:.78rem;color:var(--muted2)}
+
+/* Hero scroll hint */
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  font-family:'DM Sans',sans-serif;animation:sh 2.5s ease infinite;
+}
+@keyframes sh{0%,100%{opacity:.4;transform:translateX(-50%) translateY(0)}50%{opacity:.9;transform:translateX(-50%) translateY(4px)}}
+.scroll-arrow{width:1px;height:32px;background:linear-gradient(to bottom,var(--gold),transparent)}
+
+/* ─────────────── EXECUTIVE ─────────────── */
+.exec-quote{
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
+  font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.4;
+  color:var(--text);max-width:80ch;margin-bottom:2.5rem;
+}
+.exec-rule{
+  display:flex;align-items:center;gap:1.5rem;margin-bottom:2.5rem;
+}
+.exec-rule::before{content:'';width:40px;height:1px;background:var(--gold);opacity:.6}
+.exec-rule span{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.exec-body{
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;
+  border-top:1px solid var(--b);padding-top:2.5rem;
+}
+.exec-body p{max-width:none}
+
+/* ─────────────── PROBLEMA ─────────────── */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:var(--r2);overflow:hidden;margin-bottom:3rem}
+.prob-item{
+  background:var(--bg);padding:2.5rem;
+  transition:background .25s;position:relative;
+}
+.prob-item:hover{background:var(--card)}
+.prob-num{
+  font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;
+  color:rgba(201,160,99,.12);line-height:1;display:block;margin-bottom:1.25rem;
+}
+.prob-item h3{margin-bottom:.65rem;font-size:.95rem;font-weight:500;color:var(--text)}
+.prob-item p{font-size:.85rem;max-width:none}
+
+.prob-callout{
+  display:grid;grid-template-columns:1fr 2fr;gap:0;
+  border:1px solid var(--b);border-radius:var(--r2);overflow:hidden;
+}
+.prob-callout-left{
+  background:var(--gc);border-right:1px solid var(--gb);
+  padding:3rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+}
+.prob-big-n{
+  font-family:'Cormorant Garamond',serif;font-size:5.5rem;font-weight:300;
+  color:var(--gold2);line-height:1;display:block;margin-bottom:.5rem;
+}
+.prob-big-d{font-size:.82rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.prob-callout-right{padding:3rem}
+.prob-callout-right h3{font-size:1.1rem;margin-bottom:.75rem;color:var(--text);font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.4rem}
+.prob-callout-right p{font-size:.9rem;max-width:none}
+
+/* ─────────────── METODOLOGÍA SLIDER ─────────────── */
+.method-slider-outer{position:relative;user-select:none}
+.method-prog-track{height:2px;background:var(--b);border-radius:2px;margin-bottom:0;overflow:hidden}
+.method-prog-bar{height:100%;background:var(--gold);border-radius:2px;transition:width .55s ease}
+.method-slider{
+  overflow:hidden;border:1px solid var(--b);border-top:none;
+  border-radius:0 0 var(--r2) var(--r2);
+}
+.method-slides{display:flex;transition:transform .55s cubic-bezier(.4,0,.2,1);will-change:transform}
+.method-slide{
+  min-width:100%;display:grid;grid-template-columns:1fr 1fr;
+  align-items:stretch;
+}
+.sl-left{padding:3.5rem 3.5rem 3rem;border-right:1px solid var(--b);display:flex;flex-direction:column}
+.sl-right{padding:3.5rem;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.15)}
+.sl-num{
+  font-family:'Cormorant Garamond',serif;font-size:5.5rem;font-weight:300;
+  color:rgba(201,160,99,.13);line-height:1;margin-bottom:.75rem;display:block;
+}
+.sl-left h3{font-size:1.1rem;font-weight:500;color:var(--text);margin-bottom:.6rem}
+.sl-left p{font-size:.88rem;color:var(--muted2);line-height:1.75;max-width:none;margin-bottom:0}
+.sl-tag{
+  display:inline-block;margin-top:auto;padding-top:1.5rem;
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);border-top:1px solid var(--b);width:100%;
+}
+/* Chat mockup */
+.chat-mock{width:100%;max-width:320px}
+.chat-mock-top{
+  background:#1a1a1a;border-radius:10px 10px 0 0;border:1px solid #2a2a2a;border-bottom:none;
+  padding:10px 14px;display:flex;align-items:center;gap:9px;
+}
+.chat-mock-dots{display:flex;gap:4px}
+.chat-mock-dots span{width:7px;height:7px;border-radius:50%}
+.cmd-r{background:#ff5f57}.cmd-y{background:#febc2e}.cmd-g{background:#28c840}
+.chat-mock-url{flex:1;background:#111;border:1px solid #333;border-radius:3px;padding:3px 8px;font-size:.6rem;color:#555;letter-spacing:.02em;font-family:'DM Sans',sans-serif}
+.chat-mock-body{
+  background:#0f0f0c;border:1px solid #222;border-top:none;border-radius:0 0 10px 10px;
+  padding:1.25rem 1rem;display:flex;flex-direction:column;gap:.65rem;min-height:160px;
+}
+.bubble{
+  max-width:88%;padding:.6rem .85rem;border-radius:12px;
+  font-size:.78rem;line-height:1.5;font-family:'DM Sans',sans-serif;
+}
+.bubble-in{
+  background:#2a2a24;color:#d4cdb8;border-radius:12px 12px 12px 3px;
+  align-self:flex-start;
+}
+.bubble-out{
+  background:rgba(201,160,99,.18);color:var(--text);
+  border-radius:12px 12px 3px 12px;align-self:flex-end;
+  border:1px solid rgba(201,160,99,.2);
+}
+.bubble-sys{
+  font-size:.65rem;color:var(--muted);text-align:center;
+  align-self:center;letter-spacing:.06em;text-transform:uppercase;
+}
+.bubble-time{font-size:.6rem;color:var(--muted);margin-top:.1rem;opacity:.7}
+/* Nav bar */
+.method-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 2.5rem;border:1px solid var(--b);border-top:none;
+  border-radius:0 0 var(--r2) var(--r2);background:rgba(0,0,0,.2);
+}
+.method-nav-dots{display:flex;gap:7px;align-items:center}
+.mn-dot{
+  width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);
+  cursor:pointer;transition:all .25s;border:none;padding:0;
+}
+.mn-dot.active{background:var(--gold);transform:scale(1.6)}
+.method-nav-arrows{display:flex;gap:.5rem}
+.mn-arrow{
+  width:38px;height:38px;border-radius:50%;
+  background:transparent;border:1px solid var(--b2);
+  color:var(--text);cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;font-family:'DM Sans',sans-serif;
+}
+.mn-arrow:hover:not(:disabled){border-color:var(--gold);color:var(--gold)}
+.mn-arrow:disabled{opacity:.25;cursor:default}
+.method-counter{font-size:.7rem;color:var(--muted);letter-spacing:.1em;font-family:'DM Sans',sans-serif}
+
+/* ─────────────── DEMO ─────────────── */
+#demo{
+  border-top:1px solid var(--b);border-bottom:1px solid var(--b);
+  background:var(--bg2);
+}
+.demo-inner{
+  max-width:760px;margin:0 auto;text-align:center;
+}
+.demo-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gc);border:1px solid var(--gb);
+  border-radius:2px;padding:6px 18px;margin-bottom:2.5rem;
+  font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);font-family:'DM Sans',sans-serif;font-weight:500;
+}
+.live-dot{width:6px;height:6px;background:#4ade80;border-radius:50%;flex-shrink:0;animation:ldot 2.2s ease infinite}
+@keyframes ldot{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.5)}60%{box-shadow:0 0 0 5px rgba(74,222,128,0)}}
+.demo-h{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(2.5rem,5vw,4.5rem);line-height:.95;
+  margin-bottom:1.5rem;letter-spacing:-.01em;
+}
+.demo-h em{font-style:italic;color:var(--gold2)}
+.demo-sub{font-size:.95rem;color:var(--muted2);max-width:48ch;margin:0 auto 3rem}
+.demo-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:2.25rem}
+.demo-footnote{
+  font-size:.75rem;color:var(--muted);letter-spacing:.04em;
+  border-top:1px solid var(--b);padding-top:1.5rem;
+}
+
+/* ─────────────── INSTAGRAM ─────────────── */
+.ig-header{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end;margin-bottom:4rem;
+}
+.ig-header h2{font-size:clamp(2.5rem,5vw,4.5rem)}
+.ig-header-right p{max-width:none;font-size:.9rem}
+.ig-stats{display:flex;flex-direction:column;gap:1rem;margin-top:2rem}
+.ig-stat{
+  display:flex;align-items:center;gap:1.25rem;
+  padding:1rem 1.25rem;background:var(--card);
+  border:1px solid var(--b);border-radius:var(--r);
+}
+.ig-stat-icon{font-size:1.1rem;flex-shrink:0}
+.ig-stat-body{flex:1}
+.ig-stat-n{font-size:.88rem;font-weight:500;color:var(--text)}
+.ig-stat-d{font-size:.76rem;color:var(--muted)}
+
+.ig-features{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:var(--r2);overflow:hidden;margin-bottom:3rem}
+.ig-feat{
+  background:var(--bg);padding:2.25rem 2rem;
+  transition:background .2s;
+}
+.ig-feat:hover{background:var(--card)}
+.ig-feat-icon{
+  width:40px;height:40px;border-radius:50%;
+  background:var(--gc);border:1px solid var(--gb);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;margin-bottom:1.25rem;
+}
+.ig-feat h3{font-size:.88rem;font-weight:500;color:var(--text);margin-bottom:.4rem}
+.ig-feat p{font-size:.82rem;max-width:none}
+
+.ig-flow{
+  background:var(--card);border:1px solid var(--b);
+  border-radius:var(--r2);padding:3rem;
+}
+.ig-flow-label{
+  text-align:center;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:2.5rem;font-family:'DM Sans',sans-serif;font-weight:500;
+}
+.ig-flow-steps{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:0;flex-wrap:wrap;
+}
+.igs{flex:1;min-width:100px;text-align:center;padding:0 .5rem}
+.igs-icon{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--card2);border:1px solid var(--b2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;margin:0 auto .75rem;
+}
+.igs-icon.gold-i{background:var(--gc);border-color:var(--gb)}
+.igs-icon.green-i{background:rgba(74,222,128,.08);border-color:rgba(74,222,128,.2)}
+.igs .t{font-size:.78rem;font-weight:500;color:var(--text);margin-bottom:.2rem}
+.igs .d{font-size:.7rem;color:var(--muted);line-height:1.4}
+.ig-arr{
+  flex-shrink:0;color:var(--b2);align-self:flex-start;
+  margin-top:20px;font-size:.9rem;padding:0 .25rem;
+}
+
+/* ─────────────── DIFERENCIALES ─────────────── */
+.diff-list{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--b);border:1px solid var(--b);border-radius:var(--r2);overflow:hidden}
+.diff-item{
+  background:var(--bg2);padding:2.5rem;
+  transition:background .22s;position:relative;overflow:hidden;
+}
+.diff-item:hover{background:var(--card)}
+.diff-n{
+  font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;
+  color:rgba(201,160,99,.07);line-height:1;
+  position:absolute;top:-.75rem;right:1.25rem;
+}
+.diff-icon{font-size:1.1rem;margin-bottom:1.1rem;display:block;opacity:.85}
+.diff-item h3{font-size:.9rem;font-weight:500;color:var(--text);margin-bottom:.45rem}
+.diff-item p{font-size:.82rem;max-width:none}
+
+/* ─────────────── PRECIOS ─────────────── */
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;align-items:start}
+.promo-banner{
+  background:var(--gc);border:1px solid var(--gb);border-radius:var(--r);
+  padding:.85rem 1.5rem;display:flex;align-items:center;justify-content:center;
+  gap:1.5rem;margin-bottom:2.5rem;flex-wrap:wrap;
+}
+.promo-banner .step{font-size:.78rem;color:var(--text);font-weight:500;display:flex;align-items:center;gap:.5rem}
+.promo-banner .step span{color:var(--gold2);font-weight:600}
+.promo-banner .arr{color:var(--gold);opacity:.5;font-size:.9rem}
+.psetup{
+  font-size:.72rem;color:var(--muted);margin-bottom:.35rem;
+  display:flex;align-items:center;gap:.4rem;
+}
+.psetup strong{color:var(--muted2);font-weight:500}
+.pfree{
+  display:inline-block;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);
+  color:#4ade80;font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  padding:2px 8px;border-radius:2px;margin-bottom:1.25rem;
+}
+.pcard{
+  background:var(--card);border:1px solid var(--b);
+  border-radius:var(--r2);padding:2.75rem 2.25rem;
+  display:flex;flex-direction:column;
+  transition:border-color .25s,transform .25s;
+  position:relative;
+}
+.pcard:hover{border-color:var(--b2);transform:translateY(-3px)}
+.pcard.feat{
+  border-color:rgba(201,160,99,.35);
+  background:linear-gradient(160deg,rgba(201,160,99,.06) 0%,var(--card) 50%);
+}
+.pcard.feat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.pbadge{
+  position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:#000;
+  font-family:'DM Sans',sans-serif;font-weight:600;
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:4px 16px;border-radius:2px;white-space:nowrap;
+}
+.ptier{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;font-family:'DM Sans',sans-serif;font-weight:500}
+.pname{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:1.5rem;margin-bottom:1.25rem;color:var(--text)}
+.pprice{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:3.5rem;color:var(--gold2);line-height:1;margin-bottom:.2rem;
+}
+.pprice-u{font-size:.75rem;color:var(--muted);margin-bottom:2rem;letter-spacing:.03em}
+.pdivider{width:100%;height:1px;background:var(--b);margin-bottom:1.5rem}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:2.25rem;flex:1}
+.pfeats li{font-size:.83rem;color:var(--muted2);display:flex;gap:.75rem;align-items:flex-start}
+.pfeats li::before{content:'—';color:var(--gold);flex-shrink:0;opacity:.6}
+.pfeats li.off{opacity:.35}
+.pfeats li.off::before{content:'×';color:var(--muted)}
+.pcta{
+  font-family:'DM Sans',sans-serif;font-weight:600;font-size:.72rem;
+  letter-spacing:.12em;text-transform:uppercase;
+  padding:13px 20px;border-radius:3px;border:none;
+  cursor:pointer;transition:all .2s;
+  display:block;width:100%;text-align:center;text-decoration:none;
+}
+.pcard.feat .pcta{background:var(--gold);color:#000}
+.pcard.feat .pcta:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 6px 24px rgba(201,160,99,.28)}
+.pcard:not(.feat) .pcta{background:transparent;border:1px solid var(--b2);color:var(--text)}
+.pcard:not(.feat) .pcta:hover{border-color:var(--gold);color:var(--gold)}
+
+.roi-note{
+  text-align:center;margin-top:3rem;
+  border-top:1px solid var(--b);padding-top:3rem;
+}
+.roi-note .n{
+  font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;
+  color:var(--gold2);line-height:1;display:block;margin-bottom:.35rem;
+}
+.roi-note .d{font-size:.85rem;font-weight:500;color:var(--text)}
+.roi-note .s{font-size:.78rem;color:var(--muted);margin-top:.35rem;display:block;max-width:52ch;margin-left:auto;margin-right:auto}
+
+/* ─────────────── CTA FINAL ─────────────── */
+#cta-final{
+  border-top:1px solid var(--b);
+  background:linear-gradient(160deg,rgba(201,160,99,.04) 0%,var(--bg) 60%);
+}
+.cta-inner{max-width:780px;margin:0 auto;text-align:center}
+.cta-h{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(3rem,7vw,6.5rem);line-height:.88;
+  letter-spacing:-.02em;margin-bottom:1.75rem;
+}
+.cta-h em{font-style:italic;color:var(--gold2)}
+.cta-sub{font-size:.95rem;color:var(--muted2);max-width:46ch;margin:0 auto 3rem;line-height:1.8}
+.cta-btns{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:4rem}
+.cta-stats{
+  display:flex;align-items:center;justify-content:center;gap:3rem;
+  flex-wrap:wrap;row-gap:1.5rem;
+  border-top:1px solid var(--b);padding-top:3rem;
+}
+.cta-stat .n{
+  font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;
+  color:var(--gold2);display:block;line-height:1;margin-bottom:.2rem;
+}
+.cta-stat .d{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cta-sep{width:1px;height:36px;background:var(--b);flex-shrink:0}
+
+/* ─────────────── FOOTER ─────────────── */
+footer{
+  padding:2rem 2.5rem;
+  border-top:1px solid var(--b);
+  display:flex;align-items:center;justify-content:space-between;
+  font-size:.68rem;color:var(--muted);letter-spacing:.04em;
+  position:relative;z-index:1;
+}
+footer strong{color:var(--text);font-weight:500}
+
+/* ─────────────── IG GROWTH ADD-ON ─────────────── */
+.ig-weeks-g{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1.5rem}
+@media(max-width:640px){.ig-weeks-g{grid-template-columns:repeat(2,1fr)}}
+.ig-week-g{background:rgba(0,0,0,.3);border:1px solid var(--b);border-radius:var(--r);padding:1rem}
+.ig-wlabel{font-size:.6rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.65rem;font-family:'DM Sans',sans-serif}
+.ig-chips-g{display:flex;flex-direction:column;gap:.35rem}
+.ig-chip-reel{font-size:.72rem;font-weight:600;padding:3px 8px;border-radius:3px;display:inline-block;width:fit-content;background:rgba(201,160,99,.15);color:var(--gold2);border:1px solid rgba(201,160,99,.25)}
+.ig-chip-carr{font-size:.72rem;font-weight:600;padding:3px 8px;border-radius:3px;display:inline-block;width:fit-content;background:rgba(255,255,255,.05);color:var(--muted2);border:1px solid var(--b)}
+.ig-chip-post{font-size:.72rem;font-weight:600;padding:3px 8px;border-radius:3px;display:inline-block;width:fit-content;background:rgba(255,255,255,.03);color:var(--muted);border:1px solid var(--b)}
+.ig-totals-g{display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:.5rem;background:rgba(0,0,0,.25);border:1px solid var(--b);border-radius:var(--r);padding:1.25rem 1.5rem;margin-bottom:1.5rem}
+.ig-tn{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;color:var(--gold2);line-height:1}
+.ig-tl{font-size:.68rem;color:var(--muted);margin-top:.2rem;font-family:'DM Sans',sans-serif}
+.ig-tsep{width:1px;height:32px;background:var(--b)}
+.ig-feats-g{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:1.75rem}
+@media(max-width:640px){.ig-feats-g{grid-template-columns:1fr 1fr}}
+.ig-feat-g{background:rgba(0,0,0,.25);border:1px solid var(--b);border-radius:var(--r);padding:1.1rem}
+.ig-feat-g-icon{font-size:1rem;margin-bottom:.5rem;display:block}
+.ig-feat-g h5{font-size:.82rem;font-weight:500;color:var(--text);margin-bottom:.25rem}
+.ig-feat-g p{font-size:.76rem;color:var(--muted);max-width:none;line-height:1.5;margin:0}
+.ig-offer-row{background:var(--gc);border:1px solid var(--gb);border-radius:var(--r);padding:1.5rem 2rem;margin-bottom:1.25rem}
+.ig-price-block-g{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:.5rem}
+.ig-price-orig{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--muted);text-decoration:line-through}
+.ig-price-new{font-family:'Cormorant Garamond',serif;font-size:2.75rem;font-weight:300;color:var(--gold2)}
+.ig-price-new small{font-family:'DM Sans',sans-serif;font-size:.72rem;color:var(--muted2);display:block;font-weight:400;margin-top:.15rem}
+.ig-saving{font-size:.78rem;color:var(--muted2);margin-top:.4rem}
+.ig-saving strong{color:var(--text)}
+.ig-cta-row-g{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem}
+
+/* ─────────────── SOFIA ADD-ON ─────────────── */
+.sofia-addon{background:var(--card);border:1px solid var(--b);border-radius:var(--r2);padding:2.5rem 3rem;display:flex;gap:2rem;align-items:flex-start;flex-wrap:wrap;margin-top:2rem}
+.sofia-av-g{width:54px;height:54px;border-radius:var(--r);background:var(--gc);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.sofia-cnt-g{flex:1;min-width:200px}
+.sofia-tag-g{font-size:.6rem;color:var(--gold);font-weight:600;text-transform:uppercase;letter-spacing:.2em;margin-bottom:.5rem;display:block;font-family:'DM Sans',sans-serif}
+.sofia-cnt-g h3{font-size:1.05rem;font-weight:500;color:var(--text);margin-bottom:.65rem}
+.sofia-cnt-g>p{font-size:.85rem;color:var(--muted2);max-width:none;margin-bottom:.9rem}
+.sofia-chips-g{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.sofia-chip-g{background:var(--gc);border:1px solid var(--gb);border-radius:20px;padding:4px 12px;font-size:.72rem;color:var(--gold2)}
+.sofia-price-g{font-size:.85rem;color:var(--muted2)}
+.sofia-price-g strong{color:var(--text)}
+
+/* ─────────────── RESPONSIVE ─────────────── */
+@media(max-width:900px){
+  .wrap{padding:0 1.5rem}
+  .topbar{padding:12px 1.5rem}
+  .topbar-mid,.topbar-date{display:none}
+  .nav-dots{display:none}
+  .sec{padding:70px 0}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-card{display:none}
+  .hero-actions{flex-direction:column;align-items:stretch}
+  .hero-actions a,.hero-actions button{width:100%;justify-content:center}
+  .g2,.exec-body,.ig-header,.prob-callout{grid-template-columns:1fr}
+  .method-slide{grid-template-columns:1fr}
+  .sl-right{display:none}
+  .sl-left{padding:2rem;border-right:none}
+  .method-nav{padding:1rem 1.5rem}
+  .prob-grid,.ig-features,.diff-list,.pricing-grid{grid-template-columns:1fr}
+  .pricing-grid>[style*="grid-template-columns:repeat(3"]{grid-template-columns:1fr}
+  .prob-callout-left{border-right:none;border-bottom:1px solid var(--gb)}
+  .ig-flow-steps{flex-direction:column;align-items:center;gap:1rem}
+  .ig-arr{transform:rotate(90deg);margin-top:0}
+  .cta-btns{flex-direction:column;align-items:stretch}
+  .cta-btns a,.cta-btns button{width:100%;justify-content:center}
+  .cta-stat .n{font-size:1.6rem}
+  footer{flex-direction:column;gap:.4rem}
+  .topbar-r{gap:.4rem}
+}
+
+/* ── WEB MOCKUPS ── */
+.wmock{border-radius:8px;overflow:hidden;margin-bottom:1.5rem;border:1px solid rgba(255,255,255,.07);font-family:'Inter',sans-serif}
+.wmock-bar{background:#1a1714;padding:7px 10px;display:flex;align-items:center;gap:6px;border-bottom:1px solid rgba(255,255,255,.06)}
+.wmock-dot{width:7px;height:7px;border-radius:50%}
+.wmock-url{flex:1;background:rgba(255,255,255,.06);border-radius:3px;padding:2px 8px;font-size:8px;color:rgba(255,255,255,.3);margin-left:6px;text-align:center}
+.wmock-screen{background:#0d0b0a;padding:0;overflow:hidden}
+/* Screen A — landing simple */
+.wsa-nav{background:#111009;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,160,99,.1)}
+.wsa-logo{font-size:7px;font-weight:700;letter-spacing:.14em;color:rgba(201,160,99,.8);text-transform:uppercase}
+.wsa-btn{font-size:6px;background:rgba(201,160,99,.15);border:1px solid rgba(201,160,99,.3);color:rgba(201,160,99,.9);padding:2px 7px;border-radius:3px}
+.wsa-hero{padding:14px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.wsa-tag{font-size:6px;letter-spacing:.12em;text-transform:uppercase;color:rgba(201,160,99,.6);margin-bottom:4px}
+.wsa-h{font-family:'Cormorant Garamond',serif;font-size:14px;line-height:1.1;color:#f5f0e8;margin-bottom:8px}
+.wsa-services{display:flex;gap:4px;flex-wrap:wrap;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.wsa-chip{font-size:6px;padding:3px 7px;border-radius:3px;border:1px solid rgba(201,160,99,.2);color:rgba(201,160,99,.7);background:rgba(201,160,99,.06)}
+.wsa-wa{padding:8px 12px;display:flex;align-items:center;gap:6px;background:rgba(37,211,102,.07)}
+.wsa-wa-text{font-size:6px;color:rgba(255,255,255,.6)}
+/* Screen B — multi-sección */
+.wsb-nav{background:#111009;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,160,99,.15)}
+.wsb-nav-links{display:flex;gap:8px}
+.wsb-nav-link{font-size:5.5px;color:rgba(255,255,255,.4)}
+.wsb-hero{padding:12px 12px 10px;background:radial-gradient(ellipse 120% 100% at 50% 100%,rgba(201,160,99,.08),transparent);border-bottom:1px solid rgba(255,255,255,.05)}
+.wsb-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.wsb-gal-item{aspect-ratio:1;border-radius:3px;background:linear-gradient(135deg,#1a1714,#111009);display:flex;align-items:center;justify-content:center;font-size:9px}
+.wsb-procs{padding:8px 12px;display:flex;gap:4px;flex-wrap:wrap}
+.wsb-proc{font-size:5.5px;padding:2px 6px;border-radius:2px;background:rgba(201,160,99,.08);color:rgba(201,160,99,.7);border:1px solid rgba(201,160,99,.15)}
+/* Screen C — web + IG */
+.wsc-nav{background:#0d0b0a;padding:7px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(201,160,99,.2)}
+.wsc-ig-strip{padding:8px 12px;background:rgba(131,58,180,.05);border-bottom:1px solid rgba(201,160,99,.1)}
+.wsc-ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:5px}
+.wsc-ig-post{aspect-ratio:1;border-radius:2px;background:linear-gradient(135deg,#1a1714,#0d0b0a);display:flex;align-items:center;justify-content:center;font-size:8px}
+.wsc-ig-label{font-size:6px;color:rgba(201,160,99,.7);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+@keyframes wscShimmer{from{opacity:0}to{opacity:1}}
+@keyframes wscText{0%{background-position:0% center}100%{background-position:200% center}}
+@keyframes wscPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@keyframes wscFade{from{opacity:.5}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-logo">AJ Business Advisory</div>
+  <div class="topbar-mid">Propuesta para <strong style="color:var(--text);font-weight:500">Clara Puentes</strong></div>
+  <div class="topbar-r">
+    <a href="https://wa.me/573227815811?text=Hola%2C%20vi%20la%20propuesta%20y%20quiero%20programar%20una%20cita" target="_blank" class="tb-btn">Empecemos →</a>
+    <a href="#precios" class="tb-ghost" onclick="document.getElementById('precios').scrollIntoView({behavior:'smooth'});return false">Planes</a>
+    <div class="topbar-date">Mayo 2026 · Confidencial</div>
+  </div>
+</header>
+
+<!-- NAV DOTS -->
+<nav class="nav-dots" id="navDots">
+  <div class="nd active" data-sec="0" data-tip="Inicio"></div>
+  <div class="nd" data-sec="1" data-tip="Resumen"></div>
+  <div class="nd" data-sec="2" data-tip="El problema"></div>
+  <div class="nd" data-sec="3" data-tip="Metodología"></div>
+  <div class="nd" data-sec="4" data-tip="Demo"></div>
+  <div class="nd" data-sec="5" data-tip="Instagram"></div>
+  <div class="nd" data-sec="6" data-tip="Diferenciales"></div>
+  <div class="nd" data-sec="7" data-tip="Planes"></div>
+  <div class="nd" data-sec="8" data-tip="Cierre"></div>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero" data-section="0">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow rv">
+          <span>Sofia AI · Clínicas Estéticas · AJ Business Advisory</span>
+        </div>
+        <h1 class="hero-h1 rv d1">
+          Deja de perder<br>
+          clientes.<br>
+          <em>Empieza a crecer.</em>
+        </h1>
+        <p class="hero-sub rv d2">
+          Cada mensaje sin respuesta es una paciente que se va a la competencia — para siempre. Sofia AI responde en segundos, habla exactamente como tu marca y convierte conversaciones en citas agendadas, las 24 horas, sin que tú estés pendiente del celular.
+        </p>
+        <div class="hero-actions rv d3">
+          <a href="https://wa.me/573227815811?text=Hola%2C%20vi%20la%20propuesta%20y%20quiero%20programar%20una%20cita" target="_blank" class="btn-gold">
+            Programar una cita →
+          </a>
+          <button class="btn-outline" onclick="document.getElementById('metodologia').scrollIntoView({behavior:'smooth'})">
+            Cómo funciona
+          </button>
+        </div>
+      </div>
+      <div class="hero-card rv d2">
+        <span class="hero-card-label">Lo que Sofia hace por tu marca</span>
+        <div class="hc-stat">
+          <span class="hc-n">24/7</span>
+          <div class="hc-d">Tu marca responde de noche, fines de semana y festivos — sin descansos, sin olvidos</div>
+        </div>
+        <div class="hc-stat">
+          <span class="hc-n">&lt; 10s</span>
+          <div class="hc-d">Velocidad de respuesta que ningún equipo humano puede igualar</div>
+        </div>
+        <div class="hc-stat">
+          <span class="hc-n">+60%</span>
+          <div class="hc-d">Más citas agendadas — clientes que antes se perdían ahora se quedan</div>
+        </div>
+        <div class="hc-stat">
+          <span class="hc-n">100%</span>
+          <div class="hc-d">Tu voz, tu tono, tu marca — Sofia nunca suena genérica</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow"></div>
+    <span>Explorar</span>
+  </div>
+</section>
+
+<!-- ══════════════ RESUMEN EJECUTIVO ══════════════ -->
+<section class="sec sec-alt" data-section="1">
+  <div class="wrap">
+    <div class="exec-rule rv">
+      <span>Resumen ejecutivo</span>
+    </div>
+    <p class="exec-quote rv d1">
+      "Las marcas que crecen no son las que más invierten en publicidad — son las que nunca dejan ir a una cliente sin respuesta. Sofia convierte cada mensaje en una oportunidad real para tu negocio."
+    </p>
+    <div class="exec-body rv d2">
+      <div>
+        <p>Sofia AI no es un chatbot genérico. Es una asistente configurada para hablar exactamente como tu marca — con tu nombre, tu tono, tus procedimientos y tus precios. Cada respuesta refuerza la identidad de tu clínica y genera confianza desde el primer contacto.</p>
+      </div>
+      <div>
+        <p>Tu marca crece cuando cada punto de contacto es consistente, inmediato y profesional. Sofia garantiza eso las 24 horas — para que tú puedas enfocarte en lo que mejor haces: transformar a tus pacientes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ EL PROBLEMA ══════════════ -->
+<section class="sec" data-section="2">
+  <div class="wrap">
+    <div class="sh rv" style="margin-bottom:3.5rem">
+      <span class="eyebrow">El costo de no crecer</span>
+      <h2 style="font-size:clamp(2.5rem,5vw,4rem)">Tu marca está<br>perdiendo clientes<br><em class="serif" style="font-style:italic;color:var(--gold2)">ahora mismo</em></h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="prob-grid rv">
+      <div class="prob-item">
+        <span class="prob-num">01</span>
+        <h3>Tu marca duerme, la competencia no</h3>
+        <p>El 38% de las consultas llegan entre las 8pm y las 11pm. Sin respuesta en 30 minutos, el 70% escribe a otra clínica esa misma noche — y tu marca pierde terreno mientras descansas.</p>
+      </div>
+      <div class="prob-item">
+        <span class="prob-num">02</span>
+        <h3>Instagram atrae, pero no convierte</h3>
+        <p>Construyes una marca en redes, la gente te escribe — y el silencio destruye todo ese trabajo. Una marca que no responde no crece: pierde la confianza que tardó meses en construir.</p>
+      </div>
+      <div class="prob-item">
+        <span class="prob-num">03</span>
+        <h3>Atención manual limita tu crecimiento</h3>
+        <p>Cada hora respondiendo las mismas preguntas es una hora que no inviertes en crecer. Tu marca no puede escalar si depende de que tú estés pendiente del celular todo el día.</p>
+      </div>
+    </div>
+
+    <div class="prob-callout rv">
+      <div class="prob-callout-left">
+        <span class="prob-big-n">3–5</span>
+        <span class="prob-big-d">citas perdidas<br>por semana</span>
+      </div>
+      <div class="prob-callout-right">
+        <h3>Clientes que se van no vuelven</h3>
+        <p>A $300.000 COP por sesión, 3 a 5 citas perdidas por semana son hasta $6.000.000 al mes que se van a otra marca. No porque la tuya sea peor — sino porque la otra respondió primero. Con Sofia, tu marca siempre responde primera.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ METODOLOGÍA ══════════════ -->
+<section class="sec sec-alt" id="metodologia" data-section="3">
+  <div class="wrap">
+    <div class="sh rv" style="margin-bottom:3rem">
+      <span class="eyebrow">Cómo hace crecer tu marca</span>
+      <h2 style="font-size:clamp(2.5rem,5vw,4rem)">Tu marca en acción —<br><em class="serif" style="font-style:italic;color:var(--gold2)">paso a paso</em></h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="method-slider-outer rv">
+      <!-- Progress bar -->
+      <div class="method-prog-track">
+        <div class="method-prog-bar" id="methodProg" style="width:20%"></div>
+      </div>
+
+      <!-- Slider -->
+      <div class="method-slider">
+        <div class="method-slides" id="methodSlides">
+
+          <!-- PASO 1 -->
+          <div class="method-slide">
+            <div class="sl-left">
+              <span class="sl-num">01</span>
+              <h3>La paciente escribe — desde donde sea</h3>
+              <p>WhatsApp, Instagram DM, formulario web. A cualquier hora del día o de la noche. Sofia está activa en todos tus canales al mismo tiempo, sin que tú tengas que estar pendiente.</p>
+              <span class="sl-tag">WhatsApp · Instagram DM · Web</span>
+            </div>
+            <div class="sl-right">
+              <div class="chat-mock">
+                <div class="chat-mock-top">
+                  <div class="chat-mock-dots"><span class="cmd-r"></span><span class="cmd-y"></span><span class="cmd-g"></span></div>
+                  <div class="chat-mock-url">wa.me · Clara Puentes Estética</div>
+                </div>
+                <div class="chat-mock-body">
+                  <div class="bubble-sys">11:47 pm · WhatsApp</div>
+                  <div class="bubble bubble-in">
+                    Hola, quiero saber cuánto vale el botox y si tienen cita esta semana
+                    <div class="bubble-time">11:47 pm</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 2 -->
+          <div class="method-slide">
+            <div class="sl-left">
+              <span class="sl-num">02</span>
+              <h3>Sofia responde en menos de 10 segundos</h3>
+              <p>No da precios al aire — invita a una valoración donde el equipo puede entender qué necesita la paciente y recomendar el tratamiento correcto. Natural, cercana y siempre con el tono de tu marca.</p>
+              <span class="sl-tag">Respuesta inmediata · Tono humano · 24/7</span>
+            </div>
+            <div class="sl-right">
+              <div class="chat-mock">
+                <div class="chat-mock-top">
+                  <div class="chat-mock-dots"><span class="cmd-r"></span><span class="cmd-y"></span><span class="cmd-g"></span></div>
+                  <div class="chat-mock-url">wa.me · Clara Puentes Estética</div>
+                </div>
+                <div class="chat-mock-body">
+                  <div class="bubble bubble-in">
+                    Hola, quiero saber cuánto vale el botox y si tienen cita esta semana
+                    <div class="bubble-time">11:47 pm</div>
+                  </div>
+                  <div class="bubble bubble-out">
+                    ¡Hola! Qué bueno que nos escribes 🌸 El valor del tratamiento depende de lo que evaluemos en consulta — cada caso es diferente. ¿Te agendamos una valoración esta semana para contarte todo en detalle?
+                    <div class="bubble-time">11:47 pm · automático</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 3 -->
+          <div class="method-slide">
+            <div class="sl-left">
+              <span class="sl-num">03</span>
+              <h3>Entiende qué necesita y personaliza la conversación</h3>
+              <p>Sofia identifica el procedimiento de interés, si es primera vez o paciente frecuente, y adapta el tono para que la persona sienta que está hablando con alguien de confianza — no con un robot.</p>
+              <span class="sl-tag">Inteligencia conversacional · Calificación automática</span>
+            </div>
+            <div class="sl-right">
+              <div class="chat-mock">
+                <div class="chat-mock-top">
+                  <div class="chat-mock-dots"><span class="cmd-r"></span><span class="cmd-y"></span><span class="cmd-g"></span></div>
+                  <div class="chat-mock-url">wa.me · Clara Puentes Estética</div>
+                </div>
+                <div class="chat-mock-body">
+                  <div class="bubble bubble-out">
+                    ¿Quieres que te cuente cómo es el procedimiento?
+                    <div class="bubble-time">automático</div>
+                  </div>
+                  <div class="bubble bubble-in">
+                    Sí, es la primera vez que me hago algo así
+                    <div class="bubble-time">11:48 pm</div>
+                  </div>
+                  <div class="bubble bubble-out">
+                    ¡Perfecto! Para una primera vez el botox es muy sencillo, dura unos 20 minutos y no requiere recuperación. ¿Tienes alguna zona específica en mente?
+                    <div class="bubble-time">11:48 pm · automático</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 4 -->
+          <div class="method-slide">
+            <div class="sl-left">
+              <span class="sl-num">04</span>
+              <h3>Agenda la cita y envía confirmación automática</h3>
+              <p>Muestra disponibilidad, confirma fecha y hora, y envía recordatorio 24 horas antes. Tú recibes una notificación inmediata cada vez que una cita queda confirmada — sin hacer nada.</p>
+              <span class="sl-tag">Agendamiento automático · Recordatorios · Notificaciones</span>
+            </div>
+            <div class="sl-right">
+              <div class="chat-mock">
+                <div class="chat-mock-top">
+                  <div class="chat-mock-dots"><span class="cmd-r"></span><span class="cmd-y"></span><span class="cmd-g"></span></div>
+                  <div class="chat-mock-url">wa.me · Clara Puentes Estética</div>
+                </div>
+                <div class="chat-mock-body">
+                  <div class="bubble bubble-in">
+                    Me gustaría para esta semana, entre semana
+                    <div class="bubble-time">11:49 pm</div>
+                  </div>
+                  <div class="bubble bubble-out">
+                    Tenemos disponibilidad el miércoles 28 a las 2pm o el jueves 29 a las 4pm. ¿Cuál te queda mejor?
+                    <div class="bubble-time">automático</div>
+                  </div>
+                  <div class="bubble bubble-in">El miércoles perfecto</div>
+                  <div class="bubble bubble-out">
+                    ✅ ¡Listo! Tu cita queda para el miércoles 28 a las 2pm. Te envío un recordatorio mañana.
+                    <div class="bubble-time">automático</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PASO 5 -->
+          <div class="method-slide">
+            <div class="sl-left">
+              <span class="sl-num">05</span>
+              <h3>Seguimiento post-cita y fidelización</h3>
+              <p>Después del procedimiento, Sofia hace seguimiento, pregunta cómo resultó, pide reseña en Google y ofrece el próximo tratamiento. El ciclo de retención funciona completamente solo.</p>
+              <span class="sl-tag">Retención · Reseñas Google · Reactivación</span>
+            </div>
+            <div class="sl-right">
+              <div class="chat-mock">
+                <div class="chat-mock-top">
+                  <div class="chat-mock-dots"><span class="cmd-r"></span><span class="cmd-y"></span><span class="cmd-g"></span></div>
+                  <div class="chat-mock-url">wa.me · Clara Puentes Estética</div>
+                </div>
+                <div class="chat-mock-body">
+                  <div class="bubble-sys">72h después de la cita</div>
+                  <div class="bubble bubble-out">
+                    Hola! ¿Cómo te fue con el tratamiento? Esperamos que quedaste muy contenta con los resultados 🌸
+                    <div class="bubble-time">automático</div>
+                  </div>
+                  <div class="bubble bubble-in">
+                    Quedé feliz, muy natural
+                    <div class="bubble-time"></div>
+                  </div>
+                  <div class="bubble bubble-out">
+                    Qué alegría 💛 Si tienes un momento, nos ayudarías mucho con una reseña en Google. ¡Y cuando quieras repetir, aquí estamos!
+                    <div class="bubble-time">automático</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /slides -->
+      </div><!-- /slider -->
+
+      <!-- Nav -->
+      <div class="method-nav">
+        <div class="method-nav-dots" id="methodDots">
+          <button class="mn-dot active" data-slide="0"></button>
+          <button class="mn-dot" data-slide="1"></button>
+          <button class="mn-dot" data-slide="2"></button>
+          <button class="mn-dot" data-slide="3"></button>
+          <button class="mn-dot" data-slide="4"></button>
+        </div>
+        <div class="method-counter" id="methodCounter">01 / 05</div>
+        <div class="method-nav-arrows">
+          <button class="mn-arrow" id="methodPrev" disabled>‹</button>
+          <button class="mn-arrow" id="methodNext">›</button>
+        </div>
+      </div>
+    </div><!-- /outer -->
+  </div>
+</section>
+
+<!-- ══════════════ DEMO EN VIVO ══════════════ -->
+<section id="demo" class="sec" data-section="4">
+  <div class="wrap">
+    <div class="demo-inner rv">
+      <div class="demo-badge">
+        <div class="live-dot"></div>
+        Sofia activa ahora mismo
+      </div>
+      <h2 class="demo-h">
+        Pruébala<br>
+        <em>en este momento</em>
+      </h2>
+      <p class="demo-sub">
+        Esta es la misma tecnología que tendría tu clínica — configurada con tu nombre, tus procedimientos y tus precios. Escríbele y comprueba cómo responde.
+      </p>
+      <div class="demo-btns">
+        <a href="https://wa.me/573227815811?text=Quiero%20el%20demo%20de%20Sofia" target="_blank" class="btn-gold" style="font-size:.82rem;padding:16px 40px">
+          Escuchar a Sofia →
+        </a>
+        <a href="https://wa.me/573227815811?text=Hola%2C%20quiero%20una%20demo%20de%20Sofia%20para%20mi%20cl%C3%ADnica%20est%C3%A9tica" target="_blank" class="btn-outline" style="font-size:.82rem;padding:16px 36px">
+          Escribir por WhatsApp
+        </a>
+      </div>
+      <div class="demo-footnote">
+        Responde en tiempo real · disponible 24 horas · 7 días a la semana
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ INSTAGRAM ══════════════ -->
+<section class="sec sec-alt" data-section="5">
+  <div class="wrap">
+    <div class="ig-header rv">
+      <div>
+        <span class="eyebrow">Instagram + Sofia AI</span>
+        <h2 style="font-size:clamp(2.5rem,5vw,4rem)">Convierte seguidoras<br>en pacientes.<br><em class="serif" style="font-style:italic;color:var(--gold2)">Con tu marca.</em></h2>
+        <div class="rule"></div>
+      </div>
+      <div class="ig-header-right">
+        <p>Tu marca construye comunidad en Instagram todos los días — pero si esa comunidad escribe y nadie responde, el trabajo se pierde. Sofia cierra ese hueco: responde en tu nombre, con tu tono, y convierte cada DM en una oportunidad real de crecer.</p>
+        <div class="ig-stats">
+          <div class="ig-stat">
+            <div class="ig-stat-icon">📊</div>
+            <div class="ig-stat-body">
+              <div class="ig-stat-n">72% de pacientes nuevas</div>
+              <div class="ig-stat-d">descubrieron la clínica por Instagram en 2024</div>
+            </div>
+          </div>
+          <div class="ig-stat">
+            <div class="ig-stat-icon">⏱</div>
+            <div class="ig-stat-body">
+              <div class="ig-stat-n">Ventana de decisión: 60 minutos</div>
+              <div class="ig-stat-d">después, la intención de compra cae el 80%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ig-features rv">
+      <div class="ig-feat">
+        <div class="ig-feat-icon">💬</div>
+        <h3>Respuesta automática a DMs</h3>
+        <p>Alguien escribe "¿cuánto vale el botox?" a tu Instagram. Sofia responde en segundos con precio, información del procedimiento y opción de agendar.</p>
+      </div>
+      <div class="ig-feat">
+        <div class="ig-feat-icon">🗨</div>
+        <h3>DM automático por comentarios</h3>
+        <p>Una seguidora comenta "info" o "precio" en tu post. Sofia detecta el comentario y le envía un DM privado automáticamente con toda la información.</p>
+      </div>
+      <div class="ig-feat">
+        <div class="ig-feat-icon">🔗</div>
+        <h3>Link en bio inteligente</h3>
+        <p>Tu link en bio lleva a una experiencia donde Sofia está activa para conversar, mostrar servicios y agendar — sin salir del flujo de Instagram.</p>
+      </div>
+    </div>
+
+    <div class="ig-flow rv">
+      <div class="ig-flow-label">Flujo completo — Instagram a cita confirmada</div>
+      <div class="ig-flow-steps">
+        <div class="igs">
+          <div class="igs-icon">📸</div>
+          <div class="t">Post o Reel</div>
+          <div class="d">Publicas contenido de tu tratamiento</div>
+        </div>
+        <div class="ig-arr">›</div>
+        <div class="igs">
+          <div class="igs-icon">💬</div>
+          <div class="t">Comentario o DM</div>
+          <div class="d">La seguidora escribe "info" o al DM</div>
+        </div>
+        <div class="ig-arr">›</div>
+        <div class="igs">
+          <div class="igs-icon gold-i">🤖</div>
+          <div class="t">Sofia responde</div>
+          <div class="d">En menos de 10 segundos, automático</div>
+        </div>
+        <div class="ig-arr">›</div>
+        <div class="igs">
+          <div class="igs-icon gold-i">📋</div>
+          <div class="t">Califica e informa</div>
+          <div class="d">Entiende qué procedimiento quiere</div>
+        </div>
+        <div class="ig-arr">›</div>
+        <div class="igs">
+          <div class="igs-icon green-i">📅</div>
+          <div class="t">Cita confirmada</div>
+          <div class="d">Fecha, hora y recordatorio automático</div>
+        </div>
+        <div class="ig-arr">›</div>
+        <div class="igs">
+          <div class="igs-icon green-i">⭐</div>
+          <div class="t">Paciente fidelizada</div>
+          <div class="d">Seguimiento, reseña y próxima visita</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ DIFERENCIALES ══════════════ -->
+<section class="sec" data-section="6">
+  <div class="wrap">
+    <div class="sh rv" style="margin-bottom:3.5rem">
+      <span class="eyebrow">Por qué AJ Business Advisory</span>
+      <h2 style="font-size:clamp(2.5rem,5vw,4rem)">Sofia habla<br><em class="serif" style="font-style:italic;color:var(--gold2)">como tu marca</em></h2>
+      <div class="rule"></div>
+    </div>
+    <div class="diff-list rv">
+      <div class="diff-item">
+        <div class="diff-n">01</div>
+        <span class="diff-icon">🎨</span>
+        <h3>Tu voz, no la nuestra</h3>
+        <p>Sofia aprende a hablar exactamente como tu marca — tu nombre, tu tono, tus valores. Cada paciente siente que está hablando con alguien de tu equipo, no con un robot externo.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-n">02</div>
+        <span class="diff-icon">🇨🇴</span>
+        <h3>Diseñada para crecer en Colombia</h3>
+        <p>Español colombiano, WhatsApp como canal principal, cultura local. Tu marca suena auténtica con cada paciente — no como una traducción de otra región.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-n">03</div>
+        <span class="diff-icon">📱</span>
+        <h3>Tu marca en todos los canales</h3>
+        <p>WhatsApp, Instagram DM, web — una sola Sofia, el mismo tono de marca en todos lados. Coherencia total en cada punto de contacto con tu cliente.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-n">04</div>
+        <span class="diff-icon">🤝</span>
+        <h3>Sabe cuándo cederte el mando</h3>
+        <p>Cuando una situación lo requiere, Sofia te pasa la conversación con todo el contexto — sin fricciones, sin que el cliente sienta el cambio. Tu marca siempre en control.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-n">05</div>
+        <span class="diff-icon">📈</span>
+        <h3>Datos para crecer con intención</h3>
+        <p>Qué preguntan más, cuántas citas se pierden, qué procedimientos generan más interés — información real para que tu marca tome decisiones que impulsen el crecimiento.</p>
+      </div>
+      <div class="diff-item">
+        <div class="diff-n">06</div>
+        <span class="diff-icon">⚡</span>
+        <h3>Tu marca activa en 7 días</h3>
+        <p>Desde que dices "sí quiero" hasta Sofia respondiendo como tu marca en WhatsApp e Instagram — una semana. Sin complicaciones técnicas, sin fricción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ PRECIOS ══════════════ -->
+<section class="sec sec-alt" id="precios" data-section="7">
+  <div class="wrap">
+    <div class="sh rv" style="margin-bottom:4rem;text-align:center">
+      <span class="eyebrow" style="display:block;text-align:center">Planes de inversión</span>
+      <h2 style="font-size:clamp(2.5rem,5vw,4rem)">Elige el nivel<br>que necesitas</h2>
+      <p style="margin:.9rem auto 0;max-width:44ch;text-align:center">Sin contratos de largo plazo. Mes a mes. Puedes escalar cuando quieras.</p>
+      <div class="rule rule-c"></div>
+    </div>
+
+    <div class="rv">
+
+      <!-- PLAN 1: Sofia WhatsApp — full width -->
+      <div class="pcard" style="display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;padding:2rem 2.5rem">
+        <div>
+          <div class="ptier" style="margin-bottom:.3rem">Esencial</div>
+          <div class="pname" style="margin-bottom:.75rem">Sofia WhatsApp</div>
+          <div class="psetup" style="margin-bottom:1rem">Setup <strong>$450.000 COP</strong> · pago único al firmar</div>
+          <ul class="pfeats" style="display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem .75rem">
+            <li>Sofia activa en WhatsApp Business</li>
+            <li>Responde preguntas frecuentes 24/7</li>
+            <li>Habla con la voz de tu marca</li>
+            <li>Captura de datos del paciente</li>
+            <li>Hasta 500 conversaciones / mes</li>
+            <li>Panel de reportes básico</li>
+          </ul>
+        </div>
+        <div style="text-align:center;flex-shrink:0;min-width:200px">
+          <div class="pprice" style="white-space:nowrap">$300.000</div>
+          <div class="pprice-u" style="margin-bottom:1.25rem">COP / mes · Total 3 meses: $1.350.000</div>
+          <a href="https://wa.me/573227815811?text=Hola%2C%20quiero%20el%20plan%20Sofia%20WhatsApp%20para%20mi%20cl%C3%ADnica" target="_blank" class="pcta" style="display:block">Comenzar →</a>
+        </div>
+      </div>
+
+      <!-- SEPARADOR PÁGINAS WEB -->
+      <div style="grid-column:1/-1;margin-top:1rem;padding-top:2.5rem;border-top:1px solid var(--b)">
+        <span class="eyebrow" style="display:block;margin-bottom:.5rem">Páginas web para tu clínica</span>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.75rem;color:var(--text);line-height:1;margin-bottom:.5rem">Elige el nivel de presencia digital</h3>
+        <p style="font-size:.82rem;color:var(--muted);max-width:52ch;margin:0">Diseñadas específicamente para clínicas estéticas. Mobile-first, rápidas y listas para que tus pacientes te encuentren y agenden.</p>
+      </div>
+
+      <!-- PLANES WEB: grid de 3 columnas dentro del grid principal -->
+      <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:start">
+
+        <!-- PLAN WEB A: Presencia -->
+        <div class="pcard" style="background:var(--bg2);border-color:var(--b)">
+          <div class="wmock">
+            <div class="wmock-bar">
+              <div class="wmock-dot" style="background:#ff5f57"></div>
+              <div class="wmock-dot" style="background:#ffbd2e"></div>
+              <div class="wmock-dot" style="background:#28c840"></div>
+              <div class="wmock-url">clarapuentes.com</div>
+            </div>
+            <div class="wmock-screen">
+              <div class="wsa-nav"><span class="wsa-logo">Clara Puentes</span><span class="wsa-btn">Agendar cita</span></div>
+              <div class="wsa-hero">
+                <div class="wsa-tag">Medicina Estética · Bogotá</div>
+                <div class="wsa-h">Tu mejor versión,<br>con respaldo médico.</div>
+                <div style="font-size:6px;color:rgba(255,255,255,.35);margin-top:3px">Botox · Rellenos · Rejuvenecimiento</div>
+              </div>
+              <div class="wsa-services">
+                <span class="wsa-chip">Botox</span>
+                <span class="wsa-chip">Rellenos</span>
+                <span class="wsa-chip">Biorrevitalización</span>
+                <span class="wsa-chip">Precios →</span>
+              </div>
+              <div class="wsa-wa">
+                <span style="font-size:9px">💬</span>
+                <span class="wsa-wa-text">Reservar por WhatsApp · Respuesta inmediata</span>
+              </div>
+            </div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(201,160,99,.12);line-height:1;margin-bottom:.5rem">A</div>
+          <div class="ptier">Presencia</div>
+          <div class="pname">Landing Básica</div>
+          <div style="font-size:.72rem;color:var(--muted);text-decoration:line-through;margin-bottom:.15rem">$1.200.000 COP</div>
+          <div class="pprice" style="font-size:2.75rem">$1.000.000</div>
+          <div style="display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.05);border:1px solid var(--b);padding:2px 10px;border-radius:2px;color:var(--muted2);margin-bottom:.35rem">Ahorras $200.000</div>
+          <div class="pprice-u">COP · + $100.000/mes mantenimiento</div>
+          <div class="pdivider"></div>
+          <ul class="pfeats">
+            <li>1 página completa para tu clínica</li>
+            <li>Servicios, precios y galería básica</li>
+            <li>Formulario y botón WhatsApp directo</li>
+            <li>Diseño 100% mobile-first</li>
+            <li>Dominio .com incluido (1 año)</li>
+            <li>Hosting 1 año incluido</li>
+            <li class="off">Agenda online integrada</li>
+            <li class="off">Múltiples secciones</li>
+          </ul>
+          <a href="https://wa.me/573227815811?text=Hola%2C%20me%20interesa%20el%20Plan%20Web%20A%20para%20mi%20cl%C3%ADnica" target="_blank" class="pcta">Quiero ser cliente fundadora</a>
+        </div>
+
+        <!-- PLAN WEB B: Profesional — destacado -->
+        <div class="pcard feat">
+          <div class="pbadge">Más elegida</div>
+          <div class="wmock" style="border-color:rgba(201,160,99,.2);margin-top:.5rem">
+            <div class="wmock-bar" style="background:#161410">
+              <div class="wmock-dot" style="background:#ff5f57"></div>
+              <div class="wmock-dot" style="background:#ffbd2e"></div>
+              <div class="wmock-dot" style="background:#28c840"></div>
+              <div class="wmock-url" style="background:rgba(201,160,99,.08);color:rgba(201,160,99,.5)">clarapuentes.com</div>
+            </div>
+            <div class="wmock-screen">
+              <div class="wsb-nav">
+                <span class="wsa-logo" style="color:var(--gold)">Clara Puentes ✦</span>
+                <div class="wsb-nav-links">
+                  <span class="wsb-nav-link">Procedimientos</span>
+                  <span class="wsb-nav-link">Galería</span>
+                  <span class="wsb-nav-link">Testimonios</span>
+                  <span class="wsa-btn">Agendar</span>
+                </div>
+              </div>
+              <div class="wsb-hero">
+                <div class="wsa-tag" style="color:rgba(201,160,99,.7)">Dra. Clara Puentes · Médica Estética</div>
+                <div class="wsa-h" style="font-size:16px">Resultados que<br><em style="color:var(--gold2)">hablan solos.</em></div>
+                <div style="display:flex;gap:5px;margin-top:5px">
+                  <span class="wsa-btn" style="font-size:6px">Ver antes y después →</span>
+                  <span style="font-size:6px;color:rgba(255,255,255,.3);padding:2px 0">★★★★★ 48 reseñas</span>
+                </div>
+              </div>
+              <div class="wsb-gallery">
+                <div class="wsb-gal-item">✨</div>
+                <div class="wsb-gal-item">💉</div>
+                <div class="wsb-gal-item">🌿</div>
+              </div>
+              <div class="wsb-procs">
+                <span class="wsb-proc">Botox</span>
+                <span class="wsb-proc">Rellenos</span>
+                <span class="wsb-proc">Biorrev.</span>
+                <span class="wsb-proc">Agenda online</span>
+              </div>
+            </div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(201,160,99,.18);line-height:1;margin-bottom:.5rem">B</div>
+          <div class="ptier">Profesional</div>
+          <div class="pname">Web Clínica Completa</div>
+          <div style="font-size:.72rem;color:var(--muted);text-decoration:line-through;margin-bottom:.15rem">$2.500.000 COP</div>
+          <div class="pprice" style="font-size:2.75rem">$2.000.000</div>
+          <div style="display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(201,160,99,.1);border:1px solid rgba(201,160,99,.25);padding:2px 10px;border-radius:2px;color:var(--gold2);margin-bottom:.35rem">Ahorras $500.000</div>
+          <div class="pprice-u">COP · + $200.000/mes mantenimiento</div>
+          <div class="pdivider"></div>
+          <ul class="pfeats">
+            <li>5–8 páginas con diseño personalizado</li>
+            <li>Galería de antes y después</li>
+            <li>Sección de procedimientos detallada</li>
+            <li>Agenda / reserva online integrada</li>
+            <li>SEO básico — aparecer en búsquedas</li>
+            <li>Testimonios de pacientes</li>
+            <li>Formulario de cita + WhatsApp directo</li>
+            <li>Velocidad ultra-rápida en celular</li>
+          </ul>
+          <a href="https://wa.me/573227815811?text=Hola%2C%20me%20interesa%20el%20Plan%20Web%20B%20para%20mi%20cl%C3%ADnica" target="_blank" class="pcta">Quiero ser cliente fundadora</a>
+        </div>
+
+        <!-- PLAN WEB C: Combo Especial -->
+        <div class="pcard" style="border-color:rgba(201,160,99,.3);background:linear-gradient(160deg,rgba(201,160,99,.05) 0%,var(--card) 55%);position:relative">
+          <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,160,99,.2),transparent)"></div>
+          <div class="pbadge" style="background:rgba(201,160,99,.15);border:1px solid rgba(201,160,99,.35);color:var(--gold2);font-size:.55rem">⭐ Combo Especial</div>
+          <div class="wmock" style="border-color:rgba(201,160,99,.25);margin-top:.75rem">
+            <div class="wmock-bar" style="background:#161410">
+              <div class="wmock-dot" style="background:#ff5f57"></div>
+              <div class="wmock-dot" style="background:#ffbd2e"></div>
+              <div class="wmock-dot" style="background:#28c840"></div>
+              <div class="wmock-url" style="background:rgba(201,160,99,.1);color:rgba(201,160,99,.6)">clarapuentes.com</div>
+            </div>
+            <div class="wmock-screen">
+              <div class="wsc-nav">
+                <span class="wsa-logo" style="color:var(--gold);font-size:7.5px">✦ Clara Puentes</span>
+                <span class="wsa-btn" style="background:linear-gradient(90deg,rgba(201,160,99,.2),rgba(201,160,99,.1));border-color:rgba(201,160,99,.4);color:var(--gold2)">Agendar</span>
+              </div>
+              <div class="wsb-hero" style="padding:10px 12px 8px;position:relative;overflow:hidden">
+                <div style="position:absolute;inset:0;background:linear-gradient(120deg,rgba(201,160,99,.06) 0%,transparent 60%);animation:wscShimmer 3s ease-in-out infinite alternate;pointer-events:none"></div>
+                <div class="wsa-tag" style="color:rgba(201,160,99,.7)">Web + Instagram · Presencia Total</div>
+                <div class="wsa-h" style="font-size:15px;background:linear-gradient(135deg,#f5f0e8,var(--gold2),#f5f0e8);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:wscText 4s linear infinite">Autoridad.<br>Confianza.<br>Pacientes.</div>
+                <div style="margin-top:6px;display:flex;gap:3px;align-items:center">
+                  <div style="width:4px;height:4px;border-radius:50%;background:var(--gold);animation:wscPulse 1.4s ease-in-out infinite"></div>
+                  <span style="font-size:5.5px;color:rgba(201,160,99,.6)">Web en vivo · IG activo</span>
+                </div>
+              </div>
+              <div class="wsc-ig-strip">
+                <div class="wsc-ig-label">@clarapuentes · Instagram</div>
+                <div class="wsc-ig-grid">
+                  <div class="wsc-ig-post" style="animation:wscFade 2s ease-in-out infinite alternate">✨</div>
+                  <div class="wsc-ig-post" style="animation:wscFade 2s ease-in-out .4s infinite alternate">💉</div>
+                  <div class="wsc-ig-post" style="animation:wscFade 2s ease-in-out .8s infinite alternate">🌿</div>
+                  <div class="wsc-ig-post" style="animation:wscFade 2s ease-in-out 1.2s infinite alternate">⭐</div>
+                </div>
+              </div>
+              <div style="padding:6px 12px;display:flex;align-items:center;gap:5px;background:linear-gradient(90deg,rgba(201,160,99,.08),rgba(201,160,99,.03));border-top:1px solid rgba(201,160,99,.12)">
+                <span style="font-size:8px">📲</span>
+                <span style="font-size:5.5px;color:rgba(201,160,99,.65)">Web + IG · Identidad visual unificada</span>
+              </div>
+            </div>
+          </div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:4rem;font-weight:300;color:rgba(201,160,99,.18);line-height:1;margin-bottom:.5rem">C</div>
+          <div class="ptier">Combo</div>
+          <div class="pname">Web + IG Primeros Pasos</div>
+          <div style="font-size:.72rem;color:var(--muted);margin-bottom:.35rem">Inversión inicial · <strong style="color:var(--gold2)">$3.000.000 COP</strong></div>
+          <div class="pprice" style="font-size:2.75rem">$1.500.000</div>
+          <div class="pprice-u">COP / mes · mantenimiento</div>
+          <div class="pdivider"></div>
+          <ul class="pfeats">
+            <li>Todo el Plan B incluido</li>
+            <li>Instagram Growth — primeros pasos</li>
+            <li>3 Reels mensuales guionados</li>
+            <li>5 posts mensuales con diseño de marca</li>
+            <li>Historias semanales</li>
+            <li>Identidad visual coherente web + IG</li>
+            <li>Soporte prioritario mensual</li>
+            <li style="margin-top:4px;border-top:1px solid rgba(201,160,99,.15);padding-top:8px;color:var(--gold2)">Recomendado: pasar a IG Growth completo desde el mes 4 para máximo crecimiento</li>
+          </ul>
+          <a href="https://wa.me/573227815811?text=Hola%2C%20me%20interesa%20el%20Combo%20Especial%20Web%20%2B%20IG%20para%20mi%20cl%C3%ADnica" target="_blank" class="pcta">Quiero ser parte →</a>
+        </div>
+
+      </div><!-- /planes web grid -->
+
+      <!-- PLAN 5: Instagram Growth — full width -->
+      <div class="rv" style="grid-column:1/-1;border:1px solid rgba(201,160,99,.3);border-radius:var(--r2);padding:2.75rem 3rem;background:linear-gradient(100deg,rgba(201,160,99,.05) 0%,var(--card) 65%);position:relative;overflow:hidden">
+        <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--gold),rgba(201,160,99,.3),transparent)"></div>
+
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:2.25rem">
+          <div style="width:50px;height:50px;border-radius:var(--r);background:var(--gc);border:1px solid var(--gb);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📱</div>
+          <div>
+            <div style="font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem;font-family:'DM Sans',sans-serif;font-weight:500">Add-on · Servicio de crecimiento en redes</div>
+            <h3 style="font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.8rem;color:var(--text);line-height:1;margin:0">Instagram Growth — <em style="font-style:italic;color:var(--gold2)">de seguidoras a pacientes</em></h3>
+          </div>
+        </div>
+
+        <!-- Plan semanal -->
+        <div class="ig-weeks-g">
+          <div class="ig-week-g">
+            <div class="ig-wlabel">Semana 1</div>
+            <div class="ig-chips-g">
+              <span class="ig-chip-reel">🎬 1 Reel</span>
+              <span class="ig-chip-carr">🖼 3 Carruseles</span>
+              <span class="ig-chip-post">📸 Posts</span>
+              <span class="ig-chip-post">📱 Historias</span>
+            </div>
+          </div>
+          <div class="ig-week-g">
+            <div class="ig-wlabel">Semana 2</div>
+            <div class="ig-chips-g">
+              <span class="ig-chip-reel">🎬 2 Reels</span>
+              <span class="ig-chip-carr">🖼 3 Carruseles</span>
+              <span class="ig-chip-post">📸 Posts</span>
+              <span class="ig-chip-post">📱 Historias</span>
+            </div>
+          </div>
+          <div class="ig-week-g">
+            <div class="ig-wlabel">Semana 3</div>
+            <div class="ig-chips-g">
+              <span class="ig-chip-reel">🎬 1 Reel</span>
+              <span class="ig-chip-carr">🖼 3 Carruseles</span>
+              <span class="ig-chip-post">📸 Posts</span>
+              <span class="ig-chip-post">📱 Historias</span>
+            </div>
+          </div>
+          <div class="ig-week-g">
+            <div class="ig-wlabel">Semana 4</div>
+            <div class="ig-chips-g">
+              <span class="ig-chip-reel">🎬 2 Reels</span>
+              <span class="ig-chip-carr">🖼 3 Carruseles</span>
+              <span class="ig-chip-post">📸 Posts</span>
+              <span class="ig-chip-post">📱 Historias</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Totales -->
+        <div class="ig-totals-g">
+          <div style="text-align:center"><div class="ig-tn">6</div><div class="ig-tl">Reels / mes</div></div>
+          <div class="ig-tsep"></div>
+          <div style="text-align:center"><div class="ig-tn">12</div><div class="ig-tl">Carruseles / mes</div></div>
+          <div class="ig-tsep"></div>
+          <div style="text-align:center"><div class="ig-tn">4</div><div class="ig-tl">Semanas con historias</div></div>
+          <div class="ig-tsep"></div>
+          <div style="text-align:center"><div class="ig-tn">📅</div><div class="ig-tl">Publicación estratégica</div></div>
+        </div>
+
+        <!-- Features grid -->
+        <div class="ig-feats-g">
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">🎯</span>
+            <h5>Perfil optimizado</h5>
+            <p>Bio, foto, highlights y link en bio — todo listo para convertir seguidoras en pacientes de tu clínica.</p>
+          </div>
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">🎬</span>
+            <h5>6 Reels / mes guionados</h5>
+            <p>Tú grabas, nosotros guionamos. Publicados en los días de mayor alcance para clínicas estéticas.</p>
+          </div>
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">🖼</span>
+            <h5>12 Carruseles / mes</h5>
+            <p>3 por semana. Contenido educativo sobre procedimientos que genera guardados y nuevas seguidoras.</p>
+          </div>
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">📸</span>
+            <h5>Posts + Portadas semanales</h5>
+            <p>Piezas visuales con la identidad de tu marca. Diseñadas y listas para publicar cada semana.</p>
+          </div>
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">📱</span>
+            <h5>Historias las 4 semanas</h5>
+            <p>Antes y después, testimonios, detrás de cámaras y contenido interactivo activo toda la semana.</p>
+          </div>
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">💬</span>
+            <h5>Gestión de comunidad</h5>
+            <p>Respuestas a comentarios y DMs en nombre de tu marca — ninguna seguidora se va sin respuesta.</p>
+          </div>
+          <div class="ig-feat-g">
+            <span class="ig-feat-g-icon">🤝</span>
+            <h5>Reunión mensual de contenido</h5>
+            <p>Alineamos la estrategia: lo que propone AJ Business + lo que necesita tu clínica ese mes. Coherente con tu marca siempre.</p>
+          </div>
+        </div>
+
+        <!-- Primera oferta -->
+        <div class="ig-offer-row">
+          <div style="display:inline-block;background:var(--gold);color:#000;font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:3px 14px;border-radius:2px;margin-bottom:.9rem">🔒 Primera Oferta — primeros 3 meses</div>
+          <div class="ig-price-block-g">
+            <div>
+              <div style="font-size:.72rem;color:var(--muted);margin-bottom:.15rem">Precio regular</div>
+              <div class="ig-price-orig">$1.500.000</div>
+            </div>
+            <div style="font-size:1.4rem;color:rgba(201,160,99,.4)">→</div>
+            <div>
+              <div style="font-size:.72rem;color:var(--gold);font-weight:600;margin-bottom:.15rem;font-family:'DM Sans',sans-serif">Primera oferta</div>
+              <div class="ig-price-new">$1.000.000 <small>COP / mes · primeros 3 meses · setup $1.000.000</small></div>
+            </div>
+          </div>
+          <div class="ig-saving">Ahorras <strong>$1.500.000 COP</strong> en los primeros 3 meses · Desde el mes 4 aplica precio regular · Compatible con cualquier plan</div>
+        </div>
+
+        <div class="ig-cta-row-g">
+          <div style="font-size:.78rem;color:var(--muted)">Compatible con cualquier plan de Sofia. Se puede agregar ahora o después del inicio.</div>
+          <a href="https://wa.me/573227815811?text=Hola%2C%20quiero%20agregar%20Instagram%20Growth" target="_blank" class="btn-gold" style="font-size:.72rem;padding:12px 24px;white-space:nowrap">Agregar Instagram Growth →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="roi-note rv">
+      <span class="n">2 clientes recuperadas / semana</span>
+      <div class="d">= tu marca ya está creciendo</div>
+      <span class="s">A $300.000 COP por sesión, son $2.400.000 al mes que antes se iban — ahora se quedan en tu marca. El plan se paga solo con las primeras 4 citas del mes.</span>
+    </div>
+
+    <!-- Add-on: Sofia WA -->
+    <div class="sofia-addon rv">
+      <div class="sofia-av-g">🤖</div>
+      <div class="sofia-cnt-g">
+        <span class="sofia-tag-g">Add-on opcional · Sofia AI</span>
+        <h3>¿Y si tu clínica atendiera sola en WhatsApp?</h3>
+        <p>Sofia AI responde preguntas frecuentes, invita a agendar una valoración, envía la dirección y toma datos de la paciente — incluso cuando estás en consulta y no puedes revisar el celular.</p>
+        <div class="sofia-chips-g">
+          <span class="sofia-chip-g">Responde "¿cuánto vale el botox?"</span>
+          <span class="sofia-chip-g">Invita a agendar valoración</span>
+          <span class="sofia-chip-g">Toma datos de la paciente</span>
+          <span class="sofia-chip-g">Funciona 24/7</span>
+          <span class="sofia-chip-g">Habla con tu voz y tono</span>
+        </div>
+        <div class="sofia-price-g"><strong>$450.000 COP</strong> setup · <strong>$300.000 / mes</strong> · compatible con cualquier plan</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CTA FINAL ══════════════ -->
+<section id="cta-final" class="sec" data-section="8">
+  <div class="wrap">
+    <div class="cta-inner rv">
+      <span class="eyebrow" style="display:block;text-align:center;margin-bottom:1.5rem">Tu marca empieza a crecer hoy</span>
+      <h2 class="cta-h">
+        Deja de perder<br>
+        clientes.<br>
+        <em>Haz crecer tu marca.</em>
+      </h2>
+      <p class="cta-sub">
+        En 7 días Sofia habla como tu marca en WhatsApp e Instagram — respondiendo, agendando y fidelizando con tu voz, mientras tú te enfocas en lo que realmente importa: transformar a tus pacientes.
+      </p>
+      <div class="cta-btns">
+        <a href="https://wa.me/573227815811?text=Hola%2C%20vi%20la%20propuesta%20de%20Sofia%20AI%20y%20quiero%20empezar" target="_blank" class="btn-gold" style="font-size:.82rem;padding:16px 42px">
+          Quiero empezar hoy →
+        </a>
+        <a href="https://wa.me/573227815811?text=Quiero%20el%20demo%20de%20Sofia" target="_blank" class="btn-outline" style="font-size:.82rem;padding:16px 36px">
+          Ver demo de Sofia
+        </a>
+      </div>
+      <div class="cta-stats">
+        <div class="cta-stat">
+          <span class="n">7 días</span>
+          <div class="d">Tiempo de setup</div>
+        </div>
+        <div class="cta-sep"></div>
+        <div class="cta-stat">
+          <span class="n">Mes a mes</span>
+          <div class="d">Sin contrato fijo</div>
+        </div>
+        <div class="cta-sep"></div>
+        <div class="cta-stat">
+          <span class="n">24 / 7</span>
+          <div class="d">Atención activa</div>
+        </div>
+        <div class="cta-sep"></div>
+        <div class="cta-stat">
+          <span class="n">Colombia</span>
+          <div class="d">Equipo local</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div><strong>AJ Business Advisory</strong> · Propuesta confidencial para Clara Puentes · Mayo 2026</div>
+  <div>sofia.ajbusinessadvisory.com</div>
+</footer>
+
+<script>
+// ── Methodology slider ──
+(function(){
+  const slides   = document.getElementById('methodSlides');
+  const dots     = document.querySelectorAll('.mn-dot');
+  const prev     = document.getElementById('methodPrev');
+  const next     = document.getElementById('methodNext');
+  const counter  = document.getElementById('methodCounter');
+  const progBar  = document.getElementById('methodProg');
+  const total    = 5;
+  let cur = 0;
+
+  function goTo(n){
+    cur = Math.max(0, Math.min(total-1, n));
+    slides.style.transform = `translateX(-${cur*100}%)`;
+    dots.forEach((d,i) => d.classList.toggle('active', i===cur));
+    counter.textContent = String(cur+1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+    progBar.style.width = ((cur+1)/total*100) + '%';
+    prev.disabled = cur === 0;
+    next.disabled = cur === total-1;
+  }
+
+  prev.addEventListener('click', () => goTo(cur-1));
+  next.addEventListener('click', () => goTo(cur+1));
+  dots.forEach((d,i) => d.addEventListener('click', () => goTo(i)));
+
+  // Swipe / drag support
+  let startX = 0;
+  const el = slides.parentElement;
+  el.addEventListener('pointerdown',  e => { startX = e.clientX; el.setPointerCapture(e.pointerId); });
+  el.addEventListener('pointerup',    e => {
+    const dx = e.clientX - startX;
+    if(Math.abs(dx) > 44){ dx < 0 ? goTo(cur+1) : goTo(cur-1); }
+  });
+
+  // keyboard
+  document.addEventListener('keydown', e => {
+    const sec = document.getElementById('metodologia');
+    const rect = sec.getBoundingClientRect();
+    if(rect.top < window.innerHeight && rect.bottom > 0){
+      if(e.key==='ArrowRight') goTo(cur+1);
+      if(e.key==='ArrowLeft')  goTo(cur-1);
+    }
+  });
+})();
+
+// Reveal on scroll
+const rvEls = document.querySelectorAll('.rv');
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('on') });
+},{threshold:.1});
+rvEls.forEach(el=>io.observe(el));
+
+// Nav dots
+const sections = document.querySelectorAll('[data-section]');
+const dots = document.querySelectorAll('.nd');
+const ioNav = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      dots.forEach(d=>d.classList.remove('active'));
+      const dot = document.querySelector(`.nd[data-sec="${e.target.getAttribute('data-section')}"]`);
+      if(dot) dot.classList.add('active');
+    }
+  });
+},{threshold:.35});
+sections.forEach(s=>ioNav.observe(s));
+dots.forEach(dot=>{
+  dot.addEventListener('click',()=>{
+    const t = document.querySelector(`[data-section="${dot.getAttribute('data-sec')}"]`);
+    if(t) t.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

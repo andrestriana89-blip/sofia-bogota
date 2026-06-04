@@ -4,8 +4,26 @@
     {
       "name": "landing-bogota",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3000"],
+      "runtimeArgs": ["-m", "http.server", "3000", "--directory", ".."],
       "port": 3000
+    },
+    {
+      "name": "hacienda-parrilla",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3002", "--directory", "../hacienda-parrilla"],
+      "port": 3002
+    },
+    {
+      "name": "parrilla-dentalia",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3004", "--directory", "../FREELANCE/PAULA/Parrila Contenido_Dentalia"],
+      "port": 3004
+    },
+    {
+      "name": "barberia-ganster",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3006", "--directory", "../Propuesta_Comercial_Ruztik_Insdustry/Propuesta-Barberia"],
+      "port": 3006
     }
   ]
 }
