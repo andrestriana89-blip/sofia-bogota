@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Dra. Natalia Barrantes — Odontología Integral Bogotá</title>
+<meta name="description" content="Odontología de alta estética en Bogotá. Diseño de sonrisa, blanqueamiento, ortodoncia. Agenda tu cita ahora."/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap');
+:root{
+  --ocre:#C09A55;--ocre-deep:#9B7A30;--ocre-light:#E8D5B0;--ocre-pale:#F2E8D8;
+  --cream:#FDFAF5;--dark:#1C1710;--text:#2A2018;--muted:#7A6A55;
+  --border:rgba(192,154,85,.2);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;width:100%}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:var(--cream);
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 0 60px;
+  color:var(--text);
+}
+/* HERO */
+.hero{
+  width:100%;max-width:480px;
+  background:var(--dark);
+  padding:44px 32px 36px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(192,154,85,.18),transparent);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--ocre),transparent);
+}
+.profile-ring{
+  width:90px;height:90px;border-radius:50%;
+  border:2.5px solid var(--ocre);
+  margin:0 auto 16px;
+  background:var(--dark);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:28px;color:var(--ocre);
+}
+.profile-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:600;
+  color:var(--cream);
+  letter-spacing:.5px;line-height:1.2;
+  position:relative;z-index:1;
+}
+.profile-title{
+  font-size:9px;letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+  margin-top:6px;font-weight:500;
+  position:relative;z-index:1;
+}
+.profile-location{
+  font-size:11px;color:var(--ocre);opacity:.8;
+  margin-top:8px;font-weight:500;
+  position:relative;z-index:1;
+}
+/* MAIN CONTENT */
+.content{width:100%;max-width:480px;padding:28px 20px 0}
+/* CTA PRINCIPAL */
+.cta-main{
+  width:100%;
+  background:var(--ocre);
+  border-radius:14px;
+  padding:18px 24px;
+  display:flex;align-items:center;gap:16px;
+  text-decoration:none;
+  margin-bottom:12px;
+  transition:all .2s;
+  box-shadow:0 4px 16px rgba(192,154,85,.25);
+}
+.cta-main:hover{background:var(--ocre-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(192,154,85,.35)}
+.cta-main .cta-icon{width:42px;height:42px;border-radius:10px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.cta-main .cta-text{}
+.cta-main .cta-label{font-size:14px;font-weight:700;color:var(--dark);line-height:1}
+.cta-main .cta-sub{font-size:10px;color:rgba(28,23,16,.65);margin-top:3px}
+.cta-main .cta-arrow{margin-left:auto;font-size:18px;color:rgba(28,23,16,.5)}
+/* LINK BUTTONS */
+.link-btn{
+  width:100%;
+  background:var(--cream);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  padding:14px 20px;
+  display:flex;align-items:center;gap:14px;
+  text-decoration:none;
+  margin-bottom:10px;
+  transition:all .15s;
+}
+.link-btn:hover{border-color:var(--ocre);background:var(--ocre-pale);transform:translateY(-1px)}
+.link-btn .lb-icon{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.lb-icon.wa{background:#25D366;color:#fff}
+.lb-icon.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff}
+.lb-icon.fb{background:#1877F2;color:#fff}
+.lb-icon.web{background:var(--dark);color:var(--ocre)}
+.lb-icon.maps{background:#EA4335;color:#fff}
+.lb-icon.sofia{background:var(--dark);color:var(--ocre)}
+.link-btn .lb-text{}
+.link-btn .lb-label{font-size:13px;font-weight:700;color:var(--dark)}
+.link-btn .lb-sub{font-size:10px;color:var(--muted);margin-top:2px}
+.link-btn .lb-arrow{margin-left:auto;font-size:16px;color:var(--muted)}
+/* DIVIDER TEXT */
+.section-label{
+  font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);font-weight:700;
+  text-align:center;margin:20px 0 12px;
+  display:flex;align-items:center;gap:10px;
+}
+.section-label::before,.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+/* SERVICES */
+.services{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.srv{
+  background:var(--cream);border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;text-align:center;
+  text-decoration:none;transition:all .15s;
+}
+.srv:hover{border-color:var(--ocre);background:var(--ocre-pale)}
+.srv-icon{font-size:18px;margin-bottom:4px}
+.srv-name{font-size:11px;font-weight:700;color:var(--dark);line-height:1.3}
+.srv-cta{font-size:9px;color:var(--ocre-deep);margin-top:3px;font-weight:600}
+/* QUOTE */
+.quote{
+  background:var(--dark);border-radius:14px;padding:22px 24px;
+  text-align:center;margin-bottom:10px;
+}
+.quote-text{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:16px;
+  color:rgba(255,255,255,.85);line-height:1.5;
+}
+.quote-author{
+  font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  color:var(--ocre);margin-top:10px;font-weight:600;opacity:.7;
+}
+/* SOFIA PILL */
+.sofia-pill{
+  background:var(--dark);border:1px solid rgba(192,154,85,.2);
+  border-radius:12px;padding:14px 20px;
+  display:flex;align-items:center;gap:12px;
+  text-decoration:none;margin-bottom:10px;
+  transition:all .15s;
+}
+.sofia-pill:hover{border-color:var(--ocre)}
+.sp-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 3px rgba(34,197,94,.2);flex-shrink:0}
+.sp-text{font-size:12px;color:rgba(255,255,255,.75);flex:1;line-height:1.4}
+.sp-text strong{color:var(--ocre)}
+.sp-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;background:rgba(192,154,85,.15);color:var(--ocre);border:1px solid rgba(192,154,85,.2);white-space:nowrap;flex-shrink:0}
+/* FOOTER */
+.footer-links{display:flex;justify-content:center;gap:16px;margin-top:24px;font-size:10px;color:var(--muted)}
+.footer-links a{color:var(--muted);text-decoration:none}
+.footer-links a:hover{color:var(--ocre-deep)}
+.footer-brand{text-align:center;margin-top:12px;font-size:9px;color:rgba(122,106,85,.5);letter-spacing:1px}
+.footer-brand em{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:rgba(192,154,85,.5)}
+</style>
+</head>
+<body>
+
+<!-- HERO PROFILE -->
+<div class="hero">
+  <div class="profile-ring">NB</div>
+  <div class="profile-name">Dra. Natalia Barrantes</div>
+  <div class="profile-title">Odontología Integral &nbsp;·&nbsp; Bogotá</div>
+  <div class="profile-location">📍 Bogotá D.C., Colombia</div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- CTA PRINCIPAL: AGENDA TU CITA -->
+  <div style="margin-top:24px"></div>
+  <a class="cta-main" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+agendar+una+cita+con+la+Dra.+Natalia" target="_blank">
+    <div class="cta-icon">📅</div>
+    <div class="cta-text">
+      <div class="cta-label">Agenda tu cita ahora</div>
+      <div class="cta-sub">Responde automáticamente · 24 horas · 7 días</div>
+    </div>
+    <div class="cta-arrow">→</div>
+  </a>
+
+  <!-- SOFIA AI PILL -->
+  <a class="sofia-pill" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+información+sobre+mis+opciones+dentales" target="_blank">
+    <div class="sp-dot"></div>
+    <div class="sp-text"><strong>Sofia AI</strong> atiende tu mensaje ahora mismo — a cualquier hora, sin esperas</div>
+    <div class="sp-badge">Activo 24/7</div>
+  </a>
+
+  <!-- SERVICIOS -->
+  <div class="section-label">Nuestros servicios</div>
+  <div class="services">
+    <a class="srv" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+información+sobre+Diseño+de+Sonrisa" target="_blank">
+      <div class="srv-icon">✨</div>
+      <div class="srv-name">Diseño de Sonrisa</div>
+      <div class="srv-cta">Agenda →</div>
+    </a>
+    <a class="srv" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+información+sobre+Blanqueamiento" target="_blank">
+      <div class="srv-icon">🦷</div>
+      <div class="srv-name">Blanqueamiento Profesional</div>
+      <div class="srv-cta">Agenda →</div>
+    </a>
+    <a class="srv" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+información+sobre+Ortodoncia" target="_blank">
+      <div class="srv-icon">🔬</div>
+      <div class="srv-name">Ortodoncia</div>
+      <div class="srv-cta">Agenda →</div>
+    </a>
+    <a class="srv" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+información+sobre+Valoración+Inicial" target="_blank">
+      <div class="srv-icon">💛</div>
+      <div class="srv-name">Valoración Inicial</div>
+      <div class="srv-cta">Sin costo →</div>
+    </a>
+  </div>
+
+  <!-- REDES Y WEB -->
+  <div class="section-label">Encuéntranos</div>
+
+  <a class="link-btn" href="https://www.instagram.com/dentaliaodontologia" target="_blank">
+    <div class="lb-icon ig">📸</div>
+    <div class="lb-text">
+      <div class="lb-label">Instagram</div>
+      <div class="lb-sub">@dentaliaodontologia · Contenido y antes/después</div>
+    </div>
+    <div class="lb-arrow">↗</div>
+  </a>
+
+  <a class="link-btn" href="https://www.facebook.com/dentaliaodontologia" target="_blank">
+    <div class="lb-icon fb">f</div>
+    <div class="lb-text">
+      <div class="lb-label">Facebook</div>
+      <div class="lb-sub">Dentalia Odontología Integral</div>
+    </div>
+    <div class="lb-arrow">↗</div>
+  </a>
+
+  <a class="link-btn" href="https://wa.me/57XXXXXXXXXX" target="_blank">
+    <div class="lb-icon wa">💬</div>
+    <div class="lb-text">
+      <div class="lb-label">WhatsApp directo</div>
+      <div class="lb-sub">Responde 24/7 — incluso de noche</div>
+    </div>
+    <div class="lb-arrow">↗</div>
+  </a>
+
+  <a class="link-btn" href="https://ajbusinessadvisory.com" target="_blank">
+    <div class="lb-icon web">🌐</div>
+    <div class="lb-text">
+      <div class="lb-label">Página web</div>
+      <div class="lb-sub">Información completa y precios</div>
+    </div>
+    <div class="lb-arrow">↗</div>
+  </a>
+
+  <a class="link-btn" href="https://maps.google.com/?q=Bogotá+Colombia+Odontología+Natalia+Barrantes" target="_blank">
+    <div class="lb-icon maps">📍</div>
+    <div class="lb-text">
+      <div class="lb-label">Cómo llegar</div>
+      <div class="lb-sub">Consultorio en Bogotá D.C.</div>
+    </div>
+    <div class="lb-arrow">↗</div>
+  </a>
+
+  <!-- QUOTE -->
+  <div class="section-label">Nuestra filosofía</div>
+  <div class="quote">
+    <div class="quote-text">"Primero escuchamos. Después planificamos. Siempre con transparencia."</div>
+    <div class="quote-author">Dra. Natalia Barrantes · Odontología Integral</div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer-links">
+    <a href="https://wa.me/57XXXXXXXXXX?text=Hola%2C+quiero+información">💬 WhatsApp</a>
+    <a href="https://www.instagram.com/dentaliaodontologia">📸 Instagram</a>
+    <a href="https://www.facebook.com/dentaliaodontologia">Facebook</a>
+  </div>
+  <div class="footer-brand"><em>Dra. Natalia Barrantes</em> · ODONTOLOGÍA INTEGRAL<br/>Gestionado por AJ Business Advisory · Sofia AI 🤖</div>
+
+</div>
+
+</body>
+</html>
