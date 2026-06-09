@@ -4,7 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <meta name="robots" content="noindex,nofollow"/>
-<title>Parrilla de Contenido — @eldelosdatos · Junio 2026</title>
+<title>Parrilla de Contenido — @eldelosdatos.tech · Junio 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
@@ -16,12 +16,16 @@
   --white:#FFFFFF;--cream:#F8FAFC;
   --green:#059669;--green-bright:#10B981;--green-bg:rgba(16,185,129,.10);
   --red:#DC2626;--red-bg:rgba(220,38,38,.10);
-  --purple:#7C3AED;--purple-bg:rgba(124,58,237,.10);
+  --purple:#8B3DFF;--purple-bg:rgba(139,61,255,.10);--purple-pale:#F5EEFF;
+  --neon:#FF2EC4;--neon-bright:#FF49D0;--neon-bg:rgba(255,46,196,.10);--neon-pale:#FFEFFB;
+  --brand-grad:linear-gradient(135deg,#8B3DFF 0%,#FF2EC4 100%);
+  --darkv:#1A0B2E;--darkv2:#2A1247;--darkv3:#120720;
   --text:#1E293B;--muted:#64748B;--border:rgba(0,0,0,.09);--border-light:rgba(0,0,0,.05);
   --reel:#DC2626;--reel-bg:rgba(220,38,38,.10);
   --carrusel:#2563EB;--carrusel-bg:rgba(37,99,235,.10);
   --stories:#059669;--stories-bg:rgba(5,150,105,.10);
-  --radius:12px;--shadow:0 2px 14px rgba(0,0,0,.07);
+  --linkedin:#0A66C2;--linkedin-bg:rgba(10,102,194,.10);
+  --radius:14px;--shadow:0 4px 20px rgba(139,61,255,.10);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -31,13 +35,13 @@ a{color:inherit;text-decoration:none}
 button{cursor:pointer;font-family:'Montserrat',sans-serif}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:2px solid var(--blue);height:52px;display:flex;align-items:center;padding:0 24px;gap:16px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,.97);backdrop-filter:blur(16px);border-bottom:3px solid transparent;border-image:var(--brand-grad) 1;height:54px;display:flex;align-items:center;padding:0 24px;gap:16px}
 .nav-brand{font-size:15px;font-weight:900;color:var(--dark);border-right:1px solid var(--border);padding-right:16px;flex-shrink:0;letter-spacing:-.3px}
-.nav-brand span{font-size:8px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--blue);display:block;margin-top:-2px}
+.nav-brand span{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--brand-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;display:block;margin-top:-2px}
 .nav-tabs{display:flex;gap:2px;overflow-x:auto;flex:1}
-.ntab{padding:0 14px;height:52px;display:flex;align-items:center;font-size:11px;font-weight:700;color:var(--muted);border:none;background:none;border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap;letter-spacing:.3px}
-.ntab:hover{color:var(--dark)}
-.ntab.active{color:var(--blue);border-bottom-color:var(--blue)}
+.ntab{padding:0 14px;height:54px;display:flex;align-items:center;font-size:11px;font-weight:700;color:var(--muted);border:none;background:none;border-bottom:3px solid transparent;transition:all .15s;white-space:nowrap;letter-spacing:.3px}
+.ntab:hover{color:var(--purple)}
+.ntab.active{color:var(--neon);border-bottom-color:var(--neon)}
 .nav-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
 
 .btn{padding:7px 16px;border-radius:8px;font-size:11px;font-weight:700;border:none;transition:all .15s;letter-spacing:.3px}
@@ -49,15 +53,16 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .page-section{display:none}.page-section.active{display:block}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,var(--dark3) 0%,#0A1628 50%,#0F172A 100%);padding:44px 32px 32px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'DATOS';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:130px;font-weight:900;color:rgba(37,99,235,.06);white-space:nowrap;pointer-events:none;letter-spacing:-4px}
-.hero-eyebrow{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue-light);font-weight:800;margin-bottom:10px}
-.hero-title{font-size:34px;font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-1px}
-.hero-title em{color:var(--amber-bright);font-style:normal}
-.hero-sub{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:8px}
-.hero-chips{display:flex;justify-content:center;gap:8px;margin-top:16px;flex-wrap:wrap}
-.chip{padding:5px 14px;border-radius:20px;font-size:10px;font-weight:700;border:1px solid rgba(37,99,235,.35);color:var(--blue-light);background:rgba(37,99,235,.08);letter-spacing:.5px}
-.chip.amber{border-color:rgba(245,158,11,.35);color:var(--amber-bright);background:rgba(245,158,11,.08)}
+.hero{background:radial-gradient(120% 120% at 50% 0%,#2A1247 0%,#1A0B2E 55%,#120720 100%);padding:48px 32px 34px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'DATOS';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:130px;font-weight:900;background:var(--brand-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.10;white-space:nowrap;pointer-events:none;letter-spacing:-4px}
+.hero::after{content:'';position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:420px;height:420px;background:radial-gradient(circle,rgba(255,46,196,.22),transparent 60%);pointer-events:none}
+.hero-eyebrow{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--neon-bright);font-weight:800;margin-bottom:10px;position:relative}
+.hero-title{font-size:38px;font-weight:900;color:var(--white);line-height:1.05;letter-spacing:-1px;position:relative}
+.hero-title em{background:var(--brand-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-style:normal}
+.hero-sub{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:8px;position:relative}
+.hero-chips{display:flex;justify-content:center;gap:8px;margin-top:18px;flex-wrap:wrap;position:relative}
+.chip{padding:6px 15px;border-radius:20px;font-size:10px;font-weight:800;border:1px solid rgba(139,61,255,.45);color:#D6BBFF;background:rgba(139,61,255,.12);letter-spacing:.5px}
+.chip.amber{border-color:rgba(255,46,196,.45);color:var(--neon-bright);background:rgba(255,46,196,.10)}
 .chip.green{border-color:rgba(16,185,129,.35);color:var(--green-bright);background:rgba(16,185,129,.08)}
 .chip.red{border-color:rgba(220,38,38,.35);color:#FCA5A5;background:rgba(220,38,38,.08)}
 
@@ -68,12 +73,43 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .pills{display:flex;gap:6px;flex-wrap:wrap}
 .pill{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;border:1.5px solid var(--border);background:var(--white);color:var(--muted);transition:all .15s;letter-spacing:.3px}
 .pill:hover{border-color:var(--blue);color:var(--blue)}
-.pill.active{background:var(--dark);border-color:var(--dark);color:var(--amber-bright)}
+.pill.active{background:var(--brand-grad);border-color:transparent;color:#fff}
 .selector-divider{width:1px;height:24px;background:var(--border);flex-shrink:0}
+
+/* INTRO · SOBRE EL CONTENIDO */
+.intro-box{display:flex;gap:16px;background:#fff;border:1px solid var(--border);border-left:4px solid var(--neon);border-radius:var(--radius);padding:18px 20px;margin-bottom:20px;box-shadow:var(--shadow)}
+.intro-ic{font-size:34px;line-height:1;flex-shrink:0}
+.intro-h{font-size:14px;font-weight:900;color:var(--purple);letter-spacing:-.2px;margin-bottom:7px}
+.intro-body p{font-size:12px;color:var(--text);line-height:1.65;margin-bottom:7px}
+.intro-body p:last-child{margin-bottom:0}
+.intro-body strong{color:var(--dark);font-weight:800}
+@media(max-width:640px){.intro-box{flex-direction:column;gap:8px}}
+
+/* AGENDA · BUSCADOR DEL DÍA */
+.agenda-wrap{background:radial-gradient(120% 140% at 0% 0%,#2A1247 0%,#1A0B2E 60%,#120720 100%);border-radius:18px;padding:20px 22px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(139,61,255,.18)}
+.agenda-wrap::after{content:'';position:absolute;top:-50px;right:-30px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,46,196,.25),transparent 65%);pointer-events:none}
+.agenda-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;position:relative}
+.agenda-emoji{font-size:30px;line-height:1}
+.agenda-h{font-size:17px;font-weight:900;color:#fff;letter-spacing:-.4px}
+.agenda-sub{font-size:10px;color:rgba(255,255,255,.5);font-weight:600;margin-top:1px}
+.agenda-rail{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;position:relative;scroll-snap-type:x mandatory}
+.agenda-rail::-webkit-scrollbar{height:5px}
+.agenda-rail::-webkit-scrollbar-thumb{background:rgba(255,255,255,.18);border-radius:3px}
+.agenda-card{flex:0 0 156px;scroll-snap-align:start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:13px 14px;cursor:pointer;transition:all .15s;text-align:left}
+.agenda-card:hover{background:rgba(255,255,255,.11);border-color:var(--neon);transform:translateY(-2px)}
+.agenda-card.next{border-color:var(--neon);background:rgba(255,46,196,.12);box-shadow:0 0 0 1px var(--neon)}
+.agenda-card.done{opacity:.5}
+.ag-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.ag-ic{font-size:26px;line-height:1}
+.ag-tag{font-size:7.5px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:2px 7px;border-radius:20px;background:var(--brand-grad);color:#fff}
+.ag-tag.pub{background:rgba(16,185,129,.25);color:#6EE7B7}
+.ag-date{font-size:10px;font-weight:800;color:var(--neon-bright);letter-spacing:.3px}
+.ag-title{font-size:10.5px;font-weight:700;color:#fff;line-height:1.35;margin-top:3px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ag-fmt{font-size:8.5px;color:rgba(255,255,255,.45);font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.5px}
 
 /* STATS */
 .stats-banner{background:linear-gradient(135deg,rgba(37,99,235,.07),rgba(124,58,237,.05));border:1.5px dashed rgba(37,99,235,.3);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
-.stats-icon{font-size:22px;flex-shrink:0}
+.stats-icon{font-size:30px;flex-shrink:0}
 .stats-text h4{font-size:12px;font-weight:800;color:var(--blue);margin-bottom:2px}
 .stats-text p{font-size:11px;color:var(--muted);line-height:1.5}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-bottom:20px}
@@ -82,6 +118,71 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .stat-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
 .stat-value{font-size:20px;font-weight:900;color:var(--dark);letter-spacing:-1px}
 .stat-value.pending{font-size:14px;color:var(--muted);font-weight:600;letter-spacing:0}
+.stat-input{width:100%;border:none;border-bottom:1.5px dashed var(--border);background:transparent;font-family:'Montserrat',sans-serif;font-size:18px;font-weight:900;color:var(--dark);letter-spacing:-.5px;outline:none;padding:2px 0;transition:border-color .15s}
+.stat-input:focus{border-bottom-color:var(--blue)}
+.stat-input::placeholder{color:var(--muted);font-weight:600;font-size:14px}
+.stats-saved{font-size:10px;color:var(--green);font-weight:800;display:none}
+
+/* ACCOUNT BANNER */
+.account-banner{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--dark) 0%,#0A1628 100%);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px;box-shadow:var(--shadow)}
+.account-avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:var(--dark);background:linear-gradient(135deg,var(--amber-bright),var(--blue-light));letter-spacing:-.5px}
+.account-info{flex:1;min-width:0}
+.account-name{font-size:14px;font-weight:900;color:var(--white);letter-spacing:-.3px}
+.account-handle{font-size:11px;font-weight:700;color:var(--blue-light);display:inline-block;margin-top:1px}
+.account-handle:hover{color:var(--amber-bright)}
+.account-meta{font-size:9.5px;color:rgba(255,255,255,.4);margin-top:3px;line-height:1.4}
+.account-cta{flex-shrink:0;padding:7px 16px;border-radius:8px;font-size:10px;font-weight:800;letter-spacing:.3px;background:var(--amber-bright);color:var(--dark);transition:all .15s}
+.account-cta:hover{background:var(--amber-bright);opacity:.85}
+
+/* INSIGHT BOX */
+.insight-box{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow)}
+.insight-head{font-size:12px;font-weight:800;color:var(--dark);margin-bottom:10px;letter-spacing:-.2px}
+.insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.insight-item{font-size:11px;color:var(--text);line-height:1.55}
+.insight-tag{display:inline-block;font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:2px 7px;border-radius:4px;margin-right:5px}
+.insight-tag.green{background:var(--green-bg);color:var(--green)}
+.insight-tag.blue{background:var(--blue-bg);color:var(--blue)}
+.insight-tag.amber{background:var(--amber-bg);color:var(--amber)}
+@media(max-width:640px){.insight-grid{grid-template-columns:1fr}}
+
+/* GUIONES DE HISTORIAS */
+.guion-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.guion-card{background:var(--white);border:1px solid var(--border);border-top:3px solid var(--stories);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.guion-card.promo{border-top-color:var(--reel)}
+.guion-card.trabajo{border-top-color:var(--amber-bright)}
+.guion-card.producto{border-top-color:var(--blue)}
+.guion-card.dato{border-top-color:var(--purple)}
+.guion-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:4px}
+.guion-title{font-size:13px;font-weight:900;color:var(--dark);letter-spacing:-.3px}
+.guion-dur{font-size:9px;font-weight:800;color:var(--muted);white-space:nowrap;text-transform:uppercase;letter-spacing:.5px}
+.guion-sub{font-size:10px;color:var(--muted);margin-bottom:12px;line-height:1.5}
+.guion-slide{display:flex;gap:10px;padding:9px 0;border-top:1px dashed var(--border-light)}
+.guion-slide:first-of-type{border-top:none}
+.gs-num{flex-shrink:0;width:22px;height:22px;border-radius:6px;background:var(--stories-bg);color:var(--stories);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.guion-card.promo .gs-num{background:var(--reel-bg);color:var(--reel)}
+.guion-card.trabajo .gs-num{background:var(--amber-bg);color:var(--amber)}
+.guion-card.producto .gs-num{background:var(--blue-bg);color:var(--blue)}
+.guion-card.dato .gs-num{background:var(--purple-bg);color:var(--purple)}
+.gs-body{flex:1;min-width:0}
+.gs-type{font-size:8px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:2px}
+.gs-screen{font-size:11.5px;font-weight:700;color:var(--dark);line-height:1.4;user-select:text}
+.gs-say{font-size:10.5px;color:var(--text);line-height:1.5;margin-top:3px;font-style:italic;user-select:text}
+.gs-sticker{display:inline-block;font-size:9px;font-weight:700;background:rgba(5,150,105,.08);color:var(--stories);border:1px solid rgba(5,150,105,.2);padding:1px 7px;border-radius:4px;margin-top:4px}
+@media(max-width:640px){.guion-grid{grid-template-columns:1fr}}
+
+/* CHECKPOINT / ESTADO POR POST */
+.dc-status{display:flex;gap:3px;margin-top:8px;flex-wrap:wrap}
+.status-step{font-size:8.5px;font-weight:800;letter-spacing:.2px;padding:3px 8px;border-radius:20px;border:1.5px solid var(--border);background:var(--white);color:var(--muted);cursor:pointer;transition:all .12s;font-family:'Montserrat',sans-serif}
+.status-step:hover{border-color:var(--blue);color:var(--blue)}
+.status-step.active[data-st="idea"]{background:rgba(107,114,128,.12);border-color:var(--muted);color:var(--muted)}
+.status-step.active[data-st="grabado"]{background:var(--amber-bg);border-color:var(--amber-bright);color:var(--amber)}
+.status-step.active[data-st="editado"]{background:var(--carrusel-bg);border-color:var(--carrusel);color:var(--carrusel)}
+.status-step.active[data-st="publicado"]{background:var(--green-bg);border-color:var(--green-bright);color:var(--green)}
+.progress-strip{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:12px 18px;margin-bottom:20px;box-shadow:var(--shadow)}
+.progress-bar-track{flex:1;height:8px;background:rgba(0,0,0,.06);border-radius:5px;overflow:hidden}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--green-bright),var(--blue));border-radius:5px;transition:width .3s;width:0%}
+.progress-num{font-size:12px;font-weight:900;color:var(--dark);white-space:nowrap;letter-spacing:-.3px}
+.progress-label{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 
 /* RESUMEN VOLUMEN */
 .vol-strip{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
@@ -90,6 +191,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .vol-num.reel{color:var(--reel)}
 .vol-num.carrusel{color:var(--carrusel)}
 .vol-num.stories{color:var(--stories)}
+.vol-num.linkedin{color:var(--linkedin)}
 .vol-num.total{color:var(--dark)}
 .vol-label{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:2px}
 .vol-sub{font-size:10px;color:var(--muted);margin-top:2px}
@@ -99,9 +201,9 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .dist-bar h4{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
 .dist-track{height:10px;border-radius:5px;overflow:hidden;display:flex;gap:2px;margin-bottom:8px}
 .dist-seg{height:100%;border-radius:3px}
-.dist-seg.crecimiento{background:var(--blue);width:41%}
-.dist-seg.autoridad{background:var(--amber-bright);width:41%}
-.dist-seg.venta{background:var(--green-bright);width:18%}
+.dist-seg.crecimiento{background:var(--blue);width:50%}
+.dist-seg.autoridad{background:var(--amber-bright);width:29%}
+.dist-seg.venta{background:var(--green-bright);width:21%}
 .dist-legend{display:flex;gap:16px;flex-wrap:wrap}
 .dist-leg-item{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--muted)}
 .dist-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
@@ -109,8 +211,8 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 /* SECCIÓN */
 .sec{padding:28px 0 16px}
 .sec-header{margin-bottom:18px}
-.sec-ey{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:4px}
-.sec-title{font-size:20px;font-weight:900;color:var(--dark);letter-spacing:-.5px}
+.sec-ey{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--neon);font-weight:800;margin-bottom:4px}
+.sec-title{font-size:22px;font-weight:900;color:var(--dark);letter-spacing:-.5px}
 
 /* LEYENDA */
 .leyenda{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;padding:10px 14px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius)}
@@ -119,8 +221,8 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 
 /* SEMANA BLOCK */
 .week-block{margin-bottom:28px}
-.week-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px;padding:7px 14px;background:var(--blue-pale);border-radius:8px;display:inline-flex;align-items:center;gap:8px}
-.week-label .vol-tag{font-size:9px;font-weight:700;background:var(--blue);color:#fff;padding:2px 8px;border-radius:10px;letter-spacing:.3px}
+.week-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);margin-bottom:10px;padding:8px 15px;background:var(--purple-pale);border-radius:10px;display:inline-flex;align-items:center;gap:8px}
+.week-label .vol-tag{font-size:9px;font-weight:700;background:var(--brand-grad);color:#fff;padding:2px 9px;border-radius:10px;letter-spacing:.3px}
 
 /* CALENDARIO */
 .cal-grid{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px}
@@ -135,7 +237,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .cal-cell.rest-day{background:rgba(107,114,128,.02)}
 .cal-cell.past-day{background:rgba(107,114,128,.04);opacity:.5}
 .cal-cell.empty{background:rgba(107,114,128,.02);min-height:60px}
-.cal-cell.today-cell{background:rgba(37,99,235,.04);border-left:2px solid var(--blue)}
+.cal-cell.today-cell{background:rgba(255,46,196,.06);border-left:3px solid var(--neon)}
 .cal-date{font-size:11px;font-weight:800;color:var(--muted);margin-bottom:5px}
 .cal-cell.pub-day .cal-date{color:var(--dark)}
 .cal-cell.today-cell .cal-date{color:var(--blue)}
@@ -146,7 +248,8 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .cal-badge.reel{background:var(--reel-bg);color:var(--reel)}
 .cal-badge.carrusel{background:var(--carrusel-bg);color:var(--carrusel)}
 .cal-badge.stories{background:var(--stories-bg);color:var(--stories)}
-.cal-icon{font-size:10px;flex-shrink:0}
+.cal-badge.linkedin{background:var(--linkedin-bg);color:var(--linkedin)}
+.cal-icon{font-size:15px;flex-shrink:0}
 .cal-text{font-size:8px;font-weight:700;line-height:1.25}
 .cal-obj{font-size:7px;font-weight:800;letter-spacing:.3px;text-transform:uppercase;margin-top:2px;padding:1px 4px;border-radius:3px;display:inline-block}
 .cal-obj.alcance{background:var(--blue-bg);color:var(--blue)}
@@ -166,6 +269,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .dc-type.reel{background:var(--reel-bg);color:var(--reel)}
 .dc-type.carrusel{background:var(--carrusel-bg);color:var(--carrusel)}
 .dc-type.stories{background:var(--stories-bg);color:var(--stories)}
+.dc-type.linkedin{background:var(--linkedin-bg);color:var(--linkedin)}
 .dc-head-info{flex:1}
 .dc-day{font-size:9px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
 .dc-title{font-size:12.5px;font-weight:800;color:var(--dark);line-height:1.3;margin-top:2px}
@@ -195,6 +299,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .prod-dot.reel-col{background:var(--reel)}
 .prod-dot.carrusel-col{background:var(--carrusel)}
 .prod-dot.stories-col{background:var(--stories)}
+.prod-dot.linkedin-col{background:var(--linkedin)}
 
 /* HOOKS */
 .hooks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:28px}
@@ -226,6 +331,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .ws-format.reel{color:var(--reel)}
 .ws-format.carrusel{color:var(--carrusel)}
 .ws-format.stories{color:var(--stories)}
+.ws-format.linkedin{color:var(--linkedin)}
 .ws-format.descanso{color:var(--muted)}
 .ws-desc{font-size:11px;color:var(--muted);line-height:1.5}
 .roadmap{display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:var(--shadow)}
@@ -250,7 +356,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .bio-text em{color:var(--amber-bright);font-style:normal;font-weight:700}
 .highlight-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-bottom:18px}
 .hl-card{background:var(--dark);border-radius:10px;padding:10px 12px;text-align:center}
-.hl-icon{font-size:18px;margin-bottom:3px}
+.hl-icon{font-size:30px;margin-bottom:5px}
 .hl-name{font-size:10px;font-weight:800;color:var(--amber-bright);letter-spacing:.5px;margin-bottom:2px}
 .hl-desc{font-size:9px;color:rgba(255,255,255,.4);line-height:1.4}
 .frase-ancla{background:linear-gradient(135deg,var(--dark) 0%,#0A1628 100%);border-radius:var(--radius);padding:22px 28px;text-align:center;margin-bottom:24px;position:relative;overflow:hidden}
@@ -303,7 +409,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 
 /* AÑADIR CONTENIDO */
 .add-hero{background:linear-gradient(135deg,#0F172A,#1E293B);border-radius:var(--radius);padding:24px 28px;margin-bottom:24px;display:flex;align-items:center;gap:20px}
-.add-hero-icon{font-size:36px;flex-shrink:0}
+.add-hero-icon{font-size:48px;flex-shrink:0}
 .add-hero h3{font-size:16px;font-weight:900;color:var(--white);margin-bottom:4px;letter-spacing:-.3px}
 .add-hero p{font-size:11px;color:rgba(255,255,255,.45);line-height:1.5}
 .add-form{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:24px}
@@ -337,6 +443,10 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .btn-delete-card{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .15s}
 .btn-delete-card:hover{background:var(--red-bg);color:var(--red)}
 .custom-card-body{padding:0 14px 12px;font-size:11px;color:var(--text);line-height:1.6}
+.months-strip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.month-chip{padding:7px 14px;border-radius:8px;font-size:11px;font-weight:800;letter-spacing:.3px;border:1.5px dashed var(--border);color:var(--muted);background:var(--white)}
+.month-chip.done{border-style:solid;border-color:var(--green-bright);background:var(--green-bg);color:var(--green)}
+.month-group-label{font-size:11px;font-weight:900;color:var(--blue);letter-spacing:.3px;margin:16px 0 10px;padding:6px 12px;background:var(--blue-pale);border-radius:7px;display:inline-block}
 .no-custom{text-align:center;padding:32px;color:var(--muted);font-size:11.5px;background:var(--white);border:2px dashed var(--border);border-radius:var(--radius)}
 .no-custom strong{display:block;font-size:14px;color:var(--dark);margin-bottom:6px;font-weight:800}
 
@@ -356,12 +466,13 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
   <div class="nav-tabs">
     <button class="ntab active" onclick="showSection('parrilla',this)">📅 Parrilla</button>
     <button class="ntab" onclick="showSection('hooks',this)">🎯 Hooks &amp; CTAs</button>
+    <button class="ntab" onclick="showSection('historias',this)">📱 Historias</button>
     <button class="ntab" onclick="showSection('estrategia',this)">🧠 Estrategia</button>
     <button class="ntab" onclick="showSection('perfil',this)">📱 Perfil &amp; Bio</button>
     <button class="ntab" onclick="showSection('agregar',this)">➕ Añadir / Editar</button>
   </div>
   <div class="nav-actions">
-    <span style="font-size:10px;color:var(--muted);font-weight:700">@eldelosdatos</span>
+    <a href="https://www.instagram.com/eldelosdatos.tech/" target="_blank" rel="noopener" style="font-size:10px;color:var(--blue);font-weight:700;display:inline-flex;align-items:center;gap:4px">📸 @eldelosdatos.tech</a>
   </div>
 </nav>
 
@@ -370,13 +481,14 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 <div class="hero">
   <div class="hero-eyebrow">Estrategia de Contenido · Junio 3–30, 2026</div>
   <div class="hero-title">El de los <em>Datos</em></div>
-  <div class="hero-sub">Marca Personal B2B · Posicionamiento Digital · IA + Negocio</div>
+  <div class="hero-sub">Datos · Tecnología · IA aplicada · Powered by AJ Business Advisory</div>
   <div class="hero-chips">
     <span class="chip red">8 Reels</span>
-    <span class="chip">4 Carruseles</span>
-    <span class="chip green">5 Stories</span>
+    <span class="chip" style="border-color:rgba(10,102,194,.45);color:#7DB4F0;background:rgba(10,102,194,.10)">4 LinkedIn · AJ</span>
+    <span class="chip">2 Carruseles</span>
+    <span class="chip green">3 Stories</span>
     <span class="chip amber">17 piezas totales</span>
-    <span class="chip">~4 por semana</span>
+    <span class="chip">1 noticia → 3 canales</span>
   </div>
 </div>
 
@@ -399,6 +511,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
       <div class="pills" id="format-pills">
         <button class="pill active" onclick="filterFormat('todos',this)">Todos</button>
         <button class="pill" onclick="filterFormat('reel',this)">🎬 Reels</button>
+        <button class="pill" onclick="filterFormat('linkedin',this)">💼 LinkedIn</button>
         <button class="pill" onclick="filterFormat('carrusel',this)">📖 Carruseles</button>
         <button class="pill" onclick="filterFormat('stories',this)">📱 Stories</button>
       </div>
@@ -408,49 +521,99 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
   <div class="wrap">
     <div class="sec">
 
-      <!-- STATS PENDING -->
+      <!-- INTRO · SOBRE EL CONTENIDO -->
+      <div class="intro-box">
+        <div class="intro-ic">📡</div>
+        <div class="intro-body">
+          <div class="intro-h">Sobre esta cuenta y su contenido</div>
+          <p><strong>El de los Datos</strong> (@eldelosdatos.tech · "Te Tiro El Dato") es el canal de divulgación tecnológica de <strong>AJ Business Advisory</strong>. Explica la noticia tech e IA del momento de forma sencilla y la conecta con lo que la empresa construye de verdad: <strong>Sofia</strong> (recepcionista con IA) y <strong>Mi Voz</strong> (app que devuelve la voz).</p>
+          <p>El contenido se reparte en <strong>3 canales (1 noticia → 3 piezas):</strong> reels en Instagram/TikTok para atraer, posts de LinkedIn como empresa para convertir, y carruseles para profundizar. Esta parrilla es el plan de <strong>junio 2026</strong>: 17 piezas, calibradas para crecer desde 121 seguidores. Navega por las pestañas de arriba para ver estrategia, hooks, historias y métricas.</p>
+        </div>
+      </div>
+
+      <!-- AGENDA · QUÉ TOCA -->
+      <div class="agenda-wrap">
+        <div class="agenda-head">
+          <span class="agenda-emoji">📍</span>
+          <div>
+            <div class="agenda-h">¿Qué toca grabar?</div>
+            <div class="agenda-sub" id="agenda-sub">Tus próximas piezas — toca una para ver el detalle</div>
+          </div>
+        </div>
+        <div class="agenda-rail" id="agenda-rail"></div>
+      </div>
+
+      <!-- CUENTA ASOCIADA -->
+      <div class="account-banner">
+        <div class="account-avatar">TT</div>
+        <div class="account-info">
+          <div class="account-name">Te Tiro El Dato</div>
+          <a class="account-handle" href="https://www.instagram.com/eldelosdatos.tech/" target="_blank" rel="noopener">@eldelosdatos.tech ↗</a>
+          <div class="account-meta">Instagram · TikTok · canal de divulgación tech de AJ Business Advisory</div>
+        </div>
+        <a class="account-cta" href="https://www.instagram.com/eldelosdatos.tech/" target="_blank" rel="noopener">Ver perfil</a>
+      </div>
+
+      <!-- STATS REALES + EDITABLES -->
       <div class="stats-banner">
         <div class="stats-icon">📊</div>
         <div class="stats-text">
-          <h4>Estadísticas de cuenta — pendientes</h4>
-          <p>Cuando compartas las métricas actuales, las integro aquí para calibrar qué formatos priorizar según tu punto de partida real.</p>
+          <h4>Métricas reales — Insights al 9 jun 2026 · editables</h4>
+          <p>Datos tomados de <strong>Instagram → Panel profesional → Estadísticas</strong>. Quedan asociados a @eldelosdatos.tech. Actualízalos cada mes (escribe encima y pulsa Guardar) para recalibrar la estrategia.</p>
         </div>
       </div>
-      <div class="stats-grid">
-        <div class="stat-card pending"><div class="stat-label">Seguidores</div><div class="stat-value pending">Pendiente</div></div>
-        <div class="stat-card pending"><div class="stat-label">Alcance semanal</div><div class="stat-value pending">Pendiente</div></div>
-        <div class="stat-card pending"><div class="stat-label">Tasa interacción</div><div class="stat-value pending">Pendiente</div></div>
-        <div class="stat-card pending"><div class="stat-label">Impresiones / mes</div><div class="stat-value pending">Pendiente</div></div>
-        <div class="stat-card pending"><div class="stat-label">Mejor formato</div><div class="stat-value pending">Pendiente</div></div>
-        <div class="stat-card pending"><div class="stat-label">Leads DM / mes</div><div class="stat-value pending">Pendiente</div></div>
+      <div class="stats-grid" id="stats-grid">
+        <div class="stat-card"><div class="stat-label">Seguidores</div><input class="stat-input" id="stat-seguidores" value="121" inputmode="numeric"/></div>
+        <div class="stat-card"><div class="stat-label">Visualizaciones / 30d</div><input class="stat-input" id="stat-alcance" value="3.077"/></div>
+        <div class="stat-card"><div class="stat-label">Cuentas alcanzadas</div><input class="stat-input" id="stat-interacciones" value="749"/></div>
+        <div class="stat-card"><div class="stat-label">Vistas de no seguidores</div><input class="stat-input" id="stat-visitas" value="61%"/></div>
+        <div class="stat-card"><div class="stat-label">Mejor formato</div><input class="stat-input" id="stat-formato" value="Reels · 91,5%"/></div>
+        <div class="stat-card"><div class="stat-label">Leads DM / mes</div><input class="stat-input" id="stat-leads" placeholder="—"/></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-bottom:14px;align-items:center">
+        <span class="stats-saved" id="stats-saved">✓ Guardado</span>
+        <button class="btn-save-notes" onclick="saveStats()">💾 Guardar métricas</button>
+      </div>
+
+      <!-- LECTURA ESTRATÉGICA -->
+      <div class="insight-box">
+        <div class="insight-head">🔎 Qué nos dicen estos números (y cómo ajustamos)</div>
+        <div class="insight-grid">
+          <div class="insight-item"><span class="insight-tag green">Crecer</span> Con 121 seguidores la meta es <strong>alcance</strong>, no venta dura. Reels de noticia al frente; oferta solo al final del mes.</div>
+          <div class="insight-item"><span class="insight-tag blue">Descubrimiento</span> El <strong>61% de las vistas son de no seguidores</strong> → el contenido se reparte solo. Pide seguir y guardar en cada reel.</div>
+          <div class="insight-item"><span class="insight-tag amber">Formato ganador</span> Reels = <strong>91,5%</strong> de las vistas. Historias solo 8,5% → úsalas para cercanía, no para crecer.</div>
+          <div class="insight-item"><span class="insight-tag green">Buen síntoma</span> 749 cuentas alcanzadas con 121 seguidores = <strong>~6× tu base</strong>. El motor funciona; falta volumen y constancia.</div>
+        </div>
       </div>
 
       <!-- VOLUMEN -->
       <div class="vol-strip">
-        <div class="vol-card"><div class="vol-num reel">8</div><div class="vol-label">Reels</div><div class="vol-sub">~2–3h producción c/u</div></div>
-        <div class="vol-card"><div class="vol-num carrusel">4</div><div class="vol-label">Carruseles</div><div class="vol-sub">~1h diseño c/u</div></div>
-        <div class="vol-card"><div class="vol-num stories">5</div><div class="vol-label">Stories</div><div class="vol-sub">~20 min c/u</div></div>
+        <div class="vol-card"><div class="vol-num reel">8</div><div class="vol-label">Reels · El de los Datos</div><div class="vol-sub">noticia tech, poco editado</div></div>
+        <div class="vol-card"><div class="vol-num linkedin">4</div><div class="vol-label">LinkedIn · AJ</div><div class="vol-sub">post empresa B2B</div></div>
+        <div class="vol-card"><div class="vol-num carrusel">2</div><div class="vol-label">Carruseles</div><div class="vol-sub">~1h diseño c/u</div></div>
+        <div class="vol-card"><div class="vol-num stories">3</div><div class="vol-label">Stories</div><div class="vol-sub">~20 min c/u</div></div>
         <div class="vol-card"><div class="vol-num total">17</div><div class="vol-label">Total mes</div><div class="vol-sub">~4 piezas / semana</div></div>
       </div>
 
       <!-- DISTRIBUCIÓN -->
       <div class="dist-bar">
-        <h4>Distribución estratégica</h4>
+        <h4>Distribución estratégica · calibrada para 121 seguidores</h4>
         <div class="dist-track">
           <div class="dist-seg crecimiento"></div>
           <div class="dist-seg autoridad"></div>
           <div class="dist-seg venta"></div>
         </div>
         <div class="dist-legend">
-          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--blue)"></div>41% Crecimiento · atraer audiencia nueva</div>
-          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--amber-bright)"></div>41% Autoridad · construir credibilidad B2B</div>
-          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--green-bright)"></div>18% Conversión · activar leads</div>
+          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--blue)"></div>50% Crecimiento · atraer no seguidores (prioridad ahora)</div>
+          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--amber-bright)"></div>29% Autoridad · que construimos IA real</div>
+          <div class="dist-leg-item"><div class="dist-dot" style="background:var(--green-bright)"></div>21% Conversión · solo al final, sin presionar</div>
         </div>
       </div>
 
       <!-- LEYENDA -->
       <div class="leyenda">
-        <div class="ley-item"><div class="ley-dot" style="background:var(--reel)"></div>Reel</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--reel)"></div>Reel · El de los Datos</div>
+        <div class="ley-item"><div class="ley-dot" style="background:var(--linkedin)"></div>LinkedIn · AJ</div>
         <div class="ley-item"><div class="ley-dot" style="background:var(--carrusel)"></div>Carrusel</div>
         <div class="ley-item"><div class="ley-dot" style="background:var(--stories)"></div>Stories</div>
         <div style="width:1px;height:14px;background:var(--border);margin:0 4px"></div>
@@ -460,6 +623,13 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
         <div class="ley-item"><div class="ley-dot" style="background:var(--purple)"></div>Conexión</div>
         <div style="width:1px;height:14px;background:var(--border);margin:0 4px"></div>
         <div class="ley-item"><div class="ley-dot" style="background:var(--muted);opacity:.4"></div>Pasado / Descanso</div>
+      </div>
+
+      <!-- PROGRESO / CHECKPOINT -->
+      <div class="progress-strip">
+        <div class="progress-label">Avance del mes</div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill"></div></div>
+        <div class="progress-num"><span id="progress-done">0</span>/17 publicados</div>
       </div>
 
       <!-- ═══ SEMANA 1 ═══ Jun 3–7 -->
@@ -478,15 +648,15 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
           <div class="cal-body">
             <div class="cal-cell past-day"><div class="cal-date">1 <span class="past-tag">pasado</span></div></div>
             <div class="cal-cell past-day"><div class="cal-date">2 <span class="past-tag">pasado</span></div></div>
-            <div class="cal-cell today-cell pub-day"><div class="cal-date">3 <span class="today-tag">hoy</span></div>
+            <div class="cal-cell past-day pub-day"><div class="cal-date">3 <span class="past-tag">pasado</span></div>
               <div class="cal-badge stories" onclick="scrollToCard('s1')"><span class="cal-icon">📱</span><div><div class="cal-text">Lo que construyo</div><div class="cal-obj conexion">Conexión</div></div></div>
             </div>
-            <div class="cal-cell rest-day"><div class="cal-date">4</div><div class="rest-label">descanso</div></div>
-            <div class="cal-cell pub-day"><div class="cal-date">5</div>
+            <div class="cal-cell past-day rest-day"><div class="cal-date">4</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell past-day pub-day"><div class="cal-date">5</div>
               <div class="cal-badge reel" onclick="scrollToCard('r1')"><span class="cal-icon">🎬</span><div><div class="cal-text">Posicionamiento vs. contenido</div><div class="cal-obj alcance">Alcance</div></div></div>
             </div>
-            <div class="cal-cell rest-day"><div class="cal-date">6</div><div class="rest-label">descanso</div></div>
-            <div class="cal-cell pub-day"><div class="cal-date">7</div>
+            <div class="cal-cell past-day rest-day"><div class="cal-date">6</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell past-day pub-day"><div class="cal-date">7</div>
               <div class="cal-badge stories" onclick="scrollToCard('s2')"><span class="cal-icon">📱</span><div><div class="cal-text">Q&amp;A abierta</div><div class="cal-obj conexion">Conexión</div></div></div>
             </div>
           </div>
@@ -508,20 +678,20 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
             <div class="cal-head-cell pub">Dom</div>
           </div>
           <div class="cal-body">
-            <div class="cal-cell pub-day"><div class="cal-date">8</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r2')"><span class="cal-icon">🎬</span><div><div class="cal-text">IA ayuda a vender</div><div class="cal-obj alcance">Alcance</div></div></div>
+            <div class="cal-cell past-day pub-day"><div class="cal-date">8</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r2')"><span class="cal-icon">🎬</span><div><div class="cal-text">Regreso al país · AJ + Mi Voz</div><div class="cal-obj conexion">Conexión</div></div></div>
             </div>
-            <div class="cal-cell rest-day"><div class="cal-date">9</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell today-cell rest-day"><div class="cal-date">9 <span class="today-tag">hoy</span></div><div class="rest-label">descanso · responder DMs</div></div>
             <div class="cal-cell pub-day"><div class="cal-date">10</div>
-              <div class="cal-badge carrusel" onclick="scrollToCard('c1')"><span class="cal-icon">📖</span><div><div class="cal-text">5 señales improvisada</div><div class="cal-obj autoridad">Autoridad</div></div></div>
+              <div class="cal-badge reel" onclick="scrollToCard('r3')"><span class="cal-icon">🎬</span><div><div class="cal-text">Apple WWDC26 · Siri AI</div><div class="cal-obj alcance">Alcance</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">11</div><div class="rest-label">descanso</div></div>
             <div class="cal-cell pub-day"><div class="cal-date">12</div>
-              <div class="cal-badge stories" onclick="scrollToCard('s3')"><span class="cal-icon">📱</span><div><div class="cal-text">Behind the scenes</div><div class="cal-obj conexion">Conexión</div></div></div>
+              <div class="cal-badge linkedin" onclick="scrollToCard('li1')"><span class="cal-icon">💼</span><div><div class="cal-text">Xcode abre a Claude/Gemini/GPT</div><div class="cal-obj autoridad">Autoridad</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">13</div><div class="rest-label">descanso</div></div>
             <div class="cal-cell pub-day"><div class="cal-date">14</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r3')"><span class="cal-icon">🎬</span><div><div class="cal-text">Dato IA al empresario</div><div class="cal-obj alcance">Alcance</div></div></div>
+              <div class="cal-badge reel" onclick="scrollToCard('r4')"><span class="cal-icon">🎬</span><div><div class="cal-text">Anthropic lanzó Claude Fable</div><div class="cal-obj alcance">Alcance</div></div></div>
             </div>
           </div>
         </div>
@@ -530,7 +700,7 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 
       <!-- ═══ SEMANA 3 ═══ Jun 15–21 -->
       <div class="week-block" data-week="3">
-        <div class="week-label">📅 Semana 3 · Jun 15–21 <span class="vol-tag">5 piezas</span></div>
+        <div class="week-label">📅 Semana 3 · Jun 15–21 <span class="vol-tag">4 piezas</span></div>
         <div class="cal-grid">
           <div class="cal-head">
             <div class="cal-head-cell pub">Lun</div>
@@ -543,18 +713,18 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
           </div>
           <div class="cal-body">
             <div class="cal-cell pub-day"><div class="cal-date">15</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r4')"><span class="cal-icon">🎬</span><div><div class="cal-text">3 errores empresa pequeña</div><div class="cal-obj alcance">Alcance</div></div></div>
+              <div class="cal-badge reel" onclick="scrollToCard('r5')"><span class="cal-icon">🎬</span><div><div class="cal-text">Neuralink da voz + Mi Voz</div><div class="cal-obj conexion">Conexión</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">16</div><div class="rest-label">descanso</div></div>
             <div class="cal-cell pub-day"><div class="cal-date">17</div>
-              <div class="cal-badge carrusel" onclick="scrollToCard('c2')"><span class="cal-icon">📖</span><div><div class="cal-text">Caso Dra. Natalia</div><div class="cal-obj autoridad">Autoridad</div></div></div>
+              <div class="cal-badge carrusel" onclick="scrollToCard('c1')"><span class="cal-icon">📖</span><div><div class="cal-text">3 formas en que la IA ahorra plata</div><div class="cal-obj autoridad">Autoridad</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">18</div><div class="rest-label">descanso</div></div>
             <div class="cal-cell pub-day"><div class="cal-date">19</div>
-              <div class="cal-badge stories" onclick="scrollToCard('s4')"><span class="cal-icon">📱</span><div><div class="cal-text">Encuesta — tu mayor dolor</div><div class="cal-obj investigacion">Investigación</div></div></div>
+              <div class="cal-badge linkedin" onclick="scrollToCard('li2')"><span class="cal-icon">💼</span><div><div class="cal-text">Mi Voz · del problema a la calle</div><div class="cal-obj autoridad">Autoridad</div></div></div>
             </div>
             <div class="cal-cell pub-day"><div class="cal-date">20</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r5')"><span class="cal-icon">🎬</span><div><div class="cal-text">Responder tarde = perder plata</div><div class="cal-obj venta">Venta</div></div></div>
+              <div class="cal-badge stories" onclick="scrollToCard('s3')"><span class="cal-icon">📱</span><div><div class="cal-text">Encuesta — qué tema explico</div><div class="cal-obj investigacion">Investigación</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">21</div><div class="rest-label">descanso</div></div>
           </div>
@@ -571,22 +741,24 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
             <div class="cal-head-cell">Mar</div>
             <div class="cal-head-cell pub">Mié</div>
             <div class="cal-head-cell">Jue</div>
-            <div class="cal-head-cell">Vie</div>
+            <div class="cal-head-cell pub">Vie</div>
             <div class="cal-head-cell pub">Sáb</div>
             <div class="cal-head-cell">Dom</div>
           </div>
           <div class="cal-body">
             <div class="cal-cell pub-day"><div class="cal-date">22</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r6')"><span class="cal-icon">🎬</span><div><div class="cal-text">Lo que aprendí emprendiendo</div><div class="cal-obj conexion">Conexión</div></div></div>
+              <div class="cal-badge reel" onclick="scrollToCard('r6')"><span class="cal-icon">🎬</span><div><div class="cal-text">Sofia: responder tarde = perder plata</div><div class="cal-obj venta">Venta</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">23</div><div class="rest-label">descanso</div></div>
             <div class="cal-cell pub-day"><div class="cal-date">24</div>
-              <div class="cal-badge carrusel" onclick="scrollToCard('c3')"><span class="cal-icon">📖</span><div><div class="cal-text">Mini auditoría en vivo</div><div class="cal-obj autoridad">Autoridad</div></div></div>
+              <div class="cal-badge linkedin" onclick="scrollToCard('li3')"><span class="cal-icon">💼</span><div><div class="cal-text">78% compra a quien responde primero</div><div class="cal-obj venta">Venta</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">25</div><div class="rest-label">descanso</div></div>
-            <div class="cal-cell rest-day"><div class="cal-date">26</div><div class="rest-label">descanso</div></div>
+            <div class="cal-cell pub-day"><div class="cal-date">26</div>
+              <div class="cal-badge reel" onclick="scrollToCard('r7')"><span class="cal-icon">🎬</span><div><div class="cal-text">Webs profesionales con IA</div><div class="cal-obj alcance">Alcance</div></div></div>
+            </div>
             <div class="cal-cell pub-day"><div class="cal-date">27</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r7')"><span class="cal-icon">🎬</span><div><div class="cal-text">Contenido + estrategia + sistema</div><div class="cal-obj venta">Venta</div></div></div>
+              <div class="cal-badge carrusel" onclick="scrollToCard('c2')"><span class="cal-icon">📖</span><div><div class="cal-text">Caso real · Dra. Natalia</div><div class="cal-obj autoridad">Autoridad</div></div></div>
             </div>
             <div class="cal-cell rest-day"><div class="cal-date">28</div><div class="rest-label">descanso</div></div>
           </div>
@@ -609,10 +781,10 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
           </div>
           <div class="cal-body">
             <div class="cal-cell pub-day"><div class="cal-date">29</div>
-              <div class="cal-badge stories" onclick="scrollToCard('s5')"><span class="cal-icon">📱</span><div><div class="cal-text">Cierre del mes + teaser</div><div class="cal-obj conexion">Conexión</div></div></div>
+              <div class="cal-badge reel" onclick="scrollToCard('r8')"><span class="cal-icon">🎬</span><div><div class="cal-text">A quién ayuda AJ y qué hace</div><div class="cal-obj venta">Venta</div></div></div>
             </div>
             <div class="cal-cell pub-day"><div class="cal-date">30</div>
-              <div class="cal-badge reel" onclick="scrollToCard('r8')"><span class="cal-icon">🎬</span><div><div class="cal-text">A quién ayudo y qué hago</div><div class="cal-obj venta">Venta</div></div></div>
+              <div class="cal-badge linkedin" onclick="scrollToCard('li4')"><span class="cal-icon">💼</span><div><div class="cal-text">Cierre de mes · AJ Business Advisory</div><div class="cal-obj venta">Venta</div></div></div>
             </div>
             <div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div><div class="cal-cell empty"></div>
           </div>
@@ -631,10 +803,10 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
     <div class="estrategia-box">
       <h4>Por qué estos hooks funcionan para El de los Datos</h4>
       <ul>
-        <li>Hablan directamente al dolor del empresario latinoamericano: publicar sin crecer ni convertir.</li>
-        <li>Rompen creencias comunes (contrarian) o nombran un miedo concreto — ambos detienen el scroll.</li>
-        <li>Siempre hay un "dato" implícito que refuerza la marca: estadística, observación, porcentaje.</li>
-        <li>Suenan a persona real. Eso genera confianza en el cliente B2B de Latam antes de cualquier DM.</li>
+        <li><strong>Regla fija de marca:</strong> cada reel ABRE con el hook que termina en "…Quédate, que te tiro el dato." y CIERRA con "Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."</li>
+        <li>Parten de la noticia tech del momento (Apple, Anthropic, Neuralink) → autoridad por criterio, no por opinión.</li>
+        <li>Conectan la noticia mundial con lo que la empresa hace de verdad: Sofia (IA que vende) y Mi Voz (IA que da voz).</li>
+        <li>Suenan a persona real explicando simple. Eso construye comunidad y, en LinkedIn, credibilidad B2B.</li>
       </ul>
     </div>
     <div class="sec-ey" style="margin-bottom:12px">Los 10 mejores hooks</div>
@@ -644,35 +816,187 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
   </div></div>
 </div>
 
+<!-- ============================================================ HISTORIAS ============================================================ -->
+<div id="sec-historias" class="page-section">
+  <div class="wrap"><div class="sec">
+    <div class="sec-header"><div class="sec-ey">Detrás de cámara &amp; cercanía</div><div class="sec-title">Sistema de Historias</div></div>
+
+    <div class="estrategia-box">
+      <h4>Para qué sirven tus historias (según tus datos)</h4>
+      <ul>
+        <li>Solo son el <strong>8,5% de tus vistas</strong> y casi todas de seguidores → <strong>no sirven para crecer, sí para calentar a tus 121</strong>.</li>
+        <li>Su trabajo: convertir seguidores fríos en comunidad activa que comenta, guarda y comparte tus reels — y eso sí te hace crecer.</li>
+        <li>Mostrar <strong>cómo trabajamos</strong> (Sofia, Mi Voz, grabando reels) construye la confianza que hace que después te crean cuando vendes.</li>
+        <li><strong>Las historias llevan a los reels, no al revés.</strong> Úsalas para empujar tráfico al video del día.</li>
+      </ul>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:12px">Ritmo recomendado · 3–4 tandas por semana</div>
+    <div class="week-structure">
+      <div class="ws-card"><div class="ws-day">Días con reel</div><div class="ws-format stories">📱 Empujar el video</div><div class="ws-desc">"¿Viste el reel de hoy?" + sticker de link. Recompartir el reel a las 2–3h con encuesta. Dirige tu base al contenido que crece.</div></div>
+      <div class="ws-card"><div class="ws-day">Martes / Jueves</div><div class="ws-format stories">📱 Detrás del trabajo</div><div class="ws-desc">Cómo construimos Sofia / Mi Voz, grabando, editando. El eje más valioso para tu marca de "empresa que construye".</div></div>
+      <div class="ws-card"><div class="ws-day">Cualquier día</div><div class="ws-format stories">📱 Dato rápido</div><div class="ws-desc">Una micro-noticia o estadística tech en 1 slide + encuesta "¿lo sabías?". Mantiene vivo el tono del canal.</div></div>
+      <div class="ws-card"><div class="ws-day">Fin de semana</div><div class="ws-format stories">📱 Cercanía</div><div class="ws-desc">Caja de preguntas, responder un DM en pantalla, mostrar un comentario lindo o un resultado de cliente.</div></div>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:12px">Los 4 ejes — con ideas concretas para grabar hoy</div>
+    <div class="hooks-grid">
+      <div class="hook-card">
+        <div class="hook-num">01</div>
+        <div class="hook-text">🛠️ Detrás del trabajo · cómo lo hacemos</div>
+        <div class="hook-why" style="margin-top:8px">
+          • Grabando un reel: el set, el guion en pantalla, tomas falladas (los bloopers generan confianza).<br>
+          • Sofia en acción: pantalla de la IA contestando un chat o una llamada de demo real.<br>
+          • Mi Voz: alguien usando la app, el botón que habla por la persona.<br>
+          • "Un día en AJ Business Advisory": laptop, pizarra, café, reunión rápida.<br>
+          • Editando en CapCut: timelapse de cómo queda el reel.
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-num">02</div>
+        <div class="hook-text">🧠 Dato rápido · micro-noticia</div>
+        <div class="hook-why" style="margin-top:8px">
+          • El dato del día en texto (una estadística tech) + encuesta "¿lo sabías?".<br>
+          • Captura de una noticia + tu opinión en 10 segundos cara a cámara.<br>
+          • Reacción en vivo a un lanzamiento mientras pasa (Apple, OpenAI, etc.).<br>
+          • "3 apps con IA que uso esta semana" — una por slide.
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-num">03</div>
+        <div class="hook-text">🤝 Cercanía · comunidad</div>
+        <div class="hook-why" style="margin-top:8px">
+          • Caja de preguntas: "pregúntame lo que quieras de IA o tecnología".<br>
+          • Encuesta sobre el próximo tema del canal (deja que ellos elijan).<br>
+          • Responder un DM en pantalla (con permiso) — humaniza la marca.<br>
+          • Compartir un comentario lindo o el resultado de un cliente (Dra. Natalia, Mi Voz).
+        </div>
+      </div>
+      <div class="hook-card">
+        <div class="hook-num">04</div>
+        <div class="hook-text">🔁 Empujar &amp; dirigir tráfico</div>
+        <div class="hook-why" style="margin-top:8px">
+          • "¿Viste el reel de hoy?" + sticker de publicación o link.<br>
+          • Recompartir el reel a las pocas horas con un sticker de pregunta.<br>
+          • Cuenta regresiva para un video o lanzamiento importante.<br>
+          • Recordar la palabra clave: "comenta MI VOZ y te mando el link".
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:12px;margin-top:8px">Plantilla de tanda — 3 slides</div>
+    <div class="roadmap">
+      <div class="rm-step"><div class="rm-week">Slide 1 · Gancho</div><div class="rm-title">Contexto</div><div class="rm-desc">Cara a cámara o texto: "Les muestro cómo grabamos esto" / "El dato de hoy es…". Detén el avance.</div></div>
+      <div class="rm-step"><div class="rm-week">Slide 2 · Contenido</div><div class="rm-title">El trabajo o el dato</div><div class="rm-desc">Lo que pasa detrás: la pantalla de Sofia, el set, la estadística. Crudo, real, sin sobreproducir.</div></div>
+      <div class="rm-step"><div class="rm-week">Slide 3 · Interacción</div><div class="rm-title">Sticker activo</div><div class="rm-desc">SIEMPRE una encuesta, pregunta o quiz. Le dice al algoritmo que tu base está activa = más alcance.</div></div>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:12px;margin-top:8px">Guiones listos para grabar — copia y graba</div>
+    <div class="guion-grid">
+
+      <!-- GUION 1 · DÍA DE TRABAJO -->
+      <div class="guion-card trabajo">
+        <div class="guion-head"><div class="guion-title">🛠️ Un día de trabajo en AJ</div><div class="guion-dur">4 slides · ~15 min</div></div>
+        <div class="guion-sub">Estilo detrás de cámara. Muestra que somos una empresa que construye, no que opina. Ideal martes o jueves.</div>
+        <div class="guion-slide"><div class="gs-num">1</div><div class="gs-body"><div class="gs-type">Cara a cámara · 5 seg</div><div class="gs-screen">"Día normal en AJ 👇"</div><div class="gs-say">"Les muestro cómo se ve un día construyendo IA por dentro."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">2</div><div class="gs-body"><div class="gs-type">Pantalla / escritorio</div><div class="gs-screen">Graba tu laptop con Sofia o el código corriendo</div><div class="gs-say">"Aquí estamos afinando a Sofia para que conteste sola."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">3</div><div class="gs-body"><div class="gs-type">Detalle real</div><div class="gs-screen">Café, pizarra, una nota, el setup de grabación</div><div class="gs-say">"Sin oficina elegante. Esto es emprender de verdad."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">4</div><div class="gs-body"><div class="gs-type">Texto + sticker</div><div class="gs-screen">"¿Te gustaría ver más detrás de cámara?"</div><span class="gs-sticker">📊 Encuesta: Sí / Muéstrame todo</span></div></div>
+      </div>
+
+      <!-- GUION 2 · PROMO CONTENIDO NUEVO -->
+      <div class="guion-card promo">
+        <div class="guion-head"><div class="guion-title">🔁 Promo de reel nuevo</div><div class="guion-dur">3 slides · ~8 min</div></div>
+        <div class="guion-sub">Súbela el mismo día que publicas un reel. Lleva a tu base (121) al video → más vistas en la 1ª hora = más alcance.</div>
+        <div class="guion-slide"><div class="gs-num">1</div><div class="gs-body"><div class="gs-type">Cara a cámara · 5 seg</div><div class="gs-screen">"Nuevo video 🔥"</div><div class="gs-say">"Acabo de subir algo que te va a servir. Te cuento en 1 frase…"</div></div></div>
+        <div class="guion-slide"><div class="gs-num">2</div><div class="gs-body"><div class="gs-type">Teaser del tema</div><div class="gs-screen">Pega un clip de 3 seg del reel + "El dato que nadie te dijo"</div><div class="gs-say">"Te spoileo: [el gancho del reel]. El resto está en el video."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">3</div><div class="gs-body"><div class="gs-type">Sticker de link</div><div class="gs-screen">"Míralo aquí 👇"</div><span class="gs-sticker">🔗 Sticker de publicación → tu reel</span></div></div>
+      </div>
+
+      <!-- GUION 3 · CONSTRUYENDO PRODUCTO -->
+      <div class="guion-card producto">
+        <div class="guion-head"><div class="guion-title">📞 Construyendo Sofia / Mi Voz</div><div class="guion-dur">4 slides · ~15 min</div></div>
+        <div class="guion-sub">El activo más fuerte de tu marca: mostrar el producto real funcionando. Genera confianza y leads.</div>
+        <div class="guion-slide"><div class="gs-num">1</div><div class="gs-body"><div class="gs-type">Cara a cámara</div><div class="gs-screen">"Esto contesta por ti 24/7"</div><div class="gs-say">"¿Sabías que ya tenemos una IA que atiende clientes sola? Mira."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">2</div><div class="gs-body"><div class="gs-type">Demo en pantalla</div><div class="gs-screen">Graba a Sofia respondiendo un chat / Mi Voz hablando</div><div class="gs-say">"Le escribo… y responde sola, al instante."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">3</div><div class="gs-body"><div class="gs-type">El para qué</div><div class="gs-screen">"Mientras duermes, no pierdes ni un cliente"</div><div class="gs-say">"Esto es lo que montamos para empresas en AJ."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">4</div><div class="gs-body"><div class="gs-type">Sticker de acción</div><div class="gs-screen">"¿La quieres para tu negocio?"</div><span class="gs-sticker">💬 Caja de preguntas / "escribe SOFIA"</span></div></div>
+      </div>
+
+      <!-- GUION 4 · DATO RÁPIDO -->
+      <div class="guion-card dato">
+        <div class="guion-head"><div class="guion-title">🧠 Dato rápido del día</div><div class="guion-dur">3 slides · ~6 min</div></div>
+        <div class="guion-sub">El más fácil y frecuente. Mantiene vivo el tono "te tiro el dato" sin grabar un reel.</div>
+        <div class="guion-slide"><div class="gs-num">1</div><div class="gs-body"><div class="gs-type">Texto sobre fondo</div><div class="gs-screen">"El dato de hoy 👇"</div><div class="gs-say">Una estadística o noticia tech corta (ej: "La IA ya escribe el 30% del código nuevo").</div></div></div>
+        <div class="guion-slide"><div class="gs-num">2</div><div class="gs-body"><div class="gs-type">Tu lectura · 10 seg</div><div class="gs-screen">Cara a cámara: por qué importa</div><div class="gs-say">"Esto significa que… [traducción simple para un negocio]."</div></div></div>
+        <div class="guion-slide"><div class="gs-num">3</div><div class="gs-body"><div class="gs-type">Sticker</div><div class="gs-screen">"¿Lo sabías?"</div><span class="gs-sticker">📊 Quiz / Encuesta: Sí lo sabía / No tenía idea</span></div></div>
+      </div>
+
+    </div>
+
+    <div class="estrategia-box">
+      <h4>Cómo armar tu propio guion en 3 pasos</h4>
+      <ul>
+        <li><strong>1. Elige el objetivo de la tanda:</strong> calentar (cercanía), mostrar trabajo, o empujar un reel. Uno solo por tanda.</li>
+        <li><strong>2. Sigue la plantilla de 3 slides:</strong> Gancho → Contenido (trabajo/dato) → Sticker interactivo. Siempre en ese orden.</li>
+        <li><strong>3. Escribe 1 frase por slide:</strong> qué va en pantalla + qué dices. Si necesitas más de una frase, es un reel, no una historia.</li>
+      </ul>
+    </div>
+
+    <div class="estrategia-box">
+      <h4>Reglas de oro de historias</h4>
+      <ul>
+        <li><strong>Siempre 1 sticker interactivo por tanda</strong> (encuesta, pregunta, quiz, deslizar) — es la señal #1 de comunidad activa.</li>
+        <li>Cara a cámara al menos una vez por tanda. Tu cara construye marca, no el logo.</li>
+        <li>Sin edición perfecta — lo crudo y honesto funciona mejor aquí que en los reels.</li>
+        <li>Máximo 20 minutos de producción por tanda. Si te toma más, es un reel, no una historia.</li>
+        <li>Guarda las mejores como <strong>Destacadas</strong>: Noticias · Mi Voz · Sofia · AJ · Casos (ya están en tu perfil).</li>
+      </ul>
+    </div>
+
+  </div></div>
+</div>
+
 <!-- ============================================================ ESTRATEGIA ============================================================ -->
 <div id="sec-estrategia" class="page-section">
   <div class="wrap"><div class="sec">
     <div class="sec-header"><div class="sec-ey">Plan de Contenido</div><div class="sec-title">Estructura Semanal y Roadmap</div></div>
 
+    <div class="estrategia-box">
+      <h4>El motor: 1 noticia → 3 canales (unificación)</h4>
+      <ul>
+        <li><strong>El de los Datos (IG + TikTok):</strong> la cara y la voz. Reels poco editados de la noticia tech explicada simple. Atrae audiencia. Antes teníamos cuentas separadas — ahora todo entra por aquí.</li>
+        <li><strong>LinkedIn · AJ Business Advisory:</strong> la empresa. El mismo tema, traducido a decisión de negocio. Convierte la autoridad en credibilidad comercial B2B.</li>
+        <li><strong>Carrusel/Post IG:</strong> profundiza y genera guardados. Reutilizable como documento en LinkedIn.</li>
+        <li>Cada reel de noticia genera, casi sin trabajo extra, un post de LinkedIn. El de los Datos trae la gente; LinkedIn cierra empresas.</li>
+      </ul>
+    </div>
+
     <div class="week-structure">
-      <div class="ws-card"><div class="ws-day">Lunes</div><div class="ws-format reel">🎬 Reel · Alcance</div><div class="ws-desc">Pilar Datos+IA o Errores. Grabar el fin de semana anterior. Publicar 6–9am para capturar el lunes activo.</div></div>
-      <div class="ws-card"><div class="ws-day">Miércoles</div><div class="ws-format carrusel">📖 Carrusel · Autoridad</div><div class="ws-desc">Caso real o análisis. Diseñar el martes. 4–7 slides. El miércoles la audiencia tiene más tiempo para leer.</div></div>
-      <div class="ws-card"><div class="ws-day">Viernes o Sábado</div><div class="ws-format reel">🎬 Reel · Conversión</div><div class="ws-desc">Storytelling o CTA. Audiencia más relajada = más dispuesta a escribir DMs o guardar.</div></div>
-      <div class="ws-card"><div class="ws-day">Domingo (opcional)</div><div class="ws-format stories">📱 Stories · Cercanía</div><div class="ws-desc">Q&A, encuesta, opinión rápida. Sin edición. Cara a cámara. Máximo 20 minutos de producción.</div></div>
-      <div class="ws-card"><div class="ws-day">Martes, Jueves</div><div class="ws-format descanso">⏸ Descanso de producción</div><div class="ws-desc">Responder DMs y comentarios. Planificar el siguiente contenido. Grabar si el Reel lo requiere.</div></div>
+      <div class="ws-card"><div class="ws-day">Lunes</div><div class="ws-format reel">🎬 Reel · Noticia/Producto</div><div class="ws-desc">La noticia tech fuerte de la semana o un producto propio (Mi Voz, Sofia). Formato poco editado, cara a cámara + clips. Publicar 6–9am.</div></div>
+      <div class="ws-card"><div class="ws-day">Miércoles</div><div class="ws-format reel">🎬 Reel / 📖 Carrusel</div><div class="ws-desc">Segunda noticia o carrusel de IA aplicada. Alterna formato según la semana. Día de mayor consumo.</div></div>
+      <div class="ws-card"><div class="ws-day">Viernes</div><div class="ws-format linkedin">💼 LinkedIn · AJ</div><div class="ws-desc">Versión B2B del tema de la semana en la página de empresa. Texto + imagen o documento. Convierte autoridad en leads.</div></div>
+      <div class="ws-card"><div class="ws-day">Sáb / Dom</div><div class="ws-format stories">📱 Stories · Cercanía</div><div class="ws-desc">Encuesta o pregunta sobre el próximo dato. Sin edición. Máximo 20 min. Detecta intereses y leads.</div></div>
+      <div class="ws-card"><div class="ws-day">Martes, Jueves</div><div class="ws-format descanso">⏸ Descanso de producción</div><div class="ws-desc">Responder DMs y comentarios (ahí está la venta). Grabar el reel siguiente. Definir la noticia comodín del viernes.</div></div>
     </div>
 
     <div class="sec-ey" style="margin-bottom:12px">Roadmap del mes — 4 fases</div>
     <div class="roadmap">
-      <div class="rm-step"><div class="rm-week">Sem 1 · Jun 3–7</div><div class="rm-title">Arrancar el nuevo tono</div><div class="rm-desc">3 piezas. Primer Reel que declara la evolución: ya no solo datos, también implementas. Stories de presentación.</div></div>
-      <div class="rm-step"><div class="rm-week">Sem 2 · Jun 8–14</div><div class="rm-title">Mostrar criterio</div><div class="rm-desc">4 piezas. Primer carrusel de errores. Primer Reel de IA práctica. Primera venta directa al final.</div></div>
-      <div class="rm-step"><div class="rm-week">Sem 3 · Jun 15–21</div><div class="rm-title">Probar el caso real</div><div class="rm-desc">5 piezas. El carrusel de Dra. Natalia es el contenido de mayor conversión del mes. Encuesta para detectar leads.</div></div>
-      <div class="rm-step"><div class="rm-week">Sem 4–5 · Jun 22–30</div><div class="rm-title">Cerrar con conversión</div><div class="rm-desc">6 piezas. Mini auditoría en vivo. Reel de oferta clara. Cierre del mes con quién eres y qué vendes.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 2 · Jun 8–14</div><div class="rm-title">Relanzar + autoridad tech</div><div class="rm-desc">Reel ancla del regreso (AJ + Mi Voz). WWDC26 y Claude Fable establecen el nuevo formato noticia. Primer LinkedIn de empresa.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 3 · Jun 15–21</div><div class="rm-title">Mostrar que construimos</div><div class="rm-desc">Neuralink + Mi Voz: noticia mundial conectada con producto propio. Carrusel de IA aplicada. LinkedIn de fundador.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 4 · Jun 22–28</div><div class="rm-title">Convertir con Sofia</div><div class="rm-desc">Reel + LinkedIn de "responder primero" → Sofia. Noticia comodín. Caso real Dra. Natalia como prueba de ejecución.</div></div>
+      <div class="rm-step"><div class="rm-week">Sem 5 · Jun 29–30</div><div class="rm-title">Cierre y oferta</div><div class="rm-desc">Reel de qué hace AJ y para quién. Post de cierre en LinkedIn invitando a la conversación comercial de julio.</div></div>
     </div>
 
     <div class="estrategia-box">
-      <h4>Regla de oro — 3 antes de vender</h4>
+      <h4>Regla de oro — datos primero, empresa después</h4>
       <ul>
-        <li>Nunca publicar 2 contenidos de conversión seguidos — siempre intercalar con educación o conexión.</li>
-        <li>Los Reels del lunes son para crecer. Los del viernes/sábado son para convertir. No mezclarlos.</li>
-        <li>El carrusel del caso real (Jun 17) es el pivote del mes — si funciona, determina el enfoque de julio.</li>
-        <li>Las Stories del domingo no son obligación: si no tienes algo real que mostrar, no publiques.</li>
-        <li>Días de descanso = responder cada DM y comentario. Ahí está la venta, no en el próximo post.</li>
+        <li><strong>Hook + cierre fijos en TODO reel</strong> — abre con "…te tiro el dato", cierra invitando a la comunidad. Sin excepción.</li>
+        <li>Nunca 2 piezas de venta seguidas en El de los Datos — la noticia y el producto siempre van antes que la oferta.</li>
+        <li>Cada tema fuerte se repurpose a LinkedIn con voz de empresa. No copiar el guion del reel: traducirlo a negocio.</li>
+        <li>Reels de Mi Voz y Sofia llevan palabra clave ("MI VOZ", "SOFIA") → activan DM/ManyChat. Ahí se capturan los leads.</li>
+        <li>El reel comodín del viernes (día 26) se define 2–3 días antes con la noticia más fuerte de esa semana.</li>
+        <li>Días de descanso = responder cada DM y comentario. La venta está en la conversación, no en el próximo post.</li>
       </ul>
     </div>
 
@@ -693,44 +1017,44 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
     <div class="bio-box">
       <h4>📱 Versión optimizada para Instagram</h4>
       <div class="bio-text">
-        Posiciono marcas con <em>datos + estrategia</em><br>
-        📊 IA aplicada a negocios reales<br>
-        🏢 Para empresas que quieren crecer en serio<br>
-        ↓ Diagnóstico gratis — escríbeme <em>"marca"</em>
+        Tecnología e IA explicadas <em>sencillo</em><br>
+        🤖 Construimos IA real: <em>Sofia</em> y <em>Mi Voz</em><br>
+        🏢 Powered by AJ Business Advisory<br>
+        ↓ ¿IA para tu negocio? Escríbenos <em>"AJ"</em>
       </div>
     </div>
 
     <div class="sec-ey" style="margin-bottom:10px">Highlights recomendadas</div>
     <div class="highlight-grid">
-      <div class="hl-card"><div class="hl-icon">📁</div><div class="hl-name">Casos</div><div class="hl-desc">Proceso con clientes reales</div></div>
-      <div class="hl-card"><div class="hl-icon">💼</div><div class="hl-name">Servicios</div><div class="hl-desc">Qué hago y cómo empezar</div></div>
-      <div class="hl-card"><div class="hl-icon">🤖</div><div class="hl-name">IA Práctica</div><div class="hl-desc">Reels de IA para negocios</div></div>
-      <div class="hl-card"><div class="hl-icon">🔍</div><div class="hl-name">Auditorías</div><div class="hl-desc">Análisis de marcas en vivo</div></div>
-      <div class="hl-card"><div class="hl-icon">👤</div><div class="hl-name">Yo</div><div class="hl-desc">Quién soy y qué construyo</div></div>
+      <div class="hl-card"><div class="hl-icon">📰</div><div class="hl-name">Noticias</div><div class="hl-desc">Lo tech explicado simple</div></div>
+      <div class="hl-card"><div class="hl-icon">🗣️</div><div class="hl-name">Mi Voz</div><div class="hl-desc">La app que da voz</div></div>
+      <div class="hl-card"><div class="hl-icon">📞</div><div class="hl-name">Sofia</div><div class="hl-desc">Recepcionista con IA</div></div>
+      <div class="hl-card"><div class="hl-icon">💼</div><div class="hl-name">AJ</div><div class="hl-desc">Qué hace la empresa</div></div>
+      <div class="hl-card"><div class="hl-icon">📁</div><div class="hl-name">Casos</div><div class="hl-desc">Clientes reales</div></div>
     </div>
 
     <div class="perfil-grid">
       <div class="perfil-card">
-        <h3>✅ Hacer para verse como autoridad B2B</h3>
+        <h3>✅ Hacer — datos + tecnología + empresa</h3>
         <ul>
-          <li>Cara visible desde el thumbnail de cada Reel</li>
-          <li>Paleta de colores fija en todos los carruseles</li>
-          <li>Slide 1 de carrusel: título + contexto + tu nombre</li>
-          <li>Responder TODOS los comentarios en las primeras 2h</li>
-          <li>Stories mínimo 2 veces por semana — cercanía activa</li>
-          <li>Publicar resultados aunque sean pequeños — prueba real</li>
-          <li>Nombrar casos reales en captions cuando puedas</li>
+          <li>Abrir cada reel con el hook fijo ("…te tiro el dato") y cerrar invitando a la comunidad</li>
+          <li>Partir de la noticia tech real del momento — autoridad por criterio</li>
+          <li>Conectar siempre con lo que construimos: Sofia, Mi Voz, AJ</li>
+          <li>Repurposear el tema fuerte a LinkedIn con voz de empresa</li>
+          <li>Cara visible y formato poco editado — autenticidad sobre producción</li>
+          <li>Responder TODOS los comentarios y DMs en las primeras 2h</li>
+          <li>Palabra clave en reels de producto ("MI VOZ", "SOFIA", "AJ")</li>
         </ul>
       </div>
       <div class="perfil-card">
-        <h3>❌ Evitar para no quedarse como cuenta de curiosidades</h3>
+        <h3>❌ Evitar — no volver a ser cuenta genérica</h3>
         <ul>
-          <li>Publicar datos sin conectarlos con negocio</li>
-          <li>Posts genéricos que cualquiera podría firmar</li>
-          <li>Logo como foto de perfil — siempre foto real tuya</li>
-          <li>Más de 2 contenidos sin CTA en la semana</li>
-          <li>Hablar de IA en abstracto — siempre aplicado a empresa</li>
-          <li>Cambiar paleta visual entre semanas</li>
+          <li>Videos sobre-editados o "ficticios" sin sustancia real</li>
+          <li>Hablar de IA en abstracto — siempre noticia o aplicación concreta</li>
+          <li>Contenido genérico de "marketing/posicionamiento" que cualquiera firma</li>
+          <li>Mantener cuentas separadas — todo entra por El de los Datos + LinkedIn AJ</li>
+          <li>Copiar el guion del reel tal cual en LinkedIn (traducir a negocio)</li>
+          <li>Logo como foto de perfil — siempre cara real</li>
           <li>Publicar sin responder DMs del día anterior</li>
         </ul>
       </div>
@@ -747,32 +1071,56 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
     <div class="add-hero">
       <div class="add-hero-icon">✏️</div>
       <div>
-        <h3>Tu espacio de creación libre</h3>
-        <p>Agrega piezas nuevas que no estaban en la parrilla, cambia una fecha, o documenta una idea espontánea. Todo se guarda en tu navegador automáticamente.</p>
+        <h3>Tu espacio de creación libre · cualquier mes</h3>
+        <p>La parrilla de arriba es la <strong>edición de junio</strong>. Aquí planificas los meses siguientes: elige el mes, agrega tus piezas y se guardan en tu navegador. El sistema (estrategia, hooks, historias) se reutiliza igual cada mes — solo cambia el calendario.</p>
       </div>
+    </div>
+
+    <!-- TIMELINE DE MESES -->
+    <div class="months-strip">
+      <div class="month-chip done">Jun 2026 · activo</div>
+      <div class="month-chip">Jul 2026</div>
+      <div class="month-chip">Ago 2026</div>
+      <div class="month-chip">Sep 2026</div>
+      <div class="month-chip">Oct 2026</div>
+      <div class="month-chip">Nov 2026</div>
+      <div class="month-chip">Dic 2026</div>
     </div>
 
     <div class="add-form">
       <h4>Nueva pieza de contenido</h4>
       <div class="form-grid">
         <div class="form-group">
-          <div class="form-label">Fecha de publicación</div>
-          <input type="text" class="form-input" id="new-fecha" placeholder="Ej: Lun 15 Jun"/>
+          <div class="form-label">Mes</div>
+          <select class="form-select" id="new-mes">
+            <option value="Junio 2026">Junio 2026</option>
+            <option value="Julio 2026" selected>Julio 2026</option>
+            <option value="Agosto 2026">Agosto 2026</option>
+            <option value="Septiembre 2026">Septiembre 2026</option>
+            <option value="Octubre 2026">Octubre 2026</option>
+            <option value="Noviembre 2026">Noviembre 2026</option>
+            <option value="Diciembre 2026">Diciembre 2026</option>
+          </select>
         </div>
         <div class="form-group">
-          <div class="form-label">Semana</div>
+          <div class="form-label">Fecha de publicación</div>
+          <input type="text" class="form-input" id="new-fecha" placeholder="Ej: Lun 6 Jul"/>
+        </div>
+        <div class="form-group">
+          <div class="form-label">Semana del mes</div>
           <select class="form-select" id="new-semana">
-            <option value="1">Semana 1 · Jun 3–7</option>
-            <option value="2">Semana 2 · Jun 8–14</option>
-            <option value="3" selected>Semana 3 · Jun 15–21</option>
-            <option value="4">Semana 4 · Jun 22–28</option>
-            <option value="5">Semana 5 · Jun 29–30</option>
+            <option value="1" selected>Semana 1</option>
+            <option value="2">Semana 2</option>
+            <option value="3">Semana 3</option>
+            <option value="4">Semana 4</option>
+            <option value="5">Semana 5</option>
           </select>
         </div>
         <div class="form-group">
           <div class="form-label">Formato</div>
           <select class="form-select" id="new-formato">
             <option value="reel">🎬 Reel</option>
+            <option value="linkedin">💼 LinkedIn · AJ</option>
             <option value="carrusel">📖 Carrusel</option>
             <option value="stories">📱 Stories</option>
           </select>
@@ -780,11 +1128,14 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
         <div class="form-group">
           <div class="form-label">Pilar</div>
           <select class="form-select" id="new-pilar">
-            <option>Datos + IA Aplicados</option>
-            <option>Errores de Marca</option>
-            <option>Empresario en Construcción</option>
+            <option>Noticia Tech + IA</option>
+            <option>Webs con IA</option>
+            <option>Producto Propio</option>
+            <option>IA Aplicada al Negocio</option>
+            <option>Empresa en Construcción</option>
             <option>Casos y Auditorías</option>
             <option>Conversión</option>
+            <option>Cercanía</option>
           </select>
         </div>
         <div class="form-group">
@@ -874,160 +1225,171 @@ const DAYS = [
    cta:'"Déjame tu respuesta y te doy mi opinión sin filtro."',
    tip:'Usar la herramienta nativa de "Pregunta" de Instagram. Responder a todos individualmente por DM — ahí está la venta.'},
 
-  // ─── SEMANA 2 ───
-  {id:'r2',week:2,date:'Lun 8 Jun',format:'reel',pilar:'Datos + IA Aplicados',
-   title:'3 formas en que la IA ya está ayudando a vender servicios (y no lo sabes)',
-   objetivo:'alcance',objLabel:'Alcance',
-   tags:['badge-ia'],tagLabels:['IA + Negocio'],
-   prod:'~2–3h · grabar el fin de semana',
-   idea:'IA para responder leads, agendar citas automático, hacer seguimiento sin staff adicional. Casos prácticos para negocios de servicios. Sin tecnicismos.',
-   hook:'"La IA no te va a quitar el trabajo. Te va a hacer la competencia si no la usas ya."',
-   cta:'"Quédate que te tiro el dato."',
-   tip:'Lista de 3 con ejemplo concreto por punto. Máximo 45 seg. Grabar el domingo para publicar lunes temprano.'},
-
-  {id:'c1',week:2,date:'Mié 10 Jun',format:'carrusel',pilar:'Errores de Marca',
-   title:'5 señales de que tu empresa se ve improvisada en Instagram',
-   objetivo:'autoridad',objLabel:'Autoridad',
-   tags:['badge-error'],tagLabels:['Error de marca'],
-   prod:'~1h · diseño en Canva con plantilla fija',
-   idea:'Portada genérica, bio sin propuesta, contenido desconectado, sin CTA, sin sistema. Cada señal equivale a un cliente que se va sin contactarte.',
-   hook:'"Si tu cuenta hace alguna de estas 5 cosas, estás perdiendo clientes sin saberlo."',
-   cta:'"Guárdalo para auditar tu marca hoy."',
-   tip:'8 slides: portada + 1 slide por señal + CTA final. Este carrusel genera muchos guardados — es tu primer contenido de alta retención.'},
-
-  {id:'s3',week:2,date:'Vie 12 Jun',format:'stories',pilar:'Empresario en Construcción',
-   title:'Detrás de cámara: cómo planificamos contenido para una marca real',
+  // ─── SEMANA 2 ─── RELANZAMIENTO
+  {id:'r2',week:2,date:'Lun 8 Jun · PUBLICADO',format:'reel',pilar:'Empresa en Construcción',
+   title:'Regreso al país: vuelvo con una empresa (AJ Business Advisory) y una app (Mi Voz)',
    objetivo:'conexion',objLabel:'Conexión',
-   tags:['badge-story'],tagLabels:['Behind the scenes'],
-   prod:'~20 min · pantallazos + cara a cámara',
-   idea:'Mostrar pantallas de planificación, decisiones de formato, conversación con cliente. Probar con realidad. Sin glamour innecesario.',
-   hook:'"Te muestro cómo se ve la planificación de contenido de verdad, sin el cuento bonito."',
-   cta:'"Sígueme para ver más del proceso."',
-   tip:'5 stories: pantalla del doc + selección de temas + reflexión final. Muy auténtico, sin edición perfecta — eso es parte del atractivo.'},
+   tags:['badge-story','badge-venta'],tagLabels:['Relanzamiento','Marca AJ'],
+   prod:'~2h · cara a cámara, poco editado',
+   idea:'Video ancla del nuevo rumbo. Ya no soy solo "el que explica datos": volví a Colombia para construir una empresa de IA aplicada (AJ Business Advisory) y un producto que ya está en la calle (Mi Voz). El de los Datos ahora muestra tecnología real, no solo noticias. Marca el tono de todo lo que viene.',
+   hook:'"Me fui, aprendí, y volví al país con dos cosas: una empresa y una app que ya está cambiando vidas. Quédate, que te tiro el dato."',
+   cta:'"Síguenos — esto apenas empieza. Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."',
+   tip:'Pieza fundacional — el resto del mes cuelga de aquí. Cara a cámara, honesto, sin sobreproducción. Cierra presentando AJ Business Advisory + Mi Voz en 2 frases, sin tecnicismos. Ya publicado el 8.'},
 
-  {id:'r3',week:2,date:'Dom 14 Jun',format:'reel',pilar:'Datos + IA Aplicados',
-   title:'Este dato de IA le debería importar más a un empresario que a un creador de contenido',
+  {id:'r3',week:2,date:'Mié 10 Jun',format:'reel',pilar:'Noticia Tech + IA',
+   title:'Apple WWDC26: todo lo que anunció ayer (y los medios no te contaron)',
    objetivo:'alcance',objLabel:'Alcance',
-   tags:['badge-ia'],tagLabels:['Datos + Negocio'],
-   prod:'~2h · grabación + edición',
-   idea:'Conectar tendencia o estadística de IA con impacto concreto en ventas y productividad. Lenguaje de negocio, no de tecnología. El dato como razón para actuar.',
-   hook:'"Hay un dato de IA que todos están ignorando… y es el que más plata te puede hacer."',
-   cta:'"Sígueme que aquí tiramos datos que sirven."',
-   tip:'Dato con fuente reconocida si es posible. Lo que importa es la aplicación práctica, no el dato solo. Grabar sábado, publicar domingo.'},
+   tags:['badge-ia'],tagLabels:['Noticia Tech'],
+   prod:'~1.5h · talking-head + 4 clips del WWDC26',
+   idea:'SCRIPT LISTO (Video 1). Siri AI reconstruida con Gemini · iOS 27 más rápido · Xcode 27 se conecta a Claude/Gemini/GPT · fotos. El ángulo: lo importante no son las fotos, es que Apple abrió su ecosistema a toda la IA. Formato noticia, poco editado, autoridad por criterio.',
+   hook:'"Ayer Apple hizo uno de los anuncios más grandes de su historia y la mayoría solo habla de las fotos. Hay cosas MÁS importantes. Quédate, que te tiro el dato."',
+   cta:'"Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."',
+   tip:'~85 seg. 4 transiciones: Siri AI demo · benchmarks iOS 27 · Xcode 27 · fotos. Hook de apertura y cierre de comunidad YA incluidos (regla fija). Deja sembrado Xcode↔Claude para conectar con el video de Claude Fable del día 14.'},
 
-  // ─── SEMANA 3 ───
-  {id:'r4',week:3,date:'Lun 15 Jun',format:'reel',pilar:'Errores de Marca',
-   title:'3 errores por los que una empresa se ve pequeña en digital aunque sea grande',
-   objetivo:'alcance',objLabel:'Alcance',
-   tags:['badge-error'],tagLabels:['Error de marca'],
-   prod:'~2–3h · grabación + edición',
-   idea:'Branding visual inconsistente entre plataformas, mensaje genérico que no diferencia, ausencia de autoridad en el contenido. Directo y sin filtro. Muy compartible.',
-   hook:'"Muchas empresas con millones en ventas se ven pequeñas en digital. Y es por esto."',
-   cta:'"Mándaselo a alguien que lo necesite."',
-   tip:'Alto potencial viral — invitar a compartir explícitamente funciona cuando el contenido duele de identificación. Uno de los Reels más fuertes del mes.'},
-
-  {id:'c2',week:3,date:'Mié 17 Jun',format:'carrusel',pilar:'Casos y Auditorías',
-   title:'Qué aprendimos en el primer mes posicionando una clínica dental en Bogotá',
+  {id:'li1',week:2,date:'Vie 12 Jun',format:'linkedin',pilar:'IA Aplicada al Negocio',
+   title:'Apple abrió Xcode a Claude, Gemini y GPT: qué significa para las empresas que quieren adoptar IA',
    objetivo:'autoridad',objLabel:'Autoridad',
-   tags:['badge-caso','badge-story'],tagLabels:['Caso Real','Aprendizaje'],
-   prod:'~1.5h · diseño + redacción con detalles reales',
-   idea:'Dra. Natalia Barrantes: qué cambió en comunicación, enfoque del servicio estrella (Diseño de Sonrisa), claridad de propuesta. Proceso real, sin prometer resultados mágicos.',
-   hook:'"Te muestro lo que pasa cuando una clínica deja de vender procedimientos y empieza a vender confianza."',
-   cta:'"Si tienes marca de servicios, este carrusel es para ti. Guárdalo."',
-   tip:'El contenido de mayor conversión del mes. 7–8 slides: contexto + 3–4 cambios implementados + observación de mercado + CTA. Con permiso de Natalia para usar su nombre.'},
+   tags:['badge-ia'],tagLabels:['Post Empresa AJ'],
+   prod:'~40 min · post de texto LinkedIn (perfil empresa)',
+   idea:'Versión B2B del reel del WWDC. En LinkedIn no contamos la noticia: contamos qué implica para un dueño de empresa. Si hasta Apple abre su casa a varios modelos de IA, el mensaje es claro: la IA dejó de ser experimento y es infraestructura. AJ Business Advisory ayuda a las PYMEs a adoptarla sin volverse expertos en tecnología.',
+   hook:'Apple acaba de hacer algo que parecía imposible: abrir su ecosistema a la IA de sus competidores. No es una noticia de tecnología. Es una señal para cualquier empresa que sigue posponiendo la IA.',
+   cta:'En AJ Business Advisory ayudamos a empresas a adoptar IA en lo que sí mueve la aguja: atención al cliente, ventas y seguimiento. ¿Hablamos? Link en el perfil.',
+   tip:'Post de texto, 4–6 párrafos cortos. Tono empresa, primera persona del plural ("nosotros"). Sin emojis excesivos. Termina con 1 pregunta para generar comentarios. Es el mismo tema del reel del día 10 → repurposing 1 noticia → 2 canales.'},
 
-  {id:'s4',week:3,date:'Vie 19 Jun',format:'stories',pilar:'Cercanía',
-   title:'Encuesta: ¿qué le cuesta más a tu negocio — atraer, cerrar o hacer seguimiento?',
+  {id:'r4',week:2,date:'Dom 14 Jun',format:'reel',pilar:'Noticia Tech + IA',
+   title:'Anthropic lanzó Claude Fable, el modelo de IA más potente del mercado',
+   objetivo:'alcance',objLabel:'Alcance',
+   tags:['badge-ia'],tagLabels:['Noticia Tech'],
+   prod:'~1.5h · talking-head + benchmark + demo agentes',
+   idea:'SCRIPT LISTO (Video 3). El mismo día del WWDC, Anthropic abrió Claude Fable: estado del arte en coding, razonamiento, visión; a menos de la mitad del precio anterior; corre dentro de los servidores de la empresa vía MCP. El cierre conecta con Apple: los dos anuncios fueron coordinados. La carrera de la IA la gana quien llegue a los desarrolladores.',
+   hook:'"No entiendo cómo nadie habla de esto. El mismo día que Apple hizo su anuncio, Anthropic lanzó el modelo de IA más potente del mercado. Quédate, que te tiro el dato."',
+   cta:'"Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."',
+   tip:'~80 seg. 3 transiciones: benchmark Claude Fable · demo agentes/MCP · referencia Xcode 27. Conecta directo con el reel del día 10 (mismo universo Apple+Anthropic). Hook y cierre fijos ya incluidos.'},
+
+  // ─── SEMANA 3 ─── PRODUCTO PROPIO + IA APLICADA
+  {id:'r5',week:3,date:'Lun 15 Jun',format:'reel',pilar:'Producto Propio',
+   title:'Neuralink le devolvió la voz a un paciente con ELA — y nosotros construimos Mi Voz',
+   objetivo:'conexion',objLabel:'Conexión',
+   tags:['badge-ia','badge-caso'],tagLabels:['Noticia Tech','Mi Voz'],
+   prod:'~2h · talking-head íntimo + demo Mi Voz',
+   idea:'SCRIPT LISTO (Video 2). Neuralink (Kenneth Shock) devuelve la voz pensando frases — pero es cirugía, meses, costos, no está en Colombia. Mi Voz es el hoy: sin internet, sin descarga, sin cirugía, sin costo. Nació porque el abuelo perdió la voz. Don Gilberto: "los quiero mucho a todos." Conecta noticia mundial con producto propio que ya funciona.',
+   hook:'"Esta semana Neuralink logró algo de ciencia ficción: un paciente con ELA pensó una frase y su celular la dijo con su propia voz. Quédate, que te tiro el dato."',
+   cta:'"Si conoces a alguien con ELA, afasia o autismo no verbal, comenta \'MI VOZ\' y te mando el link. Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."',
+   tip:'~90 seg. Tono íntimo, serio. 3 transiciones: clip Neuralink VOICE · pantalla Mi Voz en vivo · Don Gilberto usando la app. El CTA "comenta MI VOZ" activa ManyChat/DM. Pieza de mayor conexión emocional del mes.'},
+
+  {id:'c1',week:3,date:'Mié 17 Jun',format:'carrusel',pilar:'IA Aplicada al Negocio',
+   title:'3 formas en que la IA ya le ahorra plata a una empresa de servicios (con ejemplos reales)',
+   objetivo:'autoridad',objLabel:'Autoridad',
+   tags:['badge-ia'],tagLabels:['IA + Negocio'],
+   prod:'~1h · diseño Canva, plantilla fija azul/ámbar',
+   idea:'Responder leads 24/7 sin contratar · agendar citas en automático · seguimiento que no se cae. Cada punto con ejemplo concreto (Sofia AI Receptionist como caso). Educativo, alta retención, alto guardado. Sirve para IG y como carrusel-documento en LinkedIn.',
+   hook:'"La IA no va a reemplazar tu empresa. La empresa que la use va a reemplazar a la que no. Te muestro 3 formas que ya están funcionando."',
+   cta:'"Guárdalo. Y si quieres ver cómo se vería en tu negocio, escríbenos \'IA\' por DM."',
+   tip:'7–8 slides: portada + 3 formas (1 slide problema + 1 slide solución c/u) + CTA. Repurposing: subirlo también a LinkedIn como documento. Paleta azul/ámbar de la marca, sin morado.'},
+
+  {id:'li2',week:3,date:'Vie 19 Jun',format:'linkedin',pilar:'Producto Propio',
+   title:'Construimos Mi Voz porque mi abuelo perdió la voz. Esto aprendimos llevando un producto de IA del problema a la calle',
+   objetivo:'autoridad',objLabel:'Autoridad',
+   tags:['badge-caso','badge-story'],tagLabels:['Post Empresa AJ','Mi Voz'],
+   prod:'~45 min · post de texto LinkedIn + 1 foto',
+   idea:'Versión B2B/founder del reel de Mi Voz. En LinkedIn el ángulo es de fundador y de producto: no esperamos a Neuralink, identificamos un problema real y construimos una solución accesible hoy. Demuestra que AJ no solo asesora — construye y lanza IA real. Genera credibilidad ante clientes empresariales.',
+   hook:'Mientras el mundo habla de Neuralink, nosotros pasamos los últimos meses construyendo algo más humilde y más urgente: una app que le devuelve la voz a quien la perdió, sin cirugía y sin costo. Se llama Mi Voz.',
+   cta:'En AJ Business Advisory creemos que la mejor forma de entender la IA es construyendo con ella. Si tu empresa quiere aplicarla a un problema real, conversemos.',
+   tip:'Post de fundador, vulnerable pero profesional. 1 foto de Don Gilberto usando la app (con permiso). Termina invitando a conversar. Mismo tema del reel del 15 → repurposing 1 historia → 2 canales con tono distinto.'},
+
+  {id:'s3',week:3,date:'Sáb 20 Jun',format:'stories',pilar:'Cercanía',
+   title:'Encuesta: ¿qué tema de tecnología quieres que te explique sencillo esta semana?',
    objetivo:'investigacion',objLabel:'Investigación',
    tags:[],tagLabels:[],
-   prod:'~15 min · encuesta nativa Instagram',
-   idea:'Detectar dolores activos del mercado. Cada respuesta = perfil de cliente potencial. Responder todos por DM con perspectiva personalizada.',
-   hook:'"Una encuesta rápida — vota y escríbeme qué está pasando en tu negocio."',
-   cta:'"Vota y cuéntame tu situación. Te respondo con mi perspectiva."',
-   tip:'Usar 3 opciones de encuesta. Responder a TODOS los que voten con un mensaje corto personalizado. Ahí están los leads de julio.'},
+   prod:'~15 min · encuesta + pregunta nativa Instagram',
+   idea:'Detectar qué le interesa a la audiencia nueva del nuevo enfoque tech. Cada voto orienta los reels de julio. También filtra leads: quien pregunta por IA para su negocio entra al DM.',
+   hook:'"Nuevo rumbo, nuevas reglas: ustedes eligen el próximo dato. ¿Qué tema quieren que les explique sencillo?"',
+   cta:'"Vota y escríbeme si quieres que lo conecte con tu negocio. Te respondo uno por uno."',
+   tip:'3 opciones (ej: IA para vender · apps con IA · noticia de la semana). Responder a TODOS por DM. Ahí están los leads de julio para AJ.'},
 
-  {id:'r5',week:3,date:'Sáb 20 Jun',format:'reel',pilar:'Conversión',
-   title:'Si tu negocio depende de responder tarde, estás perdiendo plata todos los días',
+  // ─── SEMANA 4 ─── CONVERSIÓN (SERVICIOS AJ)
+  {id:'r6',week:4,date:'Lun 22 Jun',format:'reel',pilar:'IA Aplicada al Negocio',
+   title:'Tu negocio pierde clientes por responder tarde. Te muestro cómo lo resolvimos con Sofia (IA)',
    objetivo:'venta',objLabel:'Venta Directa',
-   tags:['badge-ia','badge-venta'],tagLabels:['IA + Negocio','Venta Directa'],
-   prod:'~2h · grabación + edición',
-   idea:'El 78% de las ventas van para quien responde primero. Automatización de respuesta como ventaja comercial directa. Introducir sistemas con IA sin sonar vendedor.',
-   hook:'"El 78% de las ventas van para quien responde primero. ¿Cuánto estás perdiendo por responder después?"',
-   cta:'"Escríbeme \'respuesta\' y te muestro cómo lo solucionamos."',
-   tip:'Primera venta directa del mes. Viene después de 7 piezas de valor puro — la audiencia está lista. CTA específico y concreto.'},
+   tags:['badge-ia','badge-venta'],tagLabels:['IA + Negocio','Sofia AI'],
+   prod:'~2h · talking-head + demo Sofia',
+   idea:'El 78% de las ventas van para quien responde primero. La mayoría de PYMEs responde tarde o nunca. Sofia (recepcionista con IA de AJ) contesta, agenda y hace seguimiento sola, 24/7. Mostrar una llamada o chat real de Sofia. Venta sin sonar a venta: primero el dato, luego el producto.',
+   hook:'"El 78% de las ventas se las lleva quien responde primero. ¿Cuántos clientes pierde tu negocio por contestar tarde? Quédate, que te tiro el dato."',
+   cta:'"Escribe \'SOFIA\' por DM y te muestro cómo contesta por ti 24/7. Y si te gustan los temas de tecnología explicados sencillo, únete a la comunidad."',
+   tip:'Primera venta directa del nuevo enfoque. Viene después de 6 piezas de valor. Mostrar demo real de Sofia (audio o chat). CTA con palabra clave activa el flujo de leads.'},
 
-  // ─── SEMANA 4 ───
-  {id:'r6',week:4,date:'Lun 22 Jun',format:'reel',pilar:'Empresario en Construcción',
-   title:'Lo que aprendí construyendo servicios mientras crecía como creador de contenido',
-   objetivo:'conexion',objLabel:'Conexión',
-   tags:['badge-story'],tagLabels:['Storytelling'],
-   prod:'~2h · cara a cámara, storytelling personal',
-   idea:'La tensión real entre crear contenido para crecer y ejecutar servicios para clientes. Qué tuve que priorizar, qué sacrifiqué, qué aprendí. Humanizar sin perder autoridad.',
-   hook:'"Hubo un mes donde casi me rindo. No por falta de clientes, sino por falta de sistema. Te lo cuento."',
-   cta:'"Comenta si te ha pasado algo parecido."',
-   tip:'El Reel más personal del mes. Cara a cámara, sin mucho texto en pantalla. Cuanto más específico el aprendizaje, más identificación genera.'},
+  {id:'li3',week:4,date:'Mié 24 Jun',format:'linkedin',pilar:'IA Aplicada al Negocio',
+   title:'El 78% de las ventas son para quien responde primero. Una recepcionista con IA cambia la ecuación para una PYME',
+   objetivo:'venta',objLabel:'Venta Directa',
+   tags:['badge-ia','badge-venta'],tagLabels:['Post Empresa AJ','Sofia AI'],
+   prod:'~40 min · post de texto LinkedIn',
+   idea:'Versión B2B del reel de Sofia. En LinkedIn el dueño de empresa decide. Marco el problema con el dato, lo cuantifico en plata perdida, y presento Sofia como sistema, no como gadget. Caso de uso: clínica, inmobiliaria, despacho que recibe leads y no alcanza a contestar.',
+   hook:'Un lead que no recibe respuesta en los primeros 5 minutos pierde el 80% de su valor. La mayoría de las PYMEs lo saben y aun así no alcanzan a responder a tiempo. No es falta de ganas: es falta de sistema.',
+   cta:'En AJ Business Advisory implementamos Sofia, una recepcionista con IA que contesta, agenda y da seguimiento 24/7. Si quieres ver una demo para tu empresa, escríbeme.',
+   tip:'Post de texto orientado a decisión de negocio. Cuantificar el costo de no responder. Mismo tema del reel del 22 → repurposing. Llamado a demo, no a "seguir".'},
 
-  {id:'c3',week:4,date:'Mié 24 Jun',format:'carrusel',pilar:'Casos y Auditorías',
-   title:'Mini auditoría en vivo: por qué esta cuenta no está convirtiendo',
+  {id:'r7',week:4,date:'Vie 26 Jun',format:'reel',pilar:'Webs con IA',
+   title:'Hice esta página web profesional con IA en una tarde — ¿quieres aprender a hacer algo así?',
+   objetivo:'alcance',objLabel:'Alcance',
+   tags:['badge-ia','badge-venta'],tagLabels:['Webs con IA','Lead a curso/servicio'],
+   prod:'~2h · screen-recording del sitio + talking-head',
+   idea:'Mostrar una página web real, profesional, hecha con IA (ej: dranataliabarrantes.com, la propuesta de Ruztik o Mi Voz). El mensaje: hoy NO necesitas ser programador ni pagar millones — con las herramientas de IA correctas armas un sitio pro rapidísimo. Posiciona a AJ como quien las construye, y abre la puerta a enseñar/vender el servicio. El hook "¿quieres aprender a hacer algo así?" genera guardados y DMs.',
+   hook:'"Mira esta página web. La armé con IA en una tarde, sin escribir una línea de código. ¿Quieres aprender a hacer algo así? Quédate, que te tiro el dato."',
+   cta:'"Comenta \'WEB\' y te muestro cómo lo hacemos. Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."',
+   tip:'Graba la pantalla navegando un sitio real tuyo (Dentalia, Ruztik, Mi Voz) — que se vea profesional. Muestra 2–3 segundos de la herramienta de IA construyéndolo. La palabra clave "WEB" activa DM y filtra a quien quiere el servicio o aprender. Alta probabilidad de guardados.'},
+
+  {id:'c2',week:4,date:'Sáb 27 Jun',format:'carrusel',pilar:'Casos y Auditorías',
+   title:'Caso real: cómo posicionamos la clínica de la Dra. Natalia en Bogotá',
    objetivo:'autoridad',objLabel:'Autoridad',
-   tags:['badge-caso','badge-error'],tagLabels:['Auditoría','Análisis'],
-   prod:'~1.5h · diseño + análisis de cuenta ejemplo',
-   idea:'Analizar una cuenta tipo (sin atacar a nadie real) explicando bio, oferta confusa, contenido sin sistema, frecuencia irregular y ausencia de CTA.',
-   hook:'"Voy a analizar esta cuenta en vivo y te explico exactamente por qué no le está llegando a sus clientes."',
-   cta:'"Comenta \'auditoría\' si quieres que revise la tuya."',
-   tip:'El carrusel de mayor conversión directa. Preparar cuenta ejemplo con detalle real. El CTA genera respuestas de leads calificados.'},
+   tags:['badge-caso','badge-story'],tagLabels:['Caso Real','Cliente AJ'],
+   prod:'~1.5h · diseño + redacción con datos reales',
+   idea:'Caso de cliente real de AJ. Qué cambió en comunicación, enfoque del servicio estrella (Diseño de Sonrisa), claridad de propuesta y sistema de captación. Prueba tangible de que AJ no solo habla de IA y marketing: ejecuta y muestra resultados. Sin prometer milagros.',
+   hook:'"Te muestro lo que pasa cuando una clínica deja de vender procedimientos y empieza a vender confianza. Caso real."',
+   cta:'"Si tienes una marca de servicios y quieres algo así, escríbenos \'CASO\'. Guárdalo para después."',
+   tip:'Carrusel de alta conversión. 7–8 slides con permiso de Natalia. Subirlo también a LinkedIn como prueba de caso. Paleta de marca, sin morado.'},
 
-  {id:'r7',week:4,date:'Sáb 27 Jun',format:'reel',pilar:'Conversión',
-   title:'Lo que pasa cuando una marca une contenido + estrategia + sistema de captación',
+  // ─── SEMANA 5 ─── CIERRE
+  {id:'r8',week:5,date:'Lun 29 Jun',format:'reel',pilar:'Conversión',
+   title:'A quién ayuda AJ Business Advisory y qué hacemos exactamente',
    objetivo:'venta',objLabel:'Venta Directa',
-   tags:['badge-venta'],tagLabels:['Venta Directa'],
-   prod:'~2h · grabación + edición',
-   idea:'No solo publicaciones: resultado medible, sistema real de captación, seguimiento de leads, posicionamiento progresivo. La transformación completa del servicio.',
-   hook:'"Si tu empresa solo tiene contenido sin sistema, estás trabajando el doble para la mitad de resultados."',
-   cta:'"Escríbeme \'sistema\' y te mando cómo lo armamos para tu empresa."',
-   tip:'Segunda venta directa del mes. Viene después de 4 semanas de valor — la audiencia nueva ya tiene contexto. CTA directo y sin disculpas.'},
+   tags:['badge-venta'],tagLabels:['Marca AJ'],
+   prod:'~2h · talking-head, oferta clara',
+   idea:'Cierre del mes. Después de 3 semanas de valor (noticias, Mi Voz, IA aplicada), la audiencia nueva ya tiene contexto. Oferta clara: a quién ayudamos (PYMEs y profesionales de servicios), qué hacemos (IA aplicada a ventas, atención y posicionamiento), cómo se empieza. La claridad es respeto.',
+   hook:'"Llevo todo el mes tirándote datos. Hoy te cuento exactamente qué hace mi empresa y para quién. Quédate, que te tiro el dato."',
+   cta:'"Escríbenos por DM la palabra \'AJ\' y arrancamos. Y si te gustan estos temas explicados sencillo, únete a la comunidad."',
+   tip:'Reel de oferta directa, sin disculparse por vender — el contexto ya está dado por todo el mes. Mencionar AJ Business Advisory, Sofia y Mi Voz como prueba de que construimos, no solo asesoramos.'},
 
-  // ─── SEMANA 5 ───
-  {id:'s5',week:5,date:'Lun 29 Jun',format:'stories',pilar:'Cercanía',
-   title:'Cierre del mes: lo que aprendimos juntos + teaser de julio',
-   objetivo:'conexion',objLabel:'Conexión',
-   tags:[],tagLabels:[],
-   prod:'~20 min · cara a cámara + texto',
-   idea:'Recap del mes: temas que funcionaron, preguntas frecuentes recibidas, hacia dónde va el contenido en julio. Fideliza seguidores activos y crea anticipación.',
-   hook:'"Terminamos junio. Te cuento qué pasó este mes y qué viene en julio."',
-   cta:'"Activa las notificaciones para no perderte lo que viene."',
-   tip:'3–4 slides. Puede incluir estadística de alcance si fue positivo. El teaser de julio puede ser vago pero debe generar curiosidad.'},
-
-  {id:'r8',week:5,date:'Mar 30 Jun',format:'reel',pilar:'Conversión',
-   title:'A quién ayudo, qué hago exactamente y qué resultado puedes esperar',
+  {id:'li4',week:5,date:'Mar 30 Jun',format:'linkedin',pilar:'Conversión',
+   title:'Cierre de junio: lo que construimos este mes en AJ Business Advisory',
    objetivo:'venta',objLabel:'Venta Directa',
-   tags:['badge-venta'],tagLabels:['Venta Directa'],
-   prod:'~2h · grabación + edición',
-   idea:'Cierre del mes. Oferta clara, directa, sin rodeos. Cliente ideal, problema que resuelves, cómo se trabaja juntos, cómo empezar. La claridad es respeto.',
-   hook:'"Llevo casi 30 días tirándote datos. Hoy te cuento exactamente qué hago y para quién lo hago."',
-   cta:'"Escríbeme por DM con la palabra \'marca\' y arrancamos."',
-   tip:'El único Reel del mes donde vendes sin contexto previo de valor — ese contexto ya está dado por los días anteriores. No disculparse por vender.'}
+   tags:['badge-venta'],tagLabels:['Post Empresa AJ'],
+   prod:'~40 min · post de texto LinkedIn + carrusel opcional',
+   idea:'Recap empresarial del mes: el nuevo enfoque de contenido, Mi Voz, Sofia, el caso de la Dra. Natalia. Posiciona a AJ como una firma que entiende la IA porque la construye. Invitación abierta a empresas que quieran empezar en julio. Cierra el ciclo del mes en el canal de decisión B2B.',
+   hook:'Junio fue el mes en que dejamos clara una idea: en AJ Business Advisory no hablamos de IA en teoría. La construimos, la lanzamos y la ponemos a vender para nuestros clientes.',
+   cta:'Si tu empresa quiere arrancar julio aplicando IA de verdad — en ventas, atención o posicionamiento — escríbeme. Agendamos una conversación sin compromiso.',
+   tip:'Recap con prueba (Mi Voz, Sofia, caso Natalia). Puede ir como post de texto o carrusel-documento. Cierra el mes en LinkedIn invitando a la conversación comercial de julio.'}
 ];
 
 const HOOKS = [
-  {text:'"Tu empresa no tiene problema de contenido. Tiene problema de posicionamiento."',why:'Contrarian. Rompe la creencia de que publicar más es la solución. El empresario ya lo sospecha.'},
-  {text:'"El 78% de las ventas van para quien responde primero. ¿Cuánto estás perdiendo?"',why:'Dato + dolor + pregunta directa. El número da credibilidad. La pregunta activa culpa productiva.'},
-  {text:'"Muchas empresas con millones en ventas se ven pequeñas en digital. Y es por esto."',why:'Disonancia. El empresario grande quiere saber si es su caso. El pequeño quiere evitarlo.'},
-  {text:'"Si tienes que explicar mucho lo que haces para que te entiendan, el problema no es el cliente."',why:'Incomodidad directa sin atacar. El viewer se reconoce sin sentirse señalado.'},
-  {text:'"La IA no te va a quitar el trabajo. Te va a hacer la competencia si no la usas ya."',why:'Reformulación del miedo más común sobre IA. Urgencia sin alarmismo. Muy compartible en B2B Latam.'},
-  {text:'"Posicionamiento no es que te vean. Es que te elijan."',why:'Definición que reencuadra. Simple, memorable. Diferencia alcance de conversión en 9 palabras.'},
-  {text:'"Mi primer cliente me enseñó más sobre posicionamiento que dos años estudiando el tema."',why:'Vulnerabilidad + autoridad al mismo tiempo. Genera conexión real. Raro en cuentas de "expertos".'},
-  {text:'"Las cuentas que no convierten no tienen problema de estética. Tienen problema de comunicación."',why:'Contrarian. Desmonta la ilusión del diseño bonito. Muy doloroso para quien ya invirtió en eso.'},
-  {text:'"Hay un dato que muy pocos empresarios conocen y que explica por qué pierden clientes todos los días."',why:'Curiosidad + exclusividad + dolor específico. "Todos los días" hace el miedo más presente.'},
-  {text:'"Tuve que dejar de ser el que explica cosas interesantes para ser el que resuelve problemas reales."',why:'Storytelling personal que humaniza la marca. Crea expectativa. Funciona como tráiler de evolución.'}
+  {text:'"Ayer pasó uno de los anuncios más grandes de la tecnología y la mayoría solo habla de lo equivocado. Quédate, que te tiro el dato."',why:'Hook fijo de noticia. Disonancia + promesa de lo importante. Funciona para cualquier lanzamiento (Apple, Anthropic, OpenAI).'},
+  {text:'"No entiendo cómo nadie está hablando de esto todavía."',why:'Curiosidad + exclusividad. Da sensación de información privilegiada. Ideal para abrir una noticia que se va a volver grande.'},
+  {text:'"Esto que parecía ciencia ficción ya está pasando — y hay una versión que puedes usar hoy."',why:'Conecta una noticia mundial (Neuralink) con un producto propio accesible (Mi Voz). Asombro + utilidad inmediata.'},
+  {text:'"La IA no va a reemplazar tu empresa. La empresa que la use va a reemplazar a la que no."',why:'Reformula el miedo a la IA en urgencia. Muy compartible. Sirve para reels y para LinkedIn.'},
+  {text:'"El 78% de las ventas se las lleva quien responde primero. ¿Cuánto pierde tu negocio por contestar tarde?"',why:'Dato + dolor + pregunta. El número da credibilidad; la pregunta activa culpa productiva. Puente perfecto hacia Sofia.'},
+  {text:'"Me fui del país, aprendí, y volví con una empresa y una app que ya está cambiando vidas."',why:'Storytelling de regreso. Humaniza la marca y presenta AJ + Mi Voz sin sonar a anuncio. Tráiler del nuevo rumbo.'},
+  {text:'"Hay un dato de tecnología que te conviene entender antes que todos."',why:'Hook comodín para la noticia de la semana. Promesa de ventaja informativa. Mantiene la cuenta conectada a la actualidad.'},
+  {text:'"Mientras todos miran al gigante, el verdadero cambio lo está haciendo otro — el mismo día."',why:'Estructura de contraste (Apple vs Anthropic). Crea narrativa de "lo que de verdad importa". Alta retención.'},
+  {text:'"Construimos esto porque mi abuelo perdió la voz y no encontramos nada que funcionara en Colombia."',why:'Vulnerabilidad real + propósito. La historia detrás de Mi Voz. Conexión emocional altísima, ideal para LinkedIn y reel íntimo.'},
+  {text:'"No hablamos de IA en teoría. La construimos, la lanzamos y la ponemos a vender."',why:'Posicionamiento de empresa que ejecuta. Diferencia a AJ de los "gurús" de IA. Cierre de autoridad para B2B.'}
 ];
 
 const CTAS = [
-  {text:'"Comenta \'auditoría\' y reviso tu perfil."',when:'Contenido de análisis o mini auditoría',why:'Bajo riesgo, alta intención. El lead levanta la mano. Fácil de hacer, fácil de responder.'},
-  {text:'"Escríbeme \'sistema\' y te cuento cómo lo armamos para empresas como la tuya."',when:'Contenido de conversión o caso real',why:'La palabra específica filtra: solo responden quienes tienen interés real.'},
-  {text:'"Guárdalo. Lo vas a necesitar cuando quieras empezar en serio."',when:'Contenido educativo — carruseles y Reels de valor',why:'Genera guardados (señal de alcance orgánico) y marca intención futura sin pedir acción inmediata.'},
-  {text:'"Responde este story con tu mayor dolor en digital y te doy mi perspectiva sin costo."',when:'Stories de investigación o encuesta',why:'Detecta clientes potenciales activos con cero fricción. Cada respuesta = lead calificado.'},
-  {text:'"Escríbeme \'marca\' por DM si quieres que hablemos de lo que está frenando a tu empresa."',when:'Reels de conversión directa y cierre de mes',why:'Directo, simple, sin link ni formulario. La conversación es el inicio del proceso de venta.'}
+  {text:'"Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."',when:'CIERRE FIJO de todos los reels de noticia',why:'Cierre de comunidad obligatorio (regla de marca). Construye audiencia recurrente sin pedir venta. Va en cada reel.'},
+  {text:'"Comenta \'MI VOZ\' y te mando el link."',when:'Reel/post de Mi Voz (Neuralink, accesibilidad)',why:'Palabra clave que activa ManyChat/DM. Bajísima fricción, alta intención. Convierte alcance emocional en leads.'},
+  {text:'"Escribe \'SOFIA\' por DM y te muestro cómo contesta por ti 24/7."',when:'Reels/posts de IA aplicada y atención al cliente',why:'Filtra al dueño de negocio con interés real. La palabra concreta separa curiosos de prospectos.'},
+  {text:'"Escríbenos \'AJ\' por DM y arrancamos."',when:'Reel de cierre y oferta de servicios',why:'CTA de conversión directa. Simple, sin link ni formulario. La conversación inicia el proceso de venta.'},
+  {text:'"En AJ Business Advisory implementamos esto para empresas como la tuya. ¿Hablamos?"',when:'Posts de LinkedIn (página de empresa)',why:'CTA B2B de decisión, no de "seguir". Invita a conversación comercial. Cierra el ciclo que abrió el reel.'},
+  {text:'"Comenta \'WEB\' y te muestro cómo armamos páginas profesionales con IA."',when:'Reels de webs con IA · enseñar o vender el servicio',why:'Doble filtro: capta a quien quiere aprender (audiencia) y a quien quiere comprar el servicio (lead). Genera guardados.'}
 ];
 
 // ============================================================
@@ -1039,41 +1401,50 @@ function formatLabels(tags,labels){
 
 // ── GENERATE PROMPT ──────────────────────────────────────────
 function generatePrompt(d){
-  const fmtName={reel:'Reel de Instagram (30–45 segundos, vertical 9:16)',carrusel:'Carrusel de Instagram (6–8 slides)',stories:'Secuencia de Stories (4–5 slides)'};
+  const fmtName={reel:'Reel de Instagram/TikTok (60–90 segundos, vertical 9:16) — formato noticia, poco editado, cara a cámara + clips',carrusel:'Carrusel de Instagram (7–8 slides)',stories:'Secuencia de Stories (3–5 slides)',linkedin:'Post de LinkedIn para la página de empresa AJ Business Advisory (texto B2B)'};
   const fmtOut={
-    reel:`1. Script completo con timing: [0:00–0:05] hook · [0:05–0:20] desarrollo · [0:20–0:35] solución · [0:35–0:45] CTA
+    reel:`1. Script completo con timing: [0:00–0:06] hook de apertura · desarrollo con 2–3 transiciones a clips de la noticia · cierre
 2. Texto en pantalla para cada momento (máx 5 palabras por frame)
 3. 3 versiones alternativas del hook de apertura
-4. Caption completo: gancho + desarrollo + CTA + 10 hashtags relevantes
-5. 3 estadísticas reales con fuente que respalden el argumento
-6. 2 opciones de música o sonido trending para el reel`,
+4. Caption completo: gancho + desarrollo + CTA + 10 hashtags relevantes (tech + negocio)
+5. 3 datos/estadísticas reales con fuente que respalden el argumento
+6. Lista de clips/B-roll de la noticia a intercalar (qué mostrar en cada transición)
+OBLIGATORIO: el reel ABRE con el hook que termina en "Quédate, que te tiro el dato." y CIERRA con "Y si te gustan los temas de tecnología explicados de forma sencilla, únete y ayuda a hacer crecer nuestra comunidad."`,
     carrusel:`1. Texto exacto de cada slide: portada + slides de desarrollo + slide CTA
 2. Máximo 15 palabras por slide — legible en 2 segundos
-3. Instrucción visual para cada slide (color, ícono, estilo sugerido)
+3. Instrucción visual para cada slide (paleta azul #2563EB / ámbar #F59E0B sobre oscuro, sin morado)
 4. Caption completo: gancho + desarrollo + CTA + 10 hashtags
 5. 3–5 estadísticas reales con fuente que respalden el tema
 6. 3 versiones alternativas del título de portada`,
-    stories:`1. Secuencia de 4–5 stories con texto exacto y tipo por cada una
+    stories:`1. Secuencia de 3–5 stories con texto exacto y tipo por cada una
    (cara a cámara / texto / encuesta / pregunta / boomerang)
 2. Guión para las stories de cara a cámara (máx 20 segundos total)
 3. Diseño de encuesta o pregunta interactiva si aplica
 4. CTA de cierre con acción específica
-5. 3 variaciones del mensaje de respuesta a DMs tras la interacción`
+5. 3 variaciones del mensaje de respuesta a DMs tras la interacción`,
+    linkedin:`1. Post completo para LinkedIn (página de empresa AJ Business Advisory): hook fuerte en la 1ª línea + 4–6 párrafos cortos + cierre
+2. Tono de empresa, primera persona del plural ("en AJ Business Advisory...")
+3. La primera línea debe funcionar antes del "ver más" (máx 2 renglones)
+4. 1 pregunta al final para generar comentarios + 1 CTA comercial (demo / conversación)
+5. 5 hashtags B2B relevantes (#IAaplicada #Pymes #TransformaciónDigital etc.)
+6. Sugerencia de imagen o carrusel-documento que acompañe el post
+NOTA: este post es la versión B2B del mismo tema tratado en Reel — NO repetir el guion del reel, traducir el dato a decisión de negocio.`
   };
-  return `Actúa como estratega de contenido B2B para Instagram en Latinoamérica. Desarrolla una pieza completa lista para producir hoy.
+  const esLinkedin=d.format==='linkedin';
+  return `Actúa como ${esLinkedin?'estratega de contenido B2B en LinkedIn para una firma de consultoría en IA aplicada':'creador de contenido tech para Instagram/TikTok en Latinoamérica'}. Desarrolla una pieza completa lista para producir hoy.
 
 ━━━ PIEZA ━━━
-Cuenta: @eldelosdatos
+Canal: ${esLinkedin?'LinkedIn · página de empresa AJ Business Advisory':'@eldelosdatos (Instagram + TikTok)'}
 Formato: ${fmtName[d.format]}
 Pilar: ${d.pilar}
 Objetivo: ${d.objLabel}
 Tema: ${d.title}
-Audiencia: Empresarios y fundadores de medianas empresas en Colombia y Latam que buscan posicionarse digitalmente o implementar IA en su negocio.
+Audiencia: ${esLinkedin?'Dueños y gerentes de PYMEs y profesionales de servicios en Colombia que evalúan adoptar IA en ventas, atención y operación.':'Público general interesado en tecnología e IA explicada simple, y dueños de negocio que descubren cómo aplicarla.'}
 
 ━━━ CONTEXTO DE MARCA ━━━
-El de los Datos es una marca personal B2B. Explica datos, IA y posicionamiento digital de forma simple, desde la experiencia real de alguien que también construye y vende servicios para empresas.
-Tono: directo, práctico, sin lenguaje corporativo, claro y con autoridad.
-Frase ancla de cierre: "Porque siempre les voy a tirar el dato."
+El de los Datos es el canal de divulgación tech de AJ Business Advisory — una empresa que NO solo opina de IA: la construye y la aplica. Productos propios: Sofia (recepcionista con IA) y Mi Voz (app que devuelve la voz a quien la perdió). El contenido conecta la noticia tecnológica del momento con lo que la empresa hace de verdad.
+Tono: directo, claro, sencillo, con autoridad por criterio. Nada corporativo de relleno. Español colombiano natural.
+${esLinkedin?'En LinkedIn la voz es de empresa (nosotros), seria pero cercana.':'Firma del canal: "te tiro el dato".'}
 
 ━━━ IDEA BASE ━━━
 ${d.idea}
@@ -1087,7 +1458,7 @@ ${d.cta}
 ━━━ DESARROLLA LO SIGUIENTE ━━━
 ${fmtOut[d.format]}
 
-REGLAS: lenguaje natural colombiano, nada corporativo, sin anglicismos innecesarios, sin promesas exageradas. El contenido debe sonar a persona real hablando, no a IA escribiendo.`;
+REGLAS: lenguaje natural colombiano, nada corporativo de relleno, sin anglicismos innecesarios, sin promesas exageradas. Debe sonar a persona/empresa real, no a IA escribiendo.`;
 }
 
 // ── RENDER CARDS ─────────────────────────────────────────────
@@ -1101,11 +1472,13 @@ function renderCards(){
     card.dataset.week=d.week;
     card.dataset.format=d.format;
     card.id='card-'+d.id;
-    const fLabel=d.format==='stories'?'Stories':d.format==='reel'?'Reel':'Carrusel';
+    const fLabel=d.format==='stories'?'Stories':d.format==='reel'?'Reel':d.format==='linkedin'?'LinkedIn':'Carrusel';
     const prompt=generatePrompt(d);
     const savedNotes=localStorage.getItem('eldd_notes_'+d.id)||'';
     const savedTitle=localStorage.getItem('eldd_title_'+d.id)||'';
     const savedHook=localStorage.getItem('eldd_hook_'+d.id)||'';
+    const savedStatus=localStorage.getItem('eldd_status_'+d.id)||'idea';
+    const stepHtml=STATUS_STEPS.map(s=>`<button class="status-step${savedStatus===s.k?' active':''}" data-st="${s.k}" onclick="setStatus('${d.id}','${s.k}')">${s.label}</button>`).join('');
     card.innerHTML=`
       <div class="dc-header">
         <div class="dc-type ${d.format}">${fLabel}</div>
@@ -1116,6 +1489,7 @@ function renderCards(){
           <div style="margin-top:4px">${formatLabels(d.tags,d.tagLabels)}</div>
           <span class="dc-obj-badge ${d.objetivo}">${d.objLabel}</span>
           <div class="prod-time"><span class="prod-dot ${d.format}-col"></span>${d.prod}</div>
+          <div class="dc-status" id="status-${d.id}">${stepHtml}</div>
         </div>
       </div>
       <button class="dc-expand-btn" onclick="toggleCard('${d.id}',this)">▼ Ver detalle, prompt y notas</button>
@@ -1297,6 +1671,7 @@ function saveCustomCards(arr){
 }
 
 function addCustomCard(){
+  const mes=document.getElementById('new-mes')?.value||'Sin mes';
   const fecha=document.getElementById('new-fecha').value.trim();
   const semana=document.getElementById('new-semana').value;
   const formato=document.getElementById('new-formato').value;
@@ -1309,7 +1684,7 @@ function addCustomCard(){
   const cta=document.getElementById('new-cta').value.trim();
   const notas=document.getElementById('new-notas').value.trim();
   if(!titulo){alert('Agrega al menos un título para la pieza.');return;}
-  const card={id:'c'+Date.now(),fecha,semana,formato,pilar,objetivo,prod,titulo,idea,hook,cta,notas,ts:Date.now()};
+  const card={id:'c'+Date.now(),mes,fecha,semana,formato,pilar,objetivo,prod,titulo,idea,hook,cta,notas,ts:Date.now()};
   const all=getCustomCards();
   all.unshift(card);
   saveCustomCards(all);
@@ -1335,9 +1710,13 @@ function renderCustomCards(){
     list.innerHTML='<div class="no-custom"><strong>Sin piezas añadidas</strong>Las piezas que agregues desde el formulario aparecerán aquí guardadas en tu navegador.</div>';
     return;
   }
-  const fmtIcon={reel:'🎬',carrusel:'📖',stories:'📱'};
+  const fmtIcon={reel:'🎬',linkedin:'💼',carrusel:'📖',stories:'📱'};
   const objColors={alcance:'var(--blue)',autoridad:'var(--amber)',venta:'var(--green)',conexion:'var(--purple)',investigacion:'var(--muted)'};
-  list.innerHTML=all.map(c=>{
+  // agrupar por mes, conservando el orden de inserción
+  const groups={};const order=[];
+  all.forEach(c=>{const m=c.mes||'Sin mes';if(!groups[m]){groups[m]=[];order.push(m);}groups[m].push(c);});
+  list.innerHTML=order.map(m=>{
+    const cards=groups[m].map(c=>{
     const prompt=generatePrompt({format:c.formato,pilar:c.pilar,objLabel:c.objetivo,title:c.titulo,idea:c.idea||'Sin idea definida',hook:c.hook||'Sin hook definido',cta:c.cta||'Sin CTA definido'});
     return `<div class="custom-card" id="ccard-${c.id}">
       <button class="btn-delete-card" onclick="deleteCustomCard('${c.id}')" title="Eliminar">✕</button>
@@ -1366,6 +1745,8 @@ function renderCustomCards(){
         </div>
       </div>
     </div>`;
+    }).join('');
+    return `<div class="month-group-label">📅 ${escHtml(m)} · ${groups[m].length} pieza${groups[m].length===1?'':'s'}</div>${cards}`;
   }).join('');
 }
 
@@ -1383,7 +1764,91 @@ function resetForm(){
   });
 }
 
-document.addEventListener('DOMContentLoaded',()=>{renderCards();renderHooks();renderCustomCards();});
+// ── AGENDA · BUSCADOR DEL DÍA ────────────────────────────────
+const AG_ICON={reel:'🎬',linkedin:'💼',carrusel:'📖',stories:'📱'};
+const AG_FMT={reel:'Reel',linkedin:'LinkedIn',carrusel:'Carrusel',stories:'Stories'};
+function piezaFecha(d){
+  const m=String(d.date).match(/(\d{1,2})\s*(?:de\s*)?([A-Za-zÁÉÍÓÚáéíóú]{3,})/);
+  if(!m)return null;
+  const map={ene:0,feb:1,mar:2,abr:3,may:4,jun:5,jul:6,ago:7,sep:8,oct:9,nov:10,dic:11};
+  const mk=m[2].slice(0,3).toLowerCase();
+  return new Date(2026,(map[mk]!==undefined?map[mk]:5),parseInt(m[1]));
+}
+function renderAgenda(){
+  const rail=document.getElementById('agenda-rail');
+  if(!rail)return;
+  const hoy=new Date();hoy.setHours(0,0,0,0);
+  let nextId=null;
+  DAYS.forEach(d=>{
+    const st=localStorage.getItem('eldd_status_'+d.id)||'idea';
+    const f=piezaFecha(d);
+    if(!nextId && st!=='publicado' && f && f>=hoy)nextId=d.id;
+  });
+  let pendientes=0;
+  rail.innerHTML=DAYS.map(d=>{
+    const st=localStorage.getItem('eldd_status_'+d.id)||'idea';
+    const f=piezaFecha(d);
+    const pasado=f&&f<hoy;
+    const done=st==='publicado';
+    const isNext=d.id===nextId;
+    if(!done)pendientes++;
+    const cls=(done?'done':'')+(isNext?' next':'');
+    const tag=done?'<span class="ag-tag pub">✓ Listo</span>':(isNext?'<span class="ag-tag">★ Próximo</span>':'');
+    const fechaCorta=String(d.date).split('·')[0].trim();
+    return `<div class="agenda-card ${cls}" onclick="scrollToCard('${d.id}')">
+      <div class="ag-top"><span class="ag-ic">${AG_ICON[d.format]||'📄'}</span>${tag}</div>
+      <div class="ag-date">${fechaCorta}</div>
+      <div class="ag-title">${escHtml((localStorage.getItem('eldd_title_'+d.id))||d.title)}</div>
+      <div class="ag-fmt">${AG_FMT[d.format]||d.format} · ${d.objLabel}</div>
+    </div>`;
+  }).join('');
+  const sub=document.getElementById('agenda-sub');
+  if(sub)sub.textContent=pendientes>0?`${pendientes} piezas por producir — toca la rosada para ir a la próxima`:'¡Todo el mes publicado! 🎉';
+}
+
+// ── CHECKPOINT / ESTADO POR POST ─────────────────────────────
+const STATUS_STEPS=[
+  {k:'idea',label:'⬜ Idea'},
+  {k:'grabado',label:'🎬 Grabado'},
+  {k:'editado',label:'✂️ Editado'},
+  {k:'publicado',label:'✅ Publicado'}
+];
+function setStatus(id,st){
+  localStorage.setItem('eldd_status_'+id,st);
+  const cont=document.getElementById('status-'+id);
+  if(cont){cont.querySelectorAll('.status-step').forEach(b=>b.classList.toggle('active',b.dataset.st===st));}
+  updateProgress();
+  renderAgenda();
+}
+function updateProgress(){
+  let done=0;
+  DAYS.forEach(d=>{if((localStorage.getItem('eldd_status_'+d.id)||'idea')==='publicado')done++;});
+  const total=DAYS.length;
+  const fill=document.getElementById('progress-fill');
+  const num=document.getElementById('progress-done');
+  if(fill)fill.style.width=Math.round(done/total*100)+'%';
+  if(num)num.textContent=done;
+}
+
+// ── MÉTRICAS DE CUENTA ───────────────────────────────────────
+const STAT_IDS=['stat-seguidores','stat-alcance','stat-interacciones','stat-visitas','stat-formato','stat-leads'];
+function saveStats(){
+  STAT_IDS.forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)localStorage.setItem('eldd_'+id,el.value);
+  });
+  const s=document.getElementById('stats-saved');
+  if(s){s.style.display='inline';setTimeout(()=>s.style.display='none',2000);}
+}
+function loadStats(){
+  STAT_IDS.forEach(id=>{
+    const el=document.getElementById(id);
+    const v=localStorage.getItem('eldd_'+id);
+    if(el&&v!==null)el.value=v;
+  });
+}
+
+document.addEventListener('DOMContentLoaded',()=>{renderCards();renderHooks();renderCustomCards();loadStats();updateProgress();renderAgenda();});
 </script>
 </body>
 </html>

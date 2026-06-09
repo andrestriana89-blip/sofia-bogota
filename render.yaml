@@ -31,3 +31,14 @@ services:
       - type: rewrite
         source: /
         destination: /parrilla-dentalia-mayo-2026.html
+
+  # ── Parrilla de Contenido — @eldelosdatos.tech (El de los Datos) ──────────
+  - type: web
+    name: parrilla-eldelosdatos
+    env: static
+    buildCommand: ""
+    staticPublishPath: "el-de-los-datos/Parrilla de Contenido-Los_Datos"
+    routes:
+      - type: rewrite
+        source: /
+        destination: /parrilla-el-de-los-datos-junio-2026.html
