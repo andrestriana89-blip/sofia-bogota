@@ -85,6 +85,72 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .intro-body strong{color:var(--dark);font-weight:800}
 @media(max-width:640px){.intro-box{flex-direction:column;gap:8px}}
 
+/* CALENDARIO INTERNO (mes completo) */
+.mc-wrap{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:18px}
+.mc-head{display:grid;grid-template-columns:repeat(7,1fr);background:var(--dark)}
+.mc-head>div{padding:10px 6px;text-align:center;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.mc-body{display:grid;grid-template-columns:repeat(7,1fr)}
+.mc-cell{min-height:96px;padding:7px;border-right:1px solid var(--border-light);border-bottom:1px solid var(--border-light);position:relative}
+.mc-cell:nth-child(7n){border-right:none}
+.mc-cell.has{background:rgba(139,61,255,.03)}
+.mc-cell.today{background:rgba(255,46,196,.07);box-shadow:inset 0 0 0 2px var(--neon)}
+.mc-date{font-size:12px;font-weight:800;color:var(--muted);margin-bottom:5px}
+.mc-cell.has .mc-date{color:var(--dark)}
+.mc-hoy{font-size:7px;font-weight:900;background:var(--neon);color:#fff;padding:1px 5px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.mc-pill{display:block;font-size:8.5px;font-weight:700;line-height:1.25;padding:4px 6px;border-radius:6px;margin-bottom:3px;cursor:pointer;color:#fff;transition:opacity .15s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mc-pill:hover{opacity:.82}
+.mc-pill.reel{background:var(--reel)}
+.mc-pill.linkedin{background:var(--linkedin)}
+.mc-pill.carrusel{background:var(--carrusel)}
+.mc-pill.stories{background:var(--stories)}
+.mc-bell{position:absolute;bottom:6px;right:6px;font-size:12px;text-decoration:none;opacity:.55;transition:opacity .15s}
+.mc-bell:hover{opacity:1}
+.mc-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:10px;color:var(--muted);margin-bottom:16px}
+.mc-legend span{display:inline-flex;align-items:center;gap:5px}
+.mc-legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+@media(max-width:640px){.mc-cell{min-height:64px}.mc-pill{font-size:7px}}
+
+/* RECORDATORIO DE HOY */
+.today-rem{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--border);border-left:4px solid var(--neon);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;box-shadow:var(--shadow);flex-wrap:wrap}
+.tr-ic{font-size:30px;line-height:1;flex-shrink:0}
+.tr-body{flex:1;min-width:180px}
+.tr-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--neon);margin-bottom:2px}
+.tr-text{font-size:13px;font-weight:800;color:var(--dark);line-height:1.4}
+.tr-text .tr-pieza{color:var(--purple)}
+.tr-actions{display:flex;gap:8px;flex-wrap:wrap}
+.cal-btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand-grad);color:#fff;border:none;border-radius:9px;padding:8px 14px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;text-decoration:none;letter-spacing:.2px}
+.cal-btn:hover{opacity:.92}
+.cal-btn.ghost{background:transparent;border:1.5px solid var(--purple);color:var(--purple)}
+
+/* botón calendario dentro de cada tarjeta */
+.dc-cal{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:var(--purple-bg);color:var(--purple);border:1px solid rgba(139,61,255,.25);border-radius:8px;padding:7px 12px;font-size:11px;font-weight:800;text-decoration:none;transition:all .15s}
+.dc-cal:hover{background:var(--brand-grad);color:#fff;border-color:transparent}
+
+/* NOTIFICAR A · INVITADOS CALENDAR */
+.notify-bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 16px;margin-bottom:20px;box-shadow:var(--shadow)}
+.notify-bar .nb-label{font-size:12px;font-weight:800;color:var(--dark);display:flex;align-items:center;gap:6px}
+.notify-sel{border:1.5px solid var(--purple);background:var(--purple-bg);border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;font-family:'Montserrat',sans-serif;color:var(--purple);outline:none;cursor:pointer}
+.notify-hint{font-size:10px;color:var(--muted);line-height:1.4}
+
+/* IDEA QUICK · SUBE TU IDEA */
+.idea-quick{background:linear-gradient(135deg,#2A1247,#1A0B2E);border:1px solid rgba(255,46,196,.3);border-radius:16px;padding:16px 18px;margin-bottom:20px;box-shadow:0 6px 24px rgba(255,46,196,.12)}
+.idea-quick-head{font-size:14px;font-weight:900;color:#fff;letter-spacing:-.3px;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.idea-quick-head .iq-ic{font-size:22px}
+.idea-quick-sub{font-size:10.5px;color:rgba(255,255,255,.5);margin-bottom:12px}
+.iq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+.iq-field{display:flex;flex-direction:column;gap:4px}
+.iq-field.full{grid-column:1/-1}
+.iq-label{font-size:8.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.iq-input,.iq-select{border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);border-radius:9px;padding:9px 11px;font-size:12px;font-family:'Montserrat',sans-serif;color:#fff;outline:none;transition:border-color .15s;width:100%}
+.iq-input::placeholder{color:rgba(255,255,255,.35)}
+.iq-input:focus,.iq-select:focus{border-color:var(--neon)}
+.iq-select option{color:#1E293B}
+.iq-actions{display:flex;align-items:center;gap:10px;margin-top:11px}
+.btn-iq{padding:9px 20px;background:var(--brand-grad);color:#fff;border:none;border-radius:9px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.3px}
+.btn-iq:hover{opacity:.92}
+.iq-saved{font-size:10.5px;font-weight:700;color:var(--neon-bright);display:none}
+@media(max-width:560px){.iq-grid{grid-template-columns:1fr}}
+
 /* AGENDA · BUSCADOR DEL DÍA */
 .agenda-wrap{background:radial-gradient(120% 140% at 0% 0%,#2A1247 0%,#1A0B2E 60%,#120720 100%);border-radius:18px;padding:20px 22px;margin-bottom:20px;position:relative;overflow:hidden;box-shadow:0 8px 30px rgba(139,61,255,.18)}
 .agenda-wrap::after{content:'';position:absolute;top:-50px;right:-30px;width:240px;height:240px;background:radial-gradient(circle,rgba(255,46,196,.25),transparent 65%);pointer-events:none}
@@ -106,6 +172,8 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .ag-date{font-size:10px;font-weight:800;color:var(--neon-bright);letter-spacing:.3px}
 .ag-title{font-size:10.5px;font-weight:700;color:#fff;line-height:1.35;margin-top:3px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .ag-fmt{font-size:8.5px;color:rgba(255,255,255,.45);font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.5px}
+.ag-cal{display:inline-flex;align-items:center;gap:5px;margin-top:9px;background:rgba(255,46,196,.16);border:1px solid rgba(255,46,196,.4);color:#FFA6E6;border-radius:8px;padding:6px 10px;font-size:9.5px;font-weight:800;text-decoration:none;transition:all .15s}
+.ag-cal:hover{background:var(--neon);color:#fff}
 
 /* STATS */
 .stats-banner{background:linear-gradient(135deg,rgba(37,99,235,.07),rgba(124,58,237,.05));border:1.5px dashed rgba(37,99,235,.3);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;gap:14px}
@@ -465,11 +533,12 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
   <div class="nav-brand">El de los Datos<span>Parrilla Junio 2026</span></div>
   <div class="nav-tabs">
     <button class="ntab active" onclick="showSection('parrilla',this)">📅 Parrilla</button>
+    <button class="ntab" onclick="showSection('calendario',this)">🗓️ Calendario</button>
+    <button class="ntab" id="tab-ideas" onclick="showSection('agregar',this)">💡 Mis Ideas</button>
     <button class="ntab" onclick="showSection('hooks',this)">🎯 Hooks &amp; CTAs</button>
     <button class="ntab" onclick="showSection('historias',this)">📱 Historias</button>
     <button class="ntab" onclick="showSection('estrategia',this)">🧠 Estrategia</button>
     <button class="ntab" onclick="showSection('perfil',this)">📱 Perfil &amp; Bio</button>
-    <button class="ntab" onclick="showSection('agregar',this)">➕ Añadir / Editar</button>
   </div>
   <div class="nav-actions">
     <a href="https://www.instagram.com/eldelosdatos.tech/" target="_blank" rel="noopener" style="font-size:10px;color:var(--blue);font-weight:700;display:inline-flex;align-items:center;gap:4px">📸 @eldelosdatos.tech</a>
@@ -541,6 +610,69 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
           </div>
         </div>
         <div class="agenda-rail" id="agenda-rail"></div>
+      </div>
+
+      <!-- RECORDATORIO DE HOY -->
+      <div class="today-rem" id="today-rem" style="display:none">
+        <div class="tr-ic" id="tr-ic">📅</div>
+        <div class="tr-body">
+          <div class="tr-label">Recordatorio de hoy</div>
+          <div class="tr-text" id="tr-text">—</div>
+        </div>
+        <div class="tr-actions" id="tr-actions"></div>
+      </div>
+
+      <!-- NOTIFICAR A -->
+      <div class="notify-bar">
+        <span class="nb-label">🔔 Notificar a:</span>
+        <select class="notify-sel" id="notify-sel" onchange="setNotify()">
+          <option value="none">Solo yo</option>
+          <option value="andres">Andrés</option>
+          <option value="valentina">Valentina</option>
+          <option value="ambos">Andrés + Valentina</option>
+        </select>
+        <span class="notify-hint">Se añaden como invitados al evento de Google Calendar — les llega la notificación a su correo, sin crear cuentas nuevas.</span>
+      </div>
+
+      <!-- SUBE TU IDEA · CAPTURA RÁPIDA -->
+      <div class="idea-quick">
+        <div class="idea-quick-head"><span class="iq-ic">💡</span> Sube tu idea</div>
+        <div class="idea-quick-sub">Anota una idea al vuelo: marca el tipo, descríbela y pega un video de referencia. Se guarda y la ves en la pestaña «Mis Ideas».</div>
+        <div class="iq-grid">
+          <div class="iq-field">
+            <span class="iq-label">Tipo de contenido</span>
+            <select class="iq-select" id="q-tipo">
+              <option value="reel">🎬 Reel</option>
+              <option value="linkedin">💼 LinkedIn · AJ</option>
+              <option value="carrusel">📖 Carrusel</option>
+              <option value="stories">📱 Historia</option>
+            </select>
+          </div>
+          <div class="iq-field">
+            <span class="iq-label">Mes</span>
+            <select class="iq-select" id="q-mes">
+              <option value="Junio 2026">Junio 2026</option>
+              <option value="Julio 2026">Julio 2026</option>
+              <option value="Agosto 2026">Agosto 2026</option>
+              <option value="Septiembre 2026">Septiembre 2026</option>
+              <option value="Octubre 2026">Octubre 2026</option>
+              <option value="Noviembre 2026">Noviembre 2026</option>
+              <option value="Diciembre 2026">Diciembre 2026</option>
+            </select>
+          </div>
+          <div class="iq-field full">
+            <span class="iq-label">Descripción de la idea</span>
+            <input class="iq-input" id="q-desc" placeholder="Ej: reel reaccionando al nuevo modelo de OpenAI y cómo lo usamos en Sofia"/>
+          </div>
+          <div class="iq-field full">
+            <span class="iq-label">Enlace de video de referencia (opcional)</span>
+            <input class="iq-input" id="q-ref" placeholder="Pega aquí el link de TikTok / Instagram / YouTube que te inspiró"/>
+          </div>
+        </div>
+        <div class="iq-actions">
+          <button class="btn-iq" onclick="quickAddIdea()">＋ Guardar idea</button>
+          <span class="iq-saved" id="q-saved">✓ Idea guardada — mírala en «Mis Ideas»</span>
+        </div>
       </div>
 
       <!-- CUENTA ASOCIADA -->
@@ -794,6 +926,24 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 
     </div>
   </div>
+</div>
+
+<!-- ============================================================ CALENDARIO INTERNO ============================================================ -->
+<div id="sec-calendario" class="page-section">
+  <div class="wrap"><div class="sec">
+    <div class="sec-header"><div class="sec-ey">Vista de mes</div><div class="sec-title">Calendario interno — Junio 2026</div></div>
+    <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px;line-height:1.6">Todo el mes de un vistazo, dentro de la web (sin depender de Google). Toca una pieza para abrir su detalle en la parrilla, o el 🔔 para notificar ese día al equipo en Google Calendar.</p>
+    <div class="mc-legend">
+      <span><i style="background:var(--reel)"></i> Reel</span>
+      <span><i style="background:var(--linkedin)"></i> LinkedIn</span>
+      <span><i style="background:var(--carrusel)"></i> Carrusel</span>
+      <span><i style="background:var(--stories)"></i> Historia</span>
+    </div>
+    <div class="mc-wrap">
+      <div class="mc-head"><div>Lun</div><div>Mar</div><div>Mié</div><div>Jue</div><div>Vie</div><div>Sáb</div><div>Dom</div></div>
+      <div class="mc-body" id="month-cal"></div>
+    </div>
+  </div></div>
 </div>
 
 <!-- ============================================================ HOOKS & CTAs ============================================================ -->
@@ -1161,6 +1311,10 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
           <textarea class="form-textarea" id="new-idea" placeholder="Qué quieres comunicar, cuál es el argumento principal, qué problema resuelve..."></textarea>
         </div>
         <div class="form-group full">
+          <div class="form-label">🔗 Enlace de video de referencia</div>
+          <input type="text" class="form-input" id="new-ref" placeholder="Pega el link de TikTok / Instagram / YouTube que te inspiró (opcional)"/>
+        </div>
+        <div class="form-group full">
           <div class="form-label">Hook de apertura</div>
           <textarea class="form-textarea" id="new-hook" placeholder="Las primeras palabras que dirás o pondrás en pantalla..." style="min-height:56px"></textarea>
         </div>
@@ -1498,6 +1652,7 @@ function renderCards(){
         <div class="dc-sec"><div class="dc-sec-label">Hook de apertura</div><div class="dc-hook" id="display-hook-${d.id}">${savedHook||d.hook}</div></div>
         <div class="dc-sec"><div class="dc-sec-label">CTA final</div><div class="dc-cta">${d.cta}</div></div>
         ${d.tip?`<div class="tip-box"><p>💡 ${d.tip}</p></div>`:''}
+        <a class="dc-cal" href="${gcalLink(d)}" target="_blank" rel="noopener">📋 Notificar el plan de este día (Calendar)</a>
 
         <div class="dc-divider"></div>
 
@@ -1670,6 +1825,21 @@ function saveCustomCards(arr){
   localStorage.setItem('eldd_custom',JSON.stringify(arr));
 }
 
+// ── IDEA RÁPIDA (captura desde la parrilla) ──────────────────
+const Q_PILAR={reel:'Noticia Tech + IA',linkedin:'IA Aplicada al Negocio',carrusel:'IA Aplicada al Negocio',stories:'Cercanía'};
+function quickAddIdea(){
+  const formato=document.getElementById('q-tipo').value;
+  const mes=document.getElementById('q-mes').value;
+  const desc=document.getElementById('q-desc').value.trim();
+  const ref=document.getElementById('q-ref').value.trim();
+  if(!desc){alert('Escribe la descripción de tu idea 💡');return;}
+  const card={id:'c'+Date.now(),mes,fecha:'',semana:'1',formato,pilar:Q_PILAR[formato]||'Noticia Tech + IA',
+    objetivo:'alcance',prod:'',titulo:desc.slice(0,70),idea:desc,hook:'',cta:'',ref,notas:'Idea capturada desde la parrilla',ts:Date.now()};
+  const all=getCustomCards();all.unshift(card);saveCustomCards(all);renderCustomCards();
+  document.getElementById('q-desc').value='';document.getElementById('q-ref').value='';
+  const s=document.getElementById('q-saved');if(s){s.style.display='inline';setTimeout(()=>s.style.display='none',2600);}
+}
+
 function addCustomCard(){
   const mes=document.getElementById('new-mes')?.value||'Sin mes';
   const fecha=document.getElementById('new-fecha').value.trim();
@@ -1682,9 +1852,10 @@ function addCustomCard(){
   const idea=document.getElementById('new-idea').value.trim();
   const hook=document.getElementById('new-hook').value.trim();
   const cta=document.getElementById('new-cta').value.trim();
+  const ref=document.getElementById('new-ref')?.value.trim()||'';
   const notas=document.getElementById('new-notas').value.trim();
   if(!titulo){alert('Agrega al menos un título para la pieza.');return;}
-  const card={id:'c'+Date.now(),mes,fecha,semana,formato,pilar,objetivo,prod,titulo,idea,hook,cta,notas,ts:Date.now()};
+  const card={id:'c'+Date.now(),mes,fecha,semana,formato,pilar,objetivo,prod,titulo,idea,hook,cta,ref,notas,ts:Date.now()};
   const all=getCustomCards();
   all.unshift(card);
   saveCustomCards(all);
@@ -1733,6 +1904,8 @@ function renderCustomCards(){
         ${c.hook?`<div style="margin-bottom:8px;background:var(--blue-pale);padding:8px 10px;border-radius:6px;border-left:3px solid var(--blue);font-style:italic">${escHtml(c.hook)}</div>`:''}
         ${c.cta?`<div style="margin-bottom:8px;background:var(--amber-pale);padding:8px 10px;border-radius:6px;border-left:3px solid var(--amber-bright);font-weight:700">${escHtml(c.cta)}</div>`:''}
         ${c.prod?`<div style="font-size:9px;color:var(--muted);margin-bottom:8px">⏱ ${escHtml(c.prod)}</div>`:''}
+        ${c.ref?`<div style="margin-bottom:8px"><a href="${escHtml(c.ref)}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;background:var(--purple-bg);color:var(--purple);border:1px solid rgba(139,61,255,.25);border-radius:6px;padding:6px 11px;font-size:10.5px;font-weight:700;text-decoration:none">🔗 Ver video de referencia ↗</a></div>`:''}
+        <div style="margin-bottom:8px"><a class="dc-cal" href="${gcalLinkIdea(c)}" target="_blank" rel="noopener">💡 Notificar esta idea al equipo</a></div>
         ${c.notas?`<div style="background:rgba(245,158,11,.06);border:1px dashed rgba(245,158,11,.25);border-radius:6px;padding:8px 10px;font-size:10.5px;color:var(--amber);margin-bottom:8px"><strong>Notas:</strong> ${escHtml(c.notas)}</div>`:''}
         <div style="margin-top:8px">
           <div style="font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--purple);margin-bottom:6px">🤖 Prompt para IA</div>
@@ -1758,7 +1931,7 @@ function copyCustomPrompt(id,text){
 }
 
 function resetForm(){
-  ['new-fecha','new-prod','new-titulo','new-idea','new-hook','new-cta','new-notas'].forEach(id=>{
+  ['new-fecha','new-prod','new-titulo','new-idea','new-hook','new-cta','new-ref','new-notas'].forEach(id=>{
     const el=document.getElementById(id);
     if(el)el.value='';
   });
@@ -1800,10 +1973,100 @@ function renderAgenda(){
       <div class="ag-date">${fechaCorta}</div>
       <div class="ag-title">${escHtml((localStorage.getItem('eldd_title_'+d.id))||d.title)}</div>
       <div class="ag-fmt">${AG_FMT[d.format]||d.format} · ${d.objLabel}</div>
+      <a class="ag-cal" href="${gcalLink(d)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🔔 Avisar equipo</a>
     </div>`;
   }).join('');
   const sub=document.getElementById('agenda-sub');
   if(sub)sub.textContent=pendientes>0?`${pendientes} piezas por producir — toca la rosada para ir a la próxima`:'¡Todo el mes publicado! 🎉';
+}
+
+// ── RECORDATORIOS · GOOGLE CALENDAR ──────────────────────────
+const NOTIFY_EMAILS={
+  andres:'andres@ajbusinessadvisory.com',
+  valentina:'valentina@ajbusinessadvisory.com',
+  ambos:'andres@ajbusinessadvisory.com,valentina@ajbusinessadvisory.com'
+};
+function getNotifyEmails(){return NOTIFY_EMAILS[localStorage.getItem('eldd_notify')||'none']||'';}
+// Evento genérico de Calendar (sirve para piezas e ideas)
+function gcalEvent({titulo,ymd,detalle,horaIni='090000',horaFin='093000'}){
+  const p=new URLSearchParams({action:'TEMPLATE',text:titulo,details:detalle,location:'Instagram / TikTok @eldelosdatos.tech',ctz:'America/Bogota'});
+  if(ymd)p.set('dates',`${ymd}T${horaIni}/${ymd}T${horaFin}`);
+  const add=getNotifyEmails();if(add)p.set('add',add);
+  return 'https://calendar.google.com/calendar/render?'+p.toString();
+}
+function ymdOf(f){const pad=n=>String(n).padStart(2,'0');return `${f.getFullYear()}${pad(f.getMonth()+1)}${pad(f.getDate())}`;}
+// Notificación tipo PLAN DEL DÍA (una pieza programada)
+function gcalLink(d){
+  const f=piezaFecha(d);if(!f)return '#';
+  const ic={reel:'🎬',linkedin:'💼',carrusel:'📖',stories:'📱'}[d.format]||'📄';
+  const titulo=(localStorage.getItem('eldd_title_'+d.id))||d.title;
+  const det=`📋 PLAN DE CONTENIDO DEL DÍA · @eldelosdatos.tech\n${ic} ${d.format.toUpperCase()} · Objetivo: ${d.objLabel}\n\nIDEA: ${d.idea||''}\n\nHOOK: ${(localStorage.getItem('eldd_hook_'+d.id))||d.hook||''}\n\nCTA: ${d.cta||''}`;
+  return gcalEvent({titulo:`📋 Plan del día ${ic} — ${titulo}`,ymd:ymdOf(f),detalle:det});
+}
+// Notificación tipo IDEA (desde "Mis Ideas")
+function gcalLinkIdea(c){
+  const hoy=new Date();
+  const det=`💡 IDEA PARA EL DE LOS DATOS\nTipo sugerido: ${c.formato||'—'} · Mes: ${c.mes||'—'}\n\n${c.idea||c.titulo||''}${c.ref?'\n\n🔗 Referencia: '+c.ref:''}`;
+  return gcalEvent({titulo:`💡 Idea — ${(c.titulo||c.idea||'Idea El de los Datos').slice(0,60)}`,ymd:ymdOf(hoy),detalle:det});
+}
+function setNotify(){
+  const sel=document.getElementById('notify-sel');
+  localStorage.setItem('eldd_notify',sel.value);
+  updateAllCalLinks();
+  renderAgenda();
+  renderTodayReminder();
+}
+function updateAllCalLinks(){
+  DAYS.forEach(d=>{const a=document.querySelector('#card-'+d.id+' .dc-cal');if(a)a.href=gcalLink(d);});
+}
+function loadNotify(){
+  const sel=document.getElementById('notify-sel');
+  if(sel)sel.value=localStorage.getItem('eldd_notify')||'none';
+}
+function renderTodayReminder(){
+  const box=document.getElementById('today-rem');if(!box)return;
+  const hoy=new Date();hoy.setHours(0,0,0,0);
+  const sameDay=f=>f&&f.getFullYear()===hoy.getFullYear()&&f.getMonth()===hoy.getMonth()&&f.getDate()===hoy.getDate();
+  const ic={reel:'🎬',linkedin:'💼',carrusel:'📖',stories:'📱'};
+  const hoyPieza=DAYS.find(d=>sameDay(piezaFecha(d)));
+  let next=null;DAYS.forEach(d=>{const f=piezaFecha(d);if(!next&&f&&f>hoy&&(localStorage.getItem('eldd_status_'+d.id)||'idea')!=='publicado')next=d;});
+  box.style.display='flex';
+  const txt=document.getElementById('tr-text');const icEl=document.getElementById('tr-ic');const act=document.getElementById('tr-actions');
+  if(hoyPieza){
+    icEl.textContent=ic[hoyPieza.format]||'📅';
+    txt.innerHTML=`Hoy te toca: <span class="tr-pieza">${escHtml((localStorage.getItem('eldd_title_'+hoyPieza.id))||hoyPieza.title)}</span>`;
+    act.innerHTML=`<a class="cal-btn" href="${gcalLink(hoyPieza)}" target="_blank" rel="noopener">📋 Notificar plan de hoy</a><button class="cal-btn ghost" onclick="scrollToCard('${hoyPieza.id}')">Ver pieza</button>`;
+  }else{
+    icEl.textContent='☕';
+    txt.innerHTML=next?`Hoy no hay publicación — día de responder DMs y grabar. Próxima publicación: <span class="tr-pieza">${escHtml(next.title)}</span>`:`Hoy no hay publicación programada. Responde DMs y adelanta grabación.`;
+    act.innerHTML=next?`<a class="cal-btn" href="${gcalLink(next)}" target="_blank" rel="noopener">📅 Notificar la próxima publicación (${escHtml(String(next.date).split('·')[0].trim())})</a><button class="cal-btn ghost" onclick="scrollToCard('${next.id}')">Ver próxima</button>`:'';
+  }
+}
+
+// ── CALENDARIO INTERNO (Junio 2026 · 1=lunes) ────────────────
+function renderMonthCalendar(){
+  const cont=document.getElementById('month-cal');if(!cont)return;
+  const ic={reel:'🎬',linkedin:'💼',carrusel:'📖',stories:'📱'};
+  const byDay={};
+  DAYS.forEach(d=>{const f=piezaFecha(d);if(f&&f.getMonth()===5){(byDay[f.getDate()]=byDay[f.getDate()]||[]).push(d);}});
+  const hoy=new Date();const esHoy=n=>hoy.getFullYear()===2026&&hoy.getMonth()===5&&hoy.getDate()===n;
+  let html='';
+  for(let n=1;n<=30;n++){
+    const items=byDay[n]||[];
+    const cls=(items.length?'has':'')+(esHoy(n)?' today':'');
+    let inner=`<div class="mc-date">${n}${esHoy(n)?' <span class="mc-hoy">hoy</span>':''}</div>`;
+    items.forEach(d=>{
+      const t=escHtml(((localStorage.getItem('eldd_title_'+d.id))||d.title)).slice(0,30);
+      inner+=`<div class="mc-pill ${d.format}" title="${escHtml((localStorage.getItem('eldd_title_'+d.id))||d.title)}" onclick="goToPieza('${d.id}')">${ic[d.format]||'📄'} ${t}</div>`;
+    });
+    if(items.length)inner+=`<a class="mc-bell" href="${gcalLink(items[0])}" target="_blank" rel="noopener" title="Notificar al equipo este día">🔔</a>`;
+    html+=`<div class="mc-cell ${cls}">${inner}</div>`;
+  }
+  cont.innerHTML=html;
+}
+function goToPieza(id){
+  showSection('parrilla',document.querySelector('.ntab'));
+  setTimeout(()=>scrollToCard(id),60);
 }
 
 // ── CHECKPOINT / ESTADO POR POST ─────────────────────────────
@@ -1848,7 +2111,7 @@ function loadStats(){
   });
 }
 
-document.addEventListener('DOMContentLoaded',()=>{renderCards();renderHooks();renderCustomCards();loadStats();updateProgress();renderAgenda();});
+document.addEventListener('DOMContentLoaded',()=>{renderCards();renderHooks();renderCustomCards();loadStats();updateProgress();renderAgenda();loadNotify();renderTodayReminder();renderMonthCalendar();});
 </script>
 </body>
 </html>
