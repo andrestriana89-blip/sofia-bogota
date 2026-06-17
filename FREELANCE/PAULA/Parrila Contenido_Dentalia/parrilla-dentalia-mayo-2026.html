@@ -2092,6 +2092,33 @@ document.addEventListener('DOMContentLoaded',()=>{
    ============================================================ */
 let notifLog = JSON.parse(localStorage.getItem('notif_log') || '[]');
 
+function notificarNatalia() {
+  const email = (document.getElementById('natalia-email').value || '').trim();
+  if (!email) {
+    alert('Ingresa el correo de Natalia para invitarla al recordatorio.');
+    document.getElementById('natalia-email').focus();
+    return;
+  }
+  const fv = document.getElementById('reunion-fecha').value; // yyyy-mm-dd
+  let d;
+  if (fv) { d = new Date(fv + 'T00:00:00'); d.setDate(d.getDate() - 3); } // 3 días antes
+  else { d = new Date(); d.setDate(d.getDate() + 2); } // default: en 2 días
+  const yy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  const startDT = `${yy}${mm}${dd}T090000`;
+  const endDT   = `${yy}${mm}${dd}T093000`;
+  const title   = '🦷 Prepara tu lista de 10 ideas para Instagram — Dentalia';
+  const details = 'Hola Natalia 👋 Antes de nuestra reunión mensual, prepara una lista de 10 ideas o temas que quieras mostrar en Instagram. No tienen que ser guiones, solo ideas claras.\n\nEn los casos que aplique, cuéntanos cómo te gusta explicarlos (ej: en diseño de sonrisa, qué materiales usas o qué enfoque manejas; en dolor o sensibilidad, qué recomiendas según tu criterio).\n\nTemas de ejemplo: el consultorio, recomendaciones de blanqueamiento, antes y después, qué debe preguntar un paciente a su odontólogo, diseño de sonrisa, manejo del dolor, materiales que utilizas.';
+  const calURL  = `https://calendar.google.com/calendar/render?action=TEMPLATE`
+    + `&text=${encodeURIComponent(title)}`
+    + `&dates=${startDT}/${endDT}`
+    + `&details=${encodeURIComponent(details)}`
+    + `&add=${encodeURIComponent(email)}`
+    + `&sf=true`;
+  window.open(calURL, '_blank');
+}
+
 function notificarEntrega() {
   const semana = document.getElementById('notif-semana').value;
   const mes    = document.getElementById('notif-mes').value;
