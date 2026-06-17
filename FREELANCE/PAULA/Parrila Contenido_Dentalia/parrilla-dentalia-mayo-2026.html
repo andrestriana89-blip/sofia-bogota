@@ -1078,6 +1078,17 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
             <span style="font-size:9.5px;font-weight:700;background:rgba(245,194,0,.12);color:var(--ocre-gold);border:1px solid rgba(245,194,0,.25);padding:3px 9px;border-radius:20px">Materiales que utilizas</span>
           </div>
         </div>
+
+        <div style="margin-top:12px;background:rgba(233,30,140,.06);border:1px solid rgba(233,30,140,.2);border-radius:10px;padding:13px 15px">
+          <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--pink-ui,#E91E8C);margin-bottom:8px">📲 Notificar a Natalia — preparar el documento</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+            <input type="email" id="natalia-email" placeholder="correo de Natalia" oninput="localStorage.setItem('natalia_email',this.value)" style="flex:1;min-width:180px;font-size:12px;padding:8px 11px;border:1.5px solid rgba(0,0,0,.12);border-radius:8px;font-family:'Montserrat',sans-serif;color:var(--text);outline:none"/>
+            <input type="date" id="reunion-fecha" title="Fecha de la reunión" oninput="localStorage.setItem('reunion_fecha',this.value)" style="font-size:12px;padding:8px 11px;border:1.5px solid rgba(0,0,0,.12);border-radius:8px;font-family:'Montserrat',sans-serif;color:var(--text);outline:none"/>
+            <button onclick="notificarNatalia()" style="background:var(--ocre-gold);color:#1A1A1A;border:none;border-radius:8px;padding:9px 16px;font-size:11px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;letter-spacing:.3px">📅 Recordarle en Calendar →</button>
+          </div>
+          <div style="font-size:9.5px;color:var(--muted);margin-top:7px;line-height:1.5">Crea un recordatorio en Google Calendar (3 días antes de la reunión) con las instrucciones, e invita a Natalia. Si no pones fecha, lo agenda en 2 días.</div>
+          <script>(function(){var e=document.getElementById('natalia-email');if(e)e.value=localStorage.getItem('natalia_email')||'';var f=document.getElementById('reunion-fecha');if(f)f.value=localStorage.getItem('reunion_fecha')||'';})();</script>
+        </div>
       </div>
     </div>
 
