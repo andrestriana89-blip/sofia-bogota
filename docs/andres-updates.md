@@ -5,6 +5,24 @@
 
 ---
 
+## 2026-06-19 — Sesión Andrés — Seguridad + Notion + Lorena CRM
+**Repos tocados:** aj-business-advisory → webhook/main.py, brain/session-logs/2026-06-19.md
+
+**Cambios realizados:**
+✅ Auditoría de seguridad completa del backend FastAPI — 8 vulnerabilidades parchadas + fix adicional de PIN vacío (commits 49e9133 y 92b66f6)
+✅ Notion — links `/doc/` de clientes activos actualizados con `?token=aj2026` (Natalia: 9 links, Johana: 5, Perfumería: 1, Casa Matriz: 4)
+✅ Notion — creado card CRM para Lorena Rodríguez (COL-002): MRR $1.5M COP, WA +57 311 2005380, docs linkeados
+
+**Pendientes:**
+- [ ] Lorena Rodríguez — configurar ManyChat (comentarios → DM automático)
+- [ ] Jaqueline Zambrano y Yineth Decor JPE — standby, reactivar cuando Andrés lo indique
+
+**Para Valentina:**
+- Lorena tiene Instagram Growth activo a $1.5M COP/mes — ya tiene card en Notion
+- Si Lorena pide algo de ManyChat, avisarle a Andrés — pendiente de configurar
+
+---
+
 ## 2026-05-21 — Solicitud de acceso — Valentina necesita permisos en 2 plataformas
 
 **Andrés, acción requerida — dos pasos rápidos:**
