@@ -16,14 +16,32 @@
     {
       "name": "parrilla-dentalia",
       "runtimeExecutable": "python3",
-      "runtimeArgs": ["-m", "http.server", "3004", "--directory", "../FREELANCE/PAULA/Parrila Contenido_Dentalia"],
-      "port": 3004
+      "runtimeArgs": ["-m", "http.server", "3005", "--directory", "C:/Users/valen/.claude/sofia-demo (3)/FREELANCE/PAULA/Parrila Contenido_Dentalia"],
+      "port": 3005
     },
     {
       "name": "barberia-ganster",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "3006", "--directory", "../Propuesta_Comercial_Ruztik_Insdustry/Propuesta-Barberia"],
       "port": 3006
+    },
+    {
+      "name": "guia-automatizaciones",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3010", "--directory", "C:/Users/valen/.claude/sofia-demo (3)/docs"],
+      "port": 3010
+    },
+    {
+      "name": "parrilla-eldelosdatos",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3009", "--directory", "C:/Users/valen/.claude/sofia-demo (3)/el-de-los-datos/Parrilla de Contenido-Los_Datos"],
+      "port": 3009
+    },
+    {
+      "name": "parrilla-lorena",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3011", "--directory", "C:/Users/valen/.claude/sofia-demo (3)/FREELANCE/DOC-LORENA"],
+      "port": 3011
     }
   ]
 }

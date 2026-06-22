@@ -23,6 +23,47 @@
 
 ---
 
+## 2026-06-09 — Sesión Valentina — El de los Datos: parrilla operativa + notificaciones diarias + estrategia 60/40
+
+**Repos tocados:**
+- `sofia-bogota` → `el-de-los-datos/Parrilla de Contenido-Los_Datos/parrilla-el-de-los-datos-junio-2026.html`, `el-de-los-datos/.../index.html`, `render.yaml`
+
+**INFORME PARA EL CLAUDE DE ANDRÉS — leer antes de tocar la parrilla de El de los Datos:**
+
+### 1. La parrilla ya está DESPLEGADA en Render
+- Servicio nuevo: **`parrilla-eldelosdatos`** → **https://parrilla-eldelosdatos.onrender.com**
+- Está en `render.yaml` + creado manualmente en el dashboard. Auto-deploy desde `main`.
+- La cuenta es **@eldelosdatos.tech** ("Te Tiro El Dato"), canal de divulgación tech de AJ. Métricas reales: **121 seguidores**, 3.077 visualizaciones/30d, 61% de no seguidores, reels = 91,5% de las vistas.
+
+### 2. Notificación diaria — YA EXISTE (vía Google Calendar, NO automática)
+- Cada pieza tiene botón **"📋 Notificar el plan de este día"** → crea evento en Google Calendar en su fecha (9am).
+- Hay selector **"Notificar a"**: Andrés (`andres@ajbusinessadvisory.com`), Valentina, o ambos → se añaden como **invitados** al evento (les llega la notificación sin crear cuentas).
+- Tipos de notificación diferenciados: **"📋 Plan del día"** (pieza programada) vs **"💡 Idea"** (desde Mis Ideas).
+- **⚠️ LO QUE NO SE DEBE / NO SE NOTIFICA al calendario:**
+  - Los **días de descanso** (no son piezas, no llevan evento).
+  - Las **ideas sueltas** salvo que se pulse "Notificar esta idea" — no se auto-agendan.
+  - Las **historias improvisadas** del día a día (cercanía) — van aparte, no son parrilla.
+  - La notificación es **manual y opt-in** (un clic por pieza). NO hay agendado automático del mes todavía → eso es un pendiente (Calendar API / Make).
+
+### 3. Cambio de estrategia de contenido → 60 / 40 (importante)
+Por solicitud de Valentina, la mezcla de El de los Datos pasa a:
+- **60% Tips + Noticias de IA + Tecnología** (alcance/autoridad — el motor de la marca tech).
+- **40% Contenido vendible por nicho** = "cómo un dentista/gimnasio/etc. tiene videos virales". Le habla directo a quien compra Instagram Growth; cada reel es portafolio vivo + anzuelo de lead.
+- Razón: es la necesidad actual de los clientes de growth. La parrilla ya tiene el análisis de content creator + marketing y un playbook de nichos (dentistas, gimnasios) en la pestaña Estrategia.
+
+### 4. Otras funciones nuevas de la parrilla (para que no las rompas)
+- Capturador "Sube tu idea" + enlace de referencia → pestaña "Mis Ideas" (agrupa por mes).
+- Checkpoint por pieza (idea→grabado→editado→publicado) + barra de progreso.
+- Agenda "¿Qué toca grabar?" + Recordatorio de hoy + Calendario interno de mes.
+- **Sincronización entre dispositivos = respaldo manual** (Exportar/Importar JSON). Todo se guarda en `localStorage` (por dispositivo). Pendiente evaluado: Google Sheets vía Apps Script (Valentina montará la hoja).
+
+**Pendientes / decisiones para Andrés:**
+- [ ] ¿Activaste **Auto-Deploy** en el servicio `parrilla-eldelosdatos` de Render? (para que tome siempre el último commit).
+- [ ] Si quieres recibir las notificaciones de contenido, confirma que `andres@ajbusinessadvisory.com` es el correo a invitar.
+- [ ] Opcional a futuro: automatizar el agendado del mes completo (Calendar API o Make) para no agendar pieza por pieza.
+
+---
+
 ## 2026-05-21 — Solicitud de acceso — Valentina necesita permisos en 2 plataformas
 
 **Andrés, acción requerida — dos pasos rápidos:**

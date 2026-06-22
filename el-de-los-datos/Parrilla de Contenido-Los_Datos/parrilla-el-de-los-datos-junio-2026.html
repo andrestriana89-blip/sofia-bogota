@@ -412,6 +412,32 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .rm-step:nth-child(3) .rm-week{color:var(--green)}
 .rm-step:nth-child(4) .rm-week{color:var(--purple)}
 
+/* MEZCLA 60/40 */
+.mix-hero{background:radial-gradient(120% 130% at 0% 0%,#2A1247,#1A0B2E 60%,#120720);border-radius:16px;padding:20px 22px;margin-bottom:16px;color:#fff;position:relative;overflow:hidden}
+.mix-hero::after{content:'';position:absolute;top:-40px;right:-20px;width:200px;height:200px;background:radial-gradient(circle,rgba(255,46,196,.25),transparent 65%)}
+.mix-hero h3{font-size:18px;font-weight:900;letter-spacing:-.4px;position:relative}
+.mix-hero p{font-size:11.5px;color:rgba(255,255,255,.6);margin-top:4px;position:relative;line-height:1.5}
+.mix-bar{display:flex;height:38px;border-radius:10px;overflow:hidden;margin:14px 0 6px;position:relative}
+.mix-seg{display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;letter-spacing:.3px}
+.mix-seg.a{background:var(--brand-grad);width:60%}
+.mix-seg.b{background:linear-gradient(135deg,#F59E0B,#FF2EC4);width:40%}
+.mix-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.mix-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.mix-card.b{border-top:3px solid var(--neon)}
+.mix-card.a{border-top:3px solid var(--purple)}
+.mix-pct{font-size:24px;font-weight:900;letter-spacing:-1px}
+.mix-card.a .mix-pct{color:var(--purple)}.mix-card.b .mix-pct{color:var(--neon)}
+.mix-card h4{font-size:13px;font-weight:900;color:var(--dark);margin:2px 0 8px}
+.mix-card ul{padding-left:16px}
+.mix-card li{font-size:11.5px;color:var(--text);line-height:1.6;margin-bottom:3px}
+.niche-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.niche-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.niche-card h4{font-size:14px;font-weight:900;color:var(--dark);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.niche-card .nc-ic{font-size:24px}
+.niche-card .nc-h{font-size:9px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--neon);margin:8px 0 4px}
+.niche-card .nc-hook{font-size:11px;color:var(--text);line-height:1.5;background:var(--purple-pale);border-left:3px solid var(--purple);padding:7px 10px;border-radius:7px;margin-bottom:5px;font-style:italic;user-select:text}
+@media(max-width:640px){.mix-cols,.niche-grid{grid-template-columns:1fr}}
+
 /* PERFIL */
 .perfil-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:24px}
 .perfil-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
@@ -511,6 +537,16 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
 .btn-delete-card{position:absolute;top:10px;right:10px;background:none;border:none;color:var(--muted);font-size:14px;cursor:pointer;padding:2px 6px;border-radius:4px;transition:all .15s}
 .btn-delete-card:hover{background:var(--red-bg);color:var(--red)}
 .custom-card-body{padding:0 14px 12px;font-size:11px;color:var(--text);line-height:1.6}
+.backup-card{background:linear-gradient(135deg,rgba(139,61,255,.06),rgba(255,46,196,.05));border:1px solid rgba(139,61,255,.22);border-radius:var(--radius);padding:18px 20px;margin-bottom:22px;box-shadow:var(--shadow)}
+.backup-card h4{font-size:14px;font-weight:900;color:var(--purple);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.backup-card p{font-size:11.5px;color:var(--text);line-height:1.6;margin-bottom:12px}
+.backup-card p strong{color:var(--dark)}
+.backup-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-backup{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;border-radius:9px;font-size:12px;font-weight:800;font-family:'Montserrat',sans-serif;cursor:pointer;border:none;letter-spacing:.2px}
+.btn-backup.exp{background:var(--brand-grad);color:#fff}
+.btn-backup.imp{background:#fff;border:1.5px solid var(--purple);color:var(--purple)}
+.btn-backup:hover{opacity:.92}
+.backup-step{font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.55}
 .months-strip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .month-chip{padding:7px 14px;border-radius:8px;font-size:11px;font-weight:800;letter-spacing:.3px;border:1.5px dashed var(--border);color:var(--muted);background:var(--white)}
 .month-chip.done{border-style:solid;border-color:var(--green-bright);background:var(--green-bg);color:var(--green)}
@@ -1112,6 +1148,72 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
   <div class="wrap"><div class="sec">
     <div class="sec-header"><div class="sec-ey">Plan de Contenido</div><div class="sec-title">Estructura Semanal y Roadmap</div></div>
 
+    <!-- NUEVA MEZCLA 60/40 -->
+    <div class="mix-hero">
+      <h3>Nueva mezcla de contenido · 60 / 40</h3>
+      <p>Ajuste según la necesidad real de quienes compran Instagram Growth. La cuenta deja de ser solo tech: el 40% demuestra que sabemos volver viral cualquier nicho.</p>
+      <div class="mix-bar">
+        <div class="mix-seg a">60% · Tips + IA/Tech</div>
+        <div class="mix-seg b">40% · Vendible por nicho</div>
+      </div>
+    </div>
+
+    <div class="mix-cols">
+      <div class="mix-card a">
+        <div class="mix-pct">60%</div>
+        <h4>Tips · Noticias de IA · Tecnología</h4>
+        <ul>
+          <li>El motor de <strong>alcance y autoridad</strong> de El de los Datos.</li>
+          <li>Reels de noticia (Apple, Anthropic…), tips de IA aplicada, datos útiles.</li>
+          <li>Contenido salvable y compartible → trae audiencia nueva (descubrimiento).</li>
+          <li>Mantiene la marca tech que nos diferencia y da credibilidad.</li>
+        </ul>
+      </div>
+      <div class="mix-card b">
+        <div class="mix-pct">40%</div>
+        <h4>Vendible por nicho · "tu negocio viral"</h4>
+        <ul>
+          <li>El motor de <strong>venta del servicio</strong>. Le habla directo a quien nos compra.</li>
+          <li>Tips para <strong>dentistas</strong>, <strong>gimnasios</strong> y otros nichos → cómo tener videos virales.</li>
+          <li>Cada video es <strong>portafolio vivo + anzuelo de lead</strong>: demuestra que sabemos hacerlo.</li>
+          <li>Atrae seguidores con intención comercial, no solo curiosos.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="estrategia-box">
+      <h4>📈 Análisis — lectura de content creator + marketing digital</h4>
+      <ul>
+        <li><strong>Por qué funciona el 40% de nicho:</strong> el contenido educativo específico de un nicho tiene el mejor ratio guardado/compartido y atrae justo al dueño de negocio (dentista, gym) que ya tiene dolor digital. Es contenido que se vende solo porque demuestra resultado, no promete.</li>
+        <li><strong>Regla de marketing:</strong> hablarle al <em>dolor del nicho</em> ("tu clínica no aparece en reels y el paciente elige al que sí") convierte muchísimo más que hablar de nosotros. El video es el caso de estudio; el DM es la venta.</li>
+        <li><strong>Regla de content creator:</strong> 1 problema → 1 solución concreta en menos de 20 segundos, con prueba visual (antes/después, ejemplo real). Hook en los primeros 2 segundos o se pierde.</li>
+        <li><strong>El 60% sostiene, el 40% vende:</strong> sin el contenido tech la cuenta pierde autoridad y alcance; sin el de nicho no llegan los clientes. Juntos: autoridad que atrae + demostración que cierra.</li>
+        <li><strong>Doble función del nicho:</strong> cada reel de "dentistas/gyms virales" es a la vez contenido de la cuenta Y material que se le manda directo a un prospecto de ese nicho por DM o LinkedIn.</li>
+      </ul>
+    </div>
+
+    <div class="sec-ey" style="margin-bottom:12px">Playbook de nicho — cómo volver viral un tip</div>
+    <div class="niche-grid">
+      <div class="niche-card">
+        <h4><span class="nc-ic">🦷</span> Dentistas / Clínicas</h4>
+        <div class="nc-h">Hooks que funcionan</div>
+        <div class="nc-hook">"3 reels que toda clínica dental debería hacer (y casi ninguna hace)."</div>
+        <div class="nc-hook">"El paciente no elige al mejor dentista. Elige al que ve en redes."</div>
+        <div class="nc-hook">"Esto es lo que hace que una sonrisa se vuelva viral."</div>
+        <div class="nc-h">Formatos virales</div>
+        <ul><li>Antes/después de diseño de sonrisa (siempre funciona)</li><li>"Mitos dentales" desmentidos en 15s</li><li>Detrás de cámara de un procedimiento estético</li></ul>
+      </div>
+      <div class="niche-card">
+        <h4><span class="nc-ic">🏋️</span> Gimnasios / Entrenadores</h4>
+        <div class="nc-h">Hooks que funcionan</div>
+        <div class="nc-hook">"El reel que llena un gym no es de gente entrenando. Es este."</div>
+        <div class="nc-hook">"Tu gym pierde clientes por no mostrar esto en redes."</div>
+        <div class="nc-hook">"3 reels de 15 segundos que traen socios nuevos."</div>
+        <div class="nc-h">Formatos virales</div>
+        <ul><li>Transformaciones reales (antes/después de socios)</li><li>Rutina express de 15s con texto en pantalla</li><li>Reto de comunidad (genera UGC y guardados)</li></ul>
+      </div>
+    </div>
+
     <div class="estrategia-box">
       <h4>El motor: 1 noticia → 3 canales (unificación)</h4>
       <ul>
@@ -1226,6 +1328,17 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
       </div>
     </div>
 
+    <!-- RESPALDO / SINCRONIZACIÓN -->
+    <div class="backup-card">
+      <h4>💾 Respaldo y sincronización entre dispositivos</h4>
+      <p>Las marcas (grabado/publicado), ideas, métricas y notas se guardan <strong>en cada navegador por separado</strong> — por eso lo que marcas en el PC no aparece solo en el celular. Para pasarlo de un equipo a otro: <strong>Exporta</strong> aquí, manda el archivo (correo/WhatsApp) y <strong>Impórtalo</strong> en el otro dispositivo.</p>
+      <div class="backup-actions">
+        <button class="btn-backup exp" onclick="exportData()">⬇️ Exportar mi avance</button>
+        <label class="btn-backup imp">⬆️ Importar respaldo<input type="file" accept="application/json,.json" onchange="importData(this)" style="display:none"/></label>
+      </div>
+      <div class="backup-step">📌 Recomendación: cada vez que termines de marcar piezas en un equipo, exporta y comparte el archivo para que el equipo trabaje sobre la misma versión.</div>
+    </div>
+
     <!-- TIMELINE DE MESES -->
     <div class="months-strip">
       <div class="month-chip done">Jun 2026 · activo</div>
@@ -1279,6 +1392,8 @@ button{cursor:pointer;font-family:'Montserrat',sans-serif}
           <div class="form-label">Pilar</div>
           <select class="form-select" id="new-pilar">
             <option>Noticia Tech + IA</option>
+            <option>Tips IA / Tech</option>
+            <option>Vendible por nicho (dentistas/gyms)</option>
             <option>Webs con IA</option>
             <option>Producto Propio</option>
             <option>IA Aplicada al Negocio</option>
@@ -2091,6 +2206,37 @@ function updateProgress(){
   const num=document.getElementById('progress-done');
   if(fill)fill.style.width=Math.round(done/total*100)+'%';
   if(num)num.textContent=done;
+}
+
+// ── RESPALDO · EXPORTAR / IMPORTAR ───────────────────────────
+function exportData(){
+  const data={};
+  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.indexOf('eldd_')===0)data[k]=localStorage.getItem(k);}
+  const payload={_app:'eldelosdatos-parrilla',_v:1,fecha:new Date().toISOString(),data};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const d=new Date();const pad=n=>String(n).padStart(2,'0');
+  a.href=url;a.download=`eldelosdatos-respaldo-${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}.json`;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function importData(input){
+  const file=input.files&&input.files[0];if(!file){return;}
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const parsed=JSON.parse(r.result);
+      const data=(parsed&&parsed.data&&typeof parsed.data==='object')?parsed.data:parsed;
+      if(!data||typeof data!=='object'){alert('Archivo no válido. Asegúrate de subir el respaldo que exportaste.');input.value='';return;}
+      const keys=Object.keys(data).filter(k=>k.indexOf('eldd_')===0);
+      if(!keys.length){alert('El archivo no tiene datos de la parrilla.');input.value='';return;}
+      if(!confirm('Esto reemplazará las marcas, ideas, métricas y notas de ESTE dispositivo con las del archivo ('+keys.length+' registros). ¿Continuar?')){input.value='';return;}
+      keys.forEach(k=>localStorage.setItem(k,data[k]));
+      alert('✓ Respaldo importado. La página se recargará con tu avance.');
+      location.reload();
+    }catch(e){alert('No se pudo leer el archivo: '+e.message);input.value='';}
+  };
+  r.readAsText(file);
 }
 
 // ── MÉTRICAS DE CUENTA ───────────────────────────────────────
