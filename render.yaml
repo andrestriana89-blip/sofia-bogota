@@ -42,3 +42,14 @@ services:
       - type: rewrite
         source: /
         destination: /parrilla-el-de-los-datos-junio-2026.html
+
+  # ── Parrilla de Contenido — Dra. Lorena Rodríguez ─────────────────────────
+  - type: web
+    name: parrilla-lorena
+    env: static
+    buildCommand: ""
+    staticPublishPath: "FREELANCE/DOC-LORENA"
+    routes:
+      - type: rewrite
+        source: /
+        destination: /parrilla-lorena-rodriguez-junio-2026.html
