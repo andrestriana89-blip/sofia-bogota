@@ -1047,6 +1047,40 @@ Si tienes preguntas que llevas tiempo sin hacer — por pena, por miedo, o porqu
   <div class="flujo-nota">⏳ Los 3 videos grabados el <strong>18 Jun</strong> están marcados <strong>PENDIENTE</strong> — se publican a partir del miércoles 25 Jun.</div>
 </div>
 
+<!-- División de trabajo + Drive -->
+<div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:start;margin-bottom:18px">
+  <div style="background:var(--white);border:1.5px solid var(--border);border-radius:12px;padding:16px">
+    <div style="font-size:9px;font-weight:900;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:12px">👥 División de trabajo — Equipo AJ</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="background:rgba(181,104,94,.07);border:1.5px solid rgba(181,104,94,.25);border-radius:10px;padding:12px">
+        <div style="font-size:10px;font-weight:900;color:var(--blush);margin-bottom:6px">🎬 Paula</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.5">Edita <strong>Reels</strong><br>Genera portadas<br>Entrega: lunes noche</div>
+      </div>
+      <div style="background:rgba(84,122,110,.07);border:1.5px solid rgba(84,122,110,.25);border-radius:10px;padding:12px">
+        <div style="font-size:10px;font-weight:900;color:var(--sage-dark);margin-bottom:6px">📱 Valentina</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.5">Diseña <strong>Carruseles</strong><br>Diseña <strong>Antes/Después</strong><br>Entrega: lunes noche</div>
+      </div>
+      <div style="background:rgba(192,154,85,.07);border:1.5px solid rgba(192,154,85,.25);border-radius:10px;padding:12px">
+        <div style="font-size:10px;font-weight:900;color:var(--gold-dark);margin-bottom:6px">🩺 Dra. Lorena</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.5">Graba videos<br>Aporta casos A/D<br>Publica en IG</div>
+      </div>
+    </div>
+  </div>
+  <div style="background:var(--dark);border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:140px;min-height:100px">
+    <div style="font-size:9px;font-weight:900;letter-spacing:1.2px;text-transform:uppercase;color:rgba(192,154,85,.6)">Contenido</div>
+    <a id="drive-link-lorena" href="#" target="_blank" onclick="event.preventDefault();var l=document.getElementById('drive-link-lorena').href;if(l&&l!==window.location.href)window.open(l,'_blank');" style="background:var(--gold);color:var(--dark);font-size:11px;font-weight:900;padding:10px 16px;border-radius:8px;text-decoration:none;letter-spacing:.3px;text-align:center;display:block">
+      📁 Drive Lorena
+    </a>
+    <button onclick="var url=prompt('Pega el link del Drive:');if(url){document.getElementById('drive-link-lorena').href=url;localStorage.setItem('lorena_drive_url',url);alert('¡Link guardado!');}" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.45);font-size:9px;font-weight:700;padding:4px 10px;border-radius:6px;letter-spacing:.5px;font-family:'Montserrat',sans-serif">✏️ Actualizar link</button>
+  </div>
+</div>
+<script>
+(function(){
+  var saved = localStorage.getItem('lorena_drive_url');
+  if(saved){ var el = document.getElementById('drive-link-lorena'); if(el) el.href = saved; }
+})();
+</script>
+
 <!-- Leyenda -->
 <div class="leyenda" style="margin-bottom:20px">
   <div class="ley-item"><div class="ley-dot reel"></div>Reel</div>
