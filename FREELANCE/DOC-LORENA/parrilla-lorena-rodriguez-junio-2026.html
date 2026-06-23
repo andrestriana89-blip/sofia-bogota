@@ -2110,9 +2110,14 @@ El miedo al dentista no es irracional. Solo necesita información honesta.
 <div class="ideas-section">
   <div class="ideas-hdr">
     <div class="ideas-ttl-lbl">📌 Referencias e ideas de contenido</div>
-    <button class="btn-add" onclick="addInspo()">+ Agregar</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-add" onclick="addInspo()">+ Agregar</button>
+      <button onclick="enviarReferencias()" style="padding:7px 14px;border-radius:7px;background:rgba(84,122,110,.1);border:1.5px solid rgba(84,122,110,.3);color:var(--sage-dark);font-size:11px;font-weight:800;cursor:pointer;transition:all .15s;font-family:'Montserrat',sans-serif">📧 Enviar al equipo</button>
+      <button onclick="copiarReferencias()" style="padding:7px 14px;border-radius:7px;background:rgba(44,32,24,.06);border:1.5px solid var(--border);color:var(--muted);font-size:11px;font-weight:800;cursor:pointer;transition:all .15s;font-family:'Montserrat',sans-serif">📋 Copiar todo</button>
+    </div>
   </div>
-  <div style="font-size:11px;color:var(--muted);margin-bottom:14px">Banco compartido de referencias e ideas — tanto <span style="font-weight:700;color:var(--blush)">la Dra. Lorena</span> como <span style="font-weight:700;color:#2A6080">el Equipo AJ</span> pueden agregar aquí. Siempre indica quién lo agrega.</div>
+  <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Banco compartido de referencias e ideas — tanto <span style="font-weight:700;color:var(--blush)">la Dra. Lorena</span> como <span style="font-weight:700;color:#2A6080">el Equipo AJ</span> pueden agregar aquí. Siempre indica quién lo agrega.</div>
+  <div style="font-size:10px;color:var(--blush);font-weight:700;margin-bottom:12px;padding:7px 12px;background:rgba(181,104,94,.07);border-radius:7px;border:1px solid rgba(181,104,94,.18)">⚠️ Las referencias se guardan en este navegador. Para compartir con el equipo usa <strong>"Enviar al equipo"</strong> o <strong>"Copiar todo"</strong>.</div>
   <div class="inspo-list" id="inspo-list">
     <!-- Las tarjetas se generan dinámicamente -->
   </div>
@@ -2402,6 +2407,42 @@ function renderInspo(){
   }).join('');
 }
 function escHtml(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function formatInspoTexto(){
+  if(!inspoItems.length) return 'No hay referencias guardadas aún.';
+  const autorLabel={'equipo':'Equipo AJ','doctora':'Dra. Lorena','ambos':'Ambos'};
+  return inspoItems.map((it,i)=>{
+    const lines=['--- Referencia '+(i+1)+' ---'];
+    lines.push('Tipo: '+(it.tipo||'-').toUpperCase());
+    lines.push('Agregó: '+(autorLabel[it.autor||'equipo']));
+    if(it.titulo) lines.push('Título: '+it.titulo);
+    if(it.url)    lines.push('URL: '+it.url);
+    if(it.nota)   lines.push('Notas: '+it.nota);
+    return lines.join('\n');
+  }).join('\n\n');
+}
+
+function enviarReferencias(){
+  if(!inspoItems.length){alert('No hay referencias guardadas todavía. Agrega al menos una antes de enviar.');return;}
+  const texto = formatInspoTexto();
+  const asunto = encodeURIComponent('Referencias e ideas de contenido — Dra. Lorena Rodríguez');
+  const cuerpo = encodeURIComponent('Hola equipo,\n\nAquí están las referencias e ideas de contenido guardadas en la parrilla:\n\n'+texto+'\n\n— Enviado desde la parrilla de contenido');
+  const email = 'andrestriana89@gmail.com';
+  window.open('mailto:'+email+'?subject='+asunto+'&body='+cuerpo,'_self');
+}
+
+function copiarReferencias(){
+  if(!inspoItems.length){alert('No hay referencias guardadas todavía.');return;}
+  const texto = formatInspoTexto();
+  navigator.clipboard.writeText(texto).then(function(){
+    var btn = document.querySelector('[onclick="copiarReferencias()"]');
+    if(btn){var orig=btn.textContent;btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent=orig,2000);}
+  }).catch(function(){
+    var ta=document.createElement('textarea');ta.value=texto;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    var btn=document.querySelector('[onclick="copiarReferencias()"]');
+    if(btn){var orig=btn.textContent;btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent=orig,2000);}
+  });
+}
 
 document.addEventListener('DOMContentLoaded',function(){
   loadNotas();
