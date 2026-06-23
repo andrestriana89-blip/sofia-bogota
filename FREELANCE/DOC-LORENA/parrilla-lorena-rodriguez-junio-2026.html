@@ -2383,17 +2383,20 @@ function renderInspo(){
       <div class="inspo-card-fields">
         <div class="profile-field">
           <label class="pf-lbl">Título o descripción corta</label>
-          <input class="pf-input" placeholder="¿Qué te gustó de este video?" value="${escHtml(item.titulo)}" onchange="updateInspo(${item.id},'titulo',this.value)">
+          <input class="pf-input" placeholder="¿Qué te gustó de este video?" value="${escHtml(item.titulo)}" oninput="updateInspo(${item.id},'titulo',this.value)">
         </div>
         <div class="profile-field">
           <label class="pf-lbl">URL del video (IG, TikTok, YouTube)</label>
-          <input class="pf-input" placeholder="https://www.instagram.com/reel/..." value="${escHtml(item.url)}" onchange="updateInspo(${item.id},'url',this.value)">
+          <input class="pf-input" placeholder="https://www.instagram.com/reel/..." value="${escHtml(item.url)}" oninput="updateInspo(${item.id},'url',this.value)">
         </div>
         <div class="profile-field" style="grid-column:1/-1">
           <label class="pf-lbl">Notas — ¿qué te inspiró? ¿qué adaptarías?</label>
-          <textarea class="pf-input pf-ta" style="min-height:55px" placeholder="Me gustó cómo explicó el proceso sin imágenes invasivas. Podría hacer algo similar con la rehabilitación…" onchange="updateInspo(${item.id},'nota',this.value)">${escHtml(item.nota)}</textarea>
+          <textarea class="pf-input pf-ta" style="min-height:55px" placeholder="Me gustó cómo explicó el proceso sin imágenes invasivas. Podría hacer algo similar con la rehabilitación…" oninput="updateInspo(${item.id},'nota',this.value)">${escHtml(item.nota)}</textarea>
         </div>
         ${item.url?`<div style="grid-column:1/-1"><label class="pf-lbl">Enlace guardado</label><div class="inspo-url-display" onclick="window.open('${escHtml(item.url)}','_blank')">${escHtml(item.url)}</div></div>`:''}
+        <div style="grid-column:1/-1;display:flex;justify-content:flex-end;margin-top:4px">
+          <button onclick="saveInspo();var b=this;b.textContent='✓ Guardado';b.style.background='var(--sage-dark)';b.style.color='#fff';setTimeout(()=>{b.textContent='💾 Guardar';b.style.background='';b.style.color='';},1800)" style="padding:7px 16px;border-radius:7px;background:var(--gold-bg);border:1.5px solid rgba(192,154,85,.35);color:var(--gold-dark);font-size:11px;font-weight:800;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .2s">💾 Guardar</button>
+        </div>
       </div>
     </div>`;
   }).join('');
