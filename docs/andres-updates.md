@@ -5,6 +5,27 @@
 
 ---
 
+## 2026-06-30 — Sesión Andrés — Kits Representantes Colombia + USA
+
+**Repos tocados:** aj-business-advisory → ops/vendedores/kit-representante-colombia.html · ops/vendedores/kit-representante-usa.html · memoria/project_sofia_voice_colombia.md · memoria/reference_sofia_outbound_system.md
+
+**Cambios realizados:**
+✅ **Kit Representante Colombia** creado (`ops/vendedores/kit-representante-colombia.html`) — guía completa para vendedores Colombia con todos los planes COP, pitch scripts, manejo de objeciones y lanzador Sofia Outbound integrado
+✅ **Kit Representante USA** creado (`ops/vendedores/kit-representante-usa.html`) — versión espejo para mercado USA con precios USD, misma estructura
+✅ **Sofia Voice** agregada al pricing de ambos kits — $500K COP/mes · 300 min · Setup $1.2M (Colombia) y plan equivalente USD
+✅ **Lanzador Sofia Outbound** integrado en ambos kits → apunta a ajbusinessadvisory.com/ops/call (sistema ya existía, no se construyó de nuevo)
+✅ **Memoria actualizada** — Sofia Outbound documentada como sistema existente; Sofia Voice Colombia documentada como producto activo
+
+**Para Valentina:**
+- Los kits en `ops/vendedores/` son para Daniel (BizDev Colombia) y futuros reps. No son documentos de cliente.
+- Kit Colombia incluye pitch scripts en español con tuteo. Kit USA incluye versión inglés/español.
+- Si Daniel te pide algo relacionado con el kit, los archivos ya están en el repo.
+
+**Pendientes:**
+- [ ] Daniel debería revisar y validar los pitch scripts del kit Colombia antes de salir a vender
+
+---
+
 ## 2026-06-19 — Sesión Andrés — Seguridad + Notion + Lorena CRM
 **Repos tocados:** aj-business-advisory → webhook/main.py, brain/session-logs/2026-06-19.md
 
