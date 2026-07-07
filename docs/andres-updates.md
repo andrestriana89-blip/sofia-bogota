@@ -5,6 +5,24 @@
 
 ---
 
+## 2026-07-07 — Sesión Andrés — Propuestas Procesos & Procesos + Regla Estilo
+
+**Repos tocados:** aj-business-advisory → `clients/Procesos & Procesos/ThirdWish/propuestas/` · `clients/Procesos & Procesos/Wolf/propuestas/` · `clients/Procesos & Procesos/Safeti/propuestas/` · `brain/session-logs/2026-07-07.md`
+
+**Cambios realizados:**
+✅ **3 propuestas P&P finalizadas en PDF** — ThirdWish, Wolf Mensajería, Saphety by Sovos
+✅ **Firmas corregidas** — firmantes: Luz Marina Torres (P&P) + Andres Camilo Triana Morales (AJ). Los clientes finales (ThirdWish/Wolf/Saphety) NO aparecen — ellos se entienden con Luz Marina directamente
+✅ **Saphety — cláusula garantía de volumen** suavizada: se acuerda directamente con el cliente, sin número fijo ni penalidad de dinero
+✅ **PDFs enviados a valentina@ajbusinessadvisory.com** para revisión antes de presentar a Luz Marina
+✅ **Regla guardada en memoria**: todas las propuestas futuras usan HTML/CSS puro → PDF Playwright. Ver `memory/feedback_proposal_style.md`
+
+**Para Valentina:**
+- Tienes 3 PDFs en tu correo (asunto: "Propuestas P&P — ThirdWish, Wolf, Saphety") para revisar
+- Una vez que las apruebes, Luz Marina las lleva directamente a cada empresa
+- Andres NO contacta a ThirdWish/Wolf/Saphety — relación 100% a través de Luz Marina
+
+---
+
 ## 2026-06-30 — Sesión Andrés — Kits Representantes Colombia + USA
 
 **Repos tocados:** aj-business-advisory → ops/vendedores/kit-representante-colombia.html · ops/vendedores/kit-representante-usa.html · memoria/project_sofia_voice_colombia.md · memoria/reference_sofia_outbound_system.md
