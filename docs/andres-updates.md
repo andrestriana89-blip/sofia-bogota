@@ -619,3 +619,23 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Mandar el link de YouTube a Andres por WhatsApp — él lo incrusta en la página de ventas ese día
 
 **Nota:** La app del abuelo Don Gilberto no cambia — sigue en `ajbusinessadvisory.com/gilberto/familia` con ElevenLabs. Mi Voz v2 es el producto de Gumroad para otras familias.
+
+---
+
+## 2026-07-08 — Sesión Andrés (Sofia Content Coach — WF-40 + WF-41 automatizados)
+
+**Repos tocados:** aj-business-advisory → `webhook/main.py`, workflows N8N WF-40 (`E3ey0VTF19bVWNCJ`) y WF-41 (`ahiuwCmyj9E9gLSV`), memoria
+
+**Cambios realizados:**
+- ✅ Corregido bug crítico: Sofia Content Coach (WF-40) nunca leía datos reales de clientes en Supabase — trataba a todos como usuarios nuevos siempre. Ya funciona.
+- ✅ WF-41 (generador de parrilla) rediseñado — ahora usa datos REALES de Instagram (Apify) en vez de solo inventar ideas con IA.
+- ✅ Estructura de contenido fija aplicada: siempre 6 Reels + 8 Carruseles + 4 Publicación Random + 7 Historias = 25 piezas/mes (la estructura oficial de Instagram Growth).
+- ✅ Todo el flujo quedó automático: alguien completa el onboarding por WhatsApp → se genera su parrilla real solo, sin que nadie tenga que dispararlo a mano.
+- ✅ Nuevo: Sofia ahora puede iniciar la conversación ella misma (antes solo respondía si el cliente escribía primero) — Andrés da el número y Sofia se presenta.
+- ✅ Cargada la parrilla real de julio de @eldelosdatos_tech como demo para que Valentina probara el bot por WhatsApp — ya le llegó el mensaje de presentación.
+- ✅ El número +1 (669) 322-4787 ahora es de Sofia Content Coach (antes era de Sofia Personal).
+
+**Pendientes:**
+- [ ] Valentina: probar el bot escribiendo "idea", "script" y "parrilla" al +1 (669) 322-4787 y avisar si algo se siente raro.
+- [ ] Falta construir la página web del calendario visual (el link que menciona el comando "parrilla" todavía no existe).
+- [ ] Si alguien de la familia le escribe al +1 (669) 322-4787 esperando a Sofia Personal, ya no va a responder como antes — avisar si eso pasa.
