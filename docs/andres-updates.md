@@ -750,3 +750,21 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Andres: rotar los ~12-13 secretos expuestos (links entregados).
 - [ ] Andres: borrar del todo las 6 páginas de Notion vaciadas + vaciar la Papelera.
 - [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, cobros #004 Natalia y #002 Lorena, propuesta Dra. Bejarano, mensaje equipo médico a Natalia.
+
+---
+
+## 2026-07-10 — Sesión Andrés (QA loop Sofia Natalia + follow-ups ventas)
+
+**Repos tocados:** aj-business-advisory → `clients/natalia-dentalia/sofia/qa-loop.py` (nuevo) + `qa-scenarios.md` (nuevo) + `clients/natalia-dentalia/briefing/mensaje-equipo-medico-2026-07-10.md` + `isabela/followups.md` + `.env.example` + `brain/session-logs/2026-07-10.md` / sofia-bogota → sin cambios
+
+**Cambios realizados:**
+✅ Confirmado (contra ejecuciones reales de N8N) que el fix de WF-05 de anoche nunca se probó después de desplegarse — hueco de ~16h sin ejecuciones.
+✅ Enviado a Natalia el mensaje sobre equipo médico completo (urgencias, Dra. Marcela) — quedó en `isabela/followups.md` con seguimiento si no responde antes del 2026-07-14.
+✅ Construido y corrido en producción un QA loop reusable para Sofia WA (`clients/natalia-dentalia/sofia/qa-loop.py`) — 9 escenarios sintéticos, lee respuestas reales vía N8N, limpia citas de prueba en Dentalink automáticamente.
+✅ La corrida confirmó que el bug de Stephanie ofrecida para endodoncia urgente sigue activo (bloqueado por respuesta de Natalia) y encontró una inconsistencia nueva: el saludo inicial no siempre sigue la plantilla obligatoria del prompt.
+✅ ThirdWish, Safeti y propuesta de Dra. Catherine Bejarano — confirmado que las tres propuestas ya se enviaron, esperando respuesta (seguimiento si no responden antes del 2026-07-17).
+
+**Pendientes:**
+- [ ] Corregir el escenario 8 del QA loop (dedup) — quedó mal diseñado, no probó el fix real.
+- [ ] Investigar por qué el saludo inicial de Sofia es inconsistente.
+- [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, confirmar con Natalia el cambio de los botones "Sofia" de la web.
