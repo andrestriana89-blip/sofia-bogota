@@ -690,3 +690,19 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 
 **Pendientes:**
 - [ ] Sigue pendiente: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, enviar propuesta Dra. Bejarano por WhatsApp.
+
+---
+
+## 2026-07-10 — Sesión Andrés (debug Sofia WhatsApp Natalia)
+
+**Repos tocados:** aj-business-advisory → `Workflow 05 en N8N` (no es archivo del repo) + `clients/natalia-dentalia/briefing/mensaje-equipo-medico-2026-07-10.md` + `brain/session-logs/2026-07-10.md`
+
+**Cambios realizados:**
+✅ Diagnosticados y arreglados 5 bugs reales en Sofia WhatsApp de Natalia (Workflow 05, ya en producción): filtro de disponibilidad contra Dentalink que siempre fallaba, detección de conflicto de reserva que no reconocía el error real de Dentalink, sin protección contra reservas duplicadas por reintento de WhatsApp, y un candado para que el día de la semana nunca se lo invente la IA.
+✅ Cancelada en Dentalink la cita de prueba fantasma que quedó real por las pruebas de anoche (paciente ficticio, 15 de julio).
+✅ Revisado el roster completo de doctores en Dentalink — confirmado que "Dra. Marcela" (mencionada por Natalia para raspajes) no existe registrada en el sistema.
+
+**Pendientes:**
+- [ ] Andres debe enviar a Natalia el mensaje guardado en `clients/natalia-dentalia/briefing/mensaje-equipo-medico-2026-07-10.md` pidiendo función/especialidad de todo su equipo médico.
+- [ ] Una vez responda Natalia, actualizar las reglas de asignación de doctores en el prompt de Sofia (urgencias, raspaje/Marcela).
+- [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, enviar propuesta Dra. Bejarano por WhatsApp.
