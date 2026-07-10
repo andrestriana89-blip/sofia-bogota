@@ -706,3 +706,23 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Andres debe enviar a Natalia el mensaje guardado en `clients/natalia-dentalia/briefing/mensaje-equipo-medico-2026-07-10.md` pidiendo función/especialidad de todo su equipo médico.
 - [ ] Una vez responda Natalia, actualizar las reglas de asignación de doctores en el prompt de Sofia (urgencias, raspaje/Marcela).
 - [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, enviar propuesta Dra. Bejarano por WhatsApp.
+
+---
+
+## 2026-07-10 — Sesión Andrés (verificación pre-informe mensual Natalia + 3 bugs más)
+
+**Repos tocados:** aj-business-advisory → `webhook/main.py` (commit `3d50b7f`) + `Workflow 05 en N8N` (no es archivo del repo) + `status/production-registry.md` + `status/clients/natalia-dentalia.md` + `clients/natalia-dentalia/briefing/` (3 documentos nuevos) + `brain/session-logs/2026-07-10.md`
+
+**Cambios realizados:**
+✅ Verificación completa de todos los sistemas de Natalia antes de la reunión de informe mensual — todo conectado y funcionando.
+✅ Corregido bug: Sofia solo veía la agenda de María José para citas generales, nunca la del Dr. Santiago — ahora usa la de ambos.
+✅ Corregido bug en la web (`/agendar`): podía mostrar horarios ya ocupados como disponibles (riesgo de doble cita).
+✅ Corregido bug: las confirmaciones de WhatsApp de citas agendadas por la web llevaban más de un mes sin enviarse (token vencido desde el 2026-06-04) — ya renovado.
+✅ Corregido bug crítico: Sofia creaba un paciente nuevo en Dentalink en cada cita, sin verificar si el paciente ya existía. Probado en producción con una paciente real — ya no duplica.
+✅ Confirmado que este arreglo convive bien con los 5 fixes de la sesión anterior de hoy sobre el mismo Workflow 05 (dos sesiones tocaron lo mismo en paralelo sin coordinarse — quedó bien, pero ojo con esto en días de varias sesiones activas).
+⚠️ Encontrado, documentado, sin corregir: los botones "Sofia" de la web (`dranataliabarrantes.com`) mandan al WhatsApp personal de Natalia, no al número real de Sofia — queda pendiente de que Natalia confirme el cambio.
+
+**Pendientes:**
+- [ ] Confirmar con Natalia si aprueba cambiar los botones "Sofia" de la web al número real de Sofia.
+- [ ] Auditar si quedaron pacientes duplicados en Dentalink de antes del fix de hoy.
+- [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, enviar propuesta Dra. Bejarano por WhatsApp, mensaje sobre equipo médico a Natalia.
