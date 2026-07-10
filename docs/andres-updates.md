@@ -726,3 +726,27 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Confirmar con Natalia si aprueba cambiar los botones "Sofia" de la web al número real de Sofia.
 - [ ] Auditar si quedaron pacientes duplicados en Dentalink de antes del fix de hoy.
 - [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, enviar propuesta Dra. Bejarano por WhatsApp, mensaje sobre equipo médico a Natalia.
+
+---
+
+## 2026-07-10 — Sesión Andrés (infraestructura N8N, seguridad, Isabella)
+
+**Repos tocados:** aj-business-advisory → `webhook/main.py`, `.env.example`, `ops/SOP-MASTER.md` (reescrito v2.0), `status/production-registry.md`, `ops/sistema-facturacion-automatica.md`, `_archived/telegram-bridge-legacy/`, workflow N8N #07 y workflow nuevo #33 / sofia-bogota → sin cambios
+
+**Cambios realizados:**
+✅ Arreglado el bug de 2 meses del workflow "07 — GitHub SOP-MASTER → Notion Sync" (auth + bug de tipos + arquitectura del nodo que sincroniza a Notion). Causa raíz real del 404: `ops/SOP-MASTER.md` nunca existió en `main`.
+✅ Inventario completo de los 51 workflows N8N documentado por primera vez (`status/production-registry.md`).
+✅ Sistema de monitoreo de N8N en 2 capas: alertas en tiempo real (Error Handler conectado a 42 workflows) + revisión de salud cada 3 días (workflow nuevo "33 — Revisión Profunda Nodos"). Ya demostró funcionar en producción.
+✅ Auditoría de seguridad completa: encontrados ~12-13 secretos hardcodeados en texto plano (Stripe, Supabase, Twilio, Meta/WhatsApp, GHL, Anthropic, OpenAI, Apify, ElevenLabs, Dentalink, N8N API key) repartidos en 10 workflows N8N y el backend — pendiente que Andres los rote.
+✅ Arreglado un conflicto real entre dos "cerebros" de Telegram peleando por el mismo bot — explica por qué Isabella a veces no contestaba. Apagado y archivado el bridge conflictivo del Mac.
+✅ Agregada validación de firma a los webhooks de Meta WhatsApp (antes aceptaban cualquier mensaje sin verificar que viniera de Meta).
+✅ SOP-MASTER.md reescrito de cero con pricing, equipo y reglas vigentes — la versión vieja (mayo) nunca se sincronizó por el bug de arriba.
+✅ Notion estaba al 100% de bloques gratuitos — vaciadas 6 páginas obsoletas (4 prospectos muertos + precios viejos + pendientes técnicos resueltos) para liberar espacio.
+
+**Pendientes:**
+- [ ] Andres: conectar la integración de Notion a la página SOP MASTER (Add connections) para que el workflow #07 sincronice de verdad.
+- [ ] Andres: confirmar webhook de Telegram registrado apuntando a Render.
+- [ ] Andres: configurar los 2 App Secrets de Meta en Render para activar la validación de firma real.
+- [ ] Andres: rotar los ~12-13 secretos expuestos (links entregados).
+- [ ] Andres: borrar del todo las 6 páginas de Notion vaciadas + vaciar la Papelera.
+- [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, cobros #004 Natalia y #002 Lorena, propuesta Dra. Bejarano, mensaje equipo médico a Natalia.
