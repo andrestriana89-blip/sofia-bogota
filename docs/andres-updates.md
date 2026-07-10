@@ -678,3 +678,15 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 
 **Pendientes:**
 - [ ] Enviar la propuesta actualizada de Dra. Bejarano por WhatsApp.
+
+---
+
+## 2026-07-10 — Sesión Andrés (análisis Claude Design)
+
+**Repos tocados:** aj-business-advisory → `brain/session-logs/2026-07-10.md`
+
+**Cambios realizados:**
+✅ Analizada la herramienta "Claude Design" (Anthropic Labs) y comparada contra el pipeline actual de propuestas/carruseles. Decisión: no reemplaza el flujo actual (pierde control de marca y versionado en git), pero se puede probar para pitch decks de prospectos nuevos.
+
+**Pendientes:**
+- [ ] Sigue pendiente: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, enviar propuesta Dra. Bejarano por WhatsApp.
