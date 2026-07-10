@@ -639,3 +639,28 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Valentina: probar el bot escribiendo "idea", "script" y "parrilla" al +1 (669) 322-4787 y avisar si algo se siente raro.
 - [ ] Falta construir la página web del calendario visual (el link que menciona el comando "parrilla" todavía no existe).
 - [ ] Si alguien de la familia le escribe al +1 (669) 322-4787 esperando a Sofia Personal, ya no va a responder como antes — avisar si eso pasa.
+
+---
+
+## 2026-07-09 — Sesión Andrés (dashboard de parrilla + facturación y contratos)
+
+**Repos tocados:** aj-business-advisory → `webhook/main.py`, `landing/content/calendar.html`, `clients/lorena-rodriguez/`, `clients/natalia-dentalia/`, `clients/dra-bejarano/`, `ops/`, `finance/billing-ledger.md`, `CLAUDE.md`, workflows N8N #23/#24/#14
+
+**Cambios realizados:**
+✅ **Página `/content/[slug]` en producción** — el link que Sofia manda con "parrilla" ya funciona (antes daba 404). Marcar grabado, editar, notas, buscar/filtrar, contadores, regenerar con IA.
+✅ **Corregido error real en el contrato de Lorena** — llevaba semanas documentado mal como "$1.990.000 mes 2+" en status/CLAUDE.md; el contrato firmado dice $1.500.000 fijo. Ya está corregido en todos lados.
+✅ **Otrosí #1 de Lorena firmado por AJ, pendiente de firma de ella** — a solicitud de ella, sube a $2.000.000 COP/mes, 25 piezas (12 Reels + 13 Posts Variables). Las Historias ya no las produce AJ — las sube ella misma, se le indican por la parrilla.
+✅ **Cobro #002 de Lorena ya generado** ($2.000.000 COP) — Andres lo envía entre el 15 y el 20 de julio.
+✅ **Propuesta de Dra. Catherine Bejarano corregida** (sexóloga, Bogotá) — quitado "Antes/Después" (es de clínicas dentales/estéticas, no aplica a su nicho), reemplazado por "Preguntas Anónimas". PDF listo para enviar por WhatsApp.
+✅ **Encontrada y arreglada la causa real de por qué el facturador automático nunca avisaba nada** — el repo de GitHub es privado y el sistema nunca tuvo permiso para leerlo. Ya está conectado y funcionando.
+✅ **Plan de fidelización por referidos documentado** — Natalia y Lorena tienen 50%/30%/20% (trato especial por ser las primeras clientas), todo cliente nuevo de ahí en adelante tiene 30%/20%.
+
+**Para Valentina:**
+- Si Lorena pregunta por qué su factura de julio dice $2.000.000 en vez de $1.500.000, es porque ella misma pidió más contenido (25 piezas en vez de 24) — el Otrosí #1 lo documenta.
+- Recuerda subir las Historias de Lorena tú misma desde ahora — se las vamos a indicar en la parrilla, ya no las graba/publica AJ.
+- La propuesta de Dra. Bejarano (sexóloga) está lista para enviar — avísame si necesitas el PDF.
+
+**Pendientes:**
+- [ ] Firmar el Otrosí #1 con Lorena.
+- [ ] Enviar cobros #004 de Natalia y #002 de Lorena en sus ventanas.
+- [ ] Enviar propuesta de Dra. Bejarano por WhatsApp.
