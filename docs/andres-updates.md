@@ -664,3 +664,17 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Firmar el Otrosí #1 con Lorena.
 - [ ] Enviar cobros #004 de Natalia y #002 de Lorena en sus ventanas.
 - [ ] Enviar propuesta de Dra. Bejarano por WhatsApp.
+
+---
+
+## 2026-07-10 — Sesión Andrés (ajustes propuesta Dra. Bejarano)
+
+**Repos tocados:** aj-business-advisory → `clients/dra-bejarano/propuestas/`
+
+**Cambios realizados:**
+✅ Agregados requisitos a la propuesta de Dra. Bejarano: acceso a Meta Business Suite, disponibilidad de 3-4 horas para grabación (antes 1-2 horas).
+✅ Agregado el bot de contenido (Sofia Content Coach) como add-on **gratuito** destacado en la oferta.
+✅ Quitada la nota vieja de "graba desde el celular" — ya no aplica con la sesión de grabación con AJ.
+
+**Pendientes:**
+- [ ] Enviar la propuesta actualizada de Dra. Bejarano por WhatsApp.
