@@ -768,3 +768,24 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Corregir el escenario 8 del QA loop (dedup) — quedó mal diseñado, no probó el fix real.
 - [ ] Investigar por qué el saludo inicial de Sofia es inconsistente.
 - [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, confirmar con Natalia el cambio de los botones "Sofia" de la web.
+
+---
+
+## 2026-07-13 — Sesión Andrés (marca personal + CFO/cumplimiento fiscal)
+
+**Repos tocados:** aj-business-advisory → `content/marca-personal-framework-2026-07-13.md` (nuevo) + `finance/auditoria-cumplimiento-fiscal-2026-07-13.md` (nuevo) + `isabela/commitments.md` + `brain/session-logs/2026-07-13.md` / sofia-bogota → este archivo
+
+**Cambios realizados:**
+✅ Framework de marca personal (8 prompts) aplicado a @eldelosdatos_tech + AJ Business Advisory — eje central: "construí IA en Silicon Valley, me devolví a Colombia a instalarla donde hace falta" (confirmado que Andres ya vive en Colombia, mudanza 2026-06-02 completada).
+✅ Auditoría de cumplimiento fiscal/legal completa, con MRR real calculado (run-rate $3.540.000 COP/mes entre Natalia + Lorena).
+✅ Cerrado el tema Jonathan Cruz / clasificación IRS — confirmado con USCS que nunca fue socio, solo manager, documentos ya corregidos y firmados.
+✅ Decisión: crear SAS nueva en Colombia (Valentina dueña nominal) en vez de comprar la empresa de la mamá de Andres — evita heredar historial/deudas desconocidas.
+✅ Decisión: NO reutilizar AJ Business Advisory LLC para el negocio de real estate — crear entidad separada en Texas (tío Efraín se mudó de Tampa a Austin, el plan de mercado quedó desactualizado).
+✅ Corregida la dirección bancaria de Lili (AJ Business Advisory LLC) — Lili rechazó la dirección de USCS Wyoming (PO Box/CMRA), quedó en la casa de los papás de Andres en Jasper, Indiana. Recordatorio puesto para volver a cambiarla antes de noviembre 2026 (papás entregan la casa).
+
+**Pendientes:**
+- [ ] Constituir la SAS nueva en Colombia + redactar acuerdo privado Andres-Valentina (necesita abogado colombiano).
+- [ ] Replantear mercado del proyecto de real estate con Efraín ya en Austin, TX, y registrar la LLC correspondiente.
+- [ ] Construir workflow Sofia (N8N + Meta Graph + Claude) para comentarios de Reels de @eldelosdatos_tech — decisión de 2026-04-28, nunca implementada.
+- [ ] Contratar CPA/EA real especializado en expats con LLC en USA.
+- [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, confirmar con Natalia el cambio de los botones "Sofia" de la web.
