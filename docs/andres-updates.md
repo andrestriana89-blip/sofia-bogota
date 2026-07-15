@@ -789,3 +789,20 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Construir workflow Sofia (N8N + Meta Graph + Claude) para comentarios de Reels de @eldelosdatos_tech — decisión de 2026-04-28, nunca implementada.
 - [ ] Contratar CPA/EA real especializado en expats con LLC en USA.
 - [ ] Sigue pendiente de sesiones anteriores: firmar Otrosí #1 con Lorena, enviar cobros #004 Natalia y #002 Lorena, confirmar con Natalia el cambio de los botones "Sofia" de la web.
+
+---
+
+## 2026-07-14 — Sesión Andrés (cancelación Lorena + penalidad contractual)
+
+**Repos tocados:** aj-business-advisory → `status/clients/lorena-rodriguez.md` + `isabela/commitments.md` + `isabela/followups.md` + `CLAUDE.md` + `ops/propuestas-template/contrato-servicios-colombia-template.html` (nuevo) + `brain/session-logs/2026-07-14.md` / sofia-bogota → este archivo
+
+**Cambios realizados:**
+✅ Lorena Rodríguez (COL-002) canceló el servicio — dentro del período de permanencia mínima (29 de 90 días). Se le pidió $750.000 COP (50% de la mensualidad) como condición de cierre.
+✅ Nueva cláusula de penalidad por cancelación anticipada agregada a los contratos: 50% de la mensualidad por cada mes que falte para completar el mínimo de 3 meses. Ya no se clonan contratos nuevos desde el archivo de Lorena — hay template propio en `ops/propuestas-template/contrato-servicios-colombia-template.html`.
+✅ Regla nueva inamovible: ningún cliente arranca producción sin firma/aceptación confirmada y con comprobante guardado — el pago del primer cobro ya no es suficiente por sí solo (gate agregado al skill `client-ops`).
+
+**Pendientes:**
+- [ ] Esperar respuesta de Lorena sobre el pago de $750.000 COP — seguimiento si no responde antes de 2026-07-21.
+- [ ] Avisar a Valentina que pare producción de contenido de Lorena.
+- [ ] No enviar cobro AJ-COL-002-002 ($2.000.000, Otrosí #1 de Lorena) — ese acuerdo nunca se firmó.
+- [ ] Sigue pendiente de sesiones anteriores: constituir la SAS nueva en Colombia, contratar CPA/EA, workflow Sofia para comentarios de Reels de @eldelosdatos_tech.
