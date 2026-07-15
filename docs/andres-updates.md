@@ -825,3 +825,17 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Verificar puntualmente si sigue vigente una regresión reportada el mismo día en el escenario de endodoncia como urgencia.
 - [ ] Terminar de sincronizar el archivo de referencia del prompt de Sofia con el texto real de producción.
 - [ ] Sigue pendiente de sesiones anteriores: constituir la SAS nueva en Colombia, contratar CPA/EA, workflow Sofia para comentarios de Reels de @eldelosdatos_tech.
+
+## 2026-07-15 — Sesión Andrés
+**Repos tocados:** aj-business-advisory → `outreach/scripts/bogota-wa-scraper.py` (nichos nuevos) + `webhook/main.py` (rutas nuevas, sin tocar código existente) + `landing/booking.html` (nuevo) + `ops/migrations/2026-07-15-barbershop-booking.sql` (nuevo) + `ops/sop-qr-booking.md` (nuevo) + `brain/session-logs/2026-07-15.md` + `brain/MASTER_BRAIN.md` / sofia-bogota → este archivo
+
+**Cambios realizados:**
+✅ Construido un sistema de citas para barberías: el cliente entra por QR o link, escoge servicio/barbero/hora, y la barbería recibe la cita por WhatsApp — pensado para vender como producto nuevo aparte de Sofia. Es multi-tenant desde el día 1 (activar una barbería nueva = una fila en la base de datos, no código nuevo).
+✅ Extendido el scraper de leads de WhatsApp Colombia con los nichos "restaurante" y "barbería" (antes solo tenía dental/estética/spa/cirujano) — genera teléfono + mensaje de primer contacto ya redactado.
+✅ Decisión tomada con Andres: por ahora NO se automatiza el envío masivo de WhatsApp — se hace manual (una persona copia y envía el mensaje ya escrito), porque los intentos de automatización que ya existían en el repo nunca llegaron a funcionar de verdad y el riesgo de que baneen el número no vale la pena todavía.
+
+**Pendientes:**
+- [ ] **Nada de lo de esta sesión está desplegado todavía** — falta correr una migración de base de datos en Supabase y cargar el primer cliente real de barbería antes de que el sistema de citas funcione en vivo.
+- [ ] Definir cuál es el primer cliente real de barbería para activarlo.
+- [ ] Extender el scraper de restaurantes/barberías a más ciudades y empezar el envío manual de mensajes.
+- [ ] Sigue pendiente de sesiones anteriores: bug de mensajes duplicados de WhatsApp de Natalia, constituir la SAS nueva en Colombia, contratar CPA/EA.
