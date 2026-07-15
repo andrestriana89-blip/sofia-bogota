@@ -806,3 +806,22 @@ El widget de chat (burbuja verde, ID: `69d334e30515dd19a13c80df`) aparece en ing
 - [ ] Avisar a Valentina que pare producción de contenido de Lorena.
 - [ ] No enviar cobro AJ-COL-002-002 ($2.000.000, Otrosí #1 de Lorena) — ese acuerdo nunca se firmó.
 - [ ] Sigue pendiente de sesiones anteriores: constituir la SAS nueva en Colombia, contratar CPA/EA, workflow Sofia para comentarios de Reels de @eldelosdatos_tech.
+
+---
+
+## 2026-07-14/15 — Sesión Andrés (Sofia WhatsApp Natalia — bug de bloqueos + auditoría completa Dentalink)
+
+**Repos tocados:** aj-business-advisory → `ops/migrations/2026-07-14-dentalink-sync.sql` (nuevo) + `clients/natalia-dentalia/sofia/feedback-log.md` + `clients/natalia-dentalia/sofia/sofia-prompt-wa.md` + `clients/natalia-dentalia/sofia/qa-loop.py` + `brain/session-logs/2026-07-14.md` + memoria (`reference_n8n_credentials.md`) / N8N producción → Workflow 05 (Sofia WhatsApp Natalia) y Workflow 34 (nuevo, Dentalink Sync) / sofia-bogota → este archivo
+
+**Cambios realizados:**
+✅ Natalia reportó que Sofia ofrecía y agendaba citas en horarios que ella tenía bloqueados en Dentalink. Causa raíz encontrada y corregida: Sofia nunca consultaba el endpoint de bloqueos de Dentalink (separado del de citas reales). Caso real confirmado: paciente agendado dentro de un bloqueo de la Dra. Natalia.
+✅ Reglas de asignación de doctores reescritas en el prompt de producción según instrucción directa de Natalia — solo 3 doctores se agendan directo con Sofia, el resto (Vanessa, Stephanie, Sully, Marcela) siempre se remite a recepción.
+✅ Construida infraestructura nueva: sincronización automática Dentalink → Supabase cada 30 min (genérica, sirve para futuros clientes con Dentalink), para que Sofia deje de depender de consultas en vivo a una API con rate limit agresivo y sin filtros funcionales.
+✅ Auditados todos los nodos de Sofia que tocan Dentalink (pedido explícito de Andres: "no se nos puede escapar nada"). Encontrados y corregidos 3 bugs reales adicionales — el más importante: el asistente interno que atiende a Natalia directamente (no a pacientes) tenía sus 4 herramientas rotas al 100%, lo que explica que ella "siempre encuentre problemas" al hablarle a Sofia.
+✅ Corregido también un bug en el propio script de pruebas que podía estar ocultando fallas reales de agendamiento en corridas de QA anteriores.
+
+**Pendientes:**
+- [ ] **Bloqueante para poder cobrarle a Natalia con confianza:** bug de mensajes duplicados de WhatsApp — a veces Meta reenvía el mismo mensaje dos veces y Sofia lo procesa dos veces. Hay una protección en el código pero no está funcionando (hipótesis: problema de timing, sin confirmar). Andres pidió dejarlo funcionando al 100%, no una solución parcial — es lo primero para retomar.
+- [ ] Verificar puntualmente si sigue vigente una regresión reportada el mismo día en el escenario de endodoncia como urgencia.
+- [ ] Terminar de sincronizar el archivo de referencia del prompt de Sofia con el texto real de producción.
+- [ ] Sigue pendiente de sesiones anteriores: constituir la SAS nueva en Colombia, contratar CPA/EA, workflow Sofia para comentarios de Reels de @eldelosdatos_tech.
