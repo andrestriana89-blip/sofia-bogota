@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/agendar", "destination": "/agendar.html" },
+    { "source": "/", "destination": "/dentalia.html" }
+  ]
+}
